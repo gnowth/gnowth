@@ -1,0 +1,16 @@
+{
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.rulers": [69],
+  "editor.tabSize": 2,
+  "files.autoSave": "onFocusChange",
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
+  "workbench.editor.showTabs": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.enablePreview": false,
+  "launch": {
+    "configurations": [],
+    "compounds": []
+  }
+}
