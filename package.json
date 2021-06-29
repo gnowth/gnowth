@@ -1,0 +1,31 @@
+{
+  "author": "Thierry Wong",
+  "bugs": "https://github.com/gnowth/boilerplate-react/issues",
+  "description": "Boilerplate react",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "@gnowth/boilerplate-react",
+  "private": true,
+  "version": "0.0.1",
+  "repository": "https://github.com/gnowth/boilerplate-react.git",
+  "homepage": "https://github.com/gnowth/boilerplate-react#readme",
+  "engines": {
+    "node": "16.4.0",
+    "npm": "7.18.1"
+  },
+  "dependencies": {
+    "github-markdown-css": "4.0.0",
+    "lerna": "4.0.0"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "clean": "lerna clean",
+    "clean:temp": "lerna run clean:dist && lerna run clean:log && rimraf coverage",
+    "git:fetch": "git fetch --prune",
+    "git:rebase": "git pull --rebase origin main",
+    "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
+    "lerna": "lerna",
+    "setup": "npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
