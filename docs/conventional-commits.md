@@ -1,4 +1,4 @@
-# Conventional Commits
+# Conventional Commits v1.0.0
 
 ## Types
 
