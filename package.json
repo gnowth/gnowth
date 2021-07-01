@@ -1,14 +1,14 @@
 {
   "author": "Thierry Wong",
-  "bugs": "https://github.com/gnowth/boilerplate-react/issues",
-  "description": "Boilerplate react",
+  "bugs": "https://github.com/gnowth/gnowth/issues",
+  "description": "Boilerplate",
   "license": "MIT",
   "main": "index.js",
-  "name": "@gnowth/boilerplate-react",
+  "name": "gnowth",
   "private": true,
   "version": "0.0.1",
-  "repository": "https://github.com/gnowth/boilerplate-react.git",
-  "homepage": "https://github.com/gnowth/boilerplate-react#readme",
+  "repository": "https://github.com/gnowth/gnowth.git",
+  "homepage": "https://github.com/gnowth/gnowth#readme",
   "engines": {
     "node": "16.4.0",
     "npm": "7.18.1"
