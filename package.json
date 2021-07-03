@@ -25,16 +25,21 @@
     "node": "16.4.0",
     "npm": "7.18.1"
   },
+  "lint-staged": {
+    "*.{json,css,scss,md}": "prettier --write",
+    "*.{ts,js,tsx,jsx}": "eslint --fix"
+  },
   "dependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@gnowth/prettier-config": "0.0.1",
     "@gnowth/eslint-config": "0.0.1",
+    "@gnowth/prettier-config": "0.0.1",
     "babel-eslint": "10.1.0",
     "eslint": "7.30.0",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.0",
     "lerna": "4.0.0",
+    "lint-staged": "11.0.0",
     "prettier": "2.3.2"
   },
   "scripts": {
