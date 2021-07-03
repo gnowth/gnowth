@@ -11,5 +11,8 @@
     "directory": "packages/config-prettier",
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "peerDependencies": {
+    "prettier": "^2.0.0"
   }
 }
