@@ -30,5 +30,5 @@ To be determined
 
 ## Reference
 
-https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
-https://www.conventionalcommits.org/en/v1.0.0/
+- https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines
+- https://www.conventionalcommits.org/en/v1.0.0/
