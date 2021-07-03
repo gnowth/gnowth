@@ -1,0 +1,15 @@
+{
+  "author": "Thierry Wong",
+  "description": "Prettier configs",
+  "license": "MIT",
+  "main": ".prettierrc.json",
+  "name": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.1",
+  "repository": {
+    "directory": "packages/config-prettier",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  }
+}

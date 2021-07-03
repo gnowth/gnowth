@@ -4,10 +4,12 @@
   "description": "Boilerplate",
   "license": "MIT",
   "name": "gnowth",
+  "prettier": "@gnowth/prettier-config",
   "private": true,
   "version": "0.0.1",
   "repository": "https://github.com/gnowth/gnowth.git",
   "homepage": "https://github.com/gnowth/gnowth#readme",
+  "workspaces": ["./packages/*"],
   "engines": {
     "node": "16.4.0",
     "npm": "7.18.1"
@@ -15,9 +17,11 @@
   "dependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
+    "@gnowth/prettier-config": "0.0.1",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.0",
-    "lerna": "4.0.0"
+    "lerna": "4.0.0",
+    "prettier": "2.3.2"
   },
   "scripts": {
     "build": "lerna run build",
