@@ -1,8 +1,9 @@
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": false,
   "editor.formatOnPaste": true,
   "editor.insertSpaces": true,
-  "editor.rulers": [69],
+  "editor.rulers": [100],
   "editor.tabSize": 2,
   "files.autoSave": "onFocusChange",
   "gitlens.codeLens.authors.enabled": false,
@@ -24,20 +25,4 @@
   ],
 
   "markdown.styles": ["./node_modules/github-markdown-css/github-markdown.css"],
-
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
 }
