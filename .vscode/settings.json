@@ -1,28 +1,19 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.detectIndentation": false,
   "editor.formatOnPaste": true,
-  "editor.insertSpaces": true,
   "editor.rulers": [100],
-  "editor.tabSize": 2,
   "files.autoSave": "onFocusChange",
   "gitlens.codeLens.authors.enabled": false,
   "gitlens.codeLens.recentChange.enabled": false,
   "workbench.editor.showTabs": false,
 
   "css.validate": false,
-  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "javascript.validate.enable": false,
   "scss.validate": false,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.validate.enable": false,
 
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
 
-  "markdown.styles": ["./node_modules/github-markdown-css/github-markdown.css"],
+  "markdown.styles": ["./node_modules/github-markdown-css/github-markdown.css"]
 }
