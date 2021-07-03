@@ -9,7 +9,18 @@
   "version": "0.0.1",
   "repository": "https://github.com/gnowth/gnowth.git",
   "homepage": "https://github.com/gnowth/gnowth#readme",
-  "workspaces": ["./packages/*"],
+  "workspaces": [
+    "./packages/*"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/javascript"
+    ],
+    "ignorePatterns": [
+      "**/coverage",
+      "**/dist"
+    ]
+  },
   "engines": {
     "node": "16.4.0",
     "npm": "7.18.1"
@@ -18,6 +29,9 @@
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@gnowth/prettier-config": "0.0.1",
+    "@gnowth/eslint-config": "0.0.1",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.30.0",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.0",
     "lerna": "4.0.0",
@@ -31,6 +45,8 @@
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
     "lerna": "lerna",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:workspaces": "lerna run lint",
     "prepare": "husky install",
     "setup": "npm install"
   }
