@@ -2,31 +2,30 @@
 
 ## Setup
 
-1. add husky to project:
+1. Add husky to project:
 
-```
+```bash
   npm add husky --save-dev
 ```
 
-2. install husky
+2. Install husky
 
-```
+```bash
   npx husky install
 ```
 
 3. To automatically install husky on every npm install, run the following:
 
+```bash
+  npm set-script prepare 'husky install'
 ```
-  npm set-script prepare "husky install"
-```
-
 
 ## Hooks
 
 - To create a hook:
 
-```
-  npx husky add .husky/pre-commit "npm test"
+```bash
+  npx husky add .husky/pre-commit 'npm test'
 ```
 
 ## Reference
