@@ -13,7 +13,7 @@
 3. Add to pre-commit hook (REQUIREMENT: husky - see husky.md)
 
 ```
-  npx husky add .husky/pre-commit 'npx --no-install lint-staged'
+  npx husky add .husky/pre-commit 'npm exec lint-staged'
 ```
 
 ## Example
