@@ -29,6 +29,11 @@
     "*.{json,css,scss,md}": "prettier --write",
     "*.{ts,js,tsx,jsx}": "eslint --fix"
   },
+  "renovate": {
+    "extends": [
+      "config:base"
+    ]
+  },
   "dependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
