@@ -1,0 +1,109 @@
+name: onPush
+
+on: [push]
+
+# Note: using enviroment variable in container is not supported as of July 2021. https://github.community/t/how-to-use-env-with-container-image/17252
+
+jobs:
+  # Phase 1: Setup
+  setup:
+    container: node:16.4.0-alpine
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+
+  # Phase 2: Verify code
+  lint:
+    container: node:16.4.0-alpine
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Lint workspaces
+        run: npm run workspaces:lint
+
+  test:
+    container: node:16.4.0-alpine
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Test workspaces
+        run: npm run workspaces:test
+
+  typecheck:
+    container: node:16.4.0-alpine
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Type check workspaces
+        run: npm run workspaces:typecheck
+
+  # Build code
+  build:
+    container: node:16.4.0-alpine
+    needs: [lint, test, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Build projects
+        run: npm run workspaces:build
+
+  # End to end test in pipeline
+  # e2e:
+
+  # Publish
+  # publish:
+
+  # Deploy
+  # deploy-staging:
+  # deploy-prod:
+
+  # End to end test
+  # e2e-regression:

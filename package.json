@@ -23,7 +23,7 @@
   },
   "engines": {
     "node": "16.4.0",
-    "npm": "7.19.1"
+    "npm": "7.18.1"
   },
   "lint-staged": {
     "*.{json,css,scss,md}": "prettier --write",
@@ -49,15 +49,20 @@
   },
   "scripts": {
     "build": "lerna run build",
+    "ci:setup": "npm ci",
     "clean": "lerna clean",
     "clean:temp": "lerna run clean:dist && lerna run clean:log && rimraf coverage",
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
-    "lerna": "lerna",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:workspaces": "lerna run lint",
-    "prepare": "husky install",
-    "setup": "npm install"
+    "prepare": "if test \"$CI\" != true; then husky install; fi",
+    "setup": "npm install --frozen-lockfile",
+    "test": "echo Test",
+    "typecheck": "echo Typecheck",
+    "workspaces:build": "lerna run build",
+    "workspaces:lint": "lerna run lint",
+    "workspaces:test": "lerna run test",
+    "workspaces:typecheck": "lerna run workspaces"
   }
 }
