@@ -1,6 +1,6 @@
 # Renovate
 
-## Setup
+## Setup in repo
 
 1. follow the link to install the app in your repo
 

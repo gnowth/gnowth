@@ -1,6 +1,6 @@
 # Lint Staged v11.0.0
 
-## Setup
+## Setup in repo
 
 1. Install
 

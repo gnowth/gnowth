@@ -1,6 +1,6 @@
 # Commitlint v12.1.4
 
-## Setup
+## Setup in repo
 
 1. install
 

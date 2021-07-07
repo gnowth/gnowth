@@ -8,11 +8,14 @@
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "eslintConfig": {
     "extends": [
       "./javascript"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "directory": "packages/config-eslint",
@@ -35,7 +38,7 @@
     "eslint-plugin-react-hooks": "4.2.0"
   },
   "devDependencies": {
-    "@gnowth/prettier-config": "0.0.1"
+    "@gnowth/prettier-config": "0.0.0"
   },
   "peerDependencies": {
     "babel-eslint": "^10.0.0",

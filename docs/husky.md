@@ -1,6 +1,6 @@
 # Husky v7.0.0
 
-## Setup
+## Setup in repo
 
 1. Add husky to project:
 
