@@ -1,0 +1,52 @@
+name: onPullRequest
+
+on: pull_request
+
+# Note(July 2021): using environment variable in container/image is not supported.
+# link: https://github.community/t/how-to-use-env-with-container-image/17252
+
+jobs:
+  # Phase 1: Setup
+  setup:
+    container: node:16.4.0-buster-slim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+
+  # Build code
+  build:
+    container: node:16.4.0-buster-slim
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Build projects
+        run: npm run workspaces:build
+
+  # End to end test in pipeline
+  # e2e:
+
+  # Deploy Preview
+  # deploy-staging:
+  # deploy-prod:
+
+  # End to end test
+  # e2e-regression:

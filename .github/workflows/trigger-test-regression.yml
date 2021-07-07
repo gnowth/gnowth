@@ -1,0 +1,23 @@
+name: manuallyTestRegression
+
+on: workflow_dispatch
+
+jobs:
+  # Phase 1: Setup
+  setup:
+    container: node:16.4.0-buster-slim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+
+  # End to end test
+  # e2e-regression:
