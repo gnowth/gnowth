@@ -1,13 +1,14 @@
 name: onPush
 
-on: [push]
+on: push
 
-# Note: using enviroment variable in container is not supported as of July 2021. https://github.community/t/how-to-use-env-with-container-image/17252
+# Note(July 2021): using environment variable in container/image is not supported.
+# link: https://github.community/t/how-to-use-env-with-container-image/17252
 
 jobs:
   # Phase 1: Setup
   setup:
-    container: node:16.4.0-alpine
+    container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -16,14 +17,14 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: setup-
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
 
   # Phase 2: Verify code
   lint:
-    container: node:16.4.0-alpine
+    container: node:16.4.0-buster-slim
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -33,15 +34,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: setup-
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
       - name: Lint workspaces
         run: npm run workspaces:lint
 
   test:
-    container: node:16.4.0-alpine
+    container: node:16.4.0-buster-slim
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -51,15 +52,15 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: setup-
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
       - name: Test workspaces
         run: npm run workspaces:test
 
   typecheck:
-    container: node:16.4.0-alpine
+    container: node:16.4.0-buster-slim
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -69,8 +70,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: setup-
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
       - name: Type check workspaces
@@ -78,7 +79,7 @@ jobs:
 
   # Build code
   build:
-    container: node:16.4.0-alpine
+    container: node:16.4.0-buster-slim
     needs: [lint, test, typecheck]
     runs-on: ubuntu-latest
     steps:
@@ -88,8 +89,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: setup-
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
       - name: Build projects
