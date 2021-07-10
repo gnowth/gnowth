@@ -1,0 +1,43 @@
+{
+  "author": "Thierry Wong",
+  "description": "Boilerplate for mono application",
+  "license": "MIT",
+  "name": "@gnowth/boilerplate-nextjs",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "next",
+      "next/core-web-vitals",
+      "@gnowth/eslint-config/typescript-react"
+    ]
+  },
+  "repository": {
+    "directory": "packages/boilerplate-nextjs",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "dependencies": {
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/react": "17.0.14",
+    "eslint-config-next": "11.0.1"
+  },
+  "scripts": {
+    "build": "next build && next export",
+    "clean:temp": "rimraf '{out,.next}'",
+    "dev": "next dev",
+    "lint": "npm run lint:script",
+    "lint:script": "next lint",
+    "start": "next start",
+    "typecheck": "tsc"
+  }
+}
