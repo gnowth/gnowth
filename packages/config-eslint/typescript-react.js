@@ -15,23 +15,40 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
+    'plugin:jsx-a11y/recommended',
     'plugin:promise/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'prettier',
   ],
 
   parser: '@typescript-eslint/parser',
 
   parserOptions: {
-    ecmaFeatures: { impliedStrict: true },
+    ecmaFeatures: {
+      impliedStrict: true,
+      jsx: true,
+    },
     ecmaVersion: 'latest',
     lib: 'ESNext',
     project: '**/tsconfig.json',
   },
 
-  plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'jest', 'prettier', 'promise'],
+  plugins: [
+    '@typescript-eslint',
+    'eslint-comments',
+    'import',
+    'jest',
+    'jsx-a11y',
+    'prettier',
+    'promise',
+    'react',
+    'react-hooks',
+    'testing-library',
+  ],
 
   settings: {
-    'import/extensions': ['.ts', '.json'],
+    'import/extensions': ['.ts', '.tsx', '.json'],
   },
 
   rules: {
@@ -40,8 +57,8 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+      files: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
     },
   ],
 }

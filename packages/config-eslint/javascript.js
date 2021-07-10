@@ -1,40 +1,43 @@
 module.exports = {
   env: {
     browser: true,
-    commonjs: true,
     es6: true,
-    jest: true,
+    mongo: true,
     node: true,
+    serviceworker: true,
+    worker: true,
   },
 
   extends: [
     'eslint:recommended',
-    'plugin:import/errors',
-    'airbnb-base',
     'plugin:eslint-comments/recommended',
-    'plugin:jest/recommended',
+    'plugin:import/recommended',
     'plugin:promise/recommended',
     'prettier',
   ],
 
+  // parser: '@babel/eslint-parser',
+
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaFeatures: { impliedStrict: true },
+    ecmaVersion: 'latest',
     sourceType: 'module',
   },
 
   plugins: ['eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
   settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.json'],
-      },
-    },
-    'import/extensions': ['.js'],
+    'import/extensions': ['.js', '.json'],
   },
 
   rules: {
-    'jest/no-deprecated-functions': 0,
     'prettier/prettier': 'error',
   },
+
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+    },
+  ],
 }

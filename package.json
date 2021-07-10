@@ -14,20 +14,21 @@
   ],
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/javascript"
+      "@gnowth/eslint-config"
     ],
     "ignorePatterns": [
       "**/coverage",
       "**/dist"
-    ]
+    ],
+    "root": true
   },
   "engines": {
     "node": "16.4.0",
     "npm": "7.18.1"
   },
   "lint-staged": {
-    "*.{json,css,scss,md}": "prettier --write",
-    "*.{ts,js,tsx,jsx}": "eslint --fix"
+    "*.{css,json,md,scss}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "renovate": {
     "extends": [
@@ -39,23 +40,27 @@
     "@commitlint/config-conventional": "12.1.4",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "babel-eslint": "10.1.0",
-    "eslint": "7.30.0",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.1",
     "lerna": "4.0.0",
-    "lint-staged": "11.0.0",
+    "lint-staged": "11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "7.30.0",
     "prettier": "2.3.2"
   },
   "scripts": {
     "build": "lerna run build",
     "ci:setup": "npm ci",
-    "clean": "lerna clean",
+    "ci:test:e2e:mock": "echo Test e2e with mock",
+    "ci:test:e2e:smoke": "echo Test smoke",
+    "clean": "npm run clean:temp && npm run clean:modules",
+    "clean:modules": "rimraf package-lock.json && lerna clean --yes",
     "clean:temp": "lerna run clean:dist && lerna run clean:log && rimraf coverage",
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
-    "lerna:version": "lerna version --exact --conventional-commits --yes --no-commit-hooks --no-git-tag-version --no-push -m 'chore(release): publish %v'",
+    "lerna:version": "lerna version --exact --conventional-commits --yes --no-commit-hooks -m 'chore(release): publish %v'",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup": "npm install --frozen-lockfile",

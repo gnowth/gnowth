@@ -2,11 +2,11 @@
   "author": "Thierry Wong",
   "description": "Eslint configs",
   "license": "MIT",
-  "main": "javascript.js",
-  "module": "javascript.js",
+  "main": "hybrid-react.js",
+  "module": "hybrid-react.js",
   "name": "@gnowth/eslint-config",
   "prettier": "@gnowth/prettier-config",
-  "private": true,
+  "private": false,
   "sideEffects": false,
   "version": "0.0.0",
   "eslintConfig": {
@@ -23,10 +23,9 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@babel/eslint-parser": "7.14.7",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-airbnb-typescript": "12.3.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.23.4",
@@ -35,13 +34,13 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.24.0",
-    "eslint-plugin-react-hooks": "4.2.0"
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-testing-library": "4.9.0"
   },
   "devDependencies": {
     "@gnowth/prettier-config": "0.0.0"
   },
   "peerDependencies": {
-    "babel-eslint": "^10.0.0",
     "eslint": "^7.0.0"
   },
   "scripts": {
