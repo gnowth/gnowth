@@ -30,7 +30,6 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 'latest',
-    lib: 'ESNext',
     project: '**/tsconfig.json',
   },
 
@@ -55,10 +54,10 @@ module.exports = {
     'prettier/prettier': 'error',
   },
 
-  overrides: [
-    {
-      files: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  //     extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
+  //   },
+  // ],
 }

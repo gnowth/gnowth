@@ -1,0 +1,26 @@
+{
+  "author": "Thierry Wong",
+  "description": "Typescript config",
+  "license": "MIT",
+  "main": "tsconfig.json",
+  "module": "tsconfig.json",
+  "name": "@gnowth/typescript-config",
+  "prettier": "@gnowth/prettier-config",
+  "private": false,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/config-typescript",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "devDependencies": {
+    "@gnowth/prettier-config": "0.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^4.0.0"
+  }
+}

@@ -40,6 +40,7 @@
     "@commitlint/config-conventional": "12.1.4",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.1",
     "lerna": "4.0.0",
@@ -47,7 +48,8 @@
   },
   "devDependencies": {
     "eslint": "7.30.0",
-    "prettier": "2.3.2"
+    "prettier": "2.3.2",
+    "typescript": "4.3.5"
   },
   "scripts": {
     "build": "lerna run build",
@@ -65,10 +67,10 @@
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup": "npm install --frozen-lockfile",
     "test": "echo Test",
-    "typecheck": "echo Typecheck",
+    "typecheck": "tsc",
     "workspaces:build": "lerna run build",
     "workspaces:lint": "lerna run lint",
     "workspaces:test": "lerna run test",
-    "workspaces:typecheck": "lerna run workspaces"
+    "workspaces:typecheck": "lerna run typecheck"
   }
 }
