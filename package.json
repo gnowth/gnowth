@@ -58,7 +58,7 @@
     "ci:test:e2e:smoke": "echo Test smoke",
     "clean": "npm run clean:temp && npm run clean:modules",
     "clean:modules": "rimraf package-lock.json && lerna clean --yes",
-    "clean:temp": "lerna run clean:dist && lerna run clean:log && rimraf coverage",
+    "clean:temp": "lerna run clean:temp && lerna run clean:log && rimraf coverage",
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",

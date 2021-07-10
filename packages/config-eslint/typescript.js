@@ -37,10 +37,10 @@ module.exports = {
     'prettier/prettier': 'error',
   },
 
-  // overrides: [
-  //   {
-  //     files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
-  //     extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-  //   },
-  // ],
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+    },
+  ],
 }
