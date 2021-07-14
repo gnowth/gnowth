@@ -33,6 +33,7 @@
   },
   "scripts": {
     "build": "next build && next export",
+    "build:dev": "next build && next export",
     "clean:temp": "rimraf '{out,.next}'",
     "dev": "next dev",
     "lint": "npm run lint:script",

@@ -1,14 +1,18 @@
 name: onPullRequest
 
-on: pull_request
+on:
+  pull_request:
+    types: [ closed, opened, synchronize ]
 
-# Note(July 2021): using environment variable in container/image is not supported.
-# link: https://github.community/t/how-to-use-env-with-container-image/17252
+env:
+  SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+  SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
   # Phase 1: Setup
   setup:
     container: node:16.4.0-buster-slim
+    if: github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -22,9 +26,10 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Build code
-  build:
+  # Phase 2: Verify code
+  lint:
     container: node:16.4.0-buster-slim
+    if: github.event.action != 'closed'
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -38,15 +43,171 @@ jobs:
           restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
+      - name: Lint workspaces
+        run: npm run workspaces:lint
+
+  test:
+    container: node:16.4.0-buster-slim
+    if: github.event.action != 'closed'
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Test workspaces
+        run: npm run workspaces:test
+
+  typecheck:
+    container: node:16.4.0-buster-slim
+    if: github.event.action != 'closed'
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Type check workspaces
+        run: npm run workspaces:typecheck
+
+  # Phase 3: Build code
+  build:
+    # container: node:16.4.0-buster-slim
+    if: github.event.action != 'closed'
+    needs: [lint, setup, test, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.4.0'
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
       - name: Build projects
-        run: npm run workspaces:build
+        run: npm run workspaces:build:dev
+      - name: Pack build-dev artifact
+        run: npm run ci:artifact:pack
+      - name: Upload build-dev artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: temp-build-dev-artifact
+          path: build-artifact.zip
+          retention-days: 1
 
-  # End to end test in pipeline
-  # e2e:
+  # Phase 4: End to end test with mock
+  e2e_mock:
+    container: cypress/included:7.7.0
+    if: github.event.action != 'closed'
+    needs: [build, lint, setup, test, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Download build-dev artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: temp-build-dev-artifact
+      - name: Unpack build-dev artifact
+        run: npm run ci:artifact:unpack
+      - name: End to end test using mock
+        run: npm run ci:test:e2e:mock
 
-  # Deploy Preview
-  # deploy-staging:
-  # deploy-prod:
+  # Phase 5: Deploy preview
+  deploy_preview:
+    container: node:16.4.0-buster-slim
+    if: github.event.action != 'closed'
+    needs: [build, e2e_mock, lint, setup, test, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - uses: actions/download-artifact@v2
+        with:
+          name: temp-build-dev-artifact
+      - name: Unpack build artifact
+        run: npm run ci:artifact:unpack
+      - name: Set environmental variables
+        run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
+      - name: Deploy to preview
+        run: npm run ci:deploy
+      # TODO: show comment in PR with deploy link
 
-  # End to end test
-  # e2e-regression:
+  # Phase 6: End to end smoke
+  e2e_smoke:
+    container: cypress/included:7.7.0
+    if: github.event.action != 'closed'
+    needs: [build, deploy_preview, e2e_mock, setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Set environmental variables
+        run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
+      - name: End to end smoke test
+        run: npm run ci:test:e2e:smoke
+
+  close_pr:
+    container: node:16.4.0-buster-slim
+    if: github.event.action == 'closed'
+    needs: [build, deploy_preview, e2e_mock, setup]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Set environmental variables
+        run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
+      - name: Deploy to preview
+        run: npm run ci:deploy:cleanup

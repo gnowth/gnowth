@@ -2,9 +2,6 @@ name: onPush
 
 on: push
 
-# Note(July 2021): using environment variable in container/image is not supported.
-# link: https://github.community/t/how-to-use-env-with-container-image/17252
-
 jobs:
   # Phase 1: Setup
   setup:
@@ -77,12 +74,15 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  # Build code
+  # Phase 3: Build code
   build:
-    container: node:16.4.0-buster-slim
-    needs: [lint, test, typecheck]
+    # container: node:16.4.0-buster-slim
+    needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.4.0'
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Cache npm cache on linux
@@ -95,16 +95,39 @@ jobs:
         run: npm run ci:setup
       - name: Build projects
         run: npm run workspaces:build
+      - name: Pack build artifact
+        if: startsWith( github.ref, 'refs/heads/release-' )
+        run: npm run ci:artifact:pack
+      - name: Upload build artifact
+        if: startsWith( github.ref, 'refs/heads/release-' )
+        uses: actions/upload-artifact@v2
+        with:
+          name: temp-build-artifact
+          path: build-artifact.zip
+          retention-days: 1
 
-  # End to end test in pipeline
-  # e2e:
-
-  # Publish
-  # publish:
-
-  # Deploy
-  # deploy-staging:
-  # deploy-prod:
-
-  # End to end test
-  # e2e-regression:
+  # Phase 4: End to end test using mock
+  e2e_mock:
+    container: cypress/included:7.7.0
+    if: startsWith( github.ref, 'refs/heads/release-' )
+    needs: [build, lint, setup, test, typecheck]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+      - name: Installing node modules
+        run: npm run ci:setup
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: temp-build-artifact
+      - name: Unpack build artifact
+        run: npm run ci:artifact:unpack
+      - name: End to end test using mock
+        run: npm run ci:test:e2e:mock

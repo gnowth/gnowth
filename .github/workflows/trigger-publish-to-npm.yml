@@ -1,13 +1,17 @@
-name: manuallyPromoteArtefact
+name: triggerPublishToNpm
 
 on: workflow_dispatch
 
+# TODO: throw error if it is not from release tag?
+# TODO: set if to run for release tag only
 jobs:
   # Phase 1: Setup
   setup:
     container: node:16.4.0-buster-slim
+    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
+      # check out release tag
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Cache npm cache on linux
@@ -19,12 +23,14 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Build code
-  build:
+  # Phase 2: Publish
+  publish:
     container: node:16.4.0-buster-slim
+    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      # check out release tag
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Cache npm cache on linux
@@ -35,9 +41,8 @@ jobs:
           restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
-      - name: Build projects
-        run: npm run workspaces:build
-
-  # Deploy Preview
-  # deploy-staging:
-  # deploy-prod:
+      - name: Dry run
+        run: npm run ci:publish:dry
+      - name: Publish
+        # if: if dry run option is not set
+        run: npm run publish
