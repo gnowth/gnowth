@@ -1,10 +1,10 @@
 {
   "command": {
     "publish": {
-      "allowBranch": "release/*"
+      "allowBranch": "release-*"
     },
     "version": {
-      "allowBranch": "release/*",
+      "allowBranch": "release-*",
       "message": "chore(release): publish %s"
     }
   },
