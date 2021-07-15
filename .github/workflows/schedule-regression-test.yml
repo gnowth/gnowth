@@ -1,14 +1,17 @@
-name: triggerDeployToDev
+name: scheduleRegressionTest
 
-on: workflow_dispatch
+# @ 2pm UTC
+on:
+  schedule:
+    - cron: 0 14 * * *
 
 env:
-  SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
+  SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  deploy_to_dev:
+  e2e_regression:
     container:
       image: cypress/included:7.7.0
       options: --user 1001
@@ -34,11 +37,11 @@ jobs:
       - name: Build projects
         run: npm run workspaces:build:dev
 
-      - name: Deploy to dev
+      - name: Deploy to test
         run: npm run ci:deploy
 
-      - name: End to end smoke test
-        run: npm run ci:test:e2e:smoke
+      - name: End to end regression tests
+        run: npm run ci:test:e2e:regression
 
       # TODO: Add path
       - name: Upload e2e errors artifacts
@@ -47,3 +50,6 @@ jobs:
           name: e2e-test-media
           path: path-to-media/
           retention-days: 1
+
+      - name: Deploy to preview
+        run: npm run ci:deploy:cleanup

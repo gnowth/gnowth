@@ -1,47 +1,37 @@
 name: triggerMigrateBackward
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag name (artifact-v...)
+        required: true
 
-# TODO: throw error if it is not from release tag?
-# TODO: set if to run for release tag only
 jobs:
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
+  # Phase 0: Branch check
+  check_branch:
     runs-on: ubuntu-latest
     steps:
-      # check out release tag
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+      - name: Cancelling - Branch must either be a main/release branch
+        if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+        uses: andymckay/cancel-action@0.2
+      - name: Cancelling - Input [Tag name] is invalid
+        if: ${{ !startsWith( github.event.inputs.tag, 'artifact-v' ) }}
+        uses: andymckay/cancel-action@0.2
 
-  # Phase 2: Migrate backward
-  publish:
+  # Phase 1: Migrate Backward
+  migrate_backward:
     container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: setup
+    needs: check_branch
     runs-on: ubuntu-latest
     steps:
-      # check out release tag
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+          ref: ${{ github.event.inputs.tag }}
+
       - name: Database backup
         run: npm run ci:database:backup
+
       - name: Database migrate backward
         run: npm run ci:database:migrate:back
