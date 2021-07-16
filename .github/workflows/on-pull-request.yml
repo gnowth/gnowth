@@ -2,17 +2,18 @@ name: onPullRequest
 
 on:
   pull_request:
-    types: [ closed, opened, synchronize ]
+    types: [ opened, synchronize ]
 
 env:
+  NEXTJS_BUILD_PATH: ./packages/boilerplate-nextjs/out
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
 
 jobs:
   # Phase 1: Setup
   setup:
     container: node:16.4.0-buster-slim
-    if: github.event.action == 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -26,10 +27,9 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Phase 2: Verify code
+  # Phase 2: Verify code and build
   lint:
     container: node:16.4.0-buster-slim
-    if: github.event.action != 'closed'
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -48,7 +48,6 @@ jobs:
 
   test:
     container: node:16.4.0-buster-slim
-    if: github.event.action != 'closed'
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -67,7 +66,6 @@ jobs:
 
   typecheck:
     container: node:16.4.0-buster-slim
-    if: github.event.action != 'closed'
     needs: setup
     runs-on: ubuntu-latest
     steps:
@@ -84,13 +82,11 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  # Phase 3: Build code
   build:
     container:
       image: node:16.4.0-buster-slim
       options: --user 1001
-    if: github.event.action != 'closed'
-    needs: [lint, setup, test, typecheck]
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -105,19 +101,19 @@ jobs:
         run: npm run ci:setup
       - name: Build projects
         run: npm run workspaces:build:dev
-      - name: Pack build-dev artifact
+      - name: TODO- Pack build-dev artifact (if it takes too long to upload/download)
+        if: startsWith( github.ref, 'refs/heads/release-' )
         run: npm run ci:artifact:pack
       - name: Upload build-dev artifact
         uses: actions/upload-artifact@v2
         with:
           name: temp-build-dev-artifact
-          path: build-artifact.zip
+          path: $NEXTJS_BUILD_PATH
           retention-days: 1
 
-  # Phase 4: End to end test with mock
+  # Phase 3: End to end test with mock
   e2e_mock:
     container: cypress/included:7.7.0
-    if: github.event.action != 'closed'
     needs: [build, lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
@@ -135,15 +131,14 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: temp-build-dev-artifact
-      - name: Unpack build-dev artifact
+      - name: TODO- Unpack build-dev artifact (if it takes too long to upload/download)
         run: npm run ci:artifact:unpack
       - name: End to end test using mock
         run: npm run ci:test:e2e:mock
 
-  # Phase 5: Deploy preview
+  # Phase 4: Deploy preview
   deploy_preview:
     container: node:16.4.0-buster-slim
-    if: github.event.action != 'closed'
     needs: [build, e2e_mock, lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
@@ -160,7 +155,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: temp-build-dev-artifact
-      - name: Unpack build artifact
+      - name: TODO- Unpack build-dev artifact (if it takes too long to upload/download)
         run: npm run ci:artifact:unpack
       - name: Set environmental variables
         run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
@@ -168,10 +163,9 @@ jobs:
         run: npm run ci:deploy
       # TODO: show comment in PR with deploy link
 
-  # Phase 6: End to end smoke
+  # Phase 5: End to end smoke
   e2e_smoke:
     container: cypress/included:7.7.0
-    if: github.event.action != 'closed'
     needs: [build, deploy_preview, e2e_mock, setup]
     runs-on: ubuntu-latest
     steps:
@@ -189,25 +183,3 @@ jobs:
         run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
       - name: End to end smoke test
         run: npm run ci:test:e2e:smoke
-
-  # Phase A: Clean preview environment
-  close_pr:
-    container: node:16.4.0-buster-slim
-    if: github.event.action == 'closed'
-    needs: [build, deploy_preview, e2e_mock, setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Set environmental variables
-        run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
-      - name: Deploy to preview
-        run: npm run ci:deploy:cleanup

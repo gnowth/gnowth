@@ -51,5 +51,5 @@ jobs:
           path: path-to-media/
           retention-days: 1
 
-      - name: Deploy to preview
+      - name: Clean up test environment
         run: npm run ci:deploy:cleanup

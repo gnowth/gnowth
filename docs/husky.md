@@ -28,6 +28,12 @@
   npx husky add .husky/pre-commit 'npm test'
 ```
 
+## Issues
+
+> .husky/pre-commit: line 4: npm: command not found
+
+- Try restarting vscode. alternatively try [deleting .git/hooks and reinstall husky](https://github.com/typicode/husky/issues/854#issuecomment-776126582)
+
 ## Reference
 
 - https://typicode.github.io/husky/#/?id=install

@@ -2,6 +2,9 @@ name: onPush
 
 on: push
 
+env:
+  NEXTJS_BUILD_PATH: ./packages/boilerplate-nextjs/out
+
 jobs:
   # Phase 1: Setup
   setup:
@@ -19,7 +22,7 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Phase 2: Verify code
+  # Phase 2: Verify code & build
   lint:
     container: node:16.4.0-buster-slim
     needs: setup
@@ -74,12 +77,11 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  # Phase 3: Build code
   build:
     container:
       image: node:16.4.0-buster-slim
       options: --user 1001
-    needs: [lint, setup, test, typecheck]
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -94,7 +96,7 @@ jobs:
         run: npm run ci:setup
       - name: Build projects
         run: npm run workspaces:build
-      - name: Pack build artifact
+      - name: TODO- Pack build artifact (if it takes too long to upload/download)
         if: startsWith( github.ref, 'refs/heads/release-' )
         run: npm run ci:artifact:pack
       - name: Upload build artifact
@@ -102,10 +104,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: temp-build-artifact
-          path: build-artifact.zip
+          path: $NEXTJS_BUILD_PATH
           retention-days: 1
 
-  # Phase 4: End to end test using mock
+  # Phase 3: End to end test using mock
   e2e_mock:
     container: cypress/included:7.7.0
     if: startsWith( github.ref, 'refs/heads/release-' )
@@ -126,7 +128,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: temp-build-artifact
-      - name: Unpack build artifact
+      - name: TODO- Unpack build artifact (if it takes too long to upload/download)
         run: npm run ci:artifact:unpack
       - name: End to end test using mock
         run: npm run ci:test:e2e:mock
