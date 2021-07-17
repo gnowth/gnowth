@@ -47,7 +47,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: Preview
-          message: Preview ${{ github.sha }} at <$SITE_DOMAIN>
+          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
           recreate: true
 
       - name: End to end smoke test
