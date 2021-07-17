@@ -4,7 +4,7 @@
 
 1. **Install asdf** by running the following:
 
-```
+```bash
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
 ```
 
@@ -20,7 +20,7 @@
 
 5. install the tools from `.tool-versions`
 
-```
+```bash
   asdf install
 ```
 
@@ -28,13 +28,13 @@
 
 - list all plugin:
 
-```
+```bash
   asdf plugin list all
 ```
 
 - add plugin:
 
-```
+```bash
   asdf plugin add <name>
 ```
 
@@ -42,21 +42,22 @@
 
 - install version based on .tool-versions:
 
-```
+```bash
   asdf install
 ```
 
 - installing a version:
 
-```
+```bash
   asdf install <name> <version>
 ```
 
 - list current version:
 
-```
+```bash
   asdf current
 ```
 
 ## Reference
+
 - https://asdf-vm.com/#/core-manage-asdf

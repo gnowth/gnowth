@@ -4,7 +4,7 @@
 
 1. Install
 
-```
+```bash
   npm add lint-staged --save-dev
 ```
 
@@ -12,7 +12,7 @@
 
 3. Add to pre-commit hook (REQUIREMENT: husky - see husky.md)
 
-```
+```bash
   npx husky add .husky/pre-commit 'npm exec lint-staged'
 ```
 
