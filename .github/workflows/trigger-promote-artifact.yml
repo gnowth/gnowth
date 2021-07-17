@@ -1,94 +1,118 @@
 name: triggerPromoteArtifact
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag name (artifact-v*)
+        required: true
 
-# TODO: throw error if it is not from release tag?
-# TODO: set if to run for release tag only
+      environment:
+        description: Environment to deploy to (DEV/sit/uat/prod)
+        default: dev
+        required: false
+
+      skip_deploy:
+        description: Skip deploy (yes/NO)
+        default: 'no'
+        required: false
+
+      skip_e2e:
+        description: Skip e2e regression test (yes/NO)
+        default: 'no'
+        required: false
+
+      skip_migration:
+        description: Skip database migration (YES/no)
+        default: 'yes'
+        required: false
+
+env:
+  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+
 jobs:
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
+  # Phase 0: Branch check
+  check_branch:
     runs-on: ubuntu-latest
     steps:
-      # check out release tag
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+      - name: Cancelling - Branch must either be a main/release branch
+        if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+        uses: andymckay/cancel-action@0.2
 
-  # TODO: add environment variable to target environment
-  # TODO: add flag to disable job
-  # Phase 2: Setup
+      - name: Cancelling - Input [Environment] is invalid
+        if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
+        uses: andymckay/cancel-action@0.2
+
+      - name: Cancelling - Input [Tag name] is invalid
+        if: ${{ !startsWith( github.event.inputs.tag, 'artifact-v' ) }}
+        uses: andymckay/cancel-action@0.2
+
+      - name: Cancelling - Input [Skip deploy] is invalid
+        if: ${{ github.event.inputs.skip_deploy != 'no' && github.event.inputs.skip_deploy != 'yes' }}
+        uses: andymckay/cancel-action@0.2
+
+      - name: Cancelling - Input [Skip e2e] is invalid
+        if: ${{ github.event.inputs.skip_e2e != 'no' && github.event.inputs.skip_e2e != 'yes' }}
+        uses: andymckay/cancel-action@0.2
+
+      - name: Cancelling - Input [Skip migration] is invalid
+        if: ${{ github.event.inputs.skip_migration != 'no' && github.event.inputs.skip_migration != 'yes' }}
+        uses: andymckay/cancel-action@0.2
+
+  # Phase 1: Deploy
   deploy:
     container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: setup
+    if: github.event.inputs.skip_deploy == 'no'
+    needs: check_branch
     runs-on: ubuntu-latest
     steps:
-      # check out release tag
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+          ref: ${{ github.event.inputs.tag }}
 
-  # TODO: add environment variable to target environment
-  # TODO: add flag to enable job
-  # Phase 3: Migrate database
+      - name: Deploy to given environment
+        run: npm run ci:deploy
+
+  # Phase 2: Migrate database
   migrate_database:
     container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: [deploy, setup]
+    if: github.event.inputs.skip_migration == 'no'
+    needs: [check_branch, deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+          ref: ${{ github.event.inputs.tag }}
+
       - name: Database backup
         run: npm run ci:database:backup
+
       - name: Database add fixture
         run: npm run ci:database:fixture
+
       - name: Database migrate
         run: npm run ci:database:migrate
 
-  # TODO: add environment variable to target environment
-  # TODO: add flag to enable job or always enable
-  # TODO: make sure it does not break if no migration is needed
   # Phase 4: End to end regression test
   e2e_regression:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: [deploy, migrate_database, setup]
+    container: cypress/included:7.7.0
+    if: github.event.inputs.skip_e2e == 'no'
+    needs: [check_branch, deploy, migrate_database]
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+          ref: ${{ github.event.inputs.tag }}
+
       - name: End to end regression tests
         run: npm run ci:test:e2e:regression
+
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-test-media
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          retention-days: 1

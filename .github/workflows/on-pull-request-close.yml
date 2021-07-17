@@ -1,0 +1,32 @@
+name: onPullRequestClose
+
+on:
+  pull_request:
+    types: closed
+
+env:
+  SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
+  SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+  SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+jobs:
+  # Phase 1: Clean preview environment
+  clean_preview:
+    container: node:16.4.0-buster-slim
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Clean preview environment
+        run: npm run ci:deploy:cleanup

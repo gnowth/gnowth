@@ -1,85 +1,58 @@
 name: triggerBuildArtifact
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      release_beta:
+        description: Create a beta release (yes/NO)?
+        default: 'no'
+        required: false
 
-# TODO: ability to create beta/final artifact
 jobs:
   # Phase 0: Branch check
   check_branch:
     if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
-      - name: cancelling
+      - name: Cancelling
         uses: andymckay/cancel-action@0.2
 
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
+      - name: Cancelling - Input [Release beta] is invalid
+        if: ${{ github.event.inputs.release_beta != 'no' && github.event.inputs.release_beta != 'yes' }}
+        uses: andymckay/cancel-action@0.2
+
+  # Phase 1: Build artifact
+  build_artifact:
+    container:
+      image: node:16.4.0-buster-slim
+      options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Phase 2: Build code
-  build:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: [check_branch, setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
+      # TODO: create beta version depending on input
+      - name: Tag branch and create change log
+        run: echo npm run ci:version
+
       - name: Build projects
         run: npm run workspaces:build
-      # Tag branch (ignore build), create change log (should you be able to modify change log)
-      - name: Pack build artifact
-        run: npm run ci:artifact:pack
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifact
-          path: build-artifact.zip
-          retention-days: 1
 
-  # Phase 3: Release artifact
-  release_artifact:
-    container: node:16.4.0-buster-slim
-    if: ${{ startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: [build, check_branch, setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - uses: actions/download-artifact@v2
-        with:
-          name: temp-build-dev-artifact
-      - name: Unpack build artifact
-        run: npm run ci:artifact:unpack
+      # TODO: could be part of ci:artifact:release
+      - name: Remove ignore on build and node modules
+        run: echo remove ignore on build and node modules
+
+      # TODO: make commit an orphan? commit should not be part of release branch
       - name: Release build artifact
         run: npm run ci:artifact:release
