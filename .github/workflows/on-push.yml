@@ -2,6 +2,10 @@ name: onPush
 
 on: push
 
+env:
+  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  NODE_VERISON: 16.4.0
+
 jobs:
   # Phase 1: Setup
   setup:
@@ -74,60 +78,44 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  # Phase 3: Build code
-  build:
-    # container: node:16.4.0-buster-slim
+  # Phase 3: Build and e2e with mock
+  build_and_e2e_mock:
+    container:
+      image: cypress/included:7.7.0
+      options: --user 1001
+    if: startsWith( github.ref, 'refs/heads/release-' )
     needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '16.4.0'
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
       - name: Installing node modules
         run: npm run ci:setup
+
       - name: Build projects
         run: npm run workspaces:build
-      - name: Pack build artifact
-        if: startsWith( github.ref, 'refs/heads/release-' )
-        run: npm run ci:artifact:pack
-      - name: Upload build artifact
-        if: startsWith( github.ref, 'refs/heads/release-' )
-        uses: actions/upload-artifact@v2
-        with:
-          name: temp-build-artifact
-          path: build-artifact.zip
-          retention-days: 1
 
-  # Phase 4: End to end test using mock
-  e2e_mock:
-    container: cypress/included:7.7.0
-    if: startsWith( github.ref, 'refs/heads/release-' )
-    needs: [build, lint, setup, test, typecheck]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: temp-build-artifact
-      - name: Unpack build artifact
-        run: npm run ci:artifact:unpack
       - name: End to end test using mock
         run: npm run ci:test:e2e:mock
+
+      - name: Pack test media artifacts
+        run: npm run ci:artifact:pack:test
+
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-test-media
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          retention-days: 1
