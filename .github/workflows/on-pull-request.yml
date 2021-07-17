@@ -4,85 +4,14 @@ on: pull_request
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
-  NODE_VERSION: '16.4.0'
+  NODE_VERSION: 16.4.0
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-
-  # Phase 2: Verify code
-  lint:
-    container: node:16.4.0-buster-slim
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Lint workspaces
-        run: npm run workspaces:lint
-
-  test:
-    container: node:16.4.0-buster-slim
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Test workspaces
-        run: npm run workspaces:test
-
-  typecheck:
-    container: node:16.4.0-buster-slim
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Type check workspaces
-        run: npm run workspaces:typecheck
-
-  # Phase 3: Build, e2e with mock, deploy preview and e2e smoke test
-  build_deploy_and_e2e:
+  # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
+  build_preview_and_e2e:
     container:
       image: cypress/included:7.7.0
       options: --user 1001
