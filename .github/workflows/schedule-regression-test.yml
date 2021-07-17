@@ -1,17 +1,19 @@
-name: onPullRequest
+name: scheduleRegressionTest
 
-on: pull_request
+# @ 2pm UTC
+on:
+  schedule:
+    - cron: 0 14 * * *
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
-  NODE_VERSION: 16.4.0
-  SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
+  NODE_VERISON: 16.4.0
+  SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
-  build_preview_and_e2e:
+  e2e_regression:
     container:
       image: cypress/included:7.7.0
       options: --user 1001
@@ -37,25 +39,18 @@ jobs:
       - name: Build projects
         run: npm run workspaces:build:dev
 
-      - name: End to end test using mock
-        run: npm run ci:test:e2e:mock
-
-      - name: Deploy to preview
+      - name: Deploy to test
         run: npm run ci:deploy
 
-      - name: Comment on PR with deploy link
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: Preview
-          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
-          recreate: true
+      - name: End to end regression tests
+        run: npm run ci:test:e2e:regression
 
-      - name: End to end smoke test
-        run: npm run ci:test:e2e:smoke
-
-      - name: Upload build-dev artifact
+      - name: Upload test artifact
         uses: actions/upload-artifact@v2
         with:
           name: artifact-test-media
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
           retention-days: 1
+
+      - name: Clean up test environment
+        run: npm run ci:deploy:cleanup

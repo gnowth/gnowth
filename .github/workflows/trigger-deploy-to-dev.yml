@@ -3,93 +3,48 @@ name: triggerDeployToDev
 on: workflow_dispatch
 
 env:
+  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  NODE_VERISON: 16.4.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
+  deploy_to_dev:
+    container:
+      image: cypress/included:7.7.0
+      options: --user 1001
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Phase 2: Build code
-  build:
-    container: node:16.4.0-buster-slim
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
       - name: Build projects
         run: npm run workspaces:build:dev
-      - name: Pack build-dev artifact
-        run: npm run ci:artifact:pack
-      - name: Upload build-dev artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: temp-build-dev-artifact
-          path: build-artifact.zip
-          retention-days: 1
 
-  # Phase 3: Deploy to dev
-  deploy_to_dev:
-    container: node:16.4.0-buster-slim
-    needs: [build, setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - uses: actions/download-artifact@v2
-        with:
-          name: temp-build-dev-artifact
-      - name: Unpack build artifact
-        run: npm run ci:artifact:unpack
       - name: Deploy to dev
         run: npm run ci:deploy
 
-  # Phase 4: End to end smoke
-  e2e_smoke:
-    container: node:16.4.0-buster-slim
-    needs: [build, deploy_to_dev, setup]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
       - name: End to end smoke test
         run: npm run ci:test:e2e:smoke
+
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-test-media
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          retention-days: 1
