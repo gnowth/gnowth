@@ -54,7 +54,7 @@
   },
   "scripts": {
     "ci:artifact:e2e": "echo artefact pack test",
-    "ci:artifact:release": "echo artefact release",
+    "ci:artifact:release": "mv .gitignore .gitignore.dev && mv .gitignore.release .gitignore && echo artefact release",
     "ci:database:backup": "echo database to backup",
     "ci:database:fixture": "echo database to add fixtures",
     "ci:database:migrate": "echo migrate database",
@@ -62,7 +62,7 @@
     "ci:deploy": "surge --project ./packages/boilerplate-nextjs/out --domain $SITE_DOMAIN",
     "ci:deploy:cleanup": "surge teardown $SITE_DOMAIN",
     "ci:publish": "echo publish",
-    "ci:publish:dry": "echo publish dry",
+    "ci:publish:dry": "npm publish --dry-run",
     "ci:setup": "npm ci",
     "ci:test:e2e:mock": "echo Test e2e with mock",
     "ci:test:e2e:regression": "echo Test regression",
