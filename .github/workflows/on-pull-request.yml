@@ -4,7 +4,7 @@ on: pull_request
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
-  NODE_VERISON: 16.4.0
+  NODE_VERISON: '16.4.0'
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -86,7 +86,7 @@ jobs:
     container:
       image: cypress/included:7.7.0
       options: --user 1001
-    needs: setup
+    needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2

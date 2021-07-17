@@ -4,7 +4,7 @@ on: push
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
-  NODE_VERISON: 16.4.0
+  NODE_VERISON: '16.4.0'
 
 jobs:
   # Phase 1: Setup
