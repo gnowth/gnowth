@@ -1,6 +1,6 @@
 # Github workflow
 
-## Cheatsheet
+## Guide
 
 - Input as environment variable. [Link to Reference (July 2021)](https://github.community/t/can-workflow-dispatch-inputs-be-enhanced-to-set-input-environmental-variables/125130)
 
@@ -33,6 +33,19 @@ jobs:
 
       - name: Can use environment variables
         run: echo "Working variable from variable $PG_DATA_DIR"
+```
+
+- Setting environment variable from bash output [Link to Reference (July 2021)](https://stackoverflow.com/questions/57968497/how-do-i-set-an-env-var-with-a-bash-expression-in-github-actions)
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env
+        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+      - name: Test
+        run: echo $GITHUB_SHA_SHORT
 ```
 
 ## Limitations

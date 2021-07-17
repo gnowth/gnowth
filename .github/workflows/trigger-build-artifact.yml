@@ -3,22 +3,22 @@ name: triggerBuildArtifact
 on:
   workflow_dispatch:
     inputs:
-      release_beta:
-        description: Create a beta release (yes/NO)?
+      pre_release:
+        description: Create a pre release (yes/NO)?
         default: 'no'
         required: false
 
 jobs:
   # Phase 0: Branch check
   check_branch:
-    if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
       - name: Cancelling
+        if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
         uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Release beta] is invalid
-        if: ${{ github.event.inputs.release_beta != 'no' && github.event.inputs.release_beta != 'yes' }}
+      - name: Cancelling - Input [Pre Release] is invalid
+        if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
         uses: andymckay/cancel-action@0.2
 
   # Phase 1: Build artifact
@@ -42,17 +42,46 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      # TODO: create beta version depending on input
-      - name: Tag branch and create change log
-        run: echo npm run ci:version
+      - name: Pre release - Tag branch and create change log
+        if: github.event.inputs.pre_release != 'no'
+        run: npm run ci:version:pre
+
+      - name: Release - Tag branch and create change log
+        if: github.event.inputs.pre_release == 'no'
+        run: npm run ci:version
 
       - name: Build projects
         run: npm run workspaces:build
 
-      # TODO: could be part of ci:artifact:release
-      - name: Remove ignore on build and node modules
-        run: echo remove ignore on build and node modules
+      - name: Set version to environment variable
+        run: echo "ARTIFACT_VERSION=$(npm run ci:version:current)" >> $GITHUB_ENV
 
-      # TODO: make commit an orphan? commit should not be part of release branch
-      - name: Release build artifact
-        run: npm run ci:artifact:release
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            packages/boilerplate-nextjs/out
+            packages/boilerplate-nextjs/CHANGELOG.md
+            packages/boilerplate-nextjs/package.json
+            packages/boilerplate-nextjs/README.md
+            packages/config-eslint
+            packages/config-prettier
+            packages/config-typescript
+            CHANGELOG.md
+            LICENSE
+            lerna.json
+            package-lock.json
+            package.json
+            README.md
+          tag_name: gnowth@${{ env.ARTIFACT_VERSION }}
+          name: artifact-v${{ env.ARTIFACT_VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # # TODO: could be part of ci:artifact:release
+      # - name: Remove ignore on build and node modules
+      #   run: echo remove ignore on build and node modules
+
+      # # TODO: make commit an orphan? commit should not be part of release branch
+      # - name: Release build artifact
+      #   run: npm run ci:artifact:release
