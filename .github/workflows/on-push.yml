@@ -3,7 +3,8 @@ name: onPush
 on: push
 
 env:
-  NEXTJS_BUILD_PATH: ./packages/boilerplate-nextjs/out
+  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  NODE_VERISON: 16.4.0
 
 jobs:
   # Phase 1: Setup
@@ -22,7 +23,7 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-  # Phase 2: Verify code & build
+  # Phase 2: Verify code
   lint:
     container: node:16.4.0-buster-slim
     needs: setup
@@ -77,61 +78,44 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  build:
+  # Phase 3: Build and e2e with mock
+  build_and_e2e_mock:
     container:
-      image: node:16.4.0-buster-slim
+      image: cypress/included:7.7.0
       options: --user 1001
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-      - name: Installing node modules
-        run: npm run ci:setup
-      - name: Build projects
-        run: npm run workspaces:build
-      - name: TODO- Pack build artifact (if it takes too long to upload/download)
-        if: startsWith( github.ref, 'refs/heads/release-' )
-        run: npm run ci:artifact:pack
-      - name: Upload build artifact
-        if: startsWith( github.ref, 'refs/heads/release-' )
-        uses: actions/upload-artifact@v2
-        with:
-          name: temp-build-artifact
-          path: $NEXTJS_BUILD_PATH
-          retention-days: 1
-
-  # Phase 3: End to end test using mock
-  e2e_mock:
-    container: cypress/included:7.7.0
     if: startsWith( github.ref, 'refs/heads/release-' )
-    needs: [build, lint, setup, test, typecheck]
+    needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
         with:
-          node-version: '16.4.0'
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Check out repository
         uses: actions/checkout@v2
+
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
       - name: Installing node modules
         run: npm run ci:setup
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: temp-build-artifact
-      - name: TODO- Unpack build artifact (if it takes too long to upload/download)
-        run: npm run ci:artifact:unpack
+
+      - name: Build projects
+        run: npm run workspaces:build
+
       - name: End to end test using mock
         run: npm run ci:test:e2e:mock
+
+      - name: Pack test media artifacts
+        run: npm run ci:artifact:pack:test
+
+      - name: Upload test artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-test-media
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          retention-days: 1

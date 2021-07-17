@@ -5,11 +5,12 @@ on:
     types: closed
 
 env:
+  SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase A: Clean preview environment
+  # Phase 1: Clean preview environment
   clean_preview:
     container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
@@ -24,7 +25,5 @@ jobs:
           restore-keys: ${{ runner.os }}-setup-
       - name: Installing node modules
         run: npm run ci:setup
-      - name: Set environmental variables
-        run: echo "SITE_DOMAIN=gnowth-boilerplate-$GITHUB_SHA.surge.sh" >> $GITHUB_ENV
       - name: Deploy to preview
         run: npm run ci:deploy:cleanup

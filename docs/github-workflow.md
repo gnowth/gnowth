@@ -2,7 +2,7 @@
 
 ## Cheatsheet
 
-- Input as environment variable. [[Link to Reference (July 2021)]](https://github.community/t/can-workflow-dispatch-inputs-be-enhanced-to-set-input-environmental-variables/125130)
+- Input as environment variable. [Link to Reference (July 2021)](https://github.community/t/can-workflow-dispatch-inputs-be-enhanced-to-set-input-environmental-variables/125130)
 
 ```yml
 on:
@@ -22,13 +22,26 @@ jobs:
       - run: echo test $INPUT_INPUT_NAME
 ```
 
+- Setting environment variable with other environment variables [Link to Reference (July 2021)](https://brandur.org/fragments/github-actions-env-vars-in-env-vars)
+
+```yml
+jobs:
+  build:
+    steps:
+      - name: Set environmental variables
+        run: echo "PG_DATA_DIR=$HOME/data" >> $GITHUB_ENV
+
+      - name: Can use environment variables
+        run: echo "Working variable from variable $PG_DATA_DIR"
+```
+
 ## Limitations
 
-- Using environment variable in container/image is not supported. [[Link to Reference (July 2021)]](https://github.community/t/how-to-use-env-with-container-image/17252)
+- Using environment variable in container/image is not supported. [Link to Reference (July 2021)](https://github.community/t/how-to-use-env-with-container-image/17252)
 
-- No support for YAML Anchors. [[Link to Reference (July 2021)]](https://github.com/actions/runner/issues/1182)
+- No support for YAML Anchors. [Link to Reference (July 2021)](https://github.com/actions/runner/issues/1182)
 
-- No support for manual trigger on tags or releases. **workaround**: retrieve the tag from an input. [[Link to Reference (July 2021)]](https://github.community/t/select-tag-release-when-running-workflow-dispatch/132970)
+- No support for manual trigger on tags or releases. **workaround**: retrieve the tag from an input. [Link to Reference (July 2021)](https://github.community/t/select-tag-release-when-running-workflow-dispatch/132970)
 
 ## Issues
 
@@ -43,3 +56,5 @@ jobs:
 - [Triggers](https://docs.github.com/en/actions/reference/events-that-trigger-workflows)
 
 - [Environment variable](https://docs.github.com/en/actions/reference/environment-variables)
+
+- [Event types object](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types)
