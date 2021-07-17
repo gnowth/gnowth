@@ -1,6 +1,6 @@
 name: onPullRequest
 
-on: pull_request:
+on: pull_request
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
