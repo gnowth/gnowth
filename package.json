@@ -6,7 +6,7 @@
   "name": "gnowth",
   "prettier": "@gnowth/prettier-config",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "repository": "https://github.com/gnowth/gnowth.git",
   "homepage": "https://github.com/gnowth/gnowth#readme",
   "workspaces": [
