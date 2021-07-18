@@ -7,7 +7,7 @@ on:
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
-  NODE_VERISON: 16.4.0
+  NODE_VERSION: 16.4.0
   SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}

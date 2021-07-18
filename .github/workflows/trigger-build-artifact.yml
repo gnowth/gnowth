@@ -3,34 +3,41 @@ name: triggerBuildArtifact
 on:
   workflow_dispatch:
     inputs:
-      release_beta:
-        description: Create a beta release (yes/NO)?
-        default: 'no'
+      pre_release:
+        description: Create a pre release (YES/no)?
+        default: 'yes'
         required: false
 
 jobs:
   # Phase 0: Branch check
   check_branch:
-    if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
       - name: Cancelling
+        if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
         uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Release beta] is invalid
-        if: ${{ github.event.inputs.release_beta != 'no' && github.event.inputs.release_beta != 'yes' }}
+      - name: Cancelling - Input [Pre Release] is invalid
+        if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
         uses: andymckay/cancel-action@0.2
 
   # Phase 1: Build artifact
   build_artifact:
     container:
-      image: node:16.4.0-buster-slim
+      image: node:16.4.0-buster
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
+      - name: Set git identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache npm cache on linux
         uses: actions/cache@v2
@@ -42,17 +49,35 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      # TODO: create beta version depending on input
-      - name: Tag branch and create change log
-        run: echo npm run ci:version
+      - name: Pre release - Tag branch and create change log
+        if: github.event.inputs.pre_release != 'no'
+        run: npm run ci:version:pre
 
+      - name: Release - Tag branch and create change log (require a pre-release)
+        if: github.event.inputs.pre_release == 'no'
+        run: npm run ci:version
+
+      - name: Set version to environment variable
+        run: |
+          ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
+          echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
+
+      # Note: needs to be after version in case we use version in our build
       - name: Build projects
         run: npm run workspaces:build
 
-      # TODO: could be part of ci:artifact:release
-      - name: Remove ignore on build and node modules
-        run: echo remove ignore on build and node modules
+      - name: Build artifact for release
+        uses: TheDoctor0/zip-release@0.4.2
+        with:
+          filename: artifact.zip
+          exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'
 
-      # TODO: make commit an orphan? commit should not be part of release branch
-      - name: Release build artifact
-        run: npm run ci:artifact:release
+      - name: Upload release artifact
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: artifact.zip
+          asset_name: artifact.zip
+          tag: refs/tags/gnowth@${{ env.ARTIFACT_VERSION }}
+          overwrite: true
+          body: Release artifact

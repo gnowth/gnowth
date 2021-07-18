@@ -54,7 +54,6 @@
   },
   "scripts": {
     "ci:artifact:e2e": "echo artefact pack test",
-    "ci:artifact:release": "mv .gitignore .gitignore.dev && mv .gitignore.release .gitignore && echo artefact release",
     "ci:database:backup": "echo database to backup",
     "ci:database:fixture": "echo database to add fixtures",
     "ci:database:migrate": "echo migrate database",
@@ -67,7 +66,8 @@
     "ci:test:e2e:mock": "echo Test e2e with mock",
     "ci:test:e2e:regression": "echo Test regression",
     "ci:test:e2e:smoke": "echo Test smoke",
-    "ci:version": "lerna version --exact --conventional-commits --yes --no-commit-hooks -m 'chore(release): publish %v'",
+    "ci:version": "lerna version --exact --conventional-commits --conventional-graduate --yes --no-commit-hooks",
+    "ci:version:pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes --no-commit-hooks",
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
