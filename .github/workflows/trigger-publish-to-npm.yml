@@ -7,10 +7,13 @@ on:
         description: Tag name (gnowth@*)
         required: true
 
-      dry_run:
-        description: Dry run (YES/no)
-        default: 'yes'
+      environment:
+        description: Environment to deploy to (DEV/sit/uat/prod)
+        default: dev
         required: false
+
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   # Phase 0: Branch check
@@ -25,8 +28,8 @@ jobs:
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
         uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Dry run] is invalid
-        if: ${{ github.event.inputs.dry_run != 'no' && github.event.inputs.dry_run != 'yes' }}
+      - name: Cancelling - Input [Environment] is invalid
+        if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
         uses: andymckay/cancel-action@0.2
 
   # Phase 1: Publish
@@ -47,9 +50,9 @@ jobs:
         with:
           args: unzip -qq artifact.zip -d .
 
-      - name: Dry run
-        run: npm run ci:publish:dry
+      - name: Generate .npmrc file
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
 
       - name: Publish
-        if: github.event.inputs.dry_run == 'no'
-        run: npm run publish
+        if: github.event.inputs.environment == 'prod'
+        run: npm run ci:publish

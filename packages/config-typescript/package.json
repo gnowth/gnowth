@@ -22,5 +22,9 @@
   },
   "peerDependencies": {
     "typescript": "^4.0.0"
+  },
+  "scripts": {
+    "clean:temp": "rm -rf LICENSE",
+    "prepublishOnly": "cp ../../LICENSE LICENSE"
   }
 }

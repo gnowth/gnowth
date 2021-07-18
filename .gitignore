@@ -107,3 +107,6 @@ dist
 
 # artifact
 artifact.zip
+
+# Nested license
+packages/**/license
