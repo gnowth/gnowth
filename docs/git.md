@@ -1,6 +1,6 @@
 # Git
 
-## Guide
+## Cheatsheet
 
 - delete a branch locally
 

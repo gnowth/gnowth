@@ -38,9 +38,9 @@
   "dependencies": {
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
-    "@gnowth/eslint-config": "0.0.0",
-    "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
+    "@gnowth/eslint-config": "0.0.1-alpha.0",
+    "@gnowth/prettier-config": "0.0.1-alpha.0",
+    "@gnowth/typescript-config": "0.0.1-alpha.0",
     "github-markdown-css": "4.0.0",
     "husky": "7.0.1",
     "lerna": "4.0.0",
@@ -54,7 +54,6 @@
   },
   "scripts": {
     "ci:artifact:e2e": "echo artefact pack test",
-    "ci:artifact:release": "mv .gitignore .gitignore.dev && mv .gitignore.release .gitignore && echo artefact release",
     "ci:database:backup": "echo database to backup",
     "ci:database:fixture": "echo database to add fixtures",
     "ci:database:migrate": "echo migrate database",
@@ -68,7 +67,6 @@
     "ci:test:e2e:regression": "echo Test regression",
     "ci:test:e2e:smoke": "echo Test smoke",
     "ci:version": "lerna version --exact --conventional-commits --conventional-graduate --yes --no-commit-hooks",
-    "ci:version:current": "grep -m1 version package.json | awk -F: '{ print $2 }' | sed 's/[\", ]//g'",
     "ci:version:pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes --no-commit-hooks",
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",

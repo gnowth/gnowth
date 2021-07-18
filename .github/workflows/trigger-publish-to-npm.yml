@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Tag name (artifact-v*)
+        description: Tag name (gnowth@*)
         required: true
 
       dry_run:
@@ -22,7 +22,7 @@ jobs:
         uses: andymckay/cancel-action@0.2
 
       - name: Cancelling - Input [Tag name] is invalid
-        if: ${{ !startsWith( github.event.inputs.tag, 'artifact-v' ) }}
+        if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
         uses: andymckay/cancel-action@0.2
 
       - name: Cancelling - Input [Dry run] is invalid

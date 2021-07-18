@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       pre_release:
-        description: Create a pre release (yes/NO)?
-        default: 'no'
+        description: Create a pre release (YES/no)?
+        default: 'yes'
         required: false
 
 jobs:
@@ -24,13 +24,20 @@ jobs:
   # Phase 1: Build artifact
   build_artifact:
     container:
-      image: node:16.4.0-buster-slim
+      image: node:16.4.0-buster
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+
+      - name: Set git identity
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache npm cache on linux
         uses: actions/cache@v2
@@ -46,42 +53,51 @@ jobs:
         if: github.event.inputs.pre_release != 'no'
         run: npm run ci:version:pre
 
-      - name: Release - Tag branch and create change log
+      - name: Release - Tag branch and create change log (require a pre-release)
         if: github.event.inputs.pre_release == 'no'
         run: npm run ci:version
 
+      - name: Set version to environment variable
+        run: |
+          ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
+          echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
+
+      # Note: needs to be after version in case we use version in our build
       - name: Build projects
         run: npm run workspaces:build
 
-      - name: Set version to environment variable
-        run: echo "ARTIFACT_VERSION=$(npm run ci:version:current)" >> $GITHUB_ENV
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Build artifact for release
+        uses: TheDoctor0/zip-release@0.4.2
         with:
-          files: |
-            packages/boilerplate-nextjs/out
-            packages/boilerplate-nextjs/CHANGELOG.md
-            packages/boilerplate-nextjs/package.json
-            packages/boilerplate-nextjs/README.md
-            packages/config-eslint
-            packages/config-prettier
-            packages/config-typescript
-            CHANGELOG.md
-            LICENSE
-            lerna.json
-            package-lock.json
-            package.json
-            README.md
-          tag_name: gnowth@${{ env.ARTIFACT_VERSION }}
-          name: artifact-v${{ env.ARTIFACT_VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          filename: artifact.zip
+          exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'
 
-      # # TODO: could be part of ci:artifact:release
-      # - name: Remove ignore on build and node modules
-      #   run: echo remove ignore on build and node modules
+      - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: artifact.zip
+          asset_name: artifact.zip
+          tag: refs/tags/gnowth@${{ env.ARTIFACT_VERSION }}
+          overwrite: true
+          body: Release artifact
 
-      # # TODO: make commit an orphan? commit should not be part of release branch
-      # - name: Release build artifact
-      #   run: npm run ci:artifact:release
+      # - name: Release tag to upload url
+      #   id: get_upload_url
+      #   uses: pdamianik/release-tag-to-upload-url-action@v1.0.1
+      #   with:
+      #     tag: refs/tags/gnowth@${{ env.ARTIFACT_VERSION }}
+      #     token: ${{ github.token }}
+
+
+
+      # - name: Upload Release Asset
+      #   id: upload-release-asset
+      #   uses: actions/upload-release-asset@v1.0.2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.get_upload_url.uploadUrl }}
+      #     asset_path: ./artifact.zip
+      #     asset_name: artifact.zip
+      #     asset_content_type: application/zip

@@ -1,6 +1,6 @@
 # Github workflow
 
-## Guide
+## Cheatsheet
 
 - Input as environment variable. [Link to Reference (July 2021)](https://github.community/t/can-workflow-dispatch-inputs-be-enhanced-to-set-input-environmental-variables/125130)
 
@@ -71,3 +71,5 @@ jobs:
 - [Environment variable](https://docs.github.com/en/actions/reference/environment-variables)
 
 - [Event types object](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types)
+
+- [Publish using lerna](https://github.com/azu/lerna-monorepo-github-actions-release/blob/master/.github/workflows/publish.yml)
