@@ -44,9 +44,10 @@
     "eslint": "^7.0.0"
   },
   "scripts": {
+    "build": "cp ../../LICENSE LICENSE",
+    "build:dev": "cp ../../LICENSE LICENSE",
     "clean:temp": "rm -rf LICENSE",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js .",
-    "prepublishOnly": "cp ../../LICENSE LICENSE"
+    "lint:script": "eslint --ext .js ."
   }
 }
