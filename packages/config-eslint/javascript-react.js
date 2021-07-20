@@ -51,8 +51,9 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
 
-    // Note: React is no longer required if babel is provided
-    // Link: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+    /** Note: React is no longer required if babel is provided
+     *  Link: https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+     */
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
   },

@@ -28,6 +28,8 @@
 - eslint-plugin-mdx
 - eslint-plugin-sentry
 
+- eslint-config-readable
+
 ## Reference
 
 - https://eslint.org/docs/1.0.0/user-guide/configuring
