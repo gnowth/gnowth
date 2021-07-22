@@ -46,6 +46,13 @@ jobs:
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       - name: Installing node modules
         run: npm run ci:setup
 
@@ -67,7 +74,7 @@ jobs:
         run: npm run workspaces:build
 
       - name: Build artifact for release
-        uses: TheDoctor0/zip-release@0.5.0
+        uses: TheDoctor0/zip-release@0.4.2
         with:
           filename: artifact.zip
           exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'

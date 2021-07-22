@@ -3,7 +3,7 @@ name: onPush
 on: push
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
   NODE_VERSION: 16.4.0
 
 jobs:
@@ -21,6 +21,13 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Installing node modules
         run: npm run ci:setup
@@ -40,6 +47,13 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Installing node modules
         run: npm run ci:setup
@@ -62,6 +76,13 @@ jobs:
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       - name: Installing node modules
         run: npm run ci:setup
 
@@ -83,6 +104,13 @@ jobs:
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       - name: Installing node modules
         run: npm run ci:setup
 
@@ -92,7 +120,7 @@ jobs:
   # Phase 3: Build and e2e with mock
   build_and_e2e_mock:
     container:
-      image: cypress/included:7.7.0
+      image: cypress/base:14.17.0
       options: --user 1001
     if: startsWith( github.ref, 'refs/heads/release-' )
     needs: [lint, setup, test, typecheck]
@@ -112,6 +140,13 @@ jobs:
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       - name: Installing node modules
         run: npm run ci:setup
 
@@ -119,12 +154,10 @@ jobs:
         run: npm run workspaces:build
 
       - name: End to end test using mock
-        run: npm run ci:test:e2e:mock
-
-      - name: Pack test media artifacts
-        run: npm run ci:artifact:e2e
+        run: npm run ci:test:mock
 
       - name: Upload test artifact
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: artifact-test-media

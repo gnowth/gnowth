@@ -1,0 +1,5 @@
+{
+  "screenshotsFolder": "cypress/media",
+  "videoCompression": false,
+  "videosFolder": "cypress/media"
+}

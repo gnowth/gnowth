@@ -56,6 +56,8 @@ jobs:
 
 - No support for manual trigger on tags or releases. **workaround**: retrieve the tag from an input. [Link to Reference (July 2021)](https://github.community/t/select-tag-release-when-running-workflow-dispatch/132970)
 
+- Strategy matrix `fail-fast: false`. when one test fails, DO NOT cancel the other containers, because this will kill Cypress processes leaving the Dashboard hanging ... [Link to Reference (July 2021)](https://github.com/cypress-io/github-action/issues/48)
+
 ## Issues
 
 - Using lerna inside container gives a permission error when trying to build nextjs. User seems to be switch to 1001 in a lerna session. **workaround**: not to use container. or set user of container to 1001 to match lerna user **Needs further investigation.** (July 2021)
@@ -84,3 +86,5 @@ Actions below are used for Proof of Concept only. Proper investigations into the
 - [Event types object](https://docs.github.com/en/developers/webhooks-and-events/events/github-event-types)
 
 - [Publish using lerna](https://github.com/azu/lerna-monorepo-github-actions-release/blob/master/.github/workflows/publish.yml)
+
+- [Cypress real world app](https://github.com/cypress-io/cypress-realworld-app/blob/develop/.github/workflows/main.yml)
