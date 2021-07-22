@@ -28,7 +28,9 @@ on:
         required: false
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+  CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
+  NODE_VERSION: 16.4.0
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.inputs.environment }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -68,6 +70,9 @@ jobs:
     if: github.event.inputs.skip_deploy == 'no'
     needs: check_branch
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.event.inputs.environment }}
+      url: ${{ env.SITE_DOMAIN }}
     steps:
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06
@@ -87,6 +92,13 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Installing node modules
         run: npm run ci:setup
@@ -124,11 +136,29 @@ jobs:
 
   # Phase 4: End to end regression test
   e2e_regression:
-    container: cypress/included:7.7.0
+    container:
+      image: cypress/browsers:node14.17.0-chrome91-ff89
+      options: --user 1001
     if: github.event.inputs.skip_e2e == 'no'
     needs: [check_branch, deploy, migrate_database]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        include:
+          - title: chrome
+            command: npm run ci:test:regression:chrome
+          - title: chrome-mobile
+            command: npm run ci:test:regression:chrome:mobile
+          - title: firefox
+            command: npm run ci:test:regression:firefox
+          - title: firefox-mobile
+            command: npm run ci:test:regression:firefox:mobile
     steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06
         with:
@@ -141,12 +171,30 @@ jobs:
         with:
           args: unzip -qq artifact.zip -d .
 
-      - name: End to end regression tests
-        run: npm run ci:test:e2e:regression
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: End to end regression tests for ${{ matrix.title }}
+        run: ${{ matrix.command }}
 
       - name: Upload test artifact
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
-          name: artifact-test-media
+          name: artifact-test-media-${{ matrix.title }}
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
           retention-days: 1

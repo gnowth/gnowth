@@ -3,7 +3,8 @@ name: triggerDeployToDev
 on: workflow_dispatch
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: artifact-test-media
+  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+  CYPRESS_BASEURL: https://gnowth-boilerplate-dev.surge.sh
   NODE_VERSION: 16.4.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
@@ -12,7 +13,7 @@ env:
 jobs:
   deploy_to_dev:
     container:
-      image: cypress/included:7.7.0
+      image: cypress/base:14.17.0
       options: --user 1001
     runs-on: ubuntu-latest
     steps:
@@ -30,6 +31,13 @@ jobs:
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       - name: Installing node modules
         run: npm run ci:setup
 
@@ -40,9 +48,10 @@ jobs:
         run: npm run ci:deploy
 
       - name: End to end smoke test
-        run: npm run ci:test:e2e:smoke
+        run: npm run ci:test:smoke
 
       - name: Upload test artifact
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: artifact-test-media

@@ -1,0 +1,131 @@
+name: scheduleOrTriggerRegressionTest
+
+# @ 2pm UTC
+on:
+  schedule:
+    - cron: 0 14 * * *
+  workflow_dispatch:
+
+env:
+  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+  CYPRESS_BASEURL: https://gnowth-boilerplate-test.surge.sh
+  NODE_VERSION: 16.4.0
+  SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
+  SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+  SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+jobs:
+  build_deploy:
+    container:
+      image: node:16.4.0-buster-slim
+      options: --user 1001
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build projects
+        run: npm run workspaces:build:dev
+
+      - name: Deploy to test
+        run: npm run ci:deploy
+
+  e2e_regression:
+    container:
+      image: cypress/browsers:node14.17.0-chrome91-ff89
+      options: --user 1001
+    needs: [build_deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        include:
+          - title: chrome
+            command: npm run ci:test:regression:chrome
+          - title: chrome-mobile
+            command: npm run ci:test:regression:chrome:mobile
+          - title: firefox
+            command: npm run ci:test:regression:firefox
+          - title: firefox-mobile
+            command: npm run ci:test:regression:firefox:mobile
+    steps:
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: End to end regression tests for ${{ matrix.title }}
+        run: ${{ matrix.command }}
+
+      - name: Upload test artifact
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact-test-media-${{ matrix.title }}
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          retention-days: 1
+
+  clean_test:
+    container: node:16.4.0-buster-slim
+    if: always()
+    needs: [build_deploy, e2e_regression]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Clean up test environment
+        run: npm run ci:deploy:cleanup
