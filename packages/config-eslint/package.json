@@ -35,7 +35,7 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "eslint-plugin-testing-library": "4.10.0"
+    "eslint-plugin-testing-library": "4.10.1"
   },
   "devDependencies": {
     "@gnowth/prettier-config": "0.0.0"
