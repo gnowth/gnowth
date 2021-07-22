@@ -12,7 +12,10 @@
       "next",
       "next/core-web-vitals",
       "@gnowth/eslint-config/typescript-react"
-    ]
+    ],
+    "rules": {
+      "@next/next/no-html-link-for-pages": "off"
+    }
   },
   "repository": {
     "directory": "packages/boilerplate-nextjs",
