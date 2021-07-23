@@ -74,7 +74,7 @@ jobs:
         run: npm run workspaces:build
 
       - name: Build artifact for release
-        uses: TheDoctor0/zip-release@0.4.2
+        uses: TheDoctor0/zip-release@0.6.0
         with:
           filename: artifact.zip
           exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'
