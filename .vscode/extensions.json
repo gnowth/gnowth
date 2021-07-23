@@ -4,6 +4,8 @@
 
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
+    "bierner.markdown-mermaid",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
     "dbaeumer.vscode-eslint",
     "eamodio.gitlens",
     "editorconfig.editorconfig",
