@@ -13,7 +13,7 @@ jobs:
   check_branch:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancelling
+      - name: Cancelling - Branch must be a release branch
         if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
         uses: andymckay/cancel-action@0.2
 
@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Set git identity
         run: |
@@ -74,7 +76,7 @@ jobs:
         run: npm run workspaces:build
 
       - name: Build artifact for release
-        uses: TheDoctor0/zip-release@0.6.0
+        uses: TheDoctor0/zip-release@0.4.2
         with:
           filename: artifact.zip
           exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'

@@ -15,6 +15,9 @@ jobs:
     container:
       image: cypress/base:14.17.0
       options: --user 1001
+    environment:
+      name: dev
+      url: https://${{ env.SITE_DOMAIN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
