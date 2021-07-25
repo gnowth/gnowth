@@ -8,7 +8,7 @@
   "prettier": "@gnowth/prettier-config",
   "private": false,
   "sideEffects": false,
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "eslintConfig": {
     "extends": [
       "./javascript"
@@ -38,7 +38,7 @@
     "eslint-plugin-testing-library": "4.10.1"
   },
   "devDependencies": {
-    "@gnowth/prettier-config": "0.0.0"
+    "@gnowth/prettier-config": "0.1.0-alpha.0"
   },
   "peerDependencies": {
     "eslint": "^7.0.0"
