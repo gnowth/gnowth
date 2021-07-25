@@ -78,7 +78,6 @@ typings/
 # Next.js build output
 .next
 .vercel
-out
 
 # Nuxt.js build / generate output
 .nuxt
