@@ -33,14 +33,14 @@ jobs:
         run: npm run ci:setup
 
   quality:
-    if: startsWith( github.ref, 'refs/heads/release-' )
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
       - name: Quality check
         run: echo Quality check
 
   security:
-    if: startsWith( github.ref, 'refs/heads/release-' )
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
     steps:
       - name: Security check
@@ -136,7 +136,7 @@ jobs:
     container:
       image: cypress/base:14.17.0
       options: --user 1001
-    if: startsWith( github.ref, 'refs/heads/release-' )
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
