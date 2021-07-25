@@ -42,7 +42,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run workspaces:build:dev
+        run: npm run workspaces:build
 
       - name: Deploy to test
         run: npm run ci:deploy

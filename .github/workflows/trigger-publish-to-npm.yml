@@ -7,16 +7,16 @@ on:
         description: Tag name (gnowth@*)
         required: true
 
-      environment:
-        description: Environment to deploy to (DEV/sit/uat/prod)
-        default: dev
+      dry_run:
+        description: Dry run (YES/no)
+        default: 'yes'
         required: false
 
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  # Phase 0: Branch check
+  # Phase 1: Branch check
   check_branch:
     runs-on: ubuntu-latest
     steps:
@@ -28,11 +28,11 @@ jobs:
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
         uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Environment] is invalid
-        if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
+      - name: Cancelling - Input [Dry run] is invalid
+        if: ${{ github.event.inputs.dry_run != 'no' && github.event.inputs.dry_run != 'yes' }}
         uses: andymckay/cancel-action@0.2
 
-  # Phase 1: Publish
+  # Phase 2: Publish
   publish:
     container: node:16.4.0-buster-slim
     needs: check_branch
@@ -50,9 +50,12 @@ jobs:
         with:
           args: unzip -qq artifact.zip -d .
 
+      - name: Dry run
+        run: npm run ci:publish:dry
+
       - name: Generate .npmrc file
         run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
 
       - name: Publish
-        if: github.event.inputs.environment == 'prod'
+        if: github.event.inputs.dry_run == 'no'
         run: npm run ci:publish

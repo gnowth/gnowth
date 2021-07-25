@@ -9,7 +9,7 @@ on:
         required: false
 
 jobs:
-  # Phase 0: Branch check
+  # Phase 1: Branch check
   check_branch:
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +21,7 @@ jobs:
         if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
         uses: andymckay/cancel-action@0.2
 
-  # Phase 1: Build artifact
+  # Phase 2: Build artifact
   build_artifact:
     container:
       image: node:16.4.0-buster

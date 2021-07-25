@@ -32,6 +32,20 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
+  quality:
+    if: startsWith( github.ref, 'refs/heads/release-' )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quality check
+        run: echo Quality check
+
+  security:
+    if: startsWith( github.ref, 'refs/heads/release-' )
+    runs-on: ubuntu-latest
+    steps:
+      - name: Security check
+        run: echo Security check
+
   # Phase 2: Verify code
   lint:
     container: node:16.4.0-buster-slim

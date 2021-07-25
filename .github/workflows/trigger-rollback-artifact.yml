@@ -1,4 +1,4 @@
-name: triggerPromoteArtifact
+name: triggerRollbackArtifact
 
 on:
   workflow_dispatch:
@@ -131,10 +131,6 @@ jobs:
       - name: Deploy to given environment
         if: github.event.inputs.skip_deploy == 'no'
         run: npm run ci:deploy
-
-      - name: Database add fixture
-        if: github.event.inputs.skip_migration == 'no'
-        run: npm run ci:database:fixture
 
       - name: Database migrate
         if: github.event.inputs.skip_migration == 'no'

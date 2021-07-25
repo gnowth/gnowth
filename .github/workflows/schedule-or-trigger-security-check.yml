@@ -1,0 +1,20 @@
+name: scheduleOrTriggerSecurityCheck
+
+# @ 2pm UTC
+on:
+  schedule:
+    - cron: 0 14 * * *
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quality check
+        run: echo Quality check
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Security check
+        run: echo Security check
