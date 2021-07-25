@@ -1,6 +1,9 @@
 import type { ReactElement } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
+
+import packageJson from '../../package.json'
 
 import styles from '../styles/Home.module.css'
 
@@ -21,6 +24,14 @@ export default function Home(): ReactElement {
         <p className={styles.description}>
           Get started by editing <code className={styles.code}>pages/index.js</code>
         </p>
+
+        <p>Current version: {packageJson.version}</p>
+
+        <div>
+          <span>&nbsp;See&nbsp;</span>
+
+          <Link href="/changelog">Changelog</Link>
+        </div>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>

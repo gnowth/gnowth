@@ -11,7 +11,7 @@
     "extends": [
       "next",
       "next/core-web-vitals",
-      "@gnowth/eslint-config/typescript-react"
+      "@gnowth/eslint-config"
     ],
     "rules": {
       "@next/next/no-html-link-for-pages": "off"
@@ -23,6 +23,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@next/mdx": "11.0.1",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -35,9 +36,9 @@
     "eslint-config-next": "11.0.1"
   },
   "scripts": {
-    "build": "next build && next export",
-    "build:dev": "next build && next export",
-    "clean:temp": "rm -rf out && rm -rf .next",
+    "build": "next build && next export -o dist",
+    "build:dev": "next build && next export -o dist",
+    "clean:temp": "rm -rf dist && rm -rf .next",
     "dev": "next dev",
     "lint": "npm run lint:script",
     "lint:script": "next lint",
