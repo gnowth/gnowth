@@ -61,7 +61,7 @@
 ### onPush
 
 - Phase1 and Phase 2: on every branch
-- Phase3 (optional): maybe on release/main
+- E2e to only run on release/main
 
 ```mermaid
   flowchart LR
@@ -77,20 +77,16 @@
     end
 
     subgraph PHASE2[Phase 2]
-      direction RL
+      direction LR
 
+      BUILD
       LINT([Lint])
       TEST([Test])
       TYPECHECK([Typecheck])
     end
 
-    subgraph PHASE3[Phase 3 for release/main]
-      direction LR
-
-      BUILD -.-> E2EMOCK
-    end
-
-    PHASE1 --> PHASE2 --> PHASE3
+    PHASE1 --> PHASE2
+    BUILD -.-> E2EMOCK
 ```
 
 ### onPullRequest
