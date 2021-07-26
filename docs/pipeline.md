@@ -28,7 +28,7 @@
 
     developBranch ===> scheduleOrTriggerRegressionTest
 
-    developBranch1[developBranch] ===> scheduleOrTriggerSecurityCheck
+    developBranch ===> scheduleOrTriggerSecurityCheck
 
     releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerPromoteArtifact & triggerRollbackArtifact
 ```
@@ -60,33 +60,28 @@
 
 ### onPush
 
-- Phase1 and Phase 2: on every branch
 - E2e to only run on release/main
+- Quality and security check on release/main
 
 ```mermaid
   flowchart LR
     BUILD([Build])
     E2EMOCK([E2e using mock])
+    SETUP([Setup])
 
     subgraph PHASE1[Phase 1]
-      direction RL
-
-      SETUP([Setup])
-      QUALITY([Quality check for release/main])
-      SECURITY([Security check for release/main])
-    end
-
-    subgraph PHASE2[Phase 2]
       direction LR
 
       BUILD
       LINT([Lint])
       TEST([Test])
       TYPECHECK([Typecheck])
+      QUALITY([Quality check for release/main])
+      SECURITY([Security check for release/main])
     end
 
-    PHASE1 --> PHASE2
     BUILD -.-> E2EMOCK
+    SETUP -.-> BUILD & LINT & TEST & TYPECHECK
 ```
 
 ### onPullRequest
