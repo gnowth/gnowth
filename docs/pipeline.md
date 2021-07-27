@@ -30,7 +30,7 @@
 
     developBranch ===> scheduleOrTriggerSecurityCheck
 
-    releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerPromoteArtifact & triggerRollbackArtifact
+    releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerRegressionTest & triggerPromoteArtifact & triggerRollbackArtifact
 ```
 
 ## Any branch
@@ -405,22 +405,16 @@
 - Take advantage on this, so that our pipeline cache the `cache`. So npm/yarn only have to download additional package required
 - requires: fallback cache key to be effective
 - If `node_modules` were cached, on every new package, all the dependencies needs to be redownloaded
+- `npm ci --cache ~/.cache --prefer-offline`
 
 ```yml
 # Github workflow
 - name: Cache npm cache on linux
   uses: actions/cache@v2
   with:
-    path: ~/.npm
+    path: ~/.cache
     key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
     restore-keys: ${{ runner.os }}-setup-
-
-- name: Cache cypress cache on linux
-  uses: actions/cache@v2
-  with:
-    path: ~/.cache
-    key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
-    restore-keys: ${{ runner.os }}-cypress-
 ```
 
 # Security / Quality check

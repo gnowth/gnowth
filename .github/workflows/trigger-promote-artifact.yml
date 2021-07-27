@@ -97,16 +97,9 @@ jobs:
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: ~/.cache
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
-
-      - name: Cache cypress cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Installing node modules
         run: npm run ci:setup
@@ -173,16 +166,9 @@ jobs:
       - name: Cache npm cache on linux
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: ~/.cache
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
-
-      - name: Cache cypress cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Installing node modules
         run: npm run ci:setup
