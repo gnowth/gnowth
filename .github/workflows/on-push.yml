@@ -7,31 +7,6 @@ env:
   NODE_VERSION: 16.4.0
 
 jobs:
-  # Phase 1: Setup
-  setup:
-    container: node:16.4.0-buster-slim
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Cache cypress cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-cypress-
-
-      - name: Installing node modules
-        run: npm run ci:setup
-
   quality:
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
@@ -46,10 +21,9 @@ jobs:
       - name: Security check
         run: echo Security check
 
-  # Phase 2: Verify code
+  # Phase 1: Verify code
   lint:
     container: node:16.4.0-buster-slim
-    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -77,7 +51,6 @@ jobs:
 
   test:
     container: node:16.4.0-buster-slim
-    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -105,7 +78,6 @@ jobs:
 
   typecheck:
     container: node:16.4.0-buster-slim
-    needs: setup
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -131,13 +103,41 @@ jobs:
       - name: Type check workspaces
         run: npm run workspaces:typecheck
 
-  # Phase 3: Build and e2e with mock
+  build:
+    container:
+      image: node:16.4.0-buster
+      options: --user 1001
+    if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Cache cypress cache on linux
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build projects
+        run: npm run workspaces:build
+
   build_and_e2e_mock:
     container:
       image: cypress/base:14.17.0
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    needs: [lint, setup, test, typecheck]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2

@@ -28,7 +28,7 @@
 
     developBranch ===> scheduleOrTriggerRegressionTest
 
-    developBranch1[developBranch] ===> scheduleOrTriggerSecurityCheck
+    developBranch ===> scheduleOrTriggerSecurityCheck
 
     releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerPromoteArtifact & triggerRollbackArtifact
 ```
@@ -60,37 +60,28 @@
 
 ### onPush
 
-- Phase1 and Phase 2: on every branch
-- Phase3 (optional): maybe on release/main
+- E2e to only run on release/main
+- Quality and security check on release/main
 
 ```mermaid
   flowchart LR
     BUILD([Build])
     E2EMOCK([E2e using mock])
+    SETUP([Setup])
 
     subgraph PHASE1[Phase 1]
-      direction RL
+      direction LR
 
-      SETUP([Setup])
+      BUILD
+      LINT([Lint])
+      TEST([Test])
+      TYPECHECK([Typecheck])
       QUALITY([Quality check for release/main])
       SECURITY([Security check for release/main])
     end
 
-    subgraph PHASE2[Phase 2]
-      direction RL
-
-      LINT([Lint])
-      TEST([Test])
-      TYPECHECK([Typecheck])
-    end
-
-    subgraph PHASE3[Phase 3 for release/main]
-      direction LR
-
-      BUILD -.-> E2EMOCK
-    end
-
-    PHASE1 --> PHASE2 --> PHASE3
+    BUILD -.-> E2EMOCK
+    SETUP -.-> BUILD & LINT & TEST & TYPECHECK
 ```
 
 ### onPullRequest
@@ -229,6 +220,44 @@
     PHASE1 --> PHASE2
 ```
 
+### triggerRegressionTest
+
+- e2e test are stored in the artifact, so that only relevant test are run when rolling back
+
+```mermaid
+  flowchart LR
+    ARTIFACTUNPACK([Unzip artifact])
+    ARTIFACTDOWNLOAD([Download artifact from release])
+    SETUP([Setup ci tools])
+
+    subgraph PHASE1[Phase 1]
+      direction LR
+
+      VALIDATEBRANCH(Validate input branch)
+      VALIDATETAG(Validate input tag name)
+      VALIDATEENVIRONMENT(Validate input environment)
+    end
+
+    subgraph PHASE2[Phase 3]
+      direction TB
+
+      subgraph E2E
+        direction LR
+
+        E2ECHROME([E2e regression with chrome])
+        E2ECHROMEMOBILE([E2e regression with chrome mobile])
+        E2EEDGE([E2e regression with edge])
+        E2EEDGEMOBILE([E2e regression with edge mobile])
+        E2EFIREFOX([E2e regression with firefox])
+        E2EFIREFOXMOBILE([E2e regression with firefox mobile])
+      end
+
+      ARTIFACTDOWNLOAD -.-> ARTIFACTUNPACK -.-> SETUP -.-> E2E
+    end
+
+    PHASE1 --> PHASE2
+```
+
 ### triggerPromoteArtifact
 
 - limitation: cannot select/filter a release tag from the UI. So we have to select a base branch and select a release tag
@@ -256,7 +285,6 @@
       VALIDATEBRANCH(Validate input branch)
       VALIDATETAG(Validate input tag name)
       VALIDATEENVIRONMENT(Validate input environment)
-      VALIDATESKIPPHASE1(Validate flag skip phase deploy)
       VALIDATESKIPPROVISION(Validate flag skip provision)
       VALIDATESKIPDEPLOY(Validate flag skip deploy)
       VALIDATESKIPMIGRATE(Validate flag skip migrate)
@@ -292,7 +320,6 @@
 ### triggerRollbackArtifact
 
 - needs more investigation
-- e2e test are stored in the artifact, so that only relevant test are run when rolling back
 - selected branch must be at least last release branch to have the backward migration code
 
 ```mermaid
@@ -315,7 +342,6 @@
       VALIDATEBRANCH(Validate input branch)
       VALIDATETAG(Validate input tag name)
       VALIDATEENVIRONMENT(Validate input environment)
-      VALIDATESKIPPHASE1(Validate flag skip phase1)
       VALIDATESKIPPROVISION(Validate flag skip provision)
       VALIDATESKIPDEPLOY(Validate flag skip deploy)
       VALIDATESKIPMIGRATE(Validate flag skip migrate)

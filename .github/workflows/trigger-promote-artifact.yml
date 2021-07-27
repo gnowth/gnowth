@@ -12,11 +12,6 @@ on:
         default: dev
         required: false
 
-      skip_phase_deploy:
-        description: Skip phase deployment (YES/no)
-        default: 'yes'
-        required: false
-
       skip_provision:
         description: Skip provision (YES/no)
         default: 'yes'
@@ -62,10 +57,6 @@ jobs:
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
         uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Skip phase deploy] is invalid
-        if: ${{ github.event.inputs.skip_phase_deploy != 'no' && github.event.inputs.skip_phase_deploy != 'yes' }}
-        uses: andymckay/cancel-action@0.2
-
       - name: Cancelling - Input [Skip provision] is invalid
         if: ${{ github.event.inputs.skip_provision != 'no' && github.event.inputs.skip_provision != 'yes' }}
         uses: andymckay/cancel-action@0.2
@@ -88,7 +79,6 @@ jobs:
     environment:
       name: ${{ github.event.inputs.environment }}
       url: https://${{ env.SITE_DOMAIN }}
-    if: github.event.inputs.skip_phase_deploy == 'no'
     needs: check_branch
     runs-on: ubuntu-latest
     steps:
