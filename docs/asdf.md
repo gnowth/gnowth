@@ -1,5 +1,7 @@
 # asdf v0.8.1
 
+1
+
 ## Setup
 
 1. **Install asdf** by running the following:
