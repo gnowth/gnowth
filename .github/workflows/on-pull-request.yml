@@ -16,9 +16,6 @@ jobs:
     container:
       image: cypress/base:14.17.0
       options: --user 1001
-    environment:
-      name: preview
-      url: https://${{ env.SITE_DOMAIN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-node@v2
@@ -46,6 +43,13 @@ jobs:
 
       - name: Deploy to preview
         run: npm run ci:deploy
+
+      - name: Comment on PR with deploy link
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: Preview
+          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
+          recreate: true
 
       - name: End to end smoke test
         run: npm run ci:test:smoke

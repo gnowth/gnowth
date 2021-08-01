@@ -68,9 +68,10 @@ Actions below are used for Proof of Concept only. Proper investigations into the
 
 - TheDoctor0/zip-release@0.4.2
 - andymckay/cancel-action@0.2
+- dsaltares/fetch-gh-release-asset@0.06
+- marocchino/sticky-pull-request-comment@v2
 - montudor/action-zip@v1
 - svenstaro/upload-release-action@v2
-- dsaltares/fetch-gh-release-asset@0.06
 
 ## References
 
