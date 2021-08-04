@@ -8,7 +8,7 @@
   "prettier": "@gnowth/prettier-config",
   "private": false,
   "sideEffects": false,
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.0",
   "publishConfig": {
     "access": "public"
   },
@@ -18,7 +18,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "devDependencies": {
-    "@gnowth/prettier-config": "0.0.0"
+    "@gnowth/prettier-config": "0.1.0-alpha.0"
   },
   "peerDependencies": {
     "typescript": "^4.0.0"
