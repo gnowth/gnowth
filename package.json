@@ -42,7 +42,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "github-markdown-css": "4.0.0",
-    "husky": "7.0.1",
+    "husky": "7.0.2",
     "lerna": "4.0.0",
     "lint-staged": "11.1.2",
     "serve": "12.0.0",
