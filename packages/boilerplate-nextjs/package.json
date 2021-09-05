@@ -32,7 +32,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/react": "17.0.16",
+    "@types/react": "17.0.20",
     "eslint-config-next": "11.0.1"
   },
   "scripts": {
