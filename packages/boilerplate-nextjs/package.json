@@ -23,7 +23,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@next/mdx": "11.0.1",
+    "@next/mdx": "11.1.4",
     "next": "11.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -33,7 +33,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@types/react": "17.0.39",
-    "eslint-config-next": "11.0.1"
+    "eslint-config-next": "11.1.4"
   },
   "scripts": {
     "build": "next build && next export -o dist",
