@@ -4,9 +4,7 @@
     "allowJs": true,
     "isolatedModules": true,
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "preserve",
-    "moduleResolution": "node",
-    "resolveJsonModule": true
+    "moduleResolution": "node"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

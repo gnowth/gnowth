@@ -49,9 +49,7 @@ jobs:
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: Preview
-          message: Preview at <https://${{ env.SITE_DOMAIN }}>
-          # Due to dependabot restriction
-          # message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
+          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
           recreate: true
 
       - name: End to end smoke test
