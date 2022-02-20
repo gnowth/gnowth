@@ -52,7 +52,7 @@
   "devDependencies": {
     "eslint": "7.32.0",
     "prettier": "2.5.1",
-    "typescript": "4.4.3"
+    "typescript": "4.5.5"
   },
   "scripts": {
     "ci:database:backup": "echo database to backup",
