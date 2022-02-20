@@ -23,7 +23,7 @@
     "root": true
   },
   "engines": {
-    "node": "16.4.0",
+    "node": "16.14.0",
     "npm": "7.18.1"
   },
   "lint-staged": {
