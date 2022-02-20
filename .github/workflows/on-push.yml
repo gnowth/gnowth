@@ -4,7 +4,7 @@ on: push
 
 env:
   ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
-  NODE_VERSION: 16.4.0
+  NODE_VERSION: 17.5.0
 
 jobs:
   quality:
@@ -25,7 +25,7 @@ jobs:
 
   # Phase 1: Verify code
   lint:
-    container: node:16.4.0-buster-slim
+    container: node:17.5.0-buster-slim
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -46,7 +46,7 @@ jobs:
         run: npm run workspaces:lint
 
   test:
-    container: node:16.4.0-buster-slim
+    container: node:17.5.0-buster-slim
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -67,7 +67,7 @@ jobs:
         run: npm run workspaces:test
 
   typecheck:
-    container: node:16.4.0-buster-slim
+    container: node:17.5.0-buster-slim
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -89,7 +89,7 @@ jobs:
 
   build:
     container:
-      image: node:16.4.0-buster
+      image: node:17.5.0-buster
       options: --user 1001
     if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest

@@ -1,5 +1,5 @@
-# Node v16.4.0
+# Node v17.5.0
 
 ## Reference
 
-- Entry points for package.json, check [Ecmascript modules](https://nodejs.org/dist/latest-v16.x/docs/api/packages.html)
+- Entry points for package.json, check [Ecmascript modules](https://nodejs.org/docs/latest-v17.x/api/packages.html)
