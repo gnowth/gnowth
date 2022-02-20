@@ -17,6 +17,7 @@ jobs:
       image: cypress/base:14.17.0
       options: --user 1001
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/setup-node@v2
         with:

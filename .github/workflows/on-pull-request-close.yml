@@ -14,6 +14,7 @@ jobs:
   clean_preview:
     container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
