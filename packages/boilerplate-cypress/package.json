@@ -20,7 +20,7 @@
   "dependencies": {
     "cypress": "8.7.0",
     "del": "6.0.0",
-    "local-cypress": "1.2.2"
+    "local-cypress": "1.2.3"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
