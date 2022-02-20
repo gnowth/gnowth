@@ -35,7 +35,7 @@ on:
 env:
   ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
   CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
-  NODE_VERSION: 16.4.0
+  NODE_VERSION: 17.5.0
   SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -75,7 +75,7 @@ jobs:
 
   # Phase 2: Provision, deploy, migrate
   provision_deploy_migrate:
-    container: node:16.4.0-buster-slim
+    container: node:17.5.0-buster-slim
     environment:
       name: ${{ github.event.inputs.environment }}
       url: https://${{ env.SITE_DOMAIN }}

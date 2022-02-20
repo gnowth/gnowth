@@ -12,7 +12,7 @@ env:
 jobs:
   # Phase 1: Clean preview environment
   clean_preview:
-    container: node:16.4.0-buster-slim
+    container: node:17.5.0-buster-slim
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
