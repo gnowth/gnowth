@@ -81,6 +81,7 @@ jobs:
       url: https://${{ env.SITE_DOMAIN }}
     needs: check_branch
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06

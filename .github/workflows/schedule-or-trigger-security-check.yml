@@ -9,12 +9,14 @@ on:
 jobs:
   quality:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Quality check
         run: echo Quality check
 
   security:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Security check
         run: echo Security check

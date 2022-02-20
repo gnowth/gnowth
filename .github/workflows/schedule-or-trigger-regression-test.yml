@@ -20,6 +20,7 @@ jobs:
       image: node:16.4.0-buster-slim
       options: --user 1001
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -93,6 +94,7 @@ jobs:
     if: always()
     needs: [build_deploy, e2e_regression]
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2

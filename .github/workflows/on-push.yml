@@ -10,6 +10,7 @@ jobs:
   quality:
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Quality check
         run: echo Quality check
@@ -17,6 +18,7 @@ jobs:
   security:
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Security check
         run: echo Security check
@@ -25,6 +27,7 @@ jobs:
   lint:
     container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -45,6 +48,7 @@ jobs:
   test:
     container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -65,6 +69,7 @@ jobs:
   typecheck:
     container: node:16.4.0-buster-slim
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -88,6 +93,7 @@ jobs:
       options: --user 1001
     if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -111,6 +117,7 @@ jobs:
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/setup-node@v2
         with:
