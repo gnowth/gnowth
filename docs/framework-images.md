@@ -1,0 +1,4 @@
+# Images
+
+- optimisation
+- blurred preview
