@@ -61,7 +61,7 @@ jobs:
           - title: firefox-mobile
             command: npm run ci:test:regression:firefox:mobile
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 
