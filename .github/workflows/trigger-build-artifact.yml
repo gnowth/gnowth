@@ -1,5 +1,9 @@
 name: triggerBuildArtifact
 
+env:
+ # Note: to be removed when backend is available
+  NEXT_PUBLIC_ENV: development
+
 on:
   workflow_dispatch:
     inputs:

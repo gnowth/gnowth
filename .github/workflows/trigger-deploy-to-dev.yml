@@ -9,6 +9,7 @@ env:
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+  NEXT_PUBLIC_ENV: development
 
 jobs:
   deploy_to_dev:
