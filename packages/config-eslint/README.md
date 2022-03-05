@@ -5,7 +5,7 @@
 Add **extends** to your `.eslintrc`
 
 ```json
-  "extends": ["@gnowth/eslint-config"]
+	"extends": ["@gnowth/eslint-config"]
 ```
 
 ## Configs
@@ -24,5 +24,5 @@ Alternatively you can use the following configs:
 Install peer dependencies
 
 ```bash
-  npx install-peerdeps --dev @gnowth/eslint-config
+	npx install-peerdeps --dev @gnowth/eslint-config
 ```

@@ -1,54 +1,55 @@
 {
-  "author": "Thierry Wong",
-  "description": "Eslint configs",
-  "license": "MIT",
-  "main": "hybrid-react.js",
-  "module": "hybrid-react.js",
-  "name": "@gnowth/eslint-config",
-  "prettier": "@gnowth/prettier-config",
-  "private": false,
-  "sideEffects": false,
-  "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "./javascript"
-    ]
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "directory": "packages/config-eslint",
-    "type": "git",
-    "url": "https://github.com/gnowth/gnowth.git"
-  },
-  "dependencies": {
-    "@babel/eslint-parser": "7.17.0",
-    "@typescript-eslint/eslint-plugin": "5.13.0",
-    "@typescript-eslint/parser": "5.13.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-eslint-comments": "3.2.0",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jest": "26.1.1",
-    "eslint-plugin-jsx-a11y": "6.5.1",
-    "eslint-plugin-mdx": "1.16.0",
-    "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.29.3",
-    "eslint-plugin-react-hooks": "4.3.0",
-    "eslint-plugin-testing-library": "5.0.6"
-  },
-  "devDependencies": {
-    "@gnowth/prettier-config": "0.0.0"
-  },
-  "peerDependencies": {
-    "eslint": "^8.0.0"
-  },
-  "scripts": {
-    "build": "cp ../../LICENSE LICENSE",
-    "build:dev": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE",
-    "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js ."
-  }
+	"author": "Thierry Wong",
+	"description": "Eslint configs",
+	"license": "MIT",
+	"main": "hybrid-react.js",
+	"module": "hybrid-react.js",
+	"name": "@gnowth/eslint-config",
+	"prettier": "@gnowth/prettier-config",
+	"private": false,
+	"sideEffects": false,
+	"version": "0.0.0",
+	"eslintConfig": {
+		"extends": [
+			"./javascript"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"directory": "packages/config-eslint",
+		"type": "git",
+		"url": "https://github.com/gnowth/gnowth.git"
+	},
+	"dependencies": {
+		"@babel/eslint-parser": "7.17.0",
+		"@typescript-eslint/eslint-plugin": "5.13.0",
+		"@typescript-eslint/parser": "5.13.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-eslint-comments": "3.2.0",
+		"eslint-plugin-import": "2.25.4",
+		"eslint-plugin-json": "3.1.0",
+		"eslint-plugin-jest": "26.1.1",
+		"eslint-plugin-jsx-a11y": "6.5.1",
+		"eslint-plugin-mdx": "1.16.0",
+		"eslint-plugin-prettier": "4.0.0",
+		"eslint-plugin-promise": "6.0.0",
+		"eslint-plugin-react": "7.29.3",
+		"eslint-plugin-react-hooks": "4.3.0",
+		"eslint-plugin-testing-library": "5.0.6"
+	},
+	"devDependencies": {
+		"@gnowth/prettier-config": "0.0.0"
+	},
+	"peerDependencies": {
+		"eslint": "^8.0.0"
+	},
+	"scripts": {
+		"build": "cp ../../LICENSE LICENSE",
+		"build:dev": "cp ../../LICENSE LICENSE",
+		"clean:temp": "rm -rf LICENSE",
+		"lint": "npm run lint:script",
+		"lint:script": "eslint --ext .js ."
+	}
 }

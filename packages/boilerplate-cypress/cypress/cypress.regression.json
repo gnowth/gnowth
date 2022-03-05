@@ -1,5 +1,5 @@
 {
-  "screenshotsFolder": "cypress/media",
-  "videoCompression": false,
-  "videosFolder": "cypress/media"
+	"screenshotsFolder": "cypress/media",
+	"videoCompression": false,
+	"videosFolder": "cypress/media"
 }

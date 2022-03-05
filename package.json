@@ -1,109 +1,109 @@
 {
-  "author": "Thierry Wong",
-  "bugs": "https://github.com/gnowth/gnowth/issues",
-  "description": "Boilerplate",
-  "license": "MIT",
-  "name": "gnowth",
-  "prettier": "@gnowth/prettier-config",
-  "private": true,
-  "version": "0.0.0",
-  "repository": "https://github.com/gnowth/gnowth.git",
-  "homepage": "https://github.com/gnowth/gnowth#readme",
-  "workspaces": [
-    "./packages/*"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config"
-    ],
-    "ignorePatterns": [
-      "**/coverage",
-      "**/dist"
-    ],
-    "root": true
-  },
-  "engines": {
-    "node": "17.5.0",
-    "npm": "8.4.1"
-  },
-  "lint-staged": {
-    "*.{css,json,md,scss}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
-  },
-  "renovate": {
-    "extends": [
-      "config:base"
-    ],
-    "ignoreDeps": [
-      "npm"
-    ]
-  },
-  "dependencies": {
-    "@commitlint/cli": "16.2.1",
-    "@commitlint/config-conventional": "16.2.1",
-    "@gnowth/eslint-config": "0.0.0",
-    "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "github-markdown-css": "5.1.0",
-    "husky": "7.0.4",
-    "lerna": "4.0.0",
-    "lint-staged": "12.3.4",
-    "serve": "13.0.2",
-    "start-server-and-test": "1.14.0",
-    "surge": "0.23.1"
-  },
-  "devDependencies": {
-    "eslint": "8.10.0",
-    "prettier": "2.5.1",
-    "typescript": "4.6.2"
-  },
-  "scripts": {
-    "ci:database:backup": "echo database to backup",
-    "ci:database:fixture": "echo database to add fixtures",
-    "ci:database:migrate": "echo migrate database",
-    "ci:database:migrate:back": "echo migrate database back",
-    "ci:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
-    "ci:deploy:cleanup": "surge teardown $SITE_DOMAIN",
-    "ci:infrastructure:clean:temp": "echo clean temp infrastructure",
-    "ci:infrastructure:provision": "echo provision infrastructure",
-    "ci:publish": "lerna publish from-package --yes",
-    "ci:publish:dry": "echo publish dry run",
-    "ci:serve": "serve -l 3000 packages/boilerplate-nextjs/dist",
-    "ci:setup": "npm ci --cache ~/.cache --prefer-offline",
-    "ci:test:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test ci:serve http://localhost:3000 ci:test:regression",
-    "ci:test:regression": "npm run project:cypress test:regression",
-    "ci:test:regression:chrome": "npm run project:cypress test:regression:chrome",
-    "ci:test:regression:chrome:mobile": "npm run project:cypress test:regression:chrome:mobile",
-    "ci:test:regression:firefox": "npm run project:cypress test:regression:firefox",
-    "ci:test:regression:firefox:mobile": "npm run project:cypress test:regression:firefox:mobile",
-    "ci:test:smoke": "npm run project:cypress test:smoke",
-    "ci:version": "lerna version --exact --conventional-commits --conventional-graduate --yes",
-    "ci:version:pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
-    "git:fetch": "git fetch --prune",
-    "git:rebase": "git pull --rebase origin main",
-    "git:tag:delete": "git tag -d $(git tag -l *gnowth*)",
-    "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
-    "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
-    "local:clean:modules": "lerna clean --yes",
-    "local:clean:temp": "lerna run clean:temp && lerna run clean:log && rm -rf coverage",
-    "local:lint": "eslint --ext js,jsx,ts,tsx,mdx .",
-    "local:test:regression": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:regression",
-    "local:test:smoke": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:smoke",
-    "local:test:unit": "echo Test",
-    "local:typecheck": "tsc",
-    "local:verify": "npm run local:lint && npm run local:typecheck && npm local:test:unit",
-    "prepare": "if test \"$CI\" != true; then husky install; fi",
-    "project:cypress": "npm run --workspace=@gnowth/boilerplate-cypress",
-    "project:eslint": "npm run --workspace=@gnowth/eslint-config",
-    "project:nextjs": "npm run --workspace=@gnowth/boilerplate-nextjs",
-    "project:prettier": "npm run --workspace=@gnowth/prettier-config",
-    "project:typescript": "npm run --workspace=@gnowth/typescript-config",
-    "setup": "npm install --frozen-lockfile",
-    "setup:refresh": "rm -rf package-lock.json && npm run local:clean && npm install",
-    "workspaces:build": "lerna run build",
-    "workspaces:build:dev": "lerna run build:dev",
-    "workspaces:lint": "lerna run lint",
-    "workspaces:test": "lerna run test",
-    "workspaces:typecheck": "lerna run typecheck"
-  }
+	"author": "Thierry Wong",
+	"bugs": "https://github.com/gnowth/gnowth/issues",
+	"description": "Boilerplate",
+	"license": "MIT",
+	"name": "gnowth",
+	"prettier": "@gnowth/prettier-config",
+	"private": true,
+	"version": "0.0.0",
+	"repository": "https://github.com/gnowth/gnowth.git",
+	"homepage": "https://github.com/gnowth/gnowth#readme",
+	"workspaces": [
+		"./packages/*"
+	],
+	"eslintConfig": {
+		"extends": [
+			"@gnowth/eslint-config"
+		],
+		"ignorePatterns": [
+			"**/coverage",
+			"**/dist"
+		],
+		"root": true
+	},
+	"engines": {
+		"node": "17.5.0",
+		"npm": "8.4.1"
+	},
+	"lint-staged": {
+		"*.{css,json,md,scss}": "prettier --write",
+		"*.{js,jsx,ts,tsx}": "eslint --fix"
+	},
+	"renovate": {
+		"extends": [
+			"config:base"
+		],
+		"ignoreDeps": [
+			"npm"
+		]
+	},
+	"dependencies": {
+		"@commitlint/cli": "16.2.1",
+		"@commitlint/config-conventional": "16.2.1",
+		"@gnowth/eslint-config": "0.0.0",
+		"@gnowth/prettier-config": "0.0.0",
+		"@gnowth/typescript-config": "0.0.0",
+		"github-markdown-css": "5.1.0",
+		"husky": "7.0.4",
+		"lerna": "4.0.0",
+		"lint-staged": "12.3.4",
+		"serve": "13.0.2",
+		"start-server-and-test": "1.14.0",
+		"surge": "0.23.1"
+	},
+	"devDependencies": {
+		"eslint": "8.10.0",
+		"prettier": "2.5.1",
+		"typescript": "4.6.2"
+	},
+	"scripts": {
+		"ci:database:backup": "echo database to backup",
+		"ci:database:fixture": "echo database to add fixtures",
+		"ci:database:migrate": "echo migrate database",
+		"ci:database:migrate:back": "echo migrate database back",
+		"ci:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
+		"ci:deploy:cleanup": "surge teardown $SITE_DOMAIN",
+		"ci:infrastructure:clean:temp": "echo clean temp infrastructure",
+		"ci:infrastructure:provision": "echo provision infrastructure",
+		"ci:publish": "lerna publish from-package --yes",
+		"ci:publish:dry": "echo publish dry run",
+		"ci:serve": "serve -l 3000 packages/boilerplate-nextjs/dist",
+		"ci:setup": "npm ci --cache ~/.cache --prefer-offline",
+		"ci:test:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test ci:serve http://localhost:3000 ci:test:regression",
+		"ci:test:regression": "npm run project:cypress test:regression",
+		"ci:test:regression:chrome": "npm run project:cypress test:regression:chrome",
+		"ci:test:regression:chrome:mobile": "npm run project:cypress test:regression:chrome:mobile",
+		"ci:test:regression:firefox": "npm run project:cypress test:regression:firefox",
+		"ci:test:regression:firefox:mobile": "npm run project:cypress test:regression:firefox:mobile",
+		"ci:test:smoke": "npm run project:cypress test:smoke",
+		"ci:version": "lerna version --exact --conventional-commits --conventional-graduate --yes",
+		"ci:version:pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
+		"git:fetch": "git fetch --prune",
+		"git:rebase": "git pull --rebase origin main",
+		"git:tag:delete": "git tag -d $(git tag -l *gnowth*)",
+		"git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
+		"local:clean": "npm run local:clean:temp && npm run local:clean:modules",
+		"local:clean:modules": "lerna clean --yes",
+		"local:clean:temp": "lerna run clean:temp && lerna run clean:log && rm -rf coverage",
+		"local:lint": "eslint --ext js,jsx,ts,tsx,mdx .",
+		"local:test:regression": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:regression",
+		"local:test:smoke": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:smoke",
+		"local:test:unit": "echo Test",
+		"local:typecheck": "tsc",
+		"local:verify": "npm run local:lint && npm run local:typecheck && npm local:test:unit",
+		"prepare": "if test \"$CI\" != true; then husky install; fi",
+		"project:cypress": "npm run --workspace=@gnowth/boilerplate-cypress",
+		"project:eslint": "npm run --workspace=@gnowth/eslint-config",
+		"project:nextjs": "npm run --workspace=@gnowth/boilerplate-nextjs",
+		"project:prettier": "npm run --workspace=@gnowth/prettier-config",
+		"project:typescript": "npm run --workspace=@gnowth/typescript-config",
+		"setup": "npm install --frozen-lockfile",
+		"setup:refresh": "rm -rf package-lock.json && npm run local:clean && npm install",
+		"workspaces:build": "lerna run build",
+		"workspaces:build:dev": "lerna run build:dev",
+		"workspaces:lint": "lerna run lint",
+		"workspaces:test": "lerna run test",
+		"workspaces:typecheck": "lerna run typecheck"
+	}
 }

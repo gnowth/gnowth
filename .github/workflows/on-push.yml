@@ -3,155 +3,155 @@ name: onPush
 on: push
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
-  NODE_VERSION: 17.5.0
+	ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+	NODE_VERSION: 17.5.0
 
 jobs:
-  quality:
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Quality check
-        run: echo Quality check
+	quality:
+		if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Quality check
+				run: echo Quality check
 
-  security:
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Security check
-        run: echo Security check
+	security:
+		if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Security check
+				run: echo Security check
 
-  # Phase 1: Verify code
-  lint:
-    container:
-      image: node:17.5.0-buster-slim
-      options: --user 1001
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+	# Phase 1: Verify code
+	lint:
+		container:
+			image: node:17.5.0-buster-slim
+			options: --user 1001
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Lint workspaces
-        run: npm run workspaces:lint
+			- name: Lint workspaces
+				run: npm run workspaces:lint
 
-  test:
-    container:
-      image: node:17.5.0-buster-slim
-      options: --user 1001
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+	test:
+		container:
+			image: node:17.5.0-buster-slim
+			options: --user 1001
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Test workspaces
-        run: npm run workspaces:test
+			- name: Test workspaces
+				run: npm run workspaces:test
 
-  typecheck:
-    container:
-      image: node:17.5.0-buster-slim
-      options: --user 1001
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+	typecheck:
+		container:
+			image: node:17.5.0-buster-slim
+			options: --user 1001
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Type check workspaces
-        run: npm run workspaces:typecheck
+			- name: Type check workspaces
+				run: npm run workspaces:typecheck
 
-  build:
-    container:
-      image: node:17.5.0-buster
-      options: --user 1001
-    if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+	build:
+		container:
+			image: node:17.5.0-buster
+			options: --user 1001
+		if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Build projects
-        run: npm run workspaces:build
+			- name: Build projects
+				run: npm run workspaces:build
 
-  build_and_e2e_mock:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+	build_and_e2e_mock:
+		container:
+			image: cypress/base:14.17.0
+			options: --user 1001
+		if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- uses: actions/setup-node@v3
+				with:
+					node-version: ${{ env.NODE_VERSION }}
 
-      - name: Check out repository
-        uses: actions/checkout@v3
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Build projects
-        run: npm run workspaces:build
+			- name: Build projects
+				run: npm run workspaces:build
 
-      - name: End to end test using mock
-        run: npm run ci:test:mock
+			- name: End to end test using mock
+				run: npm run ci:test:mock
 
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact-test-media
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
-          retention-days: 1
+			- name: Upload test artifact
+				if: failure()
+				uses: actions/upload-artifact@v2
+				with:
+					name: artifact-test-media
+					path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+					retention-days: 1

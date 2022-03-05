@@ -18,11 +18,11 @@ Scripts of interest:
 - cleaning temporary files
 
 ```bash
-  npm run local:clean:temp
+	npm run local:clean:temp
 ```
 
 - refreshing package-lock.json. does a clean install and rebuilding the lock file
 
 ```bash
-  npm run setup:refresh
+	npm run setup:refresh
 ```

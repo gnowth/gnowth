@@ -4,13 +4,13 @@ import SectionSimulateError from '../views/section-simulate-error'
 import SectionSimulateNotification from '../views/section-simulate-notification'
 
 function PageDashboard() {
-  return (
-    <VStack as="main" alignItems="stretch">
-      <SectionSimulateError />
+	return (
+		<VStack as="main" alignItems="stretch">
+			<SectionSimulateError />
 
-      <SectionSimulateNotification />
-    </VStack>
-  )
+			<SectionSimulateNotification />
+		</VStack>
+	)
 }
 
 export default PageDashboard

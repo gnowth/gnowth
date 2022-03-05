@@ -1,14 +1,14 @@
 {
-  "command": {
-    "publish": {
-      "allowBranch": "release-*"
-    },
-    "version": {
-      "allowBranch": "release-*",
-      "message": "chore(release): publish"
-    }
-  },
-  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
-  "packages": [".", "packages/*"],
-  "version": "independent"
+	"command": {
+		"publish": {
+			"allowBranch": "release-*"
+		},
+		"version": {
+			"allowBranch": "release-*",
+			"message": "chore(release): publish"
+		}
+	},
+	"ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
+	"packages": [".", "packages/*"],
+	"version": "independent"
 }

@@ -1,10 +1,10 @@
 {
-  "extends": "@gnowth/typescript-config",
-  "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "moduleResolution": "node"
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+	"extends": "@gnowth/typescript-config",
+	"compilerOptions": {
+		"allowJs": true,
+		"isolatedModules": true,
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"moduleResolution": "node"
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

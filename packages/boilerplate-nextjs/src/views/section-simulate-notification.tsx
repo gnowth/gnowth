@@ -6,24 +6,24 @@ import { streamNotifications } from './view-toast-notifications'
 import LayoutSection from '../components/layout-section'
 
 function SectionSimulateNotification() {
-  return (
-    <LayoutSection>
-      <Text as="span">Simulate notification in app</Text>
+	return (
+		<LayoutSection>
+			<Text as="span">Simulate notification in app</Text>
 
-      <Button
-        ml="4"
-        onClick={() =>
-          streamNotifications.actions.addNotification({
-            id: uuid(),
-            message: faker.lorem.sentence(),
-            title: faker.lorem.words(3),
-          })
-        }
-      >
-        Fire notification
-      </Button>
-    </LayoutSection>
-  )
+			<Button
+				ml="4"
+				onClick={() =>
+					streamNotifications.actions.addNotification({
+						id: uuid(),
+						message: faker.lorem.sentence(),
+						title: faker.lorem.words(3),
+					})
+				}
+			>
+				Fire notification
+			</Button>
+		</LayoutSection>
+	)
 }
 
 export default SectionSimulateNotification

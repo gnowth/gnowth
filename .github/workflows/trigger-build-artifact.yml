@@ -1,87 +1,87 @@
 name: triggerBuildArtifact
 
 on:
-  workflow_dispatch:
-    inputs:
-      pre_release:
-        description: Create a pre release (YES/no)?
-        default: 'yes'
-        required: false
+	workflow_dispatch:
+		inputs:
+			pre_release:
+				description: Create a pre release (YES/no)?
+				default: 'yes'
+				required: false
 
 jobs:
-  # Phase 1: Branch check
-  check_branch:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Cancelling - Branch must be a release branch
-        if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+	# Phase 1: Branch check
+	check_branch:
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Cancelling - Branch must be a release branch
+				if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Pre Release] is invalid
-        if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Pre Release] is invalid
+				if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-  # Phase 2: Build artifact
-  build_artifact:
-    container:
-      image: node:17.5.0-buster
-      options: --user 1001
-    needs: check_branch
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+	# Phase 2: Build artifact
+	build_artifact:
+		container:
+			image: node:17.5.0-buster
+			options: --user 1001
+		needs: check_branch
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Check out repository
+				uses: actions/checkout@v3
+				with:
+					fetch-depth: 0
 
-      - name: Set git identity
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+			- name: Set git identity
+				run: |
+					git config --global user.name 'github-actions[bot]'
+					git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+				env:
+					GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Pre release - Tag branch and create change log
-        if: github.event.inputs.pre_release != 'no'
-        run: npm run ci:version:pre
+			- name: Pre release - Tag branch and create change log
+				if: github.event.inputs.pre_release != 'no'
+				run: npm run ci:version:pre
 
-      - name: Release - Tag branch and create change log (require a pre-release)
-        if: github.event.inputs.pre_release == 'no'
-        run: npm run ci:version
+			- name: Release - Tag branch and create change log (require a pre-release)
+				if: github.event.inputs.pre_release == 'no'
+				run: npm run ci:version
 
-      - name: Set version to environment variable
-        run: |
-          ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
-          echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
+			- name: Set version to environment variable
+				run: |
+					ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
+					echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
 
-      # Note: needs to be after version in case we use version in our build
-      - name: Build projects
-        run: npm run workspaces:build
+			# Note: needs to be after version in case we use version in our build
+			- name: Build projects
+				run: npm run workspaces:build
 
-      - name: Build artifact for release
-        uses: TheDoctor0/zip-release@0.4.2
-        with:
-          filename: artifact.zip
-          exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'
+			- name: Build artifact for release
+				uses: TheDoctor0/zip-release@0.4.2
+				with:
+					filename: artifact.zip
+					exclusions: '*.git* /*node_modules/* .editorconfig /*.husky/* /*.vscode/* /*docs/* *.next* /*src/* /*public/*'
 
-      - name: Upload release artifact
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: artifact.zip
-          asset_name: artifact.zip
-          tag: refs/tags/gnowth@${{ env.ARTIFACT_VERSION }}
-          overwrite: true
-          body: Release artifact
+			- name: Upload release artifact
+				uses: svenstaro/upload-release-action@v2
+				with:
+					repo_token: ${{ secrets.GITHUB_TOKEN }}
+					file: artifact.zip
+					asset_name: artifact.zip
+					tag: refs/tags/gnowth@${{ env.ARTIFACT_VERSION }}
+					overwrite: true
+					body: Release artifact

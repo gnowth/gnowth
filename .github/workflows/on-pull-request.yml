@@ -3,62 +3,62 @@ name: onPullRequest
 on: pull_request
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
-  CYPRESS_BASEURL: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
-  NODE_VERSION: 17.5.0
-  SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
-  SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-  SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+	ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+	CYPRESS_BASEURL: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
+	NODE_VERSION: 17.5.0
+	SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
+	SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+	SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
-  build_preview_and_e2e:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+	# Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
+	build_preview_and_e2e:
+		container:
+			image: cypress/base:14.17.0
+			options: --user 1001
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- uses: actions/setup-node@v3
+				with:
+					node-version: ${{ env.NODE_VERSION }}
 
-      - name: Check out repository
-        uses: actions/checkout@v3
+			- name: Check out repository
+				uses: actions/checkout@v3
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Build projects
-        run: npm run workspaces:build:dev
+			- name: Build projects
+				run: npm run workspaces:build:dev
 
-      - name: End to end test using mock
-        run: npm run ci:test:mock
+			- name: End to end test using mock
+				run: npm run ci:test:mock
 
-      - name: Deploy to preview
-        run: npm run ci:deploy
+			- name: Deploy to preview
+				run: npm run ci:deploy
 
-      - name: Comment on PR with deploy link
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: Preview
-          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
-          recreate: true
+			- name: Comment on PR with deploy link
+				uses: marocchino/sticky-pull-request-comment@v2
+				with:
+					header: Preview
+					message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
+					recreate: true
 
-      - name: End to end smoke test
-        run: npm run ci:test:smoke
+			- name: End to end smoke test
+				run: npm run ci:test:smoke
 
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact-test-media
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
-          retention-days: 1
+			- name: Upload test artifact
+				if: failure()
+				uses: actions/upload-artifact@v2
+				with:
+					name: artifact-test-media
+					path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+					retention-days: 1

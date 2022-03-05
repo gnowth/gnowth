@@ -1,65 +1,65 @@
 name: triggerPublishToNpm
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag name (gnowth@*)
-        required: true
+	workflow_dispatch:
+		inputs:
+			tag:
+				description: Tag name (gnowth@*)
+				required: true
 
-      dry_run:
-        description: Dry run (YES/no)
-        default: 'yes'
-        required: false
+			dry_run:
+				description: Dry run (YES/no)
+				default: 'yes'
+				required: false
 
 env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+	NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
-  # Phase 1: Branch check
-  check_branch:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Cancelling - Branch must either be a main/release branch
-        if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+	# Phase 1: Branch check
+	check_branch:
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Cancelling - Branch must either be a main/release branch
+				if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Tag name] is invalid
-        if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Tag name] is invalid
+				if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Dry run] is invalid
-        if: ${{ github.event.inputs.dry_run != 'no' && github.event.inputs.dry_run != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Dry run] is invalid
+				if: ${{ github.event.inputs.dry_run != 'no' && github.event.inputs.dry_run != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-  # Phase 2: Publish
-  publish:
-    container:
-      image: node:17.5.0-buster-slim
-      options: --user 1001
-    needs: check_branch
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Download release artifact
-        uses: dsaltares/fetch-gh-release-asset@0.06
-        with:
-          version: tags/${{ github.event.inputs.tag }}
-          file: artifact.zip
-          token: ${{ secrets.GITHUB_TOKEN }}
+	# Phase 2: Publish
+	publish:
+		container:
+			image: node:17.5.0-buster-slim
+			options: --user 1001
+		needs: check_branch
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Download release artifact
+				uses: dsaltares/fetch-gh-release-asset@0.06
+				with:
+					version: tags/${{ github.event.inputs.tag }}
+					file: artifact.zip
+					token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extracting artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq artifact.zip -d .
+			- name: Extracting artifact
+				uses: montudor/action-zip@v1
+				with:
+					args: unzip -qq artifact.zip -d .
 
-      - name: Dry run
-        run: npm run ci:publish:dry
+			- name: Dry run
+				run: npm run ci:publish:dry
 
-      - name: Generate .npmrc file
-        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
+			- name: Generate .npmrc file
+				run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
 
-      - name: Publish
-        if: github.event.inputs.dry_run == 'no'
-        run: npm run ci:publish
+			- name: Publish
+				if: github.event.inputs.dry_run == 'no'
+				run: npm run ci:publish

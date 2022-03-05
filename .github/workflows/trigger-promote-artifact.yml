@@ -1,192 +1,192 @@
 name: triggerPromoteArtifact
 
 on:
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag name (gnowth@*)
-        required: true
+	workflow_dispatch:
+		inputs:
+			tag:
+				description: Tag name (gnowth@*)
+				required: true
 
-      environment:
-        description: Environment to deploy to (DEV/sit/sys/uat/prod)
-        default: dev
-        required: false
+			environment:
+				description: Environment to deploy to (DEV/sit/sys/uat/prod)
+				default: dev
+				required: false
 
-      skip_provision:
-        description: Skip provision (YES/no)
-        default: 'yes'
-        required: false
+			skip_provision:
+				description: Skip provision (YES/no)
+				default: 'yes'
+				required: false
 
-      skip_deploy:
-        description: Skip deploy (YES/no)
-        default: 'yes'
-        required: false
+			skip_deploy:
+				description: Skip deploy (YES/no)
+				default: 'yes'
+				required: false
 
-      skip_migration:
-        description: Skip database migration (YES/no)
-        default: 'yes'
-        required: false
+			skip_migration:
+				description: Skip database migration (YES/no)
+				default: 'yes'
+				required: false
 
-      skip_e2e:
-        description: Skip e2e regression test (yes/NO)
-        default: 'no'
-        required: false
+			skip_e2e:
+				description: Skip e2e regression test (yes/NO)
+				default: 'no'
+				required: false
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
-  CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
-  NODE_VERSION: 17.5.0
-  SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
-  SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-  SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+	ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+	CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
+	NODE_VERSION: 17.5.0
+	SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
+	SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+	SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
 jobs:
-  # Phase 1: Branch check
-  check_branch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancelling - Branch must either be a main/release branch
-        if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+	# Phase 1: Branch check
+	check_branch:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Cancelling - Branch must either be a main/release branch
+				if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Environment] is invalid
-        if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'sys' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Environment] is invalid
+				if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'sys' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Tag name] is invalid
-        if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Tag name] is invalid
+				if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Skip provision] is invalid
-        if: ${{ github.event.inputs.skip_provision != 'no' && github.event.inputs.skip_provision != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Skip provision] is invalid
+				if: ${{ github.event.inputs.skip_provision != 'no' && github.event.inputs.skip_provision != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Skip deploy] is invalid
-        if: ${{ github.event.inputs.skip_deploy != 'no' && github.event.inputs.skip_deploy != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Skip deploy] is invalid
+				if: ${{ github.event.inputs.skip_deploy != 'no' && github.event.inputs.skip_deploy != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Skip e2e] is invalid
-        if: ${{ github.event.inputs.skip_e2e != 'no' && github.event.inputs.skip_e2e != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Skip e2e] is invalid
+				if: ${{ github.event.inputs.skip_e2e != 'no' && github.event.inputs.skip_e2e != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-      - name: Cancelling - Input [Skip migration] is invalid
-        if: ${{ github.event.inputs.skip_migration != 'no' && github.event.inputs.skip_migration != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+			- name: Cancelling - Input [Skip migration] is invalid
+				if: ${{ github.event.inputs.skip_migration != 'no' && github.event.inputs.skip_migration != 'yes' }}
+				uses: andymckay/cancel-action@0.2
 
-  # Phase 2: Provision, deploy, migrate
-  provision_deploy_migrate:
-    container:
-      image: node:17.5.0-buster-slim
-      options: --user 1001
-    environment:
-      name: ${{ github.event.inputs.environment }}
-      url: https://${{ env.SITE_DOMAIN }}
-    needs: check_branch
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Download release artifact
-        uses: dsaltares/fetch-gh-release-asset@0.06
-        with:
-          version: tags/${{ github.event.inputs.tag }}
-          file: artifact.zip
-          token: ${{ secrets.GITHUB_TOKEN }}
+	# Phase 2: Provision, deploy, migrate
+	provision_deploy_migrate:
+		container:
+			image: node:17.5.0-buster-slim
+			options: --user 1001
+		environment:
+			name: ${{ github.event.inputs.environment }}
+			url: https://${{ env.SITE_DOMAIN }}
+		needs: check_branch
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Download release artifact
+				uses: dsaltares/fetch-gh-release-asset@0.06
+				with:
+					version: tags/${{ github.event.inputs.tag }}
+					file: artifact.zip
+					token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extracting artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq artifact.zip -d .
+			- name: Extracting artifact
+				uses: montudor/action-zip@v1
+				with:
+					args: unzip -qq artifact.zip -d .
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      - name: Database backup
-        run: npm run ci:database:backup
+			- name: Database backup
+				run: npm run ci:database:backup
 
-      - name: Provision given environment
-        if: github.event.inputs.skip_provision == 'no'
-        run: npm run ci:infrastructure:provision
+			- name: Provision given environment
+				if: github.event.inputs.skip_provision == 'no'
+				run: npm run ci:infrastructure:provision
 
-      - name: Deploy to given environment
-        if: github.event.inputs.skip_deploy == 'no'
-        run: npm run ci:deploy
+			- name: Deploy to given environment
+				if: github.event.inputs.skip_deploy == 'no'
+				run: npm run ci:deploy
 
-      - name: Database add fixture
-        if: github.event.inputs.skip_migration == 'no'
-        run: npm run ci:database:fixture
+			- name: Database add fixture
+				if: github.event.inputs.skip_migration == 'no'
+				run: npm run ci:database:fixture
 
-      - name: Database migrate
-        if: github.event.inputs.skip_migration == 'no'
-        run: npm run ci:database:migrate
+			- name: Database migrate
+				if: github.event.inputs.skip_migration == 'no'
+				run: npm run ci:database:migrate
 
-      - name: Clean up temporary infrastructure
-        if: github.event.inputs.skip_provision == 'no'
-        run: npm run ci:infrastructure:clean:temp
+			- name: Clean up temporary infrastructure
+				if: github.event.inputs.skip_provision == 'no'
+				run: npm run ci:infrastructure:clean:temp
 
-  # Phase 3: End to end regression test
-  e2e_regression:
-    container: cypress/browsers:node14.17.0-chrome91-ff89
-    if: ${{ always() && github.event.inputs.skip_e2e == 'no' }}
-    needs: [check_branch, provision_deploy_migrate]
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - title: chrome
-            command: npm run ci:test:regression:chrome
-          - title: chrome-mobile
-            command: npm run ci:test:regression:chrome:mobile
-          - title: firefox
-            command: npm run ci:test:regression:firefox
-          - title: firefox-mobile
-            command: npm run ci:test:regression:firefox:mobile
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+	# Phase 3: End to end regression test
+	e2e_regression:
+		container: cypress/browsers:node14.17.0-chrome91-ff89
+		if: ${{ always() && github.event.inputs.skip_e2e == 'no' }}
+		needs: [check_branch, provision_deploy_migrate]
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		strategy:
+			fail-fast: false
+			matrix:
+				include:
+					- title: chrome
+						command: npm run ci:test:regression:chrome
+					- title: chrome-mobile
+						command: npm run ci:test:regression:chrome:mobile
+					- title: firefox
+						command: npm run ci:test:regression:firefox
+					- title: firefox-mobile
+						command: npm run ci:test:regression:firefox:mobile
+		steps:
+			- uses: actions/setup-node@v3
+				with:
+					node-version: ${{ env.NODE_VERSION }}
 
-      - name: Download release artifact
-        uses: dsaltares/fetch-gh-release-asset@0.06
-        with:
-          version: tags/${{ github.event.inputs.tag }}
-          file: artifact.zip
-          token: ${{ secrets.GITHUB_TOKEN }}
+			- name: Download release artifact
+				uses: dsaltares/fetch-gh-release-asset@0.06
+				with:
+					version: tags/${{ github.event.inputs.tag }}
+					file: artifact.zip
+					token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extracting artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq artifact.zip -d .
+			- name: Extracting artifact
+				uses: montudor/action-zip@v1
+				with:
+					args: unzip -qq artifact.zip -d .
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
+			- name: Cache npm cache on linux
+				uses: actions/cache@v2
+				with:
+					path: ~/.cache
+					key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+					restore-keys: ${{ runner.os }}-setup-
 
-      - name: Installing node modules
-        run: npm run ci:setup
+			- name: Installing node modules
+				run: npm run ci:setup
 
-      # Hack: Not recommended. Need to figure out how to get zip action to create file for current user rather than root
-      - name: Update permission to allow cypress to create media
-        run: 'chmod o+w packages/boilerplate-cypress && chmod o+w packages/boilerplate-cypress/cypress'
+			# Hack: Not recommended. Need to figure out how to get zip action to create file for current user rather than root
+			- name: Update permission to allow cypress to create media
+				run: 'chmod o+w packages/boilerplate-cypress && chmod o+w packages/boilerplate-cypress/cypress'
 
-      - name: End to end regression tests for ${{ matrix.title }}
-        run: ${{ matrix.command }}
+			- name: End to end regression tests for ${{ matrix.title }}
+				run: ${{ matrix.command }}
 
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifact-test-media-${{ matrix.title }}
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
-          retention-days: 1
+			- name: Upload test artifact
+				if: failure()
+				uses: actions/upload-artifact@v2
+				with:
+					name: artifact-test-media-${{ matrix.title }}
+					path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+					retention-days: 1

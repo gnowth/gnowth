@@ -2,12 +2,12 @@ const javascript = require('./javascript')
 const typescript = require('./typescript')
 
 module.exports = {
-  ...javascript,
+	...javascript,
 
-  overrides: [
-    {
-      ...typescript,
-      files: ['*.ts'],
-    },
-  ],
+	overrides: [
+		{
+			...typescript,
+			files: ['*.ts'],
+		},
+	],
 }

@@ -21,16 +21,16 @@
 # Pipeline
 
 ```mermaid
-  graph LR
-    anyBranch ===> triggerDeployToDev
+	graph LR
+		anyBranch ===> triggerDeployToDev
 
-    featureBranch ===> onPush --> onPullRequest --> onPullRequestClose
+		featureBranch ===> onPush --> onPullRequest --> onPullRequestClose
 
-    developBranch ===> scheduleOrTriggerRegressionTest
+		developBranch ===> scheduleOrTriggerRegressionTest
 
-    developBranch ===> scheduleOrTriggerSecurityCheck
+		developBranch ===> scheduleOrTriggerSecurityCheck
 
-    releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerRegressionTest & triggerPromoteArtifact & triggerRollbackArtifact
+		releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerRegressionTest & triggerPromoteArtifact & triggerRollbackArtifact
 ```
 
 ## Any branch
@@ -43,17 +43,17 @@
 - all in 1 phase, to speed up deployment
 
 ```mermaid
-  flowchart LR
-    BUILD([Create dev build])
-    DEPLOY([Deploy to dev])
-    E2ESMOKE([E2e smoke test])
-    SETUP([Setup])
+	flowchart LR
+		BUILD([Create dev build])
+		DEPLOY([Deploy to dev])
+		E2ESMOKE([E2e smoke test])
+		SETUP([Setup])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      SETUP -.-> BUILD -.-> DEPLOY -.-> E2ESMOKE
-    end
+			SETUP -.-> BUILD -.-> DEPLOY -.-> E2ESMOKE
+		end
 ```
 
 ## Feature / fix branch
@@ -64,55 +64,55 @@
 - Quality and security check on release/main
 
 ```mermaid
-  flowchart LR
-    BUILD([Build])
-    E2EMOCK([E2e using mock])
-    SETUP([Setup])
+	flowchart LR
+		BUILD([Build])
+		E2EMOCK([E2e using mock])
+		SETUP([Setup])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      BUILD
-      LINT([Lint])
-      TEST([Test])
-      TYPECHECK([Typecheck])
-      QUALITY([Quality check for release/main])
-      SECURITY([Security check for release/main])
-    end
+			BUILD
+			LINT([Lint])
+			TEST([Test])
+			TYPECHECK([Typecheck])
+			QUALITY([Quality check for release/main])
+			SECURITY([Security check for release/main])
+		end
 
-    BUILD -.-> E2EMOCK
-    SETUP -.-> BUILD & LINT & TEST & TYPECHECK
+		BUILD -.-> E2EMOCK
+		SETUP -.-> BUILD & LINT & TEST & TYPECHECK
 ```
 
 ### onPullRequest
 
 ```mermaid
-  flowchart LR
-    BUILD([Create dev build])
-    DEPLOY([Deploy to preview])
-    E2EMOCK([E2e using mock])
-    E2ESMOKE([E2e smoke test])
-    SETUP([Setup])
+	flowchart LR
+		BUILD([Create dev build])
+		DEPLOY([Deploy to preview])
+		E2EMOCK([E2e using mock])
+		E2ESMOKE([E2e smoke test])
+		SETUP([Setup])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      SETUP -.-> BUILD -.-> E2EMOCK -.-> DEPLOY -.-> E2ESMOKE
-    end
+			SETUP -.-> BUILD -.-> E2EMOCK -.-> DEPLOY -.-> E2ESMOKE
+		end
 ```
 
 ### onPullRequestClose
 
 ```mermaid
-  flowchart LR
-    CLEAN([Clean preview environment])
-    SETUP([Setup])
+	flowchart LR
+		CLEAN([Clean preview environment])
+		SETUP([Setup])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      SETUP -.-> CLEAN
-    end
+			SETUP -.-> CLEAN
+		end
 ```
 
 ## Develop branch
@@ -120,35 +120,35 @@
 ### scheduleOrTriggerRegressionTest
 
 ```mermaid
-  flowchart LR
-    BUILD([Create prod build])
-    DEPLOY([Deploy to test])
-    SETUP([Setup])
+	flowchart LR
+		BUILD([Create prod build])
+		DEPLOY([Deploy to test])
+		SETUP([Setup])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      SETUP -.-> BUILD -.-> DEPLOY
-    end
+			SETUP -.-> BUILD -.-> DEPLOY
+		end
 
-    subgraph PHASE2[Phase 2]
-      direction LR
+		subgraph PHASE2[Phase 2]
+			direction LR
 
-      E2ECHROME([E2e regression with chrome])
-      E2ECHROMEMOBILE([E2e regression with chrome mobile])
-      E2EEDGE([E2e regression with edge])
-      E2EEDGEMOBILE([E2e regression with edge mobile])
-      E2EFIREFOX([E2e regression with firefox])
-      E2EFIREFOXMOBILE([E2e regression with firefox mobile])
-    end
+			E2ECHROME([E2e regression with chrome])
+			E2ECHROMEMOBILE([E2e regression with chrome mobile])
+			E2EEDGE([E2e regression with edge])
+			E2EEDGEMOBILE([E2e regression with edge mobile])
+			E2EFIREFOX([E2e regression with firefox])
+			E2EFIREFOXMOBILE([E2e regression with firefox mobile])
+		end
 
-    subgraph PHASE3[Phase 3]
-      direction LR
+		subgraph PHASE3[Phase 3]
+			direction LR
 
-      CLEAN([Clean test environment])
-    end
+			CLEAN([Clean test environment])
+		end
 
-    PHASE1 --> PHASE2 --> PHASE3
+		PHASE1 --> PHASE2 --> PHASE3
 ```
 
 ### scheduleOrTriggerSecurityCheck
@@ -156,13 +156,13 @@
 - the github ones does not seems to require any setup
 
 ```mermaid
-  flowchart LR
-    subgraph PHASE1[Phase 1]
-      direction LR
+	flowchart LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      QUALITY([Quality check])
-      SECURITY([Security check])
-    end
+			QUALITY([Quality check])
+			SECURITY([Security check])
+		end
 ```
 
 ## Release branch
@@ -170,54 +170,54 @@
 ### triggerBuildArtifact
 
 ```mermaid
-  flowchart LR
-    ARTIFACTPACK([Zip artifact])
-    ARTIFACTRELEASE([Upload artifact to release])
-    BUILD([Create prod build])
-    SETUP([Setup])
-    VERSIONING([Generate changelog and tag version])
+	flowchart LR
+		ARTIFACTPACK([Zip artifact])
+		ARTIFACTRELEASE([Upload artifact to release])
+		BUILD([Create prod build])
+		SETUP([Setup])
+		VERSIONING([Generate changelog and tag version])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      VALIDATEBRANCH(Validate input branch)
-      VALIDATEPRE(Validate flag pre release)
-    end
+			VALIDATEBRANCH(Validate input branch)
+			VALIDATEPRE(Validate flag pre release)
+		end
 
-    subgraph PHASE2[Phase 2]
-      direction LR
+		subgraph PHASE2[Phase 2]
+			direction LR
 
-      SETUP -.-> VERSIONING -.-> BUILD -.-> ARTIFACTPACK -.-> ARTIFACTRELEASE
-    end
+			SETUP -.-> VERSIONING -.-> BUILD -.-> ARTIFACTPACK -.-> ARTIFACTRELEASE
+		end
 
-    PHASE1 --> PHASE2
+		PHASE1 --> PHASE2
 ```
 
 ### triggerPublishToNpm
 
 ```mermaid
-  flowchart LR
-    ARTIFACTUNPACK([Unzip artifact])
-    ARTIFACTDOWNLOAD([Download artifact from release])
-    STAGE([Publish to mock server])
-    PUBLISH([Publish to npm])
-    SETUP([Setup ci tools])
+	flowchart LR
+		ARTIFACTUNPACK([Unzip artifact])
+		ARTIFACTDOWNLOAD([Download artifact from release])
+		STAGE([Publish to mock server])
+		PUBLISH([Publish to npm])
+		SETUP([Setup ci tools])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      VALIDATEBRANCH(Validate input branch)
-      VALIDATETAG(Validate input tag name)
-      VALIDATEDRY(Validate flag dry run)
-    end
+			VALIDATEBRANCH(Validate input branch)
+			VALIDATETAG(Validate input tag name)
+			VALIDATEDRY(Validate flag dry run)
+		end
 
-    subgraph PHASE2[Phase 2]
-      direction LR
+		subgraph PHASE2[Phase 2]
+			direction LR
 
-      ARTIFACTDOWNLOAD -.-> ARTIFACTUNPACK -.-> SETUP -.-> STAGE -.-> PUBLISH
-    end
+			ARTIFACTDOWNLOAD -.-> ARTIFACTUNPACK -.-> SETUP -.-> STAGE -.-> PUBLISH
+		end
 
-    PHASE1 --> PHASE2
+		PHASE1 --> PHASE2
 ```
 
 ### triggerRegressionTest
@@ -225,37 +225,37 @@
 - e2e test are stored in the artifact, so that only relevant test are run when rolling back
 
 ```mermaid
-  flowchart LR
-    ARTIFACTUNPACK([Unzip artifact])
-    ARTIFACTDOWNLOAD([Download artifact from release])
-    SETUP([Setup ci tools])
+	flowchart LR
+		ARTIFACTUNPACK([Unzip artifact])
+		ARTIFACTDOWNLOAD([Download artifact from release])
+		SETUP([Setup ci tools])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      VALIDATEBRANCH(Validate input branch)
-      VALIDATETAG(Validate input tag name)
-      VALIDATEENVIRONMENT(Validate input environment)
-    end
+			VALIDATEBRANCH(Validate input branch)
+			VALIDATETAG(Validate input tag name)
+			VALIDATEENVIRONMENT(Validate input environment)
+		end
 
-    subgraph PHASE2[Phase 3]
-      direction TB
+		subgraph PHASE2[Phase 3]
+			direction TB
 
-      subgraph E2E
-        direction LR
+			subgraph E2E
+				direction LR
 
-        E2ECHROME([E2e regression with chrome])
-        E2ECHROMEMOBILE([E2e regression with chrome mobile])
-        E2EEDGE([E2e regression with edge])
-        E2EEDGEMOBILE([E2e regression with edge mobile])
-        E2EFIREFOX([E2e regression with firefox])
-        E2EFIREFOXMOBILE([E2e regression with firefox mobile])
-      end
+				E2ECHROME([E2e regression with chrome])
+				E2ECHROMEMOBILE([E2e regression with chrome mobile])
+				E2EEDGE([E2e regression with edge])
+				E2EEDGEMOBILE([E2e regression with edge mobile])
+				E2EFIREFOX([E2e regression with firefox])
+				E2EFIREFOXMOBILE([E2e regression with firefox mobile])
+			end
 
-      ARTIFACTDOWNLOAD -.-> ARTIFACTUNPACK -.-> SETUP -.-> E2E
-    end
+			ARTIFACTDOWNLOAD -.-> ARTIFACTUNPACK -.-> SETUP -.-> E2E
+		end
 
-    PHASE1 --> PHASE2
+		PHASE1 --> PHASE2
 ```
 
 ### triggerPromoteArtifact
@@ -265,56 +265,56 @@
 - validation on input branch is needed as the branch affect the pipeline
 
 ```mermaid
-  flowchart LR
-    ARTIFACTUNPACK2([Unzip artifact])
-    ARTIFACTUNPACK3([Unzip artifact])
-    ARTIFACTDOWNLOAD2([Download artifact from release])
-    ARTIFACTDOWNLOAD3([Download artifact from release])
-    CLEANUP([Clean up temporary infrastructure])
-    DATABASEBACKUP([Database backup])
-    DATABASEFIXTURE([Database add fixtures])
-    DATABASEMIGRATE([Migrate schema & data])
-    DEPLOY([Deploy to given environment])
-    PROVISION([Provision given environment])
-    SETUP2([Setup ci tools])
-    SETUP3([Setup ci tools])
+	flowchart LR
+		ARTIFACTUNPACK2([Unzip artifact])
+		ARTIFACTUNPACK3([Unzip artifact])
+		ARTIFACTDOWNLOAD2([Download artifact from release])
+		ARTIFACTDOWNLOAD3([Download artifact from release])
+		CLEANUP([Clean up temporary infrastructure])
+		DATABASEBACKUP([Database backup])
+		DATABASEFIXTURE([Database add fixtures])
+		DATABASEMIGRATE([Migrate schema & data])
+		DEPLOY([Deploy to given environment])
+		PROVISION([Provision given environment])
+		SETUP2([Setup ci tools])
+		SETUP3([Setup ci tools])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      VALIDATEBRANCH(Validate input branch)
-      VALIDATETAG(Validate input tag name)
-      VALIDATEENVIRONMENT(Validate input environment)
-      VALIDATESKIPPROVISION(Validate flag skip provision)
-      VALIDATESKIPDEPLOY(Validate flag skip deploy)
-      VALIDATESKIPMIGRATE(Validate flag skip migrate)
-      VALIDATESKIPE2E(Validate flag skip e2e)
-    end
+			VALIDATEBRANCH(Validate input branch)
+			VALIDATETAG(Validate input tag name)
+			VALIDATEENVIRONMENT(Validate input environment)
+			VALIDATESKIPPROVISION(Validate flag skip provision)
+			VALIDATESKIPDEPLOY(Validate flag skip deploy)
+			VALIDATESKIPMIGRATE(Validate flag skip migrate)
+			VALIDATESKIPE2E(Validate flag skip e2e)
+		end
 
-    subgraph PHASE2[Phase 2]
-      direction TB
+		subgraph PHASE2[Phase 2]
+			direction TB
 
-      ARTIFACTDOWNLOAD2 -.-> ARTIFACTUNPACK2 -.-> SETUP2 -.-> DATABASEBACKUP -.-> PROVISION -.-> DEPLOY -.-> DATABASEFIXTURE -.-> DATABASEMIGRATE -.-> CLEANUP
-    end
+			ARTIFACTDOWNLOAD2 -.-> ARTIFACTUNPACK2 -.-> SETUP2 -.-> DATABASEBACKUP -.-> PROVISION -.-> DEPLOY -.-> DATABASEFIXTURE -.-> DATABASEMIGRATE -.-> CLEANUP
+		end
 
-    subgraph PHASE3[Phase 3]
-      direction TB
+		subgraph PHASE3[Phase 3]
+			direction TB
 
-      subgraph E2E
-        direction LR
+			subgraph E2E
+				direction LR
 
-        E2ECHROME([E2e regression with chrome])
-        E2ECHROMEMOBILE([E2e regression with chrome mobile])
-        E2EEDGE([E2e regression with edge])
-        E2EEDGEMOBILE([E2e regression with edge mobile])
-        E2EFIREFOX([E2e regression with firefox])
-        E2EFIREFOXMOBILE([E2e regression with firefox mobile])
-      end
+				E2ECHROME([E2e regression with chrome])
+				E2ECHROMEMOBILE([E2e regression with chrome mobile])
+				E2EEDGE([E2e regression with edge])
+				E2EEDGEMOBILE([E2e regression with edge mobile])
+				E2EFIREFOX([E2e regression with firefox])
+				E2EFIREFOXMOBILE([E2e regression with firefox mobile])
+			end
 
-      ARTIFACTDOWNLOAD3 -.-> ARTIFACTUNPACK3 -.-> SETUP3 -.-> E2E
-    end
+			ARTIFACTDOWNLOAD3 -.-> ARTIFACTUNPACK3 -.-> SETUP3 -.-> E2E
+		end
 
-    PHASE1 --> PHASE2 --> PHASE3
+		PHASE1 --> PHASE2 --> PHASE3
 ```
 
 ### triggerRollbackArtifact
@@ -323,55 +323,55 @@
 - selected branch must be at least last release branch to have the backward migration code
 
 ```mermaid
-  flowchart LR
-    ARTIFACTUNPACK2([Unzip artifact])
-    ARTIFACTUNPACK3([Unzip artifact])
-    ARTIFACTDOWNLOAD2([Download artifact from release])
-    ARTIFACTDOWNLOAD3([Download artifact from release])
-    CLEANUP([Clean up temporary infrastructure])
-    DATABASEBACKUP([Database backup])
-    DATABASEMIGRATE([Migrate backward schema & data])
-    DEPLOY([Deploy to given environment])
-    PROVISION([Provision given environment])
-    SETUP2([Setup ci tools])
-    SETUP3([Setup ci tools])
+	flowchart LR
+		ARTIFACTUNPACK2([Unzip artifact])
+		ARTIFACTUNPACK3([Unzip artifact])
+		ARTIFACTDOWNLOAD2([Download artifact from release])
+		ARTIFACTDOWNLOAD3([Download artifact from release])
+		CLEANUP([Clean up temporary infrastructure])
+		DATABASEBACKUP([Database backup])
+		DATABASEMIGRATE([Migrate backward schema & data])
+		DEPLOY([Deploy to given environment])
+		PROVISION([Provision given environment])
+		SETUP2([Setup ci tools])
+		SETUP3([Setup ci tools])
 
-    subgraph PHASE1[Phase 1]
-      direction LR
+		subgraph PHASE1[Phase 1]
+			direction LR
 
-      VALIDATEBRANCH(Validate input branch)
-      VALIDATETAG(Validate input tag name)
-      VALIDATEENVIRONMENT(Validate input environment)
-      VALIDATESKIPPROVISION(Validate flag skip provision)
-      VALIDATESKIPDEPLOY(Validate flag skip deploy)
-      VALIDATESKIPMIGRATE(Validate flag skip migrate)
-      VALIDATESKIPE2E(Validate flag skip e2e)
-    end
+			VALIDATEBRANCH(Validate input branch)
+			VALIDATETAG(Validate input tag name)
+			VALIDATEENVIRONMENT(Validate input environment)
+			VALIDATESKIPPROVISION(Validate flag skip provision)
+			VALIDATESKIPDEPLOY(Validate flag skip deploy)
+			VALIDATESKIPMIGRATE(Validate flag skip migrate)
+			VALIDATESKIPE2E(Validate flag skip e2e)
+		end
 
-    subgraph PHASE2[Phase 2]
-      direction TB
+		subgraph PHASE2[Phase 2]
+			direction TB
 
-      ARTIFACTDOWNLOAD2 -.-> ARTIFACTUNPACK2 -.-> SETUP2 -.-> DATABASEBACKUP -.-> PROVISION -.-> DEPLOY -.-> DATABASEMIGRATE -.-> CLEANUP
-    end
+			ARTIFACTDOWNLOAD2 -.-> ARTIFACTUNPACK2 -.-> SETUP2 -.-> DATABASEBACKUP -.-> PROVISION -.-> DEPLOY -.-> DATABASEMIGRATE -.-> CLEANUP
+		end
 
-    subgraph PHASE3[Phase 3]
-      direction TB
+		subgraph PHASE3[Phase 3]
+			direction TB
 
-      subgraph E2E
-        direction LR
+			subgraph E2E
+				direction LR
 
-        E2ECHROME([E2e regression with chrome])
-        E2ECHROMEMOBILE([E2e regression with chrome mobile])
-        E2EEDGE([E2e regression with edge])
-        E2EEDGEMOBILE([E2e regression with edge mobile])
-        E2EFIREFOX([E2e regression with firefox])
-        E2EFIREFOXMOBILE([E2e regression with firefox mobile])
-      end
+				E2ECHROME([E2e regression with chrome])
+				E2ECHROMEMOBILE([E2e regression with chrome mobile])
+				E2EEDGE([E2e regression with edge])
+				E2EEDGEMOBILE([E2e regression with edge mobile])
+				E2EFIREFOX([E2e regression with firefox])
+				E2EFIREFOXMOBILE([E2e regression with firefox mobile])
+			end
 
-      ARTIFACTDOWNLOAD3 -.-> ARTIFACTUNPACK3 -.-> SETUP3 -.-> E2E
-    end
+			ARTIFACTDOWNLOAD3 -.-> ARTIFACTUNPACK3 -.-> SETUP3 -.-> E2E
+		end
 
-    PHASE1 --> PHASE2 --> PHASE3
+		PHASE1 --> PHASE2 --> PHASE3
 ```
 
 # Automatic versioning with conventional commits
@@ -410,11 +410,11 @@
 ```yml
 # Github workflow
 - name: Cache npm cache on linux
-  uses: actions/cache@v2
-  with:
-    path: ~/.cache
-    key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-    restore-keys: ${{ runner.os }}-setup-
+	uses: actions/cache@v2
+	with:
+		path: ~/.cache
+		key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+		restore-keys: ${{ runner.os }}-setup-
 ```
 
 # Security / Quality check

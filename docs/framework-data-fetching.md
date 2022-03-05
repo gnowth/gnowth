@@ -3,19 +3,23 @@
 # Data fetching
 
 use axios
+
 - use of interceptors
 - add default configs
 - easy progress when downloading through a stream
 
 ## Libraries
+
 - React Query
 
 ## Query Syntax
+
 - Promise
 - REST
 - GraphQL
 
 ## Features
+
 - Queries
   - dependent
   - parallel
@@ -77,5 +81,6 @@ use axios
 - Query Data Memoization Level
 
 ## Reference
+
 - React Query Comparison: https://react-query.tanstack.com/comparison
 - fetch vs axios: https://blog.logrocket.com/axios-vs-fetch-best-http-requests/

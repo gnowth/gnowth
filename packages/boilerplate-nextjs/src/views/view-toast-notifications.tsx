@@ -9,21 +9,21 @@ import useStream from '../utils/use-stream'
 const subjectNotifications = new Subject<Notification>()
 
 export const streamNotifications = {
-  stream: subjectNotifications,
-  actions: {
-    addNotification: (notification: Notification) => subjectNotifications.next(notification),
-  },
-  selectors: {
-    toasts: subjectNotifications.pipe(map(ModelNotification.toToast)),
-  },
+	stream: subjectNotifications,
+	actions: {
+		addNotification: (notification: Notification) => subjectNotifications.next(notification),
+	},
+	selectors: {
+		toasts: subjectNotifications.pipe(map(ModelNotification.toToast)),
+	},
 }
 
 function ViewToastNotifications() {
-  const toast = useToast({ position: 'top-right' })
+	const toast = useToast({ position: 'top-right' })
 
-  useStream(streamNotifications.selectors.toasts, toast)
+	useStream(streamNotifications.selectors.toasts, toast)
 
-  return null
+	return null
 }
 
 export default ViewToastNotifications

@@ -5,7 +5,7 @@
 Add **prettier** to your `package.json`
 
 ```json
-  "prettier": "@gnowth/prettier-config"
+	"prettier": "@gnowth/prettier-config"
 ```
 
 ### Peer dependencies
@@ -13,5 +13,5 @@ Add **prettier** to your `package.json`
 Install peer dependencies
 
 ```bash
-  npx install-peerdeps --dev @gnowth/prettier-config
+	npx install-peerdeps --dev @gnowth/prettier-config
 ```

@@ -1,42 +1,42 @@
 {
-  "author": "Thierry Wong",
-  "description": "Boilerplate for end to end with cypress",
-  "license": "MIT",
-  "name": "@gnowth/boilerplate-cypress",
-  "prettier": "@gnowth/prettier-config",
-  "private": true,
-  "sideEffects": false,
-  "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript"
-    ]
-  },
-  "repository": {
-    "directory": "packages/boilerplate-cypress",
-    "type": "git",
-    "url": "https://github.com/gnowth/gnowth.git"
-  },
-  "dependencies": {
-    "cypress": "9.5.1",
-    "del": "6.0.0",
-    "local-cypress": "1.2.3"
-  },
-  "devDependencies": {
-    "@gnowth/eslint-config": "0.0.0",
-    "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0"
-  },
-  "scripts": {
-    "clean:temp": "rm -rf cypress/media",
-    "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts .",
-    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json",
-    "test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser chrome",
-    "test:regression:chrome:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser chrome",
-    "test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser firefox",
-    "test:regression:firefox:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser firefox",
-    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.smoke.json",
-    "typecheck": "tsc"
-  }
+	"author": "Thierry Wong",
+	"description": "Boilerplate for end to end with cypress",
+	"license": "MIT",
+	"name": "@gnowth/boilerplate-cypress",
+	"prettier": "@gnowth/prettier-config",
+	"private": true,
+	"sideEffects": false,
+	"version": "0.0.0",
+	"eslintConfig": {
+		"extends": [
+			"@gnowth/eslint-config/typescript"
+		]
+	},
+	"repository": {
+		"directory": "packages/boilerplate-cypress",
+		"type": "git",
+		"url": "https://github.com/gnowth/gnowth.git"
+	},
+	"dependencies": {
+		"cypress": "9.5.1",
+		"del": "6.0.0",
+		"local-cypress": "1.2.3"
+	},
+	"devDependencies": {
+		"@gnowth/eslint-config": "0.0.0",
+		"@gnowth/prettier-config": "0.0.0",
+		"@gnowth/typescript-config": "0.0.0"
+	},
+	"scripts": {
+		"clean:temp": "rm -rf cypress/media",
+		"lint": "npm run lint:script",
+		"lint:script": "eslint --ext .ts .",
+		"test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json",
+		"test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser chrome",
+		"test:regression:chrome:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser chrome",
+		"test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser firefox",
+		"test:regression:firefox:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser firefox",
+		"test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.smoke.json",
+		"typecheck": "tsc"
+	}
 }

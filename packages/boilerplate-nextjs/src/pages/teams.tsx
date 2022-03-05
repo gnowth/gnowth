@@ -4,13 +4,13 @@ import SectionTeams from '../views/section-teams'
 import SectionTeamsFilter from '../views/section-teams-filter'
 
 function PageTeams() {
-  return (
-    <VStack as="main" alignItems="stretch">
-      <SectionTeamsFilter />
+	return (
+		<VStack as="main" alignItems="stretch">
+			<SectionTeamsFilter />
 
-      <SectionTeams />
-    </VStack>
-  )
+			<SectionTeams />
+		</VStack>
+	)
 }
 
 export default PageTeams

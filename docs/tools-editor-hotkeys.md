@@ -7,7 +7,7 @@ To open hotkeys windows type: Cmd K + Cmd S
 - Format Document
 
 ```
-  Opt + Shift + F
+	Opt + Shift + F
 ```
 
 ## Custom Hotkeys
@@ -15,5 +15,5 @@ To open hotkeys windows type: Cmd K + Cmd S
 - Sort lines in ascending order
 
 ```
-  Opt + F9
+	Opt + F9
 ```

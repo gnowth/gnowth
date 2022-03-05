@@ -2,21 +2,21 @@ name: scheduleOrTriggerSecurityCheck
 
 # @ 2pm UTC
 on:
-  schedule:
-    - cron: 0 14 * * *
-  workflow_dispatch:
+	schedule:
+		- cron: 0 14 * * *
+	workflow_dispatch:
 
 jobs:
-  quality:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Quality check
-        run: echo Quality check
+	quality:
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Quality check
+				run: echo Quality check
 
-  security:
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - name: Security check
-        run: echo Security check
+	security:
+		runs-on: ubuntu-latest
+		timeout-minutes: 15
+		steps:
+			- name: Security check
+				run: echo Security check

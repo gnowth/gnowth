@@ -1,5 +1,5 @@
 function UIPagination() {
-  return <div />
+	return <div />
 }
 
 export default UIPagination

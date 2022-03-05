@@ -1,26 +1,26 @@
 {
-  "author": "Thierry Wong",
-  "description": "Prettier configs",
-  "license": "MIT",
-  "main": ".prettierrc.json",
-  "name": "@gnowth/prettier-config",
-  "private": false,
-  "sideEffects": false,
-  "version": "0.0.0",
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "directory": "packages/config-prettier",
-    "type": "git",
-    "url": "https://github.com/gnowth/gnowth.git"
-  },
-  "peerDependencies": {
-    "prettier": "^2.0.0"
-  },
-  "scripts": {
-    "build": "cp ../../LICENSE LICENSE",
-    "build:dev": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE"
-  }
+	"author": "Thierry Wong",
+	"description": "Prettier configs",
+	"license": "MIT",
+	"main": ".prettierrc.json",
+	"name": "@gnowth/prettier-config",
+	"private": false,
+	"sideEffects": false,
+	"version": "0.0.0",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"directory": "packages/config-prettier",
+		"type": "git",
+		"url": "https://github.com/gnowth/gnowth.git"
+	},
+	"peerDependencies": {
+		"prettier": "^2.0.0"
+	},
+	"scripts": {
+		"build": "cp ../../LICENSE LICENSE",
+		"build:dev": "cp ../../LICENSE LICENSE",
+		"clean:temp": "rm -rf LICENSE"
+	}
 }

@@ -6,46 +6,46 @@
 
 ```yml
 on:
-  workflow_dispatch:
-    inputs:
-      input_name:
-        description: Some input
-        required: true
+	workflow_dispatch:
+		inputs:
+			input_name:
+				description: Some input
+				required: true
 
 env:
-  INPUT_INPUT_NAME: ${{ github.event.inputs.input_name }}
+	INPUT_INPUT_NAME: ${{ github.event.inputs.input_name }}
 
 jobs:
-  print_input:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo test $INPUT_INPUT_NAME
+	print_input:
+		runs-on: ubuntu-latest
+		steps:
+			- run: echo test $INPUT_INPUT_NAME
 ```
 
 - Setting environment variable with other environment variables [Link to Reference (July 2021)](https://brandur.org/fragments/github-actions-env-vars-in-env-vars)
 
 ```yml
 jobs:
-  build:
-    steps:
-      - name: Set environmental variables
-        run: echo "PG_DATA_DIR=$HOME/data" >> $GITHUB_ENV
+	build:
+		steps:
+			- name: Set environmental variables
+				run: echo "PG_DATA_DIR=$HOME/data" >> $GITHUB_ENV
 
-      - name: Can use environment variables
-        run: echo "Working variable from variable $PG_DATA_DIR"
+			- name: Can use environment variables
+				run: echo "Working variable from variable $PG_DATA_DIR"
 ```
 
 - Setting environment variable from bash output [Link to Reference (July 2021)](https://stackoverflow.com/questions/57968497/how-do-i-set-an-env-var-with-a-bash-expression-in-github-actions)
 
 ```yml
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set env
-        run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
-      - name: Test
-        run: echo $GITHUB_SHA_SHORT
+	build:
+		runs-on: ubuntu-latest
+		steps:
+			- name: Set env
+				run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+			- name: Test
+				run: echo $GITHUB_SHA_SHORT
 ```
 
 ## Limitations

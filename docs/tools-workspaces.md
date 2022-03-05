@@ -5,7 +5,7 @@
 - Running command in a workspace from root
 
 ```bash
-  npm run --workspace=@gnowth/boilerplate-nextjs <command>
+	npm run --workspace=@gnowth/boilerplate-nextjs <command>
 ```
 
 ## Reference

@@ -5,7 +5,7 @@
 Add **extends** to your `tsconfig.json`
 
 ```json
-  "extends": "@gnowth/typescript-config"
+	"extends": "@gnowth/typescript-config"
 ```
 
 ### Peer dependencies
@@ -13,5 +13,5 @@ Add **extends** to your `tsconfig.json`
 Install peer dependencies
 
 ```bash
-  npx install-peerdeps --dev @gnowth/typescript-config
+	npx install-peerdeps --dev @gnowth/typescript-config
 ```
