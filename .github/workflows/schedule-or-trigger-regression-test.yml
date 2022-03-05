@@ -90,7 +90,9 @@ jobs:
           retention-days: 1
 
   clean_test:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     if: always()
     needs: [build_deploy, e2e_regression]
     runs-on: ubuntu-latest

@@ -1,4 +1,5 @@
 works
+
 - poc
 - happy path
 - error handling
@@ -6,12 +7,13 @@ works
 - Animaation
 - Accessibility
 
-----
+---
 
 Fast development
+
 - pipeline
 - test
-Maintainable
+  Maintainable
 - Readable
   - consistent
 - technical debt
@@ -20,6 +22,11 @@ Maintainable
 ---
 
 Scalable
+
 - abstracted properly
-Secure
-Performant
+  Secure
+  Performant
+
+---
+
+Separation of concerns

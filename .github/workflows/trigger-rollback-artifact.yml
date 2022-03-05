@@ -76,7 +76,9 @@ jobs:
 
   # Phase 2: Provision, deploy, migrate
   provision_deploy_migrate:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     environment:
       name: ${{ github.event.inputs.environment }}
       url: https://${{ env.SITE_DOMAIN }}

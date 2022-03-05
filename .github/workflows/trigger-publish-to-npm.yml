@@ -35,7 +35,9 @@ jobs:
 
   # Phase 2: Publish
   publish:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
     timeout-minutes: 15
