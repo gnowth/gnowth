@@ -25,7 +25,9 @@ jobs:
 
   # Phase 1: Verify code
   lint:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -46,7 +48,9 @@ jobs:
         run: npm run workspaces:lint
 
   test:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -67,7 +71,9 @@ jobs:
         run: npm run workspaces:test
 
   typecheck:
-    container: node:17.5.0-buster-slim
+    container:
+      image: node:17.5.0-buster-slim
+      options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
