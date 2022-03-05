@@ -58,7 +58,7 @@ jobs:
 
       - name: Upload test artifact
         if: failure()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: artifact-test-media
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
