@@ -13,8 +13,8 @@ import ViewToastErrors, { streamErrors } from '../views/view-toast-errors'
 import ViewToastNotifications from '../views/view-toast-notifications'
 import makeServer from '../services/make-server'
 
-if (process.env.NODE_ENV === 'development') {
-  makeServer({ environment: 'development' })
+if ((process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV) === 'development') {
+  makeServer({ environment: process.env.NODE_ENV ?? 'development' })
 }
 
 const queryClient = new QueryClient({

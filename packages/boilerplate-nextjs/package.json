@@ -53,9 +53,9 @@
     "miragejs": "0.1.43"
   },
   "scripts": {
-    "build": "next build && next export -o dist",
-    "build:dev": "next build && next export -o dist",
-    "clean:temp": "rm -rf dist && rm -rf .next",
+    "build": "cp ../../LICENSE LICENSE && next build && next export -o dist",
+    "build:dev": "cp ../../LICENSE LICENSE && next build && next export -o dist",
+    "clean:temp": "rm -rf dist && rm -rf .next && rm -rf LICENSE",
     "dev": "next dev",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext .js,.ts,.jsx,.tsx .",

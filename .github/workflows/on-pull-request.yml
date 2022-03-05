@@ -9,6 +9,7 @@ env:
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+  NEXT_PUBLIC_ENV: development
 
 jobs:
   # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test

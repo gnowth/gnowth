@@ -13,6 +13,8 @@ env:
   SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+ # Note: to be removed when backend is available
+  NEXT_PUBLIC_ENV: development
 
 jobs:
   build_deploy:

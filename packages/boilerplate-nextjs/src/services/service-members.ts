@@ -32,13 +32,13 @@ export const configsMember: MockConfigs = {
   },
 
   routes() {
-    this.namespace = 'boilerplate/v1'
+    this.passthrough('/_next/**')
+
+    this.urlPrefix = configs.apiOrigin
+    this.namespace = '/boilerplate/v1'
     this.resource?.('members')
 
     this.passthrough()
-
-    this.namespace = ''
-    this.passthrough('/_next/**')
   },
 
   seeds(server) {
