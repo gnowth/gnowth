@@ -19,38 +19,12 @@ export const streamErrors = {
   },
 }
 
-// const atomErrorList = atom<Error[]>({
-//   key: 'errorList',
-//   default: [],
-// })
-
-// export const stateError = {
-//   state: atomErrorList,
-//   actions: {
-//     errorAdd: selector<Error>({
-//       key: 'errorList-add',
-//       get: ({ get }) => get(atomErrorList),
-//       set: ({ set, get }, newValue) => set(atomErrorList, get(atomErrorList).concat(newValue)),
-//     }),
-//   },
-// }
-
 function ViewToastErrors() {
   const toast = useToast({ position: 'top-right' })
 
   useStream(streamErrors.selectors.toasts, toast)
 
   return null
-
-  // const errorList = useRecoilValue(atomErrorList)
-
-  // return (
-  //   <div>
-  //     {errorList.map((error) => (
-  //       <div key={ModelError.toId(error)}>{ModelError.toString(error)}</div>
-  //     ))}
-  //   </div>
-  // )
 }
 
 export default ViewToastErrors
