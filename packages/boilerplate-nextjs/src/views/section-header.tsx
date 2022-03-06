@@ -8,7 +8,7 @@ function SectionHeader() {
   return (
     <header>
       <LayoutSection
-        boxProps={{
+        rootProps={{
           bg: 'teal.600',
           borderBottom: '1px solid',
           borderColor: 'gray.200',
@@ -31,7 +31,7 @@ function SectionHeader() {
       </LayoutSection>
 
       <LayoutSection
-        boxProps={{
+        rootProps={{
           bg: 'teal.50',
           borderBottom: '1px solid',
           borderColor: 'gray.200',

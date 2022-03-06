@@ -1,9 +1,11 @@
 import type { Server } from 'miragejs'
 import type { ServerConfig } from 'miragejs/server'
-import type { AnyFactories, AnyModels } from 'miragejs/-types'
+import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
 
-interface ServerEx extends Server {
+// DEBT: dirty ts fix
+export interface ServerEx extends Server {
   resource?(endpoint: string): void
+  serialize?(primaryResource: unknown, request: unknown): AnyResponse
 }
 
 // DEBT: dirty ts fix

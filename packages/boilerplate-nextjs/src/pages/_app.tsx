@@ -49,11 +49,11 @@ function MyApp(props: AppProps) {
 
             <ViewToastNotifications />
 
-            <Box flex={1} mt="5">
+            <Box flex={1} mt="10">
               <Component {...props.pageProps} />
             </Box>
 
-            <SectionFooter mt="5" />
+            <SectionFooter mt="10" />
           </Flex>
         </ChakraProvider>
       </QueryClientProvider>

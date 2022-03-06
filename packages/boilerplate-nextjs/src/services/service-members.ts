@@ -1,54 +1,13 @@
-import { faker } from '@faker-js/faker'
-import { Factory, Model } from 'miragejs'
-import axios from 'axios'
 import type { QueryFunctionContext } from 'react-query'
+import axios from 'axios'
 
 import type { Detail, List } from '../models/model-axios'
-import type { Member, MemberSerialized } from '../models/model-member'
+import type { Member } from '../models/model-member'
 import type { MemberFilterSerialized } from '../models/model-member-filter'
-import type { ServiceQueryKeyDetail, ServiceQueryKeyList, MockConfigs } from '../types'
+import type { ServiceQueryKeyDetail, ServiceQueryKeyList } from '../types'
 import ModelAxios from '../models/model-axios'
 import ModelMember from '../models/model-member'
-import SerializerRest from '../utils/serializer-rest'
 import configs from '../configs'
-
-export const configsMember: MockConfigs = {
-  factories: {
-    member: Factory.extend<MemberSerialized>({
-      avatar: () => faker.internet.avatar(),
-      nameFirst: () => faker.name.firstName(),
-      nameLast: () => faker.name.lastName(),
-      role: () => faker.name.title(),
-      status: () => (faker.datatype.number(100) > 20 ? 'active' : 'deactivated'),
-      email() {
-        // DEBT: dirty ts fix, miragejs typescript is poor
-        return faker.internet.email(this.nameFirst as string, this.nameLast as string)
-      },
-    }),
-  },
-
-  models: {
-    member: Model.extend<MemberSerialized>({}),
-  },
-
-  routes() {
-    this.passthrough('/_next/**')
-
-    this.urlPrefix = configs.apiOrigin
-    this.namespace = '/boilerplate/v1'
-    this.resource?.('members')
-
-    this.passthrough()
-  },
-
-  seeds(server) {
-    server.createList('member', 20)
-  },
-
-  serializers: {
-    application: SerializerRest,
-  },
-}
 
 class ServiceMembers {
   static routes = {

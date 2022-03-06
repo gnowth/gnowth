@@ -5,7 +5,7 @@ import SectionTeamsFilter from '../views/section-teams-filter'
 
 function PageTeams() {
   return (
-    <VStack as="main" alignItems="stretch">
+    <VStack as="main" alignItems="stretch" spacing="10">
       <SectionTeamsFilter />
 
       <SectionTeams />
