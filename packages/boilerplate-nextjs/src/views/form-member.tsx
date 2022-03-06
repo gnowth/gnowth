@@ -1,6 +1,6 @@
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
-import { useMutation, useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
 
 import LayoutSection from '../components/layout-section'
@@ -8,10 +8,12 @@ import ModelMember from '../models/model-member'
 import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
 
-// DEBT: implement submit button
 function FormMember() {
   const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
-  const { mutate } = useMutation(serviceMembers.save)
+  const queryClient = useQueryClient()
+  const { mutate } = useMutation(serviceMembers.save, {
+    onSuccess: () => queryClient.invalidateQueries(serviceMembers.queryKeys.list({})),
+  })
   const { isSuccess, data: member } = useQuery(serviceMembers.queryKeys.detail(id), serviceMembers.detail, {
     enabled: id !== undefined,
   })

@@ -23,10 +23,18 @@ function paginate<Type>(data: Type[], request: Request) {
 
 // DEBT: dirty ts fix
 interface Serializer {
-  serialize: (collection: Collection<unknown>, request: Request) => Record<string, unknown[]>
+  type: string
+  normalize(data: Record<string, string>): unknown
+  serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
 }
 
+// DEBT: dirty ts fix
 const SerializerRest = RestSerializer.extend({
+  normalize(data) {
+    return (RestSerializer.prototype as Serializer).normalize.call(this, {
+      [(this as Serializer).type]: data,
+    })
+  },
   serialize(collection: Collection<unknown>, request: Request) {
     const output = (RestSerializer.prototype as Serializer).serialize.call(this, collection, request)
     const isArray = Array.isArray(collection.models)
