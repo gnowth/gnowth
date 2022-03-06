@@ -55,7 +55,7 @@ function makeServer(configsMock: MockConfigs) {
     },
 
     seeds(server) {
-      server.createList('member', 20)
+      server.createList('member', 100)
     },
 
     serializers: { application: SerializerRest },
