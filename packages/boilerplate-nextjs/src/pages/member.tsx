@@ -4,7 +4,7 @@ import FormMember from '../views/form-member'
 
 function PageMemberNew() {
   return (
-    <VStack as="main" alignItems="stretch">
+    <VStack as="main" alignItems="stretch" spacing="10">
       <FormMember />
     </VStack>
   )

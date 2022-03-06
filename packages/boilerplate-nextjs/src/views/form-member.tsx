@@ -21,22 +21,22 @@ function FormMember() {
         <Formik initialValues={member ?? ModelMember.deserialize({})} onSubmit={(member) => mutate(member)}>
           <VStack as={Form} alignItems="stretch" spacing="5">
             <Box>
-              <FormLabel htmlFor="nameFirst">First name</FormLabel>
+              <FormLabel htmlFor="form-member-nameFirst">First name</FormLabel>
               <Field as={Input} id="form-member-nameFirst" name="nameFirst" placeholder="Jane" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="nameLast">Last name</FormLabel>
+              <FormLabel htmlFor="form-member-lastName">Last name</FormLabel>
               <Field as={Input} id="form-member-lastName" name="nameLast" placeholder="Doe" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="nameLast">Role</FormLabel>
+              <FormLabel htmlFor="form-member-role">Role</FormLabel>
               <Field as={Input} id="form-member-role" name="role" placeholder="Role" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="form-member-email">Email</FormLabel>
               <Field as={Input} id="form-member-email" name="email" placeholder="jane@doe.com" type="email" />
             </Box>
 

@@ -6,6 +6,10 @@
 
 ## Server component
 
+- does it reduce bundle size
+- does it makes rendering faster
+- does it reduce data transfer
+
 ## Server side rendering (SSR)
 
 ### Client object

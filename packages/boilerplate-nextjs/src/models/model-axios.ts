@@ -23,7 +23,11 @@ class ModelAxios {
 
   static listDeserializer = <TypeSerialized, Type>(deserializer: (type: TypeSerialized) => Type) => {
     return (data: List<TypeSerialized>) => {
-      return { ...data, data: data.data.map(deserializer) }
+      return {
+        ...data,
+        data: data.data.map(deserializer),
+        ...(data.meta && { count: Number(data.meta.count), pages: Number(data.meta.pages) }),
+      }
     }
   }
 }
