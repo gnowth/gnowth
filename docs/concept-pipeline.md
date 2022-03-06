@@ -470,3 +470,12 @@
   - resolve #xxx
   - resolves #xxx
   - resolved #xxx
+- break steps into sub-phase
+- revisit cypress github action
+  - use cypress container
+  - download and unzip artifact
+  - run cypress without any install
+- merge schedule-or-trigger-regression-test with trigger-regression-test so that it allows regression test from branch?
+- move environment variable to steps if possible. more maintainable
+- add github action to modularise task
+  - https://docs.github.com/en/actions/creating-actions/about-custom-actions
