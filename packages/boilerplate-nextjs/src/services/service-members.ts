@@ -42,7 +42,11 @@ class ServiceMembers {
   }
 
   save = (member: Member) => {
-    return this.axios.post(ServiceMembers.routes.members(member.id), ModelMember.serialize(member))
+    if (member.id === undefined) {
+      return this.axios.post(ServiceMembers.routes.members(member.id), ModelMember.serialize(member))
+    }
+
+    return this.axios.put(ServiceMembers.routes.members(member.id), ModelMember.serialize(member))
   }
 }
 

@@ -1,4 +1,4 @@
-import { Box, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
+import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useMutation, useQuery } from 'react-query'
 import { useRouter } from 'next/router'
@@ -8,6 +8,7 @@ import ModelMember from '../models/model-member'
 import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
 
+// DEBT: implement submit button
 function FormMember() {
   const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
   const { mutate } = useMutation(serviceMembers.save)
@@ -40,7 +41,7 @@ function FormMember() {
               <Field as={Input} id="form-member-email" name="email" placeholder="jane@doe.com" type="email" />
             </Box>
 
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
           </VStack>
         </Formik>
       </Skeleton>

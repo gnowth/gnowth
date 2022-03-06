@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil'
 import LayoutSection from '../components/layout-section'
 import { stateMembersFilter } from './section-members'
 
+// DEBT: Convert status input to dropdown
 function SectionMembersFilter() {
   const [filters, setFilters] = useRecoilState(stateMembersFilter)
 

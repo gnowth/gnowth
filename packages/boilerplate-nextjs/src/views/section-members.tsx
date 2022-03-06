@@ -31,6 +31,9 @@ export const stateMembersFilter = atom({
   default: ModelMemberFilter.deserializePaginated(),
 })
 
+// DEBT: Add message when number of results return is 0
+// DEBT: Update members buttons to use icons? and only visible on hover
+// DEBT: Make add new member button more visible
 function SectionMembers() {
   const [filters, setFilters] = useRecoilState(stateMembersFilter)
   const filtersSerialized = useMemo(() => ModelMemberFilter.serialize(filters), [filters])
