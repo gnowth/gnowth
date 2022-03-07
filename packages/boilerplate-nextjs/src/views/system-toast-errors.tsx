@@ -19,7 +19,7 @@ export const streamErrors = {
   },
 }
 
-function ViewToastErrors() {
+function SystemToastErrors() {
   const toast = useToast({ position: 'top-right' })
 
   useStream(streamErrors.selectors.toasts, toast)
@@ -27,4 +27,4 @@ function ViewToastErrors() {
   return null
 }
 
-export default ViewToastErrors
+export default SystemToastErrors

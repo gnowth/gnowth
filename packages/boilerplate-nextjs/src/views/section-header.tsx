@@ -3,6 +3,7 @@ import { Box, Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import LayoutSection from '../components/layout-section'
 import ModelApp from '../models/model-app'
 import NavLink from '../components/nav-link'
+import ViewProgressGlobal from '../views/view-progress-global'
 
 function SectionHeader() {
   return (
@@ -54,8 +55,16 @@ function SectionHeader() {
           <Box>
             <NavLink href={ModelApp.routes.reports()}>Reports</NavLink>
           </Box>
+
+          <Box>
+            <NavLink href={ModelApp.routes.generated()} hrefActive={ModelApp.routes.generated('')}>
+              Generated page
+            </NavLink>
+          </Box>
         </HStack>
       </LayoutSection>
+
+      <ViewProgressGlobal />
     </header>
   )
 }

@@ -1,14 +1,14 @@
 import { VStack } from '@chakra-ui/react'
 
-import SectionContacts from '../views/section-members'
-import SectionContactsFilter from '../views/section-members-filter'
+import FormMemberFilter from '../views/form-member-filter'
+import SectionMember from '../views/section-members'
 
 function PageContacts() {
   return (
     <VStack as="main" alignItems="stretch" spacing="10">
-      <SectionContactsFilter />
+      <FormMemberFilter />
 
-      <SectionContacts />
+      <SectionMember />
     </VStack>
   )
 }

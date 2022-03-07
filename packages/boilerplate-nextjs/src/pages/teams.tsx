@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react'
 
 import SectionTeams from '../views/section-teams'
-import SectionTeamsFilter from '../views/section-teams-filter'
+import SectionTeamsFilter from '../views/form-team-filter'
 
 function PageTeams() {
   return (

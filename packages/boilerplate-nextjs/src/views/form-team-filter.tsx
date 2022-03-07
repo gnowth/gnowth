@@ -1,6 +1,6 @@
 import LayoutSection from '../components/layout-section'
 
-function SectionTeamsFilter() {
+function FormTeamFilter() {
   return (
     <LayoutSection>
       <form>Team filter</form>
@@ -8,4 +8,4 @@ function SectionTeamsFilter() {
   )
 }
 
-export default SectionTeamsFilter
+export default FormTeamFilter

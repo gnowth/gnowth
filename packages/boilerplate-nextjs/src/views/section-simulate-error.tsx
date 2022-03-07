@@ -1,9 +1,9 @@
 import { Button, Text } from '@chakra-ui/react'
 
-import { streamErrors } from './view-toast-errors'
+import { streamErrors } from './system-toast-errors'
 import LayoutSection from '../components/layout-section'
 
-function SectionSimulatorError() {
+function SectionSimulateError() {
   return (
     <LayoutSection>
       <Text as="span">Simulate error in app</Text>
@@ -15,4 +15,4 @@ function SectionSimulatorError() {
   )
 }
 
-export default SectionSimulatorError
+export default SectionSimulateError

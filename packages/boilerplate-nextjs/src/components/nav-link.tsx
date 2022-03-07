@@ -2,11 +2,13 @@ import { Box } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
-type Props = Parameters<typeof Link>[0]
+type Props = Parameters<typeof Link>[0] & { hrefActive?: string }
 
 function NavLink(props: Props) {
   const router = useRouter()
-  const isActive = router.pathname == props.href || router.pathname.startsWith(`${props.href.toString()}/`)
+  const isActive =
+    router.pathname == props.href ||
+    router.pathname.startsWith(props.hrefActive ?? `${props.href.toString()}/`)
 
   return (
     <Link {...props}>

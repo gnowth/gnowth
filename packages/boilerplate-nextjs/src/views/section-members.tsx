@@ -26,7 +26,7 @@ import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
 import { useMemo } from 'react'
 
-export const stateMembersFilter = atom({
+export const stateMemberFilter = atom({
   key: 'membersFilter',
   default: ModelMemberFilter.deserializePaginated(),
 })
@@ -35,7 +35,7 @@ export const stateMembersFilter = atom({
 // DEBT: Update members buttons to use icons? and only visible on hover
 // DEBT: Make add new member button more visible
 function SectionMembers() {
-  const [filters, setFilters] = useRecoilState(stateMembersFilter)
+  const [filters, setFilters] = useRecoilState(stateMemberFilter)
   const filtersSerialized = useMemo(() => ModelMemberFilter.serialize(filters), [filters])
   const { isSuccess, data } = useQuery(
     serviceMembers.queryKeys.list(filtersSerialized),
