@@ -18,7 +18,7 @@ export const streamNotifications = {
   },
 }
 
-function ViewToastNotifications() {
+function SystemToastNotifications() {
   const toast = useToast({ position: 'top-right' })
 
   useStream(streamNotifications.selectors.toasts, toast)
@@ -26,4 +26,4 @@ function ViewToastNotifications() {
   return null
 }
 
-export default ViewToastNotifications
+export default SystemToastNotifications

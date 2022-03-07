@@ -1,6 +1,8 @@
-import type { AppProps } from 'next/app'
 import type { AxiosError } from 'axios'
-import { Box, ChakraProvider, Flex } from '@chakra-ui/react'
+import type { NextPage } from 'next'
+import type { AppProps } from 'next/app'
+import type { ReactNode } from 'react'
+import { Box, ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryCache, QueryClient, QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
@@ -8,13 +10,18 @@ import dynamic from 'next/dynamic'
 
 import SectionFooter from '../views/section-footer'
 import SectionHeader from '../views/section-header'
-import ViewProgressGlobal from '../views/view-progress-global'
-import ViewToastErrors, { streamErrors } from '../views/view-toast-errors'
-import ViewToastNotifications from '../views/view-toast-notifications'
+import SystemToastErrors, { streamErrors } from '../views/system-toast-errors'
+import SystemToastNotifications from '../views/system-toast-notifications'
 import makeServer from '../services/make-server'
 
 if ((process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV) === 'development') {
   makeServer({ environment: process.env.NODE_ENV ?? 'development' })
+}
+
+interface Props extends AppProps {
+  Component: NextPage & {
+    getLayout?: (page: ReactNode) => ReactNode
+  }
 }
 
 const queryClient = new QueryClient({
@@ -27,8 +34,20 @@ const queryClient = new QueryClient({
   },
 })
 
-function MyApp(props: AppProps) {
+function getLayoutDefault(page: ReactNode) {
+  return (
+    <>
+      <SectionHeader />
+      {page}
+      <Box flex="1" sx={{ marginTop: '0 !important' }} />
+      <SectionFooter />
+    </>
+  )
+}
+
+function MyApp(props: Props) {
   const { Component } = props
+  const getLayout = Component.getLayout || getLayoutDefault
 
   return (
     <RecoilRoot>
@@ -40,21 +59,13 @@ function MyApp(props: AppProps) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <Flex direction="column" minHeight="100vh">
-            <SectionHeader />
+          <SystemToastErrors />
 
-            <ViewProgressGlobal />
+          <SystemToastNotifications />
 
-            <ViewToastErrors />
-
-            <ViewToastNotifications />
-
-            <Box flex={1} mt="10">
-              <Component {...props.pageProps} />
-            </Box>
-
-            <SectionFooter mt="10" />
-          </Flex>
+          <VStack alignItems="stretch" minHeight="100vh" spacing="10">
+            {getLayout(<Component {...props.pageProps} />)}
+          </VStack>
         </ChakraProvider>
       </QueryClientProvider>
     </RecoilRoot>

@@ -1,0 +1,23 @@
+{
+  "all": [
+    "SectionHeader",
+    "SectionChangelog",
+    "SectionSimulateError",
+    "SectionSimulateNotification",
+    "FormMemberFilter",
+    "SectionMembers",
+    "FormMember",
+    "FormTeamFilter",
+    "SectionTeams",
+    "FormTeam",
+    "ViewSpacer",
+    "SectionFooter"
+  ],
+  "dashboard": [
+    "SectionHeader",
+    "SectionSimulateError",
+    "SectionSimulateNotification",
+    "ViewSpacer",
+    "SectionFooter"
+  ]
+}

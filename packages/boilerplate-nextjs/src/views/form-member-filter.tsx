@@ -3,15 +3,19 @@ import { Formik, Field, Form } from 'formik'
 import { useRecoilState } from 'recoil'
 
 import LayoutSection from '../components/layout-section'
-import { stateMembersFilter } from './section-members'
+import { stateMemberFilter } from './section-members'
 
 // DEBT: Convert status input to dropdown
-function SectionMembersFilter() {
-  const [filters, setFilters] = useRecoilState(stateMembersFilter)
+function FormMemberFilter() {
+  const [filters, setFilters] = useRecoilState(stateMemberFilter)
 
   return (
     <LayoutSection>
-      <Formik initialValues={filters} onSubmit={(values) => setFilters(values)}>
+      <Formik
+        enableReinitialize
+        initialValues={filters}
+        onSubmit={(values) => setFilters({ ...values, page: 1 })}
+      >
         <HStack as={Form} alignItems="flex-end" spacing="5">
           <Box>
             <FormLabel htmlFor="form-member-filter-email">Email</FormLabel>
@@ -30,4 +34,4 @@ function SectionMembersFilter() {
   )
 }
 
-export default SectionMembersFilter
+export default FormMemberFilter

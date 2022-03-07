@@ -2,7 +2,7 @@ import { Button, Text } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker'
 import { v4 as uuid } from 'uuid'
 
-import { streamNotifications } from './view-toast-notifications'
+import { streamNotifications } from './system-toast-notifications'
 import LayoutSection from '../components/layout-section'
 
 function SectionSimulateNotification() {
