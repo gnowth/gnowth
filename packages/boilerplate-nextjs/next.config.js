@@ -1,11 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const withMDX = require('@next/mdx')({ extension: /\.mdx?$/ })
+const mdx = require('@next/mdx')
 
-module.exports = withMDX({
+const withMDX = mdx({ extension: /\.mdx?$/ })
+
+/**
+ * @type {import('next').NextConfig}
+ */
+const configs = {
   images: {
     loader: 'imgix',
     path: '',
   },
   pageExtensions: ['tsx', 'mdx'],
   reactStrictMode: true,
-})
+}
+
+module.exports = withMDX(configs)

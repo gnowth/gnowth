@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next'
+
 import LayoutSection from '../components/layout-section'
 
 function FormTeamFilter() {
+  const { t } = useTranslation()
+
   return (
     <LayoutSection>
-      <form>Team filter</form>
+      <form>{t('Team filter')}</form>
     </LayoutSection>
   )
 }

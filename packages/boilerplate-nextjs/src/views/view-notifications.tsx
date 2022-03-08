@@ -1,7 +1,10 @@
 import { Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 
 function ViewNotifications() {
-  return <Text>Notifications</Text>
+  const { t } = useTranslation()
+
+  return <Text>{t('Notifications')}</Text>
 }
 
 export default ViewNotifications

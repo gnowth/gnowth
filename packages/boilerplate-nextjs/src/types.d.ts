@@ -2,6 +2,7 @@ import type { Server } from 'miragejs'
 import type { ServerConfig } from 'miragejs/server'
 import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
 
+// TODO: move to mock-server file
 // DEBT: dirty ts fix
 export interface ServerEx extends Server {
   resource?(endpoint: string): void
