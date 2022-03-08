@@ -14,6 +14,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
+import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
 
@@ -35,6 +36,7 @@ export const stateMemberFilter = atom({
 // DEBT: Update members buttons to use icons? and only visible on hover
 // DEBT: Make add new member button more visible
 function SectionMembers() {
+  const { t } = useTranslation()
   const [filters, setFilters] = useRecoilState(stateMemberFilter)
   const filtersSerialized = useMemo(() => ModelMemberFilter.serialize(filters), [filters])
   const { isSuccess, data } = useQuery(
@@ -50,22 +52,25 @@ function SectionMembers() {
           <Table variant="simple">
             {!!data && !!data.meta && (
               <TableCaption>
-                Showing {data.data.length} of {data.meta.count}
+                {t('Showing {{pageCount}} of {{totalCount}}', {
+                  pageCount: data.data.length,
+                  totalCount: data.meta.count,
+                })}
               </TableCaption>
             )}
 
             <Thead>
               <Tr>
-                <Th>Name</Th>
+                <Th>{t('Name')}</Th>
 
-                <Th>Role</Th>
+                <Th>{t('Role')}</Th>
 
-                <Th>Email</Th>
+                <Th>{t('Email')}</Th>
 
-                <Th>Status</Th>
+                <Th>{t('Status')}</Th>
 
                 <Th textAlign="end">
-                  <Link href={ModelApp.routes.member()}>Add new member</Link>
+                  <Link href={ModelApp.routes.member()}>{t('Add new member')}</Link>
                 </Th>
               </Tr>
             </Thead>
@@ -89,9 +94,9 @@ function SectionMembers() {
 
                   <Td py="2">
                     <HStack justifyContent="flex-end">
-                      <Link href={ModelApp.routes.member(ModelMember.toIdServer(member))}>Edit</Link>
+                      <Link href={ModelApp.routes.member(ModelMember.toIdServer(member))}>{t('Edit')}</Link>
 
-                      <Button size="xs">Deactivate</Button>
+                      <Button size="xs">{t('Deactivate')}</Button>
                     </HStack>
                   </Td>
                 </Tr>

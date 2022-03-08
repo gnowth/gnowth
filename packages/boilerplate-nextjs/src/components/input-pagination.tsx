@@ -1,5 +1,6 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import { Button, HStack, Select, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useMemo } from 'react'
 
@@ -19,12 +20,13 @@ interface Props {
 }
 
 function InputPagination(props: Props) {
+  const { t } = useTranslation()
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
 
   return (
     <HStack justifyContent="center" spacing="20" {...props.rootProps}>
       <HStack>
-        <Text whiteSpace="nowrap">Page size</Text>
+        <Text whiteSpace="nowrap">{t('Page size')}</Text>
 
         <Select
           onChange={({ target }) => {
@@ -40,7 +42,7 @@ function InputPagination(props: Props) {
             })
           }}
           maxWidth="20"
-          placeholder="Select option"
+          placeholder={t('Select option')}
           value={props.value.pageSize}
         >
           {ModelFilter.optionsPageSize.map((size) => (
@@ -70,7 +72,7 @@ function InputPagination(props: Props) {
             return props.onChange({ ...props.value, page: Number(target.value) })
           }}
           maxWidth="20"
-          placeholder="Select option"
+          placeholder={t('Select option')}
           value={props.value.page}
         >
           {pages.map((value) => (

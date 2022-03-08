@@ -10,10 +10,12 @@ interface Props {
 }
 
 function PageGenerated(props: Props) {
-  return props.contents.map((section, index) => {
-    const Component = sections[section]
-    return <Component key={index} />
-  })
+  return (
+    props.contents?.map((section, index) => {
+      const Component = sections[section]
+      return <Component key={index} />
+    }) ?? null
+  )
 }
 
 PageGenerated.getLayout = function getLayout(page: ReactNode) {

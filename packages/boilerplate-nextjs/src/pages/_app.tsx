@@ -1,38 +1,24 @@
-import type { AxiosError } from 'axios'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ReactNode } from 'react'
 import { Box, ChakraProvider, VStack } from '@chakra-ui/react'
-import { QueryCache, QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 
 import SectionFooter from '../views/section-footer'
 import SectionHeader from '../views/section-header'
-import SystemToastErrors, { streamErrors } from '../views/system-toast-errors'
+import SystemToastErrors from '../views/system-toast-errors'
 import SystemToastNotifications from '../views/system-toast-notifications'
-import makeServer from '../services/make-server'
+import runSetup from '../setup'
 
-if ((process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV) === 'development') {
-  makeServer({ environment: process.env.NODE_ENV ?? 'development' })
-}
+const setup = runSetup()
 
 interface Props extends AppProps {
   Component: NextPage & {
     getLayout?: (page: ReactNode) => ReactNode
   }
 }
-
-const queryClient = new QueryClient({
-  queryCache: new QueryCache({ onError: (error: unknown) => streamErrors.actions.addError(error as Error) }),
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      useErrorBoundary: (error: unknown) => ((error as AxiosError).response?.status ?? 0) >= 500,
-    },
-  },
-})
 
 function getLayoutDefault(page: ReactNode) {
   return (
@@ -51,7 +37,7 @@ function MyApp(props: Props) {
 
   return (
     <RecoilRoot>
-      <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={setup.queryClient}>
         <ChakraProvider>
           <Head>
             <title>Create Next App</title>
@@ -72,6 +58,4 @@ function MyApp(props: Props) {
   )
 }
 
-export default dynamic(() => Promise.resolve(MyApp), {
-  ssr: false,
-})
+export default MyApp

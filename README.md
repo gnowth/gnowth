@@ -26,3 +26,12 @@ Scripts of interest:
 ```bash
   npm run setup:refresh
 ```
+
+Next:
+
+- internationalisation
+- form validation
+- testing
+- animation
+- visualisation
+- offline

@@ -1,5 +1,6 @@
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
+import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
 
@@ -9,6 +10,7 @@ import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
 
 function FormMember() {
+  const { t } = useTranslation()
   const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
   const queryClient = useQueryClient()
   const { mutate } = useMutation(serviceMembers.save, {
@@ -24,26 +26,26 @@ function FormMember() {
         <Formik initialValues={member ?? ModelMember.deserialize({})} onSubmit={(member) => mutate(member)}>
           <VStack as={Form} alignItems="stretch" spacing="5">
             <Box>
-              <FormLabel htmlFor="form-member-nameFirst">First name</FormLabel>
+              <FormLabel htmlFor="form-member-nameFirst">{t('First name')}</FormLabel>
               <Field as={Input} id="form-member-nameFirst" name="nameFirst" placeholder="Jane" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="form-member-lastName">Last name</FormLabel>
+              <FormLabel htmlFor="form-member-lastName">{t('Last name')}</FormLabel>
               <Field as={Input} id="form-member-lastName" name="nameLast" placeholder="Doe" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="form-member-role">Role</FormLabel>
+              <FormLabel htmlFor="form-member-role">{t('Role')}</FormLabel>
               <Field as={Input} id="form-member-role" name="role" placeholder="Role" />
             </Box>
 
             <Box>
-              <FormLabel htmlFor="form-member-email">Email</FormLabel>
+              <FormLabel htmlFor="form-member-email">{t('Email')}</FormLabel>
               <Field as={Input} id="form-member-email" name="email" placeholder="jane@doe.com" type="email" />
             </Box>
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit">{t('Submit')}</Button>
           </VStack>
         </Formik>
       </Skeleton>
