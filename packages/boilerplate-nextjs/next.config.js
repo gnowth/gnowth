@@ -6,11 +6,13 @@ const withMDX = mdx({ extension: /\.mdx?$/ })
  * @type {import('next').NextConfig}
  */
 const configs = {
+  experimental: {
+    reactRoot: true,
+  },
   images: {
     loader: 'imgix',
     path: '',
   },
-  pageExtensions: ['tsx', 'mdx'],
   reactStrictMode: true,
 }
 
