@@ -3,14 +3,16 @@ import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
+import * as R from 'ramda'
 
 import LayoutSection from '../components/layout-section'
 import ModelMember from '../models/model-member'
 import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
+import withSuspense from '../utils/with-suspense'
 
 function FormMember() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('other')
   const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
   const queryClient = useQueryClient()
   const { mutate } = useMutation(serviceMembers.save, {
@@ -53,4 +55,4 @@ function FormMember() {
   )
 }
 
-export default withErrorBoundary(FormMember)
+export default R.compose(withSuspense, withErrorBoundary)(FormMember)

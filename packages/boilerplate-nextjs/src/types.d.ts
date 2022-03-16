@@ -25,3 +25,7 @@ export interface ServiceQueryKeyList<Filters = Record<string, string>> {
   filters: Filters
   scope: string
 }
+
+export type HigherComponent<Props, Props2 = Props> = (
+  Component: ComponentType<Props>,
+) => FunctionComponent<Props2>

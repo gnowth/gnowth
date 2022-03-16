@@ -35,3 +35,18 @@ Next:
 - animation
 - visualisation
 - offline
+- auth
+- error management
+- analytics
+- accessibility
+- async
+- icons
+- markdown
+- performance
+  - images
+- data
+  - date
+  - math
+  - number
+- rendering
+- routing

@@ -5,7 +5,7 @@ import { streamErrors } from './system-toast-errors'
 import LayoutSection from '../components/layout-section'
 
 function SectionSimulateError() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('other')
 
   return (
     <LayoutSection>

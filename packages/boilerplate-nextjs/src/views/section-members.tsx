@@ -13,10 +13,12 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react'
+import { useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
+import * as R from 'ramda'
 
 import InputPagination from '../components/input-pagination'
 import LayoutSection from '../components/layout-section'
@@ -25,7 +27,7 @@ import ModelMember from '../models/model-member'
 import ModelMemberFilter from '../models/model-member-filter'
 import serviceMembers from '../services/service-members'
 import withErrorBoundary from '../utils/with-error-boundary'
-import { useMemo } from 'react'
+import withSuspense from '../utils/with-suspense'
 
 export const stateMemberFilter = atom({
   key: 'membersFilter',
@@ -36,7 +38,7 @@ export const stateMemberFilter = atom({
 // DEBT: Update members buttons to use icons? and only visible on hover
 // DEBT: Make add new member button more visible
 function SectionMembers() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('other')
   const [filters, setFilters] = useRecoilState(stateMemberFilter)
   const filtersSerialized = useMemo(() => ModelMemberFilter.serialize(filters), [filters])
   const { isSuccess, data } = useQuery(
@@ -119,4 +121,4 @@ function SectionMembers() {
   )
 }
 
-export default withErrorBoundary(SectionMembers)
+export default R.compose(withSuspense, withErrorBoundary)(SectionMembers)

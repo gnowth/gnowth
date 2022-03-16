@@ -7,7 +7,7 @@ import { streamNotifications } from './system-toast-notifications'
 import LayoutSection from '../components/layout-section'
 
 function SectionSimulateNotification() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('other')
 
   return (
     <LayoutSection>

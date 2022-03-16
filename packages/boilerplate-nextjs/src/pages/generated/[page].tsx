@@ -1,12 +1,12 @@
 import type { GetStaticPropsContext } from 'next'
-import type { ReactNode } from 'react'
 import fs from 'fs'
 import path from 'path'
 
+import FrameGenerated from '../../views/frame-generated'
 import sections from '../../sections'
 
 interface Props {
-  contents: (keyof typeof sections)[]
+  contents?: (keyof typeof sections)[]
 }
 
 function PageGenerated(props: Props) {
@@ -18,9 +18,7 @@ function PageGenerated(props: Props) {
   )
 }
 
-PageGenerated.getLayout = function getLayout(page: ReactNode) {
-  return page
-}
+PageGenerated.Layout = FrameGenerated
 
 export async function getStaticPaths() {
   const sourcePath = path.resolve('./public', '../src/contents/source.json')
