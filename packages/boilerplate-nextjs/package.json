@@ -33,7 +33,7 @@
     "framer-motion": "6.2.8",
     "i18next": "21.6.14",
     "i18next-browser-languagedetector": "6.1.3",
-    "i18next-http-backend": "1.3.2",
+    "i18next-http-backend": "1.4.0",
     "inflected": "2.1.0",
     "next": "12.1.0",
     "ramda": "0.28.0",
