@@ -1,10 +1,14 @@
 import type { ChakraProps } from '@chakra-ui/react'
+import type { FunctionComponent } from 'react'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
+import * as R from 'ramda'
 
 import ModelApp from '../models/model-app'
 import packageJson from '../../package.json'
+import withErrorBoundary from '../utils/with-error-boundary'
+import withSuspense from '../utils/with-suspense'
 
 function SectionFooter(props: ChakraProps) {
   const { t } = useTranslation()
@@ -26,4 +30,4 @@ function SectionFooter(props: ChakraProps) {
   )
 }
 
-export default SectionFooter
+export default R.compose(withSuspense, withErrorBoundary)(SectionFooter as FunctionComponent<ChakraProps>)

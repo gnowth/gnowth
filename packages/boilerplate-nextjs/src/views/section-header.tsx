@@ -1,10 +1,13 @@
 import { Box, Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import * as R from 'ramda'
 
 import LayoutSection from '../components/layout-section'
 import ModelApp from '../models/model-app'
 import NavLink from '../components/nav-link'
 import ViewProgressGlobal from '../views/view-progress-global'
+import withErrorBoundary from '../utils/with-error-boundary'
+import withSuspense from '../utils/with-suspense'
 
 function SectionHeader() {
   const { t } = useTranslation()
@@ -72,4 +75,4 @@ function SectionHeader() {
   )
 }
 
-export default SectionHeader
+export default R.compose(withSuspense, withErrorBoundary)(SectionHeader)

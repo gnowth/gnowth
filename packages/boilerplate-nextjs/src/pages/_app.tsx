@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import type { ReactNode } from 'react'
-import { Box, ChakraProvider, VStack } from '@chakra-ui/react'
+import type { ComponentType } from 'react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
-import SectionFooter from '../views/section-footer'
-import SectionHeader from '../views/section-header'
+import FrameDefault from '../views/frame-default'
 import SystemToastErrors from '../views/system-toast-errors'
 import SystemToastNotifications from '../views/system-toast-notifications'
 import runSetup from '../setup'
@@ -16,25 +16,11 @@ const setup = runSetup()
 
 interface Props extends AppProps {
   Component: NextPage & {
-    getLayout?: (page: ReactNode) => ReactNode
+    Layout?: ComponentType
   }
 }
 
-function getLayoutDefault(page: ReactNode) {
-  return (
-    <>
-      <SectionHeader />
-      {page}
-      <Box flex="1" sx={{ marginTop: '0 !important' }} />
-      <SectionFooter />
-    </>
-  )
-}
-
 function MyApp(props: Props) {
-  const { Component } = props
-  const getLayout = Component.getLayout || getLayoutDefault
-
   return (
     <RecoilRoot>
       <QueryClientProvider client={setup.queryClient}>
@@ -49,13 +35,14 @@ function MyApp(props: Props) {
 
           <SystemToastNotifications />
 
-          <VStack alignItems="stretch" minHeight="100vh" spacing="10">
-            {getLayout(<Component {...props.pageProps} />)}
-          </VStack>
+          <FrameDefault component={props.Component}>
+            <props.Component {...props.pageProps} />
+          </FrameDefault>
         </ChakraProvider>
       </QueryClientProvider>
     </RecoilRoot>
   )
 }
 
-export default MyApp
+// DEBT: Streaming must be unabled to use Suspense. https://nextjs.org/docs/advanced-features/react-18/streaming
+export default dynamic(() => Promise.resolve(MyApp), { ssr: false })

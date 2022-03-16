@@ -57,6 +57,7 @@
     "@types/react": "17.0.40",
     "@types/uuid": "8.3.4",
     "eslint-config-next": "12.1.0",
+    "i18next-parser": "5.4.0",
     "miragejs": "0.1.43"
   },
   "scripts": {
@@ -64,6 +65,7 @@
     "build:dev": "cp ../../LICENSE LICENSE && next build && next export -o dist",
     "clean:temp": "rm -rf dist && rm -rf .next && rm -rf LICENSE",
     "dev": "next dev",
+    "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./configs/i18next-parser.config.js",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext .js,.ts,.jsx,.tsx .",
     "start": "next start",

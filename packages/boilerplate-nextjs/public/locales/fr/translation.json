@@ -1,0 +1,16 @@
+{
+  "Copyright © 2022 Gnowth": "Copyright © 2022 Gnowth",
+  "Current version: {{packageJson.version}}": "Current version: {{packageJson.version}}",
+  "Dashboard": "Dashboard",
+  "Generated page": "Generated page",
+  "Log in": "Log in",
+  "Members": "Members",
+  "Page size": "Page size",
+  "Reports": "Reports",
+  "Select option": "Select option",
+  "Sign up": "Aboner",
+  "Teams": "Teams",
+  "Teams App": "Teams App",
+  "There was an error!": "There was an error!",
+  "Try again": "Try again"
+}
