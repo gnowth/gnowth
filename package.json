@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@commitlint/cli": "16.2.1",
+    "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
@@ -47,14 +47,14 @@
     "github-markdown-css": "5.1.0",
     "husky": "7.0.4",
     "lerna": "4.0.0",
-    "lint-staged": "12.3.5",
+    "lint-staged": "12.3.6",
     "serve": "13.0.2",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1"
   },
   "devDependencies": {
-    "eslint": "8.10.0",
-    "prettier": "2.5.1",
+    "eslint": "8.11.0",
+    "prettier": "2.6.0",
     "typescript": "4.6.2"
   },
   "scripts": {

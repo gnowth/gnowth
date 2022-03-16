@@ -51,13 +51,13 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@mdx-js/loader": "2.0.0",
+    "@mdx-js/loader": "2.1.0",
     "@types/inflected": "1.1.29",
     "@types/ramda": "0.28.1",
     "@types/react": "17.0.40",
     "@types/uuid": "8.3.4",
     "eslint-config-next": "12.1.0",
-    "i18next-parser": "5.4.0",
+    "i18next-parser": "6.0.0",
     "miragejs": "0.1.43"
   },
   "scripts": {
