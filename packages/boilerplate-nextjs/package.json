@@ -28,7 +28,7 @@
     "@emotion/react": "11.8.2",
     "@emotion/styled": "11.8.1",
     "@next/mdx": "12.1.0",
-    "axios": "0.26.0",
+    "axios": "0.26.1",
     "formik": "2.2.9",
     "framer-motion": "6.2.8",
     "i18next": "21.6.14",
