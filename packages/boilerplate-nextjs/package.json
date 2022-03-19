@@ -54,7 +54,7 @@
     "@mdx-js/loader": "2.1.0",
     "@types/inflected": "1.1.29",
     "@types/ramda": "0.28.1",
-    "@types/react": "17.0.40",
+    "@types/react": "17.0.41",
     "@types/uuid": "8.3.4",
     "eslint-config-next": "12.1.0",
     "i18next-parser": "6.0.0",
