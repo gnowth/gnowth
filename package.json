@@ -47,15 +47,15 @@
     "github-markdown-css": "5.1.0",
     "husky": "7.0.4",
     "lerna": "4.0.0",
-    "lint-staged": "12.3.6",
+    "lint-staged": "12.3.7",
     "serve": "13.0.2",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1"
   },
   "devDependencies": {
-    "eslint": "8.11.0",
-    "prettier": "2.6.0",
-    "typescript": "4.6.2"
+    "eslint": "8.12.0",
+    "prettier": "2.6.1",
+    "typescript": "4.6.3"
   },
   "scripts": {
     "ci:database:backup": "echo database to backup",
@@ -91,7 +91,7 @@
     "local:test:smoke": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:smoke",
     "local:test:unit": "echo Test",
     "local:typecheck": "tsc",
-    "local:verify": "npm run local:lint && npm run local:typecheck && npm local:test:unit",
+    "local:verify": "npm run local:lint && npm run local:typecheck && npm run local:test:unit",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "project:cypress": "npm run --workspace=@gnowth/boilerplate-cypress",
     "project:eslint": "npm run --workspace=@gnowth/eslint-config",
