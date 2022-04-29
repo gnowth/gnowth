@@ -57,7 +57,7 @@
     "@types/react": "17.0.43",
     "@types/uuid": "8.3.4",
     "eslint-config-next": "12.1.0",
-    "i18next-parser": "6.0.0",
+    "i18next-parser": "6.4.0",
     "miragejs": "0.1.43"
   },
   "scripts": {
