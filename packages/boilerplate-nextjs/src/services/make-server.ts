@@ -18,7 +18,7 @@ function makeServer(configsMock: MockConfigs) {
         avatar: () => faker.internet.avatar(),
         nameFirst: () => faker.name.firstName(),
         nameLast: () => faker.name.lastName(),
-        role: () => faker.name.title(),
+        role: () => faker.name.jobTitle(),
         status: () => (faker.datatype.number(100) > 20 ? 'active' : 'deactivated'),
         email() {
           // DEBT: dirty ts fix, miragejs typescript is poor
@@ -43,8 +43,8 @@ function makeServer(configsMock: MockConfigs) {
         // @ts-ignore
         const members = schema.members.where(
           R.allPass([
-            ModelMemberFilter.filterByEmail(request.queryParams.email),
-            ModelMemberFilter.filterByStatus(request.queryParams.status),
+            ModelMemberFilter.filterByEmail(request.queryParams?.email),
+            ModelMemberFilter.filterByStatus(request.queryParams?.status),
           ]),
         )
 

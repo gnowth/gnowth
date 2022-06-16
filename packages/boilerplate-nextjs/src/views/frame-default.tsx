@@ -11,7 +11,7 @@ import withSuspense from '../utils/with-suspense'
 
 interface Props {
   component: NextPage & {
-    Layout?: ComponentType
+    Layout?: ComponentType<PropsWithChildren>
   }
 }
 
