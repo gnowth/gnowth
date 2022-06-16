@@ -1,14 +1,14 @@
 {
   "author": "Thierry Wong",
-  "bugs": "https://github.com/gnowth/gnowth/issues",
+  "bugs": "https://github.com/gnowth/smart/issues",
   "description": "Boilerplate",
   "license": "MIT",
   "name": "gnowth",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "version": "0.0.0",
-  "repository": "https://github.com/gnowth/gnowth.git",
-  "homepage": "https://github.com/gnowth/gnowth#readme",
+  "repository": "https://github.com/gnowth/smart.git",
+  "homepage": "https://github.com/gnowth/smart#readme",
   "workspaces": [
     "./packages/*"
   ],
@@ -23,8 +23,8 @@
     "root": true
   },
   "engines": {
-    "node": "17.5.0",
-    "npm": "8.4.1"
+    "node": "18.3.0",
+    "npm": "8.11.0"
   },
   "lint-staged": {
     "*.{css,json,md,scss}": "prettier --write",
@@ -39,23 +39,23 @@
     ]
   },
   "dependencies": {
-    "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1",
+    "@commitlint/cli": "17.0.2",
+    "@commitlint/config-conventional": "17.0.2",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "github-markdown-css": "5.1.0",
-    "husky": "7.0.4",
-    "lerna": "4.0.0",
-    "lint-staged": "12.3.7",
+    "husky": "8.0.1",
+    "lerna": "5.1.4",
+    "lint-staged": "13.0.2",
     "serve": "13.0.2",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1"
   },
   "devDependencies": {
-    "eslint": "8.12.0",
-    "prettier": "2.6.1",
-    "typescript": "4.6.3"
+    "eslint": "8.17.0",
+    "prettier": "2.7.1",
+    "typescript": "4.7.3"
   },
   "scripts": {
     "ci:database:backup": "echo database to backup",

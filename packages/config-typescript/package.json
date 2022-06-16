@@ -15,7 +15,7 @@
   "repository": {
     "directory": "packages/config-typescript",
     "type": "git",
-    "url": "https://github.com/gnowth/gnowth.git"
+    "url": "https://github.com/gnowth/smart.git"
   },
   "devDependencies": {
     "@gnowth/prettier-config": "0.0.0"

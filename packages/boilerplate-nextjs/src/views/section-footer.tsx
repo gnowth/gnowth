@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 import * as R from 'ramda'
 
+import type { HigherComponent } from '../types'
 import ModelApp from '../models/model-app'
 import packageJson from '../../package.json'
 import withErrorBoundary from '../utils/with-error-boundary'
@@ -30,4 +31,7 @@ function SectionFooter(props: ChakraProps) {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(SectionFooter as FunctionComponent<ChakraProps>)
+export default R.compose(
+  withSuspense as HigherComponent<ChakraProps>,
+  withErrorBoundary as HigherComponent<ChakraProps>,
+)(SectionFooter as FunctionComponent<ChakraProps>)

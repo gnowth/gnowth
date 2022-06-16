@@ -3,8 +3,8 @@ import { pluralize } from 'inflected'
 import { RestSerializer } from 'miragejs'
 
 function paginate<Type>(data: Type[], request: Request) {
-  const page = Number(request.queryParams.page ?? '0')
-  const pageSize = Number(request.queryParams.pageSize ?? '0')
+  const page = Number(request.queryParams?.page ?? '0')
+  const pageSize = Number(request.queryParams?.pageSize ?? '0')
 
   if (!page || !pageSize) return { data }
 

@@ -29,7 +29,7 @@ jobs:
   # Phase 2: Build artifact
   build_artifact:
     container:
-      image: node:17.5.0-buster
+      image: node:18.3.0-buster
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
