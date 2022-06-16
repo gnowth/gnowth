@@ -41,7 +41,7 @@
     "react-dom": "18.0.0-rc.2",
     "react-error-boundary": "3.1.4",
     "react-i18next": "11.16.2",
-    "react-query": "3.34.17",
+    "react-query": "3.39.1",
     "recoil": "0.6.1",
     "rxjs": "7.5.5",
     "uuid": "8.3.2"
