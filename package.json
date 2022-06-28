@@ -47,7 +47,7 @@
     "github-markdown-css": "5.1.0",
     "husky": "8.0.1",
     "lerna": "5.1.6",
-    "lint-staged": "13.0.2",
+    "lint-staged": "13.0.3",
     "serve": "13.0.2",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1"
