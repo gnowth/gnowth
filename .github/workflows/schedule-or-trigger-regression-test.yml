@@ -3,7 +3,7 @@ name: scheduleOrTriggerRegressionTest
 # @ 2pm UTC
 on:
   schedule:
-    - cron: 0 14 * * *
+    - cron: 0 14 1 * *
   workflow_dispatch:
 
 env:

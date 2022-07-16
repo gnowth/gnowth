@@ -2,18 +2,26 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.rulers": [110],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.tsx": "${capture}.*",
+    "*.ts": "${capture}.*",
+    "package.json": ".*, *.json, *.config.js, next-*"
+  },
   "files.autoSave": "onFocusChange",
-  "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.recentChange.enabled": false,
   "workbench.editor.showTabs": false,
 
+  // languages
   "css.validate": false,
   "javascript.validate.enable": false,
   "scss.validate": false,
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.validate.enable": false,
 
+  // plugins
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-
+  "gitlens.codeLens.authors.enabled": false,
+  "gitlens.codeLens.recentChange.enabled": false,
   "markdown.styles": ["./node_modules/github-markdown-css/github-markdown.css"]
 }
