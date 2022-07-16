@@ -46,14 +46,15 @@
     "@gnowth/typescript-config": "0.0.0",
     "github-markdown-css": "5.1.0",
     "husky": "8.0.1",
-    "lerna": "5.1.6",
+    "lerna": "5.1.8",
     "lint-staged": "13.0.3",
-    "serve": "13.0.2",
+    "npm-check-updates": "15.3.4",
+    "serve": "14.0.1",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1"
   },
   "devDependencies": {
-    "eslint": "8.18.0",
+    "eslint": "8.19.0",
     "prettier": "2.7.1",
     "typescript": "4.7.4"
   },
@@ -100,6 +101,7 @@
     "project:typescript": "npm run --workspace=@gnowth/typescript-config",
     "setup": "npm install --frozen-lockfile",
     "setup:refresh": "rm -rf package-lock.json && npm run local:clean && npm install",
+    "setup:package": "ncu --interactive --deep",
     "workspaces:build": "lerna run build",
     "workspaces:build:dev": "lerna run build:dev",
     "workspaces:lint": "lerna run lint",
