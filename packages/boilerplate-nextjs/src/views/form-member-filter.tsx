@@ -39,4 +39,4 @@ function FormMemberFilter() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(FormMemberFilter)
+export default R.compose(withSuspense(), withErrorBoundary)(FormMemberFilter)

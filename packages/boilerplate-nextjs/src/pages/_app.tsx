@@ -8,8 +8,7 @@ import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
 import FrameDefault from '../views/frame-default'
-import SystemToastErrors from '../views/system-toast-errors'
-import SystemToastNotifications from '../views/system-toast-notifications'
+import SystemToasts from '../views/system-toasts'
 import runSetup from '../setup'
 
 const setup = runSetup()
@@ -31,9 +30,7 @@ function MyApp(props: Props) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <SystemToastErrors />
-
-          <SystemToastNotifications />
+          <SystemToasts />
 
           <FrameDefault component={props.Component}>
             <props.Component {...props.pageProps} />

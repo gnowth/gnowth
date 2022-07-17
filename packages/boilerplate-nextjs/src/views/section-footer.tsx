@@ -32,6 +32,6 @@ function SectionFooter(props: ChakraProps) {
 }
 
 export default R.compose(
-  withSuspense as HigherComponent<ChakraProps>,
+  withSuspense() as HigherComponent<ChakraProps>,
   withErrorBoundary as HigherComponent<ChakraProps>,
 )(SectionFooter as FunctionComponent<ChakraProps>)

@@ -75,4 +75,4 @@ function SectionHeader() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(SectionHeader)
+export default R.compose(withSuspense(), withErrorBoundary)(SectionHeader)

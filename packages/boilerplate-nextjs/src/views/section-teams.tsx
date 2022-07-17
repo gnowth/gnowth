@@ -16,4 +16,4 @@ function SectionTeams() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(SectionTeams)
+export default R.compose(withSuspense(), withErrorBoundary)(SectionTeams)

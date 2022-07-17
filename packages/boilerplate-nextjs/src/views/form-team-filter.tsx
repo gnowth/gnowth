@@ -15,4 +15,4 @@ function FormTeamFilter() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(FormTeamFilter)
+export default R.compose(withSuspense(), withErrorBoundary)(FormTeamFilter)
