@@ -1,4 +1,4 @@
-import type { PropsWithChildren, ReactElement } from 'react'
+import type { PropsWithChildren } from 'react'
 import type { ChakraProps } from '@chakra-ui/react'
 import { Box, Container } from '@chakra-ui/react'
 
@@ -7,7 +7,7 @@ interface Props {
   rootProps?: ChakraProps
 }
 
-function LayoutSection(props: PropsWithChildren<Props>): ReactElement {
+function LayoutSection(props: PropsWithChildren<Props>) {
   return (
     <Box as="section" {...props.rootProps}>
       <Container maxW="container.xl" {...props.containerProps}>

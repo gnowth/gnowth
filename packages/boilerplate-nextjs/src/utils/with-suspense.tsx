@@ -1,21 +1,27 @@
-import type { ComponentType, FunctionComponent } from 'react'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { Box, Spinner } from '@chakra-ui/react'
 import { Suspense } from 'react'
 
-// DEBT: spinner to be in the middle of the papge if page is empty?
-function withSuspense<Props>(Component: ComponentType<Props>): FunctionComponent<Props> {
-  return function ComponentWithSuspense(props: Props) {
-    return (
-      <Suspense
-        fallback={
-          <Box textAlign="center">
-            <Spinner thickness="10px" speed="0.65s" emptyColor="gray.200" color="teal.500" size="xl" />
-          </Box>
-        }
-      >
-        <Component {...props} />
-      </Suspense>
-    )
+import LayoutSection from '../components/layout-section'
+
+// DEBT: investigate if there is another way to add suspense without using HOC
+// DEBT: spinner to be in the middle of the page if page is empty?
+// DEBT: to investigate if suspense should have layout section
+function withSuspense(ComponentFallback?: ReactNode) {
+  return function withSuspenseHOC<Props>(Component: ComponentType<Props>): FunctionComponent<Props> {
+    return function ComponentWithSuspense(props: Props) {
+      const Fallback = (
+        <Box textAlign="center">
+          <Spinner thickness="10px" speed="0.65s" emptyColor="gray.200" color="teal.500" size="xl" />
+        </Box>
+      )
+
+      return (
+        <Suspense fallback={<LayoutSection>{ComponentFallback ?? Fallback}</LayoutSection>}>
+          <Component {...props} />
+        </Suspense>
+      )
+    }
   }
 }
 

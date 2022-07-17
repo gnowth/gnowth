@@ -15,4 +15,4 @@ function FormTeam() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(FormTeam)
+export default R.compose(withSuspense(), withErrorBoundary)(FormTeam)

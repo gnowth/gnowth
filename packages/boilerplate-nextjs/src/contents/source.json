@@ -2,8 +2,7 @@
   "all": [
     "SectionHeader",
     "SectionChangelog",
-    "SectionSimulateError",
-    "SectionSimulateNotification",
+    "SectionSimulator",
     "FormMemberFilter",
     "SectionMembers",
     "FormMember",
@@ -13,11 +12,5 @@
     "ViewSpacer",
     "SectionFooter"
   ],
-  "dashboard": [
-    "SectionHeader",
-    "SectionSimulateError",
-    "SectionSimulateNotification",
-    "ViewSpacer",
-    "SectionFooter"
-  ]
+  "dashboard": ["SectionHeader", "SectionSimulator", "ViewSpacer", "SectionFooter"]
 }

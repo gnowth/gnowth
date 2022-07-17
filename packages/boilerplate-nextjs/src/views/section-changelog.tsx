@@ -13,4 +13,4 @@ function SectionChangelog() {
   )
 }
 
-export default R.compose(withSuspense, withErrorBoundary)(SectionChangelog)
+export default R.compose(withSuspense(), withErrorBoundary)(SectionChangelog)

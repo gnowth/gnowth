@@ -23,4 +23,4 @@ class ServiceConfigs {
   }
 }
 
-export default ServiceConfigs
+export default new ServiceConfigs()

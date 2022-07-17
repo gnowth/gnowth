@@ -36,6 +36,6 @@ function FrameDefault(props: PropsWithChildren<Props>) {
 }
 
 export default R.compose(
-  withSuspense as HigherComponent<Props>,
+  withSuspense() as HigherComponent<Props>,
   withErrorBoundary as HigherComponent<Props>,
 )(FrameDefault as FunctionComponent<Props>)

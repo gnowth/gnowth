@@ -34,6 +34,7 @@ function makeServer(configsMock: MockConfigs) {
     routes() {
       this.passthrough('/_next/**')
 
+      this.timing = 2000
       this.urlPrefix = configs.apiOrigin
       this.namespace = '/boilerplate/v1'
       this.resource?.('members')

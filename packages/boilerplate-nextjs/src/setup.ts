@@ -1,11 +1,11 @@
-import type { AxiosError } from 'axios'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import i18n from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-import { streamErrors } from './views/system-toast-errors'
+import ModelError from './models/model-error'
+import StreamErrors from './services/stream-errors'
 import makeServer from './services/make-server'
 
 function setupI18n() {
@@ -17,7 +17,7 @@ function setupI18n() {
       debug: false,
       fallbackLng: 'en',
     }) // for all options docs: https://www.i18next.com/overview/configuration-options
-    .catch(streamErrors.actions.addError)
+    .catch(StreamErrors.pushErrorUnknown)
 
   return i18n
 }
@@ -33,13 +33,13 @@ function setupMockServer() {
 
 function setupReactQuery() {
   return new QueryClient({
-    queryCache: new QueryCache({
-      onError: (error: unknown) => streamErrors.actions.addError(error as Error),
-    }),
+    queryCache: new QueryCache({ onError: StreamErrors.pushErrorUnknown }),
     defaultOptions: {
       queries: {
+        keepPreviousData: true,
         refetchOnWindowFocus: false,
-        useErrorBoundary: (error: unknown) => ((error as AxiosError).response?.status ?? 0) >= 500,
+        suspense: true,
+        useErrorBoundary: ModelError.isErrorQuery,
       },
     },
   })
