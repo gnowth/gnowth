@@ -1,3 +1,8 @@
+---
+title: Configs
+category: framework
+---
+
 # Configs
 
 - environment config

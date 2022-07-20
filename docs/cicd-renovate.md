@@ -1,3 +1,8 @@
+---
+title: Renovate
+category: cicd
+---
+
 # Renovate
 
 ## Setup in repo

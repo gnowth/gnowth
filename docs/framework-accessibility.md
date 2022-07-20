@@ -1,3 +1,8 @@
+---
+title: Accessibility
+category: framework
+---
+
 # Accessibility
 
 - visual impairment

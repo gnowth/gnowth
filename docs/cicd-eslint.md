@@ -1,3 +1,8 @@
+---
+title: Eslint
+category: cicd
+---
+
 # Eslint v7.30.0
 
 ## Plugins to investigate

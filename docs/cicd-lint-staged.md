@@ -1,3 +1,8 @@
+---
+title: Lint staged
+category: cicd
+---
+
 # Lint Staged v11.0.0
 
 ## Setup in repo

@@ -1,6 +1,12 @@
+---
+title: Testing
+category: framework
+---
+
 # Test
 
 ## Types
+
 - integration test
 - penetration test
 - end to end test

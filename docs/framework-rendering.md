@@ -1,3 +1,8 @@
+---
+title: Rendering
+category: framework
+---
+
 # Rendering
 
 ## Client

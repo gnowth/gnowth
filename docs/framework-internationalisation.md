@@ -1,3 +1,8 @@
+---
+title: Internationalisation
+category: framework
+---
+
 # Internationalisation
 
 ## Libraries

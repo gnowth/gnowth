@@ -11,6 +11,12 @@ const configs = {
     path: '',
   },
   reactStrictMode: true,
+  rewrites: async () => [
+    {
+      source: '/admin/netlify',
+      destination: '/admin/netlify.html',
+    },
+  ],
 }
 
 module.exports = withMDX(configs)

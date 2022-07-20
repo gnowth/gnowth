@@ -1,3 +1,8 @@
+---
+title: Animations
+category: framework
+---
+
 # Animations
 
 ## Reference

@@ -1,3 +1,8 @@
+---
+title: Error management
+category: framework
+---
+
 # Error management
 
 ## Error handling
