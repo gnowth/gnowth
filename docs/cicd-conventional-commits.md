@@ -1,3 +1,8 @@
+---
+title: Conventional commits
+category: cicd
+---
+
 # Conventional Commits v1.0.0
 
 ## Types

@@ -1,3 +1,8 @@
+---
+title: Commitlint
+category: cicd
+---
+
 # Commitlint v12.1.4
 
 ## Setup in repo

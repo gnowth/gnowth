@@ -1,3 +1,8 @@
+---
+title: State management
+category: framework
+---
+
 # State management
 
 ## Libraries

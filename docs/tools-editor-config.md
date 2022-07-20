@@ -1,3 +1,8 @@
+---
+title: Editor config
+category: tools
+---
+
 # Editor config
 
 ## Setup

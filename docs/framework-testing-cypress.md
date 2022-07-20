@@ -1,3 +1,8 @@
+---
+title: Testing cypress
+category: framework
+---
+
 # Cypress v7.7.0
 
 ## Limitations

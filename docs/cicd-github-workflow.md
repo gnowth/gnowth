@@ -1,3 +1,8 @@
+---
+title: Github workflow
+category: cicd
+---
+
 # Github workflow
 
 ## Cheatsheet

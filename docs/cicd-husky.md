@@ -1,3 +1,8 @@
+---
+title: Husky
+category: cicd
+---
+
 # Husky v7.0.0
 
 ## Setup in repo

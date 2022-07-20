@@ -1,3 +1,8 @@
+---
+title: Workspaces
+category: tools
+---
+
 # Npm Workspaces v7.18.1
 
 ## Commands

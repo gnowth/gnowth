@@ -1,3 +1,8 @@
+---
+title: Editor hotkeys
+category: tools
+---
+
 # hotkeys for Vs code
 
 To open hotkeys windows type: Cmd K + Cmd S
