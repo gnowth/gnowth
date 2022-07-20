@@ -87,6 +87,7 @@
     "git:rebase": "git pull --rebase origin main",
     "git:tag:delete": "git tag -d $(git tag -l *gnowth*)",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
+    "local:analyze": "npm run project:nextjs build:analyze",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:clean:modules": "lerna clean --yes",
     "local:clean:temp": "lerna run clean:temp && lerna run clean:log && rm -rf coverage",
