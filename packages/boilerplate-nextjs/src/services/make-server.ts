@@ -1,5 +1,5 @@
 import type { AnyResponse } from 'miragejs/-types'
-import { faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker/locale/en'
 import { Factory, Model, createServer } from 'miragejs'
 import * as R from 'ramda'
 
@@ -33,6 +33,7 @@ function makeServer(configsMock: MockConfigs) {
 
     routes() {
       this.passthrough('/_next/**')
+      this.passthrough('http://localhost:4001/**')
 
       this.timing = 2000
       this.urlPrefix = configs.apiOrigin

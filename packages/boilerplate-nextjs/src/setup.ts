@@ -23,10 +23,13 @@ function setupI18n() {
 }
 
 function setupMockServer() {
-  let server
-  if ((process.env.NEXT_PUBLIC_ENV ?? process.env.NODE_ENV) === 'development') {
-    server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
-  }
+  const server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
+
+  // Note: uncomment code below to remove miragejs in production mode
+  // let server
+  // if (process.env.NODE_ENV === 'development') {
+  //   server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
+  // }
 
   return server
 }

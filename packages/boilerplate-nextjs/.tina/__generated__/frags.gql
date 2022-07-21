@@ -1,0 +1,12 @@
+fragment IngredientParts on Ingredient {
+  body
+}
+
+fragment PageParts on Page {
+  body
+}
+
+fragment RecipeParts on Recipe {
+  title
+  body
+}

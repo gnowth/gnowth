@@ -1,0 +1,56 @@
+{
+  "version": { "fullVersion": "0.61.1", "major": "0", "minor": "61", "patch": "1" },
+  "meta": {},
+  "collections": [
+    {
+      "label": "Ingredients",
+      "name": "ingredient",
+      "path": "contents/recipe/ingredients",
+      "format": "mdx",
+      "fields": [
+        {
+          "name": "body",
+          "label": "Main Content",
+          "type": "rich-text",
+          "isBody": true,
+          "namespace": ["ingredient", "body"]
+        }
+      ],
+      "namespace": ["ingredient"]
+    },
+    {
+      "label": "Pages",
+      "name": "page",
+      "path": "contents/recipe/pages",
+      "format": "mdx",
+      "fields": [
+        {
+          "name": "body",
+          "label": "Main Content",
+          "type": "rich-text",
+          "isBody": true,
+          "namespace": ["page", "body"]
+        }
+      ],
+      "namespace": ["page"]
+    },
+    {
+      "label": "Recipes",
+      "name": "recipe",
+      "path": "contents/recipe/recipes",
+      "fields": [
+        { "type": "string", "label": "Title", "name": "title", "namespace": ["recipe", "title"] },
+        {
+          "type": "string",
+          "label": "Blog Post Body",
+          "name": "body",
+          "isBody": true,
+          "ui": { "component": "textarea" },
+          "namespace": ["recipe", "body"]
+        }
+      ],
+      "namespace": ["recipe"]
+    }
+  ],
+  "config": { "media": { "tina": { "publicFolder": "public", "mediaRoot": "media" } } }
+}
