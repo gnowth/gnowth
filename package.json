@@ -44,7 +44,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "concurrently": "7.2.2",
+    "concurrently": "7.3.0",
     "github-markdown-css": "5.1.0",
     "husky": "8.0.1",
     "lerna": "5.1.8",
