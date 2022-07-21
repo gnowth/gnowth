@@ -55,7 +55,7 @@
     "@gnowth/typescript-config": "0.0.0",
     "@mdx-js/loader": "2.1.2",
     "@next/bundle-analyzer": "12.2.2",
-    "@tinacms/cli": "0.60.26",
+    "@tinacms/cli": "0.60.28",
     "@types/inflected": "1.1.29",
     "@types/ramda": "0.28.15",
     "@types/react": "18.0.15",
