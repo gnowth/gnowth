@@ -1,5 +1,5 @@
 import { Box, Button, Text, VStack } from '@chakra-ui/react'
-import { faker } from '@faker-js/faker'
+import { faker } from '@faker-js/faker/locale/en'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
