@@ -1,0 +1,17 @@
+- request:
+    url: ^/alive # purely for checking if mock server is up and running
+    method: GET
+  response:
+    file: mock/alive.json
+    headers:
+      Content-Type: application/json
+    status: 200
+
+- request:
+    url: ^/contacts$
+  response:
+    file: mock/contacts.json
+    headers:
+      Content-Type: application/json
+    latency: 1000
+    status: 200
