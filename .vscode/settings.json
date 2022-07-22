@@ -7,7 +7,7 @@
   "explorer.fileNesting.patterns": {
     "*.tsx": "${capture}.*",
     "*.ts": "${capture}.*",
-    "package.json": ".*, *.json, *.config.js, next-*"
+    "package.json": ".*, *.json, *.config.js, next-*, Dockerfile"
   },
   "files.autoSave": "onFocusChange",
   "workbench.editor.showTabs": false,
