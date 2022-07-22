@@ -113,5 +113,6 @@ packages/**/license
 # Cypress
 **/cypress/media
 
+# Volumes
 volumes/*
 !volumes/.gitkeep
