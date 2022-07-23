@@ -4,23 +4,46 @@ version: '3'
 # (Adding the "ports" property to this file will not forward from a Codespace.)
 
 services:
-  app:
+  gateway:
+    container_name: gateway
+    image: nginx:1.19.9
+    volumes:
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - "8080:80"
+    environment:
+      - NGINX_PORT=80
+
+  service_stubby:
+    container_name: service_stubby
+    command: npm run start:docker
+    depends_on:
+      - workspace
+    image: node:18.3.0-bullseye
+    ports:
+      - "8882:8882"
+    volumes:
+      - ../packages/service-stubby:/app:ro
+      - ../node_modules:/node_modules:ro
+    working_dir: /app
+
+  workspace:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         UPGRADE_PACKAGES: "true"
-
+    command: sleep infinity
+    container_name: workspace
+    # Overrides default command so things don't shut down after the process ends.
+    entrypoint: /usr/local/share/docker-init.sh
     volumes:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ..:/workspace:cached
+      - ..:/workspace
       - ../volumes/.ssh:/home/vscode/.ssh
 
-    # Overrides default command so things don't shut down after the process ends.
-    entrypoint: /usr/local/share/docker-init.sh
-    command: sleep infinity
     # Uncomment the next four lines if you will use a ptrace-based debuggers like C++, Go, and Rust.
     # cap_add:
     #  - SYS_PTRACE
@@ -30,35 +53,20 @@ services:
     # Uncomment the next line to use a non-root user for all processes.
     # user: vscode
 
-  database_postgres:
-    container_name: database_postgres
-    image: postgres:14.2-alpine3.15
-    restart: always
-    environment:
-      PGDATA: /var/lib/postgresql/data
-      POSTGRES_DB: ${POSTGRES_DB:-postgres_db}
-      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      POSTGRES_USER: ${POSTGRES_USER:-root}
-    ports:
-      - "5432:5432"
-    volumes:
-      - ../volumes/postgres:/var/lib/postgresql/data
-
-  mock_stubby:
-    container_name: mock_stubby
-    command: npm run start:docker
-    build:
-      context: ../packages/mock-stubby
-      dockerfile: ./Dockerfile
-    ports:
-      - "7443:7443"
-      - "8882:8882"
-      - "8889:8889"
-    volumes:
-      - ../packages/mock-stubby:/app:cached
-      - ../.vscode:/app/.vscode
-      - /app/node_modules
+  # database_postgres:
+  #   container_name: database_postgres
+  #   environment:
+  #     PGDATA: /var/lib/postgresql/data
+  #     POSTGRES_DB: ${POSTGRES_DB:-postgres_db}
+  #     POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+  #     POSTGRES_USER: ${POSTGRES_USER:-root}
+  #   image: postgres:14.2-alpine3.15
+  #   ports:
+  #     - "5432:5432"
+  #   restart: always
+  #   volumes:
+  #     - ../volumes/postgres:/var/lib/postgresql/data
 
   # boilerplate_nestjs:
   #   container_name: boilerplate_nestjs
