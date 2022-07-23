@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Boilerplate for mono application",
   "license": "MIT",
-  "name": "@gnowth/boilerplate-nextjs",
+  "name": "@boilerplate/nextjs",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,

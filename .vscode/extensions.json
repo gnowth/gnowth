@@ -11,12 +11,16 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "gitHub.codespaces",
+    "GraphQL.vscode-graphql",
+    "hashicorp.hcl",
+    "mikestead.dotenv",
     "ms-azuretools.vscode-docker",
     "ms-vscode-remote.remote-containers",
     "ms-vscode.vscode-typescript-next",
     "ms-vsliveshare.vsliveshare-pack",
     "redhat.vscode-yaml",
-    "shardulm94.trailing-spaces"
+    "shardulm94.trailing-spaces",
+    "wix.vscode-import-cost"
   ],
 
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.

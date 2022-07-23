@@ -1,5 +1,5 @@
 {
-  "name": "@mock/stubby",
+  "name": "@service/stubby",
   "private": true,
   "version": "0.0.0",
   "dependencies": {
@@ -7,7 +7,6 @@
   },
   "scripts": {
     "start:dev": "stubby -w --data data.yml",
-    "start:docker": "stubby -w --data data.yml --location 0.0.0.0",
-    "setup": "npm install"
+    "start:docker": "stubby -w --data data.yml --location 0.0.0.0"
   }
 }

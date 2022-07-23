@@ -3,7 +3,7 @@
 {
   "name": "Docker from Docker Compose",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
+  "service": "workspace",
   "workspaceFolder": "/workspace",
 
   // Use this environment variable if you need to bind mount your local source code into a new container.
@@ -20,24 +20,28 @@
         "editorconfig.editorconfig",
         "esbenp.prettier-vscode",
         "gitHub.codespaces",
+        "GraphQL.vscode-graphql",
+        "hashicorp.hcl",
+        "mikestead.dotenv",
         "ms-azuretools.vscode-docker",
         "ms-vscode-remote.remote-containers",
         "ms-vscode.vscode-typescript-next",
         "ms-vsliveshare.vsliveshare-pack",
         "redhat.vscode-yaml",
-        "shardulm94.trailing-spaces"
+        "shardulm94.trailing-spaces",
+        "wix.vscode-import-cost"
       ]
     }
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [],
+  "forwardPorts": [8080],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "npm run setup",
+  // "postCreateCommand": "npm run setup",
 
   // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode",
+  // "remoteUser": "vscode",
   "features": {
     "git": "latest",
     "node": "18.3.0"
