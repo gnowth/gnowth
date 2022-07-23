@@ -6,7 +6,7 @@ version: '3'
 services:
   gateway:
     container_name: gateway
-    image: nginx:1.19.9
+    image: nginx:1.23.1
     volumes:
       - ./nginx:/etc/nginx/templates
     ports:
