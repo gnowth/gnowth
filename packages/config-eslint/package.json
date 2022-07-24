@@ -1,7 +1,7 @@
 {
   "author": "Thierry Wong",
   "description": "Eslint configs",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "main": "hybrid-react.js",
   "module": "hybrid-react.js",
   "name": "@gnowth/eslint-config",

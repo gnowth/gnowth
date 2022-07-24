@@ -1,7 +1,7 @@
 {
   "author": "Thierry Wong",
   "description": "Typescript config",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "main": "tsconfig.json",
   "module": "tsconfig.json",
   "name": "@gnowth/typescript-config",

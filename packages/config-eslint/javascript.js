@@ -27,7 +27,7 @@ module.exports = {
   plugins: ['eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
   settings: {
-    'import/extensions': ['.js', '.json'],
+    'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
   },
 
   rules: {

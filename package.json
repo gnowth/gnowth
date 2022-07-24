@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "bugs": "https://github.com/gnowth/smart/issues",
   "description": "Boilerplate",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "name": "gnowth",
   "prettier": "@gnowth/prettier-config",
   "private": true,
@@ -26,6 +26,9 @@
     "node": "18.3.0",
     "npm": "8.11.0"
   },
+  "jest": {
+    "preset": "@gnowth/jest-config"
+  },
   "lint-staged": {
     "*.{css,json,md,scss}": "prettier --write",
     "*.{js,jsx,ts,tsx}": "eslint --fix"
@@ -42,6 +45,7 @@
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
     "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "concurrently": "7.3.0",
@@ -53,7 +57,8 @@
     "npm-check-updates": "15.3.4",
     "serve": "14.0.1",
     "start-server-and-test": "1.14.0",
-    "surge": "0.23.1"
+    "surge": "0.23.1",
+    "ts-jest": "28.0.7"
   },
   "devDependencies": {
     "eslint": "8.20.0",
@@ -92,19 +97,20 @@
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:clean:modules": "lerna clean --yes",
     "local:clean:temp": "lerna run clean:temp && lerna run clean:log && rm -rf coverage",
-    "local:dev": "npm run project:nextjs dev",
-    "local:dev:cms": "concurrently 'netlify-cms-proxy-server' 'npm run project:nextjs dev'",
     "local:format": "prettier --write **/*.{js,jsx,ts,tsx,css,json,md,scss}",
-    "local:lint": "eslint --ext js,jsx,ts,tsx,mdx .",
+    "local:lint": "eslint --ext js,jsx,cjs,mjs,ts,tsx,mdx .",
+    "local:start:dev": "npm run project:nextjs start:dev",
+    "local:start:dev:cms": "concurrently 'netlify-cms-proxy-server' 'npm run project:nextjs start:dev'",
     "local:start:docker": "docker-compose -f ./configs/docker-compose.yml up",
     "local:test:regression": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:regression",
     "local:test:smoke": "CYPRESS_BASEURL=http://localhost:3000 npm run project:cypress test:smoke",
-    "local:test:unit": "echo Test",
+    "local:test:unit": "jest",
     "local:typecheck": "tsc",
     "local:verify": "npm run local:lint && npm run local:typecheck && npm run local:test:unit",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "project:cypress": "npm run --workspace=@boilerplate/cypress",
     "project:eslint": "npm run --workspace=@gnowth/eslint-config",
+    "project:nestjs": "npm run --workspace=@boilerplate/nestjs",
     "project:nextjs": "npm run --workspace=@boilerplate/nextjs",
     "project:prettier": "npm run --workspace=@gnowth/prettier-config",
     "project:typescript": "npm run --workspace=@gnowth/typescript-config",

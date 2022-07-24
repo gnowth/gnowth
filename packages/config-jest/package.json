@@ -1,0 +1,35 @@
+{
+  "author": "Thierry Wong",
+  "description": "Jest configs",
+  "license": "AGPL-3.0-only",
+  "main": "jest-preset.js",
+  "module": "jest-preset.js",
+  "name": "@gnowth/jest-config",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config"
+    ]
+  },
+  "dependencies": {
+    "@jest/globals": "28.1.3",
+    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/react": "13.3.0",
+    "@testing-library/react-hooks": "8.0.1",
+    "@types/jest": "28.1.6",
+    "babel-jest": "28.1.3",
+    "jest": "28.1.3",
+    "ts-jest": "28.0.7"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0"
+  },
+  "scripts": {
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext .js ."
+  }
+}
