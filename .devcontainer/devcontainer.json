@@ -44,6 +44,6 @@
   // "remoteUser": "vscode",
   "features": {
     "git": "latest",
-    "node": "18.3.0"
+    "node": "18.6.0"
   }
 }

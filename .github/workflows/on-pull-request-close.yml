@@ -13,7 +13,7 @@ jobs:
   # Phase 1: Clean preview environment
   clean_preview:
     container:
-      image: node:18.3.0-buster-slim
+      image: node:18.6.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
