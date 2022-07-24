@@ -5,7 +5,7 @@ on: workflow_dispatch
 env:
   ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
   CYPRESS_BASEURL: https://gnowth-boilerplate-dev.surge.sh
-  NODE_VERSION: 18.3.0
+  NODE_VERSION: 18.6.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
