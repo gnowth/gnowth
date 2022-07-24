@@ -1,4 +1,7 @@
 {
-  "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "extends": "@gnowth/typescript-config/tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "dist" // https://github.com/microsoft/TypeScript/issues/29172
+  },
+  "exclude": ["node_modules", "dist", "**/*test.ts"]
 }

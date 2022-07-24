@@ -1,7 +1,7 @@
 {
   "author": "Thierry Wong",
   "description": "Boilerplate for end to end with cypress",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "name": "@boilerplate/cypress",
   "prettier": "@gnowth/prettier-config",
   "private": true,
@@ -18,8 +18,8 @@
     "url": "https://github.com/gnowth/smart.git"
   },
   "dependencies": {
-    "cypress": "9.7.0",
-    "del": "6.1.1",
+    "cypress": "10.3.1",
+    "del": "7.0.0",
     "local-cypress": "1.2.6"
   },
   "devDependencies": {
@@ -30,13 +30,13 @@
   "scripts": {
     "clean:temp": "rm -rf cypress/media",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts .",
-    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json",
-    "test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser chrome",
-    "test:regression:chrome:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser chrome",
-    "test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.regression.json --headless --browser firefox",
-    "test:regression:firefox:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.regression.json --headless --browser firefox",
-    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.smoke.json",
+    "lint:script": "eslint --ext .mjs,ts .",
+    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs",
+    "test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs --headless --browser chrome",
+    "test:regression:chrome:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.mjs --headless --browser chrome",
+    "test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs --headless --browser firefox",
+    "test:regression:firefox:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.mjs --headless --browser firefox",
+    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.smoke.mjs",
     "typecheck": "tsc"
   }
 }

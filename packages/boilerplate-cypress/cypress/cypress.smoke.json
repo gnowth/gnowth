@@ -1,6 +1,0 @@
-{
-  "ignoreTestFiles": "*.regression.ts",
-  "screenshotsFolder": "cypress/media",
-  "videoCompression": false,
-  "videosFolder": "cypress/media"
-}

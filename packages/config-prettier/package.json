@@ -1,7 +1,7 @@
 {
   "author": "Thierry Wong",
   "description": "Prettier configs",
-  "license": "MIT",
+  "license": "AGPL-3.0-only",
   "main": ".prettierrc.json",
   "name": "@gnowth/prettier-config",
   "private": false,

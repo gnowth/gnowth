@@ -1,8 +1,9 @@
-import { INestApplication } from '@nestjs/common'
+import { expect } from '@jest/globals'
 import { Test } from '@nestjs/testing'
+import { INestApplication } from '@nestjs/common'
 import request from 'supertest'
 
-import { AppModule } from '../src/app.module'
+import { AppModule } from './app.module'
 
 describe('AppController (e2e)', () => {
   let app: INestApplication
@@ -16,9 +17,10 @@ describe('AppController (e2e)', () => {
     await app.init()
   })
 
-  // DEBT: find a better way to disable this for supertest
-  // eslint-disable-next-line jest/expect-expect
-  it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/').expect(200).expect('Hello World!')
+  it('/ (GET)', async () => {
+    const response = await request(app.getHttpServer()).get('/')
+
+    expect(response.status).toBe(200)
+    expect(response.text).toBe('Hello World!')
   })
 })
