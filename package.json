@@ -39,7 +39,8 @@
     ],
     "ignoreDeps": [
       "npm"
-    ]
+    ],
+    "rebaseWhen": "conflicted"
   },
   "dependencies": {
     "@commitlint/cli": "17.0.3",
