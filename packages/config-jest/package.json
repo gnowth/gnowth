@@ -30,6 +30,6 @@
   },
   "scripts": {
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js ."
+    "lint:script": "eslint --ext js ."
   }
 }

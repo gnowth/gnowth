@@ -41,13 +41,12 @@
   },
   "scripts": {
     "build": "cp ../../LICENSE LICENSE && nest build",
-    "clean:temp": "rm -rf dist && rm -rf LICENSE",
+    "clean:temp": "rm -rf LICENSE && rm -rf dist",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js,.ts,.jsx,.tsx .",
-    "start": "nest start",
+    "lint:script": "eslint --ext js,jsx,ts,tsx .",
+    "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
     "test": "jest",
     "test:watch": "jest --watch"
   }

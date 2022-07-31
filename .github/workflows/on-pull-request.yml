@@ -38,13 +38,13 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run workspaces:build:dev
+        run: npm run ci:build:dev
 
       - name: End to end test using mock
-        run: npm run ci:test:mock
+        run: npm run ci:e2e:mock
 
       - name: Deploy to preview
-        run: npm run ci:deploy
+        run: npm run cd:website:deploy
 
       - name: Comment on PR with deploy link
         uses: marocchino/sticky-pull-request-comment@v2
@@ -54,7 +54,7 @@ jobs:
           recreate: true
 
       - name: End to end smoke test
-        run: npm run ci:test:smoke
+        run: npm run ci:e2e:smoke
 
       - name: Upload test artifact
         if: failure()

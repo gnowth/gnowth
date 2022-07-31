@@ -30,13 +30,14 @@
   "scripts": {
     "clean:temp": "rm -rf cypress/media",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .mjs,ts .",
-    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs",
+    "lint:script": "eslint --ext mjs,ts .",
+    "test:mock": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.mock.mjs --headless",
+    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs --headless",
     "test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs --headless --browser chrome",
     "test:regression:chrome:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.mjs --headless --browser chrome",
     "test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.mjs --headless --browser firefox",
     "test:regression:firefox:mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.mjs --headless --browser firefox",
-    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.smoke.mjs",
+    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.smoke.mjs --headless",
     "typecheck": "tsc"
   }
 }

@@ -109,23 +109,23 @@ jobs:
         run: npm run ci:setup
 
       - name: Database backup
-        run: npm run ci:database:backup
+        run: npm run cd:database:backup
 
       - name: Provision given environment
         if: github.event.inputs.skip_provision == 'no'
-        run: npm run ci:infrastructure:provision
+        run: npm run cd:infrastructure:provision
 
       - name: Deploy to given environment
         if: github.event.inputs.skip_deploy == 'no'
-        run: npm run ci:deploy
+        run: npm run cd:website:deploy
 
       - name: Database migrate
         if: github.event.inputs.skip_migration == 'no'
-        run: npm run ci:database:migrate
+        run: npm run cd:database:migrate
 
       - name: Clean up temporary infrastructure
         if: github.event.inputs.skip_provision == 'no'
-        run: npm run ci:infrastructure:clean:temp
+        run: npm run cd:infrastructure:cleanup
 
   # Phase 3: End to end regression test
   e2e_regression:
@@ -139,13 +139,13 @@ jobs:
       matrix:
         include:
           - title: chrome
-            command: npm run ci:test:regression:chrome
+            command: npm run ci:e2e:regression:chrome
           - title: chrome-mobile
-            command: npm run ci:test:regression:chrome:mobile
+            command: npm run ci:e2e:regression:chrome:mobile
           - title: firefox
-            command: npm run ci:test:regression:firefox
+            command: npm run ci:e2e:regression:firefox
           - title: firefox-mobile
-            command: npm run ci:test:regression:firefox:mobile
+            command: npm run ci:e2e:regression:firefox:mobile
     steps:
       - uses: actions/setup-node@v3
         with:

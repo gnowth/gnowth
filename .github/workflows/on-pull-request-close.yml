@@ -32,4 +32,4 @@ jobs:
         run: npm run ci:setup
 
       - name: Clean preview environment
-        run: npm run ci:deploy:cleanup
+        run: npm run cd:website:deploy:cleanup

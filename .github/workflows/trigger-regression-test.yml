@@ -46,13 +46,13 @@ jobs:
       matrix:
         include:
           - title: chrome
-            command: npm run ci:test:regression:chrome
+            command: npm run ci:e2e:regression:chrome
           - title: chrome-mobile
-            command: npm run ci:test:regression:chrome:mobile
+            command: npm run ci:e2e:regression:chrome:mobile
           - title: firefox
-            command: npm run ci:test:regression:firefox
+            command: npm run ci:e2e:regression:firefox
           - title: firefox-mobile
-            command: npm run ci:test:regression:firefox:mobile
+            command: npm run ci:e2e:regression:firefox:mobile
     steps:
       - uses: actions/setup-node@v3
         with:

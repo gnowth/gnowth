@@ -45,7 +45,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Lint workspaces
-        run: npm run workspaces:lint
+        run: npm run ci:check:lint
 
   test:
     container:
@@ -68,7 +68,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Test workspaces
-        run: npm run workspaces:test
+        run: npm run ci:check:test
 
   typecheck:
     container:
@@ -91,7 +91,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Type check workspaces
-        run: npm run workspaces:typecheck
+        run: npm run ci:check:typecheck
 
   build:
     container:
@@ -115,7 +115,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run workspaces:build
+        run: npm run ci:build
 
   build_and_e2e_mock:
     container:
@@ -143,10 +143,10 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run workspaces:build
+        run: npm run ci:build
 
       - name: End to end test using mock
-        run: npm run ci:test:mock
+        run: npm run ci:e2e:mock
 
       - name: Upload test artifact
         if: failure()
