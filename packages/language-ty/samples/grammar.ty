@@ -1,0 +1,243 @@
+// Language: ty
+
+// Section: constants and variables
+// Section: types and optional
+// Section: error handling
+// Section: control flow
+// Section: events
+// Section: operations
+// Section: streams
+// Section: collections
+// Section: context
+// Section: function
+// Section: enum
+// Section: class
+// Section: pointer and reference
+// Section: protocol
+// Section: generic
+// Section: concurrency
+// Section: document
+// Section: module
+// Section: pre processor and environment variables
+// Section: language versioning and scaling
+// Section: brainstorming
+
+// Section: constants and variables
+// note: infer to number
+let maximumNumberOfLoginAttempts = 10
+
+// variable and mutation
+var currentLoginAttempt = 'zero'
+currentLoginAttempt = 'two'
+
+// declaration and assignment
+var welcomeMessage: String
+welcomeMessage = 'some message'
+
+// multiple declaration
+var x = 0.0, y = 0.0, z = 0.0
+var x, y, z: String
+
+// Types: should we have Int, Signed and Unsigned etc...
+var string: String
+var number: Number
+var boolean: Boolean
+
+// optional
+var object: Class? = nil
+
+// Section: types and optional
+let possibleString: String? = "An optional string."
+let forcedString: String = possibleString! // requires an exclamation point
+
+let assumedString: String! = "An implicitly unwrapped optional string."
+let implicitString: String = assumedString // no need for an exclamation point
+
+if let definiteString = assumedString {
+  print(definiteString)
+}
+
+// Section: error handling
+func canThrowAnError() throws {
+    // this function may or may not throw an error
+}
+
+do {
+  try canThrowAnError()
+  // no error was thrown
+} catch SandwichError.outOfCleanDishes {
+  // an error was thrown
+} catch {
+
+}
+
+// Section: function
+func someFunction() {
+  defer {
+
+  }
+
+  catch {
+
+  }
+}
+
+func someFunction() {
+
+} catch someError {
+
+} finally {
+
+}
+
+// Section: concurrency
+// Defining and Calling Asynchronous Functions
+func asyncFunction() async -> [String] {
+  let result = await someAsyncFunction()
+
+  return result
+}
+
+// Calling Asynchronous Functions in Parallel
+func asyncFunction() async -> [String] {
+  async let firstPhoto = downloadPhoto(named: photoNames[0])
+  async let secondPhoto = downloadPhoto(named: photoNames[1])
+  async let thirdPhoto = downloadPhoto(named: photoNames[2])
+
+  return await [firstPhoto, secondPhoto, thirdPhoto]
+}
+
+// handling failure in async?
+// handling cancellation
+
+// Threads?
+
+// Section: document
+document Html {}
+document Xml {}
+document Regex {}
+document Query {}
+document Sql {}
+document Hcl {}
+document Mermaid {}
+document PlantUML {}
+document Json {}
+document Yaml {}
+document Css {}
+document Env {}
+document Javascript {} // provide an integration interface as well (whatever that means), so that the compiler can test. and maybe some types as well
+document Java {} // to be able to call function export from it?
+document Markdown {
+  renderHtml() { // must make sure not to protect against circular dependencies
+    return Html {}
+  }
+} // someway to use it within other document?
+
+let string = 'string'
+let doc = Html {
+  <div>
+    {string}
+  </div>
+}
+
+let anotherDoc = Html {
+  <div>
+    {doc}
+  </div>
+}
+
+let someMarkdown = Markdown {
+  # title
+  body {string}
+}
+
+func SomeDoc(props: Props) {
+  return Html {
+    <div>
+      {props.property}
+
+      <Markdown>
+        {someMarkdown}
+      </Markdown>
+    </div>
+  }
+}
+
+func AnotherDoc() {
+  return Html {
+    <SomeDoc />
+  }
+}
+
+// Section: module
+import and dynamic import
+
+
+// Section: brainstorming
+func function() {
+  var variableString = 'sdfg'
+  var variableStringDouble = "dfjidfjig"
+  var variableNumber = 5
+  var variableObject = {}
+  let constantNumber = generateNumber()
+
+  return ''
+}
+
+class Class extends Class1 implements Protocol, Protocol1 {
+  static staticMethod() {}
+
+  constructor() {}
+
+  method() {}
+}
+
+protocol Protocol extends Protocol1 {
+  item?: string
+  method() {}
+}
+
+import SomeHtml from './html-sample.html' // make it support adding props like front matter in markdown
+
+func generateHtml() {
+  let constant = "string"
+
+  return Html {
+    <div>
+      {constant}
+
+      <SomeHtml prop1={345} prop2={false} />
+    </div>
+  }
+}
+
+func generateRegex() {
+  return Regex {}
+}
+
+func generateObject() {
+  return Object {
+    name: 'some',
+    field: 'field',
+  }
+}
+
+import SomeMarkdown from 'sample.md'
+
+func generateMarkdown() {
+  var variable = 'text'
+
+  return Markdown {
+    # title
+
+    ## Hello {variable}
+
+    <SomeMarkdown prop1="value" />
+  }
+}
+
+let r = do {
+  if x == 5 { return 45 }
+  elif x == 6 { return 65 }
+  else { return 56 }
+}

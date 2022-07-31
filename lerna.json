@@ -10,5 +10,6 @@
   },
   "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.md"],
   "packages": [".", "packages/*"],
+  "useWorkspaces": true,
   "version": "independent"
 }
