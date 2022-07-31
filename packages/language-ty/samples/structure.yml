@@ -1,0 +1,1726 @@
+swift:
+  structure:
+    patterns:
+      - include: '#root'
+    repository:
+      async-throws:
+      attributes:
+        patterns:
+          - include: '#literals'
+          - include: '#expressions'
+      builtin-functions:
+      builtin-global-functions:
+        patterns:
+          - include: '#expressions'
+      builtin-properties:
+      builtin-types:
+        patterns:
+          - include: '#builtin-class-type'
+          - include: '#builtin-enum-type'
+          - include: '#builtin-protocol-type'
+          - include: '#builtin-struct-type'
+          - include: '#builtin-typealias'
+        repository:
+          builtin-class-type:
+          builtin-enum-type:
+          builtin-protocol-type:
+          builtin-struct-type:
+          builtin-typealias:
+      code-block:
+        patterns:
+          - include: $self
+      comments:
+        patterns:
+          - include: '#nested'
+        repository:
+          nested:
+            patterns:
+              - include: '#nested'
+      compiler-control:
+        patterns:
+          - include: '#literals'
+      declarations:
+        patterns:
+          - include: '#function'
+          - include: '#function-initializer'
+          - include: '#typed-variable-declaration'
+          - include: '#import'
+          - include: '#operator'
+          - include: '#precedencegroup'
+          - include: '#protocol'
+          - include: '#type'
+          - include: '#extension'
+          - include: '#typealias'
+        repository:
+          available-types:
+            patterns:
+              - include: '#comments'
+              - include: '#builtin-types'
+              - include: '#attributes'
+              - include: '#tuple-type'
+              - include: '#collection-type'
+              - include: '#generic-argument-clause'
+            repository:
+              collection-type:
+                patterns:
+                  - include: '#available-types'
+                    patterns:
+                      - include: '#available-types'
+              tuple-type:
+                patterns:
+                  - include: '#available-types'
+          extension:
+            patterns:
+              - include: '#available-types'
+              - include: '#comments'
+              - include: '#generic-where-clause'
+              - include: '#inheritance-clause'
+                patterns:
+                  - include: $self
+          function:
+            patterns:
+              - include: '#comments'
+              - include: '#generic-parameter-clause'
+              - include: '#parameter-clause'
+              - include: '#function-result'
+              - include: '#async-throws'
+              - include: '#generic-where-clause'
+                patterns:
+                  - include: $self
+          function-initializer:
+            patterns:
+              - include: '#comments'
+              - include: '#generic-parameter-clause'
+              - include: '#parameter-clause'
+              - include: '#async-throws'
+              - include: '#generic-where-clause'
+                patterns:
+                  - include: $self
+          function-result:
+            patterns:
+              - include: '#available-types'
+          generic-argument-clause:
+            patterns:
+              - include: '#available-types'
+          generic-parameter-clause:
+            patterns:
+              - include: '#comments'
+              - include: '#generic-where-clause'
+                patterns:
+                  - include: '#type-identifier'
+          generic-where-clause:
+            patterns:
+              - include: '#comments'
+              - include: '#requirement-list'
+            repository:
+              requirement-list:
+                patterns:
+                  - include: '#comments'
+                  - include: '#constraint'
+                  - include: '#available-types'
+                    patterns:
+                      - include: '#available-types'
+          import:
+          inheritance-clause:
+            patterns:
+              - include: '#comments'
+              - include: '#inherited-type'
+              - include: '#more-types'
+            repository:
+              inherited-type:
+                patterns:
+                  - include: '#type-identifier'
+              more-types:
+                patterns:
+                  - include: '#comments'
+                  - include: '#inherited-type'
+                  - include: '#more-types'
+          operator:
+            patterns:
+              - include: '#swift2'
+              - include: '#swift3'
+            repository:
+              swift2:
+                patterns:
+                  - include: '#comments'
+              swift3:
+                patterns:
+                  - include: '#types-precedencegroup'
+          parameter-clause:
+            patterns:
+              - include: '#parameter-list'
+          parameter-list:
+            patterns:
+              - include: '#available-types'
+                patterns:
+                  - include: '#expressions'
+          precedencegroup:
+            patterns:
+              - include: '#comments'
+              - include: '#types-precedencegroup'
+          protocol:
+            patterns:
+              - include: '#comments'
+              - include: '#inheritance-clause'
+              - include: '#generic-where-clause'
+                patterns:
+                  - include: '#protocol-method'
+                  - include: '#protocol-initializer'
+                  - include: '#associated-type'
+                  - include: $self
+            repository:
+              associated-type:
+                patterns:
+                  - include: '#inheritance-clause'
+                  - include: '#generic-where-clause'
+                  - include: '#typealias-assignment'
+              protocol-initializer:
+                patterns:
+                  - include: '#comments'
+                  - include: '#generic-parameter-clause'
+                  - include: '#parameter-clause'
+                  - include: '#async-throws'
+                  - include: '#generic-where-clause'
+                    patterns:
+                      - include: $self
+              protocol-method:
+                patterns:
+                  - include: '#comments'
+                  - include: '#generic-parameter-clause'
+                  - include: '#parameter-clause'
+                  - include: '#function-result'
+                  - include: '#async-throws'
+                  - include: '#generic-where-clause'
+                    patterns:
+                      - include: $self
+          type:
+            patterns:
+              - include: '#comments'
+              - include: '#generic-parameter-clause'
+              - include: '#generic-where-clause'
+              - include: '#inheritance-clause'
+                patterns:
+                  - include: $self
+              - include: '#type-enum'
+          type-enum:
+            patterns:
+              - include: '#comments'
+              - include: '#generic-parameter-clause'
+              - include: '#generic-where-clause'
+              - include: '#inheritance-clause'
+                patterns:
+                  - include: '#enum-case-clause'
+                  - include: $self
+            repository:
+              associated-values:
+                patterns:
+                  - include: '#comments'
+                    patterns:
+                      - include: '#available-types'
+              enum-case:
+                patterns:
+                  - include: '#comments'
+                  - include: '#associated-values'
+                  - include: '#raw-value-assignment'
+              enum-case-clause:
+                patterns:
+                  - include: '#comments'
+                  - include: '#enum-case'
+                  - include: '#more-cases'
+              more-cases:
+                patterns:
+                  - include: '#comments'
+                  - include: '#enum-case'
+                  - include: '#more-cases'
+              raw-value-assignment:
+                patterns:
+                  - include: '#comments'
+                  - include: '#literals'
+          type-identifier:
+            patterns:
+              - include: '#builtin-types'
+              - include: '#generic-argument-clause'
+          typealias:
+            patterns:
+              - include: '#generic-parameter-clause'
+              - include: '#typealias-assignment'
+          typealias-assignment:
+            patterns:
+              - include: '#available-types'
+          typed-variable-declaration:
+            patterns:
+              - include: '#available-types'
+          types-precedencegroup:
+            patterns:
+      expressions:
+        patterns:
+          - include: '#comments'
+          - include: '#code-block'
+          - include: '#attributes'
+          - include: '#closure-parameter'
+          - include: '#literals'
+          - include: '#operators'
+          - include: '#builtin-types'
+          - include: '#builtin-functions'
+          - include: '#builtin-global-functions'
+          - include: '#builtin-properties'
+          - include: '#compound-name'
+          - include: '#keywords'
+          - include: '#function-call-expression'
+          - include: '#subscript-expression'
+          - include: '#parenthesized-expression'
+          - include: '#member-reference'
+          - include: '#availability-condition'
+        repository:
+          availability-condition:
+          closure-parameter:
+          compound-name:
+          expression-element-list:
+            patterns:
+              - include: '#comments'
+                patterns:
+                  - include: '#expressions'
+          function-call-expression:
+            patterns:
+              - include: '#expression-element-list'
+          member-reference:
+          parenthesized-expression:
+            patterns:
+              - include: '#async-throws'
+              - include: '#expression-element-list'
+          subscript-expression:
+            patterns:
+              - include: '#expression-element-list'
+      keywords:
+      literals:
+        patterns:
+          - include: '#boolean'
+          - include: '#numeric'
+          - include: '#string'
+            patterns:
+              - include: '#expressions'
+        repository:
+          boolean:
+          numeric:
+          string:
+            patterns:
+              - include: '#string-guts'
+              - include: '#raw-string-guts'
+            repository:
+              raw-string-guts:
+                patterns:
+                  - include: $self
+              string-guts:
+                patterns:
+                  - include: $self
+      operators:
+      root:
+        patterns:
+          - include: '#compiler-control'
+          - include: '#declarations'
+          - include: '#expressions'
+
+  includes:
+    - include: '#associated-type'
+    - include: '#associated-values'
+    - include: '#availability-condition'
+    - include: '#boolean'
+    - include: '#builtin-class-type'
+    - include: '#builtin-enum-type'
+    - include: '#builtin-functions'
+    - include: '#builtin-global-functions'
+    - include: '#builtin-properties'
+    - include: '#builtin-protocol-type'
+    - include: '#builtin-struct-type'
+    - include: '#builtin-typealias'
+    - include: '#closure-parameter'
+    - include: '#code-block'
+    - include: '#collection-type'
+    - include: '#compiler-control'
+    - include: '#compound-name'
+    - include: '#constraint'
+    - include: '#declarations'
+    - include: '#enum-case-clause'
+    - include: '#extension'
+    - include: '#function-call-expression'
+    - include: '#function-initializer'
+    - include: '#function'
+    - include: '#import'
+    - include: '#keywords'
+    - include: '#member-reference'
+    - include: '#numeric'
+    - include: '#operator'
+    - include: '#operators'
+    - include: '#parameter-list'
+    - include: '#parenthesized-expression'
+    - include: '#precedencegroup'
+    - include: '#protocol-initializer'
+    - include: '#protocol-method'
+    - include: '#protocol'
+    - include: '#raw-value-assignment'
+    - include: '#requirement-list'
+    - include: '#root'
+    - include: '#string'
+    - include: '#subscript-expression'
+    - include: '#swift2'
+    - include: '#swift3'
+    - include: '#tuple-type'
+    - include: '#type-enum'
+    - include: '#type'
+    - include: '#typealias'
+    - include: '#typed-variable-declaration'
+    - include: '+#async-throws'
+    - include: '+#attributes'
+    - include: '+#available-types'
+    - include: '+#builtin-types'
+    - include: '+#comments'
+    - include: '+#enum-case'
+    - include: '+#expression-element-list'
+    - include: '+#expressions'
+    - include: '+#function-result'
+    - include: '+#generic-argument-clause'
+    - include: '+#generic-parameter-clause'
+    - include: '+#inheritance-clause'
+    - include: '+#inherited-type'
+    - include: '+#literals'
+    - include: '+#more-cases'
+    - include: '+#nested'
+    - include: '+#parameter-clause'
+    - include: '+#raw-string-guts'
+    - include: '+#string-guts'
+    - include: '+#type-identifier'
+    - include: '+#typealias-assignment'
+    - include: '+#types-precedencegroup'
+
+  names:
+    - name: comment.block.documentation.playground.swift
+    - name: comment.block.documentation.swift
+    - name: comment.block.swift
+    - name: comment.line.double-slash.documentation.swift
+    - name: comment.line.double-slash.swift
+    - name: comment.line.number-sign.swift
+    - name: comment.line.triple-slash.documentation.swift
+    - name: constant.character.escape.newline.swift
+    - name: constant.character.escape.swift
+    - name: constant.character.escape.unicode.swift
+    - name: constant.language.boolean.swift
+    - name: constant.language.nil.swift
+    - name: constant.numeric.float.decimal.swift
+    - name: constant.numeric.float.hexadecimal.swift
+    - name: constant.numeric.integer.binary.swift
+    - name: constant.numeric.integer.decimal.swift
+    - name: constant.numeric.integer.hexadecimal.swift
+    - name: constant.numeric.integer.octal.swift
+    - name: constant.numeric.integer.swift
+    - name: constant.numeric.swift
+    - name: constant.other.swift
+    - name: entity.name.function.compound-name.swift
+    - name: entity.name.function.operator.swift
+    - name: entity.name.function.swift
+    - name: entity.name.type.$1.swift
+    - name: entity.name.type.module.swift
+    - name: entity.name.type.precedencegroup.swift
+    - name: entity.name.type.swift
+    - name: entity.name.type.typealias.swift
+    - name: entity.other.inherited-class.swift
+    - name: invalid.illegal.await-must-precede-throws.swift
+    - name: invalid.illegal.character-not-allowed-here.swift
+    - name: invalid.illegal.content-after-opening-delimiter.swift
+    - name: invalid.illegal.content-before-closing-delimiter.swift
+    - name: invalid.illegal.distinct-labels-not-allowed.swift
+    - name: invalid.illegal.dot-not-allowed-here.swift
+    - name: invalid.illegal.empty-inheritance-clause.swift
+    - name: invalid.illegal.escape-not-recognized
+    - name: invalid.illegal.extra-closing-delimiter.swift
+    - name: invalid.illegal.extra-colon-in-dictionary-type.swift
+    - name: invalid.illegal.extra-colon-in-parameter-list.swift
+    - name: invalid.illegal.function-body-not-allowed-in-protocol.swift
+    - name: invalid.illegal.missing-colon-after-selector-piece.swift
+    - name: invalid.illegal.numeric.float.invalid-exponent.swift
+    - name: invalid.illegal.numeric.float.missing-exponent.swift
+    - name: invalid.illegal.numeric.float.missing-leading-zero.swift
+    - name: invalid.illegal.numeric.leading-underscore.swift
+    - name: invalid.illegal.numeric.other.swift
+    - name: invalid.illegal.rethrows-only-allowed-on-function-declarations.swift
+    - name: invalid.illegal.returns-not-allowed.swift
+    - name: invalid.illegal.try-must-precede-await.swift
+    - name: invalid.illegal.unexpected-end-of-block-comment.swift
+    - name: keyword.control.async.swift
+    - name: keyword.control.await.swift
+    - name: keyword.control.branch.swift
+    - name: keyword.control.defer.swift
+    - name: keyword.control.exception.swift
+    - name: keyword.control.import.swift
+    - name: keyword.control.loop.swift
+    - name: keyword.control.preprocessor.conditional.swift
+    - name: keyword.control.preprocessor.sourcelocation.swift
+    - name: keyword.control.transfer.swift
+    - name: keyword.operator.arithmetic.overflow.swift
+    - name: keyword.operator.arithmetic.remainder.swift
+    - name: keyword.operator.arithmetic.swift
+    - name: keyword.operator.arithmetic.unary.swift
+    - name: keyword.operator.assignment.compound.swift
+    - name: keyword.operator.assignment.swift
+    - name: keyword.operator.bitwise.not.swift
+    - name: keyword.operator.bitwise.swift
+    - name: keyword.operator.coalescing.swift
+    - name: keyword.operator.comparison.swift
+    - name: keyword.operator.custom.infix.dot.swift
+    - name: keyword.operator.custom.infix.swift
+    - name: keyword.operator.custom.postfix.dot.swift
+    - name: keyword.operator.custom.postfix.swift
+    - name: keyword.operator.custom.prefix.dot.swift
+    - name: keyword.operator.custom.prefix.swift
+    - name: keyword.operator.function-result.swift
+    - name: keyword.operator.function.variadic-parameter.swift
+    - name: keyword.operator.generic-constraint.conforms-to.swift
+    - name: keyword.operator.generic-constraint.same-type.swift
+    - name: keyword.operator.increment-or-decrement.swift
+    - name: keyword.operator.logical.not.swift
+    - name: keyword.operator.logical.swift
+    - name: keyword.operator.logical.swift
+    - name: keyword.operator.range.swift
+    - name: keyword.operator.ternary.swift
+    - name: keyword.operator.type-casting.swift
+    - name: keyword.operator.type.composition.swift
+    - name: keyword.operator.type.existential.swift
+    - name: keyword.operator.type.function.swift
+    - name: keyword.operator.type.metatype.swift
+    - name: keyword.operator.type.opaque.swift
+    - name: keyword.operator.type.optional.swift
+    - name: keyword.operator.type.swift
+    - name: keyword.other.capture-specifier.swift
+    - name: keyword.other.condition.swift
+    - name: keyword.other.declaration-specifier.accessibility.swift
+    - name: keyword.other.declaration-specifier.swift
+    - name: keyword.other.generic-constraint-introducer.swift
+    - name: keyword.other.operator.associativity.swift
+    - name: keyword.other.platform.all.swift
+    - name: keyword.other.platform.os.swift
+    - name: keyword.other.swift
+    - name: meta.arguments.attribute.swift
+    - name: meta.attribute.available.swift
+    - name: meta.attribute.objc.swift
+    - name: meta.attribute.swift
+    - name: meta.definition.associatedtype.swift
+    - name: meta.definition.function.body.swift
+    - name: meta.definition.function.initializer.swift
+    - name: meta.definition.function.swift
+    - name: meta.definition.operator.swift
+    - name: meta.definition.precedencegroup.swift
+    - name: meta.definition.type.$1.swift
+    - name: meta.definition.type.body.swift
+    - name: meta.definition.type.protocol.swift
+    - name: meta.definition.typealias.swift
+    - name: meta.embedded.line.swift
+    - name: meta.enum-case.more-cases
+    - name: meta.function-call.swift
+    - name: meta.function-result.swift
+    - name: meta.generic-argument-clause.swift
+    - name: meta.generic-parameter-clause.swift
+    - name: meta.generic-parameter-constraint.swift
+    - name: meta.generic-where-clause.conformance-requirement.swift
+    - name: meta.generic-where-clause.same-type-requirement.swift
+    - name: meta.generic-where-clause.swift
+    - name: meta.import.swift
+    - name: meta.inheritance-clause.swift
+    - name: meta.inheritance-list.more-types
+    - name: meta.parameter-clause.swift
+    - name: meta.preprocessor.conditional.swift
+    - name: meta.preprocessor.sourcelocation.swift
+    - name: meta.subscript-expression.swift
+    - name: meta.type-name.swift
+    - name: punctuation.definition.arguments.begin.swift
+    - name: punctuation.definition.arguments.end.swift
+    - name: punctuation.definition.attribute.swift
+    - name: punctuation.definition.comment.begin.swift
+    - name: punctuation.definition.comment.end.swift
+    - name: punctuation.definition.comment.swift
+    - name: punctuation.definition.entity.swift
+    - name: punctuation.definition.identifier.swift
+    - name: punctuation.definition.operator.begin.swift
+    - name: punctuation.definition.operator.end.swift
+    - name: punctuation.definition.parameters.begin.swift
+    - name: punctuation.definition.parameters.end.swift
+    - name: punctuation.definition.precedencegroup.begin.swift
+    - name: punctuation.definition.precedencegroup.end.swift
+    - name: punctuation.definition.preprocessor.swift
+    - name: punctuation.definition.string.begin.raw.swift
+    - name: punctuation.definition.string.begin.swift
+    - name: punctuation.definition.string.end.raw.swift
+    - name: punctuation.definition.string.end.swift
+    - name: punctuation.definition.type.begin.swift
+    - name: punctuation.definition.type.end.swift
+    - name: punctuation.section.collection-type.begin.swift
+    - name: punctuation.section.collection-type.end.swift
+    - name: punctuation.section.embedded.begin.swift
+    - name: punctuation.section.embedded.end.swift
+    - name: punctuation.section.function.begin.swift
+    - name: punctuation.section.function.end.swift
+    - name: punctuation.section.scope.begin.swift
+    - name: punctuation.section.scope.end.swift
+    - name: punctuation.section.tuple-type.begin.swift
+    - name: punctuation.section.tuple-type.end.swift
+    - name: punctuation.section.tuple.begin.swift
+    - name: punctuation.section.tuple.end.swift
+    - name: punctuation.separator.argument-label.begin.swift
+    - name: punctuation.separator.argument-label.swift
+    - name: punctuation.separator.generic-argument-clause.begin.swift
+    - name: punctuation.separator.generic-argument-clause.end.swift
+    - name: punctuation.separator.generic-parameter-clause.begin.swift
+    - name: punctuation.separator.generic-parameter-clause.end.swift
+    - name: punctuation.separator.generic-parameter-constraint.swift
+    - name: punctuation.separator.generic-parameters.swift
+    - name: punctuation.separator.import.swift
+    - name: punctuation.separator.inheritance-clause.swift
+    - name: punctuation.separator.key-value.swift
+    - name: punctuation.separator.parameters.swift
+    - name: punctuation.terminator.statement.swift
+    - name: punctuation.whitespace.comment.leading.swift
+    - name: punctuation.whitespace.trailing.do.swift
+    - name: punctuation.whitespace.trailing.repeat.swift
+    - name: source.swift
+    - name: storage.modifier.attribute.swift
+    - name: storage.modifier.swift
+    - name: storage.type.$1.swift
+    - name: storage.type.class.swift
+    - name: storage.type.enum.case.swift
+    - name: storage.type.function.operator.swift
+    - name: storage.type.function.swift
+    - name: storage.type.precedencegroup.swift
+    - name: string.quoted.double.block.raw.swift
+    - name: string.quoted.double.block.swift
+    - name: string.quoted.double.single-line.raw.swift
+    - name: string.quoted.double.single-line.swift
+    - name: support.class.swift
+    - name: support.constant.never.swift
+    - name: support.constant.platform.architecture.swift
+    - name: support.constant.platform.environment.swift
+    - name: support.constant.platform.os.swift
+    - name: support.constant.swift
+    - name: support.function.any-method.swift
+    - name: support.function.availability-condition.swift
+    - name: support.function.dynamic-type.swift
+    - name: support.function.key-path.swift
+    - name: support.function.object-literal.swift
+    - name: support.function.selector-reference.swift
+    - name: support.function.swift
+    - name: support.type.any.swift
+    - name: support.type.swift
+    - name: support.variable.discard-value.swift
+    - name: support.variable.parameter.swift
+    - name: support.variable.swift
+    - name: Swift
+    - name: variable.language.associatedtype.swift
+    - name: variable.language.closure-parameter.swift
+    - name: variable.language.generic-parameter.swift
+    - name: variable.language.swift
+    - name: variable.other.swift
+    - name: variable.parameter.function.swift
+
+typescript:
+  structure:
+    patterns:
+      - include: '#directives'
+      - include: '#statements'
+      - include: '#shebang'
+
+    repository:
+      shebang:
+
+      statements:
+        patterns:
+          - include: '#after-operator-block-as-object-literal'
+          - include: '#comment'
+          - include: '#control-statement'
+          - include: '#decl-block'
+          - include: '#declaration'
+          - include: '#expression'
+          - include: '#label'
+          - include: '#punctuation-semicolon'
+          - include: '#string'
+
+      declaration:
+        patterns:
+          - include: '#class-declaration'
+          - include: '#decorator'
+          - include: '#enum-declaration'
+          - include: '#export-declaration'
+          - include: '#function-declaration'
+          - include: '#import-declaration'
+          - include: '#import-equals-declaration'
+          - include: '#interface-declaration'
+          - include: '#namespace-declaration'
+          - include: '#type-alias-declaration'
+          - include: '#var-expr'
+
+      control-statement:
+        patterns:
+          - include: '#switch-statement'
+          - include: '#for-loop'
+            patterns:
+              - include: '#expression'
+          - include: '#if-statement'
+
+      label:
+        patterns:
+          - include: '#decl-block'
+
+      expression:
+        patterns:
+          - include: '#expressionWithoutIdentifiers'
+          - include: '#identifiers'
+          - include: '#expressionPunctuations'
+
+      expressionWithoutIdentifiers:
+        patterns:
+          - include: '#arrow-function'
+          - include: '#cast'
+          - include: '#class-expression'
+          - include: '#comment'
+          - include: '#expression-operators'
+          - include: '#function-call'
+          - include: '#function-expression'
+          - include: '#instanceof-expr'
+          - include: '#literal'
+          - include: '#new-expr'
+          - include: '#object-literal'
+          - include: '#paren-expression-possibly-arrow'
+          - include: '#paren-expression'
+          - include: '#regex'
+          - include: '#string'
+          - include: '#support-objects'
+          - include: '#ternary-expression'
+
+      expressionPunctuations:
+        patterns:
+          - include: '#punctuation-comma'
+          - include: '#punctuation-accessor'
+
+      decorator:
+        patterns:
+          - include: '#expression'
+
+      var-expr:
+        patterns:
+          - include: '#destructuring-variable'
+          - include: '#var-single-variable'
+          - include: '#variable-initializer'
+          - include: '#comment'
+            patterns:
+              - include: '#single-line-comment-consuming-line-ending'
+              - include: '#comment'
+              - include: '#destructuring-variable'
+              - include: '#var-single-variable'
+              - include: '#punctuation-comma'
+          - include: '#punctuation-comma'
+          - include: '#destructuring-const'
+          - include: '#var-single-const'
+          - include: '#variable-initializer'
+          - include: '#comment'
+            patterns:
+              - include: '#single-line-comment-consuming-line-ending'
+              - include: '#comment'
+              - include: '#destructuring-const'
+              - include: '#var-single-const'
+              - include: '#punctuation-comma'
+          - include: '#punctuation-comma'
+
+      var-single-variable:
+        patterns:
+          - include: '#var-single-variable-type-annotation'
+
+      var-single-const:
+        patterns:
+          - include: '#var-single-variable-type-annotation'
+
+      var-single-variable-type-annotation:
+        patterns:
+          - include: '#type-annotation'
+          - include: '#string'
+          - include: '#comment'
+
+      destructuring-variable:
+        patterns:
+          - include: '#object-binding-pattern'
+          - include: '#type-annotation'
+          - include: '#comment'
+          - include: '#array-binding-pattern'
+
+      destructuring-const:
+        patterns:
+          - include: '#object-binding-pattern-const'
+          - include: '#type-annotation'
+          - include: '#comment'
+          - include: '#array-binding-pattern-const'
+
+      object-binding-element:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#object-binding-element-propertyName'
+              - include: '#binding-element'
+          - include: '#object-binding-pattern'
+          - include: '#destructuring-variable-rest'
+          - include: '#variable-initializer'
+          - include: '#punctuation-comma'
+
+      object-binding-element-const:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#object-binding-element-propertyName'
+              - include: '#binding-element-const'
+          - include: '#object-binding-pattern-const'
+          - include: '#destructuring-variable-rest-const'
+          - include: '#variable-initializer'
+          - include: '#punctuation-comma'
+
+      object-binding-element-propertyName:
+        patterns:
+          - include: '#string'
+          - include: '#array-literal'
+          - include: '#numeric-literal'
+
+      binding-element:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#numeric-literal'
+          - include: '#regex'
+          - include: '#object-binding-pattern'
+          - include: '#array-binding-pattern'
+          - include: '#destructuring-variable-rest'
+          - include: '#variable-initializer'
+
+      binding-element-const:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#numeric-literal'
+          - include: '#regex'
+          - include: '#object-binding-pattern-const'
+          - include: '#array-binding-pattern-const'
+          - include: '#destructuring-variable-rest-const'
+          - include: '#variable-initializer'
+
+      destructuring-variable-rest:
+      destructuring-variable-rest-const:
+      object-binding-pattern:
+        patterns:
+          - include: '#object-binding-element'
+
+      object-binding-pattern-const:
+        patterns:
+          - include: '#object-binding-element-const'
+
+      array-binding-pattern:
+        patterns:
+          - include: '#binding-element'
+          - include: '#punctuation-comma'
+
+      array-binding-pattern-const:
+        patterns:
+          - include: '#binding-element-const'
+          - include: '#punctuation-comma'
+
+      parameter-name:
+      destructuring-parameter:
+        patterns:
+          patterns:
+            - include: '#parameter-object-binding-element'
+            - include: '#parameter-binding-element'
+            - include: '#punctuation-comma'
+
+      parameter-object-binding-element:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#object-binding-element-propertyName'
+              - include: '#parameter-binding-element'
+          - include: '#parameter-object-binding-pattern'
+          - include: '#destructuring-parameter-rest'
+          - include: '#variable-initializer'
+          - include: '#punctuation-comma'
+
+      parameter-binding-element:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#numeric-literal'
+          - include: '#regex'
+          - include: '#parameter-object-binding-pattern'
+          - include: '#parameter-array-binding-pattern'
+          - include: '#destructuring-parameter-rest'
+          - include: '#variable-initializer'
+
+      destructuring-parameter-rest:
+      parameter-object-binding-pattern:
+        patterns:
+          - include: '#parameter-object-binding-element'
+
+      parameter-array-binding-pattern:
+        patterns:
+          - include: '#parameter-binding-element'
+          - include: '#punctuation-comma'
+
+      field-declaration:
+        patterns:
+          - include: '#variable-initializer'
+          - include: '#type-annotation'
+          - include: '#string'
+          - include: '#array-literal'
+          - include: '#numeric-literal'
+          - include: '#comment'
+
+      variable-initializer:
+        patterns:
+          - include: '#expression'
+
+      function-declaration:
+        patterns:
+          - include: '#function-name'
+          - include: '#function-body'
+
+      function-expression:
+        patterns:
+          - include: '#function-name'
+          - include: '#single-line-comment-consuming-line-ending'
+          - include: '#function-body'
+
+      function-name:
+      function-body:
+        patterns:
+          - include: '#comment'
+          - include: '#type-parameters'
+          - include: '#function-parameters'
+          - include: '#return-type'
+          - include: '#type-function-return-type'
+          - include: '#decl-block'
+
+      method-declaration:
+        patterns:
+          - include: '#method-declaration-name'
+          - include: '#function-body'
+          - include: '#method-declaration-name'
+          - include: '#function-body'
+          - include: '#method-declaration-name'
+          - include: '#function-body'
+
+      object-literal-method-declaration:
+        patterns:
+          - include: '#method-declaration-name'
+          - include: '#function-body'
+            patterns:
+              - include: '#method-declaration-name'
+
+      method-declaration-name:
+        patterns:
+          - include: '#string'
+          - include: '#array-literal'
+          - include: '#numeric-literal'
+
+      arrow-function:
+        patterns:
+          - include: '#comment'
+          - include: '#type-parameters'
+          - include: '#function-parameters'
+          - include: '#arrow-return-type'
+          - include: '#possibly-arrow-return-type'
+          - include: '#single-line-comment-consuming-line-ending'
+          - include: '#decl-block'
+          - include: '#expression'
+
+      indexer-declaration:
+        patterns:
+          - include: '#type-annotation'
+
+      indexer-mapped-type-declaration:
+        patterns:
+          - include: '#type'
+
+      function-parameters:
+        patterns:
+          - include: '#function-parameters-body'
+
+      function-parameters-body:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#decorator'
+          - include: '#destructuring-parameter'
+          - include: '#parameter-name'
+          - include: '#parameter-type-annotation'
+          - include: '#variable-initializer'
+
+      class-declaration:
+        patterns:
+          - include: '#class-declaration-or-expression-patterns'
+
+      class-expression:
+        patterns:
+          - include: '#class-declaration-or-expression-patterns'
+
+      class-declaration-or-expression-patterns:
+        patterns:
+          - include: '#comment'
+          - include: '#class-or-interface-body'
+
+      interface-declaration:
+        patterns:
+          - include: '#comment'
+          - include: '#class-or-interface-body'
+
+      class-or-interface-heritage:
+        patterns:
+          - include: '#comment'
+          - include: '#class-or-interface-heritage'
+          - include: '#type-parameters'
+          - include: '#expressionWithoutIdentifiers'
+          - include: '#expressionPunctuations'
+
+      class-or-interface-body:
+        patterns:
+          - include: '#comment'
+          - include: '#decorator'
+            patterns:
+              - include: '#expression'
+          - include: '#method-declaration'
+          - include: '#indexer-declaration'
+          - include: '#field-declaration'
+          - include: '#string'
+          - include: '#type-annotation'
+          - include: '#variable-initializer'
+          - include: '#access-modifier'
+          - include: '#property-accessor'
+          - include: '#async-modifier'
+          - include: '#after-operator-block-as-object-literal'
+          - include: '#decl-block'
+          - include: '#expression'
+          - include: '#punctuation-comma'
+          - include: '#punctuation-semicolon'
+
+      access-modifier:
+      property-accessor:
+      async-modifier:
+      enum-declaration:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#comment'
+                patterns:
+                  - include: '#comment'
+                  - include: '#variable-initializer'
+                  - include: '#string'
+                  - include: '#array-literal'
+                  - include: '#comment'
+                  - include: '#variable-initializer'
+              - include: '#punctuation-comma'
+
+      namespace-declaration:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#punctuation-accessor'
+          - include: '#decl-block'
+
+      type-alias-declaration:
+        patterns:
+          - include: '#comment'
+          - include: '#type-parameters'
+            patterns:
+              - include: '#type'
+
+      import-equals-declaration:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#single-line-comment-consuming-line-ending'
+          - include: '#comment'
+
+      import-declaration:
+        patterns:
+          - include: '#single-line-comment-consuming-line-ending'
+          - include: '#comment'
+          - include: '#string'
+            patterns:
+              - include: '#import-export-declaration'
+          - include: '#import-export-declaration'
+
+      export-declaration:
+        patterns:
+          - include: '#interface-declaration'
+          - include: '#expression'
+          - include: '#import-export-declaration'
+
+      import-export-declaration:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+          - include: '#import-export-block'
+          - include: '#import-export-assert-clause'
+          - include: '#import-export-clause'
+
+      import-export-assert-clause:
+        patterns:
+          - include: '#comment'
+          - include: '#string'
+
+      import-export-block:
+        patterns:
+          - include: '#import-export-clause'
+
+      import-export-clause:
+        patterns:
+          - include: '#comment'
+          - include: '#punctuation-comma'
+
+      switch-statement:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#expression'
+                patterns:
+                  - include: '#statements'
+              - include: '#statements'
+
+      for-loop:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#var-expr'
+              - include: '#expression'
+              - include: '#punctuation-semicolon'
+
+      if-statement:
+        patterns:
+          patterns:
+            - include: '#comment'
+              patterns:
+                - include: '#expression'
+                - include: '#regexp'
+            - include: '#statements'
+
+      decl-block:
+        patterns:
+          - include: '#statements'
+
+      after-operator-block-as-object-literal:
+        patterns:
+          - include: '#object-member'
+
+      object-literal:
+        patterns:
+          - include: '#object-member'
+
+      object-member:
+        patterns:
+          - include: '#comment'
+          - include: '#object-literal-method-declaration'
+            patterns:
+              - include: '#array-literal'
+              - include: '#comment'
+              - include: '#expression'
+              - include: '#function-body'
+              - include: '#numeric-literal'
+              - include: '#string'
+              - include: '#type'
+              - include: '#type-parameters'
+                patterns:
+                  - include: '#expression-inside-possibly-arrow-parens'
+              - include: '#expression-inside-possibly-arrow-parens'
+              - include: '#type-parameters'
+              - include: '#expression-inside-possibly-arrow-parens'
+              - include: '#possibly-arrow-return-type'
+              - include: '#expression'
+          - include: '#punctuation-comma'
+
+      ternary-expression:
+        patterns:
+          - include: '#expression'
+
+      function-call:
+        patterns:
+          - include: '#function-call-target'
+          - include: '#comment'
+          - include: '#function-call-optionals'
+          - include: '#type-arguments'
+          - include: '#paren-expression'
+          - include: '#function-call-target'
+          - include: '#comment'
+          - include: '#function-call-optionals'
+          - include: '#type-arguments'
+
+      function-call-target:
+        patterns:
+          - include: '#support-function-call-identifiers'
+
+      function-call-optionals:
+      support-function-call-identifiers:
+        patterns:
+          - include: '#literal'
+          - include: '#support-objects'
+          - include: '#object-identifiers'
+          - include: '#punctuation-accessor'
+
+      new-expr:
+        patterns:
+          - include: '#expression'
+
+      instanceof-expr:
+        patterns:
+          - include: '#type'
+
+      paren-expression-possibly-arrow:
+        patterns:
+          - include: '#paren-expression-possibly-arrow-with-typeparameters'
+          - include: '#paren-expression-possibly-arrow-with-typeparameters'
+          - include: '#possibly-arrow-return-type'
+
+      paren-expression-possibly-arrow-with-typeparameters:
+        patterns:
+          - include: '#type-parameters'
+            patterns:
+              - include: '#expression-inside-possibly-arrow-parens'
+
+      expression-inside-possibly-arrow-parens:
+        patterns:
+          - include: '#expressionWithoutIdentifiers'
+          - include: '#comment'
+          - include: '#string'
+          - include: '#decorator'
+          - include: '#destructuring-parameter'
+          - include: '#type-annotation'
+          - include: '#variable-initializer'
+          - include: '#identifiers'
+          - include: '#expressionPunctuations'
+
+      paren-expression:
+        patterns:
+          - include: '#expression'
+
+      cast:
+        patterns:
+          - include: '#type'
+
+      expression-operators:
+        patterns:
+          - include: '#comment'
+          - include: '#typeof-operator'
+          - include: '#type'
+
+      typeof-operator:
+        patterns:
+          - include: '#expression'
+
+      literal:
+        patterns:
+          - include: '#numeric-literal'
+          - include: '#boolean-literal'
+          - include: '#null-literal'
+          - include: '#undefined-literal'
+          - include: '#numericConstant-literal'
+          - include: '#array-literal'
+          - include: '#this-literal'
+          - include: '#super-literal'
+
+      array-literal:
+        patterns:
+          - include: '#expression'
+          - include: '#punctuation-comma'
+
+      numeric-literal:
+      boolean-literal:
+      null-literal:
+      this-literal:
+      super-literal:
+      undefined-literal:
+      numericConstant-literal:
+      support-objects:
+      identifiers:
+        patterns:
+          - include: '#object-identifiers'
+
+      object-identifiers:
+      type-annotation:
+        patterns:
+          - include: '#type'
+
+      parameter-type-annotation:
+        patterns:
+          - include: '#type'
+
+      return-type:
+        patterns:
+          - include: '#return-type-core'
+
+      return-type-core:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#type-object'
+          - include: '#type-predicate-operator'
+          - include: '#type'
+
+      arrow-return-type:
+        patterns:
+          - include: '#arrow-return-type-body'
+
+      possibly-arrow-return-type:
+        patterns:
+          - include: '#arrow-return-type-body'
+
+      arrow-return-type-body:
+        patterns:
+          - include: '#type-object'
+          - include: '#type-predicate-operator'
+          - include: '#type'
+
+      type-parameters:
+        patterns:
+          - include: '#comment'
+          - include: '#type'
+          - include: '#punctuation-comma'
+
+      type-arguments:
+        patterns:
+          - include: '#type-arguments-body'
+
+      type-arguments-body:
+        patterns:
+          - include: '#type'
+          - include: '#punctuation-comma'
+
+      type:
+        patterns:
+          - include: '#comment'
+          - include: '#type-string'
+          - include: '#numeric-literal'
+          - include: '#type-primitive'
+          - include: '#type-builtin-literals'
+          - include: '#type-parameters'
+          - include: '#type-tuple'
+          - include: '#type-object'
+          - include: '#type-operators'
+          - include: '#type-conditional'
+          - include: '#type-fn-type-parameters'
+          - include: '#type-paren-or-function-parameters'
+          - include: '#type-function-return-type'
+          - include: '#type-name'
+
+      type-primitive:
+      type-builtin-literals:
+      type-tuple:
+        patterns:
+          - include: '#type'
+          - include: '#punctuation-comma'
+
+      type-object:
+        patterns:
+          - include: '#comment'
+          - include: '#method-declaration'
+          - include: '#indexer-declaration'
+          - include: '#indexer-mapped-type-declaration'
+          - include: '#field-declaration'
+          - include: '#type-annotation'
+            patterns:
+              - include: '#type'
+          - include: '#punctuation-comma'
+          - include: '#punctuation-semicolon'
+          - include: '#type'
+
+      type-conditional:
+        patterns:
+          - include: '#type'
+          - include: '#type'
+
+      type-paren-or-function-parameters:
+        patterns:
+          - include: '#type-annotation'
+          - include: '#type'
+
+      type-fn-type-parameters:
+        patterns:
+          patterns:
+            - include: '#comment'
+            - include: '#type-parameters'
+            - include: '#function-parameters'
+            - include: '#function-parameters'
+
+      type-function-return-type:
+        patterns:
+          - include: '#type-function-return-type-core'
+
+      type-function-return-type-core:
+        patterns:
+          - include: '#comment'
+            patterns:
+              - include: '#type-object'
+          - include: '#type-predicate-operator'
+          - include: '#type'
+
+      type-operators:
+        patterns:
+          - include: '#typeof-operator'
+          - include: '#type-infer'
+            patterns:
+              - include: '#type-object'
+
+      type-infer:
+      type-predicate-operator:
+      type-name:
+        patterns:
+          - include: '#type-arguments-body'
+
+      punctuation-comma:
+      punctuation-semicolon:
+      punctuation-accessor:
+      string:
+        patterns:
+          - include: '#qstring-single'
+          - include: '#qstring-double'
+          - include: '#template'
+
+      qstring-double:
+        patterns:
+          - include: '#string-character-escape'
+
+      qstring-single:
+        patterns:
+          - include: '#string-character-escape'
+
+      string-character-escape:
+      template:
+        patterns:
+          - include: '#template-call'
+            patterns:
+              - include: '#template-substitution-element'
+              - include: '#string-character-escape'
+
+      template-call:
+        patterns:
+          - include: '#support-function-call-identifiers'
+          - include: '#type-arguments'
+
+      template-substitution-element:
+        patterns:
+          - include: '#expression'
+
+      type-string:
+        patterns:
+          - include: '#qstring-single'
+          - include: '#qstring-double'
+          - include: '#template-type'
+
+      template-type:
+        patterns:
+          - include: '#template-call'
+            patterns:
+              - include: '#template-type-substitution-element'
+              - include: '#string-character-escape'
+
+      template-type-substitution-element:
+        patterns:
+          - include: '#type'
+
+      regex:
+        patterns:
+          - include: '#regexp'
+
+      regexp:
+        patterns:
+          - include: '#regexp'
+          - include: '#regex-character-class'
+          - include: '#regex-character-class'
+
+      regex-character-class:
+      comment:
+        patterns:
+          - include: '#docblock'
+
+      single-line-comment-consuming-line-ending:
+      directives:
+        patterns:
+          - include: '#string'
+
+      docblock:
+        patterns:
+          - include: '#jsdoctype'
+          - include: '#inline-tags'
+
+      brackets:
+        patterns:
+          - include: '#brackets'
+
+      inline-tags:
+      jsdoctype:
+        patterns:
+          - include: '#brackets'
+
+  includes:
+    - include: '#access-modifier'
+    - include: '#after-operator-block-as-object-literal'
+    - include: '#array-binding-pattern-const'
+    - include: '#array-binding-pattern'
+    - include: '#array-literal'
+    - include: '#arrow-function'
+    - include: '#arrow-return-type-body'
+    - include: '#arrow-return-type'
+    - include: '#async-modifier'
+    - include: '#binding-element-const'
+    - include: '#binding-element'
+    - include: '#boolean-literal'
+    - include: '#brackets'
+    - include: '#cast'
+    - include: '#class-declaration-or-expression-patterns'
+    - include: '#class-declaration'
+    - include: '#class-expression'
+    - include: '#class-or-interface-body'
+    - include: '#class-or-interface-heritage'
+    - include: '#class-or-interface-heritage' # Must be before object-name to consume the "extends" keyword.
+    - include: '#comment'
+    - include: '#control-statement'
+    - include: '#decl-block'
+    - include: '#declaration'
+    - include: '#decorator'
+    - include: '#destructuring-const'
+    - include: '#destructuring-parameter-rest'
+    - include: '#destructuring-parameter'
+    - include: '#destructuring-variable-rest-const'
+    - include: '#destructuring-variable-rest'
+    - include: '#destructuring-variable'
+    - include: '#directives'
+    - include: '#docblock'
+    - include: '#enum-declaration'
+    - include: '#export-declaration'
+    - include: '#expression-inside-possibly-arrow-parens'
+    - include: '#expression-operators'
+    - include: '#expression'
+    - include: '#expressionPunctuations'
+    - include: '#expressionWithoutIdentifiers'
+    - include: '#field-declaration'
+    - include: '#for-loop'
+    - include: '#function-body'
+    - include: '#function-call-optionals'
+    - include: '#function-call-target'
+    - include: '#function-call'
+    - include: '#function-declaration'
+    - include: '#function-expression'
+    - include: '#function-name'
+    - include: '#function-parameters-body'
+    - include: '#function-parameters'
+    - include: '#identifiers'
+    - include: '#if-statement'
+    - include: '#import-declaration'
+    - include: '#import-equals-declaration'
+    - include: '#import-export-assert-clause'
+    - include: '#import-export-block'
+    - include: '#import-export-clause'
+    - include: '#import-export-declaration'
+    - include: '#indexer-declaration'
+    - include: '#indexer-mapped-type-declaration'
+    - include: '#inline-tags'
+    - include: '#instanceof-expr'
+    - include: '#interface-declaration'
+    - include: '#jsdoctype'
+    - include: '#label'
+    - include: '#literal'
+    - include: '#method-declaration-name'
+    - include: '#method-declaration'
+    - include: '#namespace-declaration'
+    - include: '#new-expr'
+    - include: '#null-literal'
+    - include: '#numeric-literal'
+    - include: '#numericConstant-literal'
+    - include: '#object-binding-element-const'
+    - include: '#object-binding-element-propertyName'
+    - include: '#object-binding-element'
+    - include: '#object-binding-pattern-const'
+    - include: '#object-binding-pattern'
+    - include: '#object-identifiers'
+    - include: '#object-literal-method-declaration'
+    - include: '#object-literal'
+    - include: '#object-member'
+    - include: '#parameter-array-binding-pattern'
+    - include: '#parameter-binding-element'
+    - include: '#parameter-name'
+    - include: '#parameter-object-binding-element'
+    - include: '#parameter-object-binding-pattern'
+    - include: '#parameter-type-annotation'
+    - include: '#paren-expression-possibly-arrow-with-typeparameters'
+    - include: '#paren-expression-possibly-arrow'
+    - include: '#paren-expression'
+    - include: '#possibly-arrow-return-type'
+    - include: '#property-accessor'
+    - include: '#punctuation-accessor'
+    - include: '#punctuation-comma'
+    - include: '#punctuation-semicolon'
+    - include: '#qstring-double'
+    - include: '#qstring-single'
+    - include: '#regex-character-class'
+    - include: '#regex'
+    - include: '#regexp'
+    - include: '#return-type-core'
+    - include: '#return-type'
+    - include: '#shebang'
+    - include: '#single-line-comment-consuming-line-ending'
+    - include: '#statements'
+    - include: '#string-character-escape'
+    - include: '#string'
+    - include: '#super-literal'
+    - include: '#support-function-call-identifiers'
+    - include: '#support-objects'
+    - include: '#switch-statement'
+    - include: '#template-call'
+    - include: '#template-substitution-element'
+    - include: '#template-type-substitution-element'
+    - include: '#template-type'
+    - include: '#template'
+    - include: '#ternary-expression'
+    - include: '#this-literal'
+    - include: '#type-alias-declaration'
+    - include: '#type-annotation'
+    - include: '#type-arguments-body'
+    - include: '#type-arguments'
+    - include: '#type-builtin-literals'
+    - include: '#type-conditional'
+    - include: '#type-fn-type-parameters'
+    - include: '#type-function-return-type-core'
+    - include: '#type-function-return-type'
+    - include: '#type-infer'
+    - include: '#type-name'
+    - include: '#type-object'
+    - include: '#type-operators'
+    - include: '#type-parameters'
+    - include: '#type-parameters' # Must be applied after object-name e.g. interface KeyValuePair<K, V>
+    - include: '#type-paren-or-function-parameters'
+    - include: '#type-predicate-operator'
+    - include: '#type-primitive'
+    - include: '#type-string'
+    - include: '#type-tuple'
+    - include: '#type'
+    - include: '#typeof-operator'
+    - include: '#undefined-literal'
+    - include: '#var-expr'
+    - include: '#var-single-const'
+    - include: '#var-single-variable-type-annotation'
+    - include: '#var-single-variable'
+    - include: '#variable-initializer'
+
+  names:
+    - name: case-clause.expr.ts
+    - name: cast.expr.ts
+    - name: comment.block.documentation.ts
+    - name: comment.block.ts
+    - name: constant.character.control.regexp
+    - name: constant.character.escape.backslash.regexp
+    - name: constant.character.numeric.regexp
+    - name: constant.language.boolean.false.ts
+    - name: constant.language.boolean.true.ts
+    - name: constant.language.import-export-all.ts
+    - name: constant.language.infinity.ts
+    - name: constant.language.nan.ts
+    - name: constant.numeric.binary.ts
+    - name: constant.numeric.hex.ts
+    - name: constant.numeric.octal.ts
+    - name: constant.other.character-class.range.regexp
+    - name: constant.other.character-class.regexp
+    - name: constant.other.character-class.set.regexp
+    - name: constant.other.description.jsdoc
+    - name: entity.name.function.tagged-template.ts
+    - name: entity.name.function.ts
+    - name: entity.name.type.instance.jsdoc
+    - name: entity.name.type.module.ts
+    - name: entity.name.type.ts
+    - name: entity.other.attribute-name.directive.ts
+    - name: invalid.illegal.type.jsdoc
+    - name: keyword.control.anchor.regexp
+    - name: keyword.control.conditional.ts
+    - name: keyword.control.default.ts
+    - name: keyword.control.flow.ts
+    - name: keyword.control.from.ts
+    - name: keyword.control.loop.ts
+    - name: keyword.control.switch.ts
+    - name: keyword.control.trycatch.ts
+    - name: keyword.control.ts
+    - name: keyword.control.with.ts
+    - name: keyword.generator.asterisk.ts
+    - name: keyword.operator.arithmetic.ts
+    - name: keyword.operator.assignment.compound.bitwise.ts
+    - name: keyword.operator.assignment.compound.ts
+    - name: keyword.operator.assignment.ts
+    - name: keyword.operator.bitwise.shift.ts
+    - name: keyword.operator.bitwise.ts
+    - name: keyword.operator.comparison.ts
+    - name: keyword.operator.decrement.ts
+    - name: keyword.operator.definiteassignment.ts
+    - name: keyword.operator.expression.delete.ts
+    - name: keyword.operator.expression.import.ts
+    - name: keyword.operator.expression.in.ts
+    - name: keyword.operator.expression.instanceof.ts
+    - name: keyword.operator.expression.is.ts
+    - name: keyword.operator.expression.keyof.ts
+    - name: keyword.operator.expression.of.ts
+    - name: keyword.operator.expression.void.ts
+    - name: keyword.operator.increment.ts
+    - name: keyword.operator.logical.ts
+    - name: keyword.operator.new.ts
+    - name: keyword.operator.optional.ts
+    - name: keyword.operator.or.regexp
+    - name: keyword.operator.quantifier.regexp
+    - name: keyword.operator.relational.ts
+    - name: keyword.operator.rest.ts
+    - name: keyword.operator.spread.ts
+    - name: keyword.operator.ternary.ts
+    - name: keyword.operator.type.asserts.ts
+    - name: keyword.other.debugger.ts
+    - name: meta.array-binding-pattern-variable.ts
+    - name: meta.arrow.ts
+    - name: meta.definition.method.ts entity.name.function.ts
+    - name: meta.definition.property.ts variable.object.property.ts
+    - name: meta.example.jsdoc
+    - name: meta.export.default.ts
+    - name: meta.export.ts
+    - name: meta.function-call.ts
+    - name: meta.function-call.ts keyword.operator.definiteassignment.ts
+    - name: meta.function-call.ts punctuation.accessor.optional.ts
+    - name: meta.group.assertion.regexp
+    - name: meta.group.regexp
+    - name: meta.import-equals.external.ts
+    - name: meta.import-equals.internal.ts
+    - name: meta.method.declaration.ts
+    - name: meta.object-binding-pattern-variable.ts
+    - name: meta.object-literal.key.ts
+    - name: meta.object.member.ts
+    - name: meta.object.member.ts meta.object-literal.key.ts
+    - name: meta.parameter.object-binding-pattern.ts
+    - name: meta.paramter.array-binding-pattern.ts
+    - name: meta.return.type.ts
+    - name: meta.tag.ts
+    - name: meta.type.annotation.ts
+    - name: meta.type.constructor.ts
+    - name: meta.type.function.return.ts
+    - name: meta.type.function.ts
+    - name: meta.var-single-variable.expr.ts
+    - name: meta.var.expr.ts
+    - name: punctuation.delimiter.object.comma.jsdoc
+    - name: punctuation.separator.key-value.ts
+    - name: punctuation.separator.parameter.ts
+    - name: storage.modifier.ts
+    - name: storage.type.class.jsdoc
+    - name: string.regexp.ts
+    - name: string.template.ts
+    - name: support.class.builtin.ts
+    - name: support.class.error.ts
+    - name: support.class.node.ts
+    - name: support.class.promise.ts
+    - name: support.class.ts
+    - name: support.function.ts
+    - name: support.variable.object.node.ts
+    - name: switch-block.expr.ts
+    - name: switch-expression.expr.ts
+    - name: variable.language.arguments.ts
+    - name: variable.object.property.ts
+    - name: variable.other.constant.ts
+    - name: variable.other.jsdoc
+    - name: variable.other.readwrite.ts

@@ -1,0 +1,41 @@
+{
+  "author": "Thierry Wong",
+  "displayName": "ty",
+  "description": "thierry language",
+  "name": "@gnowth/ty-language",
+  "version": "0.0.0",
+  "engines": {
+    "vscode": "1.69.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ty",
+        "aliases": [
+          "ty"
+        ],
+        "extensions": [
+          "ty"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ty",
+        "scopeName": "source.ty",
+        "path": "./syntaxes/ty.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "2.0.19",
+    "ts-node": "10.9.1"
+  },
+  "scripts": {
+    "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'"
+  }
+}
