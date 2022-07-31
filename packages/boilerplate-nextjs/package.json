@@ -69,11 +69,11 @@
   "scripts": {
     "build": "cp ../../LICENSE LICENSE && tinacms server:start -c 'next build' && next export -o dist",
     "build:analyze": "ANALYZE=true next build",
-    "build:dev": "cp ../../LICENSE LICENSE && tinacms server:start -c 'next build' && next export -o dist",
-    "clean:temp": "rm -rf dist && rm -rf .next && rm -rf LICENSE",
+    "build:dev": "tinacms server:start -c 'next build' && next export -o dist",
+    "clean:temp": "rm -rf LICENSE && rm -rf dist && rm -rf .next",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js,.ts,.jsx,.tsx .",
+    "lint:script": "eslint --ext js,jsx,ts,tsx .",
     "start": "tinacms server:start -c 'next start'",
     "start:dev": "tinacms server:start -c 'next dev'",
     "typecheck": "tsc"

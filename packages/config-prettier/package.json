@@ -20,7 +20,6 @@
   },
   "scripts": {
     "build": "cp ../../LICENSE LICENSE",
-    "build:dev": "cp ../../LICENSE LICENSE",
     "clean:temp": "rm -rf LICENSE"
   }
 }

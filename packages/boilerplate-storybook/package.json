@@ -1,0 +1,52 @@
+{
+  "author": "Thierry Wong",
+  "description": "Styleguide with storybook",
+  "license": "AGPL-3.0-only",
+  "name": "@boilerplate/styleguide",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.1",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript-react"
+    ]
+  },
+  "jest": {
+    "preset": "@gnowth/jest-config"
+  },
+  "repository": {
+    "directory": "packages/boilerplate-storybook",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "dependencies": {
+    "@boilerplate/nextjs": "0.0.0",
+    "@storybook/addon-actions": "6.5.9",
+    "@storybook/addon-essentials": "6.5.9",
+    "@storybook/addon-links": "6.5.9",
+    "@storybook/addon-storyshots": "6.5.9",
+    "@storybook/addon-storyshots-puppeteer": "6.5.9",
+    "@storybook/react": "6.5.9",
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@testing-library/react": "13.3.0",
+    "@types/puppeteer": "5.4.6",
+    "puppeteer": "15.5.0"
+  },
+  "scripts": {
+    "1build": "cp ../../LICENSE LICENSE && build-storybook --docs",
+    "1clean:temp": "rm -rf LICENSE && rm -rf storybook-static",
+    "1lint": "npm run lint:script",
+    "1lint:script": "eslint --ext mdx,ts,tsx .",
+    "1start:dev": "start-storybook -p 6006",
+    "1test": "jest",
+    "1test:watch": "jest --watch",
+    "1typecheck": "tsc"
+  }
+}

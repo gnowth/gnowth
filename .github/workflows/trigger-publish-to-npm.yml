@@ -55,11 +55,11 @@ jobs:
           args: unzip -qq artifact.zip -d .
 
       - name: Dry run
-        run: npm run ci:publish:dry
+        run: npm run cd:library:publish:dry
 
       - name: Generate .npmrc file
         run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ./.npmrc
 
       - name: Publish
         if: github.event.inputs.dry_run == 'no'
-        run: npm run ci:publish
+        run: npm run cd:library:publish

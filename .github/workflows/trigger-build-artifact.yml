@@ -59,11 +59,11 @@ jobs:
 
       - name: Pre release - Tag branch and create change log
         if: github.event.inputs.pre_release != 'no'
-        run: npm run ci:version:pre
+        run: npm run cd:code:version:pre
 
       - name: Release - Tag branch and create change log (require a pre-release)
         if: github.event.inputs.pre_release == 'no'
-        run: npm run ci:version
+        run: npm run cd:code:version
 
       - name: Set version to environment variable
         run: |
@@ -72,7 +72,7 @@ jobs:
 
       # Note: needs to be after version in case we use version in our build
       - name: Build projects
-        run: npm run workspaces:build
+        run: npm run ci:build
 
       - name: Build artifact for release
         uses: TheDoctor0/zip-release@0.4.2
