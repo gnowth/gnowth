@@ -5,7 +5,7 @@
   "name": "@gnowth/ty-language",
   "version": "0.0.0",
   "engines": {
-    "vscode": "1.69.0"
+    "vscode": "1.69.2"
   },
   "categories": [
     "Programming Languages"
