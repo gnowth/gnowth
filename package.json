@@ -23,15 +23,15 @@
     "root": true
   },
   "engines": {
-    "node": "18.6.0",
-    "npm": "8.13.2"
+    "node": "18.7.0",
+    "npm": "8.15.0"
   },
   "jest": {
     "preset": "@gnowth/jest-config"
   },
   "lint-staged": {
-    "*.{css,json,md,scss}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --fix"
+    "*.{css,json,md,scss,yaml,yml}": "prettier --write",
+    "*.{cjs,js,jsx,mdx,mjs,ts,tsx}": "eslint --fix"
   },
   "renovate": {
     "extends": [
@@ -52,10 +52,10 @@
     "concurrently": "7.3.0",
     "github-markdown-css": "5.1.0",
     "husky": "8.0.1",
-    "lerna": "5.2.0",
+    "lerna": "5.3.0",
     "lint-staged": "13.0.3",
     "netlify-cms-proxy-server": "1.3.24",
-    "npm-check-updates": "16.0.0",
+    "npm-check-updates": "16.0.3",
     "serve": "14.0.1",
     "start-server-and-test": "1.14.0",
     "surge": "0.23.1",
@@ -101,11 +101,11 @@
     "local:check:test": "jest",
     "local:check:typecheck": "tsc",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
-    "local:clean:modules": "lerna clean --yes",
+    "local:clean:modules": "lerna clean --yes && rm -rf node_modules",
     "local:clean:temp": "lerna run clean:temp && rm -rf coverage",
     "local:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 npm run workspace:cypress test:mock",
     "local:environment": "export $(cat .env.local | xargs)",
-    "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx}",
+    "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",
     "local:start:dev": "npm run workspace:nextjs start:dev",
     "local:start:dev:cms": "concurrently 'netlify-cms-proxy-server' 'npm run workspace:nextjs start:dev'",
     "local:start:docker": "docker-compose -f ./configs/docker-compose.yml up",
@@ -114,7 +114,7 @@
     "setup": "time npm install --frozen-lockfile",
     "setup:cache:verify": "npm cache verify",
     "setup:refresh": "rm -rf package-lock.json && npm run local:clean && time npm install",
-    "setup:packages": "ncu --interactive --deep --reject '@gnowth/*'",
+    "setup:packages": "ncu --interactive --deep --reject '@boilerplate/*,@gnowth/*'",
     "workspace:cypress": "npm run --workspace=@boilerplate/cypress",
     "workspace:eslint": "npm run --workspace=@gnowth/eslint-config",
     "workspace:language": "npm run --workspace=@gnowth/ty-language",
