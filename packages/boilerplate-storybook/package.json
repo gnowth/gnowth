@@ -6,10 +6,10 @@
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/typescript-react"
+      "@gnowth/eslint-config"
     ]
   },
   "jest": {
@@ -22,12 +22,7 @@
   },
   "dependencies": {
     "@boilerplate/nextjs": "0.0.0",
-    "@storybook/addon-actions": "6.5.9",
-    "@storybook/addon-essentials": "6.5.9",
-    "@storybook/addon-links": "6.5.9",
-    "@storybook/addon-storyshots": "6.5.9",
-    "@storybook/addon-storyshots-puppeteer": "6.5.9",
-    "@storybook/react": "6.5.9",
+    "@gnowth/storybook-preset": "0.0.0",
     "react": "18.2.0"
   },
   "devDependencies": {
@@ -35,18 +30,34 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@testing-library/react": "13.3.0",
+    "@storybook/addon-storyshots": "6.5.9",
+    "@storybook/addon-storyshots-puppeteer": "6.5.9",
+    "@storybook/builder-webpack5": "6.5.9",
+    "@storybook/core-common": "6.5.9",
+    "@storybook/jest": "0.0.10",
+    "@storybook/manager-webpack5": "6.5.9",
+    "@storybook/node-logger": "6.5.9",
+    "@storybook/react": "6.5.9",
+    "@storybook/test-runner": "0.5.0",
+    "@storybook/testing-library": "0.0.13",
     "@types/puppeteer": "5.4.6",
+    "chromatic": "6.7.3",
     "puppeteer": "15.5.0"
   },
   "scripts": {
-    "1build": "cp ../../LICENSE LICENSE && build-storybook --docs",
-    "1clean:temp": "rm -rf LICENSE && rm -rf storybook-static",
-    "1lint": "npm run lint:script",
-    "1lint:script": "eslint --ext mdx,ts,tsx .",
-    "1start:dev": "start-storybook -p 6006",
-    "1test": "jest",
-    "1test:watch": "jest --watch",
-    "1typecheck": "tsc"
+    "build": "cp ../../LICENSE LICENSE && build-storybook --quiet --disable-telemetry",
+    "build:dev": "build-storybook --disable-telemetry",
+    "clean:temp": "rm -rf LICENSE && rm -rf storybook-static && rm -rf '__image_snapshots__/__diff_output__'",
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext mdx,ts,tsx .",
+    "publish": "chromatic --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN",
+    "publish:ci": "chromatic --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN --exit-once-uploaded",
+    "start:ci": "start-storybook -p 6006 --ci",
+    "start:dev": "start-storybook -p 6006",
+    "test:e2e": "npm run test:interactions && npm run test:storyshots",
+    "test:interactions": "test-storybook",
+    "test:storyshots?": "DEBT: issue with generating snapshot locally and in ci does not match",
+    "test:storyshots": "echo jest --testMatch='**/*.snapshot.ts'",
+    "typecheck": "tsc"
   }
 }
