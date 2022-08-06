@@ -8,7 +8,7 @@ interface Props {
 }
 
 function TinaProvider(props: Props) {
-  // DEBT (hack): there seem to be an miss match of types here.
+  // DEBT(hack): there seem to be an miss match of types here.
   const propsTina = configsTina as { client: never }
 
   return <TinaCMS {...propsTina}>{props.children}</TinaCMS>

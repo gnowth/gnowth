@@ -2,6 +2,8 @@
   "author": "Thierry Wong",
   "description": "Boilerplate for mono application",
   "license": "AGPL-3.0-only",
+  "main": "src/exports.ts",
+  "module": "src/exports.ts",
   "name": "@boilerplate/nextjs",
   "prettier": "@gnowth/prettier-config",
   "private": true,
@@ -16,6 +18,9 @@
     "rules": {
       "@next/next/no-html-link-for-pages": "off"
     }
+  },
+  "jest": {
+    "preset": "@gnowth/jest-config/next"
   },
   "repository": {
     "directory": "packages/boilerplate-nextjs",
@@ -51,6 +56,7 @@
   "devDependencies": {
     "@faker-js/faker": "7.3.0",
     "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@mdx-js/loader": "2.1.2",
@@ -73,9 +79,11 @@
     "clean:temp": "rm -rf LICENSE && rm -rf dist && rm -rf .next",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext js,jsx,ts,tsx .",
+    "lint:script": "eslint --ext js,ts,tsx .",
     "start": "tinacms server:start -c 'next start'",
     "start:dev": "tinacms server:start -c 'next dev'",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "typecheck": "tsc"
   }
 }

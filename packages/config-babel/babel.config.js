@@ -1,6 +1,6 @@
 module.exports = (api) => ({
   presets: [
-    api.env('test') ? ['@babel/env', { targets: { node: 'current' } }] : '@babel/env',
+    ['@babel/env', api.env('test') ? { targets: { node: 'current' } } : {}],
     '@babel/preset-react',
     '@babel/preset-typescript',
   ],

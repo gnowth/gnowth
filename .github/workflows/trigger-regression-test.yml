@@ -13,7 +13,7 @@ on:
         required: false
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
   CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   NODE_VERSION: 18.7.0
 
@@ -80,7 +80,7 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      # Hack: Not recommended. Need to figure out how to get zip action to create file for current user rather than root
+      # DEBT(hack): Not recommended. Need to figure out how to get zip action to create file for current user rather than root
       - name: Update permission to allow cypress to create media
         run: 'chmod o+w packages/boilerplate-cypress && chmod o+w packages/boilerplate-cypress/cypress'
 
@@ -91,6 +91,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: artifact-test-media-${{ matrix.title }}
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          name: artifact-test-media-cypress-${{ matrix.title }}
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
           retention-days: 1

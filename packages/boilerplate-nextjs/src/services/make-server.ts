@@ -21,7 +21,7 @@ function makeServer(configsMock: MockConfigs) {
         role: () => faker.name.jobTitle(),
         status: () => (faker.datatype.number(100) > 20 ? 'active' : 'deactivated'),
         email() {
-          // DEBT: dirty ts fix, miragejs typescript is poor
+          // DEBT(hack): dirty ts fix, miragejs typescript is poor
           return faker.internet.email(this.nameFirst as string, this.nameLast as string)
         },
       }),
@@ -35,12 +35,12 @@ function makeServer(configsMock: MockConfigs) {
       this.passthrough('/_next/**')
       this.passthrough('http://localhost:4001/**')
 
-      this.timing = 2000
+      this.timing = 20
       this.urlPrefix = configs.apiOrigin
       this.namespace = '/boilerplate/v1'
       this.resource?.('members')
       this.get('/members', function (this: ServerEx, schema, request) {
-        // DEBT: dirty ts fix
+        // DEBT(hack): dirty ts fix
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const members = schema.members.where(

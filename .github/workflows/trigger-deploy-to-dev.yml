@@ -3,7 +3,7 @@ name: triggerDeployToDev
 on: workflow_dispatch
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA: packages/boilerplate-cypress/cypress/media
+  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
   CYPRESS_BASEURL: https://gnowth-boilerplate-dev.surge.sh
   NODE_VERSION: 18.7.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
@@ -52,6 +52,6 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v3
         with:
-          name: artifact-test-media
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA }}
+          name: artifact-test-media-cypress
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
           retention-days: 1
