@@ -81,7 +81,6 @@
     "cd:infrastructure:provision": "echo provision infrastructure",
     "cd:library:publish": "lerna publish from-package --yes",
     "cd:library:publish:dry": "echo publish dry run",
-    "cd:styleguide:publish": "npm run workspace:styleguide publish:ci",
     "cd:website:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
     "cd:website:deploy:cleanup": "surge teardown $SITE_DOMAIN",
     "ci:build": "lerna run build",

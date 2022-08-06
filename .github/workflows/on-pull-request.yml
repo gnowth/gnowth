@@ -8,7 +8,6 @@ env:
   CYPRESS_BASEURL: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   NODE_VERSION: 18.7.0
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
-  STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
   NEXT_PUBLIC_ENV: development
@@ -103,33 +102,3 @@ jobs:
           name: artifact-test-media-styleguide
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
           retention-days: 1
-
-  # DEBT(hack): use cypress base due since it has git which chromatic needs
-  styleguide_build_and_publish:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
-
-      - name: Build and publish to chromatic
-        run: npm run cd:styleguide:publish
