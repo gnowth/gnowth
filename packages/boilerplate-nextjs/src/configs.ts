@@ -14,7 +14,7 @@ interface Window {
   }
 }
 
-// DEBT: if we are doing server side rendering, setting the host this way won't be right
+// DEBT(hack): if we are doing server side rendering, setting the host this way won't be right
 function getWindow(): Window | undefined {
   if (typeof window === 'undefined') return undefined
   return window

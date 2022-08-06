@@ -3,9 +3,15 @@
   "displayName": "ty",
   "description": "thierry language",
   "name": "@gnowth/ty-language",
+  "prettier": "@gnowth/prettier-config",
   "version": "0.0.0",
   "engines": {
     "vscode": "1.69.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config"
+    ]
   },
   "categories": [
     "Programming Languages"
@@ -32,10 +38,18 @@
     ]
   },
   "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
     "nodemon": "2.0.19",
     "ts-node": "10.9.1"
   },
   "scripts": {
-    "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'"
+    "build": "cp ../../LICENSE LICENSE",
+    "clean:temp": "rm -rf LICENSE",
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext ts .",
+    "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'",
+    "typecheck": "tsc"
   }
 }

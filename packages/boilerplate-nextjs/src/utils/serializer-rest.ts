@@ -21,14 +21,14 @@ function paginate<Type>(data: Type[], request: Request) {
   }
 }
 
-// DEBT: dirty ts fix
+// DEBT(hack): dirty ts fix
 interface Serializer {
   type: string
   normalize(data: Record<string, string>): unknown
   serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
 }
 
-// DEBT: dirty ts fix
+// DEBT(hack): dirty ts fix
 const SerializerRest = RestSerializer.extend({
   normalize(data) {
     return (RestSerializer.prototype as Serializer).normalize.call(this, {

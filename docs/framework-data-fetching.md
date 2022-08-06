@@ -3,7 +3,7 @@ title: Data fetching
 category: framework
 ---
 
-# TODO
+# DEBT:
 
 # Data fetching
 

@@ -11,7 +11,7 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config"
+      "@gnowth/eslint-config/javascript"
     ]
   },
   "repository": {
@@ -34,6 +34,8 @@
     "@gnowth/prettier-config": "0.0.0"
   },
   "scripts": {
+    "build": "cp ../../LICENSE LICENSE",
+    "clean:temp": "rm -rf LICENSE",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext js ."
   }

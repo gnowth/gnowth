@@ -4,7 +4,7 @@ interface Event {
   id: string
 }
 
-// DEBT: where do we consume it?
+// DEBT(investigation): where do we consume it?
 class StreamEvents {
   stream = new Subject<Event>()
 }

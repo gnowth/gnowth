@@ -4,7 +4,7 @@ interface Log {
   id: string
 }
 
-// DEBT: where do we consume it?
+// DEBT(investigation): where do we consume it?
 class StreamLogs {
   stream = new Subject<Log>()
 }

@@ -1,0 +1,70 @@
+{
+  "author": "Thierry Wong",
+  "description": "Storybook presets",
+  "license": "AGPL-3.0-only",
+  "main": "presets/nextjs.ts",
+  "module": "presets/nextjs.ts",
+  "name": "@gnowth/storybook-preset",
+  "prettier": "@gnowth/prettier-config",
+  "private": false,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript-react"
+    ]
+  },
+  "exports": {
+    ".": {
+      "require": "./presets/nextjs.ts",
+      "import": "./presets/nextjs.ts",
+      "types": "./presets/nextjs.ts"
+    },
+    "./nextjs": {
+      "require": "./presets/nextjs.ts",
+      "import": "./presets/nextjs.ts",
+      "types": "./presets/nextjs.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "directory": "packages/config-prettier",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "?devDependencies": {
+    "@storybook/mdx2-csf?": "required for mdx2 feature flag"
+  },
+  "dependencies": {
+    "@chakra-ui/storybook-addon": "4.0.4",
+    "@storybook/addon-essentials": "6.5.9",
+    "@storybook/addon-interactions": "6.5.9",
+    "@storybook/addon-links": "6.5.9",
+    "@storybook/addons": "6.5.9",
+    "@storybook/builder-webpack5": "6.5.9",
+    "@storybook/core-common": "6.5.9",
+    "@storybook/manager-webpack5": "6.5.9",
+    "storybook-addon-next": "1.6.7",
+    "storybook-addon-next-router": "4.0.0",
+    "storybook-react-i18next": "1.1.2",
+    "react": "18.2.0",
+    "react-query": "3.39.2",
+    "next": "12.2.3"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@storybook/mdx2-csf": "0.0.3"
+  },
+  "scripts": {
+    "build": "cp ../../LICENSE LICENSE",
+    "clean:temp": "rm -rf LICENSE",
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext ts,tsx .",
+    "typecheck": "tsc"
+  }
+}
