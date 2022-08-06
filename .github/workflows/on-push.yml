@@ -197,19 +197,11 @@ jobs:
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
           retention-days: 1
 
-  # DEBT(hack): use cypress base due since it has git which chromatic needs
   styleguide_build_and_publish:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+    if: ${{ !startsWith( github.ref, 'refs/heads/dependabot' ) && !startsWith( github.ref, 'refs/heads/renovate' ) }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
       - name: Check out repository
         uses: actions/checkout@v3
         with:
@@ -225,5 +217,12 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      - name: Build and publish to chromatic
-        run: npm run cd:styleguide:publish
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          buildScriptName: build:ci
+          exitOnceUploaded: true
+          projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
+          # skip: '@(renovate/**|dependabot/**)'
+          workingDir: packages/boilerplate-storybook
+          zip: true
