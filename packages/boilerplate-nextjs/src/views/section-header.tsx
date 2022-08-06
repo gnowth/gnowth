@@ -1,7 +1,9 @@
+import type { ChakraProps } from '@chakra-ui/react'
 import { Box, Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import * as R from 'ramda'
 
+import type { HigherComponent } from '../types'
 import LayoutSection from '../components/layout-section'
 import ModelApp from '../models/model-app'
 import NavLink from '../components/nav-link'
@@ -75,4 +77,7 @@ function SectionHeader() {
   )
 }
 
-export default R.compose(withSuspense(), withErrorBoundary)(SectionHeader)
+export default R.compose(
+  withSuspense() as HigherComponent<ChakraProps>,
+  withErrorBoundary as HigherComponent<ChakraProps>,
+)(SectionHeader)

@@ -44,5 +44,5 @@ function MyApp(props: Props) {
   )
 }
 
-// DEBT: Streaming must be unabled to use Suspense. https://nextjs.org/docs/advanced-features/react-18/streaming
+// DEBT(workaround): Streaming must be unabled to use Suspense. https://nextjs.org/docs/advanced-features/react-18/streaming
 export default dynamic(() => Promise.resolve(MyApp), { ssr: false })

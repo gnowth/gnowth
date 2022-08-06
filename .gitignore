@@ -70,7 +70,7 @@ typings/
 
 # dotenv environment variables file
 .env
-.env.test
+.env.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -104,15 +104,24 @@ dist
 # TernJS port file
 .tern-port
 
+# CUSTOM
+
 # artifact
 artifact.zip
 
-# Nested license
-packages/**/license
-
-# Cypress
+# cypress
 **/cypress/media
 
-# Volumes
+# license (nested)
+packages/**/license
+
+# other
+.DS_Store
+
+# storybook
+storybook-static
+__diff_output__
+
+# volumes
 volumes/*
 !volumes/.gitkeep

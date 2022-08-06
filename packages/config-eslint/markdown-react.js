@@ -1,3 +1,4 @@
+// DEBT: to check if all plugins/presets are compatible and explore preset for mdx
 module.exports = {
   env: {
     browser: true,
@@ -9,18 +10,15 @@ module.exports = {
   },
 
   extends: [
-    'plugin:@typescript-eslint/recommended',
     'plugin:eslint-comments/recommended',
     'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:mdx/recommended',
-    'plugin:promise/recommended',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
     'prettier',
   ],
 
-  parser: '@typescript-eslint/parser',
+  parser: 'eslint-mdx',
 
   parserOptions: {
     ecmaFeatures: {
@@ -31,18 +29,7 @@ module.exports = {
     sourceType: 'module',
   },
 
-  plugins: [
-    '@typescript-eslint',
-    'eslint-comments',
-    'import',
-    'jest',
-    'jsx-a11y',
-    'mdx',
-    'prettier',
-    'promise',
-    'react',
-    'react-hooks',
-  ],
+  plugins: ['eslint-comments', 'import', 'jsx-a11y', 'mdx', 'prettier', 'react'],
 
   settings: {
     'import/extensions': ['.md', '.mdx'],

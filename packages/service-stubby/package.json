@@ -1,9 +1,17 @@
 {
+  "author": "Thierry Wong",
+  "description": "Mock server",
+  "license": "AGPL-3.0-only",
   "name": "@service/stubby",
+  "prettier": "@gnowth/prettier-config",
   "private": true,
+  "sideEffects": false,
   "version": "0.0.0",
   "dependencies": {
     "stubby": "5.1.0"
+  },
+  "devDependencies": {
+    "@gnowth/prettier-config": "0.0.0"
   },
   "scripts": {
     "start:dev": "stubby -w --data data.yml",

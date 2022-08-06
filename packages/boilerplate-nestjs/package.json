@@ -43,11 +43,12 @@
     "build": "cp ../../LICENSE LICENSE && nest build",
     "clean:temp": "rm -rf LICENSE && rm -rf dist",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext js,jsx,ts,tsx .",
+    "lint:script": "eslint --ext ts .",
     "start": "node dist/main",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "typecheck": "tsc"
   }
 }

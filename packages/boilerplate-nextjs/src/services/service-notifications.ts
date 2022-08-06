@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import configs from '../configs'
 
-// DEBT: to investigate around using sockets
+// DEBT(investigation): to investigate around using sockets
 class ServiceNotifications {
   static routes = {
     notifications: (id = '') => `/${id}`,
