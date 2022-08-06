@@ -4,6 +4,7 @@
   "description": "thierry language",
   "name": "@gnowth/ty-language",
   "prettier": "@gnowth/prettier-config",
+  "sideEffects": false,
   "version": "0.0.0",
   "engines": {
     "vscode": "1.69.2"

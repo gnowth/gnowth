@@ -1,11 +1,7 @@
 {
-  "extends": "@gnowth/typescript-config",
+  "extends": "./tsconfig.test.json",
   "compilerOptions": {
-    "allowJs": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "moduleResolution": "node"
+    "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

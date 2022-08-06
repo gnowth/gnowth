@@ -6,8 +6,12 @@ export enum Collection {
   Recipe = 'recipe',
 }
 
+// DEBT: need to add clientId and token
 const schema = defineSchema({
   config: {
+    // branch: 'cms-tina',
+    // clientId: '',
+    // token: '',
     media: {
       tina: {
         mediaRoot: 'media',

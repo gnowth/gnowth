@@ -119,8 +119,86 @@ jobs:
       - name: Build projects
         run: npm run ci:build
 
+  build_and_e2e_mock:
+    container:
+      image: cypress/base:14.17.0
+      options: --user 1001
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build website
+        run: npm run ci:build:website
+
+      - name: End to end test using mock
+        run: npm run ci:e2e:mock
+
+      - name: Upload test artifact
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-test-media-cypress
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
+          retention-days: 1
+
+  styleguide_build_and_e2e:
+    container:
+      image: cypress/base:14.17.0
+      options: --user 1001
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build styleguide
+        run: npm run ci:build:styleguide
+
+      - name: End to end test on styleguide
+        run: npm run ci:e2e:styleguide
+
+      - name: Upload test artifact
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-test-media-styleguide
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
+          retention-days: 1
+
   # DEBT(hack): use cypress base due since it has git which chromatic needs
-  build_and_publish_styleguide:
+  styleguide_build_and_publish:
     container:
       image: cypress/base:14.17.0
       options: --user 1001
@@ -149,81 +227,3 @@ jobs:
 
       - name: Build and publish to chromatic
         run: npm run cd:styleguide:publish
-
-  build_and_e2e_styleguide:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
-
-      - name: Build projects
-        run: npm run ci:build:styleguide
-
-      - name: End to end test on styleguide
-        run: npm run ci:e2e:styleguide
-
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-styleguide
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
-          retention-days: 1
-
-  build_and_e2e_mock:
-    container:
-      image: cypress/base:14.17.0
-      options: --user 1001
-    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
-
-      - name: Build projects
-        run: npm run ci:build:website
-
-      - name: End to end test using mock
-        run: npm run ci:e2e:mock
-
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-cypress
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
-          retention-days: 1
