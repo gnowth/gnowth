@@ -47,11 +47,12 @@
   "scripts": {
     "build": "cp ../../LICENSE LICENSE && build-storybook --quiet --disable-telemetry",
     "build:dev": "build-storybook --disable-telemetry",
+    "build-storybook": "build-storybook --quiet --disable-telemetry",
     "clean:temp": "rm -rf LICENSE && rm -rf storybook-static && rm -rf '__image_snapshots__/__diff_output__'",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext mdx,ts,tsx .",
     "publish": "chromatic --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN",
-    "publish:ci": "chromatic --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN --exit-once-uploaded",
+    "publish:ci": "chromatic --project-token=$STYLEGUIDE_CHROMATIC_TOKEN --exit-once-uploaded",
     "start:ci": "start-storybook -p 6006 --ci",
     "start:dev": "start-storybook -p 6006",
     "test:e2e": "npm run test:interactions && npm run test:storyshots",

@@ -8,7 +8,6 @@ env:
   CYPRESS_BASEURL: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   NODE_VERSION: 18.7.0
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
-  STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
   NEXT_PUBLIC_ENV: development
@@ -28,8 +27,6 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Cache npm cache on linux
         uses: actions/cache@v3
@@ -43,9 +40,6 @@ jobs:
 
       - name: Build projects
         run: npm run ci:build:dev
-
-      - name: Publish to chromatic
-        run: npm run cd:styleguide:publish
 
       - name: End to end test on styleguide
         run: npm run ci:e2e:styleguide

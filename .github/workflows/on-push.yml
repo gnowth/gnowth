@@ -6,6 +6,7 @@ env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
   ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE: packages/boilerplate-storybook/__image_snapshots__/__diff_output__
   NODE_VERSION: 18.7.0
+  STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
 
 jobs:
   quality:
@@ -118,6 +119,32 @@ jobs:
       - name: Build projects
         run: npm run ci:build
 
+  build_and_publish_styleguide:
+    container:
+      image: node:18.7.0-bullseye-slim
+      options: --user 1001
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build and publish to chromatic
+        run: npm run cd:styleguide:publish
+
   build_and_e2e_styleguide:
     container:
       image: cypress/base:14.17.0
@@ -144,7 +171,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run ci:build
+        run: npm run ci:build:styleguide
 
       - name: End to end test on styleguide
         run: npm run ci:e2e:styleguide
@@ -183,7 +210,7 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run ci:build
+        run: npm run ci:build:website
 
       - name: End to end test using mock
         run: npm run ci:e2e:mock

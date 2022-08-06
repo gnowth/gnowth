@@ -86,6 +86,8 @@
     "cd:website:deploy:cleanup": "surge teardown $SITE_DOMAIN",
     "ci:build": "lerna run build",
     "ci:build:dev": "lerna run build:dev",
+    "ci:build:styleguide": "npm run workspace:styleguide build",
+    "ci:build:website": "npm run workspace:nextjs build",
     "ci:check": "npm run ci:check:lint && npm run ci:check:test && ci:check:typecheck",
     "ci:check:lint": "lerna run lint",
     "ci:check:test": "lerna run test",
