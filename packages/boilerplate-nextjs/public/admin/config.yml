@@ -6,8 +6,8 @@ public_folder: 'packages/boilerplate-nextjs/public'
 # https://www.netlifycms.org/docs/configuration-options/#backend
 backend:
   name: git-gateway
-  branch: test-cms
-  repo: ''
+  branch: cms-netlify
+  repo: 'DEBT: to add repo'
 
 # https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
 local_backend:

@@ -2,13 +2,13 @@
   "author": "Thierry Wong",
   "bugs": "https://github.com/gnowth/smart/issues",
   "description": "Boilerplate",
+  "homepage": "https://github.com/gnowth/smart#readme",
   "license": "AGPL-3.0-only",
   "name": "gnowth",
   "prettier": "@gnowth/prettier-config",
   "private": true,
-  "version": "0.0.0",
   "repository": "https://github.com/gnowth/smart.git",
-  "homepage": "https://github.com/gnowth/smart#readme",
+  "version": "0.0.0",
   "workspaces": [
     "./packages/*"
   ],
