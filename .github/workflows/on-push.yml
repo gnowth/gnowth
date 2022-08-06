@@ -4,6 +4,7 @@ on: push
 
 env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
+  ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE: packages/boilerplate-storybook/__image_snapshots__/__diff_output__
   NODE_VERSION: 18.7.0
 
 jobs:
@@ -116,6 +117,45 @@ jobs:
 
       - name: Build projects
         run: npm run ci:build
+
+  build_and_e2e_styleguide:
+    container:
+      image: cypress/base:14.17.0
+      options: --user 1001
+    if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Cache npm cache on linux
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-setup-
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: Build projects
+        run: npm run ci:build
+
+      - name: End to end test on styleguide
+        run: npm run ci:e2e:styleguide
+
+      - name: Upload test artifact
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-test-media-styleguide
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
+          retention-days: 1
 
   build_and_e2e_mock:
     container:
