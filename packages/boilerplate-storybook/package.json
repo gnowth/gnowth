@@ -20,6 +20,9 @@
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },
+  "?devDependencies": {
+    "jest-image-snapshot?": "DEBT: importing it as a workaround, until `@storybook/addon-storyshots-puppeteer` uses v5 of this library"
+  },
   "dependencies": {
     "@boilerplate/nextjs": "0.0.0",
     "@gnowth/storybook-preset": "0.0.0",
@@ -42,6 +45,7 @@
     "@storybook/testing-library": "0.0.13",
     "@types/puppeteer": "5.4.6",
     "chromatic": "6.7.3",
+    "jest-image-snapshot": "5.1.0",
     "puppeteer": "15.5.0"
   },
   "scripts": {
@@ -56,8 +60,7 @@
     "start:dev": "start-storybook -p 6006",
     "test:e2e": "npm run test:interactions && npm run test:storyshots",
     "test:interactions": "test-storybook",
-    "test:storyshots?": "DEBT: issue with generating snapshot locally and in ci does not match",
-    "test:storyshots": "echo jest --testMatch='**/*.snapshot.ts'",
+    "test:storyshots": "jest --testMatch='**/*.snapshot.ts'",
     "typecheck": "tsc"
   }
 }
