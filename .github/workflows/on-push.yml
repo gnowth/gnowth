@@ -223,6 +223,5 @@ jobs:
           buildScriptName: build:ci
           exitOnceUploaded: true
           projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
-          # skip: '@(renovate/**|dependabot/**)'
           workingDir: packages/boilerplate-storybook
           zip: true
