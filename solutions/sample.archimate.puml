@@ -1,0 +1,372 @@
+@startuml sample
+
+title title
+
+left to right direction
+
+frame FrameArchi {
+  archimate #Application application
+  archimate #Business business
+  archimate #Implementation implementation
+  archimate #Motivation motivation
+  archimate #Physical physical
+  archimate #Strategy strategy
+  archimate #Technology technology <<technology-device>>
+}
+
+frame Frame {
+  actor/ actor
+  agent agent
+  artifact artifact
+  boundary boundary
+  card card
+  circle circle
+  cloud cloud
+  collections collections
+  control control
+  database database
+  entity entity
+  file file
+  folder folder
+  frame frame
+  hexagon hexagon
+  interface interface
+  label label
+  node node
+  package package
+  person person
+  queue queue
+  rectangle rectangle
+  stack stack
+  storage storage
+  usecase/ usecase
+}
+
+frame Border {
+  node b1 #line:transparent
+  node b2 #line.dotted;line:blue
+  node b3 #line.dashed;text:green
+  node b4 #line.bold
+
+  b1 -[hidden]- b2
+  b2 -[hidden]- b3
+  b3 -[hidden]- b4
+}
+
+frame FrameLink {
+  () l1
+  l1 <<==> () l2
+  l2 ~~ () l3
+  l3 #-(0-^ () l4
+  l4 -0)-+ () l5
+  l5 0-0-(0 l4
+  l4 *-(0)-o l3
+  l3 .. l2
+}
+
+frame FrameLong {
+  actor actorLong [
+    actor
+  ]
+  agent agentLong [
+    agent
+  ]
+  artifact artLongfact [
+    artifact
+  ]
+  boundary boundaryLong [
+    boundary
+  ]
+  card cardLong [
+    card
+  ]
+  circle circleLong [
+    circle
+  ]
+  cloud cloudLong [
+    cloud <&wifi>
+  ]
+  collections collectionsLong [
+    collections
+  ]
+  control controlLong [
+    control
+  ]
+  database databaseLong [
+    database
+  ]
+  entity entityLong [
+    entity
+  ]
+  file fileLong [
+    file
+  ]
+  folder folderLong [
+    folder
+  ]
+  frame frameLong [
+    frame
+  ]
+  hexagon hexagonLong [
+    hexagon
+  ]
+  interface interfaceLong [
+    interface
+  ]
+  label labelLong [
+    label
+  ]
+  node nodeLong [
+    node
+  ]
+  package packageLong [
+    ==
+    __
+    ..
+    --
+  ]
+  person personLong [
+    person
+  ]
+  queue queueLong [
+    queue
+  ]
+  rectangle rectangleLong [
+    rectangle
+  ]
+  stack stackLong [
+    stack
+  ]
+  storage storageLong [
+    storage
+  ]
+  usecase usecaseLong [
+    usecase
+  ]
+}
+
+frame FrameNote {
+  (note)
+  note bottom of note: note
+  note left of note: note
+  note right of note: note
+  note top of note: note
+}
+
+frame FrameShort {
+  [componentShort]
+  (usecaseShort1)
+  (usecaseShort2)/
+  () interfaceShort
+  :actorShort1:
+  :actorShort2:/
+
+  actorShort1 -[hidden]- actorShort2
+  componentShort -[hidden]- interfaceShort
+  usecaseShort1 -[hidden]- usecaseShort2
+  interfaceShort -[hidden]- actorShort1
+}
+
+frame FrameNest {
+  artifact artifactNest #transparent [
+    artifact
+    {{
+      rectangle r
+    }}
+  ]
+  card cardNest #transparent [
+    card
+    {{
+      rectangle r
+    }}
+  ]
+  cloud cloudNest #transparent [
+    cloud
+    {{
+      rectangle r
+    }}
+  ]
+  component componentNest #transparent [
+    component
+    {{
+      rectangle r
+    }}
+  ]
+  database databaseNest #transparent [
+    database
+    {{
+      rectangle r
+    }}
+  ]
+  file fileNest #transparent [
+    file
+    {{
+      rectangle r
+    }}
+  ]
+  folder folderNest #transparent [
+    folder
+    {{
+      rectangle r
+    }}
+  ]
+  frame frameNest #transparent [
+    frame
+    {{
+      rectangle r
+    }}
+  ]
+  hexagon hexagonNest #transparent [
+    hexagon
+    {{
+      rectangle r
+    }}
+  ]
+  node nodeNest #transparent [
+    node
+    {{
+      rectangle r
+    }}
+  ]
+  package packageNest #transparent [
+    {{
+      rectangle r
+    }}
+  ]
+  queue queueNest #transparent [
+    queue
+    {{
+      rectangle r
+    }}
+  ]
+  rectangle rectangleNest #transparent [
+    rectangle
+    {{
+      rectangle r
+    }}
+  ]
+  stack stackNest #transparent [
+    stack
+    {{
+      rectangle r
+    }}
+  ]
+  storage storageNest #transparent [
+    storage
+    {{
+      rectangle r
+    }}
+  ]
+  artifactNest -- cardNest
+  cardNest -- cloudNest
+  cloudNest -- componentNest
+  componentNest -- databaseNest
+  fileNest -- folderNest
+  folderNest -- frameNest
+  frameNest -- hexagonNest
+  hexagonNest -- nodeNest
+  packageNest -- queueNest
+  queueNest -- rectangleNest
+  rectangleNest -- stackNest
+  stackNest -- storageNest
+}
+
+@enduml
+
+@startuml sequence
+
+participant participant
+
+@enduml
+
+@startuml state
+
+state state {
+  [*] --> State
+  ||
+  [*] --> State1
+}
+
+@endstate
+
+@startuml class
+
+abstract abstract
+abstract class "abstract class"
+annotation annotation
+class class
+entity entity
+enum enum
+interface interface
+protocol protocol
+struct  struct
+circle circle
+() circle_short_form
+diamond diamond
+<> diamond_short_form
+
+@enduml
+
+@startuml usecase
+
+usecase usecase as "
+  text
+"
+
+json JSON {
+  "fruit":"Apple",
+  "size":"Large",
+  "color": ["Red", "Green"]
+}
+
+@enduml
+
+@startuml activity
+
+start
+
+:text;
+:text;
+
+if (text) then (text1)
+  :text;
+else (text3)
+  :text;
+endif
+
+:text;
+
+switch (text)
+case (condition)
+  :text;
+case (condition)
+  :text;
+case (condition)
+  :text;
+endswitch
+
+:text;
+
+partition partition {
+  if (text) then (text1)
+    :text;
+    stop
+  elseif (text) then (text2)
+    :text;
+    detach
+  else (text3)
+    :text;
+  endif
+}
+
+:text;
+
+partition partition {
+  repeat :text;
+    :text;
+  backward:text;
+  repeat while (condition)
+}
+end
+
+@enduml
