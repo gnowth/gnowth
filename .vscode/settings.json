@@ -19,6 +19,10 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "typescript.validate.enable": false,
 
+  // plantuml
+  "plantuml.server": "http://localhost:8888",
+  "plantuml.render": "PlantUMLServer",
+
   // plugins
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "gitlens.codeLens.authors.enabled": false,

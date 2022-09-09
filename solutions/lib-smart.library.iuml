@@ -1,0 +1,433 @@
+@startuml sample-smart
+
+' ===theme===
+!$THEME_DEFAULT___BACKGROUND_COLOR ?= "white"
+!$THEME_DEFAULT___BORDER_COLOR ?= {
+  "default": "#444",
+  "existing": "gray",
+  "new": "#444",
+  "changed": "#ca7a0f"
+}
+!$THEME_DEFAULT___COLOR ?= {
+  "default": "automatic",
+  "existing": "gray",
+  "new": "#444",
+  "changed": "#ca7a0f"
+}
+
+!$THEME_DEFAULT___FONT_SIZE ?= "16"
+!$THEME_DEFAULT__DESCRIPTION___FONT_SIZE ?= "12"
+!$THEME_DEFAULT__LINE___COLOR ?= {
+  "default": "#444",
+  "existing": "gray",
+  "new": "#444",
+  "changed": "#ca7a0f"
+}
+!$THEME_DEFAULT__SPRITE___COLOR ?= {
+  "default": "#0072C6",
+  "existing": "gray",
+  "new": "#007aaf",
+  "changed": "#ca7a0f"
+}
+
+!$THEME_ENTITY_COMPONENT___BACKGROUND_COLOR ?= {
+  "default": "#a1efff",
+  "existing": "#eee",
+  "new": "#a1efff",
+  "changed": "#ffdfcf"
+}
+
+!$THEME_BOUNDARY___FONT_SIZE ?= "14"
+!$THEME_BOUNDARY_COMPONENT___BACKGROUND_COLOR ?= %lighten($THEME_ENTITY_COMPONENT___BACKGROUND_COLOR.default, 17)
+!$THEME_BOUNDARY_SYSTEM__FONT_SIZE ?= "28"
+
+!$THEME_ENTITY_INFRA___BORDER_COLOR ?= $THEME_DEFAULT___BACKGROUND_COLOR
+!$THEME_ENTITY_INFRA___BACKGROUND_COLOR ?= $THEME_DEFAULT___BACKGROUND_COLOR
+!$THEME_ENTITY_INFRA_COMPONENT___BORDER_COLOR ?= $THEME_BOUNDARY_COMPONENT___BACKGROUND_COLOR
+!$THEME_ENTITY_INFRA_COMPONENT___BACKGROUND_COLOR ?= $THEME_BOUNDARY_COMPONENT___BACKGROUND_COLOR
+!$THEME_ENTITY_SYSTEM___BACKGROUND_COLOR ?= {
+  "default": "#ffdfcf",
+  "existing": "#eee",
+  "new": "#a1efff",
+  "changed": "#ffdfcf"
+}
+
+!$THEME_SPACER___BACKGROUND_COLOR ?= "transparent"
+!$THEME_SPACER___BORDER_COLOR ?= "transparent"
+!$THEME_SPACER___COLOR ?= "transparent"
+
+!$THEME_DEBUG_SPACER___BACKGROUND_COLOR ?= "transparent"
+!$THEME_DEBUG_SPACER___BORDER_COLOR ?= "black"
+!$THEME_DEBUG_SPACER___COLOR ?= "transparent"
+
+skinparam minClassWidth 100
+skinparam titleFontSize 28
+
+' ===UtilsUML===
+!$MODE_DEBUG ?= "false"
+!$MODE_STATUS_TEXT ?= "false"
+!$MODE_STATUS_FLOW ?= "false"
+
+!procedure $LEGEND_SHOW($horizontal="", $vertical="")
+  !if ($MODE_STATUS_FLOW == "true")
+    $Legend($horizontal, $vertical)
+  !endif
+!endprocedure
+
+!procedure $MODE_DEBUG_DISABLE()
+  !$MODE_DEBUG = "false"
+!endprocedure
+
+!procedure $MODE_DEBUG_ENABLE()
+  !$MODE_DEBUG = "true"
+!endprocedure
+
+!procedure $MODE_STATUS_FLOW_DISABLE()
+  !$MODE_STATUS_FLOW = "false"
+!endprocedure
+
+!procedure $MODE_STATUS_FLOW_ENABLE()
+  !$MODE_STATUS_FLOW = "true"
+!endprocedure
+
+!procedure $MODE_STATUS_TEXT_HIDE()
+  !$MODE_STATUS_TEXT = "false"
+!endprocedure
+
+!procedure $MODE_STATUS_TEXT_SHOW()
+  !$MODE_STATUS_TEXT = "true"
+!endprocedure
+
+!procedure $STEREOTYPE_HIDE()
+  hide stereotype
+!endprocedure
+
+!procedure $STEREOTYPE_SHOW()
+  show stereotype
+!endprocedure
+
+!procedure $LAYOUT_LEFT_RIGHT()
+  left to right direction
+!endprocedure
+
+!procedure $LAYOUT_TOP_BOTTOM()
+  top to bottom direction
+!endprocedure
+
+' ===Utils===
+!function $getTheme($stereotype, $property, $status="", $component="")
+  !$property = %upper($property)
+  !$stereotype = %upper($stereotype)
+  !if ($component != "")
+    !$component = %upper($component) + "___"
+  !endif
+
+  !$value = ""
+  !if (%variable_exists("$THEME_" + $stereotype + "__" + $component + $property))
+    !$value = %get_variable_value("$THEME_" + $stereotype + "__" + $component + $property)
+  !elseif (%variable_exists("$THEME_DEFAULT__" + $component + $property))
+    !$value = %get_variable_value("$THEME_DEFAULT__" + $component + $property)
+  !elseif (%variable_exists("$THEME_" + $stereotype + "___" + $property))
+    !$value = %get_variable_value("$THEME_" + $stereotype + "___" + $property)
+  !elseif (%variable_exists("$THEME_DEFAULT___" + $property))
+    !$value = %get_variable_value("$THEME_DEFAULT___" + $property)
+  !else
+    !return "$THEME_" + $stereotype + "__" + $component + $property
+  !endif
+
+  !if (%get_json_type($value) != "object")
+    !return $value
+  !endif
+
+  !if ($MODE_STATUS_FLOW != "true")
+    !$status = "default"
+  !elseif ($status == "")
+    !$status = "existing"
+  !endif
+
+  !return $value[$status]
+!endfunction
+
+!function $getSprite($sprite, $status="", $concat="", $spriteCategory="general")
+  !$themeColor = $getTheme($spriteCategory, "color", $status, "sprite")
+
+  !if ($sprite == "")
+    !return ""
+  !endif
+
+  !if (%substr($sprite, 0, 1) != "&" && %substr($sprite, 0, 4) != "img:")
+    !return "<color:" + $themeColor + "><$" + $sprite + "></color>" + $concat
+  !endif
+
+  !return "<color:" + $themeColor + "><" + $sprite + "></color>" + $concat
+!endfunction
+
+!function $getStereotype($stereotype, $prefix, $status="", $debug="false")
+  !$debugPrefix = ""
+  !if ($MODE_DEBUG == "true" && $debug == "true")
+    !$debugPrefix = "debug_"
+  !endif
+
+  !if ($stereotype == "")
+    !return $debugPrefix + $prefix
+  !endif
+
+  !return $debugPrefix + $prefix + "_" + $stereotype
+!endfunction
+
+!function $getStereotypeContent($stereotype, $status="")
+  !if ($MODE_STATUS_FLOW != "true")
+    !return "<<" + $stereotype + ">>"
+  !endif
+
+  !if ($status == "")
+    !$status = "existing"
+  !endif
+
+  !return "<<" + $stereotype + "_" + $status + ">>"
+!endfunction
+
+' ===Skinparam===
+!procedure $SkinparamBoundary($stereotype, $element, $status="")
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+  !$stereotypeDefault = "default" + $stereotypeContent
+  !$stereotypeElement = $element + $stereotypeContent
+
+  !$themeBackgroundColor = $getTheme($stereotype, "background_color", $status)
+  !$themeBorderColor = $getTheme($stereotype, "border_color", $status)
+  !$themeColor = $getTheme($stereotype, "color", $status)
+
+  skinparam $stereotypeDefault {
+    textAlignment center
+  }
+  skinparam $stereotypeElement {
+    backgroundColor $themeBackgroundColor
+    borderColor $themeBorderColor
+    fontColor $themeColor
+  }
+!endprocedure
+
+!procedure $SkinparamEntity($stereotype, $element, $status="")
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+  !$stereotypeDefault = "default" + $stereotypeContent
+  !$stereotypeElement = $element + $stereotypeContent
+
+  !$themeBackgroundColor = $getTheme($stereotype, "background_color", $status)
+  !$themeBorderColor = $getTheme($stereotype, "border_color", $status)
+  !$themeColor = $getTheme($stereotype, "color", $status)
+
+  skinparam $stereotypeDefault {
+    textAlignment center
+  }
+  skinparam $stereotypeElement {
+    backgroundColor $themeBackgroundColor
+    borderColor $themeBorderColor
+    fontColor $themeColor
+  }
+!endprocedure
+
+!procedure $SkinparamSpacer($stereotype, $element, $status="")
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+  !$stereotypeElement = $element + $stereotypeContent
+
+  !$themeBackgroundColor = $getTheme($stereotype, "background_color", $status)
+  !$themeBorderColor = $getTheme($stereotype, "border_color", $status)
+  !$themeColor = $getTheme($stereotype, "color", $status)
+
+  skinparam $stereotypeElement {
+    backgroundColor $themeBackgroundColor
+    borderColor $themeBorderColor
+    fontColor $themeColor
+  }
+!endprocedure
+
+' ===Elements===
+!procedure $Boundary($alias, $label="", $element="rectangle", $sprite="", $status="", $stereotype="", $style="#line.dashed")
+  !$stereotype = $getStereotype($stereotype, "boundary", $status)
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+
+  !if ($label == "")
+    !$label = $alias
+  !endif
+
+  !$themeFontSize = $getTheme($stereotype, "font_size", $status)
+  !$statusContent = ""
+  !if ($status != "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "<plain><size:" + $themeFontSize + "> //<" + $status + ">//</size></plain>"
+  !elseif ($status == "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "<plain><size:" + $themeFontSize + "> //<existing>//</size></plain>"
+  !endif
+
+  !$sprite = $getSprite($sprite, $status, " ")
+  !$content = $sprite + "<plain><size:" + $themeFontSize + ">" + $label + "</size></plain>" + $statusContent
+
+  $SkinparamBoundary($stereotype, $element, $status)
+  $element "$content" $stereotypeContent as $alias $style
+!endprocedure
+
+!procedure $Entity($alias, $label="", $element="rectangle", $description="", $sprite="", $status="", $stereotype="component")
+  !$stereotype = $getStereotype($stereotype, "entity", $status)
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+
+  !if ($description != "")
+    !$size = $getTheme($stereotype, "font_size", $status, "description")
+    !$description = "\n<size:" + $size + ">" + $description + "</size>"
+  !endif
+
+  !if ($label == "")
+    !$label = $alias
+  !endif
+
+  !$statusContent = ""
+  !if ($status != "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "\n<plain>//<" + $status + ">//</plain>"
+  !elseif ($status == "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "\n<plain>//<existing>//</plain>"
+  !endif
+
+  !$sprite = $getSprite($sprite, $status, "\n")
+  !$content = $sprite + "**" + $label + "**" + $description + $statusContent
+
+  $SkinparamEntity($stereotype, $element, $status)
+  $element "$content" $stereotypeContent as $alias
+!endprocedure
+
+!procedure $Spacer($alias, $stereotype="", $element="rectangle", $horizontal=10, $vertical=1)
+  !$stereotype = $getStereotype($stereotype, "spacer", "", "true")
+  !$stereotypeContent = $getStereotypeContent($stereotype, $status)
+  !$content = ""
+
+  !while $horizontal>0
+    !$content = $content + "l"
+    !$horizontal = $horizontal - 1
+  !endwhile
+
+  !while $vertical>1
+    !$content = $content + "\n"
+    !$vertical = $vertical - 1
+  !endwhile
+
+  $SkinparamSpacer($stereotype, $element, $status)
+  $element "$content" $stereotypeContent as $alias
+!endprocedure
+
+' ===Relationships===
+!procedure $Rel($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="", $line="-", $link="", $status="", $style="")
+  !if ($alias2 == "")
+    !$alias2 = $alias1
+  !endif
+
+  !$themeColor = $getTheme("", "color", $status, "line")
+  !if (%substr($themeColor, 0, 1) != "#")
+    !$themeColor = "#" + $themeColor
+  !endif
+
+  !if ($style == "")
+    !$style = "[" + $themeColor + "]"
+  !else
+    !$style = "[" + $themeColor + ";" + $style + "]"
+  !endif
+
+  !$statusContent = ""
+  !if ($status != "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "<plain>//<" + $status + ">//</plain>: "
+  !elseif ($status == "" && $MODE_STATUS_TEXT == "true")
+    !$statusContent = "<plain>//<existing>//</plain>: "
+  !endif
+
+  !$connection = $arrowLeft + $line + $style + $direction + $link + '-' + $arrowRight
+  !$content = $statusContent + $text
+
+  $alias1 $connection $alias2 : "$content"
+!endprocedure
+
+' ===Legend===
+!procedure $Legend($horizontal="", $vertical="")
+  skinparam legend {
+    backgroundColor transparent
+    borderColor transparent
+  }
+
+  !$colorChanged = $getTheme("", "color", "changed", "line")
+  !$colorExisting = $getTheme("", "color", "existing", "line")
+  !$colorNew = $getTheme("", "color", "new", "line")
+
+
+  legend $vertical $horizontal
+    |= |= Status |
+    |<back:$colorExisting>     </back>| Existing |
+    |<back:$colorChanged>     </back>| Changed |
+    |<back:$colorNew>     </back>| New |
+  endlegend
+!endprocedure
+
+' ===Boundary SHORTCUTS===
+!procedure $BoundaryComponent($alias, $label="", $element="rectangle", $sprite="", $status="", $stereotype="component", $style="")
+  $Boundary($alias, $label, $element, $sprite, $status, $stereotype, $style)
+!endprocedure
+
+!procedure $BoundarySystem($alias, $label="", $element="frame", $sprite="", $status="", $stereotype="system", $style="")
+  $Boundary($alias, $label, $element, $sprite, $status, $stereotype, $style)
+!endprocedure
+
+' ===Entity SHORTCUTS===
+!procedure $EntityComponent($alias, $label="", $element="rectangle", $sprite="", $description="", $status="", $stereotype="component")
+  $Entity($alias, $label, $element, $description, $sprite, $status, $stereotype)
+!endprocedure
+
+!procedure $EntityInfra($alias, $label="", $element="rectangle", $sprite="", $description="", $status="", $stereotype="infra")
+  $Entity($alias, $label, $element, $description, $sprite, $status, $stereotype)
+!endprocedure
+
+!procedure $EntityInfraComponent($alias, $label="", $element="rectangle", $sprite="", $description="", $status="", $stereotype="infra_component")
+  $Entity($alias, $label, $element, $description, $sprite, $status, $stereotype)
+!endprocedure
+
+!procedure $EntitySystem($alias, $label="", $element="rectangle", $sprite="", $description="", $status="", $stereotype="system")
+  $Entity($alias, $label, $element, $description, $sprite, $status, $stereotype)
+!endprocedure
+
+' ===Relationships SHORTCUTS===
+!procedure $Lay($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="d", $line="-", $link="", $status="", $style="")
+  !if ($MODE_DEBUG != "true" && $style == "")
+    !$style = "hidden" + $style
+  !elseif ($MODE_DEBUG != "true" && $style != "")
+    !$style = "hidden;" + $style
+  !endif
+
+  $Rel($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $LayD($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="d", $line="-", $link="", $status="", $style="")
+  $Lay($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $LayL($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="l", $line="-", $link="", $status="", $style="")
+  $Lay($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $LayR($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="r", $line="-", $link="", $status="", $style="")
+  $Lay($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $LayU($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="u", $line="-", $link="", $status="", $style="")
+  $Lay($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $RelD($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="d", $line="-", $link="", $status="", $style="")
+  $Rel($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $RelL($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="l", $line="-", $link="", $status="", $style="")
+  $Rel($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $RelR($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">", $direction="r", $line="-", $link="", $status="", $style="")
+  $Rel($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+!procedure $RelU($alias1, $alias2="", $text="", $arrowLeft="", $arrowRight=">",$direction="u",  $line="-", $link="", $status="", $style="")
+  $Rel($alias1, $alias2, $text, $arrowLeft, $arrowRight, $direction, $line, $link, $status, $style)
+!endprocedure
+
+@enduml

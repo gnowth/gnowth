@@ -1,0 +1,81 @@
+@startuml sample
+
+' ===Import===
+!include <tupadr3/common>
+!include <office/sites/website_public>
+
+!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/release/2-1/dist
+!define AzurePumlMaster https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/master/dist
+!include AzurePuml/AzureCommon.puml
+!include AzurePumlMaster/Management/AppConfiguration.puml
+!include ./lib-smart.library.iuml
+
+' ===Initialize===
+' Note: boundary declared last will appear first in the layout
+' together: force together
+' $LAYOUT_LEFT_RIGHT()
+' $LAYOUT_TOP_BOTTOM()
+' $MODE_DEBUG_DISABLE()
+' $MODE_DEBUG_ENABLE()
+' $MODE_STATUS_FLOW_DISABLE()
+' $MODE_STATUS_FLOW_ENABLE()
+' $MODE_STATUS_TEXT_HIDE()
+' $MODE_STATUS_TEXT_SHOW()
+' $STEREOTYPE_HIDE()
+' $STEREOTYPE_SHOW()
+' skinparam linetype polyline
+' skinparam linetype ortho
+' skinparam linetype vpsc
+' skinparam nodesep 10
+' skinparam ranksep 10
+
+' Note: legend has to be called after "MODE_STATUS_FLOW" and it must be enabled
+$LEGEND_SHOW($horizontal="right", $vertical="top")
+
+' ===Sample===
+
+title Sample
+
+$BoundarySystem(boundarySystem, "Azure", $sprite="AppConfiguration{scale=0.5}") {
+  $BoundaryComponent(boundaryComponentSide) {
+    $EntityComponent(boundarySystemSide_entityComponent, $sprite="website_public{scale=2.3}")
+    $EntitySystem(boundarySystemSide_entitySystem, $sprite="img:https://seeklogo.com/images/A/adobe-experience-manager-logo-8A32A4B854-seeklogo.com.png{scale=0.29}", $status="changed")
+    $Spacer(spacer5, $horizontal=1, $vertical=7)
+
+    $LayD(boundarySystemSide_entityComponent, boundarySystemSide_entitySystem)
+    $LayD(boundarySystemSide_entitySystem, spacer5)
+  }
+
+  $Boundary(boundaryEmpty) {
+    $EntityInfra(boundarySystem_entityInfra, $description="[description]", $sprite="AppConfiguration{scale=1}", $status="new")
+    $EntityInfra(boundarySystem_entityInfra1, $description="[description]", $sprite="AppConfiguration{scale=1}")
+    $Spacer(spacer2, $horizontal=1)
+
+    $LayR(boundarySystem_entityInfra, spacer2)
+  }
+
+  $Boundary(boundary, "boundary", $status="existing") {
+    $EntityComponent(boundary_entityComponent, $sprite="website_public{scale=2.3}", $status="new")
+    $EntitySystem(boundary_entitySystem, $sprite="website_public{scale=2.3}", $status="changed")
+    $EntityInfra(boundary_entityInfra, $sprite="AppConfiguration{scale=1}", $status="changed")
+
+    $LayR(boundary_entitySystem, boundary_entityInfra)
+  }
+
+  $BoundaryComponent(boundaryComponent, $status="new") {
+    $Spacer(spacer3, $horizontal=50)
+    $EntitySystem(boundarySystem_entitySystem, $sprite="img:https://seeklogo.com/images/A/adobe-experience-manager-logo-8A32A4B854-seeklogo.com.png{scale=0.29}", $status="new")
+    $EntityInfraComponent(boundary_entityInfra1, $sprite="AppConfiguration{scale=1}")
+
+    $LayR(boundarySystem_entitySystem, boundary_entityInfra1)
+  }
+
+  $LayD(boundaryComponent, boundary)
+  $LayD(boundary, boundaryEmpty)
+
+  $Rel(boundarySystem_entitySystem, boundary_entityComponent, "link", $status="new")
+  $Rel(boundarySystem_entitySystem, boundary_entitySystem, $status="changed")
+  $Rel(boundarySystem_entitySystem, boundary_entityInfra)
+}
+
+@enduml
