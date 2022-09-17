@@ -13,6 +13,9 @@ const configs = {
     loader: 'imgix',
     path: '',
   },
+  experimental: {
+    externalDir: true,
+  },
   reactStrictMode: true,
   rewrites: async () => [
     {

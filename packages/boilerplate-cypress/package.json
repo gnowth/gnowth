@@ -29,7 +29,7 @@
   },
   "scripts": {
     "build": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE && rm -rf cypress/media",
+    "clean:temp": "rm -rf LICENSE cypress/media",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext mjs,ts .",
     "test:mock": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.mock.mjs --headless",
