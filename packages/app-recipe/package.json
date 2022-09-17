@@ -1,0 +1,50 @@
+{
+  "author": "Thierry Wong",
+  "description": "CMS tina",
+  "license": "AGPL-3.0-only",
+  "main": "src/exports.ts",
+  "module": "src/exports.ts",
+  "name": "@app/recipe",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "source": true,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/hybrid-react"
+    ]
+  },
+  "repository": {
+    "directory": "packages/app-recipe",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "dependencies": {
+    "tinacms": "0.69.7"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@tinacms/cli": "0.61.13"
+  },
+  "peerDependencies": {
+    "next": "^12.0.0",
+    "react": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "audit": "tinacms audit",
+    "build:config:cms": "tinacms build --local",
+    "clean:temp": "rm -rf ./.tina/__generated__/*.{ts,gql} ./.tina/__generated__/db",
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext ts,tsx .",
+    "start:dev": "tinacms dev",
+    "typecheck": "tsc"
+  }
+}

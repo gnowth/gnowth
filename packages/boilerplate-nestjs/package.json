@@ -41,7 +41,7 @@
   },
   "scripts": {
     "build": "cp ../../LICENSE LICENSE && nest build",
-    "clean:temp": "rm -rf LICENSE && rm -rf dist",
+    "clean:temp": "rm -rf LICENSE dist",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext ts .",
     "start": "node dist/main",

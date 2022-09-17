@@ -52,7 +52,7 @@
     "build": "cp ../../LICENSE LICENSE && build-storybook --quiet --disable-telemetry",
     "build:ci": "build-storybook --quiet --disable-telemetry",
     "build:dev": "build-storybook --disable-telemetry",
-    "clean:temp": "rm -rf LICENSE && rm -rf *.log && rm -rf storybook-static && rm -rf '__image_snapshots__/__diff_output__'",
+    "clean:temp": "rm -rf LICENSE *.log storybook-static __image_snapshots__/__diff_output__",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext mdx,ts,tsx .",
     "publish": "chromatic --zip --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN",

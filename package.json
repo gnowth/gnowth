@@ -17,8 +17,11 @@
       "@gnowth/eslint-config"
     ],
     "ignorePatterns": [
+      "**/.next",
+      "**/__generated__",
       "**/coverage",
-      "**/dist"
+      "**/dist",
+      "**/storybook-static"
     ],
     "root": true
   },
@@ -30,7 +33,7 @@
     "preset": "@gnowth/jest-config"
   },
   "lint-staged": {
-    "*.{css,json,md,scss,yaml,yml}": "prettier --write",
+    "**/!(__generated__)/*.{css,json,md,scss,yaml,yml}": "prettier --write",
     "*.{cjs,js,jsx,mdx,mjs,ts,tsx}": "eslint --fix"
   },
   "renovate": {
@@ -53,6 +56,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
+    "@tinacms/cli": "0.61.13",
     "concurrently": "7.3.0",
     "github-markdown-css": "5.1.0",
     "husky": "8.0.1",
@@ -83,14 +87,15 @@
     "cd:library:publish:dry": "echo publish dry run",
     "cd:website:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
     "cd:website:deploy:cleanup": "surge teardown $SITE_DOMAIN",
-    "ci:build": "lerna run build",
-    "ci:build:dev": "lerna run build:dev",
+    "ci:build?": "start-server-and-test 'npm run ci:service:tina:start' http://localhost:4001/altair/ 'lerna run build --parallel'",
+    "ci:build": "echo 'disabled for now'",
+    "ci:build:dev": "start-server-and-test 'npm run ci:service:tina:start' http://localhost:4001/altair/ 'lerna run build:dev --parallel'",
     "ci:build:styleguide": "npm run workspace:styleguide build",
-    "ci:build:website": "npm run workspace:nextjs build",
+    "ci:build:website": "start-server-and-test 'npm run ci:service:tina:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
     "ci:check": "npm run ci:check:lint && npm run ci:check:test && ci:check:typecheck",
-    "ci:check:lint": "lerna run lint",
-    "ci:check:test": "lerna run test",
-    "ci:check:typecheck": "lerna run typecheck",
+    "ci:check:lint": "lerna run lint --parallel",
+    "ci:check:test": "lerna run test --parallel",
+    "ci:check:typecheck": "lerna run typecheck --parallel",
     "ci:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test 'serve -l 3000 packages/boilerplate-nextjs/dist' http://localhost:3000 'npm run workspace:cypress test:mock'",
     "ci:e2e:regression:chrome": "npm run workspace:cypress test:regression:chrome",
     "ci:e2e:regression:chrome:mobile": "npm run workspace:cypress test:regression:chrome:mobile",
@@ -100,6 +105,8 @@
     "ci:e2e:styleguide-desired": "start-server-and-test 'serve -l 6006 packages/boilerplate-storybook/storybook-static' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
     "ci:e2e:styleguide?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312",
     "ci:e2e:styleguide": "start-server-and-test 'npm run workspace:styleguide start:ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
+    "ci:service:tina:build": "npm run workspace:recipe build:config:cms",
+    "ci:service:tina:start": "npm run workspace:recipe start:dev",
     "ci:setup": "npm ci --cache ~/.cache --prefer-offline",
     "docker:compose": "docker-compose -f devops/docker-compose.yml up",
     "docker:service:plantuml": "docker run -d -p 8888:8080 plantuml/plantuml-server:jetty",
@@ -109,13 +116,15 @@
     "git:tag:delete": "git tag -d $(git tag -l '*gnowth*')",
     "git:commit:temp": "HUSKY=0 git commit -am 'temp commit'",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
-    "local:check": "npm run local:check:lint && npm run local:check:typecheck && npm run local:check:test",
+    "local:check-debug:lint": "eslint --debug --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
+    "local:check-debug:typecheck": "tsc --listFilesOnly",
+    "local:check": "npm run ci:service:tina:build && concurrently npm:local:check:*",
     "local:check:lint": "eslint --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check:test": "jest",
     "local:check:typecheck": "tsc",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:clean:modules": "lerna clean --yes && rm -rf node_modules",
-    "local:clean:temp": "lerna run clean:temp && rm -rf coverage",
+    "local:clean:temp": "lerna run clean:temp --parallel && rm -rf coverage",
     "local:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 npm run workspace:cypress test:mock",
     "local:e2e:styleguide?": "DEBT(workaround): snapshot generated locally differs from those generated in ci. A workaround is to let the ci fail first and retrieve the received image and update it in the repo",
     "local:e2e:styleguide": "npm run workspace:styleguide test:e2e",
@@ -123,7 +132,7 @@
     "local:environment": "export $(grep -v '^#' .env.local | xargs)",
     "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",
     "local:start:dev": "npm run workspace:nextjs start:dev",
-    "local:start:dev:cms": "concurrently 'netlify-cms-proxy-server' 'npm run workspace:nextjs start:dev'",
+    "local:start:dev:cms": "concurrently 'npm run ci:service:tina:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start:dev'",
     "local:start:docker": "docker-compose -f ./configs/docker-compose.yml up",
     "local:start:styleguide": "npm run workspace:styleguide start:dev",
     "local:website:analyze": "npm run workspace:nextjs build:analyze",
@@ -140,6 +149,7 @@
     "workspace:nestjs": "npm run --workspace=@boilerplate/nestjs",
     "workspace:nextjs": "npm run --workspace=@boilerplate/nextjs",
     "workspace:prettier": "npm run --workspace=@gnowth/prettier-config",
+    "workspace:recipe": "npm run --workspace=@app/recipe",
     "workspace:styleguide": "npm run --workspace=@boilerplate/styleguide",
     "workspace:typescript": "npm run --workspace=@gnowth/typescript-config"
   }
