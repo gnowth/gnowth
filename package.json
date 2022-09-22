@@ -138,7 +138,7 @@
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup:cache:verify": "npm cache verify",
-    "setup:packages": "ncu --interactive --deep --reject '@boilerplate/*,@gnowth/*'",
+    "setup:packages": "ncu --interactive --deep --reject '@boilerplate/*,@gnowth/*,@app/*'",
     "setup:refresh": "rm -rf package-lock.json && npm run local:clean && time npm install",
     "setup": "time npm install --frozen-lockfile --legacy-peer-deps",
     "workspace:cypress": "npm run --workspace=@boilerplate/cypress",
