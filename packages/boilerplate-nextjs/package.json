@@ -72,17 +72,17 @@
     "next-compose-plugins": "2.2.1"
   },
   "scripts": {
+    "build-analyze": "ANALYZE=true next build",
+    "build-dev": "next build && next export -o dist",
     "build": "cp ../../LICENSE LICENSE && next build && next export -o dist",
-    "build:analyze": "ANALYZE=true next build",
-    "build:dev": "next build && next export -o dist",
     "clean:temp": "rm -rf LICENSE dist .next",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
-    "lint": "npm run lint:script",
     "lint:script": "eslint --ext js,ts,tsx .",
+    "lint": "npm run lint:script",
+    "start-dev": "next dev",
     "start": "next start",
-    "start:dev": "next dev",
+    "test-watch": "jest --watch",
     "test": "jest",
-    "test:watch": "jest --watch",
     "typecheck": "tsc"
   }
 }

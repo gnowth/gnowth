@@ -14,7 +14,7 @@
     "@gnowth/prettier-config": "0.0.0"
   },
   "scripts": {
-    "start:dev": "stubby -w --data data.yml",
-    "start:docker": "stubby -w --data data.yml --location 0.0.0.0"
+    "start-dev": "stubby -w --data data.yml",
+    "start-docker": "stubby -w --data data.yml --location 0.0.0.0"
   }
 }

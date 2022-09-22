@@ -63,8 +63,8 @@
   "scripts": {
     "build": "cp ../../LICENSE LICENSE",
     "clean:temp": "rm -rf LICENSE",
-    "lint": "npm run lint:script",
     "lint:script": "eslint --ext ts,tsx .",
+    "lint": "npm run lint:script",
     "typecheck": "tsc"
   }
 }

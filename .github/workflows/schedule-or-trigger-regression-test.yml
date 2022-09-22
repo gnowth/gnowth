@@ -41,7 +41,7 @@ jobs:
         run: npm run ci:build
 
       - name: Deploy to test
-        run: npm run cd:website:deploy
+        run: npm run cd:project:nextjs:deploy
 
   e2e_regression:
     container:
@@ -55,13 +55,13 @@ jobs:
       matrix:
         include:
           - title: chrome
-            command: npm run ci:e2e:regression:chrome
+            command: npm run workspace:cypress test:regression:chrome
           - title: chrome-mobile
-            command: npm run ci:e2e:regression:chrome:mobile
+            command: npm run workspace:cypress test:regression:chrome-mobile
           - title: firefox
-            command: npm run ci:e2e:regression:firefox
+            command: npm run workspace:cypress test:regression:firefox
           - title: firefox-mobile
-            command: npm run ci:e2e:regression:firefox:mobile
+            command: npm run workspace:cypress test:regression:firefox-mobile
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -114,4 +114,4 @@ jobs:
         run: npm run ci:setup
 
       - name: Clean up test environment
-        run: npm run cd:website:deploy:cleanup
+        run: npm run cd:project:nextjs:teardown
