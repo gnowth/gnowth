@@ -46,7 +46,7 @@
     "@types/puppeteer": "5.4.6",
     "chromatic": "6.9.0",
     "jest-image-snapshot": "5.2.0",
-    "puppeteer": "15.5.0"
+    "puppeteer": "18.0.4"
   },
   "scripts": {
     "build-ci": "build-storybook --quiet --disable-telemetry",
