@@ -7,8 +7,10 @@ import { useQueryErrorResetBoundary } from 'react-query'
 import LayoutSection from '../components/layout-section'
 
 // DEBT: Error component not to have layout if it is inline
-function withErrorBoundary<Props>(Component: ComponentType<Props>): FunctionComponent<Props> {
-  return function ComponentWithErrorBoundary(props: Props) {
+function withErrorBoundary<Props extends JSX.IntrinsicAttributes>(
+  Component: ComponentType<Props>,
+): ComponentType<Props> {
+  const ComponentWithErrorBoundary: FunctionComponent<Props> = (props) => {
     const { t } = useTranslation()
     const { reset } = useQueryErrorResetBoundary()
 
@@ -29,6 +31,8 @@ function withErrorBoundary<Props>(Component: ComponentType<Props>): FunctionComp
       </ErrorBoundary>
     )
   }
+
+  return ComponentWithErrorBoundary
 }
 
 export default withErrorBoundary

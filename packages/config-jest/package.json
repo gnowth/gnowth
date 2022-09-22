@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@jest/globals": "27.5.1",
-    "@testing-library/jest-dom": "5.16.4",
-    "@testing-library/react": "13.3.0",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
     "@testing-library/react-hooks": "8.0.1",
     "@types/jest": "27.4.1",
     "babel-jest": "27.5.1",

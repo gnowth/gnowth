@@ -26,6 +26,7 @@ export interface ServiceQueryKeyList<Filters = Record<string, string>> {
   scope: string
 }
 
-export type HigherComponent<Props, Props2 = Props> = (
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type HigherComponent<Props = {}, Props2 = Props> = (
   Component: ComponentType<Props>,
-) => FunctionComponent<Props2>
+) => ComponentType<Props2>

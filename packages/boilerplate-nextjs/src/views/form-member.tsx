@@ -1,10 +1,11 @@
+import type { FunctionComponent } from 'react'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRouter } from 'next/router'
-import * as R from 'ramda'
 
+import { compose } from '../utils/compose'
 import LayoutSection from '../components/layout-section'
 import ModelMember from '../models/model-member'
 import serviceMembers from '../services/service-members'
@@ -12,7 +13,7 @@ import withErrorBoundary from '../utils/with-error-boundary'
 import withSuspense from '../utils/with-suspense'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
-function FormMember() {
+const FormMember: FunctionComponent = () => {
   const { t } = useTranslation('other')
   const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
   const queryClient = useQueryClient()
@@ -58,4 +59,4 @@ function FormMember() {
   )
 }
 
-export default R.compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(FormMember)
+export default compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(FormMember)

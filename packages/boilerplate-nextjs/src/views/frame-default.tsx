@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import type { ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 import { Box, VStack } from '@chakra-ui/react'
-import * as R from 'ramda'
 
-import type { HigherComponent } from '../types'
+import { compose } from '../utils/compose'
 import SectionFooter from './section-footer'
 import SectionHeader from './section-header'
 import withErrorBoundary from '../utils/with-error-boundary'
@@ -15,7 +14,7 @@ interface Props {
   }
 }
 
-function FrameDefault(props: PropsWithChildren<Props>) {
+const FrameDefault: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   const { Layout } = props.component
 
   if (Layout) {
@@ -35,7 +34,4 @@ function FrameDefault(props: PropsWithChildren<Props>) {
   )
 }
 
-export default R.compose(
-  withSuspense() as HigherComponent<Props>,
-  withErrorBoundary as HigherComponent<Props>,
-)(FrameDefault as FunctionComponent<Props>)
+export default compose(withSuspense(), withErrorBoundary)(FrameDefault)

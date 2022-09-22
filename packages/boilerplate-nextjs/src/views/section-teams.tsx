@@ -1,12 +1,13 @@
+import type { FunctionComponent } from 'react'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import * as R from 'ramda'
 
+import { compose } from '../utils/compose'
 import LayoutSection from '../components/layout-section'
 import withErrorBoundary from '../utils/with-error-boundary'
 import withSuspense from '../utils/with-suspense'
 
-function SectionTeams() {
+const SectionTeams: FunctionComponent = () => {
   const { t } = useTranslation('other')
 
   return (
@@ -16,4 +17,4 @@ function SectionTeams() {
   )
 }
 
-export default R.compose(withSuspense(), withErrorBoundary)(SectionTeams)
+export default compose(withSuspense(), withErrorBoundary)(SectionTeams)

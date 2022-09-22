@@ -1,16 +1,17 @@
+import type { FunctionComponent } from 'react'
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
-import * as R from 'ramda'
 
+import { compose } from '../utils/compose'
 import { stateMemberFilter } from './section-members'
 import LayoutSection from '../components/layout-section'
 import withErrorBoundary from '../utils/with-error-boundary'
 import withSuspense from '../utils/with-suspense'
 
 // DEBT: Convert status input to dropdown
-function FormMemberFilter() {
+const FormMemberFilter: FunctionComponent = () => {
   const { t } = useTranslation('other')
   const [filters, setFilters] = useRecoilState(stateMemberFilter)
 
@@ -39,4 +40,4 @@ function FormMemberFilter() {
   )
 }
 
-export default R.compose(withSuspense(), withErrorBoundary)(FormMemberFilter)
+export default compose(withSuspense(), withErrorBoundary)(FormMemberFilter)

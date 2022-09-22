@@ -1,11 +1,12 @@
-import * as R from 'ramda'
+import type { FunctionComponent } from 'react'
 
+import { compose } from '../utils/compose'
 import LayoutSection from '../components/layout-section'
 import MdChangelog from '../../CHANGELOG.md'
 import withErrorBoundary from '../utils/with-error-boundary'
 import withSuspense from '../utils/with-suspense'
 
-function SectionChangelog() {
+const SectionChangelog: FunctionComponent = () => {
   return (
     <LayoutSection>
       <MdChangelog />
@@ -13,4 +14,4 @@ function SectionChangelog() {
   )
 }
 
-export default R.compose(withSuspense(), withErrorBoundary)(SectionChangelog)
+export default compose(withSuspense(), withErrorBoundary)(SectionChangelog)
