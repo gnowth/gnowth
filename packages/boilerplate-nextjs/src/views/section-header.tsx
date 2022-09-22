@@ -1,9 +1,8 @@
-import type { ChakraProps } from '@chakra-ui/react'
+import type { FunctionComponent } from 'react'
 import { Box, Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import * as R from 'ramda'
 
-import type { HigherComponent } from '../types'
+import { compose } from '../utils/compose'
 import LayoutSection from '../components/layout-section'
 import ModelApp from '../models/model-app'
 import NavLink from '../components/nav-link'
@@ -11,7 +10,7 @@ import ViewProgressGlobal from '../views/view-progress-global'
 import withErrorBoundary from '../utils/with-error-boundary'
 import withSuspense from '../utils/with-suspense'
 
-function SectionHeader() {
+const SectionHeader: FunctionComponent = () => {
   const { t } = useTranslation()
 
   return (
@@ -77,7 +76,4 @@ function SectionHeader() {
   )
 }
 
-export default R.compose(
-  withSuspense() as HigherComponent<ChakraProps>,
-  withErrorBoundary as HigherComponent<ChakraProps>,
-)(SectionHeader)
+export default compose(withSuspense(), withErrorBoundary)(SectionHeader)

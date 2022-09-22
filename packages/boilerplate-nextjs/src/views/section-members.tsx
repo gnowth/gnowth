@@ -13,13 +13,13 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react'
-import { useMemo } from 'react'
+import { FunctionComponent, useMemo } from 'react'
 import { useQuery } from 'react-query'
 import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
-import * as R from 'ramda'
 
+import { compose } from '../utils/compose'
 import InputPagination from '../components/input-pagination'
 import LayoutSection from '../components/layout-section'
 import ModelApp from '../models/model-app'
@@ -38,7 +38,7 @@ export const stateMemberFilter = atom({
 // DEBT: Add message when number of results return is 0
 // DEBT: Update members buttons to use icons? and only visible on hover
 // DEBT: Make add new member button more visible
-function SectionMembers() {
+const SectionMembers: FunctionComponent = () => {
   const { t } = useTranslation('other')
   const [filters, setFilters] = useRecoilState(stateMemberFilter)
   const filtersSerialized = useMemo(() => ModelMemberFilter.serialize(filters), [filters])
@@ -116,4 +116,4 @@ function SectionMembers() {
   )
 }
 
-export default R.compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(SectionMembers)
+export default compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(SectionMembers)
