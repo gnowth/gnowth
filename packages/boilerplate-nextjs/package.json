@@ -41,7 +41,7 @@
     "i18next-browser-languagedetector": "6.1.4",
     "i18next-http-backend": "1.4.1",
     "inflected": "2.1.0",
-    "next": "12.2.3",
+    "next": "12.2.4",
     "next-mdx-remote": "4.1.0",
     "ramda": "0.28.0",
     "react": "18.2.0",
