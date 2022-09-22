@@ -2,11 +2,6 @@ const path = require('path')
 
 // DEBT(workaround): unable to read mdx. hence mocking it. could not get it to work with jest 27. https://github.com/storybookjs/storybook/issues/7223
 module.exports = {
-  globals: {
-    'ts-jest': {
-      tsConfig: 'tsconfig.test.json',
-    },
-  },
   moduleNameMapper: {
     '\\.(gif|jpg|jpeg|png|svg|webp)$': path.join(__dirname, '../mock/mock-file.js'),
     '\\.(aac|oga|m4a|mp3|mp4|wav|webm)$': path.join(__dirname, '../mock/mock-file.js'),
@@ -18,6 +13,6 @@ module.exports = {
   rootDir: process.cwd(),
   setupFilesAfterEnv: [path.join(__dirname, '../jest-setup.js')],
   testEnvironment: 'jest-environment-jsdom',
-  transform: { '^.+\\.(jsx?|tsx?)$': 'ts-jest' },
+  transform: { '^.+\\.(jsx?|tsx?)$': ['ts-jest', { tsConfig: 'tsconfig.test.json' }] },
   transformIgnorePatterns: ['node_modules/(?!(@smart|@theme|@gnowth|@boilerplate)/)'],
 }
