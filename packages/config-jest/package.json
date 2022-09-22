@@ -23,7 +23,7 @@
     "babel-jest": "27.5.1",
     "jest": "27.5.1",
     "jest-environment-jsdom": "27.5.1",
-    "ts-jest": "27.1.4"
+    "ts-jest": "27.1.5"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
