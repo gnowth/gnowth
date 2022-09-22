@@ -46,7 +46,7 @@
     "@storybook/builder-webpack5": "6.5.9",
     "@storybook/core-common": "6.5.9",
     "@storybook/manager-webpack5": "6.5.9",
-    "storybook-addon-next": "1.6.7",
+    "storybook-addon-next": "1.6.9",
     "storybook-addon-next-router": "4.0.0",
     "storybook-react-i18next": "1.1.2",
     "react": "18.2.0",
