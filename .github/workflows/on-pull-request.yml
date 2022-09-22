@@ -39,13 +39,13 @@ jobs:
         run: npm run ci:setup
 
       - name: Build projects
-        run: npm run ci:build:dev
+        run: npm run ci:build-dev
 
       - name: End to end test using mock
-        run: npm run ci:e2e:mock
+        run: npm run ci:project:cypress:e2e:mock
 
       - name: Deploy to preview
-        run: npm run cd:website:deploy
+        run: npm run cd:project:nextjs:deploy
 
       - name: Comment on PR with deploy link
         uses: marocchino/sticky-pull-request-comment@v2
@@ -55,7 +55,7 @@ jobs:
           recreate: true
 
       - name: End to end smoke test
-        run: npm run ci:e2e:smoke
+        run: npm run ci:project:cypress:e2e:smoke
 
       - name: Upload test artifact
         if: failure()
@@ -90,10 +90,10 @@ jobs:
         run: npm run ci:setup
 
       - name: Build styleguide
-        run: npm run ci:build:styleguide
+        run: npm run ci:project:storybook:build
 
       - name: End to end test on styleguide
-        run: npm run ci:e2e:styleguide
+        run: npm run ci:project:storybook:e2e
 
       - name: Upload test artifact
         if: failure()

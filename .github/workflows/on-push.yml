@@ -47,7 +47,7 @@ jobs:
         run: npm run ci:setup
 
       - name: build recipe cms
-        run: npm run ci:service:tina:build
+        run: npm run ci:project:tinacms:build
 
       - name: Lint workspaces
         run: npm run ci:check:lint
@@ -96,7 +96,7 @@ jobs:
         run: npm run ci:setup
 
       - name: build recipe cms
-        run: npm run ci:service:tina:build
+        run: npm run ci:project:tinacms:build
 
       - name: Type check workspaces
         run: npm run ci:check:typecheck
@@ -151,10 +151,10 @@ jobs:
         run: npm run ci:setup
 
       - name: Build website
-        run: npm run ci:build:website
+        run: npm run ci:project:nextjs:build
 
       - name: End to end test using mock
-        run: npm run ci:e2e:mock
+        run: npm run ci:project:cypress:e2e:mock
 
       - name: Upload test artifact
         if: failure()
@@ -190,10 +190,10 @@ jobs:
         run: npm run ci:setup
 
       - name: Build styleguide
-        run: npm run ci:build:styleguide
+        run: npm run ci:project:storybook:build
 
       - name: End to end test on styleguide
-        run: npm run ci:e2e:styleguide
+        run: npm run ci:project:storybook:e2e
 
       - name: Upload test artifact
         if: failure()
@@ -226,7 +226,7 @@ jobs:
       - name: Publish to Chromatic
         uses: chromaui/action@v1
         with:
-          buildScriptName: build:ci
+          buildScriptName: build-ci
           exitOnceUploaded: true
           projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
           workingDir: packages/boilerplate-storybook

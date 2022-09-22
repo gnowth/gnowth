@@ -48,8 +48,8 @@
   "scripts": {
     "build": "cp ../../LICENSE LICENSE",
     "clean:temp": "rm -rf LICENSE",
-    "lint": "npm run lint:script",
     "lint:script": "eslint --ext ts .",
+    "lint": "npm run lint:script",
     "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'",
     "typecheck": "tsc"
   }

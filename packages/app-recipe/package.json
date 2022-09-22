@@ -40,11 +40,11 @@
   },
   "scripts": {
     "audit": "tinacms audit",
-    "build:config:cms": "tinacms build --local",
+    "build-cms": "tinacms build --local",
     "clean:temp": "rm -rf ./.tina/__generated__/*.{ts,gql} ./.tina/__generated__/db",
-    "lint": "npm run lint:script",
     "lint:script": "eslint --ext ts,tsx .",
-    "start:dev": "tinacms dev",
+    "lint": "npm run lint:script",
+    "start-dev": "tinacms dev",
     "typecheck": "tsc"
   }
 }

@@ -59,7 +59,7 @@ jobs:
 
       - name: Pre release - Tag branch and create change log
         if: github.event.inputs.pre_release != 'no'
-        run: npm run cd:code:version:pre
+        run: npm run cd:code:version-pre
 
       - name: Release - Tag branch and create change log (require a pre-release)
         if: github.event.inputs.pre_release == 'no'
