@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext } from 'next'
-import { PageIngredients } from '@app/recipe'
+import { PageIngredients } from '@app/recipes'
 
 export async function getStaticPaths() {
   const paths = await PageIngredients.staticPaths()

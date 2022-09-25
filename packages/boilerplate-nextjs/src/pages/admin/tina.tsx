@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { PageAdmin } from '@app/recipe'
+import { PageAdmin } from '@app/recipes'
 
 interface Props {
   children: ReactNode

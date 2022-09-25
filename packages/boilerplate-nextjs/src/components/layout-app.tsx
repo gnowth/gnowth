@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 import type { QueryClient } from 'react-query'
 import { compose, withErrorBoundary, withSuspense } from '@app/core'
-import { ProviderRecipe } from '@app/recipe'
+import { ProviderRecipe } from '@app/recipes'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
