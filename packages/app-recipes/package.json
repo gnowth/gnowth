@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@app/recipe",
+  "name": "@app/recipes",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -16,7 +16,7 @@
     ]
   },
   "repository": {
-    "directory": "packages/app-recipe",
+    "directory": "packages/app-recipes",
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },
