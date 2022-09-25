@@ -1,0 +1,37 @@
+{
+  "author": "Thierry Wong",
+  "description": "App configs",
+  "license": "AGPL-3.0-only",
+  "main": "src/exports.ts",
+  "module": "src/exports.ts",
+  "name": "@app/configs",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "source": true,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript"
+    ]
+  },
+  "repository": {
+    "directory": "packages/app-configs",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "dependencies": {
+    "ramda": "0.28.0"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/ramda": "0.28.15"
+  },
+  "scripts": {
+    "lint:script": "eslint --ext ts,tsx .",
+    "lint": "npm run lint:script",
+    "typecheck": "tsc"
+  }
+}

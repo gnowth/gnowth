@@ -3,11 +3,11 @@ import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent } from 'react'
 import dynamic from 'next/dynamic'
 
-import { LayoutApp } from '../components/layout-app'
-import FrameDefault from '../views/frame-default'
-import runSetup from '../setup'
+import FrameDefault from '../components/frame-default'
+import LayoutApp from '../components/layout-app'
+import setup from '../setup'
 
-const setup = runSetup()
+const configurations = setup()
 
 interface Props extends AppProps {
   Component: NextPage & {
@@ -17,7 +17,7 @@ interface Props extends AppProps {
 
 const App: FunctionComponent<Props> = (props) => {
   return (
-    <LayoutApp queryClient={setup.queryClient}>
+    <LayoutApp queryClient={configurations.queryClient}>
       <FrameDefault component={props.Component}>
         <props.Component {...props.pageProps} />
       </FrameDefault>

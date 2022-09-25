@@ -30,7 +30,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
   settings: {
-    'import/extensions': ['.ts', '.json'],
+    'import/extensions': ['.d.ts', '.ts', '.json'],
   },
 
   rules: {

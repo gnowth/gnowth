@@ -1,1 +1,1 @@
-# @service/tina
+# @app/recipes

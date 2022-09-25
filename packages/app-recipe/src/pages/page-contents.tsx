@@ -28,12 +28,6 @@ export function PageContents(props: Props): ReactElement {
   )
 }
 
-PageContents.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
-  return client.queries.contents({
-    relativePath: `${context.params?.slug}.${formatMap[Collection.Contents]}`,
-  })
-}
-
 PageContents.staticPaths = async (): Promise<Paths> => {
   const connection = await client.queries.contentsConnection()
 
@@ -42,4 +36,10 @@ PageContents.staticPaths = async (): Promise<Paths> => {
       params: { slug: edge?.node?._sys.filename ?? '' },
     })) ?? []
   )
+}
+
+PageContents.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
+  return client.queries.contents({
+    relativePath: `${context.params?.slug}.${formatMap[Collection.Contents]}`,
+  })
 }

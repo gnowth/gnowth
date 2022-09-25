@@ -1,0 +1,15 @@
+{
+  "all": [
+    "SectionHeader",
+    "SectionChangelog",
+    "FormUserFilter",
+    "SectionUsers",
+    "FormUser",
+    "FormGroupFilter",
+    "SectionGroups",
+    "FormGroup",
+    "ViewSpacer",
+    "SectionFooter"
+  ],
+  "dashboard": ["SectionHeader", "ViewSpacer", "SectionFooter"]
+}

@@ -1,6 +1,6 @@
 import { VStack } from '@chakra-ui/react'
 
-import SectionSimulator from '../views/section-simulator'
+import SectionSimulator from '../components/section-simulator'
 
 function PageDashboard() {
   return (

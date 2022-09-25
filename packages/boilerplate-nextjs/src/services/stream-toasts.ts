@@ -1,8 +1,8 @@
+import type { ErrorType } from '@app/core'
+import { ModelError } from '@app/core'
 import { Subject } from 'rxjs'
 
-import type { ErrorType } from '../models/model-error'
 import type { Notification } from '../models/model-notification'
-import ModelError from '../models/model-error'
 import ModelNotification from '../models/model-notification'
 
 interface Toast {
