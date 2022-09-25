@@ -1,14 +1,14 @@
-import { setup as runSetup } from '@boilerplate/nextjs'
+import { setup } from '@app/core'
 import React from 'react'
 
-const setup = runSetup()
+const configurations = setup()
 
 export const parameters = {
-  i18n: setup.i18n,
-  reactQuery: { client: setup.queryClient },
+  i18n: configurations.i18n,
+  reactQuery: { client: configurations.queryClient },
   options: {
     storySort: {
-      order: ['Welcome', 'NextJS'],
+      order: ['Welcome', 'AppUsers'],
     },
   },
 }

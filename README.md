@@ -29,6 +29,7 @@ Scripts of interest:
 
 Next:
 
+- build internationalisation from different modules
 - internationalisation
 - form validation
 - testing

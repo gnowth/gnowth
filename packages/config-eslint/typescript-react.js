@@ -47,7 +47,7 @@ module.exports = {
   ],
 
   settings: {
-    'import/extensions': ['.ts', '.tsx', '.json'],
+    'import/extensions': ['.d.ts', '.ts', '.tsx', '.json'],
   },
 
   rules: {

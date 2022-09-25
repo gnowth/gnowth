@@ -1,7 +1,6 @@
+import type { ErrorType } from '@app/core'
+import { ModelError } from '@app/core'
 import { Subject } from 'rxjs'
-
-import type { ErrorType } from '../models/model-error'
-import ModelError from '../models/model-error'
 
 // DEBT(investigation): where do we consume it?
 class StreamErrors {

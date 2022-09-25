@@ -1,10 +1,10 @@
+import { ModelError } from '@app/core'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import i18n from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-import ModelError from './models/model-error'
 import StreamErrors from './services/stream-errors'
 import makeServer from './services/make-server'
 

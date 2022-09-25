@@ -22,7 +22,8 @@ const test = puppeteerTest({
   ...defaultImageSnapshotConfig,
   async testBody(page, options) {
     expect.hasAssertions()
-    await new Promise<void>((resolve) => setTimeout(resolve, 600))
+    // Note: give time for component to load (https://github.com/storybookjs/storybook/issues/3385)
+    await new Promise<void>((resolve) => setTimeout(resolve, 1000))
     const image = await page.screenshot(defaultImageSnapshotConfig.getScreenshotOptions(options))
 
     expect(image).toMatchImageSnapshot({

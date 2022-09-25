@@ -24,7 +24,7 @@
     "jest-image-snapshot?": "DEBT: importing it as a workaround, until `@storybook/addon-storyshots-puppeteer` uses v5 of this library"
   },
   "dependencies": {
-    "@boilerplate/nextjs": "0.0.0",
+    "@app/users": "0.0.0",
     "@gnowth/storybook-preset": "0.0.0",
     "react": "18.2.0"
   },

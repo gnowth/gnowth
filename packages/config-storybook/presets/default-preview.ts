@@ -6,7 +6,7 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'centered',
   locale: 'en',
-  nextRouter: RouterContext,
+  nextRouter: { Provider: RouterContext.Provider },
 
   locales: {
     en: 'English',

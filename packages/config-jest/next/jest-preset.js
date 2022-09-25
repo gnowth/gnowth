@@ -13,6 +13,6 @@ module.exports = {
   rootDir: process.cwd(),
   setupFilesAfterEnv: [path.join(__dirname, '../jest-setup.js')],
   testEnvironment: 'jest-environment-jsdom',
-  transform: { '^.+\\.(jsx?|tsx?)$': ['ts-jest', { tsConfig: 'tsconfig.test.json' }] },
+  transform: { '^.+\\.(jsx?|tsx?)$': 'ts-jest' },
   transformIgnorePatterns: ['node_modules/(?!(@smart|@theme|@gnowth|@boilerplate)/)'],
 }

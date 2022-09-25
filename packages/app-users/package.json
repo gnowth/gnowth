@@ -1,0 +1,62 @@
+{
+  "author": "Thierry Wong",
+  "description": "App users",
+  "license": "AGPL-3.0-only",
+  "main": "src/exports.ts",
+  "module": "src/exports.ts",
+  "name": "@app/users",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "source": true,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/hybrid-react"
+    ]
+  },
+  "jest": {
+    "preset": "@gnowth/jest-config/next"
+  },
+  "repository": {
+    "directory": "packages/app-users",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "dependencies": {
+    "@app/configs": "0.0.0",
+    "@app/core": "0.0.0",
+    "@chakra-ui/react": "2.3.4",
+    "axios": "0.27.2",
+    "formik": "2.2.9",
+    "ramda": "0.28.0",
+    "react-i18next": "11.18.6",
+    "react-query": "3.39.2",
+    "recoil": "0.7.5",
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/ramda": "0.28.15",
+    "miragejs": "0.1.45"
+  },
+  "peerDependencies": {
+    "next": "^12.0.0",
+    "react": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "lint:script": "eslint --ext ts,tsx .",
+    "lint": "npm run lint:script",
+    "test-watch": "jest --watch",
+    "test": "jest",
+    "typecheck": "tsc"
+  }
+}
