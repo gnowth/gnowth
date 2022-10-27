@@ -4,7 +4,6 @@ on: push
 
 env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
-  ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE: packages/boilerplate-storybook/__image_snapshots__/__diff_output__
   NODE_VERSION: 18.7.0
   STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
 
@@ -194,14 +193,6 @@ jobs:
 
       - name: End to end test on styleguide
         run: npm run ci:project:storybook:e2e
-
-      - name: Upload test artifact
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-styleguide
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_STYLEGUIDE }}
-          retention-days: 1
 
   styleguide_build_and_publish:
     if: ${{ !startsWith( github.ref, 'refs/heads/dependabot' ) && !startsWith( github.ref, 'refs/heads/renovate' ) }}
