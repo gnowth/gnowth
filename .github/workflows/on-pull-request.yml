@@ -15,7 +15,7 @@ jobs:
   # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
   build_preview_and_e2e:
     container:
-      image: cypress/base:14.17.0
+      image: cypress/base:14.19.0
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -66,7 +66,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: cypress/base:14.17.0
+      image: cypress/base:14.19.0
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15

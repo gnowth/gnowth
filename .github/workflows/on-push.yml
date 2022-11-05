@@ -126,7 +126,7 @@ jobs:
 
   build_and_e2e_mock:
     container:
-      image: cypress/base:14.17.0
+      image: cypress/base:14.19.0
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
@@ -165,7 +165,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: cypress/base:14.17.0
+      image: cypress/base:14.19.0
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
