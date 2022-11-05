@@ -27,7 +27,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.28.15"
+    "@types/ramda": "0.28.18"
   },
   "scripts": {
     "lint:script": "eslint --ext ts,tsx .",

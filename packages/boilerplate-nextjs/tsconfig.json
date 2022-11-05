@@ -1,7 +1,6 @@
 {
   "extends": "@gnowth/typescript-config",
   "compilerOptions": {
-    // "allowJs": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
