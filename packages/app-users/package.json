@@ -16,7 +16,7 @@
     ]
   },
   "jest": {
-    "preset": "@gnowth/jest-config/next"
+    "preset": "@gnowth/jest-config"
   },
   "repository": {
     "directory": "packages/app-users",
@@ -26,13 +26,13 @@
   "dependencies": {
     "@app/configs": "0.0.0",
     "@app/core": "0.0.0",
-    "@chakra-ui/react": "2.3.4",
-    "axios": "0.27.2",
+    "@chakra-ui/react": "2.3.7",
+    "axios": "1.1.3",
     "formik": "2.2.9",
     "ramda": "0.28.0",
-    "react-i18next": "11.18.6",
+    "react-i18next": "12.0.0",
     "react-query": "3.39.2",
-    "recoil": "0.7.5",
+    "recoil": "0.7.6",
     "uuid": "9.0.0"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.28.15",
+    "@types/ramda": "0.28.18",
     "miragejs": "0.1.45"
   },
   "peerDependencies": {

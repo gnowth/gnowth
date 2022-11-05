@@ -30,15 +30,15 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@storybook/builder-webpack5": "6.5.12",
-    "@storybook/core-common": "6.5.12",
+    "@storybook/builder-webpack5": "6.5.13",
+    "@storybook/core-common": "6.5.13",
     "@storybook/jest": "0.0.10",
-    "@storybook/manager-webpack5": "6.5.12",
-    "@storybook/node-logger": "6.5.12",
-    "@storybook/react": "6.5.12",
-    "@storybook/test-runner": "0.7.2",
+    "@storybook/manager-webpack5": "6.5.13",
+    "@storybook/node-logger": "6.5.13",
+    "@storybook/react": "6.5.13",
+    "@storybook/test-runner": "0.9.0",
     "@storybook/testing-library": "0.0.13",
-    "chromatic": "6.9.0"
+    "chromatic": "6.11.4"
   },
   "scripts": {
     "build-ci": "build-storybook --quiet --disable-telemetry",
