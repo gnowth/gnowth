@@ -30,7 +30,7 @@ jobs:
       - name: Cache npm cache on linux
         uses: actions/cache@v3
         with:
-          path: ~/.cache
+          path: ~/.cache-npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
@@ -81,7 +81,7 @@ jobs:
       - name: Cache npm cache on linux
         uses: actions/cache@v3
         with:
-          path: ~/.cache
+          path: ~/.cache-npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-setup-
 
