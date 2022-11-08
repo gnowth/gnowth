@@ -28,8 +28,8 @@
     "@gnowth/typescript-config": "0.0.0"
   },
   "scripts": {
-    "build": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE cypress/media",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf cypress/media .turbo",
     "lint:script": "eslint --ext mjs,ts .",
     "lint": "npm run lint:script",
     "test:mock": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.mock.mjs --headless",

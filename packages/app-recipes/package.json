@@ -45,7 +45,8 @@
   "scripts": {
     "audit": "tinacms audit",
     "build-cms": "tinacms build --local",
-    "clean:temp": "rm -rf ./.tina/__generated__/*.{ts,gql} ./.tina/__generated__/db",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf ./.tina/__generated__/*.{ts,gql} ./.tina/__generated__/db .turbo",
     "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
     "start-dev": "tinacms dev",

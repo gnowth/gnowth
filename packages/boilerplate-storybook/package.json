@@ -43,8 +43,9 @@
   "scripts": {
     "build-ci": "build-storybook --quiet --disable-telemetry",
     "build-dev": "build-storybook --disable-telemetry",
-    "build": "cp ../../LICENSE LICENSE && build-storybook --quiet --disable-telemetry",
-    "clean:temp": "rm -rf LICENSE *.log storybook-static",
+    "build": "build-storybook --quiet --disable-telemetry",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf *.log storybook-static .turbo",
     "lint:script": "eslint --ext mdx,ts,tsx .",
     "lint": "npm run lint:script",
     "publish": "chromatic --zip --storybook-build-dir=storybook-static --project-token=$STYLEGUIDE_CHROMATIC_TOKEN",
