@@ -27,7 +27,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.28.18"
+    "@types/ramda": "0.28.19"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

@@ -3,7 +3,7 @@ title: Node
 category: tools
 ---
 
-# Node v18.7.0
+# Node v18.12.0
 
 ## Reference
 
