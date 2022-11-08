@@ -40,7 +40,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.28.18",
+    "@types/ramda": "0.28.19",
     "miragejs": "0.1.45"
   },
   "peerDependencies": {

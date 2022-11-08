@@ -14,7 +14,7 @@ services:
   service_stubby:
     container_name: service_stubby
     command: npm run start-docker
-    image: node:18.7.0-bullseye-slim
+    image: node:18.12.0-bullseye-slim
     ports:
       - '8882:8882'
     volumes:

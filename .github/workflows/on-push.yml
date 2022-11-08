@@ -4,7 +4,7 @@ on: push
 
 env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
-  NODE_VERSION: 18.7.0
+  NODE_VERSION: 18.12.0
   STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
   # Phase 1: Verify code
   lint:
     container:
-      image: node:18.7.0-bullseye-slim
+      image: node:18.12.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -53,7 +53,7 @@ jobs:
 
   test:
     container:
-      image: node:18.7.0-bullseye-slim
+      image: node:18.12.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -76,7 +76,7 @@ jobs:
 
   typecheck:
     container:
-      image: node:18.7.0-bullseye-slim
+      image: node:18.12.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -102,7 +102,7 @@ jobs:
 
   build:
     container:
-      image: node:18.7.0-bullseye-slim
+      image: node:18.12.0-bullseye-slim
       options: --user 1001
     if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
