@@ -410,14 +410,15 @@ category: concept
 - Take advantage on this, so that our pipeline cache the `cache`. So npm/yarn only have to download additional package required
 - requires: fallback cache key to be effective
 - If `node_modules` were cached, on every new package, all the dependencies needs to be redownloaded
-- `npm ci --cache ~/.cache --prefer-offline`
+- Note: `~/.cache` is used by other application and hence not recommended
+- `npm ci --cache ~/.cache-npm --prefer-offline`
 
 ```yml
 # Github workflow
 - name: Cache npm cache on linux
   uses: actions/cache@v2
   with:
-    path: ~/.cache
+    path: ~/.cache-npm
     key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
     restore-keys: ${{ runner.os }}-setup-
 ```
