@@ -40,8 +40,9 @@
     "supertest": "6.3.1"
   },
   "scripts": {
-    "build": "cp ../../LICENSE LICENSE && nest build",
-    "clean:temp": "rm -rf LICENSE dist",
+    "build": "nest build",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf dist .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
     "start-debug": "nest start --debug --watch",

@@ -46,8 +46,8 @@
     "ts-node": "10.9.1"
   },
   "scripts": {
-    "build": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
     "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'",

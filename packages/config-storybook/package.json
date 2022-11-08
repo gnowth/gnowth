@@ -61,8 +61,8 @@
     "@storybook/mdx2-csf": "0.0.3"
   },
   "scripts": {
-    "build": "cp ../../LICENSE LICENSE",
-    "clean:temp": "rm -rf LICENSE",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
     "typecheck": "tsc"

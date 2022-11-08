@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next", "dist", "storybook-static"]
+    },
+    "build-dev": {
+      "dependsOn": ["^build-dev"],
+      "outputs": [".next", "dist", "storybook-static"]
+    },
+    "clean:modules": {
+      "cache": false,
+      "outputs": []
+    },
+    "clean:temp": {
+      "cache": false,
+      "outputs": []
+    },
+    "lint": {
+      "outputs": []
+    },
+    "test": {
+      "outputs": []
+    },
+    "typecheck": {
+      "outputs": []
+    }
+  }
+}
