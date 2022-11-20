@@ -1,27 +1,61 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import type { ComponentType, FunctionComponent } from 'react'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import { compose, withBoundary, withSuspense } from '@app/core'
+import { ProviderRecipe } from '@app/recipes'
+import { ChakraProvider, VStack } from '@chakra-ui/react'
+import { QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil'
+import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-import FrameDefault from '../components/frame-default'
-import LayoutApp from '../components/layout-app'
+import AppError from '../components/app-error'
+import AppHead from '../components/app-head'
+import AppLoading from '../components/app-loading'
+import SystemToasts from '../components/system-toasts'
 import setup from '../setup'
 
 const configurations = setup()
 
+type PropsWithChildren = { children: ReactNode }
 interface Props extends AppProps {
   Component: NextPage & {
-    Layout?: ComponentType
+    Layout?: ComponentType<PropsWithChildren>
   }
 }
 
+const Wrapper = compose(
+  withSuspense({ FallbackComponent: AppLoading }),
+  withBoundary({ FallbackComponent: AppError }),
+)((props: PropsWithChildren) => <>{props.children}</>)
+
 const App: FunctionComponent<Props> = (props) => {
+  const page = props.Component.Layout ? (
+    <props.Component.Layout>
+      <props.Component {...props.pageProps} />
+    </props.Component.Layout>
+  ) : (
+    <VStack alignItems="stretch" minHeight="100vh" spacing="10">
+      <props.Component {...props.pageProps} />
+    </VStack>
+  )
+
   return (
-    <LayoutApp queryClient={configurations.queryClient}>
-      <FrameDefault component={props.Component}>
-        <props.Component {...props.pageProps} />
-      </FrameDefault>
-    </LayoutApp>
+    <RecoilRoot>
+      <QueryClientProvider client={configurations.queryClient}>
+        <ChakraProvider>
+          <Head>
+            <AppHead />
+          </Head>
+
+          <SystemToasts />
+
+          <Wrapper>
+            <ProviderRecipe>{page}</ProviderRecipe>
+          </Wrapper>
+        </ChakraProvider>
+      </QueryClientProvider>
+    </RecoilRoot>
   )
 }
 

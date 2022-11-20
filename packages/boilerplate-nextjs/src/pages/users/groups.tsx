@@ -1,1 +1,8 @@
-export { PageGroups as default } from '@app/users'
+import type { NextPage } from 'next'
+import type { ComponentType } from 'react'
+import { LayoutDefault, PageGroups } from '@app/users'
+
+const Page: NextPage & { Layout?: ComponentType } = PageGroups
+Page.Layout = LayoutDefault
+
+export default Page

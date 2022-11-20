@@ -1,22 +1,16 @@
 import type { FunctionComponent } from 'react'
-import {
-  LayoutSection,
-  NavLink,
-  ViewProgressGlobal,
-  compose,
-  withErrorBoundary,
-  withSuspense,
-} from '@app/core'
-import { Box, Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
+import { LayoutSection, NavLink, ViewProgressGlobal, compose, withBoundary, withSuspense } from '@app/core'
+import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 import ModelApp from '../models/model-app'
 
+// DEBT: remobe prefect in link where possible
 const SectionHeader: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
-    <header>
+    <div data-semantic="Header">
       <LayoutSection
         rootProps={{
           bg: 'teal.600',
@@ -49,33 +43,35 @@ const SectionHeader: FunctionComponent = () => {
         containerProps={{ px: '0' }}
       >
         <HStack>
-          <Box>
-            <NavLink href={ModelApp.routes.dashboard()}>{t('Dashboard')}</NavLink>
-          </Box>
+          <NavLink prefetch={false} href={ModelApp.routes.dashboard()}>
+            {t('Dashboard')}
+          </NavLink>
 
-          <Box>
-            <NavLink href={ModelApp.routes.groups()}>{t('Teams')}</NavLink>
-          </Box>
+          <NavLink prefetch={false} href={ModelApp.routes.groups()}>
+            {t('Teams')}
+          </NavLink>
 
-          <Box>
-            <NavLink href={ModelApp.routes.users()}>{t('Members')}</NavLink>
-          </Box>
+          <NavLink prefetch={false} href={ModelApp.routes.users()}>
+            {t('Members')}
+          </NavLink>
 
-          <Box>
-            <NavLink href={ModelApp.routes.reports()}>{t('Reports')}</NavLink>
-          </Box>
+          <NavLink prefetch={false} href={ModelApp.routes.reports()}>
+            {t('Reports')}
+          </NavLink>
 
-          <Box>
-            <NavLink href={ModelApp.routes.generated()} hrefActive={ModelApp.routes.generated('')}>
-              {t('Generated page')}
-            </NavLink>
-          </Box>
+          <NavLink
+            prefetch={false}
+            href={ModelApp.routes.generated()}
+            hrefActive={ModelApp.routes.generated('')}
+          >
+            {t('Generated page')}
+          </NavLink>
         </HStack>
       </LayoutSection>
 
       <ViewProgressGlobal />
-    </header>
+    </div>
   )
 }
 
-export default compose(withSuspense(), withErrorBoundary)(SectionHeader)
+export default compose(withSuspense(), withBoundary())(SectionHeader)

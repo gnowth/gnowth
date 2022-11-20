@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withErrorBoundary, withSuspense } from '@app/core'
+import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -14,12 +14,12 @@ const FormUserFilter: FunctionComponent = () => {
   const [filters, setFilters] = useRecoilState(stateUserFilter)
 
   return (
-    <LayoutSection>
-      <Formik
-        enableReinitialize
-        initialValues={filters}
-        onSubmit={(values) => setFilters({ ...values, page: 1 })}
-      >
+    <Formik
+      enableReinitialize
+      initialValues={filters}
+      onSubmit={(values) => setFilters({ ...values, page: 1 })}
+    >
+      <LayoutSection>
         <HStack as={Form} alignItems="flex-end" spacing="5">
           <Box>
             <FormLabel htmlFor="form-user-filter-email">{t('Email')}</FormLabel>
@@ -33,9 +33,9 @@ const FormUserFilter: FunctionComponent = () => {
 
           <Button type="submit">{t('Submit')}</Button>
         </HStack>
-      </Formik>
-    </LayoutSection>
+      </LayoutSection>
+    </Formik>
   )
 }
 
-export default compose(withSuspense(), withErrorBoundary)(FormUserFilter)
+export default compose(withSuspense(), withBoundary())(FormUserFilter)

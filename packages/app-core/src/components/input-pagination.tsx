@@ -25,7 +25,7 @@ const InputPagination: FunctionComponent<Props> = (props) => {
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
 
   return (
-    <HStack justifyContent="center" spacing="20" {...props.rootProps}>
+    <HStack justifyContent="center" spacing="20" {...props.rootProps} data-semantic="InputPagination">
       <HStack>
         <Text whiteSpace="nowrap">{t('Page size')}</Text>
 

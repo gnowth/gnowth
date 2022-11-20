@@ -1,10 +1,10 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withErrorBoundary, withSuspense } from '@app/core'
+import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
+import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { useRouter } from 'next/router'
 
 import ModelApp from '../models/model-app'
 import ModelUser from '../models/model-user'
@@ -13,15 +13,12 @@ import serviceUsers from '../services/service-users'
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUser: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
-  const id = useRouter().query.id as string // Note it can be undefined, but we are disabling useQuery if it is undefined
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id') ?? ''
   const queryClient = useQueryClient()
   const handleOnUserMutation = () => queryClient.invalidateQueries(serviceUsers.queryKeys.list({}))
   const userMutation = useMutation(serviceUsers.save, { onSuccess: handleOnUserMutation })
-  const userQuery = useQuery(serviceUsers.queryKeys.detail(id), serviceUsers.detail, {
-    enabled: id !== undefined,
-  })
-
-  if (id === undefined) return null
+  const userQuery = useQuery(serviceUsers.queryKeys.detail(id), serviceUsers.detail, { enabled: !!id })
 
   return (
     <LayoutSection>
@@ -57,4 +54,6 @@ const FormUser: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(FormUser)
+const FallbackComponent: FunctionComponent = () => <Skeleton height="10" />
+
+export default compose(withSuspense({ FallbackComponent }), withBoundary())(FormUser)

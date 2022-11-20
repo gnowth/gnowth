@@ -1,6 +1,8 @@
+export { default as LayoutDefault } from './components/layout-default'
 export { default as SectionFooter } from './components/section-footer'
 export { default as SectionHeader } from './components/section-header'
 
+export { default as PageAppGenerated } from './pages/page-app-generated'
 export { default as PageChangelog } from './pages/page-changelog'
 export { default as PageDashboard } from './pages/page-dashboard'
 export { default as PageGenerated } from './pages/page-generated'

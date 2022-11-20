@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withErrorBoundary, withSuspense } from '@app/core'
+import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -15,4 +15,4 @@ const SectionGroups: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(), withErrorBoundary)(SectionGroups)
+export default compose(withSuspense(), withBoundary())(SectionGroups)

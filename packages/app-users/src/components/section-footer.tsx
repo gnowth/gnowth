@@ -1,6 +1,6 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent } from 'react'
-import { compose, withErrorBoundary, withSuspense } from '@app/core'
+import { compose, withBoundary, withSuspense } from '@app/core'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
@@ -14,7 +14,7 @@ const SectionFooter: FunctionComponent<ChakraProps> = (props) => {
   return (
     <Box as="footer" {...props}>
       <Text p="3" fontSize="sm" textAlign="end">
-        <Link href={ModelApp.routes.changelog()}>
+        <Link href={ModelApp.routes.changelog()} prefetch={false}>
           {t('Current version: {{packageJson.version}}', { packageJson })}
         </Link>
       </Text>
@@ -28,4 +28,4 @@ const SectionFooter: FunctionComponent<ChakraProps> = (props) => {
   )
 }
 
-export default compose(withSuspense(), withErrorBoundary)(SectionFooter)
+export default compose(withSuspense(), withBoundary())(SectionFooter)

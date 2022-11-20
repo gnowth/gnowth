@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withErrorBoundary, withSuspense } from '@app/core'
+import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
 import { useTranslation } from 'react-i18next'
 
 import ModelApp from '../models/model-app'
@@ -14,4 +14,4 @@ const FormGroupFilter: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(), withErrorBoundary)(FormGroupFilter)
+export default compose(withSuspense(), withBoundary())(FormGroupFilter)
