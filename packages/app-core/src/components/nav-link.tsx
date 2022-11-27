@@ -8,6 +8,7 @@ type Props = Parameters<typeof Link>[0] & { hrefActive?: string }
 const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
   const pathname = usePathname()
   const isActive = pathname === props.href || (hrefActive && pathname?.startsWith(hrefActive))
+  console.log('pathname', pathname, props)
 
   return (
     <Link {...props} data-semantic="NavLink">

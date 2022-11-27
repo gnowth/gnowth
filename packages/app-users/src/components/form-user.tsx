@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
+import { LayoutSection, withAugmented } from '@app/core'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -54,6 +54,4 @@ const FormUser: FunctionComponent = () => {
   )
 }
 
-const FallbackComponent: FunctionComponent = () => <Skeleton height="10" />
-
-export default compose(withSuspense({ FallbackComponent }), withBoundary())(FormUser)
+export default withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUser)

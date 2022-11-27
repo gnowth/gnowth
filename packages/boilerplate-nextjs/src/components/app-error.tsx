@@ -20,8 +20,8 @@ const AppError: FunctionComponent<Props> = (props) => {
       <Button
         ml="4"
         onClick={() => {
-          props.reset()
           reset()
+          props.reset()
         }}
       >
         {t('Try again')}

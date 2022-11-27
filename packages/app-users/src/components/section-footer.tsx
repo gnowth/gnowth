@@ -1,6 +1,6 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent } from 'react'
-import { compose, withBoundary, withSuspense } from '@app/core'
+import { withAugmented } from '@app/core'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
@@ -28,4 +28,4 @@ const SectionFooter: FunctionComponent<ChakraProps> = (props) => {
   )
 }
 
-export default compose(withSuspense(), withBoundary())(SectionFooter)
+export default withAugmented()(SectionFooter)

@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, NavLink, ViewProgressGlobal, compose, withBoundary, withSuspense } from '@app/core'
+import { LayoutSection, NavLink, ViewProgressGlobal, withAugmented } from '@app/core'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -74,4 +74,4 @@ const SectionHeader: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(), withBoundary())(SectionHeader)
+export default withAugmented()(SectionHeader)

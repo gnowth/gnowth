@@ -1,4 +1,4 @@
-import { InputPagination, LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
+import { InputPagination, LayoutSection, withAugmented } from '@app/core'
 import {
   Avatar,
   Button,
@@ -117,6 +117,4 @@ const SectionUsers: FunctionComponent = () => {
   )
 }
 
-const FallbackComponent: FunctionComponent = () => <Skeleton height="10" />
-
-export default compose(withSuspense({ FallbackComponent }), withBoundary())(SectionUsers)
+export default withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(SectionUsers)

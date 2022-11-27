@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
+import { LayoutSection, withAugmented } from '@app/core'
 
 import MdChangelog from '../../CHANGELOG.md'
 
@@ -11,4 +11,4 @@ const SectionChangelog: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(), withBoundary())(SectionChangelog)
+export default withAugmented()(SectionChangelog)

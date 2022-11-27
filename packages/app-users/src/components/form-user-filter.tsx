@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, compose, withBoundary, withSuspense } from '@app/core'
+import { LayoutSection, withAugmented } from '@app/core'
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -38,4 +38,4 @@ const FormUserFilter: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(), withBoundary())(FormUserFilter)
+export default withAugmented()(FormUserFilter)

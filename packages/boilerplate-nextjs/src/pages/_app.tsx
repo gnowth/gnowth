@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-import { compose, withBoundary, withSuspense } from '@app/core'
+import { withAugmented } from '@app/core'
 import { ProviderRecipe } from '@app/recipes'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
@@ -24,10 +24,9 @@ interface Props extends AppProps {
   }
 }
 
-const Wrapper = compose(
-  withSuspense({ FallbackComponent: AppLoading }),
-  withBoundary({ FallbackComponent: AppError }),
-)((props: PropsWithChildren) => <>{props.children}</>)
+const Wrapper = withAugmented({ ErrorComponent: AppError, LoadingComponent: AppLoading })(
+  (props: PropsWithChildren) => props.children,
+)
 
 const App: FunctionComponent<Props> = (props) => {
   const page = props.Component.Layout ? (
