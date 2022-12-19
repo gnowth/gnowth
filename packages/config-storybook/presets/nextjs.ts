@@ -5,7 +5,7 @@ export const addons: StorybookConfig['addons'] = [
   '@storybook/addon-essentials',
   '@storybook/addon-interactions',
   '@storybook/addon-links',
-  'storybook-addon-next',
+  'storybook-addon-next-router',
   'storybook-react-i18next',
 ]
 
