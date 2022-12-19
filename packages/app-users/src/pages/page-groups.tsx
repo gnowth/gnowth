@@ -1,10 +1,10 @@
+import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
-import FrameDefault from '../components/frame-default'
 import SectionGroups from '../components/section-groups'
 import SectionGroupsFilter from '../components/form-group-filter'
 
-function PageGroups() {
+const PageGroups: FunctionComponent = () => {
   return (
     <VStack as="main" alignItems="stretch" spacing="10">
       <SectionGroupsFilter />
@@ -13,7 +13,5 @@ function PageGroups() {
     </VStack>
   )
 }
-
-PageGroups.Layout = FrameDefault
 
 export default PageGroups

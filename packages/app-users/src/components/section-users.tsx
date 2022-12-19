@@ -1,4 +1,4 @@
-import { InputPagination, LayoutSection, compose, withErrorBoundary, withSuspense } from '@app/core'
+import { InputPagination, LayoutSection, withAugmented } from '@app/core'
 import {
   Avatar,
   Button,
@@ -55,7 +55,9 @@ const SectionUsers: FunctionComponent = () => {
               <Th>{t('Status')}</Th>
 
               <Th textAlign="end">
-                <Link href={ModelApp.routes.user()}>{t('Add new user')}</Link>
+                <Link href={ModelApp.routes.user()} prefetch={false}>
+                  {t('Add new user')}
+                </Link>
               </Th>
             </Tr>
           </Thead>
@@ -79,7 +81,9 @@ const SectionUsers: FunctionComponent = () => {
 
                 <Td py="2">
                   <HStack justifyContent="flex-end">
-                    <Link href={ModelApp.routes.user(ModelUser.getIdServer(user))}>{t('Edit')}</Link>
+                    <Link href={ModelApp.routes.user(ModelUser.getIdServer(user))} prefetch={false}>
+                      {t('Edit')}
+                    </Link>
 
                     <Button size="xs">{t('Deactivate')}</Button>
                   </HStack>
@@ -113,4 +117,4 @@ const SectionUsers: FunctionComponent = () => {
   )
 }
 
-export default compose(withSuspense(<Skeleton height="10" />), withErrorBoundary)(SectionUsers)
+export default withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(SectionUsers)

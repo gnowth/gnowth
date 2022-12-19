@@ -1,6 +1,5 @@
 const bundleAnalyzer = require('@next/bundle-analyzer')
 const mdx = require('@next/mdx')
-const withPlugins = require('next-compose-plugins')
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
 const withMDX = mdx({ extension: /\.mdx?$/ })
@@ -9,13 +8,16 @@ const withMDX = mdx({ extension: /\.mdx?$/ })
  * @type {import('next').NextConfig}
  */
 const configs = {
-  images: {
-    loader: 'imgix',
-    path: '',
+  compiler: {
+    emotion: {
+      autoLabel: 'never',
+    },
   },
   experimental: {
+    appDir: true,
     externalDir: true,
   },
+  exportPathMap: (defaultPathMap) => defaultPathMap,
   reactStrictMode: true,
   rewrites: async () => [
     {
@@ -23,6 +25,7 @@ const configs = {
       destination: '/admin/netlify.html',
     },
   ],
+  swcMinify: true,
 }
 
-module.exports = withPlugins([[withMDX], [withBundleAnalyzer]], configs)
+module.exports = [withBundleAnalyzer, withMDX].reduce((acc, next) => next(acc), configs)

@@ -1,25 +1,27 @@
 import type { GetStaticPropsContext } from 'next'
+import type { FunctionComponent } from 'react'
 
-import FrameGenerated from '../components/frame-generated'
 import source from '../../contents/source.json'
 import sections from '../sections'
 
 type Paths = { params: { slug: string } }[]
+type Props = { contents: (keyof typeof sections)[] }
 
-interface Props {
-  contents: (keyof typeof sections)[]
+interface PageComponent<Props> extends FunctionComponent<Props> {
+  staticPaths: () => Paths
+  staticProps: (context: GetStaticPropsContext) => Props
 }
 
-function PageGenerated(props: Props) {
+const PageGenerated: PageComponent<Props> = (props) => {
   return (
-    props.contents?.map((section, index) => {
-      const Component = sections[section]
-      return <Component key={index} />
-    }) ?? null
+    <>
+      {props.contents?.map((section, index) => {
+        const Component = sections[section]
+        return <Component key={index} />
+      })}
+    </>
   )
 }
-
-PageGenerated.Layout = FrameGenerated
 
 PageGenerated.staticPaths = (): Paths => {
   const pagesKey = Object.keys(source)

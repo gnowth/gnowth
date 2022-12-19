@@ -33,6 +33,7 @@ function mockUsers(configsMock: MockConfigs) {
 
     routes() {
       this.passthrough('/_next/**')
+      this.passthrough('http://localhost:3000/**')
       this.passthrough('http://localhost:4001/**')
 
       this.timing = 20

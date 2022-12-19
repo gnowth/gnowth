@@ -46,11 +46,11 @@
     "@storybook/builder-webpack5": "6.5.13",
     "@storybook/core-common": "6.5.13",
     "@storybook/manager-webpack5": "6.5.13",
-    "storybook-addon-next-router": "4.0.1",
+    "storybook-addon-next-router": "4.0.2",
     "storybook-react-i18next": "1.1.2",
     "react": "18.2.0",
     "react-query": "3.39.2",
-    "next": "13.0.2"
+    "next": "13.0.5"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

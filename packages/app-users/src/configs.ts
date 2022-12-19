@@ -12,7 +12,7 @@ interface Window {
   }
 }
 
-const SERVER_LOCAL_PORT = 3000
+const SERVER_LOCAL_PORT = 4000
 
 // DEBT(hack): if we are doing server side rendering, setting the host this way won't be right
 function getWindow(): Window | undefined {

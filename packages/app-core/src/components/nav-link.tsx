@@ -1,17 +1,16 @@
 import type { FunctionComponent } from 'react'
 import { Box } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 
 type Props = Parameters<typeof Link>[0] & { hrefActive?: string }
 
-const NavLink: FunctionComponent<Props> = (props) => {
-  const router = useRouter()
-  const isActive =
-    router.pathname == props.href || (props.hrefActive && router.pathname.startsWith(props.hrefActive))
+const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
+  const pathname = usePathname() ?? '/users' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router
+  const isActive = pathname === props.href || (hrefActive && pathname?.startsWith(hrefActive))
 
   return (
-    <Link {...props}>
+    <Link {...props} data-semantic="NavLink">
       <Box
         _hover={{ bg: 'teal.100' }}
         borderBottom="3px solid"

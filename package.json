@@ -137,7 +137,7 @@
     "local:project:storybook:e2e": "npm run workspace:storybook test:e2e",
     "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:storybook publish",
     "local:project:storybook:start": "npm run workspace:storybook start-dev",
-    "local:start-cms": "concurrently 'npm run ci:project:tinacms:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start:dev'",
+    "local:start-cms": "concurrently 'npm run ci:project:tinacms:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup:cache:verify": "npm cache verify",

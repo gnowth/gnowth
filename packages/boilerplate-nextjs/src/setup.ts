@@ -39,6 +39,8 @@ function setupReactQuery() {
     queryCache: new QueryCache({ onError: StreamErrors.pushErrorUnknown }),
     defaultOptions: {
       queries: {
+        // DEBT: disable query server side. find better solution
+        enabled: typeof window !== 'undefined',
         keepPreviousData: true,
         refetchOnWindowFocus: false,
         suspense: true,

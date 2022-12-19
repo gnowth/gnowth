@@ -20,8 +20,6 @@ export { default as ModelError } from './models/model-error'
 export { default as ModelFilter, FilterPageSize } from './models/model-filter'
 
 export { default as SerializerRest } from './utils/serializer-rest'
-export { default as compose } from './utils/compose'
-export { default as withErrorBoundary } from './utils/with-error-boundary'
-export { default as withSuspense } from './utils/with-suspense'
+export { default as withAugmented } from './utils/with-augmented'
 
 export { default as setup } from './setup'
