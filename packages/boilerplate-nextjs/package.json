@@ -64,7 +64,7 @@
     "eslint-config-next": "13.0.5",
     "gray-matter": "4.0.3",
     "i18next-parser": "6.6.0",
-    "miragejs": "0.1.45"
+    "miragejs": "0.1.47"
   },
   "scripts": {
     "build-analyze": "ANALYZE=true next build",

@@ -38,7 +38,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "inflected": "2.1.0",
-    "miragejs": "0.1.45"
+    "miragejs": "0.1.47"
   },
   "peerDependencies": {
     "next": "^13.0.0",
