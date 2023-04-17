@@ -76,7 +76,7 @@ jobs:
   # Phase 2: Provision, deploy, migrate
   provision_deploy_migrate:
     container:
-      image: node:18.12.0-bullseye-slim
+      image: node:19.9.0-bullseye-slim
       options: --user 1001
     environment:
       name: ${{ github.event.inputs.environment }}

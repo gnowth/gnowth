@@ -19,7 +19,7 @@ env:
 jobs:
   build_deploy:
     container:
-      image: node:18.12.0-bullseye-slim
+      image: node:19.9.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -93,7 +93,7 @@ jobs:
 
   clean_test:
     container:
-      image: node:18.12.0-bullseye-slim
+      image: node:19.9.0-bullseye-slim
       options: --user 1001
     if: always()
     needs: [build_deploy, e2e_regression]
