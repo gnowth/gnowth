@@ -40,17 +40,20 @@ $BoundarySystem(boundarySystem, "Azure", $sprite="AppConfiguration{scale=0.5}") 
   $BoundaryComponent(boundaryComponentSide) {
     $EntityComponent(boundarySystemSide_entityComponent, $sprite="website_public{scale=2.3}")
     $EntitySystem(boundarySystemSide_entitySystem, $sprite="img:https://seeklogo.com/images/A/adobe-experience-manager-logo-8A32A4B854-seeklogo.com.png{scale=0.29}", $status="changed")
-    $Spacer(spacer5, $horizontal=1, $vertical=7)
 
     $LayD(boundarySystemSide_entityComponent, boundarySystemSide_entitySystem)
+
+    ' layout fix
+    $Spacer(spacer5, $horizontal=1, $vertical=7)
     $LayD(boundarySystemSide_entitySystem, spacer5)
   }
 
   $Boundary(boundaryEmpty) {
     $EntityInfra(boundarySystem_entityInfra, $description="[description]", $sprite="AppConfiguration{scale=1}", $status="new")
     $EntityInfra(boundarySystem_entityInfra1, $description="[description]", $sprite="AppConfiguration{scale=1}")
-    $Spacer(spacer2, $horizontal=1)
 
+    ' layout fix
+    $Spacer(spacer2, $horizontal=1)
     $LayR(boundarySystem_entityInfra, spacer2)
   }
 
@@ -63,11 +66,12 @@ $BoundarySystem(boundarySystem, "Azure", $sprite="AppConfiguration{scale=0.5}") 
   }
 
   $BoundaryComponent(boundaryComponent, $status="new") {
-    $Spacer(spacer3, $horizontal=50)
     $EntitySystem(boundarySystem_entitySystem, $sprite="img:https://seeklogo.com/images/A/adobe-experience-manager-logo-8A32A4B854-seeklogo.com.png{scale=0.29}", $status="new")
     $EntityInfraComponent(boundary_entityInfra1, $sprite="AppConfiguration{scale=1}")
-
     $LayR(boundarySystem_entitySystem, boundary_entityInfra1)
+
+    ' layout fix
+    $Spacer(spacer3, $horizontal=50)
   }
 
   $LayD(boundaryComponent, boundary)

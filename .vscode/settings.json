@@ -21,6 +21,7 @@
 
   // plantuml
   "plantuml.server": "http://localhost:8888",
+  // "plantuml.server": "http://www.plantuml.com/plantuml",
   "plantuml.render": "PlantUMLServer",
 
   // plugins
