@@ -1,0 +1,91 @@
+@startuml class
+
+package Classes {
+  abstract        abstract
+  abstract class  "abstract class"
+  annotation      annotation
+  class           class
+  entity          entity
+  enum            enum
+  exception       exception
+  interface       interface
+  metaclass       metaclass
+  protocol        protocol
+  stereotype      stereotype
+  struct          struct
+
+  circle          circle
+  ()              circle_short_form
+  diamond         diamond
+  <>              diamond_short_form
+}
+
+package Fields {
+  class Dummy1 {
+  -fieldPrivate
+  #fieldProtected
+  ~fieldPackagePrivate
+  +fieldPublic
+  -methodPrivate()
+  #methodProtected()
+  ~methodPackagePrivate()
+  +methodPublic()
+  }
+
+  class Dummy2 {
+    __ soft __
+    -fieldPrivate
+    #fieldProtected
+    ~fieldPackagePrivate
+    +fieldPublic
+    .. dotted ..
+    -methodPrivate()
+    #methodProtected()
+    ~methodPackagePrivate()
+    +methodPublic()
+    == double ==
+    {static} fieldStatic
+    {static} methodStatic()
+    -- hard --
+    {abstract} fieldAbstract
+    {abstract} methodAbstract()
+  }
+
+  Dummy1 "1" *-- "many" Dummy2 : contains
+}
+
+package Links {
+  () l1
+  () l2
+  () l3
+
+  l1 ^..> l2
+  l2 *..o l3
+  l3 +--# l2
+  l2 x--{ l1
+}
+
+package Association {
+  class Student {
+    Name
+  }
+
+  class Course {
+    Title
+  }
+
+  class Enrollment {
+    drop()
+    cancel()
+  }
+
+  Student "0..*" - "1..*" Course
+  (Student, Course) .. Enrollment
+}
+
+package ExtendImplement {
+  class ArrayList implements List
+  class ArrayList extends AbstractList
+}
+
+@enduml
