@@ -26,13 +26,13 @@
   "dependencies": {
     "@gnowth/configs-app": "0.0.0",
     "@gnowth/core-app": "0.0.0",
-    "@chakra-ui/react": "2.3.7",
-    "axios": "1.1.3",
-    "formik": "2.2.9",
+    "@chakra-ui/react": "2.7.0",
+    "axios": "1.4.0",
+    "formik": "2.4.2",
     "ramda": "0.28.0",
     "react-i18next": "12.0.0",
-    "react-query": "3.39.2",
-    "recoil": "0.7.6",
+    "react-query": "3.39.3",
+    "recoil": "0.7.7",
     "uuid": "9.0.0"
   },
   "devDependencies": {

@@ -31,7 +31,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@tinacms/cli": "0.61.13",
-    "styled-components": "5.3.6"
+    "styled-components": "5.3.11"
   },
   "peerDependencies": {
     "next": "^13.0.0",
