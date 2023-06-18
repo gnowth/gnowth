@@ -62,16 +62,16 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@tinacms/cli": "0.61.13",
-    "concurrently": "7.5.0",
+    "concurrently": "8.2.0",
     "github-markdown-css": "5.2.0",
     "husky": "8.0.3",
     "jest-environment-jsdom": "29.5.0",
-    "lerna": "6.0.3",
+    "lerna": "7.0.2",
     "lint-staged": "13.2.2",
     "netlify-cms-proxy-server": "1.3.24",
     "npm-check-updates": "16.10.12",
     "serve": "14.2.0",
-    "start-server-and-test": "1.14.0",
+    "start-server-and-test": "2.0.0",
     "surge": "0.23.1",
     "ts-jest": "29.1.0",
     "turbo": "1.10.3"
@@ -79,7 +79,7 @@
   "devDependencies": {
     "eslint": "8.43.0",
     "prettier": "2.8.8",
-    "typescript": "4.8.4"
+    "typescript": "5.1.3"
   },
   "scripts": {
     "cd:code:version-pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
@@ -150,6 +150,7 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
+    "lerna": "lerna",
     "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }

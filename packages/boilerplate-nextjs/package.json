@@ -60,10 +60,10 @@
     "@next/bundle-analyzer": "13.4.6",
     "@types/inflected": "1.1.29",
     "@types/react": "18.2.12",
-    "@types/uuid": "8.3.4",
+    "@types/uuid": "9.0.2",
     "eslint-config-next": "13.4.6",
     "gray-matter": "4.0.3",
-    "i18next-parser": "6.6.0",
+    "i18next-parser": "8.0.0",
     "miragejs": "0.1.47"
   },
   "scripts": {

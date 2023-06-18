@@ -47,7 +47,7 @@
     "@storybook/core-common": "6.5.13",
     "@storybook/manager-webpack5": "6.5.16",
     "storybook-addon-next-router": "4.0.2",
-    "storybook-react-i18next": "1.1.2",
+    "storybook-react-i18next": "2.0.6",
     "react": "18.2.0",
     "react-query": "3.39.3",
     "next": "13.4.6"
