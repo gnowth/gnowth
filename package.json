@@ -52,7 +52,7 @@
   },
   "?scripts": {
     "ci:project:storybook:e2e?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312",
-    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-storybook/storybook-static' http://localhost:6006 'npm run workspace:storybook test:e2e'"
+    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:storybook test:e2e'"
   },
   "dependencies": {
     "@commitlint/cli": "17.2.0",

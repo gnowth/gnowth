@@ -16,7 +16,7 @@
     "preset": "@gnowth/jest-config"
   },
   "repository": {
-    "directory": "packages/boilerplate-storybook",
+    "directory": "packages/boilerplate-styleguide",
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },

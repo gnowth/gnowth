@@ -220,5 +220,5 @@ jobs:
           buildScriptName: build-ci
           exitOnceUploaded: true
           projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
-          workingDir: packages/boilerplate-storybook
+          workingDir: packages/boilerplate-styleguide
           zip: true
