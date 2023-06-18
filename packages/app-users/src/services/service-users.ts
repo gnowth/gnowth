@@ -1,6 +1,6 @@
-import type { Detail, List, ListVerbose, ServiceQueryKeyDetail, ServiceQueryKeyList } from '@app/core'
+import type { Detail, List, ListVerbose, ServiceQueryKeyDetail, ServiceQueryKeyList } from '@gnowth/core-app'
 import type { QueryFunctionContext } from 'react-query'
-import { ModelAxios } from '@app/core'
+import { ModelAxios } from '@gnowth/core-app'
 import axios from 'axios'
 
 import type { User, UserSerialized } from '../models/model-user'

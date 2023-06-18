@@ -2,17 +2,13 @@ const javascript = require('./javascript-react')
 const markdown = require('./markdown-react')
 const typescript = require('./typescript-react')
 
+const typescriptOverride = { ...typescript, files: ['*.ts', '*.tsx'] }
+delete typescriptOverride.root
+
+const markdownOverride = { ...markdown, files: ['*.mdx'] }
+delete markdownOverride.root
+
 module.exports = {
   ...javascript,
-
-  overrides: [
-    {
-      ...markdown,
-      files: ['*.mdx'],
-    },
-    {
-      ...typescript,
-      files: ['*.ts', '*.tsx'],
-    },
-  ],
+  overrides: [markdownOverride, typescriptOverride],
 }

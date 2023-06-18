@@ -23,4 +23,6 @@ class ServiceConfigs {
   }
 }
 
-export default new ServiceConfigs()
+const serviceConfigs = new ServiceConfigs()
+
+export default serviceConfigs

@@ -1,5 +1,5 @@
-import type { Environment } from '@app/configs'
-import { makeConfigs } from '@app/configs'
+import type { Environment } from '@gnowth/configs-app'
+import { makeConfigs } from '@gnowth/configs-app'
 
 export type Configs = {
   apiContext: `/${string}`

@@ -9,4 +9,6 @@ class StreamLogs {
   stream = new Subject<Log>()
 }
 
-export default new StreamLogs()
+const streamLogs = new StreamLogs()
+
+export default streamLogs

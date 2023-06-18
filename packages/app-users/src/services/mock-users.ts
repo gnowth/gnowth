@@ -1,6 +1,6 @@
-import type { MockConfigs, ServerEx } from '@app/core'
+import type { MockConfigs, ServerEx } from '@gnowth/core-app'
 import type { AnyResponse } from 'miragejs/-types'
-import { SerializerRest } from '@app/core'
+import { SerializerRest } from '@gnowth/core-app'
 import { faker } from '@faker-js/faker/locale/en'
 import { Factory, Model, createServer } from 'miragejs'
 import * as R from 'ramda'

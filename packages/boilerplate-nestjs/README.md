@@ -1,1 +1,1 @@
-# @boilerplate/nestjs
+# @gnowth/nestjs-boilerplate

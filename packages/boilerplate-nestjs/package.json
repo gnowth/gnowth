@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Boilerplate for nestjs",
   "license": "AGPL-3.0-only",
-  "name": "@boilerplate/nestjs",
+  "name": "@gnowth/nestjs-boilerplate",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,

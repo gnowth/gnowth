@@ -3,14 +3,14 @@ title: ASDF
 category: tools
 ---
 
-# asdf v0.8.1
+# asdf v0.12.0
 
 ## Setup
 
 1. **Install asdf** by running the following:
 
 ```bash
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 ```
 
 2. **Add to your Shell** by adding the following to `~/.zshrc`.
@@ -22,6 +22,10 @@ category: tools
 3. Restart your editor if you are using in-built terminal
 
 4. add plugins required for tools needed, e.g. nodejs. refer to **plugins command**
+
+```bash
+  asdf plugin add nodejs
+```
 
 5. install the tools from `.tool-versions`
 

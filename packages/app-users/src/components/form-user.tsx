@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@app/core'
+import { LayoutSection, withAugmented } from '@gnowth/core-app'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useSearchParams } from 'next/navigation'

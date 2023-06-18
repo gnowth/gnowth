@@ -37,6 +37,8 @@ module.exports = {
     'mdx/language-mapper': {},
   },
 
+  root: true,
+
   rules: {
     'prettier/prettier': 'error',
 

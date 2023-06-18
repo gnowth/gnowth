@@ -33,6 +33,8 @@ module.exports = {
     'import/extensions': ['.d.ts', '.ts', '.json'],
   },
 
+  root: true,
+
   rules: {
     'prettier/prettier': 'error',
   },

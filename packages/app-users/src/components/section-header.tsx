@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, NavLink, ViewProgressGlobal, withAugmented } from '@app/core'
+import { LayoutSection, NavLink, ViewProgressGlobal, withAugmented } from '@gnowth/core-app'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 

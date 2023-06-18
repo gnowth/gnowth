@@ -1,1 +1,1 @@
-# @app/core
+# @gnowth/core-app
