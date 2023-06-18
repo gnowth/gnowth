@@ -1,3 +1,3 @@
 'use client'
 
-export { LayoutDefault as default } from '@app/users'
+export { LayoutDefault as default } from '@gnowth/users-app'

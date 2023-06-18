@@ -95,8 +95,8 @@
     "cd:library:publish": "lerna publish from-package --yes",
     "cd:project:nextjs:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
     "cd:project:nextjs:teardown": "surge teardown $SITE_DOMAIN",
-    "ci:build-dev": "npm run --workspace=@app/recipes start-dev -- -c 'turbo run build-dev --cwd=../..'",
-    "ci:build": "npm run --workspace=@app/recipes start-dev -- -c 'turbo run build --cwd=../..'",
+    "ci:build-dev": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'turbo run build-dev --cwd=../..'",
+    "ci:build": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'turbo run build --cwd=../..'",
     "ci:check:lint": "turbo run lint",
     "ci:check:test": "turbo run test",
     "ci:check:typecheck": "turbo run typecheck",
@@ -141,15 +141,15 @@
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup:cache:verify": "npm cache verify",
-    "setup:packages": "ncu --interactive --deep --reject '@boilerplate/*,@gnowth/*,@app/*'",
+    "setup:packages": "ncu --interactive --deep --reject '@boilerplate/*,@gnowth/*'",
     "setup:refresh": "npm run local:clean && rm -rf package-lock.json && time npm install",
     "setup": "time npm install --frozen-lockfile",
-    "workspace:cypress": "npm run --workspace=@boilerplate/cypress",
+    "workspace:cypress": "npm run --workspace=@gnowth/cypress-boilerplate",
     "workspace:eslint": "npm run --workspace=@gnowth/eslint-config",
     "workspace:language": "npm run --workspace=@gnowth/ty-language",
-    "workspace:nestjs": "npm run --workspace=@boilerplate/nestjs",
-    "workspace:nextjs": "npm run --workspace=@boilerplate/nextjs",
-    "workspace:recipe": "npm run --workspace=@app/recipes",
-    "workspace:storybook": "npm run --workspace=@boilerplate/styleguide"
+    "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
+    "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
+    "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
+    "workspace:storybook": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }

@@ -14,4 +14,6 @@ class ServiceNotifications {
   })
 }
 
-export default new ServiceNotifications()
+const serviceNotifications = new ServiceNotifications()
+
+export default serviceNotifications

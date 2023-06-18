@@ -1,4 +1,4 @@
-import { ModelError } from '@app/core'
+import { ModelError } from '@gnowth/core-app'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import i18n from 'i18next'

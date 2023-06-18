@@ -1,5 +1,5 @@
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
-import { SectionFooter as Component } from '@app/users'
+import { SectionFooter as Component } from '@gnowth/users-app'
 import { expect } from '@storybook/jest'
 import { within } from '@storybook/testing-library'
 

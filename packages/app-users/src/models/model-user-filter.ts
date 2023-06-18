@@ -1,4 +1,4 @@
-import { FilterPageSize, ModelFilter } from '@app/core'
+import { FilterPageSize, ModelFilter } from '@gnowth/core-app'
 import * as R from 'ramda'
 
 export interface UserFilter {

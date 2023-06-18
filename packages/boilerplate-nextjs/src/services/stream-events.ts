@@ -9,4 +9,6 @@ class StreamEvents {
   stream = new Subject<Event>()
 }
 
-export default new StreamEvents()
+const streamEvents = new StreamEvents()
+
+export default streamEvents

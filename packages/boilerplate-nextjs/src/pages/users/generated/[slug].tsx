@@ -1,5 +1,5 @@
 import type { GetStaticPropsContext } from 'next'
-import { PageGenerated } from '@app/users'
+import { PageGenerated } from '@gnowth/users-app'
 
 export async function getStaticPaths() {
   const paths = await PageGenerated.staticPaths()

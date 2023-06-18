@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Styleguide with storybook",
   "license": "AGPL-3.0-only",
-  "name": "@boilerplate/styleguide",
+  "name": "@gnowth/styleguide-boilerplate",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -21,7 +21,7 @@
     "url": "https://github.com/gnowth/smart.git"
   },
   "dependencies": {
-    "@app/users": "0.0.0",
+    "@gnowth/users-app": "0.0.0",
     "@gnowth/storybook-preset": "0.0.0",
     "react": "18.2.0"
   },

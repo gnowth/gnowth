@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Boilerplate for end to end with cypress",
   "license": "AGPL-3.0-only",
-  "name": "@boilerplate/cypress",
+  "name": "@gnowth/cypress-boilerplate",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,

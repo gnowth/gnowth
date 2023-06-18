@@ -1,5 +1,5 @@
-import type { ErrorType } from '@app/core'
-import { ModelError } from '@app/core'
+import type { ErrorType } from '@gnowth/core-app'
+import { ModelError } from '@gnowth/core-app'
 import { Subject } from 'rxjs'
 
 // DEBT(investigation): where do we consume it?
@@ -11,4 +11,6 @@ class StreamErrors {
   }
 }
 
-export default new StreamErrors()
+const streamErrors = new StreamErrors()
+
+export default streamErrors

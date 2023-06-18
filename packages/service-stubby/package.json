@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Mock server",
   "license": "AGPL-3.0-only",
-  "name": "@service/stubby",
+  "name": "@gnowth/stubby-service",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,

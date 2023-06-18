@@ -1,1 +1,1 @@
-export { mockUsers as default } from '@app/users'
+export { mockUsers as default } from '@gnowth/users-app'

@@ -1,4 +1,4 @@
-import { InputPagination, LayoutSection, withAugmented } from '@app/core'
+import { InputPagination, LayoutSection, withAugmented } from '@gnowth/core-app'
 import {
   Avatar,
   Button,

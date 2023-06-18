@@ -1,5 +1,5 @@
-import type { ErrorType } from '@app/core'
-import { ModelError } from '@app/core'
+import type { ErrorType } from '@gnowth/core-app'
+import { ModelError } from '@gnowth/core-app'
 import { Subject } from 'rxjs'
 
 import type { Notification } from '../models/model-notification'
@@ -24,4 +24,6 @@ class StreamToasts {
   }
 }
 
-export default new StreamToasts()
+const streamToasts = new StreamToasts()
+
+export default streamToasts

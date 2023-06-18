@@ -10,7 +10,7 @@ category: tools
 - Running command in a workspace from root
 
 ```bash
-  npm run --workspace=@boilerplate/nextjs <command>
+  npm run --workspace=@gnowth/nextjs-boilerplate <command>
 ```
 
 ## Reference

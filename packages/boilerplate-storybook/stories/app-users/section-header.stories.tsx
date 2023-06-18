@@ -1,5 +1,5 @@
 import type { ComponentStory, ComponentMeta } from '@storybook/react'
-import { SectionHeader as Component } from '@app/users'
+import { SectionHeader as Component } from '@gnowth/users-app'
 import { expect } from '@storybook/jest'
 import { within } from '@storybook/testing-library'
 
