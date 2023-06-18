@@ -1,22 +1,17 @@
-import type { StorybookConfig } from '@storybook/core-common'
+import type { StorybookConfig } from '@storybook/react-webpack5'
 
 export const addons: StorybookConfig['addons'] = [
   '@chakra-ui/storybook-addon',
   '@storybook/addon-essentials',
   '@storybook/addon-interactions',
   '@storybook/addon-links',
+  // TODO: can't resolve warning
   'storybook-addon-next-router',
   'storybook-react-i18next',
 ]
 
 export function config(entry = []) {
   return [...entry, require.resolve('./default-preview')]
-}
-
-export const features: StorybookConfig['features'] = {
-  emotionAlias: false,
-  previewMdx2: true,
-  storyStoreV7: true,
 }
 
 export function previewHead(head: string) {

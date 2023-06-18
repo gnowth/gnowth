@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { makeDecorator } from '@storybook/addons'
+import { makeDecorator } from '@storybook/preview-api'
 import { QueryClientProvider } from 'react-query'
 
 const withReactQuery = makeDecorator({
