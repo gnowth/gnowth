@@ -29,8 +29,8 @@
     "@chakra-ui/react": "2.7.0",
     "axios": "1.4.0",
     "formik": "2.4.2",
-    "ramda": "0.28.0",
-    "react-i18next": "12.0.0",
+    "ramda": "0.29.0",
+    "react-i18next": "13.0.0",
     "react-query": "3.39.3",
     "recoil": "0.7.7",
     "uuid": "9.0.0"
@@ -40,8 +40,8 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.28.19",
-    "miragejs": "0.1.45"
+    "@types/ramda": "0.29.2",
+    "miragejs": "0.1.47"
   },
   "peerDependencies": {
     "next": "^13.0.0",

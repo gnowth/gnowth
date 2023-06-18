@@ -33,7 +33,7 @@ function makeConfigs<Configs extends object>(
       ? configurationEnvironment(environment)
       : configurationEnvironment
 
-    return R.mergeDeepLeft(configsDefault, configsEnvironment) as Configs
+    return R.mergeDeepLeft(configsDefault, configsEnvironment) as unknown as Configs
   }
 }
 

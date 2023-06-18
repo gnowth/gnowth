@@ -52,7 +52,7 @@
   },
   "?scripts": {
     "ci:project:storybook:e2e?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312",
-    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:storybook test:e2e'"
+    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:styleguide test:e2e'"
   },
   "dependencies": {
     "@commitlint/cli": "17.6.5",
@@ -105,8 +105,8 @@
     "ci:project:cypress:e2e:regression": "npm run workspace:cypress test:regression",
     "ci:project:cypress:e2e:smoke": "npm run workspace:cypress test:smoke",
     "ci:project:nextjs:build": "start-server-and-test 'npm run ci:project:tinacms:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
-    "ci:project:storybook:build": "npm run workspace:storybook build",
-    "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:storybook start-ci' http://localhost:6006 'npm run workspace:storybook test:e2e'",
+    "ci:project:storybook:build": "npm run workspace:styleguide build",
+    "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
     "ci:project:tinacms:build": "npm run workspace:recipe build-cms",
     "ci:project:tinacms:start": "npm run workspace:recipe start-dev",
     "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
@@ -134,9 +134,9 @@
     "local:project:nextjs:preview:clean": "surge list | grep -oE 'gnowth-boilerplate-preview-\\d*.surge.sh' | grep -Ev '-1-|-2-' | sort | xargs -I project surge teardown project",
     "local:project:nextjs:preview:list": "surge list | grep -oE 'gnowth-boilerplate-preview-\\d*.surge.sh' | sort",
     "local:project:nextjs:start-dev": "npm run workspace:nextjs start-dev",
-    "local:project:storybook:e2e": "npm run workspace:storybook test:e2e",
-    "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:storybook publish",
-    "local:project:storybook:start": "npm run workspace:storybook start-dev",
+    "local:project:storybook:e2e": "npm run workspace:styleguide test:e2e",
+    "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:styleguide publish",
+    "local:project:storybook:start": "npm run workspace:styleguide start-dev",
     "local:start-cms": "concurrently 'npm run ci:project:tinacms:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
@@ -150,6 +150,6 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
-    "workspace:storybook": "npm run --workspace=@gnowth/styleguide-boilerplate"
+    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }
