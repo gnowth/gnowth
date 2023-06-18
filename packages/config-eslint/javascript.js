@@ -30,6 +30,8 @@ module.exports = {
     'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
   },
 
+  root: true,
+
   rules: {
     'prettier/prettier': 'error',
   },

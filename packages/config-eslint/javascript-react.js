@@ -48,6 +48,8 @@ module.exports = {
     react: { version: '17.0.2' },
   },
 
+  root: true,
+
   rules: {
     'prettier/prettier': 'error',
 

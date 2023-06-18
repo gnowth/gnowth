@@ -50,6 +50,8 @@ module.exports = {
     'import/extensions': ['.d.ts', '.ts', '.tsx', '.json'],
   },
 
+  root: true,
+
   rules: {
     'prettier/prettier': 'error',
 
