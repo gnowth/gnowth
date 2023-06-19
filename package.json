@@ -150,7 +150,6 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
-    "lerna": "lerna",
     "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }

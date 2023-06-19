@@ -55,7 +55,7 @@
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext json,ts,tsx .",
+    "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
     "test-watch": "jest --watch",
     "test": "jest",

@@ -34,9 +34,6 @@
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },
-  "?devDependencies": {
-    "@storybook/mdx2-csf?": "required for mdx2 feature flag"
-  },
   "dependencies": {
     "@chakra-ui/storybook-addon": "4.0.16",
     "@storybook/addon-essentials": "7.0.22",
@@ -57,8 +54,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "@storybook/mdx2-csf": "1.1.0"
+    "@gnowth/typescript-config": "0.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
