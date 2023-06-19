@@ -12,7 +12,7 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/hybrid-react"
+      "@gnowth/eslint-config/typescript-react"
     ]
   },
   "repository": {

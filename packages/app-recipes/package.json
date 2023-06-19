@@ -12,7 +12,7 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/hybrid-react"
+      "@gnowth/eslint-config"
     ]
   },
   "repository": {
@@ -21,6 +21,7 @@
     "url": "https://github.com/gnowth/smart.git"
   },
   "?devDependencies": {
+    "1styled-components": "5.3.11",
     "styled-components": "only required as it is a peer dependencies of tinacms"
   },
   "dependencies": {
@@ -30,8 +31,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tinacms/cli": "0.61.13",
-    "styled-components": "5.3.11"
+    "@tinacms/cli": "0.61.13"
   },
   "peerDependencies": {
     "next": "^13.0.0",
