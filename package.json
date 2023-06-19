@@ -74,7 +74,7 @@
     "start-server-and-test": "2.0.0",
     "surge": "0.23.1",
     "ts-jest": "29.1.0",
-    "turbo": "1.10.3"
+    "turbo": "1.7.0"
   },
   "devDependencies": {
     "eslint": "8.43.0",
