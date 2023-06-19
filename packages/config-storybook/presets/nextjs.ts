@@ -1,12 +1,10 @@
-import type { StorybookConfig } from '@storybook/react-webpack5'
+import type { StorybookConfig } from '@storybook/nextjs'
 
 export const addons: StorybookConfig['addons'] = [
   '@chakra-ui/storybook-addon',
   '@storybook/addon-essentials',
   '@storybook/addon-interactions',
   '@storybook/addon-links',
-  // TODO: can't resolve warning
-  'storybook-addon-next-router',
   'storybook-react-i18next',
 ]
 
@@ -19,7 +17,7 @@ export function previewHead(head: string) {
     ${head}
 
     <style>
-      .sb-show-main.sb-main-centered #root {
+      .sb-show-main.sb-main-centered #storybook-root {
         margin: 0;
         padding: 0;
         width: 100%;

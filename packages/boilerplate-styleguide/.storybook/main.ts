@@ -1,10 +1,10 @@
-import type { StorybookConfig } from '@storybook/react-webpack5'
+import type { StorybookConfig } from '@storybook/nextjs'
 
 export const addons: StorybookConfig['addons'] = ['@gnowth/storybook-preset']
 
 export const core: StorybookConfig['core'] = { builder: '@storybook/builder-webpack5' }
 
-export const framework: StorybookConfig['framework'] = '@storybook/react-webpack5'
+export const framework: StorybookConfig['framework'] = '@storybook/nextjs'
 
 export const stories: StorybookConfig['stories'] = ['../stories/**/*.stories.@(mdx|ts|tsx)']
 
