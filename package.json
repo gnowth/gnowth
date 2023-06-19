@@ -52,34 +52,34 @@
   },
   "?scripts": {
     "ci:project:storybook:e2e?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312",
-    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:storybook test:e2e'"
+    "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:styleguide test:e2e'"
   },
   "dependencies": {
-    "@commitlint/cli": "17.2.0",
-    "@commitlint/config-conventional": "17.2.0",
+    "@commitlint/cli": "17.6.5",
+    "@commitlint/config-conventional": "17.6.5",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@tinacms/cli": "0.61.13",
-    "concurrently": "7.5.0",
-    "github-markdown-css": "5.1.0",
-    "husky": "8.0.2",
-    "jest-environment-jsdom": "29.3.0",
-    "lerna": "6.0.3",
-    "lint-staged": "13.0.3",
+    "concurrently": "8.2.0",
+    "github-markdown-css": "5.2.0",
+    "husky": "8.0.3",
+    "jest-environment-jsdom": "29.5.0",
+    "lerna": "7.0.2",
+    "lint-staged": "13.2.2",
     "netlify-cms-proxy-server": "1.3.24",
-    "npm-check-updates": "16.3.18",
-    "serve": "14.1.0",
-    "start-server-and-test": "1.14.0",
+    "npm-check-updates": "16.10.12",
+    "serve": "14.2.0",
+    "start-server-and-test": "2.0.0",
     "surge": "0.23.1",
-    "ts-jest": "29.0.3",
-    "turbo": "1.6.3"
+    "ts-jest": "29.1.0",
+    "turbo": "1.7.0"
   },
   "devDependencies": {
-    "eslint": "8.27.0",
-    "prettier": "2.7.1",
-    "typescript": "4.8.4"
+    "eslint": "8.43.0",
+    "prettier": "2.8.8",
+    "typescript": "5.1.3"
   },
   "scripts": {
     "cd:code:version-pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
@@ -105,8 +105,8 @@
     "ci:project:cypress:e2e:regression": "npm run workspace:cypress test:regression",
     "ci:project:cypress:e2e:smoke": "npm run workspace:cypress test:smoke",
     "ci:project:nextjs:build": "start-server-and-test 'npm run ci:project:tinacms:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
-    "ci:project:storybook:build": "npm run workspace:storybook build",
-    "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:storybook start-ci' http://localhost:6006 'npm run workspace:storybook test:e2e'",
+    "ci:project:storybook:build": "npm run workspace:styleguide build",
+    "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
     "ci:project:tinacms:build": "npm run workspace:recipe build-cms",
     "ci:project:tinacms:start": "npm run workspace:recipe start-dev",
     "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
@@ -134,9 +134,9 @@
     "local:project:nextjs:preview:clean": "surge list | grep -oE 'gnowth-boilerplate-preview-\\d*.surge.sh' | grep -Ev '-1-|-2-' | sort | xargs -I project surge teardown project",
     "local:project:nextjs:preview:list": "surge list | grep -oE 'gnowth-boilerplate-preview-\\d*.surge.sh' | sort",
     "local:project:nextjs:start-dev": "npm run workspace:nextjs start-dev",
-    "local:project:storybook:e2e": "npm run workspace:storybook test:e2e",
-    "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:storybook publish",
-    "local:project:storybook:start": "npm run workspace:storybook start-dev",
+    "local:project:storybook:e2e": "npm run workspace:styleguide test:e2e",
+    "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:styleguide publish",
+    "local:project:storybook:start": "npm run workspace:styleguide start-dev",
     "local:start-cms": "concurrently 'npm run ci:project:tinacms:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
@@ -150,6 +150,6 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
-    "workspace:storybook": "npm run --workspace=@gnowth/styleguide-boilerplate"
+    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }

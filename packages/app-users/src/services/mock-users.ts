@@ -16,13 +16,16 @@ function mockUsers(configsMock: MockConfigs) {
     factories: {
       user: Factory.extend<UserSerialized>({
         avatar: () => faker.internet.avatar(),
-        nameFirst: () => faker.name.firstName(),
-        nameLast: () => faker.name.lastName(),
-        role: () => faker.name.jobTitle(),
-        status: () => (faker.datatype.number(100) > 20 ? 'active' : 'deactivated'),
+        nameFirst: () => faker.person.firstName(),
+        nameLast: () => faker.person.lastName(),
+        role: () => faker.person.jobTitle(),
+        status: () => (faker.number.int(100) > 20 ? 'active' : 'deactivated'),
         email() {
           // DEBT(hack): dirty ts fix, miragejs typescript is poor
-          return faker.internet.email(this.nameFirst as string, this.nameLast as string)
+          return faker.internet.email({
+            firstName: this.nameFirst as string,
+            lastName: this.nameLast as string,
+          })
         },
       }),
     },

@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress'
 
-import { e2eConfigs } from './cypress.config.mock.mjs'
+import { e2eConfigs } from './cypress.config.mock'
 
 export default defineConfig({
   e2e: {

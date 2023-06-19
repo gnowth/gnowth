@@ -34,30 +34,27 @@
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },
-  "?devDependencies": {
-    "@storybook/mdx2-csf?": "required for mdx2 feature flag"
-  },
   "dependencies": {
-    "@chakra-ui/storybook-addon": "4.0.12",
-    "@storybook/addon-essentials": "6.5.13",
-    "@storybook/addon-interactions": "6.5.13",
-    "@storybook/addon-links": "6.5.13",
-    "@storybook/addons": "6.5.13",
-    "@storybook/builder-webpack5": "6.5.13",
-    "@storybook/core-common": "6.5.13",
-    "@storybook/manager-webpack5": "6.5.13",
-    "storybook-addon-next-router": "4.0.2",
-    "storybook-react-i18next": "1.1.2",
+    "@chakra-ui/storybook-addon": "4.0.16",
+    "@storybook/addon-essentials": "7.0.22",
+    "@storybook/addon-interactions": "7.0.22",
+    "@storybook/addon-links": "7.0.22",
+    "@storybook/builder-webpack5": "7.0.22",
+    "@storybook/manager-webpack5": "6.5.16",
+    "@storybook/nextjs": "7.0.22",
+    "@storybook/preview-api": "7.0.22",
+    "storybook": "7.0.22",
+    "storybook-react-i18next": "2.0.6",
     "react": "18.2.0",
-    "react-query": "3.39.2",
-    "next": "13.0.5"
+    "react-query": "3.39.3",
+    "next": "13.4.6"
   },
   "devDependencies": {
+    "@gnowth/babel-preset": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "@storybook/mdx2-csf": "0.0.3"
+    "@gnowth/typescript-config": "0.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

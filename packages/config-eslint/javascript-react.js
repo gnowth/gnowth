@@ -19,8 +19,6 @@ module.exports = {
     'prettier',
   ],
 
-  // parser: '@babel/eslint-parser',
-
   parserOptions: {
     ecmaFeatures: {
       impliedStrict: true,
@@ -44,8 +42,7 @@ module.exports = {
 
   settings: {
     'import/extensions': ['.js', '.jsx', '.json'],
-    jest: { version: '27.0.6' },
-    react: { version: '17.0.2' },
+    react: { version: 'detect' },
   },
 
   root: true,

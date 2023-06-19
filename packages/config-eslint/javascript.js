@@ -16,8 +16,6 @@ module.exports = {
     'prettier',
   ],
 
-  // parser: '@babel/eslint-parser',
-
   parserOptions: {
     ecmaFeatures: { impliedStrict: true },
     ecmaVersion: 'latest',

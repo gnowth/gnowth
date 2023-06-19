@@ -14,5 +14,5 @@ module.exports = {
   setupFilesAfterEnv: [path.join(__dirname, '../jest-setup.js')],
   testEnvironment: 'jest-environment-jsdom',
   transform: { '^.+\\.(jsx?|tsx?)$': 'ts-jest' },
-  transformIgnorePatterns: ['node_modules/(?!(@smart|@theme|@gnowth|@boilerplate)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(@gnowth)/)'],
 }

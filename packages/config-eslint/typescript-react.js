@@ -48,6 +48,7 @@ module.exports = {
 
   settings: {
     'import/extensions': ['.d.ts', '.ts', '.tsx', '.json'],
+    react: { version: 'detect' },
   },
 
   root: true,
