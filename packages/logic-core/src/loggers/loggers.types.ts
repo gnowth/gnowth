@@ -1,5 +1,5 @@
 import type { ErrorType } from '../errors/errors'
-import type { LogLevel } from './logger.utils'
+import type { LogLevel } from './loggers.utils'
 
 export { LogLevel }
 

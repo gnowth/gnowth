@@ -11,7 +11,7 @@ import {
 
 import type { ErrorType, ModelError } from '../errors/errors'
 import type { FilterPredicate, SortDirection, SortKeyType, SortPredicate, SortType } from '../filters/filters'
-import type { ServiceLogger } from '../logger/logger.services'
+import type { ServiceLogger } from '../loggers/loggers.services'
 import type { ServiceFaker, ServiceFlag } from '../services'
 import type { User, UserFilters } from './users.types'
 

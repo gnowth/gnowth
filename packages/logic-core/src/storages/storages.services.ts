@@ -1,33 +1,33 @@
-type StoragesType = 'SESSION' | 'LOCAL'
+type StorageType = 'SESSION' | 'LOCAL'
 
-interface OptionsStoragesRemoveItem {
+interface OptionsStorageRemoveItem {
   key: string
-  type?: StoragesType
+  type?: StorageType
 }
 
-interface OptionsStoragesGetItem<Type> extends OptionsStoragesRemoveItem {
+interface OptionsStorageGetItem<Type> extends OptionsStorageRemoveItem {
   default?: Type
 }
 
-interface OptionsStoragesSetItem<Type> extends OptionsStoragesRemoveItem {
+interface OptionsStorageSetItem<Type> extends OptionsStorageRemoveItem {
   value: Type
 }
 
-export class ServiceStorages {
-  getItem<Type>(options: OptionsStoragesGetItem<Type>): Type | undefined {
+export class ServiceStorage {
+  getItem<Type>(options: OptionsStorageGetItem<Type>): Type | undefined {
     const storage = options.type === 'LOCAL' ? window.localStorage : window.sessionStorage
     const data = storage.getItem(options.key)
 
     return data === null ? (JSON.stringify(data) as Type) : options.default
   }
 
-  removeItem(options: OptionsStoragesRemoveItem): void {
+  removeItem(options: OptionsStorageRemoveItem): void {
     const storage = options.type === 'LOCAL' ? window.localStorage : window.sessionStorage
 
     return storage.removeItem(options.key)
   }
 
-  setItem<Type>(options: OptionsStoragesSetItem<Type>): void {
+  setItem<Type>(options: OptionsStorageSetItem<Type>): void {
     const storage = options.type === 'LOCAL' ? window.localStorage : window.sessionStorage
 
     return storage.setItem(options.key, JSON.stringify(options.value))

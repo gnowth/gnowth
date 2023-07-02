@@ -1,5 +1,5 @@
-import type { APILogger, OptionsLoggerFn } from './logger.types'
-import { shouldLog } from './logger.utils'
+import type { APILogger, OptionsLoggerFn } from './loggers.types'
+import { shouldLog } from './loggers.utils'
 
 export class APILoggerConsole implements APILogger {
   async bug(options: OptionsLoggerFn): Promise<void> {
