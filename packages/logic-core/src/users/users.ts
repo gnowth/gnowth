@@ -49,9 +49,9 @@ export class ModelUser {
 
     this.dependencies.serviceLogger?.bugIfErrors({
       errors,
-      data: userGenerated,
-      method: 'generate',
       message: 'unable to create a valid User',
+      method: 'generate',
+      payload: userGenerated,
     })
 
     return userGenerated

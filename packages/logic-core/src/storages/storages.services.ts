@@ -13,6 +13,7 @@ interface OptionsStorageSetItem<Type> extends OptionsStorageRemoveItem {
   value: Type
 }
 
+// TODO: add abiliity to retrieve cookie?
 export class ServiceStorage {
   getItem<Type>(options: OptionsStorageGetItem<Type>): Type | undefined {
     const storage = options.type === 'LOCAL' ? window.localStorage : window.sessionStorage

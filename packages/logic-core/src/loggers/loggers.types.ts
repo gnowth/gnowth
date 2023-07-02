@@ -4,10 +4,10 @@ import type { LogLevel } from './loggers.utils'
 export { LogLevel }
 
 export type Log = {
-  data?: unknown
   errors: ErrorType[]
   message: string
   method: string
+  payload?: unknown
 }
 
 export interface OptionsLoggerFn {
