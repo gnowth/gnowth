@@ -1,6 +1,8 @@
 import type { ErrorType } from '../errors/errors'
+import type { LogLevel } from './logger.utils'
 
-export type LogLevel = 'DEBUG' | 'INFO' | 'WARN' | 'ERROR' | 'BUG' | 'NONE'
+export { LogLevel }
+
 export type Log = {
   data?: unknown
   errors: ErrorType[]
@@ -12,6 +14,7 @@ export interface OptionsLoggerFn {
   log: Log
   logLevel: LogLevel
   name: string
+  namespace: string
 }
 
 export interface APILogger {
