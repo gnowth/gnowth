@@ -30,7 +30,8 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0"
+    "@gnowth/typescript-config": "0.0.0",
+    "@faker-js/faker": "8.0.2"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

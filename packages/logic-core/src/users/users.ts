@@ -10,9 +10,10 @@ import {
 } from '@gnowth/utils-lib'
 
 import type { ErrorType, ModelError } from '../errors/errors'
+import type { ServiceFaker } from '../fakers/fakers.services'
 import type { FilterPredicate, SortDirection, SortKeyType, SortPredicate, SortType } from '../filters/filters'
 import type { ServiceLogger } from '../loggers/loggers.services'
-import type { ServiceFaker, ServiceFlag } from '../services'
+import type { ServiceFlag } from '../services'
 import type { User, UserFilters } from './users.types'
 
 const USER_STATUSES = ['ACTIVE'] as const
@@ -66,24 +67,23 @@ export class ModelUser {
   //   message: 'unable to create a valid User',
   // })
   generateFake(user?: Partial<User>): User {
-    const id = this.dependencies.serviceFaker?.string.uuid({ value: user?.id }) ?? ''
+    const id = this.dependencies.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
     const nameFirst =
-      this.dependencies.serviceFaker?.person.firstName({ seed: id, value: user?.nameFirst }) ?? ''
-    const nameLast =
-      this.dependencies.serviceFaker?.person.lastName({ seed: id, value: user?.nameLast }) ?? ''
+      this.dependencies.serviceFaker?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
+    const nameLast = this.dependencies.serviceFaker?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
 
     return this.generate({
       ...user,
       id,
+      nameFirst,
+      nameLast,
       email:
-        this.dependencies.serviceFaker?.internet.email({
+        this.dependencies.serviceFaker?.internetEmail({
           firstName: nameFirst,
           lastName: nameLast,
           seed: id,
           value: user?.email,
         }) ?? '',
-      nameFirst: this.dependencies.serviceFaker?.person.firstName({ seed: id, value: user?.nameFirst }) ?? '',
-      nameLast: this.dependencies.serviceFaker?.person.lastName({ seed: id, value: user?.nameLast }) ?? '',
     })
   }
 
