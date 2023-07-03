@@ -40,14 +40,14 @@
     "supertest": "6.3.3"
   },
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && cp package.json ../../build/nestjs/package.json",
     "clean:modules": "rm -rf node_modules",
-    "clean:temp": "rm -rf dist .turbo",
+    "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
     "start-debug": "nest start --debug --watch",
     "start-dev": "nest start --watch",
-    "start": "node dist/main",
+    "start": "node main",
     "test-watch": "jest --watch",
     "test": "jest",
     "typecheck": "tsc"
