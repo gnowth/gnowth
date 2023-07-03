@@ -1,12 +1,11 @@
+import type { RecipesQuery, RecipesQueryVariables } from '@gnowth/tina-boilerplate'
 import type { GetStaticPropsContext } from 'next'
 import type { ReactElement } from 'react'
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/edit-state'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-import type { RecipesQuery, RecipesQueryVariables } from '../types'
-import { client } from '../client'
-import { Collection, formatMap } from '../schema'
+import { dependencies } from '../dependencies'
 
 type Paths = { params: { slug: string } }[]
 
@@ -26,18 +25,14 @@ export function PageRecipes(props: Props): ReactElement {
   )
 }
 
-PageRecipes.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
-  return client.queries.recipes({
-    relativePath: `${context.params?.slug}.${formatMap[Collection.Recipes]}`,
-  })
+PageRecipes.staticPaths = async (): Promise<Paths> => {
+  const slugs = await dependencies.serviceTina.getRecipesSlugs()
+
+  return slugs.map((slug) => ({ params: { slug } }))
 }
 
-PageRecipes.staticPaths = async (): Promise<Paths> => {
-  const connection = await client.queries.recipesConnection()
+PageRecipes.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
+  const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
 
-  return (
-    connection.data.recipesConnection.edges?.map((edge) => ({
-      params: { slug: edge?.node?._sys.filename ?? '' },
-    })) ?? []
-  )
+  return dependencies.serviceTina.getRecipesContent(slug)
 }

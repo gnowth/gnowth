@@ -1,6 +1,7 @@
 export type { Media } from './assets/assets'
 export type { ErrorType } from './errors/errors'
-export type { Recipe, Ingredient } from './recipes/recipes'
+export type { Ingredient, Recipe } from './recipes/recipes'
 export type { User, UserFilters } from './users/users.types'
 export { ModelError } from './errors/errors'
+export { ModelRoute } from './routes/routes.models'
 export { ModelUser, ModelUserFilters } from './users/users'

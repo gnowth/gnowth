@@ -109,24 +109,33 @@ dist
 # artifact
 artifact.zip
 
-# cypress
-**/cypress/media
-
-# license (nested)
-packages/**/license
-
 # other
 .DS_Store
 
 # storybook
-__diff_output__
+**/__diff_output__/
 
-# volumes
-volumes/*
-!volumes/.gitkeep
+# tina
+**/__generated__/
+**/public/admin/tina/
+
+# nextjs
+**/.next/
 
 # turbo
-.turbo
+**/.turbo/
 
-# build
-build
+# ci
+**/build/
+**/coverage/
+**/node_modules/
+
+# cypress
+**/cypress/media/
+
+# license (nested)
+packages/**/license
+
+# volumes
+**/volumes/
+!volumes/.gitkeep

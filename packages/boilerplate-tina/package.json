@@ -1,10 +1,10 @@
 {
   "author": "Thierry Wong",
-  "description": "CMS tina",
+  "description": "Tina boilerplate",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/recipes-app",
+  "name": "@gnowth/tina-boilerplate",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -12,11 +12,14 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/typescript-react"
+      "@gnowth/eslint-config"
     ]
   },
+  "jest": {
+    "preset": "@gnowth/jest-config"
+  },
   "repository": {
-    "directory": "packages/app-recipes",
+    "directory": "packages/boilerplate-tina",
     "type": "git",
     "url": "https://github.com/gnowth/smart.git"
   },
@@ -24,25 +27,21 @@
     "tinacms": "1.5.13"
   },
   "devDependencies": {
+    "@gnowth/core-logic": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@gnowth/tina-boilerplate": "0.0.0"
-  },
-  "peerDependencies": {
-    "next": "^13.0.0",
-    "react": "^18.0.0"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    }
+    "@tinacms/cli": "1.5.22"
   },
   "scripts": {
+    "audit": "tinacms audit",
+    "build-cms": "tinacms build --local --skip-cloud-checks",
     "clean:modules": "rm -rf node_modules",
-    "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext ts,tsx .",
+    "clean:temp": "rm -rf ./.tina/__generated__ .turbo",
+    "lint:script": "eslint --ext ts,mdx .",
     "lint": "npm run lint:script",
+    "start-dev": "tinacms dev --noTelemetry --noWatch",
     "typecheck": "tsc"
   }
 }

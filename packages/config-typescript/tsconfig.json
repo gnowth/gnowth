@@ -70,5 +70,15 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "skipLibCheck": true /* Skip type checking of declaration files. */
   },
-  "exclude": ["node_modules", "build"]
+  "exclude": [
+    "**/__generated__/",
+    "**/.next/",
+    "**/.turbo/",
+    "**/build/",
+    "**/coverage/",
+    "**/cypress/media/",
+    "**/node_modules/",
+    "**/public/admin/tina/",
+    "**/volumes/"
+  ]
 }

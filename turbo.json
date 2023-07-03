@@ -1,25 +1,28 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "@gnowth/nextjs-boilerplate#build": {
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./build/web"]
+    },
+    "@gnowth/nextjs-boilerplate#build-dev": {
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./build/web"]
+    },
     "@gnowth/styleguide-boilerplate#build": {
       "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
-      "outputs": [".next", "./build/web/styleguide"]
+      "outputs": ["./build/web/styleguide"]
     },
     "@gnowth/styleguide-boilerplate#build-dev": {
       "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
-      "outputs": [".next", "./build/web/styleguide"]
+      "outputs": ["./build/web/styleguide"]
     },
-    "@gnowth/nextjs-boilerplate#build": {
-      "outputs": [".next", "./build/web"]
-    },
-    "@gnowth/nextjs-boilerplate#build-dev": {
-      "outputs": [".next", "./build/web"]
+    "@gnowth/tina-boilerplate#build-cms": {
+      "outputs": ["./packages/boilerplate-tina/.tina/__generated__"]
     },
     "build": {
-      "outputs": ["build"]
+      "outputs": ["./build"]
     },
     "build-dev": {
-      "outputs": ["build"]
+      "outputs": ["./build"]
     },
     "clean:modules": {
       "cache": false,
@@ -30,12 +33,14 @@
       "outputs": []
     },
     "lint": {
+      "dependsOn": ["@gnowth/tina-boilerplate#build-cms"],
       "outputs": []
     },
     "test": {
       "outputs": []
     },
     "typecheck": {
+      "dependsOn": ["@gnowth/tina-boilerplate#build-cms"],
       "outputs": []
     }
   }

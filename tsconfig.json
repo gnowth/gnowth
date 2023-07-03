@@ -1,4 +1,14 @@
 {
   "extends": "@gnowth/typescript-config",
-  "exclude": ["build"]
+  "exclude": [
+    "**/__generated__/",
+    "**/.next/",
+    "**/.turbo/",
+    "**/build/",
+    "**/coverage/",
+    "**/cypress/media/",
+    "**/node_modules/",
+    "**/public/admin/tina/",
+    "**/volumes/"
+  ]
 }
