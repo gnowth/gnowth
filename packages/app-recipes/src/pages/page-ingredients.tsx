@@ -2,7 +2,7 @@ import type { IngredientsQuery, IngredientsQueryVariables } from '@gnowth/tina-b
 import type { GetStaticPropsContext } from 'next'
 import type { ReactElement } from 'react'
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
 import { dependencies } from '../dependencies'
