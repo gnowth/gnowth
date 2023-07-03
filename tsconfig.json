@@ -1,3 +1,4 @@
 {
-  "extends": "@gnowth/typescript-config"
+  "extends": "@gnowth/typescript-config",
+  "exclude": ["build"]
 }

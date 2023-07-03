@@ -9,7 +9,7 @@ module.exports = {
     '\\.(css|less)$': path.join(__dirname, '../mock/mock-style.js'),
     '\\.(md|mdx)$': path.join(__dirname, '../mock/mock-md.js'),
   },
-  modulePathIgnorePatterns: ['/.cache/'],
+  modulePathIgnorePatterns: ['/.cache/', 'build'],
   rootDir: process.cwd(),
   setupFilesAfterEnv: [path.join(__dirname, '../jest-setup.js')],
   testEnvironment: 'jest-environment-jsdom',

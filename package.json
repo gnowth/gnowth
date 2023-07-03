@@ -21,8 +21,7 @@
       "**/.next",
       "**/__generated__",
       "**/coverage",
-      "**/dist",
-      "**/storybook-static"
+      "**/build"
     ],
     "root": true
   },
@@ -74,7 +73,7 @@
     "start-server-and-test": "2.0.0",
     "surge": "0.23.1",
     "ts-jest": "29.1.1",
-    "turbo": "1.7.0"
+    "turbo": "1.10.7"
   },
   "devDependencies": {
     "eslint": "8.44.0",
@@ -93,15 +92,15 @@
     "cd:infrastructure:provision": "echo provision infrastructure",
     "cd:library:publish-dry": "echo publish dry run",
     "cd:library:publish": "lerna publish from-package --yes",
-    "cd:project:nextjs:deploy": "surge --project ./packages/boilerplate-nextjs/dist --domain $SITE_DOMAIN",
+    "cd:project:nextjs:deploy": "surge --project ./build/web --domain $SITE_DOMAIN",
     "cd:project:nextjs:teardown": "surge teardown $SITE_DOMAIN",
-    "ci:build-dev": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'turbo run build-dev --cwd=../..'",
-    "ci:build": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'turbo run build --cwd=../..'",
+    "ci:build-dev": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'cd ../.. && turbo run build-dev'",
+    "ci:build": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'cd ../.. && turbo run build'",
     "ci:check:lint": "turbo run lint",
     "ci:check:test": "turbo run test",
     "ci:check:typecheck": "turbo run typecheck",
     "ci:check": "concurrently npm:ci:check:* --group",
-    "ci:project:cypress:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test 'serve -l 3000 packages/boilerplate-nextjs/dist' http://localhost:3000 'npm run workspace:cypress test:mock'",
+    "ci:project:cypress:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test 'serve -l 3000 build/web' http://localhost:3000 'npm run workspace:cypress test:mock'",
     "ci:project:cypress:e2e:regression": "npm run workspace:cypress test:regression",
     "ci:project:cypress:e2e:smoke": "npm run workspace:cypress test:smoke",
     "ci:project:nextjs:build": "start-server-and-test 'npm run ci:project:tinacms:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
@@ -125,7 +124,7 @@
     "local:check:typecheck": "tsc",
     "local:check": "npm run ci:project:tinacms:build && concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
-    "local:clean:temp": "turbo run clean:temp && rm -rf coverage",
+    "local:clean:temp": "turbo run clean:temp && rm -rf coverage build node_modules/.cache",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:environment": "export $(grep -v '^#' .env.local | xargs)",
     "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",

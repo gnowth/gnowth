@@ -1,13 +1,25 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
+    "@gnowth/styleguide-boilerplate#build": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
+      "outputs": [".next", "./build/web/styleguide"]
+    },
+    "@gnowth/styleguide-boilerplate#build-dev": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
+      "outputs": [".next", "./build/web/styleguide"]
+    },
+    "@gnowth/nextjs-boilerplate#build": {
+      "outputs": [".next", "./build/web"]
+    },
+    "@gnowth/nextjs-boilerplate#build-dev": {
+      "outputs": [".next", "./build/web"]
+    },
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next", "dist", "storybook-static"]
+      "outputs": ["build"]
     },
     "build-dev": {
-      "dependsOn": ["^build-dev"],
-      "outputs": [".next", "dist", "storybook-static"]
+      "outputs": ["build"]
     },
     "clean:modules": {
       "cache": false,

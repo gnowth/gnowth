@@ -119,7 +119,6 @@ packages/**/license
 .DS_Store
 
 # storybook
-storybook-static
 __diff_output__
 
 # volumes
@@ -128,3 +127,6 @@ volumes/*
 
 # turbo
 .turbo
+
+# build
+build

@@ -60,10 +60,10 @@
   },
   "scripts": {
     "build-analyze": "ANALYZE=true next build",
-    "build-dev": "next build && next export -o dist",
-    "build": "next build && next export -o dist",
+    "build-dev": "next build && next export -o ../../build/web",
+    "build": "next build && next export -o ../../build/web",
     "clean:modules": "rm -rf node_modules",
-    "clean:temp": "rm -rf dist .next .turbo",
+    "clean:temp": "rm -rf .next .turbo",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
     "lint:script": "eslint --ext js,ts,tsx .",
     "lint": "npm run lint:script",
