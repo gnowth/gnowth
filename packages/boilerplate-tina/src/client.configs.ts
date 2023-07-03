@@ -8,7 +8,6 @@ export const configs = defineConfig({
   clientId: '',
   token: '',
   build: {
-    // publicFolder: '../../build/web',
     publicFolder: '../boilerplate-nextjs/public',
     outputFolder: 'admin/tina',
   },

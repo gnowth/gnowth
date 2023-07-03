@@ -39,7 +39,7 @@
     "build-cms": "tinacms build --local --skip-cloud-checks",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf ./.tina/__generated__ .turbo",
-    "lint:script": "eslint --ext ts,mdx .",
+    "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
     "start-dev": "tinacms dev --noTelemetry --noWatch",
     "typecheck": "tsc"

@@ -5,5 +5,5 @@ export type {
   IngredientsQueryVariables,
   RecipesQuery,
   RecipesQueryVariables,
-} from './client.types'
+} from './client'
 export { ServiceTina } from './tina.services'
