@@ -24,6 +24,10 @@ const configs = {
       source: '/admin/netlify',
       destination: '/admin/netlify.html',
     },
+    {
+      source: '/admin/tina',
+      destination: '/admin/tina/index.html',
+    },
   ],
   swcMinify: true,
 }

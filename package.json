@@ -18,10 +18,14 @@
       "@gnowth/eslint-config"
     ],
     "ignorePatterns": [
-      "**/.next",
-      "**/__generated__",
-      "**/coverage",
-      "**/build"
+      "**/__generated__/**/*",
+      "**/.next/**/*",
+      "**/.turbo/**/*",
+      "**/build/**/*",
+      "**/coverage/**/*",
+      "**/node_modules/**/*",
+      "**/public/admin/tina/**/*",
+      "**/volumes/**/*"
     ],
     "root": true
   },
@@ -60,7 +64,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tinacms/cli": "0.61.13",
+    "@tinacms/cli": "1.5.22",
     "concurrently": "8.2.0",
     "github-markdown-css": "5.2.0",
     "husky": "8.0.3",
@@ -94,8 +98,8 @@
     "cd:library:publish": "lerna publish from-package --yes",
     "cd:project:nextjs:deploy": "surge --project ./build/web --domain $SITE_DOMAIN",
     "cd:project:nextjs:teardown": "surge teardown $SITE_DOMAIN",
-    "ci:build-dev": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'cd ../.. && turbo run build-dev'",
-    "ci:build": "npm run --workspace=@gnowth/recipes-app start-dev -- -c 'cd ../.. && turbo run build'",
+    "ci:build-dev": "npm run --workspace=@gnowth/tina-boilerplate start-dev -- -c 'cd ../.. && turbo run build-dev'",
+    "ci:build": "npm run --workspace=@gnowth/tina-boilerplate start-dev -- -c 'cd ../.. && turbo run build'",
     "ci:check:lint": "turbo run lint",
     "ci:check:test": "turbo run test",
     "ci:check:typecheck": "turbo run typecheck",
@@ -106,8 +110,8 @@
     "ci:project:nextjs:build": "start-server-and-test 'npm run ci:project:tinacms:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
     "ci:project:storybook:build": "npm run workspace:styleguide build",
     "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
-    "ci:project:tinacms:build": "npm run workspace:recipe build-cms",
-    "ci:project:tinacms:start": "npm run workspace:recipe start-dev",
+    "ci:project:tinacms:build": "npm run workspace:tina build-cms",
+    "ci:project:tinacms:start": "npm run workspace:tina start-dev",
     "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
     "docker:compose": "docker-compose -f devops/docker-compose.yml up",
     "docker:service:plantuml": "docker run -d -p 8888:8080 plantuml/plantuml-server:jetty",
@@ -117,9 +121,9 @@
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
-    "local:check-debug:lint": "eslint --debug --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
+    "local:check-debug:lint": "eslint --debug --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check-debug:typecheck": "tsc --listFilesOnly",
-    "local:check:lint": "eslint --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
+    "local:check:lint": "eslint --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check:test": "jest",
     "local:check:typecheck": "tsc",
     "local:check": "npm run ci:project:tinacms:build && concurrently npm:local:check:* --group",
@@ -148,7 +152,7 @@
     "workspace:language": "npm run --workspace=@gnowth/ty-language",
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
-    "workspace:recipe": "npm run --workspace=@gnowth/recipes-app",
-    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
+    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate",
+    "workspace:tina": "npm run --workspace=@gnowth/tina-boilerplate"
   }
 }

@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { withAugmented } from '@gnowth/core-app'
-import { ProviderRecipe } from '@gnowth/recipes-app'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
@@ -49,9 +48,7 @@ const App: FunctionComponent<Props> = (props) => {
 
           <SystemToasts />
 
-          <Wrapper>
-            <ProviderRecipe>{page}</ProviderRecipe>
-          </Wrapper>
+          <Wrapper>{page}</Wrapper>
         </ChakraProvider>
       </QueryClientProvider>
     </RecoilRoot>

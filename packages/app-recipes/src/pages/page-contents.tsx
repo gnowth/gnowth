@@ -1,16 +1,15 @@
+import type { ContentsQuery, ContentsQueryVariables } from '@gnowth/tina-boilerplate'
 import type { GetStaticPropsContext } from 'next'
 import type { ReactElement } from 'react'
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
-import { useTina } from 'tinacms/dist/edit-state'
+import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 
-import type { ContentsQuery, ContentsQueryVariables } from '../types'
-import { client } from '../client'
-import { Collection, formatMap } from '../schema'
+import { dependencies } from '../dependencies'
 
 type Paths = { params: { slug: string } }[]
 
-type Props = {
+interface Props {
   data: ContentsQuery
   query: string
   variables: ContentsQueryVariables
@@ -29,17 +28,13 @@ export function PageContents(props: Props): ReactElement {
 }
 
 PageContents.staticPaths = async (): Promise<Paths> => {
-  const connection = await client.queries.contentsConnection()
+  const slugs = await dependencies.serviceTina.getContentsSlugs()
 
-  return (
-    connection.data.contentsConnection.edges?.map((edge) => ({
-      params: { slug: edge?.node?._sys.filename ?? '' },
-    })) ?? []
-  )
+  return slugs.map((slug) => ({ params: { slug } }))
 }
 
 PageContents.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
-  return client.queries.contents({
-    relativePath: `${context.params?.slug}.${formatMap[Collection.Contents]}`,
-  })
+  const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
+
+  return dependencies.serviceTina.getContentsContent(slug)
 }
