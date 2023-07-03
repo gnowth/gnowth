@@ -61,7 +61,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tinacms/cli": "0.61.13",
+    "@tinacms/cli": "1.5.22",
     "concurrently": "8.2.0",
     "github-markdown-css": "5.2.0",
     "husky": "8.0.3",
