@@ -107,7 +107,7 @@
     "ci:project:cypress:e2e:mock": "CYPRESS_BASEURL=http://localhost:3000 start-server-and-test 'serve -l 3000 build/web' http://localhost:3000 'npm run workspace:cypress test:mock'",
     "ci:project:cypress:e2e:regression": "npm run workspace:cypress test:regression",
     "ci:project:cypress:e2e:smoke": "npm run workspace:cypress test:smoke",
-    "ci:project:nextjs:build": "start-server-and-test 'npm run ci:project:tinacms:start' http://localhost:4001/altair/ 'npm run workspace:nextjs build'",
+    "ci:project:nextjs:build": "npm run --workspace=@gnowth/tina-boilerplate start-dev -- -c 'cd ../.. && npm run workspace:nextjs build'",
     "ci:project:storybook:build": "npm run workspace:styleguide build",
     "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
     "ci:project:tinacms:build": "npm run workspace:tina build-cms",
