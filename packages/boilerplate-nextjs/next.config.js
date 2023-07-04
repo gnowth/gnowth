@@ -13,22 +13,14 @@ const configs = {
       autoLabel: 'never',
     },
   },
+  distDir: '../../build/web',
   experimental: {
-    appDir: true,
+    // Note: compile code from outside package
     externalDir: true,
   },
-  exportPathMap: (defaultPathMap) => defaultPathMap,
+  output: 'export',
   reactStrictMode: true,
-  rewrites: async () => [
-    {
-      source: '/admin/netlify',
-      destination: '/admin/netlify.html',
-    },
-    {
-      source: '/admin/tina',
-      destination: '/admin/tina/index.html',
-    },
-  ],
+  trailingSlash: true,
   swcMinify: true,
 }
 
