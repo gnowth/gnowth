@@ -63,8 +63,8 @@
   },
   "scripts": {
     "build-analyze": "ANALYZE=true next build",
-    "build-dev": "next build && next export -o ../../build/web",
-    "build": "next build && next export -o ../../build/web",
+    "build-dev": "next build",
+    "build": "next build",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .next .turbo public/admin/tina",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
