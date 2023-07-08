@@ -1,4 +1,4 @@
-import type { IdentityPredicate, Optional } from '@gnowth/utils-lib'
+import type { IdentityPredicate, Optional } from '@gnowth/lib-utils'
 import {
   chain,
   filter,
@@ -7,7 +7,7 @@ import {
   makeSortPredicate,
   sort,
   sortPredicateUsingSequence,
-} from '@gnowth/utils-lib'
+} from '@gnowth/lib-utils'
 
 import type { ErrorType, ModelError } from '../errors/errors'
 import type { ServiceFaker } from '../fakers/fakers.services'

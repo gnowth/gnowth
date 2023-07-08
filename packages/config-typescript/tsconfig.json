@@ -31,7 +31,7 @@
     // "noImplicitThis": true,                      /* Raise error on 'this' expressions with an implied 'any' type. */
     // "strictBindCallApply": true,                 /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
     // "strictFunctionTypes": true,                 /* Enable strict checking of function types. */
-    // "strictNullChecks": true,                    /* Enable strict null checks. */
+    "strictNullChecks": true /* Enable strict null checks. */,
     // "strictPropertyInitialization": true,        /* Enable strict checking of property initialization in classes. */
 
     /* Additional Checks */

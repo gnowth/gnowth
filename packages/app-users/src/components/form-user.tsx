@@ -14,7 +14,7 @@ import serviceUsers from '../services/service-users'
 const FormUser: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const searchParams = useSearchParams()
-  const id = searchParams.get('id') ?? ''
+  const id = searchParams?.get('id') ?? ''
   const queryClient = useQueryClient()
   const handleOnUserMutation = () => queryClient.invalidateQueries(serviceUsers.queryKeys.list({}))
   const userMutation = useMutation(serviceUsers.save, { onSuccess: handleOnUserMutation })

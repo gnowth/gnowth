@@ -1,16 +1,16 @@
 import type { GetStaticPropsContext } from 'next'
-import { PageGenerated } from '@gnowth/users-app'
+import { PageGeneratedClient } from '@gnowth/users-app'
 
 export async function getStaticPaths() {
-  const paths = await PageGenerated.staticPaths()
+  const paths = await PageGeneratedClient.staticPaths()
 
   return { paths, fallback: false }
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  const props = await PageGenerated.staticProps(context)
+  const props = await PageGeneratedClient.staticProps(context)
 
   return { props }
 }
 
-export default PageGenerated
+export default PageGeneratedClient

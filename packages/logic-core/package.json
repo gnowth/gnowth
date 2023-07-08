@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/core-logic",
+  "name": "@gnowth/logic-core",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -24,7 +24,7 @@
     "url": "https://github.com/gnowth/smart.git"
   },
   "dependencies": {
-    "@gnowth/utils-lib": "0.0.0"
+    "@gnowth/lib-utils": "0.0.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

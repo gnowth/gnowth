@@ -1,16 +1,5 @@
-import type { GetStaticPropsContext } from 'next'
-import { PageIngredients } from '@gnowth/recipes-app'
+import { PageIngredientsClient } from '@gnowth/recipes-app'
 
-export async function getStaticPaths() {
-  const paths = await PageIngredients.staticPaths()
-
-  return { paths, fallback: false }
-}
-
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const props = await PageIngredients.staticProps(context)
-
-  return { props }
-}
-
-export default PageIngredients
+export const getStaticPaths = PageIngredientsClient.staticPaths
+export const getStaticProps = PageIngredientsClient.staticProps
+export default PageIngredientsClient

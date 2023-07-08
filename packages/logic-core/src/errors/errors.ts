@@ -1,10 +1,11 @@
-import type { Optional } from '@gnowth/utils-lib'
+import type { Optional } from '@gnowth/lib-utils'
 
 type ErrorGeneric = { code: 'generic-error'; message: string }
 type ErrorInternal = { code: 'internal-error'; message: string }
 type ErrorNetwork = { code: 'network-error'; message: string; status: number }
+type ErrorNotFound = { code: 'not-found-error'; message: string }
 type ErrorValidation = { code: 'validation-error'; message: string }
-export type ErrorType = ErrorGeneric | ErrorInternal | ErrorNetwork | ErrorValidation
+export type ErrorType = ErrorGeneric | ErrorInternal | ErrorNetwork | ErrorNotFound | ErrorValidation
 
 export class ModelError {
   generate(error: Optional<ErrorType, 'code'>): ErrorType {
@@ -18,6 +19,10 @@ export class ModelError {
 
   generateForInternal(error: Optional<ErrorInternal, 'code'>): ErrorType {
     return { ...error, code: error.code ?? 'internal-error' }
+  }
+
+  generateForNotFound(error?: Optional<ErrorInternal, 'code'>): ErrorType {
+    return { ...error, code: error?.code ?? 'not-found-error', message: error?.message ?? 'Page not found' }
   }
 
   generateForValidation(error: Optional<ErrorValidation, 'code'>): ErrorType {
