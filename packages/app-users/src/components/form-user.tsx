@@ -1,3 +1,5 @@
+'use client'
+
 import type { FunctionComponent } from 'react'
 import { LayoutSection, withAugmented } from '@gnowth/core-app'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'

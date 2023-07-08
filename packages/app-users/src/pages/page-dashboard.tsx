@@ -1,3 +1,5 @@
+'use client'
+
 import type { FunctionComponent } from 'react'
 import { LayoutSection } from '@gnowth/core-app'
 import { Text, VStack } from '@chakra-ui/react'

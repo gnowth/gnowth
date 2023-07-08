@@ -1,4 +1,4 @@
-import { ModelRoute } from '@gnowth/core-logic'
+import { ModelRoute } from '@gnowth/logic-core'
 
 import { ModelTinaSchema } from './tina.models'
 

@@ -1,3 +1,6 @@
 export { PageContents } from './pages/page-contents'
+export { PageContentsPages } from './pages/page-contents-pages'
 export { PageIngredients } from './pages/page-ingredients'
+export { PageIngredientsPages } from './pages/page-ingredients-pages'
 export { PageRecipes } from './pages/page-recipes'
+export { PageRecipesPages } from './pages/page-recipes-pages'

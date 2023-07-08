@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/tina-boilerplate",
+  "name": "@gnowth/boilerplate-tina",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -27,7 +27,7 @@
     "tinacms": "1.5.13"
   },
   "devDependencies": {
-    "@gnowth/core-logic": "0.0.0",
+    "@gnowth/logic-core": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",

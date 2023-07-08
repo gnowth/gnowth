@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/utils-lib",
+  "name": "@gnowth/lib-utils",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,

@@ -1,3 +1,5 @@
+'use client'
+
 import type { FunctionComponent } from 'react'
 import { LayoutSection, withAugmented } from '@gnowth/core-app'
 import { useTranslation } from 'react-i18next'

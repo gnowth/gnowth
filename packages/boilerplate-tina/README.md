@@ -1,1 +1,1 @@
-# @gnowth/tina-boilerplate
+# @gnowth/boilerplate-tina

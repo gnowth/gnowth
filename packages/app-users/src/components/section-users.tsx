@@ -1,3 +1,5 @@
+'use client'
+
 import { InputPagination, LayoutSection, withAugmented } from '@gnowth/core-app'
 import {
   Avatar,

@@ -1,40 +1,30 @@
-import type { IngredientsQuery, IngredientsQueryVariables } from '@gnowth/tina-boilerplate'
-import type { GetStaticPropsContext } from 'next'
-import type { ReactElement } from 'react'
-import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
-import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import type { PageComponent } from '@gnowth/lib-utils-react'
+import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
 
 import { dependencies } from '../dependencies'
 
-type Paths = { params: { slug: string } }[]
+type Params = { slug: string }
+type Props = { params?: Params }
 
-type Props = {
-  data: IngredientsQuery
-  query: string
-  variables: IngredientsQueryVariables
-}
+export const PageIngredients: PageComponent<Props> = async (props) => {
+  if (!props.params?.slug) {
+    throw dependencies.modelError.generateForNotFound()
+  }
 
-export function PageIngredients(props: Props): ReactElement {
-  const { data } = useTina(props)
+  const content = await dependencies.serviceTina.getIngredientsContent(props.params.slug)
 
   return (
-    <>
-      {!!data.ingredients?.body && (
-        <TinaMarkdown content={data.ingredients.body as unknown as TinaMarkdownContent} />
-      )}
-    </>
+    <UIMarkdownTina
+      data={content.data}
+      type="ingredients"
+      query={content.query}
+      variables={content.variables}
+    />
   )
 }
 
-PageIngredients.staticPaths = async (): Promise<Paths> => {
-  const slugs = await dependencies.serviceTina.getIngredientsSlugs()
+PageIngredients.generateStaticParams = async () => {
+  const pagesKey = await dependencies.serviceTina.getIngredientsSlugs()
 
-  return slugs.map((slug) => ({ params: { slug } }))
-}
-
-PageIngredients.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
-  const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
-
-  return dependencies.serviceTina.getIngredientsContent(slug)
+  return pagesKey.map((slug) => ({ slug }))
 }

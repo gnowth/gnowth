@@ -1,3 +1,5 @@
+'use client'
+
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent } from 'react'
 import { withAugmented } from '@gnowth/core-app'

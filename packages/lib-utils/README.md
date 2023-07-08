@@ -1,1 +1,1 @@
-# @gnowth/utils-lib
+# @gnowth/lib-utils

@@ -1,38 +1,25 @@
-import type { RecipesQuery, RecipesQueryVariables } from '@gnowth/tina-boilerplate'
-import type { GetStaticPropsContext } from 'next'
-import type { ReactElement } from 'react'
-import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
-import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import type { PageComponent } from '@gnowth/lib-utils-react'
+import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
 
 import { dependencies } from '../dependencies'
 
-type Paths = { params: { slug: string } }[]
+type Params = { slug: string }
+type Props = { params?: Params }
 
-type Props = {
-  data: RecipesQuery
-  query: string
-  variables: RecipesQueryVariables
-}
+export const PageRecipes: PageComponent<Props> = async (props) => {
+  if (!props.params?.slug) {
+    throw dependencies.modelError.generateForNotFound()
+  }
 
-export function PageRecipes(props: Props): ReactElement {
-  const { data } = useTina(props)
+  const content = await dependencies.serviceTina.getRecipesContent(props.params.slug)
 
   return (
-    <>
-      {!!data.recipes?.body && <TinaMarkdown content={data.recipes.body as unknown as TinaMarkdownContent} />}
-    </>
+    <UIMarkdownTina data={content.data} type="recipes" query={content.query} variables={content.variables} />
   )
 }
 
-PageRecipes.staticPaths = async (): Promise<Paths> => {
-  const slugs = await dependencies.serviceTina.getRecipesSlugs()
+PageRecipes.generateStaticParams = async (): Promise<Params[]> => {
+  const pagesKey = await dependencies.serviceTina.getRecipesSlugs()
 
-  return slugs.map((slug) => ({ params: { slug } }))
-}
-
-PageRecipes.staticProps = async (context: GetStaticPropsContext): Promise<Props> => {
-  const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
-
-  return dependencies.serviceTina.getRecipesContent(slug)
+  return pagesKey.map((slug) => ({ slug }))
 }

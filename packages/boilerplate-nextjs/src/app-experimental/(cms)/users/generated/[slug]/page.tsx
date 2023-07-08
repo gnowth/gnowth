@@ -1,9 +1,7 @@
-'use client'
-
-import { PageAppGenerated } from '@gnowth/users-app'
+import { PageGenerated } from '@gnowth/users-app'
 
 export async function generateStaticParams() {
-  return PageAppGenerated.generateStaticParams?.() ?? Promise.resolve([])
+  return PageGenerated.generateStaticParams?.() ?? Promise.resolve([])
 }
 
-export default PageAppGenerated
+export default PageGenerated
