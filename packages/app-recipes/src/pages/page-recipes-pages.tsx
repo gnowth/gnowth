@@ -25,6 +25,7 @@ PageRecipesPages.staticPaths = async () => {
 
 PageRecipesPages.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
+  const props = await dependencies.serviceTina.getRecipesContent(slug)
 
-  return dependencies.serviceTina.getRecipesContent(slug)
+  return { props }
 }

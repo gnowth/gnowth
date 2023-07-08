@@ -9,7 +9,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"]
 }

@@ -1,5 +1,3 @@
-'use client'
-
 import type { FunctionComponent } from 'react'
 import { LayoutSection, withAugmented } from '@gnowth/core-app'
 import { Text } from '@chakra-ui/react'

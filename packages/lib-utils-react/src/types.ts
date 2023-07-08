@@ -20,5 +20,5 @@ interface StaticPropsContext<Slug = string[] | string | undefined> {
 export interface PageComponentPages<Props, Slug = string[] | string | undefined>
   extends FunctionComponent<Props> {
   staticPaths?: () => Promise<StaticPath<Slug>>
-  staticProps?: (context: StaticPropsContext<Slug>) => Promise<Props>
+  staticProps?: (context: StaticPropsContext<Slug>) => Promise<{ props: Props }>
 }

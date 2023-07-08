@@ -1,5 +1,3 @@
-'use client'
-
 import type { ComponentType, ReactElement } from 'react'
 import type { TinaMarkdownContent } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/react'
