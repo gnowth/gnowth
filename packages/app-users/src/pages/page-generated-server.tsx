@@ -7,11 +7,11 @@ import sections from '../sections'
 type Params = { slug: string }
 type Props = { params?: Params }
 
-interface PageComponent<Props> extends FunctionComponent<Props> {
+interface PageServerComponent<Props> extends FunctionComponent<Props> {
   generateStaticParams?: () => Promise<Params[]>
 }
 
-const PageGenerated: PageComponent<Props> = (props) => {
+const PageGeneratedServer: PageServerComponent<Props> = (props) => {
   if (!props.params?.slug) {
     throw new Error('No page found')
   }
@@ -31,10 +31,10 @@ const PageGenerated: PageComponent<Props> = (props) => {
   )
 }
 
-PageGenerated.generateStaticParams = async (): Promise<Params[]> => {
+PageGeneratedServer.generateStaticParams = async (): Promise<Params[]> => {
   const pagesKey = Object.keys(source)
 
   return pagesKey.map((slug) => ({ slug }))
 }
 
-export default PageGenerated
+export default PageGeneratedServer

@@ -1,5 +1,5 @@
-import { PageContentsPages } from '@gnowth/recipes-app'
+import { PageContentsClient } from '@gnowth/recipes-app'
 
-export const getStaticPaths = PageContentsPages.staticPaths
-export const getStaticProps = PageContentsPages.staticProps
-export default PageContentsPages
+export const getStaticPaths = PageContentsClient.staticPaths
+export const getStaticProps = PageContentsClient.staticProps
+export default PageContentsClient

@@ -1,1 +1,1 @@
-export type { PageComponent, PageComponentPages } from './types'
+export type { PageServerComponent, PageClientComponent } from './types'

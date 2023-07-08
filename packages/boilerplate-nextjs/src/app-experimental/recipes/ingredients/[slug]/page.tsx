@@ -1,5 +1,5 @@
-import { PageIngredients } from '@gnowth/recipes-app'
+import { PageIngredientsServer } from '@gnowth/recipes-app'
 
-export const generateStaticParams = PageIngredients.generateStaticParams
+export const generateStaticParams = PageIngredientsServer.generateStaticParams
 
-export default PageIngredients
+export default PageIngredientsServer

@@ -1,4 +1,4 @@
-import type { PageComponent } from '@gnowth/lib-utils-react'
+import type { PageServerComponent } from '@gnowth/lib-utils-react'
 import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
 
 import { dependencies } from '../dependencies'
@@ -6,7 +6,7 @@ import { dependencies } from '../dependencies'
 type Params = { slug: string }
 type Props = { params?: Params }
 
-export const PageContents: PageComponent<Props> = async (props) => {
+export const PageContentsServer: PageServerComponent<Props> = async (props) => {
   if (!props.params?.slug) {
     throw dependencies.modelError.generateForNotFound()
   }
@@ -18,7 +18,7 @@ export const PageContents: PageComponent<Props> = async (props) => {
   )
 }
 
-PageContents.generateStaticParams = async () => {
+PageContentsServer.generateStaticParams = async () => {
   const pagesKey = await dependencies.serviceTina.getContentsSlugs()
 
   return pagesKey.map((slug) => ({ slug }))
