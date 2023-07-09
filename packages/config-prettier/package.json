@@ -16,7 +16,7 @@
     "url": "https://github.com/gnowth/smart.git"
   },
   "peerDependencies": {
-    "prettier": "^2.0.0"
+    "prettier": "^3.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
