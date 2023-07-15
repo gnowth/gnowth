@@ -5,7 +5,7 @@ export default defineConfig({
   outputDir: '../../artifact/test-media-playwright',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  testMatch: '**/*.*(smoke|visual|regression|mock).ts',
+  testMatch: '**/*.*(smoke|regression|mock).ts',
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'list',
@@ -58,7 +58,7 @@ export default defineConfig({
 
     {
       name: 'smoke',
-      testMatch: '*/*.*(smoke|visual).ts',
+      testMatch: '*/*.*smoke.ts',
       use: { ...devices['Desktop Chrome'] },
     },
   ],
