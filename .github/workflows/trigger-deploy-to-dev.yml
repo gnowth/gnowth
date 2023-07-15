@@ -3,8 +3,9 @@ name: triggerDeployToDev
 on: workflow_dispatch
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
-  CYPRESS_BASEURL: https://gnowth-boilerplate-dev.surge.sh
+  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
+  ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
+  BASE_URL_TEST: https://gnowth-boilerplate-dev.surge.sh
   NODE_VERSION: 18.12.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
@@ -46,12 +47,20 @@ jobs:
         run: npm run cd:project:nextjs:deploy
 
       - name: End to end smoke test
-        run: npm run ci:project:cypress:e2e:smoke
+        run: npm run ci:e2e:smoke
 
-      - name: Upload test artifact
+      - name: Upload test artifact cypress
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: artifact-test-media-cypress
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
+          retention-days: 1
+
+      - name: Upload test artifact playwright
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-test-media-playwright
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}
           retention-days: 1

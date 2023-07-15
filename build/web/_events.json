@@ -1,0 +1,14 @@
+[
+  {
+    "eventName": "NEXT_CLI_SESSION_STOPPED",
+    "payload": {
+      "nextVersion": "13.4.7",
+      "nodeVersion": "v18.12.0",
+      "cliCommand": "dev",
+      "durationMilliseconds": 12034829,
+      "turboFlag": false,
+      "pagesDir": true,
+      "appDir": false
+    }
+  }
+]

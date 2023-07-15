@@ -1,0 +1,46 @@
+{
+  "author": "Thierry Wong",
+  "description": "Boilerplate for end to end with playwright",
+  "license": "AGPL-3.0-only",
+  "main": "index.js",
+  "name": "@gnowth/playwright-boilerplate",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript"
+    ]
+  },
+  "repository": {
+    "directory": "packages/boilerplate-playwright",
+    "type": "git",
+    "url": "https://github.com/gnowth/smart.git"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "9.2.0",
+    "@playwright/test": "1.35.1"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0"
+  },
+  "scripts": {
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf cypress/media .turbo",
+    "lint:script": "eslint --ext ts .",
+    "lint": "npm run lint:script",
+    "test:mock": "playwright test --project=mock",
+    "test:regression:chromium-mobile": "playwright test --project=regression-chromium-mobile",
+    "test:regression:chromium": "playwright test --project=regression-chromium",
+    "test:regression:firefox-mobile": "playwright test --project=regression-firefox-mobile",
+    "test:regression:firefox": "playwright test --project=regression-firefox",
+    "test:regression:webkit-mobile": "playwright test --project=regression-webkit-mobile",
+    "test:regression:webkit": "playwright test --project=regression-webkit",
+    "test:regression": "playwright test --project=regression-chromium",
+    "test:smoke": "playwright test --project=smoke",
+    "typecheck": "tsc"
+  }
+}

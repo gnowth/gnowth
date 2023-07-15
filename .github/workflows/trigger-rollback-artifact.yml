@@ -33,8 +33,9 @@ on:
         required: false
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: packages/boilerplate-cypress/cypress/media
-  CYPRESS_BASEURL: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
+  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
+  ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
+  BASE_URL_TEST: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   NODE_VERSION: 18.12.0
   SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
@@ -138,14 +139,26 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - title: chrome
-            command: npm run workspace:cypress test:regression:chrome
-          - title: chrome-mobile
-            command: npm run workspace:cypress test:regression:chrome-mobile
-          - title: firefox
+          - title: cypress-chromium
+            command: npm run workspace:cypress test:regression:chromium
+          - title: cypress-chromium-mobile
+            command: npm run workspace:cypress test:regression:chromium-mobile
+          - title: cypress-firefox
             command: npm run workspace:cypress test:regression:firefox
-          - title: firefox-mobile
+          - title: cypress-firefox-mobile
             command: npm run workspace:cypress test:regression:firefox-mobile
+          - title: playwright-chrome
+            command: npm run workspace:playwright test:regression:chromium
+          - title: playwright-chrome-mobile
+            command: npm run workspace:playwright test:regression:chromium-mobile
+          - title: playwright-firefox
+            command: npm run workspace:playwright test:regression:firefox
+          - title: playwright-firefox-mobile
+            command: npm run workspace:playwright test:regression:firefox-mobile
+          - title: playwright-webkit
+            command: npm run workspace:playwright test:regression:webkit
+          - title: playwright-webkit-mobile
+            command: npm run workspace:playwright test:regression:webkit-mobile
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -180,10 +193,18 @@ jobs:
       - name: End to end regression tests for ${{ matrix.title }}
         run: ${{ matrix.command }}
 
-      - name: Upload test artifact
+      - name: Upload test artifact cypress
         if: failure()
         uses: actions/upload-artifact@v3
         with:
           name: artifact-test-media-cypress-${{ matrix.title }}
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
+          retention-days: 1
+
+      - name: Upload test artifact playwright
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-test-media-playwright-${{ matrix.title }}
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}
           retention-days: 1

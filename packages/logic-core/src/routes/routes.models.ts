@@ -9,6 +9,7 @@ export enum ContextRecipes {
 }
 
 enum ContextUsers {
+  User = 'user',
   Users = 'users',
   Groups = 'groups',
 }
@@ -23,4 +24,5 @@ export class ModelRoute {
   recipesRecipes = (id?: string) => `/${ContextApp.Recipes}/${ContextRecipes.Recipes}${id ? `/${id}` : ''}`
   usersGroups = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Groups}${id ? `/${id}` : ''}`
   usersUsers = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Users}${id ? `/${id}` : ''}`
+  usersUserNew = () => `/${ContextApp.Users}/${ContextUsers.User}`
 }
