@@ -13,7 +13,7 @@ const configs = {
       autoLabel: 'never',
     },
   },
-  distDir: '../../build/web',
+  distDir: '../../artifact/build-web',
   experimental: {
     // Note: compile code from outside package
     externalDir: true,

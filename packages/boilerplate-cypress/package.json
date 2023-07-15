@@ -31,13 +31,12 @@
     "clean:temp": "rm -rf cypress/media .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
-    "test:mock": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.mock.ts --headless",
-    "test:regression:chrome-mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.ts --headless --browser chrome",
-    "test:regression:chrome": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.ts --headless --browser chrome",
-    "test:regression:firefox-mobile": "cypress run --config baseUrl=$CYPRESS_BASEURL,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.ts --headless --browser firefox",
-    "test:regression:firefox": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.ts --headless --browser firefox",
-    "test:regression": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.regression.ts --headless",
-    "test:smoke": "cypress run --config baseUrl=$CYPRESS_BASEURL --config-file cypress/cypress.config.smoke.ts --headless",
+    "test:mock": "cypress run --config baseUrl=$BASE_URL_TEST --config-file cypress/cypress.config.mock.ts --headless",
+    "test:regression:chromium-mobile": "cypress run --config baseUrl=$BASE_URL_TEST,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.ts --headless --browser chrome",
+    "test:regression:chromium": "cypress run --config baseUrl=$BASE_URL_TEST --config-file cypress/cypress.config.regression.ts --headless --browser chrome",
+    "test:regression:firefox-mobile": "cypress run --config baseUrl=$BASE_URL_TEST,viewportHeight=667,viewportWidth=375 --config-file cypress/cypress.config.regression.ts --headless --browser firefox",
+    "test:regression:firefox": "cypress run --config baseUrl=$BASE_URL_TEST --config-file cypress/cypress.config.regression.ts --headless --browser firefox",
+    "test:smoke": "cypress run --config baseUrl=$BASE_URL_TEST --config-file cypress/cypress.config.smoke.ts --headless",
     "typecheck": "tsc"
   }
 }

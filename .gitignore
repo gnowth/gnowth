@@ -126,7 +126,7 @@ artifact.zip
 **/.turbo/
 
 # ci
-**/build/
+**/artifact/
 **/coverage/
 **/node_modules/
 

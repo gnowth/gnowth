@@ -16,13 +16,13 @@ function deleteSuccessfulVideo(spec: Cypress.Spec, results: CypressCommandLine.R
 }
 
 export const e2eConfigs: Cypress.ConfigOptions['e2e'] = {
-  baseUrl: process.env.CYPRESS_BASEURL,
+  baseUrl: process.env.BASE_URL_TEST,
   retries: 5,
-  screenshotsFolder: 'cypress/media',
+  screenshotsFolder: '../../artifact/test-media-cypress',
   specPattern: 'cypress/integration/*.ts',
   supportFile: false,
   videoCompression: false,
-  videosFolder: 'cypress/media',
+  videosFolder: '../../artifact/test-media-cypress',
   setupNodeEvents(on) {
     on('after:spec', deleteSuccessfulVideo)
   },

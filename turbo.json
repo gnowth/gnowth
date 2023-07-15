@@ -2,18 +2,18 @@
   "$schema": "https://turbo.build/schema.json",
   "pipeline": {
     "@gnowth/nextjs-boilerplate#build": {
-      "outputs": ["./packages/boilerplate-nextjs/.next", "./build/web"]
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
     },
     "@gnowth/nextjs-boilerplate#build-dev": {
-      "outputs": ["./packages/boilerplate-nextjs/.next", "./build/web"]
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
     },
     "@gnowth/styleguide-boilerplate#build": {
       "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
-      "outputs": ["./build/web/styleguide"]
+      "outputs": ["./artifact/build-web/styleguide"]
     },
     "@gnowth/styleguide-boilerplate#build-dev": {
       "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
-      "outputs": ["./build/web/styleguide"]
+      "outputs": ["./artifact/build-web/styleguide"]
     },
     "@gnowth/boilerplate-tina#build-cms": {
       "outputs": ["./packages/boilerplate-tina/.tina/__generated__"]
@@ -37,6 +37,15 @@
       "outputs": []
     },
     "test": {
+      "outputs": []
+    },
+    "test:mock": {
+      "outputs": []
+    },
+    "test:regression": {
+      "outputs": []
+    },
+    "test:smoke": {
       "outputs": []
     },
     "typecheck": {
