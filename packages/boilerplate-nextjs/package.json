@@ -23,7 +23,7 @@
   "repository": {
     "directory": "packages/boilerplate-nextjs",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@gnowth/core-app": "0.0.0",

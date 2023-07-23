@@ -1,10 +1,10 @@
 {
   "author": "Thierry Wong",
-  "description": "Logic models",
+  "description": "app receipts",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/logic-core",
+  "name": "@gnowth/receipts-app",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -12,31 +12,28 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/typescript"
+      "@gnowth/eslint-config/typescript-react"
     ]
   },
-  "jest": {
-    "preset": "@gnowth/jest-config"
-  },
   "repository": {
-    "directory": "packages/logic-core",
+    "directory": "packages/app-receipts",
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-utils": "0.0.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
-    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "@faker-js/faker": "8.0.2"
+    "@gnowth/typescript-config": "0.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext ts .",
+    "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
     "typecheck": "tsc"
   }

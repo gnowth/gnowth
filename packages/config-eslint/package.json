@@ -20,7 +20,7 @@
   "repository": {
     "directory": "packages/config-eslint",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@babel/eslint-parser": "7.22.7",

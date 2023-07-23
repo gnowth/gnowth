@@ -8,7 +8,7 @@
   "packageManager": "npm@8.19.2",
   "prettier": "@gnowth/prettier-config",
   "private": true,
-  "repository": "https://github.com/gnowth/smart.git",
+  "repository": "https://github.com/gnowth/gnowth.git",
   "version": "0.0.0",
   "workspaces": [
     "./packages/*"
@@ -128,7 +128,7 @@
     "local:check:typecheck": "tsc",
     "local:check": "npm run ci:project:tinacms:build && concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
-    "local:clean:temp": "turbo run clean:temp && rm -rf coverage build node_modules/.cache",
+    "local:clean:temp": "turbo run clean:temp && rm -rf coverage artifact node_modules/.cache",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:environment": "export $(grep -v '^#' .env.local | xargs)",
     "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",
