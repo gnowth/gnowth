@@ -30,7 +30,7 @@
     "root": true
   },
   "engines": {
-    "node": "18.12.0",
+    "node": "18.17.1",
     "npm": "8.19.2"
   },
   "jest": {
