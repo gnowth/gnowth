@@ -1,5 +1,4 @@
 import { FilterPageSize, ModelFilter } from '@gnowth/core-app'
-import * as R from 'ramda'
 
 export interface UserFilter {
   email: string
@@ -27,16 +26,10 @@ class ModelUserFilter {
 
   // Transform
   static fromUserFilterSerialized = (filter: UserFilterSerialized): UserFilter => {
-    const getPageSize = R.cond([
-      [ModelFilter.isFilterPageSize, R.always(Number(filter.pageSize) as FilterPageSize)],
-      [R.is(Number), R.always(FilterPageSize.i10)],
-      [R.T, R.always(undefined)],
-    ])
-
     return {
       email: filter.email ?? '',
       page: filter.page ? Number(filter.page) : undefined,
-      pageSize: getPageSize(filter.pageSize),
+      pageSize: ModelFilter.getPageSize(filter.pageSize),
       status: filter.status ?? '',
     }
   }

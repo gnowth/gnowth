@@ -1,12 +1,8 @@
-export type { IdentityPredicate, Optional } from './types'
-export {
-  filter,
-  filterPredicateUsingAnd,
-  filterPredicateUsingOr,
-  makeSortPredicate,
-  reduce,
-  sort,
-  sortPredicateUsingSequence,
-} from './arrays'
+export type { PredicateIdentity } from './predicates'
+export type { UtilOptional } from './types'
+export { arrayFilterFn, arrayReduceFn, arraySortFn } from './arrays'
 export { chain } from './functional'
-export { keys } from './objects'
+export { logicSwitch } from './logics'
+export { objectToKeys } from './objects'
+export { operatorFilterAnd, operatorFilterOr, operatorSortMultiple } from './operators'
+export { predicateSortFn } from './predicates'
