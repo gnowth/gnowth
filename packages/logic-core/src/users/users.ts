@@ -1,12 +1,12 @@
-import type { IdentityPredicate, Optional } from '@gnowth/lib-utils'
+import type { PredicateIdentity, UtilOptional } from '@gnowth/lib-utils'
 import {
   chain,
-  filter,
-  filterPredicateUsingAnd,
-  keys,
-  makeSortPredicate,
-  sort,
-  sortPredicateUsingSequence,
+  arrayFilterFn,
+  operatorFilterAnd,
+  objectToKeys,
+  predicateSortFn,
+  arraySortFn,
+  operatorSortMultiple,
 } from '@gnowth/lib-utils'
 
 import type { ErrorType, ModelError } from '../errors/errors'
@@ -43,7 +43,7 @@ export class ModelUser {
     this.options = options
   }
 
-  generate(user: Optional<User, 'status'>): User {
+  generate(user: UtilOptional<User, 'status'>): User {
     const userGenerated = { ...user, status: user.status ?? 'ACTIVE' }
     const errors = this.validate(userGenerated)
 
@@ -111,19 +111,19 @@ export class ModelUserFilters {
     status: this.sortByStatus,
   }
 
-  filterPredicateUsingAndSort(filters: UserFilters): IdentityPredicate<User[]> {
+  operatorFilterAndSort(filters: UserFilters): PredicateIdentity<User[]> {
     type FilterKeys = keyof typeof this.dictionaryFilter
 
     const sortPredicates = filters.sortBy.map((key) => this.sortUsingKey(key))
-    const filterPredicates = keys()(filters)
+    const filterPredicates = objectToKeys()(filters)
       .filter((key) => filters[key] !== undefined)
       .filter((key): key is FilterKeys => key in this.dictionaryFilter)
       // TODO [tech-debt]: fix typescript
       .map((key) => this.filterUsingKey(key, filters[key] as string))
 
     return chain(
-      filter(filterPredicateUsingAnd(...filterPredicates)),
-      sort(sortPredicateUsingSequence(...sortPredicates)),
+      arrayFilterFn(operatorFilterAnd(...filterPredicates)),
+      arraySortFn(operatorSortMultiple(...sortPredicates)),
     )
   }
 
@@ -144,12 +144,13 @@ export class ModelUserFilters {
     value: Parameters<(typeof this.dictionaryFilter)[Key]>[0],
   ): FilterPredicate<User> {
     // TODO [tech-debt]: find better way to address typescript
+    // might be of interest: https://imjacobclark.medium.com/generic-type-inference-through-function-argument-in-typescript-2edcf9e6b0bd
     const fn = this.dictionaryFilter[key] as (value: unknown) => FilterPredicate<User>
     return fn(value)
   }
 
   private sortByNameFirst(direction?: SortDirection): SortPredicate<User> {
-    return makeSortPredicate<User>({
+    return predicateSortFn<User>({
       direction,
       compare: (item1, item2) =>
         item1.nameFirst.toLocaleLowerCase().localeCompare(item2.nameFirst.toLocaleLowerCase()),
@@ -158,7 +159,7 @@ export class ModelUserFilters {
   }
 
   private sortByStatus(direction?: SortDirection): SortPredicate<User> {
-    return makeSortPredicate<User>({
+    return predicateSortFn<User>({
       direction,
       compare: (item1, item2) =>
         USER_STATUSES.findIndex((status) => item1.status === status) -

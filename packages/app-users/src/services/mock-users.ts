@@ -1,13 +1,13 @@
 import type { MockConfigs, ServerEx } from '@gnowth/core-app'
 import type { AnyResponse } from 'miragejs/-types'
-import { SerializerRest } from '@gnowth/core-app'
 import { faker } from '@faker-js/faker/locale/en'
+import { SerializerRest } from '@gnowth/core-app'
+import { operatorFilterAnd } from '@gnowth/lib-utils'
 import { Factory, Model, createServer } from 'miragejs'
-import * as R from 'ramda'
 
 import type { UserSerialized } from '../models/model-user'
-import ModelUserFilter from '../models/model-user-filter'
 import configs from '../configs'
+import ModelUserFilter from '../models/model-user-filter'
 
 function mockUsers(configsMock: MockConfigs) {
   return createServer({
@@ -48,10 +48,10 @@ function mockUsers(configsMock: MockConfigs) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const users = schema.users.where(
-          R.allPass([
+          operatorFilterAnd(
             ModelUserFilter.filterByEmail(request.queryParams?.email),
             ModelUserFilter.filterByStatus(request.queryParams?.status),
-          ]),
+          ),
         )
 
         return this.serialize?.(users, 'application') as AnyResponse
