@@ -21,7 +21,7 @@
   "repository": {
     "directory": "packages/logic-core",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@gnowth/lib-utils": "0.0.0"

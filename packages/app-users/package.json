@@ -21,7 +21,7 @@
   "repository": {
     "directory": "packages/app-users",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@gnowth/configs-app": "0.0.0",

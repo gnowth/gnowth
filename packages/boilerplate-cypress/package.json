@@ -15,7 +15,7 @@
   "repository": {
     "directory": "packages/boilerplate-cypress",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "cypress": "12.17.0",

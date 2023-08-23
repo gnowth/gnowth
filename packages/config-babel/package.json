@@ -17,7 +17,7 @@
   "repository": {
     "directory": "packages/config-babel",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@babel/core": "7.22.8",
