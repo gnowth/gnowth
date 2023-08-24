@@ -13,7 +13,7 @@
   "repository": {
     "directory": "packages/config-prettier",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "peerDependencies": {
     "prettier": "^3.0.0"

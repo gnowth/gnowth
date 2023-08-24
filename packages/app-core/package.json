@@ -18,7 +18,7 @@
   "repository": {
     "directory": "packages/app-core",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.0.19",

@@ -32,7 +32,7 @@
   "repository": {
     "directory": "packages/config-prettier",
     "type": "git",
-    "url": "https://github.com/gnowth/smart.git"
+    "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
     "@chakra-ui/storybook-addon": "5.0.0",
