@@ -8,6 +8,7 @@ export interface PropsBoundary extends Slottable {
 
 export interface PropsFrame {
   className?: string
+  children: ReactNode
 }
 
 export interface PropsLayout {

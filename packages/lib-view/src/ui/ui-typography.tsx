@@ -5,6 +5,7 @@ import type {
   SystemSpace,
   SystemTypography,
 } from '@gnowth/lib-types'
+import type { ReactNode } from 'react'
 import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
@@ -36,6 +37,7 @@ export interface PropsUITypography
     SystemPalette,
     PropsDataReadonly<React.ReactNode> {
   className?: string
+  children?: ReactNode
   hidden?: boolean
   slot?: string
   variant?: VariantUITypography | string

@@ -1,0 +1,39 @@
+{
+  "author": "Thierry Wong",
+  "description": "Tasks app",
+  "license": "AGPL-3.0-only",
+  "main": "src/index.ts",
+  "name": "@gnowth/app-tasks",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript-react"
+    ]
+  },
+  "repository": {
+    "directory": "packages/app-tasks",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "dependencies": {
+    "@gnowth/lib-react": "0.0.0",
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/lodash": "4.14.168"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "scripts": {
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext .ts,.tsx .",
+    "typecheck": "tsc"
+  }
+}
