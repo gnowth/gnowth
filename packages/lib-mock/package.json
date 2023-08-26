@@ -1,0 +1,40 @@
+{
+  "author": "Thierry Wong",
+  "description": "Smart mock",
+  "license": "AGPL-3.0-only",
+  "main": "src/index.ts",
+  "name": "@gnowth/lib-mock",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "source": true,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript"
+    ]
+  },
+  "repository": {
+    "directory": "packages/lib-mock",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "dependencies": {
+    "@gnowth/lib-util": "0.0.0",
+    "@types/faker": "^5.1.7",
+    "faker": "5.4.0",
+    "inflected": "2.1.0",
+    "miragejs": "0.1.41"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/inflected": "1.1.29"
+  },
+  "scripts": {
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext .ts .",
+    "typecheck": "tsc"
+  }
+}

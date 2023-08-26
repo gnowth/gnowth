@@ -1,0 +1,109 @@
+[
+  {
+    "base": "#757575",
+    "json": "",
+    "name": "text",
+    "orig": [],
+    "colors": [
+      {
+        "name": "50",
+        "hex": "#fdfdfd",
+        "darkContrast": true
+      },
+      {
+        "name": "100",
+        "hex": "#f7f7f7",
+        "darkContrast": true
+      },
+      {
+        "darkContrast": true,
+        "hex": "#e0e0e0",
+        "name": "200"
+      },
+      {
+        "darkContrast": true,
+        "hex": "#b3b3b3",
+        "name": "300"
+      },
+      {
+        "darkContrast": true,
+        "hex": "#9e9e9e",
+        "name": "400"
+      },
+      {
+        "darkContrast": true,
+        "hex": "#808080",
+        "name": "500"
+      },
+      {
+        "darkContrast": false,
+        "hex": "#757575",
+        "name": "600"
+      },
+      {
+        "darkContrast": false,
+        "hex": "#454545",
+        "name": "700"
+      },
+      {
+        "darkContrast": false,
+        "hex": "#212121",
+        "name": "800"
+      },
+      {
+        "darkContrast": false,
+        "hex": "#1f1f1f",
+        "name": "900"
+      },
+      {
+        "darkContrast": true,
+        "hex": "#ffffff",
+        "name": "a100"
+      },
+      {
+        "darkContrast": false,
+        "hex": "#000000",
+        "name": "a700"
+      }
+    ]
+  },
+  {
+    "base": "#212121",
+    "json": "",
+    "name": "textPrimary",
+    "orig": [],
+    "colors": [
+      {
+        "darkContrast": false,
+        "hex": "#212121",
+        "name": "500"
+      }
+    ]
+  },
+  {
+    "base": "#ffffff",
+    "json": "",
+    "name": "textInverse",
+    "orig": [],
+    "colors": [
+      {
+        "darkContrast": true,
+        "hex": "#ffffff",
+        "name": "500"
+      }
+    ]
+  },
+  {
+    "base": "transparent",
+    "json": "",
+    "name": "transparent",
+    "orig": [],
+    "colors": [
+      {
+        "darkContrast": true,
+        "hex": "transparent",
+        "name": "500"
+      }
+    ]
+  }
+]

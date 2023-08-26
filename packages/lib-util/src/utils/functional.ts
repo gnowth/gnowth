@@ -1,0 +1,13 @@
+export { default as isNumber } from 'lodash/isNumber'
+export { default as isObject } from 'lodash/isObject'
+export { default as isObjectLike } from 'lodash/isObjectLike'
+export { default as isString } from 'lodash/isString'
+export { default as isUndefined } from 'lodash/isUndefined'
+
+export { funcDefaults as defaults } from './util-defaults'
+export { funcDefaultsDeep as defaultsDeep } from './util-defaults-deep'
+export { funcDefaultsDeepByKeys as defaultsDeepByKeys } from './util-defaults-deep-by-keys'
+export { funcMapValues as mapValues } from './util-map-values'
+export { funcOmitBy as omitBy } from './util-omit-by'
+export { funcPickBy as pickBy } from './util-pick-by'
+export { funcSet as set } from './util-set'
