@@ -1,0 +1,36 @@
+{
+  "author": "Thierry Wong",
+  "description": "Stylelint config",
+  "license": "AGPL-3.0-only",
+  "main": "./stylelint.config.js",
+  "module": "./stylelint.config.js",
+  "name": "@gnowth/stylelint-config",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/javascript"
+    ]
+  },
+  "repository": {
+    "directory": "packages/config-stylelint",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "dependencies": {
+    "stylelint": "13.12.0",
+    "stylelint-config-prettier": "8.0.2",
+    "stylelint-config-recommended": "4.0.0",
+    "stylelint-prettier": "1.2.0"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0"
+  },
+  "scripts": {
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext .js ."
+  }
+}

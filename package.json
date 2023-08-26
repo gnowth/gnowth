@@ -51,6 +51,7 @@
   },
   "?dependencies": {
     "jest-environment-jsdom?": "required explicitly since v29",
+    "react-router-dom": "force version 5 until we migrate to v6",
     "ts-jest?": "required here to force this version at root"
   },
   "?scripts": {
@@ -76,6 +77,7 @@
     "serve": "14.2.0",
     "start-server-and-test": "2.0.0",
     "surge": "0.23.1",
+    "react-router-dom": "5.3.4",
     "ts-jest": "29.1.1",
     "turbo": "1.10.7"
   },

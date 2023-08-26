@@ -1,0 +1,39 @@
+{
+  "author": "Thierry Wong",
+  "description": "Smart async",
+  "license": "AGPL-3.0-only",
+  "main": "src/index.ts",
+  "name": "@gnowth/lib-async",
+  "prettier": "@gnowth/prettier-config",
+  "private": true,
+  "sideEffects": false,
+  "source": true,
+  "version": "0.0.0",
+  "eslintConfig": {
+    "extends": [
+      "@gnowth/eslint-config/typescript-react"
+    ]
+  },
+  "repository": {
+    "directory": "packages/lib-async",
+    "type": "git",
+    "url": "https://github.com/gnowth/gnowth.git"
+  },
+  "dependencies": {
+    "@gnowth/lib-util": "0.0.0"
+  },
+  "devDependencies": {
+    "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/prettier-config": "0.0.0",
+    "@gnowth/typescript-config": "0.0.0",
+    "@gnowth/lib-types": "0.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "scripts": {
+    "lint": "npm run lint:script",
+    "lint:script": "eslint --ext .ts,.tsx .",
+    "typecheck": "tsc"
+  }
+}
