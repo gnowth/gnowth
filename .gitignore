@@ -129,6 +129,7 @@ artifact.zip
 **/artifact/
 **/coverage/
 **/node_modules/
+**/.parcel-cache/
 
 # cypress
 **/cypress/media/
