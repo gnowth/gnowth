@@ -42,7 +42,7 @@
     "parcel": "2.0.0-beta.2"
   },
   "scripts": {
-    "build": "parcel build src/index.html --dist-dir ./build",
+    "build-skip": "parcel build src/index.html --dist-dir ../../artifact/build-app",
     "clean:dist": "rimraf '{build,dist,.cache}'",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext .ts,.tsx .",

@@ -1,7 +1,7 @@
 {
   "extends": "@gnowth/typescript-config/tsconfig.build.json",
   "compilerOptions": {
-    "outDir": "../../build/nestjs" // https://github.com/microsoft/TypeScript/issues/29172
+    "outDir": "../../artifact/build-nestjs" // https://github.com/microsoft/TypeScript/issues/29172
   },
   "exclude": [
     "**/__generated__/",
