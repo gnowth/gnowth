@@ -36,7 +36,7 @@ env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
-  NODE_VERSION: 18.12.0
+  NODE_VERSION: 20.5.0
   SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -77,7 +77,7 @@ jobs:
   # Phase 2: Provision, deploy, migrate
   provision_deploy_migrate:
     container:
-      image: node:18.12.0-bullseye-slim
+      image: node:20.5.0-bullseye-slim
       options: --user 1001
     environment:
       name: ${{ github.event.inputs.environment }}
