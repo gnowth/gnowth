@@ -2,7 +2,8 @@ import type { DataName, Theme } from '@gnowth/lib-types'
 import type { ReactElement } from 'react'
 import React from 'react'
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { UtilError, useUtilRefValue, utils } from '@gnowth/lib-util'
+import { UtilError, useUtilRefValue } from '@gnowth/lib-util'
+import { UtilRequired, objectDefaults } from '@gnowth/lib-utils'
 
 import DataContext from './data-context'
 
@@ -59,7 +60,7 @@ function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   if (props.hidden) return null
 
-  const propsWithDefault = utils.defaults(props, propsDefault)
+  const propsWithDefault = objectDefaults(props as UtilRequired<Props<Value>, 'event'>, propsDefault)
 
   const Component = theme.getComponent({
     component: propsWithDefault.component,

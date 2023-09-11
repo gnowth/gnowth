@@ -26,6 +26,7 @@
     "@emotion/css": "11.11.2",
     "@gnowth/lib-token": "0.0.0",
     "@gnowth/lib-util": "0.0.0",
+    "@gnowth/lib-utils": "0.0.0",
     "lodash": "4.17.21"
   },
   "devDependencies": {

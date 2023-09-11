@@ -21,7 +21,8 @@ import {
   systemSpace,
 } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
-import { UtilSlot } from '@gnowth/lib-util'
+
+import { UtilSlot } from '../util/util-slot'
 
 const stylesLayout = Theme.createStyles({
   layoutContainer: `
@@ -57,7 +58,7 @@ const LayoutSuperImpose: React.FunctionComponent<PropsLayout> = (props) => (
           )}
           id={props.id && `${props.id}__progress`}
         >
-          <UtilSlot name="progress" />
+          <UtilSlot.Content name="progress" />
         </div>
       </UtilSlot.Test>
 
@@ -66,7 +67,7 @@ const LayoutSuperImpose: React.FunctionComponent<PropsLayout> = (props) => (
           className={cx(stylesLayout.layoutContent, props.classNameRoot && `${props.classNameRoot}__content`)}
           id={props.id && `${props.id}__content`}
         >
-          <UtilSlot name="content" />
+          <UtilSlot.Content name="content" />
         </div>
       </UtilSlot.Test>
     </div>
@@ -263,7 +264,7 @@ const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
         layoutSpacing={variant.layoutSpacing}
         layoutVariant={variant.layoutVariant}
       >
-        <UtilSlot.Slot slot="progress">
+        <UtilSlot slot="progress">
           <svg
             className={cx(
               'ui-progress__svg',
@@ -300,9 +301,9 @@ const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
               r={50 - (variant.thickness ?? 1) * 10}
             />
           </svg>
-        </UtilSlot.Slot>
+        </UtilSlot>
 
-        <UtilSlot.Slot slot="content">{variant.children}</UtilSlot.Slot>
+        <UtilSlot slot="content">{variant.children}</UtilSlot>
       </AppLayout>
     </div>
   )

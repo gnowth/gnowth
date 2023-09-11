@@ -13,7 +13,7 @@ const ViewFrameDefault: React.FunctionComponent<Props> = (props) => (
   <LayoutApp palette="text" paletteWeight="100" spacing={0}>
     <ViewAppHeader slot="header" />
 
-    <UtilSlot.Slot slot="main">{props.children}</UtilSlot.Slot>
+    <UtilSlot slot="main">{props.children}</UtilSlot>
 
     <ViewAppFooter slot="footer" />
   </LayoutApp>

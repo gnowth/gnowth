@@ -1,15 +1,15 @@
 import type { CSSObject } from '@emotion/css'
 import type { Interpolate, Theme } from '@gnowth/lib-types'
 import _ from 'lodash'
-import { utils } from '@gnowth/lib-util'
 
 import type { ThemeScale } from '../types'
+import { objectDefaultsDeep } from './system.utils'
 
 // TODO fix utilAssignDeep assumes that if a props is an object all will be. does not take
 export function systemCompose<Props>(...predicates: ((props: Props, theme: Theme) => CSSObject)[]) {
   return (props: Props, theme: Theme): CSSObject =>
     predicates.reduce(
-      (styles, predicate) => utils.defaultsDeep(predicate(props, theme), styles),
+      (styles, predicate) => objectDefaultsDeep(predicate(props, theme), styles),
       {} as CSSObject,
     )
 }

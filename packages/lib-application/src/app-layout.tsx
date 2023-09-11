@@ -1,7 +1,7 @@
 import type { PropsLayout } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
-import { utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 
 import useAppLayout from './use-app-layout'
 
@@ -23,7 +23,7 @@ function AppLayout(props: Props): ReactElement {
 
   if (!LayoutComponent) return <>{props.children}</>
 
-  const propsCombined = utils.defaults(
+  const propsCombined = objectDefaults(
     {
       className: props.className,
       classNameRoot: props.classNameRoot,

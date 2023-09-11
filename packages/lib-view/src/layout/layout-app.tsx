@@ -2,8 +2,8 @@ import type { SystemPalette } from '@gnowth/lib-types'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemBackgroundColorFromPalette } from '@gnowth/lib-theme'
-import { UtilSlot } from '@gnowth/lib-util'
 
+import { UtilSlot } from '../util/util-slot'
 import LayoutContent from './layout-content'
 import LayoutFlex from './layout-flex'
 
@@ -36,13 +36,13 @@ const LayoutApp: React.FunctionComponent<PropsLayoutApp> = (props) => {
         minHeight="100vh"
         spacing={props.spacing}
       >
-        <UtilSlot name="header" />
+        <UtilSlot.Content name="header" />
 
         <LayoutContent as="main" className="layout-app__main" flexGrow="1">
-          <UtilSlot name="main" />
+          <UtilSlot.Content name="main" />
         </LayoutContent>
 
-        <UtilSlot name="footer" />
+        <UtilSlot.Content name="footer" />
       </LayoutFlex>
     </UtilSlot.Provider>
   )

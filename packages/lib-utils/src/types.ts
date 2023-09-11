@@ -1,3 +1,7 @@
+export type ObjectKey = string | number | symbol
+// TODO: update proper type
+export type ObjectLike = object
+
 export type UtilIntersectionFromUnion<Union> = (Union extends unknown ? (k: Union) => void : never) extends (
   k: infer Item,
 ) => void
@@ -5,14 +9,14 @@ export type UtilIntersectionFromUnion<Union> = (Union extends unknown ? (k: Unio
   : never
 
 export type UtilEntriesFromObject<ObjectType extends object> = {
-  [E in keyof ObjectType]: [ObjectType[E], E]
+  [E in keyof ObjectType]: [E, ObjectType[E]]
 }[keyof ObjectType]
 
 type UtilObjectIdentity<T> = T extends infer U ? { [K in keyof U]: U[K] } : never
 
 type UtilObjectFromPair<Type> = Type extends readonly [infer ItemLeft, infer ItemRight]
-  ? ItemRight extends string | number | symbol
-    ? { [Key in ItemRight]: ItemLeft }
+  ? ItemLeft extends string | number | symbol
+    ? { [Key in ItemLeft]: ItemRight }
     : unknown
   : unknown
 
@@ -24,3 +28,10 @@ export type UtilObjectFromPairs<ArrayType extends readonly unknown[]> = ArrayTyp
   : unknown
 
 export type UtilOptional<Type, Key extends keyof Type> = Partial<Pick<Type, Key>> & Omit<Type, Key>
+
+// TODO: implement properly. it does not support union type
+export type UtilRequired<Item extends ObjectLike, Key = void> = Key extends void
+  ? Item
+  : Key extends keyof Item
+  ? Required<Pick<Item, Key>> & Omit<Item, Key>
+  : never

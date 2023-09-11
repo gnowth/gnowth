@@ -1,7 +1,7 @@
 import type { PropsFrame, PropsSuspense, QueryResource, Theme } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement } from 'react'
 import React from 'react'
-import { utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 import { Route, matchPath, useLocation } from 'react-router-dom'
 
 import AppBoundary from './app-boundary'
@@ -36,7 +36,7 @@ const propsDefault = {
 function AppPage(props: Props): ReactElement {
   const application = useAppApplication()
   const location = useLocation()
-  const propsWithDefault = utils.defaults(props, propsDefault)
+  const propsWithDefault = objectDefaults(props, propsDefault)
 
   const match = matchPath(location.pathname, {
     exact: propsWithDefault.exact,

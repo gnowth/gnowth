@@ -1,8 +1,8 @@
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { TokenSpace } from '@gnowth/lib-token'
-import { UtilSlot } from '@gnowth/lib-util'
 
+import { UtilSlot } from '../util/util-slot'
 import LayoutContent from './layout-content'
 import LayoutFlex from './layout-flex'
 
@@ -50,14 +50,14 @@ const LayoutData: React.FunctionComponent<PropsLayoutData> = (props) => {
           spacing={variant.spacing}
           variant={variant.wrapperVariant}
         >
-          <UtilSlot name="label" />
+          <UtilSlot.Content name="label" />
 
           <LayoutContent className="layout-data__content" flexGrow="1">
-            <UtilSlot name="input" />
+            <UtilSlot.Content name="input" />
           </LayoutContent>
         </LayoutFlex>
 
-        <UtilSlot name="warning" />
+        <UtilSlot.Content name="warning" />
       </LayoutFlex>
     </UtilSlot.Provider>
   )

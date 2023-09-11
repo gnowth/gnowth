@@ -11,7 +11,9 @@ import type {
 import type { ComponentType } from 'react'
 import _ from 'lodash'
 import { css } from '@emotion/css'
-import { utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
+
+import { objectDefaultsDeepByKeys } from './theme.utils'
 
 import type {
   ThemeComponents,
@@ -115,8 +117,8 @@ class Theme implements ITheme {
   getComponent<Props>(configs: ThemeConfigsComponent<Props>): ComponentType<Props> | undefined {
     if (!_.isString(configs.component)) return configs.component
 
-    const components = utils.defaults(
-      configs.components,
+    const components = objectDefaults(
+      configs.components ?? {},
       this.components[configs.namespace || 'type'] as Record<string, ComponentType<Props>>,
     )
 
@@ -165,11 +167,11 @@ class Theme implements ITheme {
   }
 
   getVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
-    const propsWithDefault = utils.defaults(props, propsDefault)
+    const propsWithDefault = objectDefaults(props, propsDefault)
 
     const variant = this.getVariantPartial(propsWithDefault, propsWithDefault)
 
-    return utils.defaults(props, variant, propsDefault)
+    return objectDefaults(props, variant, propsDefault)
   }
 
   // TODO: fix all types around getVariant
@@ -182,7 +184,7 @@ class Theme implements ITheme {
     if (_.isObject(configs.variant)) return configs.variant as Props
 
     const variants = this.variants as ThemeVariants<Props>
-    const variantRecord = utils.defaults(variants[configs.variantNamespace], configs.variantLocals)
+    const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variantLocals)
 
     const variantMaybe = variantRecord[configs.variant]
     const variant = _.isFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe
@@ -196,13 +198,13 @@ class Theme implements ITheme {
     propsDefault?: Partial<Props>,
     mergeKeys: Array<keyof Props> = [],
   ): Props {
-    const propsWithDefault = utils.defaults(props, propsDefault)
+    const propsWithDefault = objectDefaults(props, propsDefault)
 
     const variants = definitions(propsWithDefault).map((definition) =>
       this.getVariantPartial(definition, propsWithDefault),
     )
 
-    return utils.defaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
+    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
   }
 }
 

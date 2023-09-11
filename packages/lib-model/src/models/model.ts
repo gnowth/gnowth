@@ -1,5 +1,5 @@
 import type { DataName, Field, Model as IModel, QueryApi, SchemaFromValue } from '@gnowth/lib-types'
-import { utils } from '@gnowth/lib-util'
+import { objectMapValues } from '@gnowth/lib-utils'
 import _ from 'lodash'
 
 import FieldModel from '../fields/field-model'
@@ -21,7 +21,7 @@ class Model<Value extends Record<keyof Value, unknown> = Record<string, never>, 
   }
 
   getDefault(partial?: Partial<Value>): Value {
-    return utils.mapValues(
+    return objectMapValues(
       this.schema,
       <Key extends keyof Value>(field: Field<Value[Key]>, key: Key) =>
         field.getDefault(partial?.[key]) as Value[Key],
