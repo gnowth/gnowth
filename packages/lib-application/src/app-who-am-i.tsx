@@ -1,13 +1,13 @@
 import { TokenError } from '@gnowth/lib-token'
 import { UtilError } from '@gnowth/lib-util'
 
-import useAppWhoAmI from './use-app-who-am-i'
+import { useAppWhoAmI } from './use-app-who-am-i'
 
 interface Props {
   authenticated?: boolean
 }
 
-function AppWhoAmI(props: Props): null {
+export function AppWhoAmI(props: Props): null {
   const [whoami] = useAppWhoAmI()
 
   if (props.authenticated === undefined) return null
@@ -36,5 +36,3 @@ function AppWhoAmI(props: Props): null {
 
   return null
 }
-
-export default AppWhoAmI

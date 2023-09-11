@@ -1,1 +1,1 @@
-export { default } from '../components/app-page'
+export { AppPage as default } from '../components/app-page'

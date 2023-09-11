@@ -13,7 +13,7 @@ interface Props {
 }
 
 // TODO: remove log
-function Recipes(props: Props): ReactElement {
+export function PageRecipes(props: Props): ReactElement {
   const ingredients = props.resources.ingredients?.read()
   const recipes = props.resources.recipes?.read()
   // eslint-disable-next-line no-console
@@ -29,5 +29,3 @@ function Recipes(props: Props): ReactElement {
     </LayoutPage>
   )
 }
-
-export default Recipes

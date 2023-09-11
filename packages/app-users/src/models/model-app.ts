@@ -1,4 +1,4 @@
-class ModelApp {
+export class ModelApp {
   static namespace = 'users' as const
 
   static routes = {
@@ -12,5 +12,3 @@ class ModelApp {
     users: () => `/${ModelApp.namespace}/users`,
   }
 }
-
-export default ModelApp

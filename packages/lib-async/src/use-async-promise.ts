@@ -2,7 +2,7 @@ import type { AsyncStatus } from '@gnowth/lib-types'
 import React from 'react'
 import { UtilError } from '@gnowth/lib-util'
 
-import ModelPromise from './model-promise'
+import { ModelPromise } from './model-promise'
 
 type ActionTypes = 'reject' | 'reset' | 'resolve'
 
@@ -69,7 +69,7 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
 }
 
 // TODO: fix typescript
-function useAsyncPromise<Value>(maybePromise?: Promise<Value>): State<Value> {
+export function useAsyncPromise<Value>(maybePromise?: Promise<Value>): State<Value> {
   const [state, dispatch] = React.useReducer(reducer, initialState)
 
   React.useEffect(() => {
@@ -86,5 +86,3 @@ function useAsyncPromise<Value>(maybePromise?: Promise<Value>): State<Value> {
 
   return state as State<Value>
 }
-
-export default useAsyncPromise

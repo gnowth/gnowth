@@ -1,15 +1,13 @@
 import { useToast } from '@chakra-ui/react'
 
-import StreamToasts from '../services/stream-toasts'
-import useStream from '../utils/use-stream'
+import { streamToasts } from '../services/stream-toasts'
+import { useStream } from '../utils/use-stream'
 
-function SystemToasts() {
+export function SystemToasts() {
   const toast = useToast({ position: 'bottom-right' })
 
   // DEBT(investigation): watch notification channels and push to toast or in setup?
-  useStream(StreamToasts.stream, toast)
+  useStream(streamToasts.stream, toast)
 
   return null
 }
-
-export default SystemToasts

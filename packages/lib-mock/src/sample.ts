@@ -1,6 +1,6 @@
 import { Factory, Model, createServer } from 'miragejs'
 
-function mockServer(): unknown {
+export function mockServer(): unknown {
   return createServer({
     models: {
       movie: Model,
@@ -84,5 +84,3 @@ function mockServer(): unknown {
     },
   })
 }
-
-export default mockServer

@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react'
 import React from 'react'
-import LayoutContent from '../layout/layout-content'
-import UITypography from './ui-typography'
+import { LayoutContent } from '../layout/layout-content'
+import { UITypography } from './ui-typography'
 
 export interface VariantUIError {
   as?: string
@@ -11,7 +11,7 @@ export interface PropsUIError {
   value?: Error[] | Error | null
 }
 
-function UIError(props: PropsUIError): ReactElement | null {
+export function UIError(props: PropsUIError): ReactElement | null {
   if (!props.value) return null
 
   return (
@@ -23,5 +23,3 @@ function UIError(props: PropsUIError): ReactElement | null {
     </LayoutContent>
   )
 }
-
-export default UIError

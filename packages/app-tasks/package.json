@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Tasks app",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/app-tasks",
   "prettier": "@gnowth/prettier-config",
   "private": true,

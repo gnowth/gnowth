@@ -4,16 +4,20 @@ import { ApplicationAuth } from '@gnowth/app-auth'
 import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
 import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenError } from '@gnowth/lib-react'
 
-import ViewFrameDefault from './views/view-frame-default'
-import ViewFrameRecipes from './views/view-frame-recipes'
-import ViewFrameTasks from './views/view-frame-tasks'
-import modelAppEnvironment, { TokenApplication } from './app-model-environment'
-import settings from './settings'
-import setup from './setup'
-import theme from './theme'
+import { ViewFrameDefault } from './views/view-frame-default'
+import { ViewFrameRecipes } from './views/view-frame-recipes'
+import { ViewFrameTasks } from './views/view-frame-tasks'
+import { appModelEnvironment, TokenApplication } from './app-model-environment'
+import { settings } from './settings'
+import { setup } from './setup'
+import { theme } from './theme'
 
-const ApplicationRecipes = React.lazy(() => import('@gnowth/app-recipe'))
-const ApplicationTasks = React.lazy(() => import('@gnowth/app-tasks'))
+const ApplicationRecipes = React.lazy(() =>
+  import('@gnowth/app-recipe').then((module) => ({ default: module.ApplicationRecipes })),
+)
+const ApplicationTasks = React.lazy(() =>
+  import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),
+)
 
 setup(settings)
 
@@ -29,7 +33,7 @@ ReactDOM.render(
       [TokenError.api403]: PageNotPermitted,
       [TokenError.api404]: PageNotFound,
     }}
-    environment={modelAppEnvironment}
+    environment={appModelEnvironment}
     frame="default"
     frames={{ default: ViewFrameDefault, recipes: ViewFrameRecipes, tasks: ViewFrameTasks }}
     theme={theme}

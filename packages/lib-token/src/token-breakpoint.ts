@@ -1,4 +1,4 @@
-enum TokenBreakpoint {
+export enum TokenBreakpoint {
   xxs = 0,
   xs,
   sm,
@@ -7,5 +7,3 @@ enum TokenBreakpoint {
   xl,
   xxl,
 }
-
-export default TokenBreakpoint

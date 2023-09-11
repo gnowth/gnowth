@@ -2,9 +2,9 @@ import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
 import { matchPath, useLocation, useRouteMatch } from 'react-router-dom'
 
-import AppModelApplication from './app-model-application'
-import useAppApplication from './use-app-application'
-import useAppEnvironment from './use-app-environment'
+import { AppModelApplication } from './app-model-application'
+import { useAppApplication } from './use-app-application'
+import { useAppEnvironment } from './use-app-environment'
 
 interface Props {
   children: ReactNode
@@ -17,7 +17,7 @@ interface PropsChild {
   page?: string
 }
 
-function AppSwitch(props: Props): ReactElement | null {
+export function AppSwitch(props: Props): ReactElement | null {
   const application = useAppApplication()
   const environment = useAppEnvironment()
   const location = useLocation()
@@ -38,5 +38,3 @@ function AppSwitch(props: Props): ReactElement | null {
 
   return match ? React.cloneElement(element, { location, computedMatch: match }) : null
 }
-
-export default AppSwitch

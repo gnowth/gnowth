@@ -1,7 +1,7 @@
 import type { DataName, DataValue } from '@gnowth/lib-types'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
-import { UtilError, useUtilEnsureConstant, useUtilRefValue, utils } from '@gnowth/lib-util'
+import { UtilError, useEnsureConstant, useRefValue, utils } from '@gnowth/lib-util'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 interface Configs {
@@ -34,17 +34,17 @@ const configsDefault = {
   }),
 }
 
-function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
+export function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
   const { mode = TokenMode.controlled, onChange } = props
   const configsWithDefault = objectDefaults(configs, configsDefault)
 
-  useUtilEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
-  useUtilEnsureConstant(props.value, {
+  useEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
+  useEnsureConstant(props.value, {
     errorCustom: configsWithDefault.errorCustomValue,
     skip: mode === TokenMode.controlled,
   })
 
-  const valueRef = useUtilRefValue(props.value)
+  const valueRef = useRefValue(props.value)
   const [value, setValue] = React.useState(props.value)
 
   const handleChangeControlled = React.useCallback<NonNullable<typeof onChange>>(
@@ -76,5 +76,3 @@ function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs
     value: mode === TokenMode.controlled ? props.value : value,
   }
 }
-
-export default useValue

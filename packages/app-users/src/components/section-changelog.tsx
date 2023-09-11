@@ -3,7 +3,7 @@ import { LayoutSection, withAugmented } from '@gnowth/core-app'
 
 import MdChangelog from '../../CHANGELOG.md'
 
-const SectionChangelog: FunctionComponent = () => {
+const SectionChangelogComponent: FunctionComponent = () => {
   return (
     <LayoutSection>
       <MdChangelog />
@@ -11,4 +11,4 @@ const SectionChangelog: FunctionComponent = () => {
   )
 }
 
-export default withAugmented()(SectionChangelog)
+export const SectionChangelog = withAugmented()(SectionChangelogComponent)

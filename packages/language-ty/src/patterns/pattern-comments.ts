@@ -1,6 +1,6 @@
 import type { PatternRecord } from '../types'
 
-const comments: PatternRecord = {
+export const patternComments: PatternRecord = {
   include: {
     include: '#comments',
   },
@@ -65,5 +65,3 @@ const comments: PatternRecord = {
     },
   },
 }
-
-export default comments

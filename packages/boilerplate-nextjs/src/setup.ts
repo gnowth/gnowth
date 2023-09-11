@@ -5,7 +5,7 @@ import i18n from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-import StreamErrors from './services/stream-errors'
+import { streamErrors } from './services/stream-errors'
 import makeServer from './services/make-server'
 
 function setupI18n() {
@@ -17,7 +17,7 @@ function setupI18n() {
       debug: false,
       fallbackLng: 'en',
     }) // for all options docs: https://www.i18next.com/overview/configuration-options
-    .catch(StreamErrors.pushErrorUnknown)
+    .catch(streamErrors.pushErrorUnknown)
 
   return i18n
 }
@@ -36,7 +36,7 @@ function setupMockServer() {
 
 function setupReactQuery() {
   return new QueryClient({
-    queryCache: new QueryCache({ onError: StreamErrors.pushErrorUnknown }),
+    queryCache: new QueryCache({ onError: streamErrors.pushErrorUnknown }),
     defaultOptions: {
       queries: {
         // DEBT: disable query server side. find better solution
@@ -50,12 +50,10 @@ function setupReactQuery() {
   })
 }
 
-function setup() {
+export function setup() {
   return {
     i18n: setupI18n(),
     queryClient: setupReactQuery(),
     mockServer: setupMockServer(),
   }
 }
-
-export default setup

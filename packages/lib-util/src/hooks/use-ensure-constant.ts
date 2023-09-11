@@ -1,5 +1,5 @@
-import UtilError from '../classes/util-error'
-import usePrevious from './use-previous'
+import { UtilError } from '../classes/util-error'
+import { usePrevious } from './use-previous'
 
 interface Configs {
   errorCustom?: Error
@@ -12,12 +12,10 @@ const errorCustom = new UtilError({
   method: 'useEnsureConstant',
 })
 
-function useEnsureConstant<Value>(value: Value, configs?: Configs): void {
+export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {
   const valuePrevious = usePrevious(value)
 
   if (value !== valuePrevious && !configs?.skip) {
     throw configs?.errorCustom || errorCustom
   }
 }
-
-export default useEnsureConstant

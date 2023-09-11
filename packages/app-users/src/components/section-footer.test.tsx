@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import SectionFooter from '../components/section-footer'
+import { SectionFooter } from '../components/section-footer'
 
 function renderComponent() {
   return render(<SectionFooter />)

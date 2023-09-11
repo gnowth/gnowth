@@ -2,14 +2,14 @@ import type { ReactNode } from 'react'
 import React from 'react'
 import { AppLayout } from '@gnowth/lib-react'
 
-import ViewAppFooter from './view-app-footer'
-import ViewAppHeader from './view-app-header'
+import { ViewAppFooter } from './view-app-footer'
+import { ViewAppHeader } from './view-app-header'
 
 type Props = {
   children: ReactNode
 }
 
-const ViewFrameRecipes: React.FunctionComponent<Props> = (props) => (
+export const ViewFrameRecipes: React.FunctionComponent<Props> = (props) => (
   <AppLayout layout="app">
     <AppLayout layout="appHeader" slot="header">
       <ViewAppHeader />
@@ -24,5 +24,3 @@ const ViewFrameRecipes: React.FunctionComponent<Props> = (props) => (
     </AppLayout>
   </AppLayout>
 )
-
-export default ViewFrameRecipes

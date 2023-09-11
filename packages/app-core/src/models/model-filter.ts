@@ -5,7 +5,7 @@ export enum FilterPageSize {
   i100 = 100,
 }
 
-class ModelFilter {
+export class ModelFilter {
   static optionsPageSize = Object.values(FilterPageSize).filter(ModelFilter.isFilterPageSize)
 
   static actionRecalculatePage(page: number, pageSize: FilterPageSize, newPageSize: FilterPageSize) {
@@ -27,5 +27,3 @@ class ModelFilter {
     return FilterPageSize[`i${value}` as keyof typeof FilterPageSize] !== undefined
   }
 }
-
-export default ModelFilter

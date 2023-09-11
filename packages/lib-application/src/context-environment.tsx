@@ -9,7 +9,7 @@ import type {
 import type { ComponentType } from 'react'
 import React from 'react'
 
-import AppModelEnvironment from './app-model-environment'
+import { AppModelEnvironment } from './app-model-environment'
 
 export interface PropsEnvironment {
   boundaries: Record<string, ComponentType<PropsBoundary> | undefined>
@@ -33,6 +33,4 @@ export const propsDefaultEnvironment: PropsEnvironment = {
   whoamiSet: () => undefined,
 }
 
-const ContextEnvironment = React.createContext(propsDefaultEnvironment)
-
-export default ContextEnvironment
+export const ContextEnvironment = React.createContext(propsDefaultEnvironment)

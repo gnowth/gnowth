@@ -1,11 +1,11 @@
-import useAnimationDelayValue from './use-animation-delay-value'
+import { useAnimationDelayValue } from './use-animation-delay-value'
 
 interface PropsAnimationDelayKey<Key> {
   animationDelayKey: Key
   animationDelay?: number
 }
 
-function useAnimationDelayProps<Props extends PropsAnimationDelayKey<Key>, Key extends keyof Props>(
+export function useAnimationDelayProps<Props extends PropsAnimationDelayKey<Key>, Key extends keyof Props>(
   props: Props,
 ): Props {
   const value = useAnimationDelayValue({
@@ -15,5 +15,3 @@ function useAnimationDelayProps<Props extends PropsAnimationDelayKey<Key>, Key e
 
   return { ...props, [props.animationDelayKey]: value }
 }
-
-export default useAnimationDelayProps

@@ -3,8 +3,8 @@ import { useAppTheme } from '@gnowth/lib-application'
 import { TokenSpace } from '@gnowth/lib-token'
 
 import { UtilSlot } from '../util/util-slot'
-import LayoutContent from './layout-content'
-import LayoutFlex from './layout-flex'
+import { LayoutContent } from './layout-content'
+import { LayoutFlex } from './layout-flex'
 
 export interface VariantLayoutData {
   spacing?: string | number
@@ -38,7 +38,7 @@ const propsDefault = {
   variantNamespace: 'layoutData',
 }
 
-const LayoutData: React.FunctionComponent<PropsLayoutData> = (props) => {
+export const LayoutData: React.FunctionComponent<PropsLayoutData> = (props) => {
   const theme = useAppTheme()
   const variant = theme.getVariant(props, propsDefault)
 
@@ -62,5 +62,3 @@ const LayoutData: React.FunctionComponent<PropsLayoutData> = (props) => {
     </UtilSlot.Provider>
   )
 }
-
-export default LayoutData

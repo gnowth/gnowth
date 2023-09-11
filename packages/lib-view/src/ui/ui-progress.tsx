@@ -237,7 +237,7 @@ const propsDefault = {
 // TODO should props, propsDefault, context, state be generalize in a type?
 // TODO: add animation if a number starts from 0 to number?
 // TODO: fix alignment and padding
-const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
+export const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
   const ready = useAnimationDelayReady()
   const theme = useAppTheme()
 
@@ -308,5 +308,3 @@ const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
     </div>
   )
 }
-
-export default UIProgress

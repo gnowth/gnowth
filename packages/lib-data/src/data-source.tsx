@@ -4,8 +4,8 @@ import React from 'react'
 import { AppLayout, AppTheme } from '@gnowth/lib-application'
 
 import type { PropsUseDataSource } from './use-data-source'
-import DataContext from './data-context'
-import useDataSource from './use-data-source'
+import { DataContext } from './data-context'
+import { useDataSource } from './use-data-source'
 
 // TODO: get source from 'context', 'resource', 'datasource hook',
 // TODO: note that using AppLayout directly from @gnowth/lib-application won't provide access to layout loader in @gnowth/lib-react, which is not what we want
@@ -20,7 +20,7 @@ interface Props<Value extends DataValue> extends PropsUseDataSource<Value> {
 }
 
 // TODO: find out where to put the default warning/label/trigger component?
-function DataSource<Value extends DataValue>(props: Props<Value>): ReactElement<Props<Value>> {
+export function DataSource<Value extends DataValue>(props: Props<Value>): ReactElement<Props<Value>> {
   const dataSource = useDataSource(props)
 
   return (
@@ -38,5 +38,3 @@ function DataSource<Value extends DataValue>(props: Props<Value>): ReactElement<
     </AppTheme>
   )
 }
-
-export default DataSource

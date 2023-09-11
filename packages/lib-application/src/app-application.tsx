@@ -3,12 +3,12 @@ import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
 import { Route } from 'react-router-dom'
 
-import AppBoundary from './app-boundary'
-import AppModelApplication from './app-model-application'
-import AppProvider from './app-provider'
-import AppSuspense from './app-suspense'
-import AppSwitch from './app-switch'
-import useAppApplication from './use-app-application'
+import { AppBoundary } from './app-boundary'
+import { AppModelApplication } from './app-model-application'
+import { AppProvider } from './app-provider'
+import { AppSuspense } from './app-suspense'
+import { AppSwitch } from './app-switch'
+import { useAppApplication } from './use-app-application'
 
 interface Props {
   application?: AppModelApplication | string
@@ -20,7 +20,7 @@ interface Props {
 }
 
 // TODO: check if path is provided, should it somehow override AppPage root?
-function AppApplication(props: Props): ReactElement {
+export function AppApplication(props: Props): ReactElement {
   const application = useAppApplication(props.application)
   const SwitchComponent = props.switch ?? true ? AppSwitch : React.Fragment
 
@@ -36,5 +36,3 @@ function AppApplication(props: Props): ReactElement {
     </Route>
   )
 }
-
-export default AppApplication

@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Smart async",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/lib-async",
   "prettier": "@gnowth/prettier-config",
   "private": true,

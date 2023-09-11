@@ -21,7 +21,7 @@ import {
 // import type AppModelApplicationAuth from '../models/app-model-application-auth';
 
 // TODO: Add DataWarning for non field errors, and DataTrigger for login button
-function PageLogin(): ReactElement {
+export function PageLogin(): ReactElement {
   // const application = useAppApplication<AppModelApplicationAuth>();
 
   return (
@@ -92,5 +92,3 @@ function PageLogin(): ReactElement {
     </LayoutPage>
   )
 }
-
-export default PageLogin

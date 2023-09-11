@@ -2,7 +2,7 @@ import type { DataName, Field, Model } from '@gnowth/lib-types'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { ConfigsAny } from './field-any'
-import FieldAny from './field-any'
+import { FieldAny } from './field-any'
 
 type Nested = 'id' | 'flat' | 'nested'
 
@@ -11,7 +11,7 @@ interface ConfigsModel<Value> extends ConfigsAny<Value> {
   nested?: Nested
 }
 
-class FieldModel<Value> extends FieldAny<Value> {
+export class FieldModel<Value> extends FieldAny<Value> {
   model: Model<Value>
 
   nested: Nested
@@ -37,5 +37,3 @@ class FieldModel<Value> extends FieldAny<Value> {
     return this.model.valueToString(value)
   }
 }
-
-export default FieldModel

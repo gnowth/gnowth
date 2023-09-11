@@ -47,7 +47,7 @@ const propsDefault = {
   variantNamespace: 'layoutContent',
 }
 
-const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props) => {
+export const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -69,5 +69,3 @@ const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props) => {
     variant.children,
   )
 }
-
-export default LayoutContent

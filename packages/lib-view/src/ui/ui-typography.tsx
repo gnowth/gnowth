@@ -59,7 +59,7 @@ const propsDefault = {
   variantNamespace: 'uiTypography',
 }
 
-const UITypography: React.FunctionComponent<PropsUITypography> = (props) => {
+export const UITypography: React.FunctionComponent<PropsUITypography> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -83,5 +83,3 @@ const UITypography: React.FunctionComponent<PropsUITypography> = (props) => {
     variant.value,
   )
 }
-
-export default UITypography

@@ -2,7 +2,7 @@ import type { AsyncStatus } from '@gnowth/lib-types'
 import React from 'react'
 import { UtilError } from '@gnowth/lib-util'
 
-import ModelPromise from './model-promise'
+import { ModelPromise } from './model-promise'
 
 // TODO check if we can get it from action map
 type ActionTypes = 'add_promise' | 'reject' | 'remove_promise' | 'reset' | 'resolve'
@@ -38,7 +38,7 @@ interface State {
   status: AsyncStatus
 }
 
-const Context = React.createContext<AsyncContext>({
+export const AsyncContext = React.createContext<AsyncContext>({
   addPromise: () => {
     // eslint-disable-next-line no-console
     console.warn(
@@ -181,7 +181,7 @@ export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
   }, [])
 
   return (
-    <Context.Provider
+    <AsyncContext.Provider
       value={{
         addPromise,
         removePromise,
@@ -190,8 +190,6 @@ export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
       }}
     >
       {props.children}
-    </Context.Provider>
+    </AsyncContext.Provider>
   )
 }
-
-export default Context

@@ -24,7 +24,7 @@ const locale = {
 
 // const context = useContext(props, defaultValues);
 // TODO: handle ingredients as an array
-const ViewRecipeIngredients: React.FunctionComponent<Props> = () => {
+export const ViewRecipeIngredients: React.FunctionComponent<Props> = () => {
   const connection = useDataConnect<Ingredient>({ name: 'ingredients' })
 
   return (
@@ -91,5 +91,3 @@ export const ViewRecipeIngredients4: React.FunctionComponent = () => (
     {/* <DataTrigger action="textToModel" /> */}
   </DataSource>
 )
-
-export default ViewRecipeIngredients

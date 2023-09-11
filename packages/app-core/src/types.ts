@@ -1,11 +1,13 @@
 import type { Server } from 'miragejs'
 import type { ServerConfig } from 'miragejs/server'
 import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
+import type { ComponentType } from 'react'
 
 // DEBT: move to mock-server file
 // DEBT(hack): dirty ts fix
 export interface ServerEx extends Server {
-  resource?(endpoint: string): void
+  // DEBT: why is this different from the one in boilerplate-nextjs?
+  // resource?(endpoint: string): void
   serialize?(primaryResource: unknown, request: unknown): AnyResponse
 }
 

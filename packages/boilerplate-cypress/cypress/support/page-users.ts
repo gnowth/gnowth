@@ -1,4 +1,4 @@
-const pageNextjs = {
+export const pageUsers = {
   locale: {
     landing: {
       footer: 'Copyright © 2022 Gnowth',
@@ -15,5 +15,3 @@ const pageNextjs = {
 
   pageLanding: '/users/',
 }
-
-export default pageNextjs

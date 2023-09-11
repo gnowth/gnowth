@@ -2,12 +2,12 @@ import type { DataName, DataValue, PropsData } from '@gnowth/lib-types'
 import _ from 'lodash'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
-import { UtilError, useUtilEnsureConstant } from '@gnowth/lib-util'
+import { UtilError, useEnsureConstant } from '@gnowth/lib-util'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { WithConnect } from './types'
-import DataContext from './data-context'
-import useValue from './use-value'
+import { DataContext } from './data-context'
+import { useValue } from './use-value'
 
 interface Configs {
   errorCustomContext?: Error
@@ -41,13 +41,13 @@ const configsDefault = {
   }),
 }
 
-function useDataSource<Value extends DataValue>(
+export function useDataSource<Value extends DataValue>(
   props: PropsUseDataSource<Value>,
   configs: Configs = {},
 ): PropsData<Value> & WithConnect {
   const { mode = TokenMode.controlled } = props
   const configsWithDefault = objectDefaults(configs, configsDefault)
-  useUtilEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
+  useEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
 
   const context = React.useContext(DataContext) as PropsData<Value>
   const propsWithContext = objectDefaults(props, context)
@@ -89,5 +89,3 @@ function useDataSource<Value extends DataValue>(
     onReset: mode === TokenMode.controlled ? props.onReset : handleReset,
   }
 }
-
-export default useDataSource

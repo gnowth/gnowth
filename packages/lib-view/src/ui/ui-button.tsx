@@ -23,9 +23,9 @@ import {
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 
-import UIIcon, { PropsUIIcon } from './ui-icon'
-import UIProgress, { PropsUIProgress } from './ui-progress'
-import UITypography, { PropsUITypography } from './ui-typography'
+import { UIIcon, PropsUIIcon } from './ui-icon'
+import { UIProgress, PropsUIProgress } from './ui-progress'
+import { UITypography, PropsUITypography } from './ui-typography'
 
 type SystemUIButton = SystemBox & SystemColor & SystemImage & SystemLayout & SystemPointer & SystemSpace
 
@@ -95,7 +95,7 @@ const makeStyles = Theme.makeStyles({
   ),
 })
 
-const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
+export const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -177,5 +177,3 @@ const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
     </button>
   )
 }
-
-export default UIButton

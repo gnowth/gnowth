@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import AppModelApplication from './app-model-application'
+import { AppModelApplication } from './app-model-application'
 
 const defaultApplication = new AppModelApplication({})
 
-class AppModelEnvironment {
+export class AppModelEnvironment {
   applications: Record<string, AppModelApplication | undefined>
 
   constructor() {
@@ -21,5 +21,3 @@ class AppModelEnvironment {
     return {}
   }
 }
-
-export default AppModelEnvironment

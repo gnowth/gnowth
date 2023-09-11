@@ -1,1 +1,1 @@
-export { default } from '../../components/app-loading'
+export { AppLoading as default } from '../../components/app-loading'

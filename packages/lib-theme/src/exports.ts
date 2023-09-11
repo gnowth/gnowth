@@ -10,5 +10,4 @@ export * from './system/system-place'
 export * from './system/system-pointer'
 export * from './system/system-space'
 export * from './system/system-typography'
-
-export { default as Theme } from './theme'
+export * from './theme'

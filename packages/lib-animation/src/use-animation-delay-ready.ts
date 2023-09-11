@@ -1,11 +1,9 @@
-import useAnimationValueDelayed from './use-animation-delay-value'
+import { useAnimationDelayValue } from './use-animation-delay-value'
 
-function useAnimationReadyDelayed(animationDelay?: number): boolean {
-  return useAnimationValueDelayed({
+export function useAnimationDelayReady(animationDelay?: number): boolean {
+  return useAnimationDelayValue({
     animationDelay,
     value: true,
     valueInitial: false,
   }) as boolean
 }
-
-export default useAnimationReadyDelayed

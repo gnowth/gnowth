@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
 import source from '../../contents/source.json'
-import sections from '../sections'
+import { sections } from '../sections'
 
 type Params = { slug: string }
 type Props = { params?: Params }
@@ -11,7 +11,7 @@ interface PageServerComponent<Props> extends FunctionComponent<Props> {
   generateStaticParams?: () => Promise<Params[]>
 }
 
-const PageGeneratedServer: PageServerComponent<Props> = (props) => {
+export const PageGeneratedServer: PageServerComponent<Props> = (props) => {
   if (!props.params?.slug) {
     throw new Error('No page found')
   }
@@ -36,5 +36,3 @@ PageGeneratedServer.generateStaticParams = async (): Promise<Params[]> => {
 
   return pagesKey.map((slug) => ({ slug }))
 }
-
-export default PageGeneratedServer

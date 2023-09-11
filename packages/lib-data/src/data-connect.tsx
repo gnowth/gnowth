@@ -14,8 +14,8 @@ import { UtilError } from '@gnowth/lib-util'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { PropsUseDataConnect } from './use-data-connect'
-import DataWarning from './data-warning'
-import useDataConnect from './use-data-connect'
+import { DataWarning } from './data-warning'
+import { useDataConnect } from './use-data-connect'
 
 interface PropsComponent extends PropsData, Slottable {
   variant?: string
@@ -60,7 +60,7 @@ const propsDefault = {
 // TODO: option to show loading if errors is processing
 // TODO: add transition if array
 // TODO: convert to generic?
-const DataConnect: React.FunctionComponent<Props> = (props) => {
+export const DataConnect: React.FunctionComponent<Props> = (props) => {
   const connection = useDataConnect(props)
   const theme = useAppTheme(props.theme)
 
@@ -121,5 +121,3 @@ const DataConnect: React.FunctionComponent<Props> = (props) => {
     </AppTheme>
   )
 }
-
-export default DataConnect

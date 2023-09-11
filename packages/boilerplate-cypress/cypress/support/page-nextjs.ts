@@ -1,4 +1,4 @@
-const pageNextjs = {
+export const pageNextjs = {
   locale: {
     landing: {
       simulateErrorButton: 'Fire error',
@@ -10,5 +10,3 @@ const pageNextjs = {
 
   pageLanding: '/',
 }
-
-export default pageNextjs

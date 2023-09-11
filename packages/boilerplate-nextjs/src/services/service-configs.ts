@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-import configs from '../configs'
+import { configs } from '../configs'
 
 type Configs = Partial<typeof configs>
 
-class ServiceConfigs {
+export class ServiceConfigs {
   routes = {
     configs: (id: string) => `/${id}`,
   }
@@ -23,6 +23,4 @@ class ServiceConfigs {
   }
 }
 
-const serviceConfigs = new ServiceConfigs()
-
-export default serviceConfigs
+export const serviceConfigs = new ServiceConfigs()

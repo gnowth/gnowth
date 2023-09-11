@@ -2,11 +2,11 @@ import type { AppModelApplication } from '@gnowth/lib-react'
 import React from 'react'
 import { AppApplication, AppPage, AppRedirect, AppPageNotFound } from '@gnowth/lib-react'
 
-import PageDashboard from './pages/page-dashboard'
-import PageIngredient from './pages/page-ingredient'
-import PageLanding from './pages/page-landing'
-import PageRecipeEdit from './pages/page-recipe-edit'
-import PageRecipes from './pages/page-recipes'
+import { PageDashboard } from './pages/page-dashboard'
+import { PageIngredient } from './pages/page-ingredient'
+import { PageLanding } from './pages/page-landing'
+import { PageRecipeEdit } from './pages/page-recipe-edit'
+import { PageRecipes } from './pages/page-recipes'
 import { TokenPage } from './models/app-model-application-recipes'
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 
 // TODO: allow AppPage to get component from context
 // allow preloading data in Application and AppPage? appPage would be page model, and application can be general data
-const ApplicationRecipes: React.FunctionComponent<Props> = (props) => (
+export const ApplicationRecipes: React.FunctionComponent<Props> = (props) => (
   <AppApplication application={props.application ?? 'recipes'} path={props.path}>
     <AppPage component={PageLanding} page={TokenPage.landing} />
 
@@ -33,5 +33,3 @@ const ApplicationRecipes: React.FunctionComponent<Props> = (props) => (
     <AppPage component={AppPageNotFound} />
   </AppApplication>
 )
-
-export default ApplicationRecipes

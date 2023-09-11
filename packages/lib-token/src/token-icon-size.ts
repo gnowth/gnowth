@@ -1,4 +1,4 @@
-enum TokenIconSize {
+export enum TokenIconSize {
   xxs = 0,
   xs,
   sm,
@@ -8,5 +8,3 @@ enum TokenIconSize {
   xxl,
   xxxl,
 }
-
-export default TokenIconSize

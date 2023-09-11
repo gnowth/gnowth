@@ -15,7 +15,7 @@ export interface GroupSerialized {
   role?: string
 }
 
-class ModelGroup {
+export class ModelGroup {
   // Transform
   static fromGroupSerialized = (group: GroupSerialized): Group => {
     return {
@@ -31,5 +31,3 @@ class ModelGroup {
     return group
   }
 }
-
-export default ModelGroup

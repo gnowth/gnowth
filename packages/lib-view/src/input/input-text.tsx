@@ -22,7 +22,7 @@ import {
 import { TokenLength } from '@gnowth/lib-token'
 
 import type { ChangeEventHandler } from './use-value'
-import useValue from './use-value'
+import { useValue } from './use-value'
 
 interface ComponentProps {
   className?: string
@@ -77,7 +77,7 @@ const propsDefault = {
   width: TokenLength.full,
 }
 
-const InputText: React.FunctionComponent<PropsInputText> = (props) => {
+export const InputText: React.FunctionComponent<PropsInputText> = (props) => {
   const value = useValue(props, '')
   const theme = useAppTheme()
 
@@ -100,5 +100,3 @@ const InputText: React.FunctionComponent<PropsInputText> = (props) => {
     value: value.value,
   })
 }
-
-export default InputText

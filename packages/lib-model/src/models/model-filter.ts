@@ -1,5 +1,5 @@
 import * as Fields from '../fields'
-import ModelUuid from './model-uuid'
+import { ModelUuid } from './model-uuid'
 
 interface DefaultFilter {
   page: number
@@ -7,7 +7,7 @@ interface DefaultFilter {
   uuid: string
 }
 
-class ModelFilter<
+export class ModelFilter<
   Params extends DefaultFilter = DefaultFilter,
   Value extends DefaultFilter = DefaultFilter, // eslint-disable-line prettier/prettier
 > extends ModelUuid<Value> {
@@ -22,5 +22,3 @@ class ModelFilter<
     return value as unknown as Params
   }
 }
-
-export default ModelFilter

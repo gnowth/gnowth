@@ -1,7 +1,7 @@
 import type { Model } from '@gnowth/lib-types'
 
-import type AppModelApplication from './app-model-application'
-import useAppApplication from './use-app-application'
+import type { AppModelApplication } from './app-model-application'
+import { useAppApplication } from './use-app-application'
 
 interface Props<Value> {
   application?: AppModelApplication | string
@@ -11,7 +11,7 @@ interface Props<Value> {
   value?: Value
 }
 
-function useAppLink<Value>(props: Props<Value>): string | undefined {
+export function useAppLink<Value>(props: Props<Value>): string | undefined {
   const application = useAppApplication(props.application)
 
   if (props.to) return props.to
@@ -25,5 +25,3 @@ function useAppLink<Value>(props: Props<Value>): string | undefined {
 
   return application.getRoute(props.page)
 }
-
-export default useAppLink

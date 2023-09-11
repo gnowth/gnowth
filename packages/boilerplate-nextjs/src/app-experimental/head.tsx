@@ -1,1 +1,1 @@
-export { default } from '../components/app-head'
+export { AppHead as default } from '../components/app-head'

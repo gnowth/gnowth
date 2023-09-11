@@ -1,14 +1,12 @@
 import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
-import SectionChangelog from '../components/section-changelog'
+import { SectionChangelog } from '../components/section-changelog'
 
-const PageChangelog: FunctionComponent = () => {
+export const PageChangelog: FunctionComponent = () => {
   return (
     <VStack as="main" alignItems="stretch" spacing="10">
       <SectionChangelog />
     </VStack>
   )
 }
-
-export default PageChangelog

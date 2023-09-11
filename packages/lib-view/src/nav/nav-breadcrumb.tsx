@@ -8,8 +8,6 @@ export interface PropsNavBreadcrumb {
   children: React.ReactNode
 }
 
-const NavBreadcrumb: React.FunctionComponent<PropsNavBreadcrumb> = (props) => (
+export const NavBreadcrumb: React.FunctionComponent<PropsNavBreadcrumb> = (props) => (
   <div className="nav-breadcrumb">{props.children}</div>
 )
-
-export default NavBreadcrumb

@@ -8,8 +8,6 @@ export interface PropsUIBadge {
   children: React.ReactNode
 }
 
-const UIBadge: React.FunctionComponent<PropsUIBadge> = (props) => (
+export const UIBadge: React.FunctionComponent<PropsUIBadge> = (props) => (
   <div className="ui-badge">{props.children}</div>
 )
-
-export default UIBadge

@@ -1,7 +1,5 @@
-enum TokenMode {
+export enum TokenMode {
   controlled = 'controlled',
   shadow = 'shadow',
   uncontrolled = 'uncontrolled',
 }
-
-export default TokenMode

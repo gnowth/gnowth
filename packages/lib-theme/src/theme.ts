@@ -40,7 +40,7 @@ interface ConfigsMakeStyles<Props> {
   [key: string]: string | ((props: Props, theme: ITheme) => CSSObject)
 }
 
-class Theme implements ITheme {
+export class Theme implements ITheme {
   static assembleComponents(components: Namespace<unknown>): ThemeComponents {
     return components as ThemeComponents
   }
@@ -207,5 +207,3 @@ class Theme implements ITheme {
     return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
   }
 }
-
-export default Theme

@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Smart application",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/lib-application",
   "prettier": "@gnowth/prettier-config",
   "private": true,

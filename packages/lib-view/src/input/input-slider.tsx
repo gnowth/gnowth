@@ -8,8 +8,6 @@ export interface PropsInputSlider {
   name?: string
 }
 
-const InputSlider: React.FunctionComponent<PropsInputSlider> = (props) => (
+export const InputSlider: React.FunctionComponent<PropsInputSlider> = (props) => (
   <input className="input-slider" name={props.name} />
 )
-
-export default InputSlider

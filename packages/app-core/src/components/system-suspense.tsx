@@ -6,12 +6,10 @@ type Props = {
   children: ReactNode
 }
 
-const SystemSuspense: FunctionComponent<Props> = (props) => {
+export const SystemSuspense: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
     return <>{props.children}</>
   }
 
   return <Suspense fallback={<props.FallbackComponent />}>{props.children}</Suspense>
 }
-
-export default SystemSuspense

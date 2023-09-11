@@ -8,8 +8,6 @@ export interface PropsInputList {
   name?: string
 }
 
-const InputList: React.FunctionComponent<PropsInputList> = (props) => (
+export const InputList: React.FunctionComponent<PropsInputList> = (props) => (
   <input className="input-list" name={props.name} />
 )
-
-export default InputList

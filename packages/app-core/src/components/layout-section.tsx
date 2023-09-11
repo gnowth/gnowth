@@ -7,7 +7,7 @@ interface Props {
   rootProps?: ChakraProps
 }
 
-const LayoutSection: FunctionComponent<PropsWithChildren<Props>> = (props) => {
+export const LayoutSection: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <Box as="section" {...props.rootProps}>
       <Container maxW="container.xl" {...props.containerProps}>
@@ -16,5 +16,3 @@ const LayoutSection: FunctionComponent<PropsWithChildren<Props>> = (props) => {
     </Box>
   )
 }
-
-export default LayoutSection

@@ -8,8 +8,6 @@ export interface PropsUIDialog {
   children: React.ReactNode
 }
 
-const UIDialog: React.FunctionComponent<PropsUIDialog> = (props) => (
+export const UIDialog: React.FunctionComponent<PropsUIDialog> = (props) => (
   <div className="ui-dialog">{props.children}</div>
 )
-
-export default UIDialog

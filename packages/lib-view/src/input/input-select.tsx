@@ -8,8 +8,6 @@ export interface PropsInputSelect {
   name?: string
 }
 
-const InputSelect: React.FunctionComponent<PropsInputSelect> = (props) => (
+export const InputSelect: React.FunctionComponent<PropsInputSelect> = (props) => (
   <input className="input-select" name={props.name} />
 )
-
-export default InputSelect

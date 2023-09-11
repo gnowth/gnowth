@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "react framework",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "module": "src/index.ts",
   "name": "@gnowth/lib-react",
   "prettier": "@gnowth/prettier-config",

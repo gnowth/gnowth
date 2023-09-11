@@ -10,7 +10,7 @@ export interface ConfigsAny<Value> {
   type?: string
 }
 
-class FieldAny<Value = unknown> implements Field<Value> {
+export class FieldAny<Value = unknown> implements Field<Value> {
   blank: boolean
 
   default: Value | null
@@ -68,5 +68,3 @@ class FieldAny<Value = unknown> implements Field<Value> {
     return _.toString(value)
   }
 }
-
-export default FieldAny

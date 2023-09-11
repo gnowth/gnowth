@@ -9,8 +9,6 @@ export interface PropsUIEmpty {
   children: React.ReactNode
 }
 
-const UIEmpty: React.FunctionComponent<PropsUIEmpty> = (props) => (
+export const UIEmpty: React.FunctionComponent<PropsUIEmpty> = (props) => (
   <div className="ui-empty">{props.children}</div>
 )
-
-export default UIEmpty

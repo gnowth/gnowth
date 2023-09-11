@@ -15,7 +15,7 @@ import {
 } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'
-import type AppModelApplicationRecipes from '../models/app-model-application-recipes'
+import type { AppModelApplicationRecipes } from '../models/app-model-application-recipes'
 
 interface Props {
   resources: {
@@ -29,7 +29,7 @@ const locale = {
 
 // datasource query should be linked to allow caching
 // TODO load recipe and place it in context?
-function PageRecipe(props: Props): ReactElement {
+export function PageRecipeEdit(props: Props): ReactElement {
   const application = useAppApplication<AppModelApplicationRecipes>()
   const recipe = props.resources.recipe?.read()
 
@@ -64,5 +64,3 @@ function PageRecipe(props: Props): ReactElement {
     </LayoutPage>
   )
 }
-
-export default PageRecipe

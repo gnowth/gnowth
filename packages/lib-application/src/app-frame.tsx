@@ -2,14 +2,14 @@ import type { ReactElement, ReactNode } from 'react'
 import _ from 'lodash'
 import React from 'react'
 
-import ContextApplication from './context-application'
-import ContextEnvironment from './context-environment'
+import { ContextApplication } from './context-application'
+import { ContextEnvironment } from './context-environment'
 
 interface Props {
   children: ReactNode
 }
 
-function AppFrame(props: Props): ReactElement {
+export function AppFrame(props: Props): ReactElement {
   const contextApplication = React.useContext(ContextApplication)
   const contextEnvironment = React.useContext(ContextEnvironment)
 
@@ -21,5 +21,3 @@ function AppFrame(props: Props): ReactElement {
 
   return <FrameComponent>{props.children}</FrameComponent>
 }
-
-export default AppFrame

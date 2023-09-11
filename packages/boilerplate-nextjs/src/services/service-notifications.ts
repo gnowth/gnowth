@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-import configs from '../configs'
+import { configs } from '../configs'
 
 // DEBT(investigation): to investigate around using sockets
-class ServiceNotifications {
+export class ServiceNotifications {
   static routes = {
     notifications: (id = '') => `/${id}`,
   }
@@ -14,6 +14,4 @@ class ServiceNotifications {
   })
 }
 
-const serviceNotifications = new ServiceNotifications()
-
-export default serviceNotifications
+export const serviceNotifications = new ServiceNotifications()

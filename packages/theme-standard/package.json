@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Theme standard",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/theme-standard",
   "prettier": "@gnowth/prettier-config",
   "private": true,

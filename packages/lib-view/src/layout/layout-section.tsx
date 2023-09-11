@@ -54,7 +54,7 @@ const propsDefault = {
 }
 
 // TODO: provide a child to allow page section. that way it can have a background and border
-const LayoutSection: React.FunctionComponent<PropsLayoutSection> = (props) => {
+export const LayoutSection: React.FunctionComponent<PropsLayoutSection> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -85,5 +85,3 @@ const LayoutSection: React.FunctionComponent<PropsLayoutSection> = (props) => {
     </section>
   )
 }
-
-export default LayoutSection

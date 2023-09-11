@@ -20,7 +20,7 @@ function isCreateConfig<Configs>(
 }
 
 // DEBT: to make configs in environment optional
-function makeConfigs<Configs extends object>(
+export function makeConfigs<Configs extends object>(
   _configsDefault: Configurations<Configs>,
   _configsEnvironment = {} as Record<Environment, Configurations<Configs>>,
   getEnvironment = defaultGetEnvironment,
@@ -36,5 +36,3 @@ function makeConfigs<Configs extends object>(
     return R.mergeDeepLeft(configsDefault, configsEnvironment) as unknown as Configs
   }
 }
-
-export default makeConfigs

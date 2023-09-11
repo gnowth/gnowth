@@ -4,6 +4,4 @@ interface Props {
   slot: string
 }
 
-const Dummy: React.FunctionComponent<Props> = () => <div />
-
-export default Dummy
+export const ViewRecipeInstructions: React.FunctionComponent<Props> = () => <div />

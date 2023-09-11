@@ -11,7 +11,7 @@ interface Configs<Value> {
 // TODO: allow specific field override?
 // TODO: allow extending class
 // TODO: allow querying missing data for model field. e.g if we only have the id, but we want it flat or nested
-class QuerySerializer<Value> implements IQuerySerializer<Value> {
+export class QuerySerializer<Value> implements IQuerySerializer<Value> {
   api: QueryApi<Value>
 
   // static chain<Data>(model: Model): void {
@@ -79,5 +79,3 @@ class QuerySerializer<Value> implements IQuerySerializer<Value> {
     return dataItems.map((item) => this.toValue({ ...data, [this.api.model.modelName]: item }))
   }
 }
-
-export default QuerySerializer

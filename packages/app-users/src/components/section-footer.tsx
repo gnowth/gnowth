@@ -1,14 +1,16 @@
 import type { ChakraProps } from '@chakra-ui/react'
-import type { FunctionComponent } from 'react'
+import type { FunctionComponent, Attributes } from 'react'
 import { withAugmented } from '@gnowth/core-app'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
-import ModelApp from '../models/model-app'
+import { ModelApp } from '../models/model-app'
 import packageJson from '../../package.json'
 
-const SectionFooter: FunctionComponent<ChakraProps> = (props) => {
+type Props = ChakraProps & Attributes
+
+const SectionFooterComponent: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
@@ -28,4 +30,4 @@ const SectionFooter: FunctionComponent<ChakraProps> = (props) => {
   )
 }
 
-export default withAugmented()(SectionFooter)
+export const SectionFooter = withAugmented()(SectionFooterComponent)

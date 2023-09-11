@@ -3,7 +3,7 @@ import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import useAppLayout from './use-app-layout'
+import { useAppLayout } from './use-app-layout'
 
 interface Props {
   className?: string
@@ -18,7 +18,7 @@ interface Props {
 }
 
 // TODO: changing layout, can be a place that require transition
-function AppLayout(props: Props): ReactElement {
+export function AppLayout(props: Props): ReactElement {
   const LayoutComponent = useAppLayout(props.layout)
 
   if (!LayoutComponent) return <>{props.children}</>
@@ -39,5 +39,3 @@ function AppLayout(props: Props): ReactElement {
     <LayoutComponent {...propsCombined}>{props.children}</LayoutComponent>
   )
 }
-
-export default AppLayout

@@ -3,9 +3,9 @@ import { LayoutSection, withAugmented } from '@gnowth/core-app'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import ModelApp from '../models/model-app'
+import { ModelApp } from '../models/model-app'
 
-const SectionGroups: FunctionComponent = () => {
+const SectionGroupsComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
@@ -15,4 +15,4 @@ const SectionGroups: FunctionComponent = () => {
   )
 }
 
-export default withAugmented()(SectionGroups)
+export const SectionGroups = withAugmented()(SectionGroupsComponent)

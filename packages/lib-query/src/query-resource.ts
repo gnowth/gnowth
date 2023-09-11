@@ -11,7 +11,7 @@ export interface Response<Value> {
   meta?: Meta
 }
 
-class QueryResource<Value> implements IQueryResourse<Value> {
+export class QueryResource<Value> implements IQueryResourse<Value> {
   error?: Error
 
   isPending = true
@@ -64,5 +64,3 @@ class QueryResource<Value> implements IQueryResourse<Value> {
     return this.response
   }
 }
-
-export default QueryResource

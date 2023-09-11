@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import type { ComponentType, FunctionComponent, Attributes, PropsWithChildren } from 'react'
 import { withAugmented } from '@gnowth/core-app'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
@@ -8,24 +8,26 @@ import { RecoilRoot } from 'recoil'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-import AppError from '../components/app-error'
-import AppHead from '../components/app-head'
-import AppLoading from '../components/app-loading'
-import SystemToasts from '../components/system-toasts'
-import setup from '../setup'
+import { AppError } from '../components/app-error'
+import { AppHead } from '../components/app-head'
+import { AppLoading } from '../components/app-loading'
+import { SystemToasts } from '../components/system-toasts'
+import { setup } from '../setup'
 
 const configurations = setup()
 
-type PropsWithChildren = { children: ReactNode }
 interface Props extends AppProps {
   Component: NextPage & {
-    Layout?: ComponentType<PropsWithChildren>
+    Layout?: ComponentType<PropsWithChildren<Attributes>>
   }
 }
 
-const Wrapper = withAugmented({ ErrorComponent: AppError, LoadingComponent: AppLoading })(
-  (props: PropsWithChildren) => props.children,
-)
+const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children
+// TODO: use SystemAugmented
+const Wrapper = withAugmented<PropsWithChildren<Attributes>>({
+  ErrorComponent: AppError,
+  LoadingComponent: AppLoading,
+})(WrapperComponent)
 
 const App: FunctionComponent<Props> = (props) => {
   const page = props.Component.Layout ? (

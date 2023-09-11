@@ -21,7 +21,7 @@ export interface UserSerialized {
   status?: 'active' | 'deactivated'
 }
 
-class ModelUser {
+export class ModelUser {
   // Getter
   static getId = (user: User) => {
     return user.id ?? user.idLocal
@@ -59,5 +59,3 @@ class ModelUser {
     return user
   }
 }
-
-export default ModelUser

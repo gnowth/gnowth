@@ -4,8 +4,8 @@ import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemBackgroundColorFromPalette } from '@gnowth/lib-theme'
 
 import { UtilSlot } from '../util/util-slot'
-import LayoutContent from './layout-content'
-import LayoutFlex from './layout-flex'
+import { LayoutContent } from './layout-content'
+import { LayoutFlex } from './layout-flex'
 
 export interface VariantLayoutApp extends SystemPalette {
   spacing?: string | number
@@ -21,7 +21,7 @@ const makeStyles = Theme.makeStyles({
   layoutApp: systemBackgroundColorFromPalette(),
 })
 
-const LayoutApp: React.FunctionComponent<PropsLayoutApp> = (props) => {
+export const LayoutApp: React.FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()
 
   const variant = theme.getVariant(props)
@@ -47,5 +47,3 @@ const LayoutApp: React.FunctionComponent<PropsLayoutApp> = (props) => {
     </UtilSlot.Provider>
   )
 }
-
-export default LayoutApp

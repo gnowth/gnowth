@@ -1,6 +1,6 @@
 import { AppModelApplication } from '@gnowth/lib-react'
 
-import ModelUser from './model-user'
+import { ModelUser } from './model-user'
 
 export enum TokenPage {
   signup = 'signup',
@@ -8,7 +8,7 @@ export enum TokenPage {
   root = 'root',
 }
 
-class AppModelApplicationAuth extends AppModelApplication {
+export class AppModelApplicationAuth extends AppModelApplication {
   models = {
     user: new ModelUser({}),
   }
@@ -19,5 +19,3 @@ class AppModelApplicationAuth extends AppModelApplication {
     [TokenPage.signup]: (): string => `${this.route}signup/`,
   }
 }
-
-export default AppModelApplicationAuth

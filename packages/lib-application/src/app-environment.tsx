@@ -6,11 +6,11 @@ import { HashRouter } from 'react-router-dom'
 
 import type { PropsApplication } from './context-application'
 import type { PropsEnvironment } from './context-environment'
-import AppBoundary from './app-boundary'
-import AppProvider from './app-provider'
-import AppSuspense from './app-suspense'
-import AppSwitch from './app-switch'
-import ContextEnvironment, { propsDefaultEnvironment } from './context-environment'
+import { AppBoundary } from './app-boundary'
+import { AppProvider } from './app-provider'
+import { AppSuspense } from './app-suspense'
+import { AppSwitch } from './app-switch'
+import { ContextEnvironment, propsDefaultEnvironment } from './context-environment'
 
 interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApplication, 'application'> {
   children: ReactNode
@@ -20,7 +20,7 @@ interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApp
 // TODO add warning/error model?
 // TODO add settings in environment
 // TODO add store? history?
-function AppEnvironment(props: Props): ReactElement {
+export function AppEnvironment(props: Props): ReactElement {
   const [whoami, whoamiSet] = React.useState<QueryResource | null>(null)
   const propsWithDefault = objectDefaults(
     { whoami, whoamiSet } as PropsEnvironment,
@@ -44,5 +44,3 @@ function AppEnvironment(props: Props): ReactElement {
     </HashRouter>
   )
 }
-
-export default AppEnvironment

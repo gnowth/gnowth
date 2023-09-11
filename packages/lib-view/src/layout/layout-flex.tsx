@@ -102,7 +102,7 @@ const propsDefault = {
 }
 
 // TODO: add responsive
-const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
+export const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -124,5 +124,3 @@ const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
     variant.children,
   )
 }
-
-export default LayoutFlex

@@ -12,7 +12,7 @@ type Props = {
 }
 
 // DEBT: to simplify fallbackRender
-const SystemBoundary: FunctionComponent<Props> = (props) => {
+export const SystemBoundary: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
     return <>{props.children}</>
   }
@@ -31,5 +31,3 @@ const SystemBoundary: FunctionComponent<Props> = (props) => {
     </ErrorBoundary>
   )
 }
-
-export default SystemBoundary

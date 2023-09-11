@@ -27,7 +27,7 @@ interface PropsUseValue<Value> {
   value?: Value
 }
 
-function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Value): Return<Value> {
+export function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Value): Return<Value> {
   const { mode = TokenMode.controlled, name, onChange, onSubmit, value = valueDefault } = props
   const [valueLocal, setValueLocal] = React.useState(value)
 
@@ -66,5 +66,3 @@ function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Value): Ret
     value: mode === TokenMode.controlled ? props.value ?? valueDefault : valueLocal,
   }
 }
-
-export default useValue
