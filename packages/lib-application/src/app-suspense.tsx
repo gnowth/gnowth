@@ -2,7 +2,7 @@ import type { PropsSuspense } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import React from 'react'
 
-import useAppSuspense from './use-app-suspense'
+import { useAppSuspense } from './use-app-suspense'
 
 // TODO check if we want to force suspense with awaiting props
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
   suspenseClassName?: string
 }
 
-function AppSuspense(props: Props): ReactElement {
+export function AppSuspense(props: Props): ReactElement {
   const SuspenseMaybe = useAppSuspense(props.suspense)
 
   if (!SuspenseMaybe) return <>{props.children}</>
@@ -23,5 +23,3 @@ function AppSuspense(props: Props): ReactElement {
 
   return <React.Suspense fallback={suspense}>{props.children}</React.Suspense>
 }
-
-export default AppSuspense

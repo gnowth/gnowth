@@ -1,6 +1,6 @@
 import type { PatternRecord } from '../types'
 
-const strings: PatternRecord = {
+export const patternStrings: PatternRecord = {
   include: {
     include: '#strings',
   },
@@ -18,5 +18,3 @@ const strings: PatternRecord = {
     },
   },
 }
-
-export default strings

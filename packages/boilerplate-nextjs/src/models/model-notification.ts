@@ -10,7 +10,7 @@ interface NotificationSerialized {
   title: string
 }
 
-class ModelNotification {
+export class ModelNotification {
   static deserialize = (notification: NotificationSerialized): Notification => {
     return {
       id: notification.id,
@@ -40,5 +40,3 @@ class ModelNotification {
     }
   }
 }
-
-export default ModelNotification

@@ -10,6 +10,4 @@ export interface GroupFilterSerialized {
   pageSize?: string
 }
 
-class ModelGroupFilter {}
-
-export default ModelGroupFilter
+export class ModelGroupFilter {}

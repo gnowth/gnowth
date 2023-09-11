@@ -36,6 +36,7 @@ module.exports = {
   root: true,
 
   rules: {
+    'import/no-default-export': 'warn',
     'prettier/prettier': 'error',
   },
 

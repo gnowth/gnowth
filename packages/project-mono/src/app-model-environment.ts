@@ -43,4 +43,4 @@ class AppModelEnvironmentMono extends AppModelEnvironment {
   }
 }
 
-export default new AppModelEnvironmentMono()
+export const appModelEnvironment = new AppModelEnvironmentMono()

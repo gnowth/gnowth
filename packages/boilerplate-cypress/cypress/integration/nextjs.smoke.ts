@@ -1,6 +1,6 @@
 import { cy, describe, it } from 'local-cypress'
 
-import pageNextjs from '../support/page-nextjs'
+import { pageNextjs } from '../support/page-nextjs'
 
 describe('Nextjs landing page', () => {
   it('contains main page', () => {

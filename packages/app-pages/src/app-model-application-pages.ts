@@ -13,7 +13,7 @@ export enum TokenPage {
   termsAndConditions = 'termsAndConditions',
 }
 
-class AppModelApplicationPages extends AppModelApplication {
+export class AppModelApplicationPages extends AppModelApplication {
   routes = {
     [TokenPage.aboutUs]: (): string => `${this.route}about-us/`,
     [TokenPage.comingSoon]: (): string => `${this.route}coming-soon/`,
@@ -27,5 +27,3 @@ class AppModelApplicationPages extends AppModelApplication {
     [TokenPage.termsAndConditions]: (): string => `${this.route}terms-and-conditions/`,
   }
 }
-
-export default AppModelApplicationPages

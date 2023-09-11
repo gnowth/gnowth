@@ -9,8 +9,6 @@ export interface PropsInputTransfer {
 }
 
 // Note: see materialui transfer list
-const InputTransfer: React.FunctionComponent<PropsInputTransfer> = (props) => (
+export const InputTransfer: React.FunctionComponent<PropsInputTransfer> = (props) => (
   <input className="input-transfer" name={props.name} />
 )
-
-export default InputTransfer

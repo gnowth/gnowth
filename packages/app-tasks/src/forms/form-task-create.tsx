@@ -9,7 +9,7 @@ interface Props {
   value?: Task
 }
 
-const FormTaskCreate: React.FunctionComponent<Props> = (props) => (
+export const FormTaskCreate: React.FunctionComponent<Props> = (props) => (
   <DataSource onChange={props.onChange} value={props.value}>
     <DataConnect name="title" />
 
@@ -20,5 +20,3 @@ const FormTaskCreate: React.FunctionComponent<Props> = (props) => (
     <DataTrigger componentValue="Submit" />
   </DataSource>
 )
-
-export default FormTaskCreate

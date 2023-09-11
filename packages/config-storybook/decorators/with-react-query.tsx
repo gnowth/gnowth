@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { makeDecorator } from '@storybook/preview-api'
 import { QueryClientProvider } from 'react-query'
 
-const withReactQuery = makeDecorator({
+export const withReactQuery = makeDecorator({
   name: 'withReactQuery',
   parameterName: 'reactQuery',
   skipIfNoParametersOrOptions: true,
@@ -13,5 +13,3 @@ const withReactQuery = makeDecorator({
     )
   },
 })
-
-export default withReactQuery

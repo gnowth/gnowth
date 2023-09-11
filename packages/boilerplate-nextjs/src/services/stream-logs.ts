@@ -5,10 +5,8 @@ interface Log {
 }
 
 // DEBT(investigation): where do we consume it?
-class StreamLogs {
+export class StreamLogs {
   stream = new Subject<Log>()
 }
 
-const streamLogs = new StreamLogs()
-
-export default streamLogs
+export const streamLogs = new StreamLogs()

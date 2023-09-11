@@ -1,4 +1,4 @@
-import Theme from './theme'
+import { Theme } from './theme'
 
 interface Props {
   value: { nested: string }

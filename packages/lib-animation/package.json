@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Smart animation",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/lib-animation",
   "prettier": "@gnowth/prettier-config",
   "private": true,

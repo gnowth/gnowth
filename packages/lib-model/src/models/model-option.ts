@@ -1,12 +1,12 @@
 import * as Fields from '../fields'
-import Model from './model'
+import { Model } from './model'
 
 interface DefaultOption {
   label: string
   value: string
 }
 
-class ModelOption<Value extends DefaultOption = DefaultOption> extends Model<Value> {
+export class ModelOption<Value extends DefaultOption = DefaultOption> extends Model<Value> {
   schema = {
     label: new Fields.FieldText(),
     value: new Fields.FieldText(),
@@ -20,5 +20,3 @@ class ModelOption<Value extends DefaultOption = DefaultOption> extends Model<Val
     return value.label
   }
 }
-
-export default ModelOption

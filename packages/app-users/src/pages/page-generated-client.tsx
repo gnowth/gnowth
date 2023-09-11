@@ -2,7 +2,7 @@ import type { GetStaticPropsContext } from 'next'
 import type { FunctionComponent } from 'react'
 
 import source from '../../contents/source.json'
-import sections from '../sections'
+import { sections } from '../sections'
 
 type Paths = { params: { slug: string } }[]
 type Props = { contents: (keyof typeof sections)[] }
@@ -12,7 +12,7 @@ interface PageServerComponent<Props> extends FunctionComponent<Props> {
   staticProps: (context: GetStaticPropsContext) => Props
 }
 
-const PageGeneratedClient: PageServerComponent<Props> = (props) => {
+export const PageGeneratedClient: PageServerComponent<Props> = (props) => {
   return (
     <>
       {props.contents?.map((section, index) => {
@@ -39,5 +39,3 @@ PageGeneratedClient.staticProps = (context: GetStaticPropsContext): Props => {
 
   return { contents }
 }
-
-export default PageGeneratedClient

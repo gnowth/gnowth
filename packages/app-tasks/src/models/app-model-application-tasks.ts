@@ -1,6 +1,6 @@
 import { AppModelApplication } from '@gnowth/lib-react'
 
-class AppModelApplicationTasks extends AppModelApplication {
+export class AppModelApplicationTasks extends AppModelApplication {
   static permissions = {
     dashboard_view: true,
   }
@@ -16,5 +16,3 @@ class AppModelApplicationTasks extends AppModelApplication {
     },
   }
 }
-
-export default AppModelApplicationTasks

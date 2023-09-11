@@ -4,7 +4,7 @@ import React from 'react'
 import { AppSuspense } from '@gnowth/lib-application'
 
 import type { PropsUseDataConnect } from './use-data-connect'
-import useDataConnect from './use-data-connect'
+import { useDataConnect } from './use-data-connect'
 
 interface Props extends PropsUseDataConnect {
   awaiting?: boolean
@@ -15,7 +15,7 @@ interface Props extends PropsUseDataConnect {
   suspenseClassName?: string
 }
 
-const DataConnect: React.FunctionComponent<Props> = (props) => {
+export const DataSuspense: React.FunctionComponent<Props> = (props) => {
   const connection = useDataConnect(props)
 
   if (props.hidden) return null
@@ -30,5 +30,3 @@ const DataConnect: React.FunctionComponent<Props> = (props) => {
     </AppSuspense>
   )
 }
-
-export default DataConnect

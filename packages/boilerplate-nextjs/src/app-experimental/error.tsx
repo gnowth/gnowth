@@ -1,1 +1,1 @@
-export { default } from '../components/app-error'
+export { AppError as default } from '../components/app-error'

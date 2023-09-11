@@ -5,10 +5,8 @@ interface Event {
 }
 
 // DEBT(investigation): where do we consume it?
-class StreamEvents {
+export class StreamEvents {
   stream = new Subject<Event>()
 }
 
-const streamEvents = new StreamEvents()
-
-export default streamEvents
+export const streamEvents = new StreamEvents()

@@ -29,6 +29,4 @@ const configsDefault = (env: Environment): Configs => ({
 
 export const createConfigs = makeConfigs(configsDefault)
 
-const configs = createConfigs()
-
-export default configs
+export const configs = createConfigs()

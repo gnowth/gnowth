@@ -17,7 +17,7 @@ interface Props {
   slot?: string
 }
 
-const ViewHeader: React.FunctionComponent<Props> = () => (
+export const ViewAppHeader: React.FunctionComponent<Props> = () => (
   <LayoutHeader>
     <LayoutSection
       boxVariant="float"
@@ -43,5 +43,3 @@ const ViewHeader: React.FunctionComponent<Props> = () => (
     </LayoutSection>
   </LayoutHeader>
 )
-
-export default ViewHeader

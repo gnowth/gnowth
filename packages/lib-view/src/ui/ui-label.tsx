@@ -37,7 +37,7 @@ const propsDefault = {
   typographyVariantNamespace: 'uiTypography',
 }
 
-const UILabel: React.FunctionComponent<PropsUILabel> = (props) => {
+export const UILabel: React.FunctionComponent<PropsUILabel> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -59,5 +59,3 @@ const UILabel: React.FunctionComponent<PropsUILabel> = (props) => {
     </label>
   )
 }
-
-export default UILabel

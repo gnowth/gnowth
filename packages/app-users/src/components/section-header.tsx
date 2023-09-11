@@ -3,10 +3,10 @@ import { LayoutSection, NavLink, ViewProgressGlobal, withAugmented } from '@gnow
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import ModelApp from '../models/model-app'
+import { ModelApp } from '../models/model-app'
 
 // DEBT: remobe prefect in link where possible
-const SectionHeader: FunctionComponent = () => {
+const SectionHeaderComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
@@ -74,4 +74,4 @@ const SectionHeader: FunctionComponent = () => {
   )
 }
 
-export default withAugmented()(SectionHeader)
+export const SectionHeader = withAugmented()(SectionHeaderComponent)

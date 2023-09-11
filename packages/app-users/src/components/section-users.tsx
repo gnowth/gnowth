@@ -20,10 +20,10 @@ import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
 
-import ModelApp from '../models/model-app'
-import ModelUser from '../models/model-user'
-import ModelUserFilter from '../models/model-user-filter'
-import serviceUsers from '../services/service-users'
+import { ModelApp } from '../models/model-app'
+import { ModelUser } from '../models/model-user'
+import { ModelUserFilter } from '../models/model-user-filter'
+import { serviceUsers } from '../services/service-users'
 
 export const stateUserFilter = atom({
   key: 'usersFilter',
@@ -34,7 +34,7 @@ export const stateUserFilter = atom({
 // DEBT: Add message when number of results return is 0
 // DEBT: Update users buttons to use icons? and only visible on hover
 // DEBT: Make add new user button more visible
-const SectionUsers: FunctionComponent = () => {
+const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
   const filtersSerialized = useMemo(() => ModelUserFilter.toUserFilterSerialized(filters), [filters])
@@ -117,4 +117,6 @@ const SectionUsers: FunctionComponent = () => {
   )
 }
 
-export default withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(SectionUsers)
+export const SectionUsers = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(
+  SectionUsersComponent,
+)

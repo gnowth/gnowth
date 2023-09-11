@@ -1,12 +1,12 @@
 import React from 'react'
-import { TokenPagePages } from '@gnowth/app-pages'
+import { TokenPage as TokenPagePages } from '@gnowth/app-pages'
 import { AppLink, LayoutFlex, LayoutFooter, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
 
 interface Props {
   slot?: string
 }
 
-const ViewFooter: React.FunctionComponent<Props> = () => (
+export const ViewAppFooter: React.FunctionComponent<Props> = () => (
   <LayoutFooter>
     <LayoutSection
       boxVariant="separator"
@@ -33,5 +33,3 @@ const ViewFooter: React.FunctionComponent<Props> = () => (
     </LayoutSection>
   </LayoutFooter>
 )
-
-export default ViewFooter

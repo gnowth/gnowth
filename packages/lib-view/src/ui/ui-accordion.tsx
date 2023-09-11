@@ -9,8 +9,6 @@ export interface PropsUIAccordion {
   children: React.ReactNode
 }
 
-const UIAccordion: React.FunctionComponent<PropsUIAccordion> = (props) => (
+export const UIAccordion: React.FunctionComponent<PropsUIAccordion> = (props) => (
   <div className="ui-accordion">{props.children}</div>
 )
-
-export default UIAccordion

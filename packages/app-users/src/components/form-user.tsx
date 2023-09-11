@@ -6,12 +6,12 @@ import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
-import ModelApp from '../models/model-app'
-import ModelUser from '../models/model-user'
-import serviceUsers from '../services/service-users'
+import { ModelApp } from '../models/model-app'
+import { ModelUser } from '../models/model-user'
+import { serviceUsers } from '../services/service-users'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
-const FormUser: FunctionComponent = () => {
+const FormUserComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const searchParams = useSearchParams()
   const id = searchParams?.get('id') ?? ''
@@ -54,4 +54,4 @@ const FormUser: FunctionComponent = () => {
   )
 }
 
-export default withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUser)
+export const FormUser = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUserComponent)

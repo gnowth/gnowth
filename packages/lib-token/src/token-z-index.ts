@@ -1,4 +1,4 @@
-enum TokenZIndex {
+export enum TokenZIndex {
   deepdive = 0,
   default,
   docked,
@@ -13,5 +13,3 @@ enum TokenZIndex {
   spinner,
   toast,
 }
-
-export default TokenZIndex

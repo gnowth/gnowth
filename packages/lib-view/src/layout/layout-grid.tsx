@@ -8,8 +8,6 @@ export interface PropsLayoutGrid {
   children: React.ReactNode
 }
 
-const LayoutGrid: React.FunctionComponent<PropsLayoutGrid> = (props) => (
+export const LayoutGrid: React.FunctionComponent<PropsLayoutGrid> = (props) => (
   <div className="layout-grid">{props.children}</div>
 )
-
-export default LayoutGrid

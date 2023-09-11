@@ -1,4 +1,4 @@
-enum TokenFontSize {
+export enum TokenFontSize {
   x10 = 0,
   x25,
   x50,
@@ -17,5 +17,3 @@ enum TokenFontSize {
   x1200,
   x1300,
 }
-
-export default TokenFontSize

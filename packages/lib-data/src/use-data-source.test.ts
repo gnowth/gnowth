@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 
-import useDataSource from './use-data-source'
+import { useDataSource } from './use-data-source'
 
 describe('@gnowth/lib-data: useDataSource [controlled.onCancel]', () => {
   it('dummy', () => {

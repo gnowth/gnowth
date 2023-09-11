@@ -6,10 +6,10 @@ import { operatorArrayFilterAnd } from '@gnowth/lib-utils'
 import { Factory, Model, createServer } from 'miragejs'
 
 import type { UserSerialized } from '../models/model-user'
-import configs from '../configs'
-import ModelUserFilter from '../models/model-user-filter'
+import { configs } from '../configs'
+import { ModelUserFilter } from '../models/model-user-filter'
 
-function mockUsers(configsMock: MockConfigs) {
+export function mockUsers(configsMock: MockConfigs) {
   return createServer({
     environment: configsMock.environment,
 
@@ -67,5 +67,3 @@ function mockUsers(configsMock: MockConfigs) {
     serializers: { application: SerializerRest },
   } as MockConfigs)
 }
-
-export default mockUsers

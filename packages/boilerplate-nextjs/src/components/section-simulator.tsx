@@ -4,9 +4,9 @@ import { faker } from '@faker-js/faker/locale/en'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
-import StreamToasts from '../services/stream-toasts'
+import { streamToasts } from '../services/stream-toasts'
 
-function SectionSimulateNotification() {
+export function SectionSimulator() {
   const { t } = useTranslation('other')
 
   return (
@@ -18,7 +18,7 @@ function SectionSimulateNotification() {
           <Button
             ml="4"
             onClick={() =>
-              StreamToasts.pushNotification({
+              streamToasts.pushNotification({
                 id: uuid(),
                 message: faker.lorem.sentence(),
                 title: faker.lorem.words(3),
@@ -34,7 +34,7 @@ function SectionSimulateNotification() {
 
           <Button
             ml="4"
-            onClick={() => StreamToasts.pushError(ModelError.fromError(new Error('Unknown error')))}
+            onClick={() => streamToasts.pushError(ModelError.fromError(new Error('Unknown error')))}
           >
             {t('Fire error')}
           </Button>
@@ -43,5 +43,3 @@ function SectionSimulateNotification() {
     </LayoutSection>
   )
 }
-
-export default SectionSimulateNotification

@@ -7,7 +7,7 @@ interface Configs<Value> {
   valueInitial?: Value
 }
 
-function useAnimationValueDelayed<Value>(configs: Configs<Value>): Value | undefined {
+export function useAnimationDelayValue<Value>(configs: Configs<Value>): Value | undefined {
   const [value, setValue] = React.useState(configs.valueInitial)
 
   React.useEffect(() => {
@@ -18,5 +18,3 @@ function useAnimationValueDelayed<Value>(configs: Configs<Value>): Value | undef
 
   return value
 }
-
-export default useAnimationValueDelayed

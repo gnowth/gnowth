@@ -8,8 +8,6 @@ export interface PropsUISnackbar {
   children: React.ReactNode
 }
 
-const UISnackbar: React.FunctionComponent<PropsUISnackbar> = (props) => (
+export const UISnackbar: React.FunctionComponent<PropsUISnackbar> = (props) => (
   <div className="ui-snackbar">{props.children}</div>
 )
-
-export default UISnackbar

@@ -1,7 +1,7 @@
 import type { Observable } from 'rxjs'
 import { useEffect, useState } from 'react'
 
-function useStream<Type>(stream: Observable<Type>, action?: (data: Type) => void) {
+export function useStream<Type>(stream: Observable<Type>, action?: (data: Type) => void) {
   const [data, setData] = useState<Type | undefined>()
 
   useEffect(() => {
@@ -15,5 +15,3 @@ function useStream<Type>(stream: Observable<Type>, action?: (data: Type) => void
 
   return data
 }
-
-export default useStream

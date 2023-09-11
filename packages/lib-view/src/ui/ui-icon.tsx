@@ -36,7 +36,7 @@ const propsDefault = {
   variantNamespace: 'uiIcon',
 }
 
-const UIIcon: React.FunctionComponent<PropsUIIcon> = (props) => {
+export const UIIcon: React.FunctionComponent<PropsUIIcon> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -63,5 +63,3 @@ const UIIcon: React.FunctionComponent<PropsUIIcon> = (props) => {
     />
   )
 }
-
-export default UIIcon

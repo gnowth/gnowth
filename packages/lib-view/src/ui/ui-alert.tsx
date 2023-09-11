@@ -8,8 +8,6 @@ export interface PropsUIAlert {
   children: React.ReactNode
 }
 
-const UIAlert: React.FunctionComponent<PropsUIAlert> = (props) => (
+export const UIAlert: React.FunctionComponent<PropsUIAlert> = (props) => (
   <div className="ui-alert">{props.children}</div>
 )
-
-export default UIAlert

@@ -4,12 +4,12 @@ import React from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { Route, matchPath, useLocation } from 'react-router-dom'
 
-import AppBoundary from './app-boundary'
-import AppSuspense from './app-suspense'
-import AppFrame from './app-frame'
-import AppProvider from './app-provider'
-import useAppApplication from './use-app-application'
-import AppWhoAmI from './app-who-am-i'
+import { AppBoundary } from './app-boundary'
+import { AppSuspense } from './app-suspense'
+import { AppFrame } from './app-frame'
+import { AppProvider } from './app-provider'
+import { useAppApplication } from './use-app-application'
+import { AppWhoAmI } from './app-who-am-i'
 
 interface PropsComponent {
   resources: Record<string, QueryResource | undefined>
@@ -33,7 +33,7 @@ const propsDefault = {
 
 // TODO: add transition in pages http://reactcommunity.org/react-transition-group/with-react-router/
 // TODO: since AppFrame is a child of route, it will rerender on route change. is there a way to keep it mounted if next route is the same component?
-function AppPage(props: Props): ReactElement {
+export function AppPage(props: Props): ReactElement {
   const application = useAppApplication()
   const location = useLocation()
   const propsWithDefault = objectDefaults(props, propsDefault)
@@ -68,5 +68,3 @@ function AppPage(props: Props): ReactElement {
     </Route>
   )
 }
-
-export default AppPage

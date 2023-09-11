@@ -28,7 +28,7 @@ const propsDefault = {
   zIndex: TokenZIndex.frame,
 }
 
-const LayoutHeader: React.FunctionComponent<PropsLayoutHeader> = (props) => {
+export const LayoutHeader: React.FunctionComponent<PropsLayoutHeader> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -42,5 +42,3 @@ const LayoutHeader: React.FunctionComponent<PropsLayoutHeader> = (props) => {
     </header>
   )
 }
-
-export default LayoutHeader

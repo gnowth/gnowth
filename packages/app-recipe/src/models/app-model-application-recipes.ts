@@ -2,8 +2,8 @@ import type { Model, QueryResource } from '@gnowth/lib-types'
 import { AppModelApplication } from '@gnowth/lib-react'
 
 import type { Ingredient, Recipe } from '../types'
-import ModelIngredient from './model-ingredient'
-import ModelRecipe from './model-recipe'
+import { ModelIngredient } from './model-ingredient'
+import { ModelRecipe } from './model-recipe'
 
 interface Configs {
   route?: string
@@ -36,7 +36,7 @@ export enum TokenPage {
   root = 'root',
 }
 
-class AppModelApplicationRecipes extends AppModelApplication<Configs> {
+export class AppModelApplicationRecipes extends AppModelApplication<Configs> {
   models = {
     ingredient: new ModelIngredient({}),
     recipe: new ModelRecipe({ user: this.configs.user }),
@@ -70,5 +70,3 @@ class AppModelApplicationRecipes extends AppModelApplication<Configs> {
     [TokenPage.root]: (): string => this.route,
   }
 }
-
-export default AppModelApplicationRecipes

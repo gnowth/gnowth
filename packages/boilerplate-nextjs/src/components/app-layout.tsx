@@ -3,8 +3,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 
-import SystemToasts from './system-toasts'
-import setup from '../setup'
+import { SystemToasts } from './system-toasts'
+import { setup } from '../setup'
 
 type Props = {
   children: ReactNode
@@ -12,7 +12,7 @@ type Props = {
 
 const configurations = setup()
 
-const AppLayout: FunctionComponent<Props> = (props) => {
+export const AppLayout: FunctionComponent<Props> = (props) => {
   return (
     <html lang="en">
       <body>
@@ -29,5 +29,3 @@ const AppLayout: FunctionComponent<Props> = (props) => {
     </html>
   )
 }
-
-export default AppLayout

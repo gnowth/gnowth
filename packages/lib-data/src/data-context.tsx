@@ -3,6 +3,4 @@ import React from 'react'
 
 import type { WithConnect } from './types'
 
-const DataContext = React.createContext<PropsData & WithConnect>({ connect: () => ({}) })
-
-export default DataContext
+export const DataContext = React.createContext<PropsData & WithConnect>({ connect: () => ({}) })

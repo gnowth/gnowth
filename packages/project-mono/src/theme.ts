@@ -12,4 +12,4 @@ injectGlobal`
   }
 `
 
-export default themeStandard
+export const theme = themeStandard

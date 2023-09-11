@@ -1,4 +1,4 @@
-enum TokenColor {
+export enum TokenColor {
   transparent = 'transparent',
   foreground = 'foreground',
   primary = 'primary',
@@ -8,5 +8,3 @@ enum TokenColor {
   danger = 'danger',
   background = 'background',
 }
-
-export default TokenColor

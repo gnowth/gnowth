@@ -9,8 +9,6 @@ export interface PropsUIPlaceholder {
   hidden?: boolean
 }
 
-const UIPlaceholder: React.FunctionComponent<PropsUIPlaceholder> = (props) => (
+export const UIPlaceholder: React.FunctionComponent<PropsUIPlaceholder> = (props) => (
   <div className="ui-placeholder">{props.children}</div>
 )
-
-export default UIPlaceholder

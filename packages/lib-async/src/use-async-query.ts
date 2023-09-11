@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AsyncContext from './async-context'
+import { AsyncContext } from './async-context'
 
 interface Configs {
   dependencies?: Array<unknown>
@@ -16,7 +16,7 @@ interface Query<Value> {
   reload: () => void
 }
 
-function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Configs): Query<Value> {
+export function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Configs): Query<Value> {
   const [firstPass, setFirstPass] = React.useState(true)
   const [promise, setPromise] = React.useState(predicate)
   const { addPromise, removePromise } = React.useContext(AsyncContext)
@@ -46,5 +46,3 @@ function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Configs): Q
     reload: React.useCallback(() => setPromise(predicate()), [predicate]),
   }
 }
-
-export default useAsyncQuery

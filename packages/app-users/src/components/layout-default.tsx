@@ -2,10 +2,10 @@ import type { FunctionComponent, PropsWithChildren } from 'react'
 import { ViewSpacer } from '@gnowth/core-app'
 import { VStack } from '@chakra-ui/react'
 
-import SectionFooter from './section-footer'
-import SectionHeader from './section-header'
+import { SectionFooter } from './section-footer'
+import { SectionHeader } from './section-header'
 
-const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
+export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
   return (
     <VStack alignItems="stretch" minHeight="100vh" spacing="10">
       <SectionHeader />
@@ -18,5 +18,3 @@ const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
     </VStack>
   )
 }
-
-export default LayoutDefault

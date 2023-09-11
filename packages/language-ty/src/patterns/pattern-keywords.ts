@@ -1,6 +1,6 @@
 import type { PatternRecord } from '../types'
 
-const keywords: PatternRecord = {
+export const patternKeywords: PatternRecord = {
   include: {
     include: '#keywords',
   },
@@ -16,5 +16,3 @@ const keywords: PatternRecord = {
     },
   },
 }
-
-export default keywords

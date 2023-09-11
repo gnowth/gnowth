@@ -1,8 +1,8 @@
 import type { ComponentProps, ComponentType } from 'react'
 
 import type { HigherComponent } from '../types'
-import SystemBoundary from '../components/system-boundary'
-import SystemSuspense from '../components/system-suspense'
+import { SystemBoundary } from '../components/system-boundary'
+import { SystemSuspense } from '../components/system-suspense'
 
 type PropsAugmented = {
   ErrorComponent?: ComponentProps<typeof SystemBoundary>['FallbackComponent']
@@ -16,7 +16,8 @@ type AugmentedComponentType<Props> = ComponentType<Props> & {
 
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent
-function withAugmented<Props extends JSX.IntrinsicAttributes>(
+// TODO: remove JSX and use react Attributes
+export function withAugmented<Props extends JSX.IntrinsicAttributes>(
   propsAugmented?: PropsAugmented,
 ): HigherComponent<Props> {
   return function withAugmentedHOC(Component: AugmentedComponentType<Props>) {
@@ -43,5 +44,3 @@ function withAugmented<Props extends JSX.IntrinsicAttributes>(
     }
   }
 }
-
-export default withAugmented

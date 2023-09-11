@@ -1,7 +1,7 @@
 import React from 'react'
 
-import ModelPromise from './model-promise'
-import useAsyncPromise from './use-async-promise'
+import { ModelPromise } from './model-promise'
+import { useAsyncPromise } from './use-async-promise'
 
 interface Props {
   children: React.ReactNode
@@ -9,7 +9,7 @@ interface Props {
 }
 
 // TODO: load processing/error display component from theme
-const AsyncSuspense: React.FunctionComponent<Props> = (props) => {
+export const AsyncSuspense: React.FunctionComponent<Props> = (props) => {
   const asyncPromise = useAsyncPromise(props.promise)
 
   if (asyncPromise.status === ModelPromise.status.pending) {
@@ -22,5 +22,3 @@ const AsyncSuspense: React.FunctionComponent<Props> = (props) => {
 
   return <>{props.children}</>
 }
-
-export default AsyncSuspense

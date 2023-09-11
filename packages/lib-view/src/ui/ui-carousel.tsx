@@ -8,8 +8,6 @@ export interface PropsUICarousel {
   children: React.ReactNode
 }
 
-const UICarousel: React.FunctionComponent<PropsUICarousel> = (props) => (
+export const UICarousel: React.FunctionComponent<PropsUICarousel> = (props) => (
   <div className="ui-carousel">{props.children}</div>
 )
-
-export default UICarousel

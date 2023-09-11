@@ -5,7 +5,7 @@ interface Configs {
   type?: string[] | string
 }
 
-class UtilError extends Error {
+export class UtilError extends Error {
   type?: string[] | string
 
   constructor(configs: Configs) {
@@ -14,5 +14,3 @@ class UtilError extends Error {
     this.type = configs.type
   }
 }
-
-export default UtilError

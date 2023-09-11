@@ -1,5 +1,3 @@
-import Model from './model'
+import { Model } from './model'
 
-class ModelError extends Model {}
-
-export default ModelError
+export class ModelError extends Model {}

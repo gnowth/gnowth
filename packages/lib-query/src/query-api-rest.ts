@@ -1,7 +1,7 @@
 import type { QueryConfigs, QueryParams } from '@gnowth/lib-types'
 
-import QueryApi from './query-api'
-import QueryResource from './query-resource'
+import { QueryApi } from './query-api'
+import { QueryResource } from './query-resource'
 
 async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promise<Response> {
   const response = await fetch(endpoint, params)
@@ -11,7 +11,7 @@ async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promi
   return (await response.json()) as Response
 }
 
-class QueryApiRest<Value> extends QueryApi<Value> {
+export class QueryApiRest<Value> extends QueryApi<Value> {
   async list(configs?: QueryConfigs<Value>): Promise<Value[]> {
     const response = await fetchGet<Record<string, unknown>>(this.getPath(configs))
     const serializer = configs?.serializer ?? this.serializer
@@ -43,5 +43,3 @@ class QueryApiRest<Value> extends QueryApi<Value> {
     return new QueryResource(this.retrieve(configs).then((data) => ({ data })))
   }
 }
-
-export default QueryApiRest

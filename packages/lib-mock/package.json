@@ -2,7 +2,7 @@
   "author": "Thierry Wong",
   "description": "Smart mock",
   "license": "AGPL-3.0-only",
-  "main": "src/index.ts",
+  "main": "src/exports.ts",
   "name": "@gnowth/lib-mock",
   "prettier": "@gnowth/prettier-config",
   "private": true,

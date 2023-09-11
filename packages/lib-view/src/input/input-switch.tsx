@@ -8,8 +8,6 @@ export interface PropsInputSwitch {
   name?: string
 }
 
-const InputSwitch: React.FunctionComponent<PropsInputSwitch> = (props) => (
+export const InputSwitch: React.FunctionComponent<PropsInputSwitch> = (props) => (
   <input className="input-switch" name={props.name} />
 )
-
-export default InputSwitch

@@ -6,7 +6,7 @@ import type {
   QuerySerializer as IQuerySerializer,
 } from '@gnowth/lib-types'
 
-import QuerySerializer from './query-serializer'
+import { QuerySerializer } from './query-serializer'
 
 interface QueryConfigsApi<Value> {
   endpoint: string
@@ -14,7 +14,7 @@ interface QueryConfigsApi<Value> {
   serializer?: IQuerySerializer<Value>
 }
 
-abstract class QueryApi<Value> implements IQueryApi<Value> {
+export abstract class QueryApi<Value> implements IQueryApi<Value> {
   endpoint: string
 
   model: Model<Value>
@@ -48,5 +48,3 @@ abstract class QueryApi<Value> implements IQueryApi<Value> {
 
   abstract resourceRetrieve(configs?: QueryConfigs<Value>): QueryResource<Value>
 }
-
-export default QueryApi

@@ -5,10 +5,10 @@ import axios from 'axios'
 
 import type { User, UserSerialized } from '../models/model-user'
 import type { UserFilterSerialized } from '../models/model-user-filter'
-import ModelUser from '../models/model-user'
-import configs from '../configs'
+import { ModelUser } from '../models/model-user'
+import { configs } from '../configs'
 
-class ServiceUsers {
+export class ServiceUsers {
   static scope = 'users'
 
   static routes = {
@@ -65,4 +65,4 @@ class ServiceUsers {
   }
 }
 
-export default new ServiceUsers()
+export const serviceUsers = new ServiceUsers()

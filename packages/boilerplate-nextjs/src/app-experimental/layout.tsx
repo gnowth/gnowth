@@ -1,1 +1,1 @@
-export { default } from '../components/app-layout'
+export { AppLayout as default } from '../components/app-layout'

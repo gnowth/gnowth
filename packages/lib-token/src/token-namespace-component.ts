@@ -1,4 +1,4 @@
-enum TokenNamespaceComponent {
+export enum TokenNamespaceComponent {
   boundary = 'boundary',
   icon = 'icon',
   input = 'input',
@@ -6,5 +6,3 @@ enum TokenNamespaceComponent {
   suspense = 'suspense',
   type = 'type',
 }
-
-export default TokenNamespaceComponent

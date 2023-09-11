@@ -1,7 +1,7 @@
 import { TokenError } from '@gnowth/lib-token'
 import { UtilError } from '@gnowth/lib-util'
 
-function AppPageNotFound(): never {
+export function AppPageNotFound(): never {
   throw new UtilError({
     message: 'Page not found',
     method: 'AppPageNotFound',
@@ -9,5 +9,3 @@ function AppPageNotFound(): never {
     type: [TokenError.api404, TokenError.internal],
   })
 }
-
-export default AppPageNotFound

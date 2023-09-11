@@ -6,8 +6,8 @@ import { Theme, cx, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
 
 import type { ChangeEventHandler } from './use-value'
-import UIIcon, { PropsUIIcon } from '../ui/ui-icon'
-import useValue from './use-value'
+import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
+import { useValue } from './use-value'
 
 type SystemInputBoolean = SystemSpace
 
@@ -85,7 +85,7 @@ function iconValue(props: PropsInputBoolean, value?: boolean | null) {
   return value ? props.iconValueTrue : props.iconValueFalse
 }
 
-const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) => {
+export const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) => {
   const { name, onChange, value } = useValue(props, false)
   const theme = useAppTheme()
   const refInput = React.useRef<HTMLInputElement>(null)
@@ -146,5 +146,3 @@ const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) => {
     </div>
   )
 }
-
-export default InputBoolean

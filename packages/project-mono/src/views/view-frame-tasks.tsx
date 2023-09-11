@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode
 }
 
-const FrameDefault: React.FunctionComponent<Props> = (props) => {
+export const ViewFrameTasks: React.FunctionComponent<Props> = (props) => {
   const asyncContext = React.useContext(AsyncContext)
 
   return (
@@ -23,5 +23,3 @@ const FrameDefault: React.FunctionComponent<Props> = (props) => {
     </LayoutApp>
   )
 }
-
-export default FrameDefault

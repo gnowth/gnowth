@@ -48,6 +48,7 @@ module.exports = {
   root: true,
 
   rules: {
+    'import/no-default-export': 'warn',
     'prettier/prettier': 'error',
 
     /** Note: React is no longer required if babel is provided

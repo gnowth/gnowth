@@ -4,11 +4,11 @@ import React from 'react'
 import { DataSource, DataSuspense, LayoutPage, LayoutSection, TokenMode } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'
-import ViewRecipeDescription from '../views/view-recipe-descriptions'
-import ViewRecipeIngredients from '../views/view-recipe-ingredients'
-import ViewRecipeInstructions from '../views/view-recipe-instructions'
-import ViewRecipeNutritionalValues from '../views/view-recipe-nutritional-values'
-import ViewRecipeUtensils from '../views/view-recipe-utensils'
+import { ViewRecipeDescriptions } from '../views/view-recipe-descriptions'
+import { ViewRecipeIngredients } from '../views/view-recipe-ingredients'
+import { ViewRecipeInstructions } from '../views/view-recipe-instructions'
+import { ViewRecipeNutritionalValues } from '../views/view-recipe-nutritional-values'
+import { ViewRecipeUtensils } from '../views/view-recipe-utensils'
 
 interface Props {
   resources: {
@@ -18,14 +18,14 @@ interface Props {
 
 // datasource query should be linked to allow caching
 // TODO load recipe and place it in context?
-function PageRecipe(props: Props): ReactElement {
+export function PageRecipe(props: Props): ReactElement {
   const recipe = props.resources.recipe?.read()
 
   return (
     <LayoutPage>
       <LayoutSection variant="page">
         <DataSource layout="recipe" mode={TokenMode.uncontrolled} value={recipe}>
-          <ViewRecipeDescription slot="descriptions" />
+          <ViewRecipeDescriptions slot="descriptions" />
 
           <ViewRecipeIngredients slot="ingredients" />
 
@@ -67,5 +67,3 @@ function PageRecipe(props: Props): ReactElement {
 //     </DataSource>
 //   );
 // };
-
-export default PageRecipe

@@ -3,13 +3,13 @@ import type { ComponentType } from 'react'
 import { TokenNamespaceComponent } from '@gnowth/lib-token'
 import { useContext } from 'react'
 
-import ContextApplication from './context-application'
-import ContextEnvironment from './context-environment'
-import useAppTheme from './use-app-theme'
+import { ContextApplication } from './context-application'
+import { ContextEnvironment } from './context-environment'
+import { useAppTheme } from './use-app-theme'
 
 type Suspense = ComponentType<PropsSuspense> | null
 
-function useAppSuspense(suspense?: Suspense | string): Suspense | undefined {
+export function useAppSuspense(suspense?: Suspense | string): Suspense | undefined {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
   const theme = useAppTheme()
@@ -30,5 +30,3 @@ function useAppSuspense(suspense?: Suspense | string): Suspense | undefined {
     namespace: TokenNamespaceComponent.suspense,
   })
 }
-
-export default useAppSuspense

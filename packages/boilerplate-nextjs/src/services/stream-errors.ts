@@ -3,7 +3,7 @@ import { ModelError } from '@gnowth/core-app'
 import { Subject } from 'rxjs'
 
 // DEBT(investigation): where do we consume it?
-class StreamErrors {
+export class StreamErrors {
   stream = new Subject<ErrorType>()
 
   pushErrorUnknown = (error: unknown) => {
@@ -11,6 +11,4 @@ class StreamErrors {
   }
 }
 
-const streamErrors = new StreamErrors()
-
-export default streamErrors
+export const streamErrors = new StreamErrors()

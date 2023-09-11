@@ -6,7 +6,7 @@ import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } fr
 import { useMemo } from 'react'
 
 import type { FilterPageSize } from '../models/model-filter'
-import ModelFilter from '../models/model-filter'
+import { ModelFilter } from '../models/model-filter'
 
 interface Value {
   page: number
@@ -20,7 +20,7 @@ interface Props {
   value: Value
 }
 
-const InputPagination: FunctionComponent<Props> = (props) => {
+export const InputPagination: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation('app-core')
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
 
@@ -99,5 +99,3 @@ const InputPagination: FunctionComponent<Props> = (props) => {
     </HStack>
   )
 }
-
-export default InputPagination

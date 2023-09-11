@@ -2,10 +2,10 @@ import type { DataName, Theme } from '@gnowth/lib-types'
 import type { ReactElement } from 'react'
 import React from 'react'
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { UtilError, useUtilRefValue } from '@gnowth/lib-util'
+import { UtilError, useRefValue } from '@gnowth/lib-util'
 import { UtilRequired, objectDefaults } from '@gnowth/lib-utils'
 
-import DataContext from './data-context'
+import { DataContext } from './data-context'
 
 interface PropsComponent {
   disabled?: boolean
@@ -41,9 +41,9 @@ const propsDefault = {
 }
 
 // TODO: standardise handling async error
-function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
+export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
   const context = React.useContext(DataContext)
-  const refValue = useUtilRefValue(context.value as Value)
+  const refValue = useRefValue(context.value as Value)
   const theme = useAppTheme(props.theme)
   const handleChange = props.submit ? context.onSubmit : context.onChange
   const { name } = context
@@ -85,5 +85,3 @@ function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
     </AppTheme>
   )
 }
-
-export default DataTrigger

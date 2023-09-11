@@ -29,7 +29,7 @@ interface Serializer {
 }
 
 // DEBT(hack): dirty ts fix
-const SerializerRest = RestSerializer.extend({
+export const SerializerRest = RestSerializer.extend({
   normalize(data) {
     return (RestSerializer.prototype as Serializer).normalize.call(this, {
       [(this as Serializer).type]: data,
@@ -43,5 +43,3 @@ const SerializerRest = RestSerializer.extend({
     return isArray ? paginate(output[key], request) : { data: output[key] }
   },
 })
-
-export default SerializerRest

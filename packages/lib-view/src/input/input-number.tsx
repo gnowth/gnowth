@@ -8,8 +8,6 @@ export interface PropsInputNumber {
   name?: string
 }
 
-const InputNumber: React.FunctionComponent<PropsInputNumber> = (props) => (
+export const InputNumber: React.FunctionComponent<PropsInputNumber> = (props) => (
   <input className="input-number" name={props.name} />
 )
-
-export default InputNumber

@@ -8,7 +8,7 @@ export interface ErrorType {
   title: string
 }
 
-class ModelError {
+export class ModelError {
   static fromError = (error: Error): ErrorType => {
     return {
       idLocal: uuid(),
@@ -60,5 +60,3 @@ class ModelError {
     }
   }
 }
-
-export default ModelError

@@ -11,7 +11,7 @@ interface ParamsRoute {
 
 type MakeResource = (paramsRoute: ParamsRoute) => Record<string, QueryResource | undefined>
 
-class AppModelApplication<Configs extends ConfigsApplication = ConfigsApplication> {
+export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApplication> {
   configs: Configs
 
   models: Record<string, Model | undefined> = {}
@@ -45,5 +45,3 @@ class AppModelApplication<Configs extends ConfigsApplication = ConfigsApplicatio
     return this.routes[page]?.()
   }
 }
-
-export default AppModelApplication

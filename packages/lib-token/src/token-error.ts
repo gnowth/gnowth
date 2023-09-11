@@ -1,4 +1,4 @@
-enum TokenError {
+export enum TokenError {
   api = 'api',
   api400 = 'api-400',
   api401 = 'api-401',
@@ -8,5 +8,3 @@ enum TokenError {
   data = 'data',
   internal = 'internal',
 }
-
-export default TokenError

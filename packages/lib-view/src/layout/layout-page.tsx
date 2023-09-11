@@ -8,8 +8,6 @@ export interface PropsLayoutPage {
   children: React.ReactNode
 }
 
-const LayoutPage: React.FunctionComponent<PropsLayoutPage> = (props) => (
+export const LayoutPage: React.FunctionComponent<PropsLayoutPage> = (props) => (
   <div className="layout-page">{props.children}</div>
 )
-
-export default LayoutPage

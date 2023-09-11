@@ -14,7 +14,7 @@ export interface UserFilterSerialized {
   status?: string
 }
 
-class ModelUserFilter {
+export class ModelUserFilter {
   // Filters
   static filterByEmail(email: string) {
     return (user: UserFilterSerialized) => !email || !!user.email?.includes(email)
@@ -51,5 +51,3 @@ class ModelUserFilter {
     }
   }
 }
-
-export default ModelUserFilter

@@ -12,4 +12,4 @@ const setupMock = () => () => {
   }
 }
 
-export default _.flowRight(setupMock(), setupDummy())
+export const setup = _.flowRight(setupMock(), setupDummy())

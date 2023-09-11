@@ -42,7 +42,7 @@ const propsDefault = {
   variantNamespace: 'uiPaper',
 }
 
-const UIPaper: React.FunctionComponent<PropsUIPaper> = (props) => {
+export const UIPaper: React.FunctionComponent<PropsUIPaper> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -64,5 +64,3 @@ const UIPaper: React.FunctionComponent<PropsUIPaper> = (props) => {
     </div>
   )
 }
-
-export default UIPaper

@@ -3,7 +3,7 @@ import { ModelError } from '@gnowth/core-app'
 import { Subject } from 'rxjs'
 
 import type { Notification } from '../models/model-notification'
-import ModelNotification from '../models/model-notification'
+import { ModelNotification } from '../models/model-notification'
 
 interface Toast {
   description?: string
@@ -12,7 +12,7 @@ interface Toast {
   title: string
 }
 
-class StreamToasts {
+export class StreamToasts {
   stream = new Subject<Toast>()
 
   pushError = (error: ErrorType) => {
@@ -24,6 +24,4 @@ class StreamToasts {
   }
 }
 
-const streamToasts = new StreamToasts()
-
-export default streamToasts
+export const streamToasts = new StreamToasts()

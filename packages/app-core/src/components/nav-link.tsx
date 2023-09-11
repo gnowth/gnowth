@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 type Props = Parameters<typeof Link>[0] & { hrefActive?: string }
 
-const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
+export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
   const pathname = usePathname() ?? '/users' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router
   const isActive = pathname === props.href || (hrefActive && pathname?.startsWith(hrefActive))
 
@@ -24,5 +24,3 @@ const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
     </Link>
   )
 }
-
-export default NavLink

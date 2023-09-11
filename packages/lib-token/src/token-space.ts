@@ -1,4 +1,4 @@
-enum TokenSpace {
+export enum TokenSpace {
   none = 0,
   xxs,
   xs,
@@ -9,5 +9,3 @@ enum TokenSpace {
   xxl,
   xxxl,
 }
-
-export default TokenSpace

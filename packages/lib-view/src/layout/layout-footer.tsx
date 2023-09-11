@@ -8,8 +8,6 @@ export interface PropsLayoutFooter {
   children: React.ReactNode
 }
 
-const LayoutFooter: React.FunctionComponent<PropsLayoutFooter> = (props) => (
+export const LayoutFooter: React.FunctionComponent<PropsLayoutFooter> = (props) => (
   <footer className="layout-footer">{props.children}</footer>
 )
-
-export default LayoutFooter

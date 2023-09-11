@@ -8,8 +8,6 @@ export interface PropsInputTree {
   name?: string
 }
 
-const InputTree: React.FunctionComponent<PropsInputTree> = (props) => (
+export const InputTree: React.FunctionComponent<PropsInputTree> = (props) => (
   <input className="input-tree" name={props.name} />
 )
-
-export default InputTree

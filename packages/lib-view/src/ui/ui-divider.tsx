@@ -30,7 +30,7 @@ const propsDefault = {
   variantNamespace: 'uiDivider',
 }
 
-const UIDivider: React.FunctionComponent<PropsUIDivider> = (props) => {
+export const UIDivider: React.FunctionComponent<PropsUIDivider> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -52,5 +52,3 @@ const UIDivider: React.FunctionComponent<PropsUIDivider> = (props) => {
     </div>
   )
 }
-
-export default UIDivider

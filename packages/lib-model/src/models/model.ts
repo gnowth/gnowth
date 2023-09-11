@@ -2,10 +2,10 @@ import type { DataName, Field, Model as IModel, QueryApi, SchemaFromValue } from
 import { objectMapValues } from '@gnowth/lib-utils'
 import _ from 'lodash'
 
-import FieldModel from '../fields/field-model'
+import { FieldModel } from '../fields/field-model'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-class Model<Value extends Record<keyof Value, unknown> = Record<string, never>, Configs = object>
+export class Model<Value extends Record<keyof Value, unknown> = Record<string, never>, Configs = object>
   implements IModel<Value>
 {
   api?: QueryApi<Value>
@@ -69,5 +69,3 @@ class Model<Value extends Record<keyof Value, unknown> = Record<string, never>, 
     return _value ? '' : ''
   }
 }
-
-export default Model

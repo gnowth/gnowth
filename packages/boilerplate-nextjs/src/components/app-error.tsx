@@ -9,7 +9,7 @@ type Props = {
   reset: () => void
 }
 
-const AppError: FunctionComponent<Props> = (props) => {
+export const AppError: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation('other')
   const { reset } = useQueryErrorResetBoundary()
 
@@ -29,5 +29,3 @@ const AppError: FunctionComponent<Props> = (props) => {
     </LayoutSection>
   )
 }
-
-export default AppError

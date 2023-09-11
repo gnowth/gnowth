@@ -1,6 +1,6 @@
 import { cy, describe, it } from 'local-cypress'
 
-import pageUsers from '../support/page-users'
+import { pageUsers } from '../support/page-users'
 
 describe('Users landing page', () => {
   it('contains footer', () => {

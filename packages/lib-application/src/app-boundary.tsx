@@ -3,8 +3,8 @@ import _ from 'lodash'
 import React from 'react'
 import { UtilError } from '@gnowth/lib-util'
 
-import ContextEnvironment from './context-environment'
-import withAppTheme from './with-app-theme'
+import { ContextEnvironment } from './context-environment'
+import { withAppTheme } from './with-app-theme'
 
 interface Props {
   children: React.ReactNode
@@ -20,7 +20,7 @@ interface State {
   error: UtilError | null
 }
 
-class AppBoundary extends React.Component<Props & WithTheme, State> {
+class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
   // eslint-disable-next-line react/static-property-placement
   static contextType = ContextEnvironment
 
@@ -78,4 +78,4 @@ class AppBoundary extends React.Component<Props & WithTheme, State> {
   }
 }
 
-export default withAppTheme<Props>(AppBoundary)
+export const AppBoundary = withAppTheme<Props>(AppBoundaryComponent)

@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-const AppHead: FunctionComponent = () => {
+export const AppHead: FunctionComponent = () => {
   return (
     <>
       <title>Create Next App</title>
@@ -9,5 +9,3 @@ const AppHead: FunctionComponent = () => {
     </>
   )
 }
-
-export default AppHead

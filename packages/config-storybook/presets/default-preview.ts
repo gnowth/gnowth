@@ -1,4 +1,4 @@
-import withReactQuery from '../decorators/with-react-query'
+import { withReactQuery } from '../decorators/with-react-query'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

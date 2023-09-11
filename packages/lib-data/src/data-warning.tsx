@@ -15,7 +15,7 @@ interface PropsWarning {
 // TODO: handle case where default boundary is not set. or get from datasource maybe?
 // TODO: handle async properly
 // TODO: standardise errors so that error does not need to be mapped to message
-const DataWarning: React.FunctionComponent<PropsWarning> = (props) => {
+export const DataWarning: React.FunctionComponent<PropsWarning> = (props) => {
   if (!props) return <div />
   // const connection = useDataConnect(props);
   // const Warning = useAppBoundary(props.warning);
@@ -26,5 +26,3 @@ const DataWarning: React.FunctionComponent<PropsWarning> = (props) => {
   // return <Warning errors={stateErrors.value.map((error) => error.message)} />;
   return <div />
 }
-
-export default DataWarning

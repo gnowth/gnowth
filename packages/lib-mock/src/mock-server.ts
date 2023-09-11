@@ -45,4 +45,4 @@
 
 // export default mockServer;
 
-export default (): null => null
+export const mockServer = (): null => null

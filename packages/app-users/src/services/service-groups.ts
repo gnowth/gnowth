@@ -5,10 +5,10 @@ import axios from 'axios'
 
 import type { Group, GroupSerialized } from '../models/model-group'
 import type { GroupFilterSerialized } from '../models/model-group-filter'
-import ModelGroup from '../models/model-group'
-import configs from '../configs'
+import { ModelGroup } from '../models/model-group'
+import { configs } from '../configs'
 
-class ServiceGroups {
+export class ServiceGroups {
   static scope = 'groups'
   static routes = {
     groups: (id = '') => `/${id}`,
@@ -67,4 +67,4 @@ class ServiceGroups {
   }
 }
 
-export default new ServiceGroups()
+export const serviceGroups = new ServiceGroups()

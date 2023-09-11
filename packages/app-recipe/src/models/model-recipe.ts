@@ -2,7 +2,7 @@ import type { Model as IModel } from '@gnowth/lib-types'
 import { Fields, Model, QueryApiRest } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'
-import ModelIngredient from './model-ingredient'
+import { ModelIngredient } from './model-ingredient'
 
 interface Configs {
   user: IModel
@@ -20,7 +20,7 @@ type Perms = {
   [key in Permissions]?: () => boolean
 }
 
-class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Configs> {
+export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Configs> {
   api: QueryApiRest<Value> = new QueryApiRest({
     endpoint: '/api/v1/recipes/recipes/',
     model: this,
@@ -47,5 +47,3 @@ class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Configs> {
     }
   }
 }
-
-export default ModelRecipe

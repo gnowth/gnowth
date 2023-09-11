@@ -24,7 +24,7 @@ type Deserializer<Type, TypeSerialized> = (type: TypeSerialized) => Type
 type ListDeserializerReturn<Type, TypeSerialized> = (data: List<TypeSerialized>) => Type[]
 type ListVerboseDeserializerReturn<Type, TypeSerialized> = (data: List<TypeSerialized>) => ListVerbose<Type>
 
-class ModelAxios {
+export class ModelAxios {
   static toData = <Data>(response: AxiosResponse<Data>): Data => {
     return response.data
   }
@@ -62,5 +62,3 @@ class ModelAxios {
     }
   }
 }
-
-export default ModelAxios

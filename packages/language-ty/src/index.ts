@@ -1,7 +1,7 @@
 import fs from 'fs'
 
-import systaxes from './syntaxes'
+import { syntaxes } from './syntaxes'
 
-const data = JSON.stringify(systaxes)
+const data = JSON.stringify(syntaxes)
 
 fs.writeFileSync('./syntaxes/ty.tmLanguage.json', data)
