@@ -1,7 +1,7 @@
 import type { QueryResource } from '@gnowth/lib-types'
 import type { ReactElement, ReactNode } from 'react'
 import React from 'react'
-import { utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 import { HashRouter } from 'react-router-dom'
 
 import type { PropsApplication } from './context-application'
@@ -22,8 +22,8 @@ interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApp
 // TODO add store? history?
 function AppEnvironment(props: Props): ReactElement {
   const [whoami, whoamiSet] = React.useState<QueryResource | null>(null)
-  const propsWithDefault = utils.defaults<PropsEnvironment>(
-    { whoami, whoamiSet },
+  const propsWithDefault = objectDefaults(
+    { whoami, whoamiSet } as PropsEnvironment,
     props,
     propsDefaultEnvironment,
   )

@@ -120,4 +120,6 @@ export { default as UIToast } from './ui/ui-toast'
 export { default as UITooltip } from './ui/ui-tooltip'
 export { default as UITypography } from './ui/ui-typography'
 
+export { UtilSlot } from './util/util-slot'
+
 export * as layouts from './layout'

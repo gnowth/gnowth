@@ -1,12 +1,9 @@
 import type { PredicateIdentity, UtilOptional } from '@gnowth/lib-utils'
 import {
-  chain,
-  arrayFilterFn,
-  operatorFilterAnd,
   objectToKeys,
-  predicateSortFn,
-  arraySortFn,
+  operatorArrayFilterAnd,
   operatorSortMultiple,
+  predicateSortFn,
 } from '@gnowth/lib-utils'
 
 import type { ErrorType, ModelError } from '../errors/errors'
@@ -111,20 +108,20 @@ export class ModelUserFilters {
     status: this.sortByStatus,
   }
 
-  operatorFilterAndSort(filters: UserFilters): PredicateIdentity<User[]> {
+  operatorArrayFilterAndSort(filters: UserFilters): PredicateIdentity<User[]> {
     type FilterKeys = keyof typeof this.dictionaryFilter
 
     const sortPredicates = filters.sortBy.map((key) => this.sortUsingKey(key))
-    const filterPredicates = objectToKeys()(filters)
+    const filterPredicates = objectToKeys(filters)
       .filter((key) => filters[key] !== undefined)
       .filter((key): key is FilterKeys => key in this.dictionaryFilter)
       // TODO [tech-debt]: fix typescript
       .map((key) => this.filterUsingKey(key, filters[key] as string))
 
-    return chain(
-      arrayFilterFn(operatorFilterAnd(...filterPredicates)),
-      arraySortFn(operatorSortMultiple(...sortPredicates)),
-    )
+    return (users) =>
+      users
+        .filter(operatorArrayFilterAnd(...filterPredicates))
+        .toSorted(operatorSortMultiple(...sortPredicates))
   }
 
   generate(filters: Partial<UserFilters>): UserFilters {

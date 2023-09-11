@@ -10,7 +10,8 @@ import type {
 } from '@gnowth/lib-types'
 import React from 'react'
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { UtilError, utils } from '@gnowth/lib-util'
+import { UtilError } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { PropsUseDataConnect } from './use-data-connect'
 import DataWarning from './data-warning'
@@ -65,7 +66,7 @@ const DataConnect: React.FunctionComponent<Props> = (props) => {
 
   if (props.hidden) return null
 
-  const propsWithDefault = utils.defaults(props, propsDefault)
+  const propsWithDefault = objectDefaults(props, propsDefault)
 
   const LabelComponent = theme.getComponent({
     component: propsWithDefault.label,

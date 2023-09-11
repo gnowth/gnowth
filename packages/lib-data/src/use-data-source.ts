@@ -2,7 +2,8 @@ import type { DataName, DataValue, PropsData } from '@gnowth/lib-types'
 import _ from 'lodash'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
-import { UtilError, useUtilEnsureConstant, utils } from '@gnowth/lib-util'
+import { UtilError, useUtilEnsureConstant } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { WithConnect } from './types'
 import DataContext from './data-context'
@@ -42,14 +43,14 @@ const configsDefault = {
 
 function useDataSource<Value extends DataValue>(
   props: PropsUseDataSource<Value>,
-  configs?: Configs,
+  configs: Configs = {},
 ): PropsData<Value> & WithConnect {
   const { mode = TokenMode.controlled } = props
-  const configsWithDefault = utils.defaults(configs, configsDefault)
+  const configsWithDefault = objectDefaults(configs, configsDefault)
   useUtilEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
 
   const context = React.useContext(DataContext) as PropsData<Value>
-  const propsWithContext = utils.defaults(props, context)
+  const propsWithContext = objectDefaults(props, context)
   const onChangeFromProps = propsWithContext.onChange
   const nameFromProps = propsWithContext.name
 
@@ -59,7 +60,8 @@ function useDataSource<Value extends DataValue>(
   )
 
   const { onChange, onSubmit, value } = useValue<Value>(
-    { ...propsWithContext, onChange: handleChange },
+    // TODO: fix value type
+    { ...propsWithContext, onChange: handleChange, value: props.value as Value },
     configsWithDefault,
   )
 

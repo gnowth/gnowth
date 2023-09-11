@@ -1,5 +1,5 @@
 import type { DataName, Field, Model } from '@gnowth/lib-types'
-import { utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { ConfigsAny } from './field-any'
 import FieldAny from './field-any'
@@ -17,7 +17,7 @@ class FieldModel<Value> extends FieldAny<Value> {
   nested: Nested
 
   constructor(configs: ConfigsModel<Value>) {
-    const configsWithDefault = utils.defaults(configs, { type: 'model' })
+    const configsWithDefault = objectDefaults(configs, { type: 'model' })
 
     super(configsWithDefault)
 

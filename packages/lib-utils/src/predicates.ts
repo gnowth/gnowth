@@ -1,34 +1,33 @@
 import { guardNullish } from './guards'
 
-export type PredicateFilter<Item> = (item: Item, index: number, items: Item[]) => boolean
-export type PredicateIdentity<Item> = (item: Item) => Item
-export type PredicateReduce<Item, Output> = (
+export type PredicateArrayFilter<Value> = (value: Value, index: number, values: Value[]) => boolean
+export type PredicateArrayReduce<Value, Output> = (
   output: Output,
-  item: Item,
+  value: Value,
   index: number,
-  items: Item[],
+  values: Value[],
 ) => Output
-export type PredicateSort<Item> = (item1: Item, item2: Item) => number
-export type PredicateTransform<Item, Output> = (item: Item) => Output
+export type PredicateIdentity<Value> = (value: Value) => Value
+export type PredicateSort<Value> = (value1: Value, value2: Value) => number
+export type PredicateObjectFilter<Item> = (value: Item[keyof Item], key: keyof Item, item: Item) => boolean
 
-interface OptionsSort<Item> {
-  compare?: (item1: Item, item2: Item) => number
+interface OptionsSort<Value> {
+  compare?: (value1: Value, value2: Value) => number
   direction?: 'ascending' | 'descending'
-  isNullish?: (item: Item) => boolean
+  isNullish?: (value: Value) => boolean
 }
-type PredicateIdentityGeneric = <Item>(item: Item) => Item
 type PredicateNoop = () => void
-type PredicateSortFn = <Item>(options?: OptionsSort<Item>) => PredicateSort<Item>
+type PredicateSortFn = <Value>(options?: OptionsSort<Value>) => PredicateSort<Value>
 
-export const predicateIdentity: PredicateIdentityGeneric = (item) => item
+export const predicateIdentity = <Value>(value: Value): Value => value
 export const predicateNoop: PredicateNoop = () => undefined
-export const predicateSortFn: PredicateSortFn = (options) => (item1, item2) => {
+export const predicateSortFn: PredicateSortFn = (options) => (value1, value2) => {
   const isNullish = options?.isNullish ?? guardNullish
-  const isNullish1 = isNullish(item1)
-  const isNullish2 = isNullish(item2)
+  const isNullish1 = isNullish(value1)
+  const isNullish2 = isNullish(value2)
   const directionCoefficient = options?.direction === 'descending' ? -1 : 1
 
-  if (item1 === item2 || (isNullish1 && isNullish2)) {
+  if (value1 === value2 || (isNullish1 && isNullish2)) {
     return 0
   }
 
@@ -40,8 +39,8 @@ export const predicateSortFn: PredicateSortFn = (options) => (item1, item2) => {
     return 1 * directionCoefficient
   }
 
-  const compareDefault = <Item>(item1: Item, item2: Item): number => (item1 > item2 ? 1 : -1)
+  const compareDefault = <Value>(value1: Value, value2: Value): number => (value1 > value2 ? 1 : -1)
   const compare = options?.compare ?? compareDefault
 
-  return compare(item1, item2) * directionCoefficient
+  return compare(value1, value2) * directionCoefficient
 }

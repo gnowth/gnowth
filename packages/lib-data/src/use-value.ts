@@ -2,6 +2,7 @@ import type { DataName, DataValue } from '@gnowth/lib-types'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 import { UtilError, useUtilEnsureConstant, useUtilRefValue, utils } from '@gnowth/lib-util'
+import { objectDefaults } from '@gnowth/lib-utils'
 
 interface Configs {
   errorCustomMode?: Error
@@ -33,9 +34,9 @@ const configsDefault = {
   }),
 }
 
-function useValue<Value extends DataValue>(props: Props<Value>, configs?: Configs): Return<Value> {
+function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
   const { mode = TokenMode.controlled, onChange } = props
-  const configsWithDefault = utils.defaults(configs, configsDefault)
+  const configsWithDefault = objectDefaults(configs, configsDefault)
 
   useUtilEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
   useUtilEnsureConstant(props.value, {

@@ -1,22 +1,35 @@
-import type { PredicateFilter, PredicateSort } from './predicates'
+import type { PredicateArrayFilter, PredicateObjectFilter, PredicateSort } from './predicates'
 
-type OperatorFilter = <Type>(...predicates: PredicateFilter<Type>[]) => PredicateFilter<Type>
-type OperatorSort = <Type>(...predicates: PredicateSort<Type>[]) => PredicateSort<Type>
+type OperatorArrayFilter = <Value>(predicate: PredicateArrayFilter<Value>) => PredicateArrayFilter<Value>
 
-export const operatorFilterAnd: OperatorFilter =
+type OperatorArrayFilters = <Value>(
+  ...predicates: PredicateArrayFilter<Value>[]
+) => PredicateArrayFilter<Value>
+
+type OperatorSorts = <Value>(...predicates: PredicateSort<Value>[]) => PredicateSort<Value>
+
+type OperatorObjectFilter = <Item>(predicate: PredicateObjectFilter<Item>) => PredicateObjectFilter<Item>
+
+export const operatorArrayFilterAnd: OperatorArrayFilters =
   (...predicates) =>
-  (item, index, items) =>
-    predicates.every((predicate) => predicate(item, index, items))
+  (value, index, values) =>
+    predicates.every((predicate) => predicate(value, index, values))
 
-export const operatorFilterOr: OperatorFilter =
+export const operatorArrayFilterNot: OperatorArrayFilter = (predicate) => (value, index, values) =>
+  !predicate(value, index, values)
+
+export const operatorArrayFilterOr: OperatorArrayFilters =
   (...predicates) =>
-  (item, index, items) =>
-    predicates.some((predicate) => predicate(item, index, items))
+  (value, index, values) =>
+    predicates.some((predicate) => predicate(value, index, values))
 
-export const operatorSortMultiple: OperatorSort =
+export const operatorSortMultiple: OperatorSorts =
   (...predicates) =>
-  (item1, item2) => {
-    const predicate = predicates.find((predicate) => predicate(item1, item2) !== 0)
+  (value1, value2) => {
+    const predicate = predicates.find((predicate) => predicate(value1, value2) !== 0)
 
-    return predicate?.(item1, item2) ?? 0
+    return predicate?.(value1, value2) ?? 0
   }
+
+export const operatorObjectFilterNot: OperatorObjectFilter = (predicate) => (value, key, item) =>
+  !predicate(value, key, item)
