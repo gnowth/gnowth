@@ -6,13 +6,13 @@ export const patternStrings: PatternRecord = {
   },
   repository: {
     strings: {
-      name: 'string.quoted.double.ty',
       begin: '"',
       end: '"',
+      name: 'string.quoted.double.ty',
       patterns: [
         {
-          name: 'constant.character.escape.ty',
           match: '\\\\.',
+          name: 'constant.character.escape.ty',
         },
       ],
     },

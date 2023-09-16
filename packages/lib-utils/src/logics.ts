@@ -22,8 +22,8 @@ export const logicSwitch: LogicSwitch =
         code: 'lib-utils-logic-switch-01',
         message: 'Unable to find matching predicate',
         trace: {
-          context: 'logics',
           caller: 'logicSwitch',
+          context: 'logics',
           source: 'lib-utils',
         },
         type: 'internal-error',

@@ -11,4 +11,4 @@ const iconsizes: Record<number | string, string | undefined> = {
   [TokenIconSize.xxxl]: '16rem', // 256px
 }
 
-export default (token: TokenIconSize | string): string | undefined => iconsizes[token]
+export const iconsize = (token: TokenIconSize | string): string | undefined => iconsizes[token]

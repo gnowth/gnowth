@@ -22,6 +22,13 @@ module.exports = {
     'prettier',
   ],
 
+  overrides: [
+    {
+      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
+      files: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+    },
+  ],
+
   parser: '@typescript-eslint/parser',
 
   parserOptions: {
@@ -46,11 +53,6 @@ module.exports = {
     'testing-library',
   ],
 
-  settings: {
-    'import/extensions': ['.d.ts', '.ts', '.tsx', '.json'],
-    react: { version: 'detect' },
-  },
-
   root: true,
 
   rules: {
@@ -63,12 +65,11 @@ module.exports = {
     'react/jsx-uses-react': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
+    'sort-keys': 'error',
   },
 
-  overrides: [
-    {
-      files: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
-    },
-  ],
+  settings: {
+    'import/extensions': ['.d.ts', '.ts', '.tsx', '.json'],
+    react: { version: 'detect' },
+  },
 }

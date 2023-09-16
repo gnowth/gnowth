@@ -4,7 +4,7 @@ import { useContext } from 'react'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
-import shimmedTheme from './shimmed-theme'
+import { shimmedTheme } from './shimmed-theme'
 
 export function useAppTheme(theme?: Theme | string): Theme {
   const contextApplication = useContext(ContextApplication)

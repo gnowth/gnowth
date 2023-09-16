@@ -1,4 +1,4 @@
-import themeStandard from '@gnowth/theme-standard'
+import { themeStandard } from '@gnowth/theme-standard'
 import { injectGlobal } from '@gnowth/lib-react'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-expressions

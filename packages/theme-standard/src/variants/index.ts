@@ -8,7 +8,7 @@ import * as uiDivider from './ui-divider'
 import * as uiProgress from './ui-progress'
 import * as uiTypography from './ui-typography'
 
-export default Theme.assembleVariants({
+export const variants = Theme.assembleVariants({
   inputText,
   layoutSection,
   systemBox,

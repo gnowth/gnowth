@@ -6,13 +6,12 @@ export class AppModelApplicationTasks extends AppModelApplication {
   }
 
   static routes = {
+    board(boardId?: string): string {
+      return boardId ? `/tasks/boards/${boardId}/` : '/tasks/boards/'
+    },
     dashboard: '/tasks/dashboard/',
     landing: '/tasks/landing/',
     report: '/tasks/report/',
     root: '/tasks/',
-
-    board(boardId?: string): string {
-      return boardId ? `/tasks/boards/${boardId}/` : '/tasks/boards/'
-    },
   }
 }

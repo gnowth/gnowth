@@ -20,8 +20,8 @@ const configs = {
   },
   output: 'export',
   reactStrictMode: true,
-  trailingSlash: true,
   swcMinify: true,
+  trailingSlash: true,
 }
 
 module.exports = [withBundleAnalyzer, withMDX].reduce((acc, next) => next(acc), configs)

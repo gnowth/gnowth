@@ -161,22 +161,22 @@ export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
   React.useEffect(() => {
     Promise.all(state.promises)
       .then(() => dispatch({ type: actions.resolve }))
-      .catch((error) => dispatch({ type: actions.reject, errors: [error] }))
+      .catch((error) => dispatch({ errors: [error], type: actions.reject }))
 
     // TODO: cleanup prevent dispatch if unmounted?
   }, [state.promises])
 
   const addPromise = React.useCallback((promise: Promise<unknown>) => {
     dispatch({
-      type: actions.addPromise,
       payload: promise,
+      type: actions.addPromise,
     })
   }, [])
 
   const removePromise = React.useCallback((promise: Promise<unknown>) => {
     dispatch({
-      type: actions.removePromise,
       payload: promise,
+      type: actions.removePromise,
     })
   }, [])
 
@@ -184,8 +184,8 @@ export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
     <AsyncContext.Provider
       value={{
         addPromise,
-        removePromise,
         errors: state.errors,
+        removePromise,
         status: state.status,
       }}
     >

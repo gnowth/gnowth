@@ -26,8 +26,8 @@ import { ModelUserFilter } from '../models/model-user-filter'
 import { serviceUsers } from '../services/service-users'
 
 export const stateUserFilter = atom({
-  key: 'usersFilter',
   default: ModelUserFilter.fromUserFilterSerializedPaginated({}),
+  key: 'usersFilter',
 })
 
 // DEBT: investigate if we should have a function to generate shouldShows?

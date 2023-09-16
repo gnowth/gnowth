@@ -10,4 +10,4 @@ const breakpoints: Record<number | string, string | undefined> = {
   [TokenBreakpoint.xxl]: '112.5em', // 1800px
 }
 
-export default (token: TokenBreakpoint | string): string | undefined => breakpoints[token]
+export const breakpoint = (token: TokenBreakpoint | string): string | undefined => breakpoints[token]

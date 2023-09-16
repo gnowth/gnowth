@@ -49,4 +49,4 @@ class ThemeShimmed implements Theme {
   }
 }
 
-export default new ThemeShimmed()
+export const shimmedTheme = new ThemeShimmed()

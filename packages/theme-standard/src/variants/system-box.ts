@@ -9,8 +9,8 @@ export const float: SystemBox = {
 export const input = (theme: Theme): SystemBox => ({
   border: `1px solid ${theme.getPaletteColor({ palette: 'text', paletteWeight: '300' }) ?? ''}`,
   borderColor: {
-    '&:hover': theme.getPaletteColor({ palette: 'text', paletteWeight: '700' }) ?? '',
     '&:focus': theme.getPaletteColor({ palette: 'secondary' }) ?? '',
+    '&:hover': theme.getPaletteColor({ palette: 'text', paletteWeight: '700' }) ?? '',
   },
   borderRadius: '4px',
   boxShadow: {

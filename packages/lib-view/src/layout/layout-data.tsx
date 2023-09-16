@@ -32,9 +32,9 @@ const variantLocals = {
 }
 
 const propsDefault = {
-  variantLocals,
   spacing: TokenSpace.xxs,
   variant: 'block',
+  variantLocals,
   variantNamespace: 'layoutData',
 }
 

@@ -34,7 +34,6 @@ function setupMockServer() {
 
 function setupReactQuery() {
   return new QueryClient({
-    queryCache: new QueryCache({ onError: streamErrors.pushErrorUnknown }),
     defaultOptions: {
       queries: {
         keepPreviousData: true,
@@ -43,13 +42,14 @@ function setupReactQuery() {
         useErrorBoundary: ModelError.isErrorQuery,
       },
     },
+    queryCache: new QueryCache({ onError: streamErrors.pushErrorUnknown }),
   })
 }
 
 export function setup() {
   return {
     i18n: setupI18n(),
-    queryClient: setupReactQuery(),
     mockServer: setupMockServer(),
+    queryClient: setupReactQuery(),
   }
 }

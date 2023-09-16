@@ -71,9 +71,6 @@ export class ModelUser {
 
     return this.generate({
       ...user,
-      id,
-      nameFirst,
-      nameLast,
       email:
         this.dependencies.serviceFaker?.internetEmail({
           firstName: nameFirst,
@@ -81,6 +78,9 @@ export class ModelUser {
           seed: id,
           value: user?.email,
         }) ?? '',
+      id,
+      nameFirst,
+      nameLast,
     })
   }
 
@@ -148,19 +148,19 @@ export class ModelUserFilters {
 
   private sortByNameFirst(direction?: SortDirection): SortPredicate<User> {
     return predicateSortFn<User>({
-      direction,
       compare: (item1, item2) =>
         item1.nameFirst.toLocaleLowerCase().localeCompare(item2.nameFirst.toLocaleLowerCase()),
+      direction,
       isNullish: (item) => !item.nameFirst,
     })
   }
 
   private sortByStatus(direction?: SortDirection): SortPredicate<User> {
     return predicateSortFn<User>({
-      direction,
       compare: (item1, item2) =>
         USER_STATUSES.findIndex((status) => item1.status === status) -
         USER_STATUSES.findIndex((status) => item2.status === status),
+      direction,
       isNullish: (item) => !USER_STATUSES.includes(item.status),
     })
   }

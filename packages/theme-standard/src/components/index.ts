@@ -7,7 +7,7 @@ import * as input from './namespace-input'
 import * as suspense from './namespace-suspense'
 import * as type from './namespace-type'
 
-export default Theme.assembleComponents({
+export const components = Theme.assembleComponents({
   boundary,
   icon,
   input,

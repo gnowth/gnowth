@@ -74,8 +74,8 @@ const variantLocals = {
 const propsDefault = {
   iconSize: TokenIconSize.sm,
   inputType: 'checkbox',
-  variantLocals,
   variant: 'checkbox',
+  variantLocals,
   variantNamespace: 'inputBoolean',
 }
 

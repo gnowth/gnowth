@@ -36,5 +36,5 @@ export function AppSwitch(props: Props): ReactElement | null {
     }
   })
 
-  return match ? React.cloneElement(element, { location, computedMatch: match }) : null
+  return match ? React.cloneElement(element, { computedMatch: match, location }) : null
 }

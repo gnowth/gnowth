@@ -8,8 +8,8 @@ interface Configs {
 
 const errorCustom = new UtilError({
   message: 'unexpected change in value',
-  package: '@gnowth/lib-util',
   method: 'useEnsureConstant',
+  package: '@gnowth/lib-util',
 })
 
 export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {

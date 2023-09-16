@@ -31,12 +31,6 @@ module.exports = {
 
   plugins: ['eslint-comments', 'import', 'jsx-a11y', 'mdx', 'prettier', 'react'],
 
-  settings: {
-    'import/extensions': ['.md', '.mdx'],
-    'mdx/code-blocks': true,
-    'mdx/language-mapper': {},
-  },
-
   root: true,
 
   rules: {
@@ -47,5 +41,11 @@ module.exports = {
      */
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+  },
+
+  settings: {
+    'import/extensions': ['.md', '.mdx'],
+    'mdx/code-blocks': true,
+    'mdx/language-mapper': {},
   },
 }

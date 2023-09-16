@@ -21,8 +21,8 @@ export class ServiceUsers {
   })
 
   queryKeys = {
-    detail: (id: string) => [{ id, entity: 'detail', scope: ServiceUsers.scope }],
-    list: (filters: UserFilterSerialized) => [{ filters, entity: 'list', scope: ServiceUsers.scope }],
+    detail: (id: string) => [{ entity: 'detail', id, scope: ServiceUsers.scope }],
+    list: (filters: UserFilterSerialized) => [{ entity: 'list', filters, scope: ServiceUsers.scope }],
   }
 
   detail = (configs: QueryFunctionContext<ServiceQueryKeyDetail[]>): Promise<User> => {

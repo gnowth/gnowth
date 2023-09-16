@@ -17,17 +17,17 @@ describe('objectDefaults', () => {
       anyValue?: string
     }
 
-    const item1: Item = { someValue: 'test', otherValue: 'other' }
-    const item2 = { someValue: 'test2', anotherValue: 'another' }
+    const item1: Item = { otherValue: 'other', someValue: 'test' }
+    const item2 = { anotherValue: 'another', someValue: 'test2' }
     const item3 = { anotherValue: 'another2', anyValue: 'any' }
 
     const output = objectDefaults(item1, item2, item3)
 
     expect(output).toEqual({
-      someValue: 'test',
-      otherValue: 'other',
       anotherValue: 'another',
       anyValue: 'any',
+      otherValue: 'other',
+      someValue: 'test',
     })
   })
 })
