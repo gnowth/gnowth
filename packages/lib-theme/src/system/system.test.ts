@@ -6,26 +6,26 @@ const theme = new Theme({})
 
 describe('systemInterpolate', () => {
   it('returns empty object is no value is provided', () => {
-    const cssObject = systemInterpolate({ theme, key: 'margin' })
+    const cssObject = systemInterpolate({ key: 'margin', theme })
 
     expect(cssObject).toEqual({})
   })
 
   it('returns right cssObject when value is a string', () => {
     const value = '5px'
-    const cssObject = systemInterpolate({ theme, value, key: 'margin' })
+    const cssObject = systemInterpolate({ key: 'margin', theme, value })
 
     expect(cssObject.margin).toBe(value)
   })
 
   it('returns right cssObject when value is an object with selector', () => {
-    const cssObject = systemInterpolate({ theme, value: { '&:active': '5px' }, key: 'margin' })
+    const cssObject = systemInterpolate({ key: 'margin', theme, value: { '&:active': '5px' } })
 
     expect(cssObject['&:active']).toEqual({ margin: '5px' })
   })
 
   it('returns right cssObject when value is an object with child', () => {
-    const cssObject = systemInterpolate({ theme, value: { '& *': '5px' }, key: 'margin' })
+    const cssObject = systemInterpolate({ key: 'margin', theme, value: { '& *': '5px' } })
 
     expect(cssObject['& *']).toEqual({ margin: '5px' })
   })

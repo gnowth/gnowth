@@ -37,64 +37,64 @@ export class ModelTinaSchema {
     return defineSchema({
       collections: [
         {
+          fields: [
+            {
+              isBody: true,
+              label: 'Main Content',
+              name: 'body',
+              type: 'rich-text',
+            },
+          ],
           format: 'mdx',
           label: CollectionEnum.Contents,
           name: CollectionEnum.Contents,
           path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Contents}`,
           ui: { router: this.router },
-          fields: [
-            {
-              name: 'body',
-              label: 'Main Content',
-              type: 'rich-text',
-              isBody: true,
-            },
-          ],
         },
 
         {
+          fields: [
+            {
+              isBody: true,
+              label: 'Main Content',
+              name: 'body',
+              type: 'rich-text',
+            },
+          ],
           format: 'mdx',
           label: CollectionEnum.Ingredients,
           name: CollectionEnum.Ingredients,
           path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Ingredients}`,
           ui: { router: this.router },
-          fields: [
-            {
-              name: 'body',
-              label: 'Main Content',
-              type: 'rich-text',
-              isBody: true,
-            },
-          ],
         },
 
         {
-          format: 'mdx',
-          label: CollectionEnum.Recipes,
-          name: CollectionEnum.Recipes,
-          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Recipes}`,
-          ui: { router: this.router },
           fields: [
             {
-              type: 'string',
               label: 'Title',
               name: 'title',
+              type: 'string',
             },
             {
-              type: 'string',
               label: 'Description',
               name: 'description',
+              type: 'string',
               ui: {
                 component: 'textarea',
               },
             },
             {
-              name: 'body',
-              label: 'Main Content',
-              type: 'rich-text',
               isBody: true,
+              label: 'Main Content',
+              name: 'body',
+              type: 'rich-text',
             },
           ],
+          format: 'mdx',
+          label: CollectionEnum.Recipes,
+          name: CollectionEnum.Recipes,
+          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Recipes}`,
+          ui: { router: this.router },
         },
       ],
     })

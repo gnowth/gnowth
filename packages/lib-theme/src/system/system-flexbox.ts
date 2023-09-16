@@ -21,67 +21,67 @@ import { systemCompose, systemInterpolate } from './system'
 
 export function systemAlignContent() {
   return (props: SystemAlignContent, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'alignContent', value: props.alignContent })
+    systemInterpolate({ key: 'alignContent', theme, value: props.alignContent })
 }
 
 export function systemAlignItems() {
   return (props: SystemAlignItems, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'alignItems', value: props.alignItems })
+    systemInterpolate({ key: 'alignItems', theme, value: props.alignItems })
 }
 
 export function systemAlignSelf() {
   return (props: SystemAlignSelf, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'alignSelf', value: props.alignSelf })
+    systemInterpolate({ key: 'alignSelf', theme, value: props.alignSelf })
 }
 
 export function systemFlex() {
   return (props: SystemFlex, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flex', value: props.flex })
+    systemInterpolate({ key: 'flex', theme, value: props.flex })
 }
 
 export function systemFlexBasis() {
   return (props: SystemFlexBasis, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flexBasis', value: props.flexBasis })
+    systemInterpolate({ key: 'flexBasis', theme, value: props.flexBasis })
 }
 
 export function systemFlexDirection() {
   return (props: SystemFlexDirection, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flexDirection', value: props.flexDirection })
+    systemInterpolate({ key: 'flexDirection', theme, value: props.flexDirection })
 }
 
 export function systemFlexGrow() {
   return (props: SystemFlexGrow, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flexGrow', value: props.flexGrow })
+    systemInterpolate({ key: 'flexGrow', theme, value: props.flexGrow })
 }
 
 export function systemFlexShrink() {
   return (props: SystemFlexShrink, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flexShrink', value: props.flexShrink })
+    systemInterpolate({ key: 'flexShrink', theme, value: props.flexShrink })
 }
 
 export function systemFlexWrap() {
   return (props: SystemFlexWrap, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'flexWrap', value: props.flexWrap })
+    systemInterpolate({ key: 'flexWrap', theme, value: props.flexWrap })
 }
 
 export function systemJustifyContent() {
   return (props: SystemJustifyContent, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'justifyContent', value: props.justifyContent })
+    systemInterpolate({ key: 'justifyContent', theme, value: props.justifyContent })
 }
 
 export function systemJustifyItems() {
   return (props: SystemJustifyItems, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'justifyItems', value: props.justifyItems })
+    systemInterpolate({ key: 'justifyItems', theme, value: props.justifyItems })
 }
 
 export function systemJustifySelf() {
   return (props: SystemJustifySelf, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'justifySelf', value: props.justifySelf })
+    systemInterpolate({ key: 'justifySelf', theme, value: props.justifySelf })
 }
 
 export function systemOrder() {
   return (props: SystemOrder, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'order', value: props.order })
+    systemInterpolate({ key: 'order', theme, value: props.order })
 }
 
 export function systemFlexbox(): (props: SystemFlexbox, theme: Theme) => CSSObject {

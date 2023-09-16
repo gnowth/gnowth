@@ -27,10 +27,7 @@ export async function getStaticPaths() {
     .map((path) => path.replace(/\.md$/, ''))
     .map((slug) => ({ params: { slug } }))
 
-  return {
-    paths,
-    fallback: false,
-  }
+  return { fallback: false, paths }
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {

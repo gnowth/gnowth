@@ -17,47 +17,47 @@ import { systemCompose, systemInterpolate } from './system'
 
 export function systemBorder() {
   return (props: SystemBorder, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'border', value: props.border })
+    systemInterpolate({ key: 'border', theme, value: props.border })
 }
 
 export function systemBorderBottom() {
   return (props: SystemBorderBottom, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderBottom', value: props.borderBottom })
+    systemInterpolate({ key: 'borderBottom', theme, value: props.borderBottom })
 }
 
 export function systemBorderColor() {
   return (props: SystemBorderColor, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderColor', value: props.borderColor })
+    systemInterpolate({ key: 'borderColor', theme, value: props.borderColor })
 }
 
 export function systemBorderLeft() {
   return (props: SystemBorderLeft, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderLeft', value: props.borderLeft })
+    systemInterpolate({ key: 'borderLeft', theme, value: props.borderLeft })
 }
 
 export function systemBorderRadius() {
   return (props: SystemBorderRadius, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderRadius', value: props.borderRadius })
+    systemInterpolate({ key: 'borderRadius', theme, value: props.borderRadius })
 }
 
 export function systemBorderRight() {
   return (props: SystemBorderRight, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderRight', value: props.borderRight })
+    systemInterpolate({ key: 'borderRight', theme, value: props.borderRight })
 }
 
 export function systemBorderTop() {
   return (props: SystemBorderTop, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'borderTop', value: props.borderTop })
+    systemInterpolate({ key: 'borderTop', theme, value: props.borderTop })
 }
 
 export function systemBoxShadow() {
   return (props: SystemBoxShadow, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'boxShadow', value: props.boxShadow })
+    systemInterpolate({ key: 'boxShadow', theme, value: props.boxShadow })
 }
 
 export function systemOutline() {
   return (props: SystemOutline, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'outline', value: props.outline })
+    systemInterpolate({ key: 'outline', theme, value: props.outline })
 }
 
 export function systemBox(): (props: SystemBox, theme: Theme) => CSSObject {

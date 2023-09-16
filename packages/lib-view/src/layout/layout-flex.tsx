@@ -40,10 +40,10 @@ const systemSpacing = (props: PropsLayoutFlex, theme: ThemeType): CSSObject =>
     ? {
         '> * + *': {
           [{
-            'column-reverse': 'marginBottom',
-            'row-reverse': 'marginRight',
             column: 'marginTop',
+            'column-reverse': 'marginBottom',
             row: 'marginLeft',
+            'row-reverse': 'marginRight',
           }[props.flexDirection as string] || 'marginLeft']: theme.getScaleItem({
             scale: 'space',
             token: props.spacing,
@@ -75,16 +75,16 @@ const variantLocals = {
     justifyContent: 'flex-start',
   },
 
-  horizontalRight: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-
   horizontalReverseLeft: {
     alignItems: 'center',
     flexDirection: 'row-reverse',
     justifyContent: 'flex-start',
+  },
+
+  horizontalRight: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 
   verticalStretch: {
@@ -94,10 +94,10 @@ const variantLocals = {
 }
 
 const propsDefault = {
-  variantLocals,
   display: 'flex',
   spacing: TokenSpace.md,
   variant: 'horizontalLeft',
+  variantLocals,
   variantNamespace: 'layoutFlex',
 }
 

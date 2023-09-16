@@ -4,7 +4,7 @@ import { PageGeneratedClient } from '@gnowth/users-app'
 export async function getStaticPaths() {
   const paths = await PageGeneratedClient.staticPaths()
 
-  return { paths, fallback: false }
+  return { fallback: false, paths }
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {

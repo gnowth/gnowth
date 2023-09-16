@@ -6,13 +6,13 @@ import '@fontsource/roboto/500.css'
 import { Theme } from '@gnowth/lib-theme'
 
 import * as images from './images'
-import components from './components'
-import palettes from './palettes'
-import scales from './scales'
-import variables from './variables'
-import variants from './variants'
+import { components } from './components'
+import { palettes } from './palettes'
+import { scales } from './scales'
+import { variables } from './variables'
+import { variants } from './variants'
 
-export default new Theme({
+export const themeStandard = new Theme({
   components,
   images,
   palettes,

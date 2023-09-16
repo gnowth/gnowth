@@ -18,8 +18,8 @@ PageContentsClient.staticPaths = async () => {
   const slugs = await dependencies.serviceTina.getContentsSlugs()
 
   return {
-    paths: slugs.map((slug) => ({ params: { slug } })),
     fallback: false,
+    paths: slugs.map((slug) => ({ params: { slug } })),
   }
 }
 

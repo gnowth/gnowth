@@ -18,8 +18,8 @@ interface ConfigsInterpolation<Value extends string | number> {
   key: string | string[]
   value?: Interpolate<Value>
   theme: Theme
-  scale?: ThemeScale | string
   responsive?: boolean
+  scale?: ThemeScale | string
 }
 
 // TODO add responsive scale
@@ -30,7 +30,7 @@ export function systemInterpolate<Value extends string | number>(
 
   const keys = Array.isArray(configs.key) ? configs.key : [configs.key]
   const makeCSSObject = (token?: Value) => {
-    const scaleItem = configs.theme.getScaleItem({ token, scale: configs.scale })
+    const scaleItem = configs.theme.getScaleItem({ scale: configs.scale, token })
 
     return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
   }

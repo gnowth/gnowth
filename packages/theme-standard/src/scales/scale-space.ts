@@ -12,4 +12,4 @@ const spaces: Record<number | string, string | undefined> = {
   [TokenSpace.xxxl]: '8rem', // 128px
 }
 
-export default (token: TokenSpace | string): string | undefined => spaces[token]
+export const space = (token: TokenSpace | string): string | undefined => spaces[token]

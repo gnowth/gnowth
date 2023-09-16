@@ -16,6 +16,13 @@ module.exports = {
     'prettier',
   ],
 
+  overrides: [
+    {
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+      files: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
+    },
+  ],
+
   parserOptions: {
     ecmaFeatures: { impliedStrict: true },
     ecmaVersion: 'latest',
@@ -24,21 +31,15 @@ module.exports = {
 
   plugins: ['eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
-  settings: {
-    'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
-  },
-
   root: true,
 
   rules: {
     'import/no-default-export': 'warn',
     'prettier/prettier': 'error',
+    'sort-keys': 'error',
   },
 
-  overrides: [
-    {
-      files: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-    },
-  ],
+  settings: {
+    'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
+  },
 }

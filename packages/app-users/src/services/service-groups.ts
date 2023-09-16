@@ -20,8 +20,8 @@ export class ServiceGroups {
   })
 
   queryKeys = {
-    detail: (id: string) => [{ id, entity: 'detail', scope: ServiceGroups.scope }],
-    list: (filters: GroupFilterSerialized) => [{ filters, entity: 'list', scope: ServiceGroups.scope }],
+    detail: (id: string) => [{ entity: 'detail', id, scope: ServiceGroups.scope }],
+    list: (filters: GroupFilterSerialized) => [{ entity: 'list', filters, scope: ServiceGroups.scope }],
   }
 
   detail = (configs: QueryFunctionContext<ServiceQueryKeyDetail[]>): Promise<Group> => {

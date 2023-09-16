@@ -79,7 +79,7 @@ export function useAsyncPromise<Value>(maybePromise?: Promise<Value>): State<Val
 
     promise
       .then((value) => dispatch({ type: actions.resolve, value }))
-      .catch((error) => dispatch({ type: actions.reject, errors: [error] }))
+      .catch((error) => dispatch({ errors: [error], type: actions.reject }))
 
     // TODO: cleanup to prevent dispatch after unmounting
   }, [maybePromise])

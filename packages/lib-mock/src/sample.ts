@@ -2,24 +2,22 @@ import { Factory, Model, createServer } from 'miragejs'
 
 export function mockServer(): unknown {
   return createServer({
-    models: {
-      movie: Model,
-      recipe: Model,
-    },
-
     factories: {
-      recipe: Factory.extend({
-        name(i: string) {
-          return `recipe${i}`
-        },
-
-        cuisine: 'Asian',
-      }),
-
       movie: Factory.extend({
         name: 'name',
         year: 2013,
       }),
+      recipe: Factory.extend({
+        cuisine: 'Asian',
+        name(i: string) {
+          return `recipe${i}`
+        },
+      }),
+    },
+
+    models: {
+      movie: Model,
+      recipe: Model,
     },
 
     routes() {

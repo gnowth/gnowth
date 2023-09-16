@@ -11,14 +11,14 @@ import { SectionUsers } from './components/section-users'
 import { SectionGroups } from './components/section-groups'
 
 export const sections = {
-  FormUser,
-  FormUserFilter,
   FormGroup,
   FormGroupFilter,
+  FormUser,
+  FormUserFilter,
   SectionChangelog,
   SectionFooter,
+  SectionGroups,
   SectionHeader,
   SectionUsers,
-  SectionGroups,
   ViewSpacer,
 }

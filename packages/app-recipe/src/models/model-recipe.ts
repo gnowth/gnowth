@@ -35,8 +35,8 @@ export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Con
     description: new Fields.FieldText(),
     designation: new Fields.FieldText(),
     ingredients: new Fields.FieldModel({
-      model: new ModelIngredient({}),
       many: true,
+      model: new ModelIngredient({}),
     }),
     name: new Fields.FieldText(),
   }

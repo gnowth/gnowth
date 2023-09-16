@@ -19,6 +19,13 @@ module.exports = {
     'prettier',
   ],
 
+  overrides: [
+    {
+      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
+      files: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+    },
+  ],
+
   parserOptions: {
     ecmaFeatures: {
       impliedStrict: true,
@@ -40,11 +47,6 @@ module.exports = {
     'testing-library',
   ],
 
-  settings: {
-    'import/extensions': ['.js', '.jsx', '.json'],
-    react: { version: 'detect' },
-  },
-
   root: true,
 
   rules: {
@@ -56,12 +58,11 @@ module.exports = {
      */
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'sort-keys': 'error',
   },
 
-  overrides: [
-    {
-      files: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style', 'plugin:testing-library/react'],
-    },
-  ],
+  settings: {
+    'import/extensions': ['.js', '.jsx', '.json'],
+    react: { version: 'detect' },
+  },
 }

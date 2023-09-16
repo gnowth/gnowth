@@ -93,11 +93,11 @@ export const navigation = (theme: Theme, propsWithDefault: PropsUIButton): Varia
     }`,
   },
   borderRadius: '0',
+  minWidth: '6rem',
   paddingBottom: TokenSpace.md,
   paddingLeft: TokenSpace.xs,
   paddingRight: TokenSpace.xs,
   paddingTop: TokenSpace.md,
-  minWidth: '6rem',
 })
 
 export const contained = (theme: Theme, propsWithDefault: PropsUIButton): VariantUIButton => ({
@@ -119,8 +119,8 @@ export const raised = (theme: Theme, propsWithDefault: PropsUIButton): VariantUI
 })
 
 export const icon = (theme: Theme, propsWithDefault: PropsUIButton): VariantUIButton => ({
-  border: '0',
   backgroundColor: interpolateColor(theme),
+  border: '0',
   color: interpolateColorFlat(theme, propsWithDefault.palette, '*', true),
   cursor: {
     '&': 'pointer',
@@ -138,9 +138,9 @@ export const icon = (theme: Theme, propsWithDefault: PropsUIButton): VariantUIBu
 export const fab = (theme: Theme, propsWithDefault: PropsUIButton): VariantUIButton => ({
   ...icon(theme, propsWithDefault),
   backgroundColor: interpolateColorFlat(theme, propsWithDefault.palette),
-  borderRadius: '50%',
   border: '1px solid',
   borderColor: interpolateColorFlat(theme, propsWithDefault.palette),
+  borderRadius: '50%',
   boxShadow: 'materialHover3',
   color: interpolateColorFlat(theme, propsWithDefault.palette, '*'),
   iconSize: TokenIconSize.md,

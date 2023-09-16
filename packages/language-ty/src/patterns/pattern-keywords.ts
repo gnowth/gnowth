@@ -8,9 +8,9 @@ export const patternKeywords: PatternRecord = {
     keywords: {
       patterns: [
         {
-          name: 'keyword.control.ty',
           match:
             '\\b(if|while|for|return|func|var|let|constructor|protocol|class|async|throws|try|switch|case|extends|implements)\\b',
+          name: 'keyword.control.ty',
         },
       ],
     },

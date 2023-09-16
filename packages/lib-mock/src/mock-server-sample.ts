@@ -31,27 +31,19 @@ export function mockServer(_configs: Configs): Server {
           return faker.lorem.sentence()
         },
 
-        name() {
-          return faker.lorem.words()
-        },
-
         mediaPrimary() {
           return faker.image.food()
+        },
+        name() {
+          return faker.lorem.words()
         },
       }),
     },
 
     models: {
+      ingredient: Model.extend({}),
       recipe: Model.extend({
         ingredients: hasMany(),
-      }),
-      ingredient: Model.extend({}),
-    },
-
-    serializers: {
-      application: RestSerializer,
-      recipe: RestSerializer.extend({
-        include: ['ingredients'],
       }),
     },
 
@@ -64,6 +56,13 @@ export function mockServer(_configs: Configs): Server {
     seeds(server) {
       server.createList('recipe', 10)
       // const t = server.create('recipe');
+    },
+
+    serializers: {
+      application: RestSerializer,
+      recipe: RestSerializer.extend({
+        include: ['ingredients'],
+      }),
     },
   })
 }

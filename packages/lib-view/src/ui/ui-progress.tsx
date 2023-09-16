@@ -30,10 +30,6 @@ const stylesLayout = Theme.createStyles({
     padding: 10%;
     position: relative;
   `,
-  layoutProgress: `
-    height: 100%;
-    width: 100%;
-  `,
   layoutContent: `
     align-items: center;
     display: flex;
@@ -43,6 +39,10 @@ const stylesLayout = Theme.createStyles({
     left: 0;
     position: absolute;
     top: 0;
+    width: 100%;
+  `,
+  layoutProgress: `
+    height: 100%;
     width: 100%;
   `,
 })
@@ -175,23 +175,15 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
 const makeStyles = Theme.makeStyles({
   uiProgress: systemCompose<PropsUIProgress>(systemDisplay(), systemSize('iconsize'), systemSpace()),
 
-  uiProgressSvg: (props: PropsUIProgress) => ({
-    height: '100%',
-    transform: 'rotate(-90deg)',
-    transformOrigin: 'center',
-    width: '100%',
-    ...(props.value === null && { animation: `${spinnerRotateLinear} 2s linear infinite` }),
-  }),
-
   uiProgressCircle: (props: PropsUIProgress, theme: ThemeType) => ({
     animationName: spinnerStrokeRotate(props),
     fill: 'transparent',
     stroke: theme.getPaletteColor(props),
     strokeDasharray: (5 - (props.thickness ?? 1)) * Math.PI * 20,
     strokeWidth: `${(props.thickness ?? 1) * 20}%`,
-    transition: `stroke-dashoffset ${props.transitionDuration ?? ''} linear`,
     transformBox: 'view-box',
     transformOrigin: 'center',
+    transition: `stroke-dashoffset ${props.transitionDuration ?? ''} linear`,
 
     ...(props.value === null && {
       animationDuration: '4s',
@@ -216,6 +208,14 @@ const makeStyles = Theme.makeStyles({
   }),
 
   uiProgressCircleInitial: `stroke-dashoffset: ${Math.PI * 80}`,
+
+  uiProgressSvg: (props: PropsUIProgress) => ({
+    height: '100%',
+    transform: 'rotate(-90deg)',
+    transformOrigin: 'center',
+    width: '100%',
+    ...(props.value === null && { animation: `${spinnerRotateLinear} 2s linear infinite` }),
+  }),
 })
 
 const propsDefault = {

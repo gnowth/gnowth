@@ -41,5 +41,5 @@ const fontsizesDesktop: Record<number | string, string | undefined> = {
 }
 
 // TODO: remove desktop=true default
-export default (token: TokenFontSize | string, desktop = true): string | undefined =>
+export const fontsize = (token: TokenFontSize | string, desktop = true): string | undefined =>
   desktop ? fontsizesDesktop[token] : fontsizesMobile[token]

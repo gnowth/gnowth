@@ -5,12 +5,12 @@ import { systemCompose, systemInterpolate } from './system'
 
 export function systemCursor() {
   return (props: SystemCursor, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'cursor', value: props.cursor })
+    systemInterpolate({ key: 'cursor', theme, value: props.cursor })
 }
 
 export function systemPointerEvents() {
   return (props: SystemPointerEvents, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'pointerEvents', value: props.pointerEvents })
+    systemInterpolate({ key: 'pointerEvents', theme, value: props.pointerEvents })
 }
 
 export function systemPointer(): (props: SystemPointer, theme: Theme) => CSSObject {

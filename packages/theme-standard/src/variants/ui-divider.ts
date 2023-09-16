@@ -7,6 +7,6 @@ export const horizontal = (theme: Theme): VariantUIDivider => ({
     theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''
   }, ${theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''})`,
   backgroundPosition: 'center',
-  backgroundSize: '1px 1px',
   backgroundRepeat: 'repeat-x',
+  backgroundSize: '1px 1px',
 })

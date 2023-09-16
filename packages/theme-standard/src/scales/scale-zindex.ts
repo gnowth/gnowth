@@ -16,4 +16,4 @@ const zindexes: Record<number | string, string | undefined> = {
   [TokenZIndex.toast]: '10000',
 }
 
-export default (token: TokenZIndex | string): string | undefined => zindexes[token]
+export const zindex = (token: TokenZIndex | string): string | undefined => zindexes[token]

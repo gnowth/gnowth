@@ -71,21 +71,21 @@ export function useDataSource<Value extends DataValue>(
   )
 
   return {
-    onChange,
-    onSubmit,
-    value,
     awaiting: props.awaiting,
+    connect: <ValueConnect>(name?: DataName): PropsData<ValueConnect> => ({
+      field: props.field?.getField(name),
+      name,
+      onChange: onChange as unknown as (value: ValueConnect, name?: DataName) => void | Promise<void>,
+      value: (name ? _.get(value, name) : value) as ValueConnect,
+    }),
     disabled: props.disabled,
     errors: props.errors,
     field: props.field,
     name: props.name,
-    connect: <ValueConnect>(name?: DataName): PropsData<ValueConnect> => ({
-      name,
-      field: props.field?.getField(name),
-      onChange: onChange as unknown as (value: ValueConnect, name?: DataName) => void | Promise<void>,
-      value: (name ? _.get(value, name) : value) as ValueConnect,
-    }),
     onCancel: props.onCancel,
+    onChange,
     onReset: mode === TokenMode.controlled ? props.onReset : handleReset,
+    onSubmit,
+    value,
   }
 }

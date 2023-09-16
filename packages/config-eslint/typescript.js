@@ -19,6 +19,13 @@ module.exports = {
     'prettier',
   ],
 
+  overrides: [
+    {
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+      files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
+    },
+  ],
+
   parser: '@typescript-eslint/parser',
 
   parserOptions: {
@@ -29,21 +36,15 @@ module.exports = {
 
   plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
-  settings: {
-    'import/extensions': ['.d.ts', '.ts', '.json'],
-  },
-
   root: true,
 
   rules: {
     'import/no-default-export': 'warn',
     'prettier/prettier': 'error',
+    'sort-keys': 'error',
   },
 
-  overrides: [
-    {
-      files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-    },
-  ],
+  settings: {
+    'import/extensions': ['.d.ts', '.ts', '.json'],
+  },
 }

@@ -23,8 +23,8 @@ function getWindow(): Window | undefined {
 const hostname = getWindow()?.location.hostname ?? 'localhost'
 
 const configsDefault = (env: Environment): Configs => ({
-  apiOrigin: env === 'local' ? `http://${hostname}:${SERVER_LOCAL_PORT}` : `https://api.${hostname}`,
   apiContext: '/boilerplate',
+  apiOrigin: env === 'local' ? `http://${hostname}:${SERVER_LOCAL_PORT}` : `https://api.${hostname}`,
 })
 
 export const createConfigs = makeConfigs(configsDefault)

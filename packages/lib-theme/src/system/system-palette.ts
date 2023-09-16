@@ -5,7 +5,7 @@ import { systemInterpolate } from './system'
 
 export function systemColor() {
   return (props: SystemColor, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'color', value: props.color })
+    systemInterpolate({ key: 'color', theme, value: props.color })
 }
 
 export function systemColorFromPalette() {

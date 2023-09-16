@@ -32,7 +32,7 @@ export function systemFontFamily() {
 
 export function systemFontSize(scale: ThemeScale | string = 'fontsize') {
   return (props: SystemFontSize, theme: Theme): CSSObject =>
-    systemInterpolate({ scale, theme, key: 'fontSize', responsive: true, value: props.fontSize })
+    systemInterpolate({ key: 'fontSize', responsive: true, scale, theme, value: props.fontSize })
 }
 
 export function systemFontStyle() {

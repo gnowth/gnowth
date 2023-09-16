@@ -14,32 +14,32 @@ import { systemCompose, systemInterpolate } from './system'
 
 export function systemBackground() {
   return (props: SystemBackground, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'background', value: props.background })
+    systemInterpolate({ key: 'background', theme, value: props.background })
 }
 
 export function systemBackgroundColor() {
   return (props: SystemBackgroundColor, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'backgroundColor', value: props.backgroundColor })
+    systemInterpolate({ key: 'backgroundColor', theme, value: props.backgroundColor })
 }
 
 export function systemBackgroundImage() {
   return (props: SystemBackgroundImage, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'backgroundImage', value: props.backgroundImage })
+    systemInterpolate({ key: 'backgroundImage', theme, value: props.backgroundImage })
 }
 
 export function systemBackgroundPosition() {
   return (props: SystemBackgroundPosition, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'backgroundPosition', value: props.backgroundPosition })
+    systemInterpolate({ key: 'backgroundPosition', theme, value: props.backgroundPosition })
 }
 
 export function systemBackgroundRepeat() {
   return (props: SystemBackgroundRepeat, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'backgroundRepeat', value: props.backgroundRepeat })
+    systemInterpolate({ key: 'backgroundRepeat', theme, value: props.backgroundRepeat })
 }
 
 export function systemBackgroundSize() {
   return (props: SystemBackgroundSize, theme: Theme): CSSObject =>
-    systemInterpolate({ theme, key: 'backgroundSize', value: props.backgroundSize })
+    systemInterpolate({ key: 'backgroundSize', theme, value: props.backgroundSize })
 }
 
 export function systemImage(): (props: SystemImage, theme: Theme) => CSSObject {
