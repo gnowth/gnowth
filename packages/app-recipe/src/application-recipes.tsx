@@ -28,7 +28,7 @@ export const ApplicationRecipes: React.FunctionComponent<Props> = (props) => (
 
     <AppPage authenticated component={PageIngredient} page={TokenPage.ingredient} />
 
-    <AppRedirect from="/recipes/" exact page={TokenPage.landing} />
+    <AppRedirect exact from="/recipes/" page={TokenPage.landing} />
 
     <AppPage component={AppPageNotFound} />
   </AppApplication>

@@ -35,34 +35,34 @@ const SectionHeaderComponent: FunctionComponent = () => {
       </LayoutSection>
 
       <LayoutSection
+        containerProps={{ px: '0' }}
         rootProps={{
           bg: 'teal.50',
           borderBottom: '1px solid',
           borderColor: 'gray.200',
         }}
-        containerProps={{ px: '0' }}
       >
         <HStack>
-          <NavLink prefetch={false} href={ModelApp.routes.dashboard()}>
+          <NavLink href={ModelApp.routes.dashboard()} prefetch={false}>
             {t('Dashboard')}
           </NavLink>
 
-          <NavLink prefetch={false} href={ModelApp.routes.groups()}>
+          <NavLink href={ModelApp.routes.groups()} prefetch={false}>
             {t('Teams')}
           </NavLink>
 
-          <NavLink prefetch={false} href={ModelApp.routes.users()}>
+          <NavLink href={ModelApp.routes.users()} prefetch={false}>
             {t('Members')}
           </NavLink>
 
-          <NavLink prefetch={false} href={ModelApp.routes.reports()}>
+          <NavLink href={ModelApp.routes.reports()} prefetch={false}>
             {t('Reports')}
           </NavLink>
 
           <NavLink
-            prefetch={false}
             href={ModelApp.routes.generated()}
             hrefActive={ModelApp.routes.generated('')}
+            prefetch={false}
           >
             {t('Generated page')}
           </NavLink>

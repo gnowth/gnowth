@@ -5,8 +5,8 @@ import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
 
-import type { ChangeEventHandler } from './use-value'
 import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
+import type { ChangeEventHandler } from './use-value'
 import { useValue } from './use-value'
 
 type SystemInputBoolean = SystemSpace
@@ -129,13 +129,13 @@ export const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) 
       />
 
       <input
+        checked={!!value}
         className={cx(
           'input-boolean__input',
           variant.classNameRoot && `${variant.classNameRoot}__icon`,
           variant.inputClassName,
           styles.inputBooleanInput,
         )}
-        checked={!!value}
         disabled={variant.disabled}
         name={name}
         onChange={handleChange}

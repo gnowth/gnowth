@@ -26,7 +26,7 @@ const FormUserComponent: FunctionComponent = () => {
         initialValues={userQuery.data ?? ModelUser.fromUserSerialized({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
-        <VStack as={Form} alignItems="stretch" spacing="5">
+        <VStack alignItems="stretch" as={Form} spacing="5">
           <Box>
             <FormLabel htmlFor="form-user-nameFirst">{t('First name')}</FormLabel>
             <Field as={Input} id="form-user-nameFirst" name="nameFirst" placeholder="Jane" />

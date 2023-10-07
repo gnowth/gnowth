@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios'
 import { v4 as uuid } from 'uuid'
-import axios from 'axios'
+import { isAxiosError } from 'axios'
 
 export interface ErrorType {
   idLocal: string
@@ -18,7 +18,7 @@ export class ModelError {
   }
 
   static fromErrorUnknown = (error: unknown): ErrorType => {
-    if (axios.isAxiosError(error)) return this.fromErrorAxios(error)
+    if (isAxiosError(error)) return this.fromErrorAxios(error)
 
     if (error instanceof Error) return this.fromError(error)
 
@@ -36,7 +36,7 @@ export class ModelError {
 
   // DEBT: need a better name for checking if network error can be handled by component
   static isErrorQuery = (error: unknown) => {
-    return !axios.isAxiosError(error) || (error.response?.status ?? 0) >= 500
+    return !isAxiosError(error) || (error.response?.status ?? 0) >= 500
   }
 
   static toId = (error: ErrorType) => {

@@ -15,14 +15,14 @@ const SectionFooterComponent: FunctionComponent<Props> = (props) => {
 
   return (
     <Box as="footer" {...props}>
-      <Text p="3" fontSize="sm" textAlign="end">
+      <Text fontSize="sm" p="3" textAlign="end">
         <Link href={ModelApp.routes.changelog()} prefetch={false}>
           {t('Current version: {{packageJson.version}}', { packageJson })}
         </Link>
       </Text>
 
       <Box bg="teal.600">
-        <Text color="white" p="6" fontSize="sm" textAlign="center">
+        <Text color="white" fontSize="sm" p="6" textAlign="center">
           {t('Copyright © 2022 Gnowth')}
         </Text>
       </Box>

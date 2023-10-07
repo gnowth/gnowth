@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const PageContentsClient: PageClientComponent<Props> = (props) => {
-  return <UIMarkdownTina data={props.data} type="contents" query={props.query} variables={props.variables} />
+  return <UIMarkdownTina data={props.data} query={props.query} type="contents" variables={props.variables} />
 }
 
 PageContentsClient.staticPaths = async () => {

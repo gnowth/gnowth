@@ -14,7 +14,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
   const content = await dependencies.serviceTina.getRecipesContent(props.params.slug)
 
   return (
-    <UIMarkdownTina data={content.data} type="recipes" query={content.query} variables={content.variables} />
+    <UIMarkdownTina data={content.data} query={content.query} type="recipes" variables={content.variables} />
   )
 }
 

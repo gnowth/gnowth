@@ -44,7 +44,7 @@
     "@storybook/nextjs": "7.0.26",
     "@storybook/preview-api": "7.0.26",
     "storybook": "7.0.26",
-    "storybook-react-i18next": "2.0.6",
+    "storybook-react-i18next": "2.0.9",
     "react": "18.2.0",
     "react-query": "3.39.3"
   },

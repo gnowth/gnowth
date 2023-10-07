@@ -5,7 +5,7 @@ import { SectionSimulator } from '../components/section-simulator'
 
 export const AppPage: FunctionComponent = () => {
   return (
-    <VStack as="main" alignItems="stretch" spacing="10">
+    <VStack alignItems="stretch" as="main" spacing="10">
       <SectionSimulator />
     </VStack>
   )

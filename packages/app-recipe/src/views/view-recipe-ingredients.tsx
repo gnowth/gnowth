@@ -29,7 +29,7 @@ export const ViewRecipeIngredients: React.FunctionComponent<Props> = () => {
 
   return (
     <UIPaper palette="text" paletteWeight="a100">
-      <DataSource layout="panel" awaiting={connection.awaiting} value={connection.value}>
+      <DataSource awaiting={connection.awaiting} layout="panel" value={connection.value}>
         <AppLayout layout="horizontal" slot="header">
           <UITypography>{locale.title}</UITypography>
 

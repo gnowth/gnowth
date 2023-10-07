@@ -20,7 +20,7 @@ const FormUserFilterComponent: FunctionComponent = () => {
       onSubmit={(values) => setFilters({ ...values, page: 1 })}
     >
       <LayoutSection>
-        <HStack as={Form} alignItems="flex-end" spacing="5">
+        <HStack alignItems="flex-end" as={Form} spacing="5">
           <Box>
             <FormLabel htmlFor="form-user-filter-email">{t('Email')}</FormLabel>
             <Field as={Input} id="form-user-filter-email" name="email" placeholder={t('email')} />

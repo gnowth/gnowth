@@ -6,7 +6,7 @@ import { FormGroupFilter } from '../components/form-group-filter'
 
 export const PageGroups: FunctionComponent = () => {
   return (
-    <VStack as="main" alignItems="stretch" spacing="10">
+    <VStack alignItems="stretch" as="main" spacing="10">
       <FormGroupFilter />
 
       <SectionGroups />

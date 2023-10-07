@@ -38,7 +38,7 @@ export const ApplicationPages: React.FunctionComponent<Props> = (props) => (
 
     <AppPage component={PageTermsAndConditions} page={TokenPage.termsAndConditions} />
 
-    <AppRedirect from="/pages/" exact page={TokenPage.aboutUs} />
+    <AppRedirect exact from="/pages/" page={TokenPage.aboutUs} />
 
     <AppPage component={AppPageNotFound} />
   </AppApplication>

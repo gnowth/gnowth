@@ -6,7 +6,7 @@ import { SectionUsers } from '../components/section-users'
 
 export const PageUsers: FunctionComponent = () => {
   return (
-    <VStack as="main" alignItems="stretch" spacing="10">
+    <VStack alignItems="stretch" as="main" spacing="10">
       <FormUserFilter />
 
       <SectionUsers />

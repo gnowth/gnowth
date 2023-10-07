@@ -38,7 +38,7 @@ export const ApplicationTasks: React.FunctionComponent<Props> = (props) => (
 
     <AppPage authenticated component={PageReport} exact path={AppModelApplicationTasks.routes.report} />
 
-    <AppRedirect from="/tasks/" exact to={AppModelApplicationTasks.routes.landing} />
+    <AppRedirect exact from="/tasks/" to={AppModelApplicationTasks.routes.landing} />
 
     <AppPage component={AppPageNotFound} path={AppModelApplicationTasks.routes.root} />
   </AppApplication>

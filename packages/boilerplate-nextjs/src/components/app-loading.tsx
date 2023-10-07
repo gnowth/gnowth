@@ -5,7 +5,7 @@ import { Spinner } from '@chakra-ui/react'
 export const AppLoading: FunctionComponent = () => {
   return (
     <LayoutSection containerProps={{ textAlign: 'center' }}>
-      <Spinner thickness="10px" speed="0.65s" emptyColor="gray.200" color="teal.500" size="xl" />
+      <Spinner color="teal.500" emptyColor="gray.200" size="xl" speed="0.65s" thickness="10px" />
     </LayoutSection>
   )
 }

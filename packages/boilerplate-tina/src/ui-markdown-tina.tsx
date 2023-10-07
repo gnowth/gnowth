@@ -37,5 +37,5 @@ export const UIMarkdownTina = <Type extends `${CollectionEnum}`>(props: Props<Ty
   const { data } = useTina(props) as { data: Record<Type, { body?: TinaMarkdownContent }> }
   const content = data[props.type].body
 
-  return <>{!!content && <TinaMarkdown content={content} components={props.components} />}</>
+  return <>{!!content && <TinaMarkdown components={props.components} content={content} />}</>
 }

@@ -1,6 +1,6 @@
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
-import i18n from 'i18next'
+import { createInstance } from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
@@ -9,6 +9,8 @@ import { streamErrors } from './services/stream-errors'
 // import makeServer from './services/make-server'
 
 function setupI18n() {
+  const i18n = createInstance()
+
   i18n
     .use(i18nBackend) // load translation using http. docs: https://github.com/i18next/i18next-http-backend
     .use(i18nLanguageDetector) // detect user language. docs: https://github.com/i18next/i18next-browser-languageDetector

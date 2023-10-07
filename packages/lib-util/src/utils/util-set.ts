@@ -1,6 +1,6 @@
 import type { DataName } from '@gnowth/lib-types'
 import _ from 'lodash'
-import produce from 'immer'
+import { produce } from 'immer'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const funcSet =

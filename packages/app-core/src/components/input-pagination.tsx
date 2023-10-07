@@ -30,6 +30,7 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
         <Text whiteSpace="nowrap">{t('Page size')}</Text>
 
         <Select
+          maxWidth="20"
           onChange={({ target }) => {
             if (!target.value) return
             return props.onChange({
@@ -42,7 +43,6 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
               pageSize: Number(target.value) as FilterPageSize,
             })
           }}
-          maxWidth="20"
           placeholder={t('Select option')}
           value={props.value.pageSize}
         >
@@ -68,11 +68,11 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
         </Button>
 
         <Select
+          maxWidth="20"
           onChange={({ target }) => {
             if (!target.value) return
             return props.onChange({ ...props.value, page: Number(target.value) })
           }}
-          maxWidth="20"
           placeholder={t('Select option')}
           value={props.value.page}
         >
