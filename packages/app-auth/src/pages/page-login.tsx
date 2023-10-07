@@ -59,7 +59,7 @@ export function PageLogin(): ReactElement {
               </AppLink>
             </LayoutFlex>
 
-            <DataTrigger componentValue="Log in" componentPalette="primary" componentVariant="contained" />
+            <DataTrigger componentPalette="primary" componentValue="Log in" componentVariant="contained" />
           </DataSource>
 
           <UIDivider marginBottom={TokenSpace.md} marginTop={TokenSpace.md}>

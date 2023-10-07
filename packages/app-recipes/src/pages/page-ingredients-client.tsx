@@ -12,7 +12,7 @@ type Props = {
 
 export const PageIngredientsClient: PageClientComponent<Props> = (props) => {
   return (
-    <UIMarkdownTina data={props.data} type="ingredients" query={props.query} variables={props.variables} />
+    <UIMarkdownTina data={props.data} query={props.query} type="ingredients" variables={props.variables} />
   )
 }
 

@@ -3,8 +3,8 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 
-import { SystemToasts } from './system-toasts'
 import { setup } from '../setup'
+import { SystemToasts } from './system-toasts'
 
 type Props = {
   children: ReactNode

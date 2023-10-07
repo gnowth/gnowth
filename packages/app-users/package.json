@@ -30,7 +30,7 @@
     "@chakra-ui/react": "2.7.1",
     "axios": "1.4.0",
     "formik": "2.4.2",
-    "react-i18next": "13.0.1",
+    "react-i18next": "13.2.2",
     "react-query": "3.39.3",
     "recoil": "0.7.7",
     "uuid": "9.0.0"

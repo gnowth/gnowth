@@ -16,8 +16,8 @@ export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
         borderBottom="3px solid"
         borderColor={isActive ? 'teal.300' : 'transparent'}
         cursor="pointer"
-        py="3"
         px="4"
+        py="3"
       >
         {props.children}
       </Box>

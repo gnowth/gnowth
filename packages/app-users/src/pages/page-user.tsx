@@ -5,7 +5,7 @@ import { FormUser } from '../components/form-user'
 
 export const PageUser: FunctionComponent = () => {
   return (
-    <VStack as="main" alignItems="stretch" spacing="10">
+    <VStack alignItems="stretch" as="main" spacing="10">
       <FormUser />
     </VStack>
   )

@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const PageRecipesClient: PageClientComponent<Props> = (props) => {
-  return <UIMarkdownTina data={props.data} type="recipes" query={props.query} variables={props.variables} />
+  return <UIMarkdownTina data={props.data} query={props.query} type="recipes" variables={props.variables} />
 }
 
 PageRecipesClient.staticPaths = async () => {

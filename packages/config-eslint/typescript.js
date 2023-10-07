@@ -2,49 +2,30 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    mongo: true,
     node: true,
-    serviceworker: true,
-    worker: true,
   },
 
   extends: [
-    'plugin:@typescript-eslint/recommended',
-    // Note: the following config will add typechecking in eslint
-    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:eslint-comments/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:promise/recommended',
-    'prettier',
+    './configs/eslint--sort-keys',
+    './configs/import--no-default-export',
+    './configs/import--order',
+    './configs/import',
+    './configs/prettier',
+    './configs/tests',
+    './configs/typescript',
   ],
-
-  overrides: [
-    {
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-      files: ['**/__tests__/**/*.ts', '**/?(*.)+(spec|test).ts'],
-    },
-  ],
-
-  parser: '@typescript-eslint/parser',
 
   parserOptions: {
     ecmaFeatures: { impliedStrict: true },
     ecmaVersion: 'latest',
-    project: '**/tsconfig.json',
+    sourceType: 'module',
   },
-
-  plugins: ['@typescript-eslint', 'eslint-comments', 'import', 'jest', 'prettier', 'promise'],
 
   root: true,
 
-  rules: {
-    'import/no-default-export': 'warn',
-    'prettier/prettier': 'error',
-    'sort-keys': 'error',
-  },
-
-  settings: {
-    'import/extensions': ['.d.ts', '.ts', '.json'],
-  },
+  // settings: {
+  //   'import/extensions': ['.d.ts', '.ts', '.json'],
+  // },
 }

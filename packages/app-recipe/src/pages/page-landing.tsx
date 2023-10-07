@@ -12,10 +12,10 @@ export const PageLanding: React.FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
+      layoutSpacing={TokenSpace.lg}
       paddingBottom={TokenSpace.xxxl}
       paddingTop={TokenSpace.xxxl}
       palette="primary"
-      layoutSpacing={TokenSpace.lg}
       variant="page"
     >
       <UITypography palette="primary" paletteForContrast value="Some text jdiof odfijdof odifj f" />
@@ -28,11 +28,11 @@ export const PageLanding: React.FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
+      layoutSpacing={TokenSpace.lg}
       paddingBottom={TokenSpace.xxxl}
       paddingTop={TokenSpace.xxxl}
       palette="text"
       paletteWeight="a100"
-      layoutSpacing={TokenSpace.lg}
       variant="page"
     >
       <UITypography value="Some text jdiof odfijdof odifj f" />
@@ -41,10 +41,10 @@ export const PageLanding: React.FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
+      layoutSpacing={TokenSpace.lg}
       paddingBottom={TokenSpace.xxxl}
       paddingTop={TokenSpace.xxxl}
       palette="secondary"
-      layoutSpacing={TokenSpace.lg}
       variant="page"
     >
       <UITypography palette="secondary" paletteForContrast value="Some text jdiof odfijdof odifj f" />
@@ -57,11 +57,11 @@ export const PageLanding: React.FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
+      layoutSpacing={TokenSpace.lg}
       paddingBottom={TokenSpace.xxxl}
       paddingTop={TokenSpace.xxxl}
       palette="text"
       paletteWeight="a100"
-      layoutSpacing={TokenSpace.lg}
       variant="page"
     >
       <UITypography value="Some text jdiof odfijdof odifj f" />

@@ -16,8 +16,8 @@ export const PageIngredientsServer: PageServerComponent<Props> = async (props) =
   return (
     <UIMarkdownTina
       data={content.data}
-      type="ingredients"
       query={content.query}
+      type="ingredients"
       variables={content.variables}
     />
   )

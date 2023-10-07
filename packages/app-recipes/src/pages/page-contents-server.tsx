@@ -14,7 +14,7 @@ export const PageContentsServer: PageServerComponent<Props> = async (props) => {
   const content = await dependencies.serviceTina.getContentsContent(props.params.slug)
 
   return (
-    <UIMarkdownTina data={content.data} type="contents" query={content.query} variables={content.variables} />
+    <UIMarkdownTina data={content.data} query={content.query} type="contents" variables={content.variables} />
   )
 }
 

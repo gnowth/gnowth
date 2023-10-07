@@ -53,8 +53,8 @@ export function PageRecipeEdit(props: Props): ReactElement {
             <DataConnect labelValue="Description" name="description" />
 
             <DataTrigger
-              componentValue="submit"
               componentPalette="primary"
+              componentValue="submit"
               componentVariant="contained"
               submit
             />

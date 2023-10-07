@@ -5,7 +5,7 @@ import { FormGroup } from '../components/form-group'
 
 export const PageGroup: FunctionComponent = () => {
   return (
-    <VStack as="main" alignItems="stretch" spacing="10">
+    <VStack alignItems="stretch" as="main" spacing="10">
       <FormGroup />
     </VStack>
   )

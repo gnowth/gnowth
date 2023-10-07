@@ -2,25 +2,19 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    mongo: true,
     node: true,
-    serviceworker: true,
-    worker: true,
   },
 
   extends: [
     'eslint:recommended',
     'plugin:eslint-comments/recommended',
-    'plugin:import/recommended',
     'plugin:promise/recommended',
-    'prettier',
-  ],
-
-  overrides: [
-    {
-      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
-      files: ['**/__tests__/**/*.js', '**/?(*.)+(spec|test).js'],
-    },
+    './configs/eslint--sort-keys',
+    './configs/import--no-default-export',
+    './configs/import--order',
+    './configs/import',
+    './configs/prettier',
+    './configs/tests',
   ],
 
   parserOptions: {
@@ -29,17 +23,9 @@ module.exports = {
     sourceType: 'module',
   },
 
-  plugins: ['eslint-comments', 'import', 'jest', 'prettier', 'promise'],
-
   root: true,
 
-  rules: {
-    'import/no-default-export': 'warn',
-    'prettier/prettier': 'error',
-    'sort-keys': 'error',
-  },
-
-  settings: {
-    'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
-  },
+  // settings: {
+  //   'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
+  // },
 }
