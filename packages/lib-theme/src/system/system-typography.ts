@@ -12,15 +12,15 @@ import type {
   SystemTypography,
   Theme,
 } from '@gnowth/lib-types'
-import _ from 'lodash'
 import { TokenFont, TokenFontToVariable } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 import type { ThemeScale } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
 export function systemFontFamily() {
   return (props: SystemFontFamily, theme: Theme): CSSObject => {
-    if (_.isString(props.fontFamily)) return { fontFamily: props.fontFamily }
+    if (guardString(props.fontFamily)) return { fontFamily: props.fontFamily }
     if (props.fontFamily === undefined) return {}
 
     const tokenVariable = TokenFontToVariable[props.fontFamily as TokenFont]

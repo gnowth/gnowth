@@ -1,6 +1,6 @@
 import type { ObjectKey, ObjectLike, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
 import type { PredicateObjectFilter } from './predicates'
-import { guardObject, guardUndefined } from './guards'
+import { guardNumberLike, guardObject, guardUndefined } from './guards'
 import { operatorObjectFilterNot } from './operators'
 
 type ObjectDefaults = <Item extends ObjectLike>(item: Item, ...items: Partial<Item | undefined>[]) => Item
@@ -22,10 +22,12 @@ type ObjectToEntries = <Item extends ObjectLike>(item: Item) => UtilEntriesFromO
 
 type ObjectToKeys = <Item extends ObjectLike>(item: Item) => (keyof Item)[]
 
-type ObjectSet = <Item extends ObjectLike, Name extends keyof Item>(
+type ObjectGet = <Item extends ObjectLike>(item: Item, path: string | string[]) => unknown
+
+type ObjectSet = <Item extends ObjectLike | unknown[]>(
   item: Item,
-  name: Name,
-  value: Item[Name],
+  name: ObjectKey | ObjectKey[],
+  value: unknown,
 ) => Item
 
 export const objectFromPairs: ObjectFromPairs = <Type extends ObjectKey>(
@@ -61,4 +63,37 @@ export const objectDefaults: ObjectDefaults = (...items) =>
       .map((item) => objectOmitBy(item, guardUndefined)),
   )
 
-export const objectSet: ObjectSet = (item, name, value) => ({ ...item, [name]: value })
+export const objectGet: ObjectGet = (item, name) =>
+  Array.isArray(name)
+    ? name.reduce(
+        (output, itemReduced) => (output as Record<string, unknown>)?.[itemReduced],
+        item as unknown,
+      )
+    : (item as Record<string, unknown>)[name]
+
+export const objectSet: ObjectSet = (item, name, value) => {
+  const path = Array.isArray(name) ? name : [name]
+  const path0 = path.at(0) as string
+
+  if (Array.isArray(item)) {
+    return item.toSpliced(
+      path0 as unknown as number,
+      1,
+      path.length <= 1
+        ? value
+        : objectSet(objectGet(item, path0) ?? (guardNumberLike(path0) ? [] : {}), path.slice(1), value),
+    ) as typeof item
+  }
+
+  if (guardObject(item)) {
+    return {
+      ...item,
+      [path0]:
+        path.length <= 1
+          ? value
+          : objectSet(objectGet(item, path0) ?? (guardNumberLike(path0) ? [] : {}), path.slice(1), value),
+    } as typeof item
+  }
+
+  return item
+}

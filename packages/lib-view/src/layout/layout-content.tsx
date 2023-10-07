@@ -1,6 +1,5 @@
 import type { SystemDisplay, SystemFlexbox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
 import type { ReactNode } from 'react'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -12,6 +11,7 @@ import {
   systemFlexbox,
   systemSpace,
 } from '@gnowth/lib-theme'
+import { guardString } from '@gnowth/lib-utils'
 
 interface ComponentProps {
   className?: string
@@ -60,7 +60,7 @@ export const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props
     {
       className: cx(
         'layout-content',
-        _.isString(variant.variant) && `layout-content--${variant.variant}`,
+        guardString(variant.variant) && `layout-content--${variant.variant}`,
         variant.className,
         styles.layoutContent,
       ),

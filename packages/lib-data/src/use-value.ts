@@ -48,16 +48,12 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
   const [value, setValue] = React.useState(props.value)
 
   const handleChangeControlled = React.useCallback<NonNullable<typeof onChange>>(
-    (val, name) =>
-      onChange?.(name ? objectSet(valueRef.current, name as keyof Value, val as Value[keyof Value]) : val),
+    (val, name) => onChange?.(name ? objectSet(valueRef.current, name, val) : val),
     [onChange, valueRef],
   )
 
   const handleChangeShadow = React.useCallback<NonNullable<typeof onChange>>(
-    (val, name) =>
-      setValue((prevValue) =>
-        name ? objectSet(prevValue, name as keyof Value, val as Value[keyof Value]) : prevValue,
-      ),
+    (val, name) => setValue((prevValue) => (name ? objectSet(prevValue, name, val) : prevValue)),
     [],
   )
 

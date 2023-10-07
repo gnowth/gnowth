@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { guardString } from '@gnowth/lib-utils'
 
 import { AppModelApplication } from './app-model-application'
 
@@ -12,7 +12,7 @@ export class AppModelEnvironment {
   }
 
   getApplication(application?: AppModelApplication | string): AppModelApplication {
-    if (!_.isString(application)) return application || defaultApplication
+    if (!guardString(application)) return application || defaultApplication
 
     return this.applications[application] || defaultApplication
   }

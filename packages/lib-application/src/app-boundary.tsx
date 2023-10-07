@@ -1,7 +1,7 @@
 import type { PropsBoundary, Theme } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { UtilError } from '@gnowth/lib-util'
+import { guardString } from '@gnowth/lib-utils'
 
 import { ContextEnvironment } from './context-environment'
 import { withAppTheme } from './with-app-theme'
@@ -48,7 +48,7 @@ class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
 
   getComponent(error: UtilError): React.ComponentType<PropsBoundary> | undefined {
     const keys = Object.keys(this.context.boundaries)
-    const types = _.isString(error.type) ? [error.type] : error.type || []
+    const types = guardString(error.type) ? [error.type] : error.type || []
     const typeError = types.find((type) => keys.includes(type))
     const ComponentDefault = this.props.theme.getComponent<PropsBoundary>({
       component: 'error',

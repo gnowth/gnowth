@@ -7,7 +7,6 @@ import type {
   SystemPointer,
   SystemSpace,
 } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -22,6 +21,7 @@ import {
   systemSpace,
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 import { UIIcon, PropsUIIcon } from './ui-icon'
 import { UIProgress, PropsUIProgress } from './ui-progress'
@@ -110,7 +110,7 @@ export const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
     <button
       className={cx(
         'ui-button',
-        _.isString(variant.variant) && `ui-button--${variant.variant}`,
+        guardString(variant.variant) && `ui-button--${variant.variant}`,
         variant.className,
         variant.classNameRoot,
         styles.uiButton,
@@ -143,7 +143,7 @@ export const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
           />
         )}
 
-        {!variant.textHidden && _.isString(variant.textValue) && (
+        {!variant.textHidden && guardString(variant.textValue) && (
           <ComponentTypography
             className={cx(
               'ui-button__text',

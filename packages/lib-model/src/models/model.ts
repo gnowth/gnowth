@@ -1,6 +1,5 @@
 import type { DataName, Field, Model as IModel, QueryApi, SchemaFromValue } from '@gnowth/lib-types'
-import { objectMapValues } from '@gnowth/lib-utils'
-import _ from 'lodash'
+import { guardString, objectMapValues } from '@gnowth/lib-utils'
 
 import { FieldModel } from '../fields/field-model'
 
@@ -33,13 +32,13 @@ export class Model<Value extends Record<keyof Value, unknown> = Record<string, n
 
     if (!name) return undefined
 
-    if (_.isString(name)) return schema[name as keyof Value]
+    if (guardString(name)) return schema[name as keyof Value]
 
     if (name.length === 0) return undefined
 
-    if (name.length === 1) return schema[_.first(name) as keyof Value]
+    if (name.length === 1) return schema[name.at(0) as keyof Value]
 
-    return schema[_.first(name) as keyof Value].getField(name.slice(1))
+    return schema[name.at(0) as keyof Value].getField(name.slice(1))
   }
 
   toField(): FieldModel<Value> {

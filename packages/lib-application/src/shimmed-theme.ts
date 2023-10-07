@@ -7,11 +7,11 @@ import type {
   ThemeVariant,
 } from '@gnowth/lib-types'
 import type { ComponentType } from 'react'
-import _ from 'lodash'
+import { guardString } from '@gnowth/lib-utils'
 
 class ThemeShimmed implements Theme {
   getComponent<Props>(configs: ThemeConfigsComponent<Props>): ComponentType<Props> | undefined {
-    return _.isString(configs.component) ? undefined : configs.component
+    return guardString(configs.component) ? undefined : configs.component
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

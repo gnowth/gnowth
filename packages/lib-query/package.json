@@ -25,16 +25,14 @@
   "dependencies": {
     "@gnowth/lib-types": "0.0.0",
     "@gnowth/lib-util": "0.0.0",
-    "inflected": "2.1.0",
-    "lodash": "4.17.21"
+    "inflected": "2.1.0"
   },
   "devDependencies": {
     "@gnowth/browserslist-config": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/inflected": "1.1.29",
-    "@types/lodash": "4.14.168"
+    "@types/inflected": "1.1.29"
   },
   "scripts": {
     "lint": "npm run lint:script",

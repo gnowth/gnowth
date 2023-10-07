@@ -7,7 +7,6 @@ import type {
   SystemSpace,
   Theme as ThemeType,
 } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
@@ -21,6 +20,7 @@ import {
   systemSpace,
 } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 import { UtilSlot } from '../util/util-slot'
 
@@ -250,7 +250,7 @@ export const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
     <div
       className={cx(
         'ui-progress',
-        _.isString(variant.variant) && `ui-progress--${variant.variant}`,
+        guardString(variant.variant) && `ui-progress--${variant.variant}`,
         variant.className,
         styles.uiProgress,
       )}

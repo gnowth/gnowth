@@ -1,3 +1,3 @@
-import _ from 'lodash'
+import { guardString } from '@gnowth/lib-utils'
 
-export const length = (token: number | string): string => (_.isString(token) ? token : `${token * 100}%`)
+export const length = (token: number | string): string => (guardString(token) ? token : `${token * 100}%`)

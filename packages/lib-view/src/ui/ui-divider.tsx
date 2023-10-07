@@ -1,8 +1,8 @@
 import type { SystemImage, SystemSpace, SystemTextAlign } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemCompose, systemImage, systemSpace, systemTextAlign } from '@gnowth/lib-theme'
+import { guardString } from '@gnowth/lib-utils'
 
 type SystemUIDivider = SystemImage & SystemSpace & SystemTextAlign
 
@@ -42,7 +42,7 @@ export const UIDivider: React.FunctionComponent<PropsUIDivider> = (props) => {
     <div
       className={cx(
         'ui-divider',
-        _.isString(variant.variant) && `ui-divider--${variant.variant}`,
+        guardString(variant.variant) && `ui-divider--${variant.variant}`,
         variant.className,
         styles.uiDivider,
       )}

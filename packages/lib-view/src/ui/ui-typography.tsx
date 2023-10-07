@@ -6,7 +6,6 @@ import type {
   SystemTypography,
 } from '@gnowth/lib-types'
 import type { ReactNode } from 'react'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -18,6 +17,7 @@ import {
   systemSpace,
   systemTypography,
 } from '@gnowth/lib-theme'
+import { guardString } from '@gnowth/lib-utils'
 
 interface ComponentProps {
   className?: string
@@ -74,7 +74,7 @@ export const UITypography: React.FunctionComponent<PropsUITypography> = (props) 
     {
       className: cx(
         'ui-typography',
-        _.isString(variant.variant) && `ui-typography--${variant.variant}`,
+        guardString(variant.variant) && `ui-typography--${variant.variant}`,
         variant.className,
         styles.uiTypography,
       ),

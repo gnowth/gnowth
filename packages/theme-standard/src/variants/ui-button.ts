@@ -1,7 +1,7 @@
 import type { Theme } from '@gnowth/lib-types'
 import type { PropsUIButton, VariantUIButton } from '@gnowth/lib-view'
-import _ from 'lodash'
 import { TokenIconSize, TokenSpace, TokenSelector } from '@gnowth/lib-token'
+import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
 
 // TODO find a way to abstract it across in a library
 function select(selector = '', child?: string) {
@@ -9,7 +9,7 @@ function select(selector = '', child?: string) {
 }
 
 function interpolateColorFlat(theme: Theme, palette?: string, child?: string, forTextStyle = false) {
-  return _.omitBy(
+  return objectOmitBy(
     {
       [select('', child)]: theme.getPaletteColor({
         palette,
@@ -34,12 +34,12 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
         paletteWeight: child ? '800' : '200',
       }),
     },
-    _.isUndefined,
+    guardUndefined,
   ) as Record<string, string>
 }
 
 function interpolateColor(theme: Theme, color = 'white') {
-  return _.omitBy(
+  return objectOmitBy(
     {
       '&': color,
 
@@ -53,7 +53,7 @@ function interpolateColor(theme: Theme, color = 'white') {
         paletteWeight: '200',
       }),
     },
-    _.isUndefined,
+    guardUndefined,
   ) as Record<string, string>
 }
 

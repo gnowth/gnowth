@@ -1,9 +1,8 @@
 import type { DataName, DataValue, PropsData } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 import { UtilError, useEnsureConstant } from '@gnowth/lib-util'
-import { objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults, objectGet } from '@gnowth/lib-utils'
 
 import type { WithConnect } from './types'
 import { DataContext } from './data-context'
@@ -76,7 +75,7 @@ export function useDataSource<Value extends DataValue>(
       field: props.field?.getField(name),
       name,
       onChange: onChange as unknown as (value: ValueConnect, name?: DataName) => void | Promise<void>,
-      value: (name ? _.get(value, name) : value) as ValueConnect,
+      value: (name ? objectGet(value, name) : value) as ValueConnect,
     }),
     disabled: props.disabled,
     errors: props.errors,

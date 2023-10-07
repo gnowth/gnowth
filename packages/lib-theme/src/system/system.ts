@@ -1,6 +1,6 @@
 import type { CSSObject } from '@emotion/css'
 import type { Interpolate, Theme } from '@gnowth/lib-types'
-import _ from 'lodash'
+import { guardObject, objectMapValues } from '@gnowth/lib-utils'
 
 import type { ThemeScale } from '../types'
 import { objectDefaultsDeep } from './system.utils'
@@ -35,7 +35,7 @@ export function systemInterpolate<Value extends string | number>(
     return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
   }
 
-  if (!_.isObject(configs.value)) return makeCSSObject(configs.value)
+  if (!guardObject(configs.value)) return makeCSSObject(configs.value)
 
-  return _.mapValues(configs.value, makeCSSObject)
+  return objectMapValues(configs.value, makeCSSObject)
 }
