@@ -9,7 +9,6 @@ category: cicd
 
 - eslint-plugin-node
 - eslint-import-resolver-node
-- eslint-module-utils
 - eslint-utils
 - eslint-plugin-jsdoc
 - eslint-plugin-html

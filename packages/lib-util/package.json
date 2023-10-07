@@ -22,10 +22,6 @@
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
-  "dependencies": {
-    "immer": "9.0.1",
-    "lodash": "4.17.21"
-  },
   "devDependencies": {
     "@gnowth/babel-preset": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
@@ -33,8 +29,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@gnowth/lib-types": "0.0.0",
-    "@testing-library/react": "14.0.0",
-    "@types/lodash": "4.14.168"
+    "@testing-library/react": "14.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"

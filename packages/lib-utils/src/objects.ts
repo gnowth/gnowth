@@ -22,6 +22,12 @@ type ObjectToEntries = <Item extends ObjectLike>(item: Item) => UtilEntriesFromO
 
 type ObjectToKeys = <Item extends ObjectLike>(item: Item) => (keyof Item)[]
 
+type ObjectSet = <Item extends ObjectLike, Name extends keyof Item>(
+  item: Item,
+  name: Name,
+  value: Item[Name],
+) => Item
+
 export const objectFromPairs: ObjectFromPairs = <Type extends ObjectKey>(
   pairs: Type[][],
 ): Record<Type, Type> =>
@@ -54,3 +60,5 @@ export const objectDefaults: ObjectDefaults = (...items) =>
       .toReversed()
       .map((item) => objectOmitBy(item, guardUndefined)),
   )
+
+export const objectSet: ObjectSet = (item, name, value) => ({ ...item, [name]: value })

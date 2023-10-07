@@ -1,5 +1,3 @@
-export * as utils from './utils/utils'
-
 export * from './hooks/use-deferred-resource'
 export * from './hooks/use-ensure-constant'
 export * from './hooks/use-previous'

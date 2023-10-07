@@ -1,5 +1,3 @@
-import * as R from 'ramda'
-
 import type { Environment } from './types'
 
 type CreateConfigs<Configs> = (env?: Environment) => Configs
@@ -33,6 +31,6 @@ export function makeConfigs<Configs extends object>(
       ? configurationEnvironment(environment)
       : configurationEnvironment
 
-    return R.mergeDeepLeft(configsDefault, configsEnvironment) as unknown as Configs
+    return Object.assign({}, configsDefault, configsEnvironment)
   }
 }

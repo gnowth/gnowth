@@ -20,14 +20,10 @@
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
-  "dependencies": {
-    "ramda": "0.29.0"
-  },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "@types/ramda": "0.29.3"
+    "@gnowth/typescript-config": "0.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
