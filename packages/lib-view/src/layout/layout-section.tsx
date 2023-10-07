@@ -1,5 +1,4 @@
 import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -11,6 +10,7 @@ import {
   systemSpace,
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 type SystemLayoutSection = SystemBox & SystemPalette & SystemSpace
 
@@ -66,7 +66,7 @@ export const LayoutSection: React.FunctionComponent<PropsLayoutSection> = (props
     <section
       className={cx(
         'layout-section',
-        _.isString(variant.variant) && `layout-section--${variant.variant}`,
+        guardString(variant.variant) && `layout-section--${variant.variant}`,
         variant.className,
         styles.layoutSection,
       )}

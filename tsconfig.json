@@ -3,7 +3,9 @@
   "exclude": [
     "**/__generated__/",
     "**/.next/",
+    "**/.parcel-cache/",
     "**/.turbo/",
+    "**/artifact/",
     "**/build/",
     "**/coverage/",
     "**/cypress/media/",

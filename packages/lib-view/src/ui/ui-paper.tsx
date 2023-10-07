@@ -1,5 +1,4 @@
 import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -11,6 +10,7 @@ import {
   systemSpace,
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 type SystemUIPapper = SystemBox & SystemPalette & SystemSpace
 
@@ -54,7 +54,7 @@ export const UIPaper: React.FunctionComponent<PropsUIPaper> = (props) => {
     <div
       className={cx(
         'ui-paper',
-        _.isString(variant.variant) && `ui-paper--${variant.variant}`,
+        guardString(variant.variant) && `ui-paper--${variant.variant}`,
         variant.className,
         styles.uiPaper,
       )}

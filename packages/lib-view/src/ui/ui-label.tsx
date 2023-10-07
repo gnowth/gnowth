@@ -1,5 +1,4 @@
 import type { PropsDataReadonly, SystemPalette, SystemSpace, SystemTypography } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -10,6 +9,7 @@ import {
   systemSpace,
   systemTypography,
 } from '@gnowth/lib-theme'
+import { guardString } from '@gnowth/lib-utils'
 
 type SystemUILabel = SystemPalette & SystemSpace & SystemTypography
 
@@ -49,7 +49,7 @@ export const UILabel: React.FunctionComponent<PropsUILabel> = (props) => {
     <label
       className={cx(
         'ui-label',
-        _.isString(variant.variant) && `ui-label--${variant.variant}`,
+        guardString(variant.variant) && `ui-label--${variant.variant}`,
         variant.className,
         styles.uiLabel,
       )}

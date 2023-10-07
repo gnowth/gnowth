@@ -1,6 +1,6 @@
-import _ from 'lodash'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { mockServer } from '@gnowth/lib-mock'
+import { chain } from '@gnowth/lib-utils'
 
 // TODO: fix types
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -12,4 +12,4 @@ const setupMock = () => () => {
   }
 }
 
-export const setup = _.flowRight(setupMock(), setupDummy())
+export const setup = chain(setupMock(), setupDummy())

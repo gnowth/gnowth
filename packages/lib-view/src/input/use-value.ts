@@ -1,5 +1,4 @@
 import type { DataName } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 
@@ -56,7 +55,7 @@ export function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Valu
   )
 
   return {
-    name: Array.isArray(props.name) ? _.last(props.name) : props.name,
+    name: Array.isArray(props.name) ? props.name.at(-1) : props.name,
     onChange: {
       [TokenMode.controlled]: handleChangeControlled,
       [TokenMode.shadow]: handleChangeShadow,

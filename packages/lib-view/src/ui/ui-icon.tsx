@@ -1,9 +1,9 @@
 import type { PropsDataReadonly, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemColorFromPalette, systemCompose, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 interface ComponentProps {
   className?: string
@@ -54,7 +54,7 @@ export const UIIcon: React.FunctionComponent<PropsUIIcon> = (props) => {
     <Component
       className={cx(
         'ui-icon',
-        _.isString(variant.variant) && `ui-icon--${variant.variant}`,
+        guardString(variant.variant) && `ui-icon--${variant.variant}`,
         variant.className,
         styles.uiIcon,
       )}

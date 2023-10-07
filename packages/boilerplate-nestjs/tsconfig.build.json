@@ -6,8 +6,10 @@
   "exclude": [
     "**/__generated__/",
     "**/.next/",
+    "**/.parcel-cache/",
     "**/.turbo/",
     "**/*test.ts",
+    "**/artifact/",
     "**/build/",
     "**/coverage/",
     "**/cypress/media/",

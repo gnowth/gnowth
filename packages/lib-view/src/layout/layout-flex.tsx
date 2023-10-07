@@ -6,11 +6,11 @@ import type {
   SystemSpace,
   Theme as ThemeType,
 } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemCompose, systemFlexbox, systemLayout, systemSpace } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 interface ComponentProps {
   className?: string
@@ -115,7 +115,7 @@ export const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
     {
       className: cx(
         'layout-flex',
-        _.isString(variant.variant) && `layout-flex--${variant.variant}`,
+        guardString(variant.variant) && `layout-flex--${variant.variant}`,
         variant.className,
         styles.layoutFlex,
       ),

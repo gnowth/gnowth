@@ -1,5 +1,5 @@
 import type { Model, QueryResource } from '@gnowth/lib-types'
-import _ from 'lodash'
+import { guardString } from '@gnowth/lib-utils'
 
 interface ConfigsApplication {
   route?: string
@@ -28,7 +28,7 @@ export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApp
   }
 
   getModel(model?: Model | string): Model | undefined {
-    if (!_.isString(model)) return model
+    if (!guardString(model)) return model
 
     return this.models[model]
   }

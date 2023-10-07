@@ -9,9 +9,15 @@ import type {
   ThemeConfigsScale,
 } from '@gnowth/lib-types'
 import type { ComponentType } from 'react'
-import _ from 'lodash'
 import { css } from '@emotion/css'
-import { objectDefaults } from '@gnowth/lib-utils'
+import {
+  arrayKeyBy,
+  guardFunction,
+  guardObject,
+  guardString,
+  objectDefaults,
+  objectMapValues,
+} from '@gnowth/lib-utils'
 
 import { objectDefaultsDeepByKeys } from './theme.utils'
 
@@ -46,7 +52,7 @@ export class Theme implements ITheme {
   }
 
   static assemblePalettesFromJSON(...palettes: ThemePalette[]): ThemePalettes {
-    return _.keyBy(palettes, 'name')
+    return arrayKeyBy(palettes, (palette) => palette.name)
   }
 
   static assembleScales(scales: ThemeScales): ThemeScales {
@@ -58,13 +64,13 @@ export class Theme implements ITheme {
   }
 
   static createStyles<Styles extends Record<string, string>>(styles: Styles): Record<keyof Styles, string> {
-    return _.mapValues(styles, (style) => css(style))
+    return objectMapValues(styles, (style) => css(style))
   }
 
   static makeStyles<Props>(configs: ConfigsMakeStyles<Props>) {
     return function styles(props: Props, theme: ITheme): MappedType<ConfigsMakeStyles<Props>, string> {
-      return _.mapValues(configs, (makeStyles) =>
-        _.isString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
+      return objectMapValues(configs, (makeStyles) =>
+        guardString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
       )
     }
   }
@@ -115,7 +121,7 @@ export class Theme implements ITheme {
   }
 
   getComponent<Props>(configs: ThemeConfigsComponent<Props>): ComponentType<Props> | undefined {
-    if (!_.isString(configs.component)) return configs.component
+    if (!guardString(configs.component)) return configs.component
 
     const components = objectDefaults(
       configs.components ?? {},
@@ -131,9 +137,9 @@ export class Theme implements ITheme {
 
     const { paletteWeight = '500' } = configs
     const maybePalette = this.palettes[configs.palette]
-    const palette = _.isString(maybePalette) ? this.palettes[maybePalette] : maybePalette
+    const palette = guardString(maybePalette) ? this.palettes[maybePalette] : maybePalette
 
-    if (_.isString(palette)) return undefined
+    if (guardString(palette)) return undefined
 
     const colorDefinition = palette?.colors.find((color) => color.name === paletteWeight)
 
@@ -143,9 +149,9 @@ export class Theme implements ITheme {
 
     const maybePaletteText = this.palettes[colorDefinition.darkContrast ? 'textPrimary' : 'textInverse']
 
-    const paletteText = _.isString(maybePaletteText) ? this.palettes[maybePaletteText] : maybePaletteText
+    const paletteText = guardString(maybePaletteText) ? this.palettes[maybePaletteText] : maybePaletteText
 
-    if (_.isString(paletteText)) return undefined
+    if (guardString(paletteText)) return undefined
 
     const colorDefinitionText = paletteText?.colors.find((color) => color.name === '500')
 
@@ -153,11 +159,11 @@ export class Theme implements ITheme {
   }
 
   getScaleItem(configs: ThemeConfigsScale): string | undefined {
-    const scale = _.isString(configs.scale) ? this.scales[configs.scale] : configs.scale
+    const scale = guardString(configs.scale) ? this.scales[configs.scale] : configs.scale
 
     if (configs.token === undefined) return undefined
 
-    const maybeTokenString = _.isString(configs.token) ? configs.token : undefined
+    const maybeTokenString = guardString(configs.token) ? configs.token : undefined
 
     return scale?.(configs.token) ?? maybeTokenString
   }
@@ -181,13 +187,13 @@ export class Theme implements ITheme {
   ): Props {
     if (!configs.variantNamespace || !configs.variant) return {} as Props
 
-    if (_.isObject(configs.variant)) return configs.variant as Props
+    if (guardObject(configs.variant)) return configs.variant as Props
 
     const variants = this.variants as ThemeVariants<Props>
     const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variantLocals)
 
     const variantMaybe = variantRecord[configs.variant]
-    const variant = _.isFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe
+    const variant = guardFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe
 
     return (variant || {}) as Props
   }

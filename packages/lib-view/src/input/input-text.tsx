@@ -6,7 +6,6 @@ import type {
   SystemTypography,
   SystemWidth,
 } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -20,6 +19,7 @@ import {
   systemWidth,
 } from '@gnowth/lib-theme'
 import { TokenLength } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 import type { ChangeEventHandler } from './use-value'
 import { useValue } from './use-value'
@@ -89,7 +89,7 @@ export const InputText: React.FunctionComponent<PropsInputText> = (props) => {
   return React.createElement(variant.as || 'input', {
     className: cx(
       'input-text',
-      _.isString(variant.variant) && `input-text--${variant.variant}`,
+      guardString(variant.variant) && `input-text--${variant.variant}`,
       variant.className,
       styles.inputText,
     ),

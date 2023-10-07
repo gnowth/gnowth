@@ -1,8 +1,8 @@
 import type { DataName, DataValue } from '@gnowth/lib-types'
 import React from 'react'
 import { TokenMode } from '@gnowth/lib-token'
-import { UtilError, useEnsureConstant, useRefValue, utils } from '@gnowth/lib-util'
-import { objectDefaults } from '@gnowth/lib-utils'
+import { UtilError, useEnsureConstant, useRefValue } from '@gnowth/lib-util'
+import { objectDefaults, objectSet } from '@gnowth/lib-utils'
 
 interface Configs {
   errorCustomMode?: Error
@@ -48,12 +48,12 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
   const [value, setValue] = React.useState(props.value)
 
   const handleChangeControlled = React.useCallback<NonNullable<typeof onChange>>(
-    (val, name) => onChange?.(name ? utils.set(valueRef.current, name, val) : val),
+    (val, name) => onChange?.(name ? objectSet(valueRef.current, name, val) : val),
     [onChange, valueRef],
   )
 
   const handleChangeShadow = React.useCallback<NonNullable<typeof onChange>>(
-    (val, name) => setValue((prevValue) => (name ? utils.set(prevValue, name, val) : prevValue)),
+    (val, name) => setValue((prevValue) => (name ? objectSet(prevValue, name, val) : prevValue)),
     [],
   )
 

@@ -1,5 +1,4 @@
 import type { DataName, Field } from '@gnowth/lib-types'
-import _ from 'lodash'
 
 // TODO: check if there should be a nullable config
 export interface ConfigsAny<Value> {
@@ -65,6 +64,6 @@ export class FieldAny<Value = unknown> implements Field<Value> {
   }
 
   valueToString(value: Value): string {
-    return _.toString(value)
+    return value?.toString ? value?.toString() : JSON.stringify(value)
   }
 }

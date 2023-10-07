@@ -20,7 +20,9 @@
     "ignorePatterns": [
       "**/__generated__/**/*",
       "**/.next/**/*",
+      "**/.parcel-cache/",
       "**/.turbo/**/*",
+      "**/artifact/",
       "**/build/**/*",
       "**/coverage/**/*",
       "**/node_modules/**/*",
@@ -130,7 +132,7 @@
     "local:check:typecheck": "tsc",
     "local:check": "npm run ci:project:tinacms:build && concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
-    "local:clean:temp": "turbo run clean:temp && rm -rf coverage build node_modules/.cache",
+    "local:clean:temp": "turbo run clean:temp && rm -rf coverage artifact build node_modules/.cache .parcel-cache",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:environment": "export $(grep -v '^#' .env.local | xargs)",
     "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",

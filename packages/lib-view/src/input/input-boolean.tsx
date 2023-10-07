@@ -1,9 +1,9 @@
 import type { PropsData, SystemSpace } from '@gnowth/lib-types'
-import _ from 'lodash'
 import React from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
+import { guardString } from '@gnowth/lib-utils'
 
 import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
 import type { ChangeEventHandler } from './use-value'
@@ -108,7 +108,7 @@ export const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) 
     <div
       className={cx(
         'input-boolean',
-        _.isString(variant.variant) && `input-boolean--${variant.variant}`,
+        guardString(variant.variant) && `input-boolean--${variant.variant}`,
         variant.className,
         styles.inputBooleanClass,
         styles.inputBoolean,

@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactElement, ReactNode } from 'react'
-import _ from 'lodash'
 import { createContext, isValidElement, useContext, Children } from 'react'
+import { arrayKeyBy } from '@gnowth/lib-utils'
 
 interface PropsContent {
   name: string
@@ -39,11 +39,11 @@ const SlotContent: FunctionComponent<PropsContent> = (props) => {
 
 const SlotProvider: FunctionComponent<PropsProvider> = (props) => (
   <SlotContext.Provider
-    value={_.keyBy(
+    value={arrayKeyBy(
       Children.toArray(props.slots)
         .filter<ReactElement<Props>>(isValidElement)
         .filter((slot) => slot.props.slot),
-      'props.slot',
+      (child) => child.props.slot,
     )}
   >
     {props.children}
