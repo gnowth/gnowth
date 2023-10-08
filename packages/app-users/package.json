@@ -27,13 +27,13 @@
     "@gnowth/configs-app": "0.0.0",
     "@gnowth/core-app": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
-    "@chakra-ui/react": "2.7.1",
-    "axios": "1.4.0",
-    "formik": "2.4.2",
+    "@chakra-ui/react": "2.8.1",
+    "axios": "1.5.1",
+    "formik": "2.4.5",
     "react-i18next": "13.2.2",
     "react-query": "3.39.3",
     "recoil": "0.7.7",
-    "uuid": "9.0.0"
+    "uuid": "9.0.1"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

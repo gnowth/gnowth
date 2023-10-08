@@ -32,7 +32,7 @@
     "@gnowth/lib-util": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-view": "0.0.0",
-    "react-icons": "4.2.0"
+    "react-icons": "4.11.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

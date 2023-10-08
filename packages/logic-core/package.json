@@ -31,7 +31,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@faker-js/faker": "8.0.2"
+    "@faker-js/faker": "8.1.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

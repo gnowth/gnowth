@@ -24,7 +24,7 @@
     "@types/faker": "^5.1.7",
     "faker": "5.4.0",
     "inflected": "2.1.0",
-    "miragejs": "0.1.41"
+    "miragejs": "0.1.47"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

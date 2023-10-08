@@ -19,7 +19,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@cucumber/cucumber": "9.2.0",
+    "@cucumber/cucumber": "9.6.0",
     "@playwright/test": "1.35.1"
   },
   "devDependencies": {

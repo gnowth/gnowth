@@ -8,6 +8,7 @@ interface Configs {
 
 // TODO: fix types
 interface Serv {
+  namespace: string
   resource: (name: string) => void
 }
 
@@ -17,11 +18,11 @@ export function mockServer(_configs: Configs): Server {
   return createServer({
     factories: {
       recipe: Factory.extend({
-        afterCreate(recipe: ModelInstance, server: Server) {
-          recipe.update({
-            ingredients: server.createList('ingredient', 5),
-          })
-        },
+        // afterCreate(recipe: ModelInstance, server: Server) {
+        //   recipe.update({
+        //     ingredients: server.createList('ingredient', 5),
+        //   })
+        // },
 
         description() {
           return faker.lorem.paragraph()
@@ -48,9 +49,10 @@ export function mockServer(_configs: Configs): Server {
     },
 
     routes() {
-      this.namespace = '/api/v1/recipes/'
-      ;(this as unknown as Serv).resource('ingredients')
-      ;(this as unknown as Serv).resource('recipes')
+      const self = this as unknown as Serv
+      self.namespace = '/api/v1/recipes/'
+      self.resource('ingredients')
+      self.resource('recipes')
     },
 
     seeds(server) {
