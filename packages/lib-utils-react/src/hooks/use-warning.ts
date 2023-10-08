@@ -1,6 +1,5 @@
+import { UtilError } from '@gnowth/lib-utils'
 import { useEffect } from 'react'
-
-import { UtilError } from '../classes/util-error'
 
 export function useWarning(error: UtilError, shouldWarn: boolean): void {
   useEffect(() => {

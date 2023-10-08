@@ -1,4 +1,5 @@
 export * from './arrays'
+export * from './errors'
 export * from './functional'
 export * from './guards'
 export * from './logics'

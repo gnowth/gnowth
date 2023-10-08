@@ -10,8 +10,7 @@ import type {
 import { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { UtilError } from '@gnowth/lib-util'
-import { objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults, UtilError } from '@gnowth/lib-utils'
 
 import type { PropsUseDataConnect } from './use-data-connect'
 import { DataWarning } from './data-warning'

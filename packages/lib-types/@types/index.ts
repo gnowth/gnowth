@@ -111,4 +111,4 @@ export type {
   SystemTypography,
 } from './system/system-typography'
 
-export type { Interpolate, MappedType, Namespace, Slottable } from './util'
+export type { MappedType, Namespace, Slottable } from './util'

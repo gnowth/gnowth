@@ -51,3 +51,6 @@ Next:
   - number
 - rendering
 - routing
+
+TODO:
+move away from commonjs module and use verbatimModuleSyntax for typescript

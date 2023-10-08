@@ -1,4 +1,5 @@
-import { UtilError } from '../classes/util-error'
+import { UtilError } from '@gnowth/lib-utils'
+
 import { usePrevious } from './use-previous'
 
 interface Configs {
@@ -9,7 +10,7 @@ interface Configs {
 const errorCustom = new UtilError({
   message: 'unexpected change in value',
   method: 'useEnsureConstant',
-  package: '@gnowth/lib-util',
+  package: '@gnowth/lib-utils',
 })
 
 export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {

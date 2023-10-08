@@ -1,4 +1,4 @@
-import type { PropsDataReadonly, SystemPalette } from '@gnowth/lib-types'
+import type { PropsDataReadonly } from '@gnowth/lib-types'
 import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
@@ -34,7 +34,7 @@ export interface VariantUITypography extends SystemUITypography {
   mediaPrintDisabled?: boolean
 }
 
-export interface PropsUITypography extends VariantUITypography, SystemPalette, PropsDataReadonly<ReactNode> {
+export interface PropsUITypography extends VariantUITypography, PropsDataReadonly<ReactNode> {
   className?: string
   children?: ReactNode
   hidden?: boolean

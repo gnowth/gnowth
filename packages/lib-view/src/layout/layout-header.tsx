@@ -1,10 +1,12 @@
-import type { SystemSpace, SystemZIndex } from '@gnowth/lib-types'
 import type { FunctionComponent, ReactNode } from 'react'
+import type { SystemType } from '@gnowth/lib-theme'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemCompose, systemSpace, systemZIndex } from '@gnowth/lib-theme'
 import { TokenZIndex } from '@gnowth/lib-token'
 
-type SystemLayoutHeader = SystemZIndex & SystemSpace
+const layoutHeader = systemCompose(systemSpace(), systemZIndex())
+
+type SystemLayoutHeader = SystemType<typeof layoutHeader>
 
 export interface VariantLayoutHeader extends SystemLayoutHeader {
   as?: string
@@ -20,9 +22,7 @@ export interface PropsLayoutHeader extends VariantLayoutHeader {
   variant?: object | string
 }
 
-const makeStyles = Theme.makeStyles({
-  layoutHeader: systemCompose(systemSpace(), systemZIndex()),
-})
+const makeStyles = Theme.makeStyles({ layoutHeader })
 
 const propsDefault = {
   zIndex: TokenZIndex.frame,

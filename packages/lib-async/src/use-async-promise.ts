@@ -1,6 +1,6 @@
 import type { AsyncStatus } from '@gnowth/lib-types'
 import { useEffect, useReducer } from 'react'
-import { UtilError } from '@gnowth/lib-util'
+import { UtilError } from '@gnowth/lib-utils'
 
 import { ModelPromise } from './model-promise'
 

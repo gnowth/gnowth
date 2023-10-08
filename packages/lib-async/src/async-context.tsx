@@ -1,7 +1,7 @@
 import type { AsyncStatus } from '@gnowth/lib-types'
 import type { FunctionComponent, ReactNode } from 'react'
 import { createContext, useCallback, useEffect, useReducer } from 'react'
-import { UtilError } from '@gnowth/lib-util'
+import { UtilError } from '@gnowth/lib-utils'
 
 import { ModelPromise } from './model-promise'
 
