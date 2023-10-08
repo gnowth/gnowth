@@ -1,5 +1,6 @@
 // import type { DataError, DataName, PropsBoundary } from '@gnowth/lib-types';
-import type { DataName, PropsBoundary } from '@gnowth/lib-types'
+import type { DataName } from '@gnowth/lib-types'
+import type { PropsBoundary } from '@gnowth/lib-application'
 import type { ComponentType, FunctionComponent } from 'react'
 // import { useAppBoundary } from '@gnowth/lib-application';
 // import { useAsyncPromise } from '@gnowth/lib-async';

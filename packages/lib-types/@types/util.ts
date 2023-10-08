@@ -7,7 +7,3 @@ export type MappedType<Type, ToType> = {
 export interface Namespace<Type> {
   [namespace: string]: Record<string, Type | undefined> | undefined
 }
-
-export interface Slottable {
-  slot?: string
-}

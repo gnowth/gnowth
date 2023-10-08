@@ -1,6 +1,7 @@
-import type { DataValue, PropsLayout } from '@gnowth/lib-types'
+import type { DataValue } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+import type { PropsLayout } from '@gnowth/lib-application'
 import { AppLayout, AppTheme } from '@gnowth/lib-application'
 
 import type { PropsUseDataSource } from './use-data-source'

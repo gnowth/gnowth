@@ -1,14 +1,8 @@
-import type {
-  PropsBoundary,
-  PropsLayout,
-  PropsSuspense,
-  Model,
-  PropsData,
-  PropsDataReadonly,
-  Slottable,
-} from '@gnowth/lib-types'
-import { Theme } from '@gnowth/lib-theme'
+import type { Model, PropsData, PropsDataReadonly } from '@gnowth/lib-types'
+import type { PropsBoundary, PropsLayout, PropsSuspense } from '@gnowth/lib-application'
+import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
+import type { Slottable } from '@gnowth/lib-utils-react'
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { objectDefaults, UtilError } from '@gnowth/lib-utils'
 

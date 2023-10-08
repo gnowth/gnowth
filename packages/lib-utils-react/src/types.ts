@@ -22,3 +22,7 @@ export interface PageClientComponent<Props, Slug = string[] | string | undefined
   staticPaths?: () => Promise<StaticPath<Slug>>
   staticProps?: (context: StaticPropsContext<Slug>) => Promise<{ props: Props }>
 }
+
+export interface Slottable {
+  slot?: string
+}

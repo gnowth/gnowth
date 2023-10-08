@@ -1,8 +1,8 @@
-import type { PropsFrame, PropsSuspense } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType } from 'react'
 import { createContext } from 'react'
 
+import type { PropsFrame, PropsSuspense } from './types'
 import { AppModelApplication } from './app-model-application'
 
 export interface PropsApplication {

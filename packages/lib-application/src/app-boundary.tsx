@@ -1,9 +1,9 @@
-import type { PropsBoundary } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ErrorInfo, ContextType, ReactElement, ReactNode } from 'react'
 import { Component, createElement } from 'react'
 import { guardString, UtilError } from '@gnowth/lib-utils'
 
+import type { PropsBoundary } from './types'
 import { ContextEnvironment } from './context-environment'
 import { withAppTheme } from './with-app-theme'
 

@@ -1,5 +1,4 @@
 export type { CSSObject } from '@emotion/css'
-export type { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './component'
 export type { DataError, DataName, DataValue, PropsData, PropsDataReadonly } from './data'
 export type { Field, Model, SchemaFromValue } from './model'
 export type { QueryApi, QueryConfigs, QueryParams, QueryResource, QuerySerializer } from './query'
@@ -14,8 +13,6 @@ export type {
   ThemeConfigsScale,
   ThemeVariant,
 } from './theme'
-
-export type { AsyncStatus, AsyncStatusPending, AsyncStatusRejected, AsyncStatusResolved } from './async'
 
 export type {
   SystemBorder,
@@ -111,4 +108,4 @@ export type {
   SystemTypography,
 } from './system/system-typography'
 
-export type { MappedType, Namespace, Slottable } from './util'
+export type { MappedType, Namespace } from './util'

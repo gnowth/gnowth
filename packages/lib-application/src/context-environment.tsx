@@ -1,8 +1,9 @@
-import type { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense, QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType } from 'react'
 import { createContext } from 'react'
 
+import type { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './types'
 import { AppModelEnvironment } from './app-model-environment'
 
 export interface PropsEnvironment {

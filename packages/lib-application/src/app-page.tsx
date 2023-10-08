@@ -1,9 +1,10 @@
-import type { PropsFrame, PropsSuspense, QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { Route, matchPath, useLocation } from 'react-router-dom'
 
+import type { PropsFrame, PropsSuspense } from './types'
 import { AppBoundary } from './app-boundary'
 import { AppSuspense } from './app-suspense'
 import { AppFrame } from './app-frame'

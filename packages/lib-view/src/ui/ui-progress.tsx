@@ -1,6 +1,5 @@
 import type {
   PropsDataReadonly,
-  PropsLayout,
   SystemDisplay,
   SystemPalette,
   SystemSize,
@@ -8,6 +7,7 @@ import type {
   Theme as ThemeType,
 } from '@gnowth/lib-types'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import type { PropsLayout } from '@gnowth/lib-application'
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {

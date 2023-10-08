@@ -29,7 +29,6 @@
     "@gnowth/lib-application": "0.0.0",
     "@gnowth/lib-async": "0.0.0",
     "@gnowth/lib-token": "0.0.0",
-    "@gnowth/lib-util": "0.0.0",
     "@gnowth/lib-utils": "0.0.0"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-import type { PropsSuspense } from '@gnowth/lib-types'
+import type { PropsSuspense } from '@gnowth/lib-application'
 import { AppSuspense } from '@gnowth/lib-application'
 
 import type { PropsUseDataConnect } from './use-data-connect'
