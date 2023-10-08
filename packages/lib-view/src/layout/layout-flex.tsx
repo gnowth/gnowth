@@ -1,4 +1,4 @@
-import type { PropsLayout } from '@gnowth/lib-types'
+import type { PropsLayout } from '@gnowth/lib-application'
 import type { System, SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'

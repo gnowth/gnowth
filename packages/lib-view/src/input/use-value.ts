@@ -1,4 +1,4 @@
-import type { DataName } from '@gnowth/lib-types'
+import type { DataName } from '@gnowth/lib-data'
 import { useCallback, useState } from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 

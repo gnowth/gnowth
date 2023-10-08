@@ -1,7 +1,7 @@
-import type { PropsSuspense } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { Suspense } from 'react'
 
+import type { PropsSuspense } from './types'
 import { useAppSuspense } from './use-app-suspense'
 
 // TODO check if we want to force suspense with awaiting props

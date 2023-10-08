@@ -1,8 +1,8 @@
-import type { AsyncStatus } from '@gnowth/lib-types'
 import type { FunctionComponent, ReactNode } from 'react'
 import { createContext, useCallback, useEffect, useReducer } from 'react'
-import { UtilError } from '@gnowth/lib-util'
+import { UtilError } from '@gnowth/lib-utils'
 
+import type { AsyncStatus } from './types'
 import { ModelPromise } from './model-promise'
 
 // TODO check if we can get it from action map

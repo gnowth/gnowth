@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@gnowth/lib-types": "0.0.0",
-    "@gnowth/lib-util": "0.0.0",
     "@gnowth/lib-utils": "0.0.0"
   },
   "devDependencies": {

@@ -29,7 +29,6 @@
     "@fontsource/roboto": "4.2.2",
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-token": "0.0.0",
-    "@gnowth/lib-util": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-view": "0.0.0",
     "react-icons": "4.11.0"

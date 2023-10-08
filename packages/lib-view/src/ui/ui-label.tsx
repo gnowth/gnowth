@@ -1,4 +1,5 @@
-import type { PropsDataReadonly, SystemPalette, SystemSpace, SystemTypography } from '@gnowth/lib-types'
+import type { SystemPalette, SystemSpace, SystemTypography } from '@gnowth/lib-types'
+import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {

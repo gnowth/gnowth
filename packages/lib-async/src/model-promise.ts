@@ -1,4 +1,4 @@
-import type { AsyncStatusPending, AsyncStatusRejected, AsyncStatusResolved } from '@gnowth/lib-types'
+import type { AsyncStatusPending, AsyncStatusRejected, AsyncStatusResolved } from './types'
 
 interface Status {
   pending: AsyncStatusPending

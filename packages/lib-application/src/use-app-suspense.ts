@@ -1,8 +1,8 @@
-import type { PropsSuspense } from '@gnowth/lib-types'
 import type { ComponentType } from 'react'
 import { TokenNamespaceComponent } from '@gnowth/lib-token'
 import { useContext } from 'react'
 
+import type { PropsSuspense } from './types'
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
 import { useAppTheme } from './use-app-theme'

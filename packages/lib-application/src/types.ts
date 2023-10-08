@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Slottable } from './util'
+import type { Slottable } from '@gnowth/lib-utils-react'
 
 // TODO verify if we need to standardise this props with other components
 export interface PropsBoundary extends Slottable {

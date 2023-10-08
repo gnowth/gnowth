@@ -24,6 +24,8 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@gnowth/lib-types": "0.0.0",
+    "@gnowth/lib-utils": "0.0.0",
     "react": "18.2.0"
   },
   "devDependencies": {

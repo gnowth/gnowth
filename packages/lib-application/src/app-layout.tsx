@@ -1,7 +1,7 @@
-import type { PropsLayout } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 
+import type { PropsLayout } from './types'
 import { useAppLayout } from './use-app-layout'
 
 interface Props {

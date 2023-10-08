@@ -1,11 +1,11 @@
-import type { DataName } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
 import { createElement, useState, useCallback, useContext } from 'react'
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { UtilError, useRefValue } from '@gnowth/lib-util'
-import { UtilRequired, objectDefaults } from '@gnowth/lib-utils'
+import { useRefValue } from '@gnowth/lib-utils-react'
+import { UtilRequired, objectDefaults, UtilError } from '@gnowth/lib-utils'
 
+import type { DataName } from './types'
 import { DataContext } from './data-context'
 
 interface PropsComponent {

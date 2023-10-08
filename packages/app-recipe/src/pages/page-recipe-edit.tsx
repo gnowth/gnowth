@@ -1,4 +1,4 @@
-import type { QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
 import {
   DataConnect,

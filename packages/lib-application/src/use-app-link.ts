@@ -1,9 +1,10 @@
-import type { Model } from '@gnowth/lib-types'
+import type { Model } from '@gnowth/lib-model'
+import type { ObjectLike } from '@gnowth/lib-utils'
 
 import type { AppModelApplication } from './app-model-application'
 import { useAppApplication } from './use-app-application'
 
-interface Props<Value> {
+interface Props<Value extends ObjectLike> {
   application?: AppModelApplication | string
   model?: Model<Value> | string
   page?: string
@@ -11,7 +12,7 @@ interface Props<Value> {
   value?: Value
 }
 
-export function useAppLink<Value>(props: Props<Value>): string | undefined {
+export function useAppLink<Value extends ObjectLike>(props: Props<Value>): string | undefined {
   const application = useAppApplication(props.application)
 
   if (props.to) return props.to

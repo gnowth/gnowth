@@ -1,9 +1,9 @@
-import type { PropsFrame } from '@gnowth/lib-types'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
+import type { PropsFrame } from './types'
 import { AppBoundary } from './app-boundary'
 import { AppModelApplication } from './app-model-application'
 import { AppProvider } from './app-provider'

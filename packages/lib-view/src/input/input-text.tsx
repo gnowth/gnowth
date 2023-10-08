@@ -1,11 +1,5 @@
-import type {
-  PropsData,
-  SystemBox,
-  SystemPalette,
-  SystemSpace,
-  SystemTypography,
-  SystemWidth,
-} from '@gnowth/lib-types'
+import type { SystemBox, SystemPalette, SystemSpace, SystemTypography, SystemWidth } from '@gnowth/lib-types'
+import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'

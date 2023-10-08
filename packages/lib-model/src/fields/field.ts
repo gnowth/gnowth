@@ -1,7 +1,7 @@
-import type { DataName, Field } from '@gnowth/lib-types'
+import type { DataName } from '../types'
 
 // TODO: check if there should be a nullable config
-export interface ConfigsAny<Value> {
+export interface FieldConfigs<Value = unknown> {
   blank?: boolean
   default?: Value | null
   many?: boolean
@@ -9,23 +9,19 @@ export interface ConfigsAny<Value> {
   type?: string
 }
 
-export class FieldAny<Value = unknown> implements Field<Value> {
+export class Field<Value = unknown> {
   blank: boolean
-
   default: Value | null
-
   many?: boolean
-
   options: Value[] | null
-
   type: string
 
-  constructor(configs?: ConfigsAny<Value>) {
-    this.blank = configs?.blank || false
-    this.default = configs?.default ?? null
-    this.many = configs?.many
-    this.options = configs?.options ?? null
-    this.type = configs?.type || 'any'
+  constructor(configs: FieldConfigs<Value> = {}) {
+    this.blank = configs.blank || false
+    this.default = configs.default ?? null
+    this.many = configs.many
+    this.options = configs.options ?? null
+    this.type = configs.type || 'any'
   }
 
   // TODO: what to return as default if many is on. need proper documentation as there is potential misunderstanding
@@ -35,7 +31,7 @@ export class FieldAny<Value = unknown> implements Field<Value> {
     return _partial ? this.default : this.default
   }
 
-  getField(name?: DataName): Field | undefined {
+  getField(name?: DataName): Field<Value> | undefined {
     return name ? undefined : this
   }
 

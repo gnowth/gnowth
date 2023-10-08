@@ -1,10 +1,9 @@
-import type { DataName, DataValue, PropsData } from '@gnowth/lib-types'
 import { useContext, useCallback } from 'react'
 import { TokenMode } from '@gnowth/lib-token'
-import { UtilError, useEnsureConstant } from '@gnowth/lib-util'
-import { objectDefaults, objectGet } from '@gnowth/lib-utils'
+import { useEnsureConstant } from '@gnowth/lib-utils-react'
+import { objectDefaults, objectGet, UtilError } from '@gnowth/lib-utils'
 
-import type { WithConnect } from './types'
+import type { DataName, DataValue, PropsData, WithConnect } from './types'
 import { DataContext } from './data-context'
 import { useValue } from './use-value'
 

@@ -1,13 +1,19 @@
-import type { DataName, Field, Model as IModel, QueryApi, SchemaFromValue } from '@gnowth/lib-types'
+import type { ObjectLike } from '@gnowth/lib-utils'
 import { guardString, objectMapValues } from '@gnowth/lib-utils'
 
+import type { DataName } from '../types'
+import type { Field } from '../fields/field'
 import { FieldModel } from '../fields/field-model'
 
+type SchemaFromValue<Value> = {
+  [Key in keyof Value]: Value[Key] extends Array<infer Item>
+    ? Field<NonNullable<Item>>
+    : Field<NonNullable<Value[Key]>>
+}
+
 // eslint-disable-next-line @typescript-eslint/ban-types
-export class Model<Value extends Record<keyof Value, unknown> = Record<string, never>, Configs = object>
-  implements IModel<Value>
-{
-  api?: QueryApi<Value>
+export class Model<Value extends ObjectLike = ObjectLike, Configs extends ObjectLike = ObjectLike> {
+  // api?: QueryApi<Value>
 
   configs: Configs
 
