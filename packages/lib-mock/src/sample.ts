@@ -9,7 +9,7 @@ export function mockServer(): unknown {
       }),
       recipe: Factory.extend({
         cuisine: 'Asian',
-        name(i: string) {
+        name(i: number) {
           return `recipe${i}`
         },
       }),
