@@ -1,4 +1,4 @@
-import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -12,9 +12,9 @@ import {
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
-type SystemLayoutSection = SystemBox & SystemPalette & SystemSpace
+const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 
-export interface VariantLayoutSection extends SystemLayoutSection {
+export interface VariantLayoutSection extends SystemType<typeof layoutSection> {
   boxVariant?: string
   boxVariantNamespace?: string
   layout?: string
@@ -34,10 +34,7 @@ export interface PropsLayoutSection extends VariantLayoutSection {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  layoutSection: systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace()),
-})
-
+const makeStyles = Theme.makeStyles({ layoutSection })
 const definitions = Theme.makeDefinitions(['', 'box'])
 
 const propsDefault = {

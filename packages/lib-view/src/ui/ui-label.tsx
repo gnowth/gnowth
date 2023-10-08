@@ -1,4 +1,4 @@
-import type { SystemPalette, SystemSpace, SystemTypography } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
@@ -12,9 +12,9 @@ import {
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-type SystemUILabel = SystemPalette & SystemSpace & SystemTypography
+const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
 
-export interface VariantUILabel extends SystemUILabel {
+export interface VariantUILabel extends SystemType<typeof uiLabel> {
   typographyVariant?: string
   typographyVariantNamespace?: string
 }
@@ -27,9 +27,7 @@ export interface PropsUILabel extends VariantUILabel, PropsDataReadonly<string> 
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  uiLabel: systemCompose(systemColorFromPalette(), systemSpace(), systemTypography()),
-})
+const makeStyles = Theme.makeStyles({ uiLabel })
 
 const definitions = Theme.makeDefinitions(['', 'typography'])
 

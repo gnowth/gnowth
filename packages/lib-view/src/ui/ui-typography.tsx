@@ -26,10 +26,8 @@ interface ComponentProps {
   id?: string
 }
 
-type SystemUITypography = SystemType<typeof uiTypography>
-
 // TODO: mediaPrint should disable elipsis
-export interface VariantUITypography extends SystemUITypography {
+export interface VariantUITypography extends SystemType<typeof uiTypography> {
   as?: ComponentType<ComponentProps> | string | null
   mediaPrintDisabled?: boolean
 }

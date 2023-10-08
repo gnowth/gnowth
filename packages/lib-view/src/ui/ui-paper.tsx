@@ -1,4 +1,4 @@
-import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
@@ -12,9 +12,9 @@ import {
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
-type SystemUIPapper = SystemBox & SystemPalette & SystemSpace
+const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 
-export interface VariantUIPaper extends SystemUIPapper {
+export interface VariantUIPaper extends SystemType<typeof uiPaper> {
   boxVariant?: string
   boxVariantNamespace?: string
 }
@@ -29,10 +29,7 @@ export interface PropsUIPaper extends VariantUIPaper {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  uiPaper: systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace()),
-})
-
+const makeStyles = Theme.makeStyles({ uiPaper })
 const definitions = Theme.makeDefinitions(['', 'box'])
 
 const propsDefault = {

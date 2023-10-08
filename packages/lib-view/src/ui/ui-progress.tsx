@@ -1,4 +1,4 @@
-import type { SystemDisplay, SystemPalette, SystemSize, SystemSpace } from '@gnowth/lib-types'
+import type { SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import type { PropsLayout } from '@gnowth/lib-application'
@@ -68,7 +68,9 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   </UtilSlot.Provider>
 )
 
-type SystemUIProgress = SystemPalette & SystemDisplay & SystemSize & SystemSpace
+const uiProgress = systemCompose(systemDisplay(), systemSize('iconsize'), systemSpace())
+
+type SystemUIProgress = SystemType<ReturnType<typeof systemColorFromPalette>> & SystemType<typeof uiProgress>
 
 export interface VariantUIProgress extends SystemUIProgress {
   as?: string
@@ -167,8 +169,7 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
 `
 
 const makeStyles = Theme.makeStyles({
-  uiProgress: systemCompose(systemDisplay(), systemSize('iconsize'), systemSpace()),
-
+  uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({
     animationName: spinnerStrokeRotate(props),
     fill: 'transparent',

@@ -1,4 +1,4 @@
-import type { SystemPalette, SystemSpace } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
@@ -12,13 +12,14 @@ interface ComponentProps {
   id?: string
   size?: string
 }
+const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
 
-export interface VariantUIIcon extends SystemSpace {
+export interface VariantUIIcon extends SystemType<typeof uiIcon> {
   mediaPrintDisabled?: boolean
 }
 
 // TODO: fix icon size. svg height/width supports number only
-export interface PropsUIIcon extends VariantUIIcon, SystemPalette, PropsDataReadonly<string> {
+export interface PropsUIIcon extends VariantUIIcon, PropsDataReadonly<string> {
   className?: string
   hidden?: boolean
   size?: string | number
@@ -27,9 +28,7 @@ export interface PropsUIIcon extends VariantUIIcon, SystemPalette, PropsDataRead
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  uiIcon: systemCompose(systemColorFromPalette(), systemSpace()),
-})
+const makeStyles = Theme.makeStyles({ uiIcon })
 
 const propsDefault = {
   palette: 'textPrimary',

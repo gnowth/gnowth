@@ -1,12 +1,4 @@
 import type { CSSObject } from '@emotion/css'
-import type {
-  MappedType,
-  Namespace,
-  PropsVariant,
-  ThemeConfigsComponent,
-  ThemeConfigsPalette,
-  ThemeConfigsScale,
-} from '@gnowth/lib-types'
 import type { ComponentType } from 'react'
 import { css } from '@emotion/css'
 import {
@@ -23,12 +15,47 @@ import { objectDefaultsDeepByKeys } from './theme.utils'
 import type {
   ThemeComponents,
   ThemeImages,
+  ThemeNamespace,
   ThemePalette,
   ThemePalettes,
   ThemeScales,
   ThemeVariables,
   ThemeVariants,
 } from './types'
+
+interface ThemeConfigsComponent<Props> {
+  component?: ComponentType<Props> | string
+  components?: Record<string, ComponentType<Props> | undefined>
+  namespace?: string
+}
+
+interface ThemeConfigsPalette {
+  palette?: string
+  paletteForContrast?: boolean
+  paletteWeight?: string | number
+}
+
+type ThemeScale = (token: number | string) => string | undefined
+
+interface ThemeConfigsScale {
+  scale?: ThemeScale | string
+  token?: string | number
+}
+
+type MappedType<Type, ToType> = {
+  [Key in keyof Type]: ToType
+}
+
+type ThemeVariant<Props = Record<string, unknown>> =
+  | Partial<Props>
+  | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
+
+interface PropsVariant<Props> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  variant?: object | string
+  variantNamespace?: string
+  variantLocals?: Record<string, ThemeVariant<Props> | undefined>
+}
 
 interface Configs {
   components?: ThemeComponents
@@ -46,7 +73,7 @@ interface ConfigsMakeStyles<Props> {
 }
 
 export class Theme {
-  static assembleComponents(components: Namespace<unknown>): ThemeComponents {
+  static assembleComponents(components: ThemeNamespace<unknown>): ThemeComponents {
     return components as ThemeComponents
   }
 
@@ -58,7 +85,7 @@ export class Theme {
     return scales
   }
 
-  static assembleVariants(variants: Namespace<unknown>): ThemeVariants {
+  static assembleVariants(variants: ThemeNamespace<unknown>): ThemeVariants {
     return variants as ThemeVariants
   }
 

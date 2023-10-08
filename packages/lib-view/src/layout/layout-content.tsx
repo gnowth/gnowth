@@ -1,4 +1,4 @@
-import type { SystemDisplay, SystemFlexbox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
@@ -18,9 +18,14 @@ interface ComponentProps {
   id?: string
 }
 
-type SystemLayoutContent = SystemDisplay & SystemFlexbox & SystemPalette & SystemSpace
+const layoutContent = systemCompose(
+  systemBackgroundColorFromPalette(),
+  systemDisplay(),
+  systemFlexbox(),
+  systemSpace(),
+)
 
-export interface VariantLayoutContent extends SystemLayoutContent {
+export interface VariantLayoutContent extends SystemType<typeof layoutContent> {
   as?: ComponentType<ComponentProps> | string
 }
 
@@ -34,14 +39,7 @@ export interface PropsLayoutContent extends VariantLayoutContent {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  layoutContent: systemCompose(
-    systemBackgroundColorFromPalette(),
-    systemDisplay(),
-    systemFlexbox(),
-    systemSpace(),
-  ),
-})
+const makeStyles = Theme.makeStyles({ layoutContent })
 
 const propsDefault = {
   variantNamespace: 'layoutContent',

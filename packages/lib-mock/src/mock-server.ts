@@ -1,4 +1,3 @@
-// import type { Model, ModelEnvironment } from '@gnowth/lib-types';
 // import { utils } from '@gnowth/lib-util';
 // import { pluralize } from 'inflected';
 // import { Factory, Model as MirageModel, createServer } from 'miragejs';

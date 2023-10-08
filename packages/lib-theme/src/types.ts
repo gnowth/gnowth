@@ -1,5 +1,4 @@
 import type { CSSObject } from '@emotion/css'
-import type { Namespace } from '@gnowth/lib-types'
 import type { ObjectLike } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
 
@@ -17,18 +16,22 @@ export interface ThemePalette {
   name: string
 }
 
+export interface ThemeNamespace<Type> {
+  [namespace: string]: Record<string, Type | undefined> | undefined
+}
+
 type ThemeVariable = unknown
 export type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
   | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ThemeComponents<Props = {}> = Namespace<ComponentType<Props>>
+export type ThemeComponents<Props = {}> = ThemeNamespace<ComponentType<Props>>
 export type ThemeImages = Record<string, string | undefined>
 export type ThemeScale = (token: number | string) => string | undefined
 export type ThemeScales = Record<string, ThemeScale | undefined>
 export type ThemeVariables = Record<string, ThemeVariable | undefined>
-export type ThemeVariants<Props = Record<string, unknown>> = Namespace<ThemeVariant<Props>>
+export type ThemeVariants<Props = Record<string, unknown>> = ThemeNamespace<ThemeVariant<Props>>
 export type ThemePalettes = Record<string, ThemePalette | string | undefined>
 
 export type SystemType<Type extends System<ObjectLike>> = Parameters<Type>[0]
