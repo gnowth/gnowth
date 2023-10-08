@@ -1,49 +1,33 @@
-import type { CSSObject } from '@emotion/css'
-import type {
-  SystemBackground,
-  SystemBackgroundColor,
-  SystemBackgroundImage,
-  SystemBackgroundPosition,
-  SystemBackgroundRepeat,
-  SystemBackgroundSize,
-  SystemImage,
-  Theme,
-} from '@gnowth/lib-types'
-
+import type { Interpolate, System } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
-export function systemBackground() {
-  return (props: SystemBackground, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'background', theme, value: props.background })
-}
+type SystemBackground = { background?: Interpolate<string> }
+type SystemBackgroundColor = { backgroundColor?: Interpolate<string> }
+type SystemBackgroundImage = { backgroundImage?: Interpolate<string> }
+type SystemBackgroundPosition = { backgroundPosition?: Interpolate<string> }
+type SystemBackgroundRepeat = { backgroundRepeat?: Interpolate<string> }
+type SystemBackgroundSize = { backgroundSize?: Interpolate<string> }
 
-export function systemBackgroundColor() {
-  return (props: SystemBackgroundColor, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'backgroundColor', theme, value: props.backgroundColor })
-}
+export const systemBackground: () => System<SystemBackground> = () => (props, theme) =>
+  systemInterpolate({ key: 'background', theme, value: props.background })
 
-export function systemBackgroundImage() {
-  return (props: SystemBackgroundImage, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'backgroundImage', theme, value: props.backgroundImage })
-}
+export const systemBackgroundColor: () => System<SystemBackgroundColor> = () => (props, theme) =>
+  systemInterpolate({ key: 'backgroundColor', theme, value: props.backgroundColor })
 
-export function systemBackgroundPosition() {
-  return (props: SystemBackgroundPosition, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'backgroundPosition', theme, value: props.backgroundPosition })
-}
+export const systemBackgroundImage: () => System<SystemBackgroundImage> = () => (props, theme) =>
+  systemInterpolate({ key: 'backgroundImage', theme, value: props.backgroundImage })
 
-export function systemBackgroundRepeat() {
-  return (props: SystemBackgroundRepeat, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'backgroundRepeat', theme, value: props.backgroundRepeat })
-}
+export const systemBackgroundPosition: () => System<SystemBackgroundPosition> = () => (props, theme) =>
+  systemInterpolate({ key: 'backgroundPosition', theme, value: props.backgroundPosition })
 
-export function systemBackgroundSize() {
-  return (props: SystemBackgroundSize, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'backgroundSize', theme, value: props.backgroundSize })
-}
+export const systemBackgroundRepeat: () => System<SystemBackgroundRepeat> = () => (props, theme) =>
+  systemInterpolate({ key: 'backgroundRepeat', theme, value: props.backgroundRepeat })
 
-export function systemImage(): (props: SystemImage, theme: Theme) => CSSObject {
-  return systemCompose<SystemImage>(
+export const systemBackgroundSize: () => System<SystemBackgroundSize> = () => (props, theme) =>
+  systemInterpolate({ key: 'backgroundSize', theme, value: props.backgroundSize })
+
+export const systemImage = () =>
+  systemCompose(
     systemBackground(),
     systemBackgroundColor(),
     systemBackgroundImage(),
@@ -51,4 +35,3 @@ export function systemImage(): (props: SystemImage, theme: Theme) => CSSObject {
     systemBackgroundRepeat(),
     systemBackgroundSize(),
   )
-}

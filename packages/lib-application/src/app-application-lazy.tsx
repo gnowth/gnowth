@@ -1,5 +1,4 @@
 import type { ComponentType, ReactElement } from 'react'
-import React from 'react'
 
 import { AppModelApplication } from './app-model-application'
 

@@ -1,6 +1,5 @@
 import type { QueryResource } from '@gnowth/lib-types'
 import type { ReactElement } from 'react'
-import React from 'react'
 import { DataSource, DataSuspense, LayoutPage, LayoutSection, TokenMode } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'

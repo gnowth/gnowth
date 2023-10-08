@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { TokenSpace } from '@gnowth/lib-token'
 
@@ -12,7 +12,7 @@ export interface VariantLayoutData {
 }
 
 export interface PropsLayoutData extends VariantLayoutData {
-  children: React.ReactNode
+  children: ReactNode
   // eslint-disable-next-line @typescript-eslint/ban-types
   variant?: object | string
 }
@@ -38,7 +38,7 @@ const propsDefault = {
   variantNamespace: 'layoutData',
 }
 
-export const LayoutData: React.FunctionComponent<PropsLayoutData> = (props) => {
+export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {
   const theme = useAppTheme()
   const variant = theme.getVariant(props, propsDefault)
 

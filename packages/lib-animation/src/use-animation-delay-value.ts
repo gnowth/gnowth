@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 
 // TODO: check if we need to add a skip option where value is sent from the start or is it consumer responsibility to switch between values
 interface Configs<Value> {
@@ -8,9 +8,9 @@ interface Configs<Value> {
 }
 
 export function useAnimationDelayValue<Value>(configs: Configs<Value>): Value | undefined {
-  const [value, setValue] = React.useState(configs.valueInitial)
+  const [value, setValue] = useState(configs.valueInitial)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timeout = window.setTimeout(() => setValue(configs.value), configs.animationDelay)
 
     return () => window.clearTimeout(timeout)

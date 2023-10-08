@@ -1,5 +1,5 @@
 import type { AsyncStatus } from '@gnowth/lib-types'
-import React from 'react'
+import { useEffect, useReducer } from 'react'
 import { UtilError } from '@gnowth/lib-util'
 
 import { ModelPromise } from './model-promise'
@@ -70,9 +70,9 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
 
 // TODO: fix typescript
 export function useAsyncPromise<Value>(maybePromise?: Promise<Value>): State<Value> {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({ type: actions.reset })
 
     const promise = maybePromise || Promise.resolve<Value>(undefined as unknown as Value)

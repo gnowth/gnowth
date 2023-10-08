@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantLayoutFooter {
   as?: string
 }
 
 export interface PropsLayoutFooter {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const LayoutFooter: React.FunctionComponent<PropsLayoutFooter> = (props) => (
+export const LayoutFooter: FunctionComponent<PropsLayoutFooter> = (props) => (
   <footer className="layout-footer">{props.children}</footer>
 )

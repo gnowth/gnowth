@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIImage {
   as?: string
 }
 
 export interface PropsUIImage {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIImage: React.FunctionComponent<PropsUIImage> = (props) => (
+export const UIImage: FunctionComponent<PropsUIImage> = (props) => (
   <div className="ui-image">{props.children}</div>
 )

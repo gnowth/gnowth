@@ -1,4 +1,3 @@
-import type { ModelInstance } from 'miragejs'
 import faker from 'faker'
 import { Factory, Model, RestSerializer, Server, createServer, hasMany } from 'miragejs'
 

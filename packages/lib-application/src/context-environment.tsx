@@ -1,13 +1,7 @@
-import type {
-  PropsBoundary,
-  PropsFrame,
-  PropsLayout,
-  PropsSuspense,
-  QueryResource,
-  Theme,
-} from '@gnowth/lib-types'
+import type { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense, QueryResource } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType } from 'react'
-import React from 'react'
+import { createContext } from 'react'
 
 import { AppModelEnvironment } from './app-model-environment'
 
@@ -33,4 +27,4 @@ export const propsDefaultEnvironment: PropsEnvironment = {
   whoamiSet: () => undefined,
 }
 
-export const ContextEnvironment = React.createContext(propsDefaultEnvironment)
+export const ContextEnvironment = createContext(propsDefaultEnvironment)

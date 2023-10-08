@@ -1,7 +1,7 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 interface Props {
   slot: string
 }
 
-export const ViewRecipeUtensils: React.FunctionComponent<Props> = () => <div />
+export const ViewRecipeUtensils: FunctionComponent<Props> = () => <div />

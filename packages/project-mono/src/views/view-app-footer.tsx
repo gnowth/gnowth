@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { TokenPage as TokenPagePages } from '@gnowth/app-pages'
 import { AppLink, LayoutFlex, LayoutFooter, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
 
@@ -6,7 +6,7 @@ interface Props {
   slot?: string
 }
 
-export const ViewAppFooter: React.FunctionComponent<Props> = () => (
+export const ViewAppFooter: FunctionComponent<Props> = () => (
   <LayoutFooter>
     <LayoutSection
       boxVariant="separator"

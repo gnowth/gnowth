@@ -6,7 +6,8 @@ import type {
   SystemTypography,
   SystemWidth,
 } from '@gnowth/lib-types'
-import React from 'react'
+import type { ComponentType, FunctionComponent } from 'react'
+import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -36,7 +37,7 @@ interface ComponentProps {
 type SystemInputText = SystemBox & SystemPalette & SystemSpace & SystemTypography & SystemWidth
 
 export interface VariantInputText extends SystemInputText {
-  as?: React.ComponentType<ComponentProps> | string
+  as?: ComponentType<ComponentProps> | string
   boxVariant?: string
   boxVariantNamespace?: string
   type?: string
@@ -54,7 +55,7 @@ export interface PropsInputText extends VariantInputText, PropsData<string> {
 }
 
 const makeStyles = Theme.makeStyles({
-  inputText: systemCompose<PropsInputText>(
+  inputText: systemCompose(
     systemBox(),
     systemColorFromPalette(),
     systemSpace(),
@@ -77,7 +78,7 @@ const propsDefault = {
   width: TokenLength.full,
 }
 
-export const InputText: React.FunctionComponent<PropsInputText> = (props) => {
+export const InputText: FunctionComponent<PropsInputText> = (props) => {
   const value = useValue(props, '')
   const theme = useAppTheme()
 
@@ -86,7 +87,7 @@ export const InputText: React.FunctionComponent<PropsInputText> = (props) => {
   const variant = theme.getVariantByDefinitions(definitions, props, propsDefault)
   const styles = makeStyles(variant, theme)
 
-  return React.createElement(variant.as || 'input', {
+  return createElement(variant.as || 'input', {
     className: cx(
       'input-text',
       guardString(variant.variant) && `input-text--${variant.variant}`,

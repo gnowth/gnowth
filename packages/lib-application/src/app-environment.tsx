@@ -1,6 +1,6 @@
 import type { QueryResource } from '@gnowth/lib-types'
 import type { ReactElement, ReactNode } from 'react'
-import React from 'react'
+import { useState, Fragment } from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { HashRouter } from 'react-router-dom'
 
@@ -21,14 +21,14 @@ interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApp
 // TODO add settings in environment
 // TODO add store? history?
 export function AppEnvironment(props: Props): ReactElement {
-  const [whoami, whoamiSet] = React.useState<QueryResource | null>(null)
+  const [whoami, whoamiSet] = useState<QueryResource | null>(null)
   const propsWithDefault = objectDefaults(
     { whoami, whoamiSet } as PropsEnvironment,
     props,
     propsDefaultEnvironment,
   )
 
-  const SwitchComponent = props.switch ?? true ? AppSwitch : React.Fragment
+  const SwitchComponent = props.switch ?? true ? AppSwitch : Fragment
 
   return (
     <HashRouter>

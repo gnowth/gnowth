@@ -1,5 +1,5 @@
 import type { SystemPalette } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemBackgroundColorFromPalette } from '@gnowth/lib-theme'
 
@@ -12,7 +12,7 @@ export interface VariantLayoutApp extends SystemPalette {
 }
 
 export interface PropsLayoutApp extends VariantLayoutApp {
-  children: React.ReactNode
+  children: ReactNode
   // eslint-disable-next-line @typescript-eslint/ban-types
   variant?: object | string
 }
@@ -21,7 +21,7 @@ const makeStyles = Theme.makeStyles({
   layoutApp: systemBackgroundColorFromPalette(),
 })
 
-export const LayoutApp: React.FunctionComponent<PropsLayoutApp> = (props) => {
+export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()
 
   const variant = theme.getVariant(props)

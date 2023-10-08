@@ -1,7 +1,7 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { LayoutPage, LayoutContent, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
 
-export const PageLanding: React.FunctionComponent = () => (
+export const PageLanding: FunctionComponent = () => (
   <LayoutPage>
     <LayoutSection paddingBottom={TokenSpace.xl} paddingTop={TokenSpace.xl} variant="page">
       <LayoutContent alignSelf="center">

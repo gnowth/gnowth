@@ -1,25 +1,24 @@
-import type { CSSObject } from '@emotion/css'
-import type { SystemColor, SystemPalette, Theme } from '@gnowth/lib-types'
-
+import type { Interpolate, System } from '../types'
 import { systemInterpolate } from './system'
 
-export function systemColor() {
-  return (props: SystemColor, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'color', theme, value: props.color })
+type SystemColor = { color?: Interpolate<string> }
+type SystemPalette = {
+  palette?: string
+  paletteForContrast?: boolean
+  paletteWeight?: string | number
 }
 
-export function systemColorFromPalette() {
-  return (props: SystemPalette, theme: Theme): CSSObject => {
-    const color = theme.getPaletteColor(props)
+export const systemColor: () => System<SystemColor> = () => (props, theme) =>
+  systemInterpolate({ key: 'color', theme, value: props.color })
 
-    return color ? { color } : {}
-  }
+export const systemColorFromPalette: () => System<SystemPalette> = () => (props, theme) => {
+  const color = theme.getPaletteColor(props)
+
+  return color ? { color } : {}
 }
 
-export function systemBackgroundColorFromPalette() {
-  return (props: SystemPalette, theme: Theme): CSSObject => {
-    const backgroundColor = theme.getPaletteColor(props)
+export const systemBackgroundColorFromPalette: () => System<SystemPalette> = () => (props, theme) => {
+  const backgroundColor = theme.getPaletteColor(props)
 
-    return backgroundColor ? { backgroundColor } : {}
-  }
+  return backgroundColor ? { backgroundColor } : {}
 }

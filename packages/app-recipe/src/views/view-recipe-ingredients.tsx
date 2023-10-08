@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import {
   useDataConnect,
   AppLayout,
@@ -24,7 +24,7 @@ const locale = {
 
 // const context = useContext(props, defaultValues);
 // TODO: handle ingredients as an array
-export const ViewRecipeIngredients: React.FunctionComponent<Props> = () => {
+export const ViewRecipeIngredients: FunctionComponent<Props> = () => {
   const connection = useDataConnect<Ingredient>({ name: 'ingredients' })
 
   return (
@@ -44,7 +44,7 @@ export const ViewRecipeIngredients: React.FunctionComponent<Props> = () => {
   )
 }
 
-export const ViewRecipeIngredients2: React.FunctionComponent = () => (
+export const ViewRecipeIngredients2: FunctionComponent = () => (
   <DataSource context layout="panel">
     <AppLayout layout="horizontal" slot="header">
       <UITypography>{locale.title}</UITypography>
@@ -58,7 +58,7 @@ export const ViewRecipeIngredients2: React.FunctionComponent = () => (
   </DataSource>
 )
 
-export const ViewRecipeIngredients3: React.FunctionComponent = () => (
+export const ViewRecipeIngredients3: FunctionComponent = () => (
   <DataSource context layout="panel">
     <AppLayout layout="horizontal" slot="header">
       <UITypography>{locale.title}</UITypography>
@@ -75,7 +75,7 @@ export const ViewRecipeIngredients3: React.FunctionComponent = () => (
 // }
 
 // if it was there was an action? transfer/uplink
-export const ViewRecipeIngredients4: React.FunctionComponent = () => (
+export const ViewRecipeIngredients4: FunctionComponent = () => (
   <DataSource context layout="panel">
     <AppLayout layout="horizontal" slot="header">
       <UITypography>{locale.title}</UITypography>

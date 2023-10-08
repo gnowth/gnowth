@@ -1,5 +1,5 @@
 import type { DataName, DataValue, PropsData } from '@gnowth/lib-types'
-import React from 'react'
+import { useContext, useCallback } from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 import { UtilError, useEnsureConstant } from '@gnowth/lib-util'
 import { objectDefaults, objectGet } from '@gnowth/lib-utils'
@@ -48,12 +48,12 @@ export function useDataSource<Value extends DataValue>(
   const configsWithDefault = objectDefaults(configs, configsDefault)
   useEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
 
-  const context = React.useContext(DataContext) as PropsData<Value>
+  const context = useContext(DataContext) as PropsData<Value>
   const propsWithContext = objectDefaults(props, context)
   const onChangeFromProps = propsWithContext.onChange
   const nameFromProps = propsWithContext.name
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (value: Value) => onChangeFromProps?.(value, nameFromProps),
     [nameFromProps, onChangeFromProps],
   )
@@ -64,7 +64,7 @@ export function useDataSource<Value extends DataValue>(
     configsWithDefault,
   )
 
-  const handleReset = React.useCallback(
+  const handleReset = useCallback(
     () => props.value && onChange?.(props.value, props.name),
     [onChange, props.name, props.value],
   )

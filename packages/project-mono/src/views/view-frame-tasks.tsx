@@ -1,13 +1,13 @@
-import type { ReactNode } from 'react'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
+import { useContext } from 'react'
 import { AppLayout, AsyncContext, LayoutApp } from '@gnowth/lib-react'
 
 type Props = {
   children: ReactNode
 }
 
-export const ViewFrameTasks: React.FunctionComponent<Props> = (props) => {
-  const asyncContext = React.useContext(AsyncContext)
+export const ViewFrameTasks: FunctionComponent<Props> = (props) => {
+  const asyncContext = useContext(AsyncContext)
 
   return (
     <LayoutApp>

@@ -1,6 +1,5 @@
 import type { PropsLayout } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
-import React from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import { useAppLayout } from './use-app-layout'

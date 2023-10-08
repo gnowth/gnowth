@@ -1,14 +1,14 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIPlaceholder {
   as?: string
 }
 
 export interface PropsUIPlaceholder {
-  children?: React.ReactNode
+  children?: ReactNode
   hidden?: boolean
 }
 
-export const UIPlaceholder: React.FunctionComponent<PropsUIPlaceholder> = (props) => (
+export const UIPlaceholder: FunctionComponent<PropsUIPlaceholder> = (props) => (
   <div className="ui-placeholder">{props.children}</div>
 )

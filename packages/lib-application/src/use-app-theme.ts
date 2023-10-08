@@ -1,4 +1,4 @@
-import type { Theme } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import { useContext } from 'react'
 import { guardString } from '@gnowth/lib-utils'
 

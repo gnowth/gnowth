@@ -1,5 +1,9 @@
-import type { Namespace, Theme } from '@gnowth/lib-types'
+import type { CSSObject } from '@emotion/css'
+import type { Namespace } from '@gnowth/lib-types'
+import type { ObjectLike } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
+
+import type { Theme } from './theme'
 
 interface Color {
   darkContrast: boolean
@@ -26,3 +30,9 @@ export type ThemeScales = Record<string, ThemeScale | undefined>
 export type ThemeVariables = Record<string, ThemeVariable | undefined>
 export type ThemeVariants<Props = Record<string, unknown>> = Namespace<ThemeVariant<Props>>
 export type ThemePalettes = Record<string, ThemePalette | string | undefined>
+
+export type SystemType<Type extends System<ObjectLike>> = Parameters<Type>[0]
+
+export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject
+
+export type Interpolate<Type> = Type | Record<string, Type>

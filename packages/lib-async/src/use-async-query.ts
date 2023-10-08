@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useContext, useEffect, useCallback } from 'react'
 
 import { AsyncContext } from './async-context'
 
@@ -17,12 +17,12 @@ interface Query<Value> {
 }
 
 export function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Configs): Query<Value> {
-  const [firstPass, setFirstPass] = React.useState(true)
-  const [promise, setPromise] = React.useState(predicate)
-  const { addPromise, removePromise } = React.useContext(AsyncContext)
+  const [firstPass, setFirstPass] = useState(true)
+  const [promise, setPromise] = useState(predicate)
+  const { addPromise, removePromise } = useContext(AsyncContext)
   const { trackingSkip } = configs || {}
 
-  React.useEffect(
+  useEffect(
     () => {
       // TODO: check if there is a better way to have promise as a value from the start
       if (!firstPass) setPromise(predicate())
@@ -33,7 +33,7 @@ export function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Conf
     configs?.dependencies || [],
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!trackingSkip) addPromise(promise)
 
     return () => {
@@ -43,6 +43,6 @@ export function useAsyncQuery<Value>(predicate: Predicate<Value>, configs?: Conf
 
   return {
     promise,
-    reload: React.useCallback(() => setPromise(predicate()), [predicate]),
+    reload: useCallback(() => setPromise(predicate()), [predicate]),
   }
 }

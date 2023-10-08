@@ -1,17 +1,19 @@
-import type { SystemImage, SystemSpace, SystemTextAlign } from '@gnowth/lib-types'
-import React from 'react'
+import type { SystemType } from '@gnowth/lib-theme'
+import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemCompose, systemImage, systemSpace, systemTextAlign } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-type SystemUIDivider = SystemImage & SystemSpace & SystemTextAlign
+const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
+
+type SystemUIDivider = SystemType<typeof uiDivider>
 
 export interface VariantUIDivider extends SystemUIDivider {
   as?: string
 }
 
 export interface PropsUIDivider extends VariantUIDivider {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
@@ -20,9 +22,7 @@ export interface PropsUIDivider extends VariantUIDivider {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  uiDivider: systemCompose<PropsUIDivider>(systemImage(), systemSpace(), systemTextAlign()),
-})
+const makeStyles = Theme.makeStyles({ uiDivider })
 
 const propsDefault = {
   textAlign: 'center',
@@ -30,7 +30,7 @@ const propsDefault = {
   variantNamespace: 'uiDivider',
 }
 
-export const UIDivider: React.FunctionComponent<PropsUIDivider> = (props) => {
+export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

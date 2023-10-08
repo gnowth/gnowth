@@ -1,55 +1,32 @@
-import type { CSSObject } from '@emotion/css'
-import type {
-  SystemBottom,
-  SystemLeft,
-  SystemPlace,
-  SystemPosition,
-  SystemRight,
-  SystemTop,
-  SystemZIndex,
-  Theme,
-} from '@gnowth/lib-types'
-
-import type { ThemeScale } from '../types'
+import type { System, ThemeScale } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
-export function systemBottom() {
-  return (props: SystemBottom, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'bottom', theme, value: props.bottom })
-}
+type SystemBottom = { bottom?: string }
+type SystemLeft = { left?: string }
+type SystemPosition = { position?: string }
+type SystemRight = { right?: string }
+type SystemTop = { top?: string }
+type SystemZIndex = { zIndex?: number | string }
 
-export function systemLeft() {
-  return (props: SystemLeft, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'left', theme, value: props.left })
-}
+export const systemBottom: () => System<SystemBottom> = () => (props, theme) =>
+  systemInterpolate({ key: 'bottom', theme, value: props.bottom })
 
-export function systemPosition() {
-  return (props: SystemPosition, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'position', theme, value: props.position })
-}
+export const systemLeft: () => System<SystemLeft> = () => (props, theme) =>
+  systemInterpolate({ key: 'left', theme, value: props.left })
 
-export function systemRight() {
-  return (props: SystemRight, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'right', theme, value: props.right })
-}
+export const systemPosition: () => System<SystemPosition> = () => (props, theme) =>
+  systemInterpolate({ key: 'position', theme, value: props.position })
 
-export function systemTop() {
-  return (props: SystemTop, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'top', theme, value: props.top })
-}
+export const systemRight: () => System<SystemRight> = () => (props, theme) =>
+  systemInterpolate({ key: 'right', theme, value: props.right })
 
-export function systemZIndex(scale: ThemeScale | string = 'zindex') {
-  return (props: SystemZIndex, theme: Theme): CSSObject =>
+export const systemTop: () => System<SystemTop> = () => (props, theme) =>
+  systemInterpolate({ key: 'top', theme, value: props.top })
+
+export const systemZIndex: (scale?: ThemeScale | string) => System<SystemZIndex> =
+  (scale = 'zindex') =>
+  (props, theme) =>
     systemInterpolate({ key: 'zIndex', scale, theme, value: props.zIndex })
-}
 
-export function systemPlace(): (props: SystemPlace, theme: Theme) => CSSObject {
-  return systemCompose<SystemPlace>(
-    systemBottom(),
-    systemLeft(),
-    systemPosition(),
-    systemRight(),
-    systemTop(),
-    systemZIndex(),
-  )
-}
+export const systemPlace = () =>
+  systemCompose(systemBottom(), systemLeft(), systemPosition(), systemRight(), systemTop(), systemZIndex())

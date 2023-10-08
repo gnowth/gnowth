@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import {
   AppLink,
   LayoutHeader,
@@ -17,7 +17,7 @@ interface Props {
   slot?: string
 }
 
-export const ViewAppHeader: React.FunctionComponent<Props> = () => (
+export const ViewAppHeader: FunctionComponent<Props> = () => (
   <LayoutHeader>
     <LayoutSection
       boxVariant="float"

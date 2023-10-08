@@ -1,5 +1,6 @@
 import type { AsyncStatus } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
+import { createContext, useCallback, useEffect, useReducer } from 'react'
 import { UtilError } from '@gnowth/lib-util'
 
 import { ModelPromise } from './model-promise'
@@ -29,7 +30,7 @@ interface AsyncContext {
 }
 
 interface Props {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 interface State {
@@ -38,7 +39,7 @@ interface State {
   status: AsyncStatus
 }
 
-export const AsyncContext = React.createContext<AsyncContext>({
+export const AsyncContext = createContext<AsyncContext>({
   addPromise: () => {
     // eslint-disable-next-line no-console
     console.warn(
@@ -155,10 +156,10 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+export const AsyncProvider: FunctionComponent<Props> = (props) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all(state.promises)
       .then(() => dispatch({ type: actions.resolve }))
       .catch((error) => dispatch({ errors: [error], type: actions.reject }))
@@ -166,14 +167,14 @@ export const AsyncProvider: React.FunctionComponent<Props> = (props) => {
     // TODO: cleanup prevent dispatch if unmounted?
   }, [state.promises])
 
-  const addPromise = React.useCallback((promise: Promise<unknown>) => {
+  const addPromise = useCallback((promise: Promise<unknown>) => {
     dispatch({
       payload: promise,
       type: actions.addPromise,
     })
   }, [])
 
-  const removePromise = React.useCallback((promise: Promise<unknown>) => {
+  const removePromise = useCallback((promise: Promise<unknown>) => {
     dispatch({
       payload: promise,
       type: actions.removePromise,

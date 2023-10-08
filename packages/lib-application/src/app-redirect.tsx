@@ -1,6 +1,5 @@
 import type { Model } from '@gnowth/lib-types'
 import type { ReactElement } from 'react'
-import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 import type { AppModelApplication } from './app-model-application'

@@ -1,15 +1,15 @@
 import type {
   PropsVariant,
-  Theme,
   ThemeConfigsComponent,
   ThemeConfigsPalette,
   ThemeConfigsScale,
   ThemeVariant,
 } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType } from 'react'
 import { guardString } from '@gnowth/lib-utils'
 
-class ThemeShimmed implements Theme {
+class ThemeShimmed {
   getComponent<Props>(configs: ThemeConfigsComponent<Props>): ComponentType<Props> | undefined {
     return guardString(configs.component) ? undefined : configs.component
   }
@@ -49,4 +49,4 @@ class ThemeShimmed implements Theme {
   }
 }
 
-export const shimmedTheme = new ThemeShimmed()
+export const shimmedTheme = new ThemeShimmed() as Theme

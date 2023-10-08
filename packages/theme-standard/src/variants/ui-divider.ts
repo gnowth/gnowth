@@ -1,4 +1,4 @@
-import type { Theme } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { VariantUIDivider } from '@gnowth/lib-view'
 
 // eslint-disable-next-line import/prefer-default-export

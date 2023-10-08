@@ -1,3 +1,3 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
-export const PageIngredient: React.FunctionComponent = () => <div />
+export const PageIngredient: FunctionComponent = () => <div />

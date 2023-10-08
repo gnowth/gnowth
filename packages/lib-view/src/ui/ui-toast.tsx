@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIToast {
   as?: string
 }
 
 export interface PropsUIToast extends VariantUIToast {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIToast: React.FunctionComponent<PropsUIToast> = (props) => (
+export const UIToast: FunctionComponent<PropsUIToast> = (props) => (
   <div className="ui-toast">{props.children}</div>
 )

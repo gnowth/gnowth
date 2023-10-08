@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantNavTabs {
   as?: string
 }
 
 export interface PropsNavTabs {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const NavTabs: React.FunctionComponent<PropsNavTabs> = (props) => (
+export const NavTabs: FunctionComponent<PropsNavTabs> = (props) => (
   <div className="nav-tab">{props.children}</div>
 )

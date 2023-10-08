@@ -1,5 +1,6 @@
 import type { PropsData, SystemSpace } from '@gnowth/lib-types'
-import React from 'react'
+import type { ComponentType, FunctionComponent } from 'react'
+import { useRef, useCallback } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
@@ -13,7 +14,7 @@ type SystemInputBoolean = SystemSpace
 
 export interface VariantInputBoolean extends SystemInputBoolean {
   as?: string
-  icon?: React.ComponentType<PropsUIIcon> | string
+  icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
   iconSize?: string | number
@@ -85,11 +86,11 @@ function iconValue(props: PropsInputBoolean, value?: boolean | null) {
   return value ? props.iconValueTrue : props.iconValueFalse
 }
 
-export const InputBoolean: React.FunctionComponent<PropsInputBoolean> = (props) => {
+export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
   const { name, onChange, value } = useValue(props, false)
   const theme = useAppTheme()
-  const refInput = React.useRef<HTMLInputElement>(null)
-  const handleChange = React.useCallback<ChangeEventHandler<string>>(
+  const refInput = useRef<HTMLInputElement>(null)
+  const handleChange = useCallback<ChangeEventHandler<string>>(
     ({ target }) => onChange?.({ target: { value: target.checked ?? false } }),
     [onChange],
   )

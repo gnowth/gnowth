@@ -1,6 +1,6 @@
 import type { SystemDisplay, SystemFlexbox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import type { ReactNode } from 'react'
-import React from 'react'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -21,7 +21,7 @@ interface ComponentProps {
 type SystemLayoutContent = SystemDisplay & SystemFlexbox & SystemPalette & SystemSpace
 
 export interface VariantLayoutContent extends SystemLayoutContent {
-  as?: React.ComponentType<ComponentProps> | string
+  as?: ComponentType<ComponentProps> | string
 }
 
 export interface PropsLayoutContent extends VariantLayoutContent {
@@ -35,7 +35,7 @@ export interface PropsLayoutContent extends VariantLayoutContent {
 }
 
 const makeStyles = Theme.makeStyles({
-  layoutContent: systemCompose<PropsLayoutContent>(
+  layoutContent: systemCompose(
     systemBackgroundColorFromPalette(),
     systemDisplay(),
     systemFlexbox(),
@@ -47,7 +47,7 @@ const propsDefault = {
   variantNamespace: 'layoutContent',
 }
 
-export const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props) => {
+export const LayoutContent: FunctionComponent<PropsLayoutContent> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -55,7 +55,7 @@ export const LayoutContent: React.FunctionComponent<PropsLayoutContent> = (props
   const variant = theme.getVariant(props, propsDefault)
   const styles = makeStyles(variant, theme)
 
-  return React.createElement(
+  return createElement(
     variant.as ?? 'div',
     {
       className: cx(

@@ -1,5 +1,4 @@
-import type { ReactNode } from 'react'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { AppLayout } from '@gnowth/lib-react'
 
 import { ViewAppFooter } from './view-app-footer'
@@ -9,7 +8,7 @@ type Props = {
   children: ReactNode
 }
 
-export const ViewFrameRecipes: React.FunctionComponent<Props> = (props) => (
+export const ViewFrameRecipes: FunctionComponent<Props> = (props) => (
   <AppLayout layout="app">
     <AppLayout layout="appHeader" slot="header">
       <ViewAppHeader />

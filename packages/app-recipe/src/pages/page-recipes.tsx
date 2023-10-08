@@ -1,6 +1,5 @@
 import type { QueryResource } from '@gnowth/lib-types'
 import type { ReactElement } from 'react'
-import React from 'react'
 import { LayoutContent, LayoutPage, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
 
 import type { Ingredient, Recipe } from '../types'

@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { AppLayout } from '@gnowth/lib-react'
 
-export const PageDashboard: React.FunctionComponent = () => <AppLayout layout="page">Dashboard</AppLayout>
+export const PageDashboard: FunctionComponent = () => <AppLayout layout="page">Dashboard</AppLayout>

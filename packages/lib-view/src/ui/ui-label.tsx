@@ -1,5 +1,5 @@
 import type { PropsDataReadonly, SystemPalette, SystemSpace, SystemTypography } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -27,7 +27,7 @@ export interface PropsUILabel extends VariantUILabel, PropsDataReadonly<string> 
 }
 
 const makeStyles = Theme.makeStyles({
-  uiLabel: systemCompose<PropsUILabel>(systemColorFromPalette(), systemSpace(), systemTypography()),
+  uiLabel: systemCompose(systemColorFromPalette(), systemSpace(), systemTypography()),
 })
 
 const definitions = Theme.makeDefinitions(['', 'typography'])
@@ -37,7 +37,7 @@ const propsDefault = {
   typographyVariantNamespace: 'uiTypography',
 }
 
-export const UILabel: React.FunctionComponent<PropsUILabel> = (props) => {
+export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

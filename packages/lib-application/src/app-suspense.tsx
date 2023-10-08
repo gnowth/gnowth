@@ -1,6 +1,6 @@
 import type { PropsSuspense } from '@gnowth/lib-types'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
-import React from 'react'
+import { Suspense } from 'react'
 
 import { useAppSuspense } from './use-app-suspense'
 
@@ -21,5 +21,5 @@ export function AppSuspense(props: Props): ReactElement {
 
   if (props.awaiting) return suspense
 
-  return <React.Suspense fallback={suspense}>{props.children}</React.Suspense>
+  return <Suspense fallback={suspense}>{props.children}</Suspense>
 }

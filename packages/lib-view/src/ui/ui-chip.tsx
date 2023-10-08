@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIChip {
   as?: string
 }
 
 export interface PropsUIChip {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIChip: React.FunctionComponent<PropsUIChip> = (props) => (
+export const UIChip: FunctionComponent<PropsUIChip> = (props) => (
   <div className="ui-chip">{props.children}</div>
 )
