@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface VariantInputCascader {
   as?: string
@@ -9,6 +9,6 @@ export interface PropsInputCascader {
 }
 
 // Note: see ant design
-export const InputCascader: React.FunctionComponent<PropsInputCascader> = (props) => (
+export const InputCascader: FunctionComponent<PropsInputCascader> = (props) => (
   <input className="input-cascader" name={props.name} />
 )

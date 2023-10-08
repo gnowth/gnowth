@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface VariantInputNumber {
   as?: string
@@ -8,6 +8,6 @@ export interface PropsInputNumber {
   name?: string
 }
 
-export const InputNumber: React.FunctionComponent<PropsInputNumber> = (props) => (
+export const InputNumber: FunctionComponent<PropsInputNumber> = (props) => (
   <input className="input-number" name={props.name} />
 )

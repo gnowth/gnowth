@@ -1,6 +1,7 @@
-import type { DataName, Theme } from '@gnowth/lib-types'
-import type { ReactElement } from 'react'
-import React from 'react'
+import type { DataName } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
+import type { ComponentType, ReactElement } from 'react'
+import { createElement, useState, useCallback, useContext } from 'react'
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { UtilError, useRefValue } from '@gnowth/lib-util'
 import { UtilRequired, objectDefaults } from '@gnowth/lib-utils'
@@ -17,7 +18,7 @@ interface PropsComponent {
 
 interface Props<Value> {
   action?: (value: Value, name?: DataName) => Promise<Value> | Value
-  component?: React.ComponentType<PropsComponent> | string
+  component?: ComponentType<PropsComponent> | string
   componentPalette?: string
   componentProps?: Record<string, unknown>
   componentValue?: string
@@ -42,15 +43,15 @@ const propsDefault = {
 
 // TODO: standardise handling async error
 export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
-  const context = React.useContext(DataContext)
+  const context = useContext(DataContext)
   const refValue = useRefValue(context.value as Value)
   const theme = useAppTheme(props.theme)
   const handleChange = props.submit ? context.onSubmit : context.onChange
   const { name } = context
   const { action = (x) => x, onResolve } = props
 
-  const [awaiting, setAwaiting] = React.useState(false)
-  const handleEvent = React.useCallback(async () => {
+  const [awaiting, setAwaiting] = useState(false)
+  const handleEvent = useCallback(async () => {
     setAwaiting(true)
     const output = await action?.(refValue.current, name)
     await handleChange?.(output, name)
@@ -69,7 +70,7 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   if (!Component) throw errorCustomComponent
 
-  const component = React.createElement(Component, {
+  const component = createElement(Component, {
     ...propsWithDefault.componentProps,
     [propsWithDefault.event]: handleEvent,
     disabled: awaiting, // TODO check if error is processing

@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface VariantInputPagination {
   as?: string
@@ -8,6 +8,6 @@ export interface PropsInputPagination {
   name?: string
 }
 
-export const InputPagination: React.FunctionComponent<PropsInputPagination> = (props) => (
+export const InputPagination: FunctionComponent<PropsInputPagination> = (props) => (
   <input className="input-pagination" name={props.name} />
 )

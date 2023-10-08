@@ -7,7 +7,7 @@ import type {
   SystemSpace,
   Theme as ThemeType,
 } from '@gnowth/lib-types'
-import React from 'react'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -47,7 +47,7 @@ const stylesLayout = Theme.createStyles({
   `,
 })
 
-const LayoutSuperImpose: React.FunctionComponent<PropsLayout> = (props) => (
+const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   <UtilSlot.Provider slots={props.children}>
     <div className={cx(props.className, props.classNameRoot, stylesLayout.layoutContainer)} id={props.id}>
       <UtilSlot.Test test="progress">
@@ -81,7 +81,7 @@ export interface VariantUIProgress extends SystemUIProgress {
   bufferPalette?: string
   bufferPaletteForContrast?: boolean
   bufferPaletteWeight?: string
-  layout?: React.ComponentType<PropsLayout> | string
+  layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number
   layoutVariant?: string
@@ -90,7 +90,7 @@ export interface VariantUIProgress extends SystemUIProgress {
 }
 
 export interface PropsUIProgress extends PropsDataReadonly<number | null>, VariantUIProgress {
-  children?: React.ReactNode
+  children?: ReactNode
   className?: string
   classNameRoot?: string
   hidden?: boolean
@@ -173,7 +173,7 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
 `
 
 const makeStyles = Theme.makeStyles({
-  uiProgress: systemCompose<PropsUIProgress>(systemDisplay(), systemSize('iconsize'), systemSpace()),
+  uiProgress: systemCompose(systemDisplay(), systemSize('iconsize'), systemSpace()),
 
   uiProgressCircle: (props: PropsUIProgress, theme: ThemeType) => ({
     animationName: spinnerStrokeRotate(props),
@@ -237,7 +237,7 @@ const propsDefault = {
 // TODO should props, propsDefault, context, state be generalize in a type?
 // TODO: add animation if a number starts from 0 to number?
 // TODO: fix alignment and padding
-export const UIProgress: React.FunctionComponent<PropsUIProgress> = (props) => {
+export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
   const ready = useAnimationDelayReady()
   const theme = useAppTheme()
 

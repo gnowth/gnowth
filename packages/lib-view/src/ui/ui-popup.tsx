@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIPopup {
   as?: string
 }
 
 export interface PropsUIPopup {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIPopup: React.FunctionComponent<PropsUIPopup> = (props) => (
+export const UIPopup: FunctionComponent<PropsUIPopup> = (props) => (
   <div className="ui-popup">{props.children}</div>
 )

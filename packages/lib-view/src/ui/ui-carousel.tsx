@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUICarousel {
   as?: string
 }
 
 export interface PropsUICarousel {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UICarousel: React.FunctionComponent<PropsUICarousel> = (props) => (
+export const UICarousel: FunctionComponent<PropsUICarousel> = (props) => (
   <div className="ui-carousel">{props.children}</div>
 )

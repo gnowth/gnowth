@@ -1,5 +1,5 @@
 import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -24,7 +24,7 @@ export interface VariantLayoutSection extends SystemLayoutSection {
 }
 
 export interface PropsLayoutSection extends VariantLayoutSection {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   classNameRoot?: string
   hidden?: boolean
@@ -35,11 +35,7 @@ export interface PropsLayoutSection extends VariantLayoutSection {
 }
 
 const makeStyles = Theme.makeStyles({
-  layoutSection: systemCompose<PropsLayoutSection>(
-    systemBackgroundColorFromPalette(),
-    systemBox(),
-    systemSpace(),
-  ),
+  layoutSection: systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace()),
 })
 
 const definitions = Theme.makeDefinitions(['', 'box'])
@@ -54,7 +50,7 @@ const propsDefault = {
 }
 
 // TODO: provide a child to allow page section. that way it can have a background and border
-export const LayoutSection: React.FunctionComponent<PropsLayoutSection> = (props) => {
+export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

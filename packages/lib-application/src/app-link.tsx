@@ -1,6 +1,5 @@
 import type { Model } from '@gnowth/lib-react'
-import type { ReactElement, ReactNode } from 'react'
-import React from 'react'
+import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 import type { AppModelApplication } from './app-model-application'
@@ -10,7 +9,7 @@ import { useAppTheme } from './use-app-theme'
 interface Props<Value> {
   application?: AppModelApplication | string
   children: ReactNode
-  component?: React.ComponentType | string
+  component?: ComponentType | string
   model?: Model<Value> | string
   page?: string
   to?: string

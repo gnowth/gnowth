@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantNavBreadcrumb {
   as?: string
 }
 
 export interface PropsNavBreadcrumb {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const NavBreadcrumb: React.FunctionComponent<PropsNavBreadcrumb> = (props) => (
+export const NavBreadcrumb: FunctionComponent<PropsNavBreadcrumb> = (props) => (
   <div className="nav-breadcrumb">{props.children}</div>
 )

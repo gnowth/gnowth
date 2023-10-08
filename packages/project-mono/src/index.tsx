@@ -1,4 +1,4 @@
-import React from 'react'
+import { lazy } from 'react'
 import { ApplicationAuth } from '@gnowth/app-auth'
 import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
 import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenError } from '@gnowth/lib-react'
@@ -12,10 +12,10 @@ import { settings } from './settings'
 import { setup } from './setup'
 import { theme } from './theme'
 
-const ApplicationRecipes = React.lazy(() =>
+const ApplicationRecipes = lazy(() =>
   import('@gnowth/app-recipe').then((module) => ({ default: module.ApplicationRecipes })),
 )
-const ApplicationTasks = React.lazy(() =>
+const ApplicationTasks = lazy(() =>
   import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),
 )
 

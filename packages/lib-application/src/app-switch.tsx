@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from 'react'
-import React from 'react'
+import { cloneElement, isValidElement, Children } from 'react'
 import { matchPath, useLocation, useRouteMatch } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'
@@ -25,8 +25,8 @@ export function AppSwitch(props: Props): ReactElement | null {
   let element: ReactElement = <div />
   let match: typeof matchContext | null = null
 
-  React.Children.forEach(props.children, (child) => {
-    if (match == null && React.isValidElement<PropsChild>(child)) {
+  Children.forEach(props.children, (child) => {
+    if (match == null && isValidElement<PropsChild>(child)) {
       element = child
 
       const applicationCurrent = environment.getApplication(child.props.application || application)
@@ -36,5 +36,5 @@ export function AppSwitch(props: Props): ReactElement | null {
     }
   })
 
-  return match ? React.cloneElement(element, { computedMatch: match, location }) : null
+  return match ? cloneElement(element, { computedMatch: match, location }) : null
 }

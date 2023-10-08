@@ -1,6 +1,7 @@
-import type { PropsFrame, PropsSuspense, Theme } from '@gnowth/lib-types'
+import type { PropsFrame, PropsSuspense } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType } from 'react'
-import React from 'react'
+import { createContext } from 'react'
 
 import { AppModelApplication } from './app-model-application'
 
@@ -16,4 +17,4 @@ const propsDefault: PropsApplication = {
   application: new AppModelApplication({}),
 }
 
-export const ContextApplication = React.createContext(propsDefault)
+export const ContextApplication = createContext(propsDefault)

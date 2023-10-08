@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIAlert {
   as?: string
 }
 
 export interface PropsUIAlert {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIAlert: React.FunctionComponent<PropsUIAlert> = (props) => (
+export const UIAlert: FunctionComponent<PropsUIAlert> = (props) => (
   <div className="ui-alert">{props.children}</div>
 )

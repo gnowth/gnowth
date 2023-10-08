@@ -1,5 +1,5 @@
 import type { AppModelApplication } from '@gnowth/lib-react'
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { AppApplication, AppPage, AppRedirect, AppPageNotFound } from '@gnowth/lib-react'
 
 import { PageAboutUs } from './pages/page-about-us'
@@ -18,7 +18,7 @@ interface Props {
   path?: string
 }
 
-export const ApplicationPages: React.FunctionComponent<Props> = (props) => (
+export const ApplicationPages: FunctionComponent<Props> = (props) => (
   <AppApplication application={props.application ?? 'pages'} path={props.path}>
     <AppPage component={PageAboutUs} page={TokenPage.aboutUs} />
 

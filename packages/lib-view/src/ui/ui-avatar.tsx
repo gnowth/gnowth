@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIAvatar {
   as?: string
 }
 
 export interface PropsUIAvatar {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIAvatar: React.FunctionComponent<PropsUIAvatar> = (props) => (
+export const UIAvatar: FunctionComponent<PropsUIAvatar> = (props) => (
   <div className="ui-avatar">{props.children}</div>
 )

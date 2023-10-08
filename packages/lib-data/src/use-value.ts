@@ -1,5 +1,5 @@
 import type { DataName, DataValue } from '@gnowth/lib-types'
-import React from 'react'
+import { useState, useCallback } from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 import { UtilError, useEnsureConstant, useRefValue } from '@gnowth/lib-util'
 import { objectDefaults, objectSet } from '@gnowth/lib-utils'
@@ -45,19 +45,19 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
   })
 
   const valueRef = useRefValue(props.value)
-  const [value, setValue] = React.useState(props.value)
+  const [value, setValue] = useState(props.value)
 
-  const handleChangeControlled = React.useCallback<NonNullable<typeof onChange>>(
+  const handleChangeControlled = useCallback<NonNullable<typeof onChange>>(
     (val, name) => onChange?.(name ? objectSet(valueRef.current, name, val) : val),
     [onChange, valueRef],
   )
 
-  const handleChangeShadow = React.useCallback<NonNullable<typeof onChange>>(
+  const handleChangeShadow = useCallback<NonNullable<typeof onChange>>(
     (val, name) => setValue((prevValue) => (name ? objectSet(prevValue, name, val) : prevValue)),
     [],
   )
 
-  const handleChangeUncontrolled = React.useCallback<NonNullable<typeof onChange>>(
+  const handleChangeUncontrolled = useCallback<NonNullable<typeof onChange>>(
     async (val, name) => {
       await handleChangeShadow(val, name)
 

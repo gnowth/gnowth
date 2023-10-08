@@ -1,5 +1,4 @@
-import type { ReactNode } from 'react'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { LayoutApp, UtilSlot } from '@gnowth/lib-react'
 
 import { ViewAppFooter } from './view-app-footer'
@@ -9,7 +8,7 @@ type Props = {
   children: ReactNode
 }
 
-export const ViewFrameDefault: React.FunctionComponent<Props> = (props) => (
+export const ViewFrameDefault: FunctionComponent<Props> = (props) => (
   <LayoutApp palette="text" paletteWeight="100" spacing={0}>
     <ViewAppHeader slot="header" />
 

@@ -1,5 +1,5 @@
 import type { PropsDataReadonly, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemColorFromPalette, systemCompose, systemSpace } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
@@ -27,7 +27,7 @@ export interface PropsUIIcon extends VariantUIIcon, SystemPalette, PropsDataRead
 }
 
 const makeStyles = Theme.makeStyles({
-  uiIcon: systemCompose<PropsUIIcon>(systemColorFromPalette(), systemSpace()),
+  uiIcon: systemCompose(systemColorFromPalette(), systemSpace()),
 })
 
 const propsDefault = {
@@ -36,7 +36,7 @@ const propsDefault = {
   variantNamespace: 'uiIcon',
 }
 
-export const UIIcon: React.FunctionComponent<PropsUIIcon> = (props) => {
+export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

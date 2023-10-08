@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { render, screen } from '@testing-library/react'
 
 import { UtilSlot } from './util-slot'
@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode
 }
 
-const DummyComponent: React.FunctionComponent<Props> = (props) => (
+const DummyComponent: FunctionComponent<Props> = (props) => (
   <UtilSlot.Provider slots={props.children}>
     <UtilSlot.Test test="header">
       <header>

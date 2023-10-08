@@ -1,5 +1,7 @@
-import type { PropsBoundary, Theme } from '@gnowth/lib-types'
-import React from 'react'
+import type { PropsBoundary } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
+import type { ComponentType, ErrorInfo, ContextType, ReactElement, ReactNode } from 'react'
+import { Component, createElement } from 'react'
 import { UtilError } from '@gnowth/lib-util'
 import { guardString } from '@gnowth/lib-utils'
 
@@ -7,8 +9,8 @@ import { ContextEnvironment } from './context-environment'
 import { withAppTheme } from './with-app-theme'
 
 interface Props {
-  children: React.ReactNode
-  onError?: (error: Error, errorInfo: React.ErrorInfo) => void
+  children: ReactNode
+  onError?: (error: Error, errorInfo: ErrorInfo) => void
   shouldSkip?: (error: Error) => boolean
 }
 
@@ -20,7 +22,7 @@ interface State {
   error: UtilError | null
 }
 
-class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
+class AppBoundaryComponent extends Component<Props & WithTheme, State> {
   // eslint-disable-next-line react/static-property-placement
   static contextType = ContextEnvironment
 
@@ -32,7 +34,7 @@ class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
 
   // TODO: check if declare is right here
   // eslint-disable-next-line react/static-property-placement
-  declare context: React.ContextType<typeof ContextEnvironment>
+  declare context: ContextType<typeof ContextEnvironment>
 
   constructor(props: Props & WithTheme) {
     super(props)
@@ -40,13 +42,13 @@ class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
     this.state = { error: null }
   }
 
-  componentDidCatch(error: UtilError, errorInfo: React.ErrorInfo): void {
+  componentDidCatch(error: UtilError, errorInfo: ErrorInfo): void {
     if (this.props.shouldSkip?.(error)) throw error
 
     this.props.onError?.(error, errorInfo)
   }
 
-  getComponent(error: UtilError): React.ComponentType<PropsBoundary> | undefined {
+  getComponent(error: UtilError): ComponentType<PropsBoundary> | undefined {
     const keys = Object.keys(this.context.boundaries)
     const types = guardString(error.type) ? [error.type] : error.type || []
     const typeError = types.find((type) => keys.includes(type))
@@ -58,7 +60,7 @@ class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
     return this.context.boundaries[typeError ?? ''] || ComponentDefault
   }
 
-  render(): React.ReactElement | null {
+  render(): ReactElement | null {
     if (!this.state.error) return <>{this.props.children}</>
 
     const props = { value: this.state.error }
@@ -74,7 +76,7 @@ class AppBoundaryComponent extends React.Component<Props & WithTheme, State> {
       })
     }
 
-    return React.createElement(component, props)
+    return createElement(component, props)
   }
 }
 

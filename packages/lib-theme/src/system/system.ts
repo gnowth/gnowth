@@ -1,18 +1,68 @@
 import type { CSSObject } from '@emotion/css'
-import type { Interpolate, Theme } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import { guardObject, objectMapValues } from '@gnowth/lib-utils'
 
-import type { ThemeScale } from '../types'
+import type { Interpolate, System, ThemeScale } from '../types'
 import { objectDefaultsDeep } from './system.utils'
 
+type SystemCompose = <
+  Type01,
+  Type02,
+  Type03,
+  Type04,
+  Type05,
+  Type06,
+  Type07,
+  Type08,
+  Type09,
+  Type10,
+  Type11,
+  Type12,
+  Type13,
+  Type14,
+  Type15,
+>(
+  system01: System<Type01>,
+  system02: System<Type02>,
+  system03?: System<Type03>,
+  system04?: System<Type04>,
+  system05?: System<Type05>,
+  system06?: System<Type06>,
+  system07?: System<Type07>,
+  system08?: System<Type08>,
+  system09?: System<Type09>,
+  system10?: System<Type10>,
+  system11?: System<Type11>,
+  system12?: System<Type12>,
+  system13?: System<Type13>,
+  system14?: System<Type14>,
+  system15?: System<Type15>,
+) => System<
+  Type01 &
+    Type02 &
+    Type03 &
+    Type04 &
+    Type05 &
+    Type06 &
+    Type07 &
+    Type08 &
+    Type09 &
+    Type10 &
+    Type11 &
+    Type12 &
+    Type13 &
+    Type14 &
+    Type15
+>
+
 // TODO fix utilAssignDeep assumes that if a props is an object all will be. does not take
-export function systemCompose<Props>(...predicates: ((props: Props, theme: Theme) => CSSObject)[]) {
-  return (props: Props, theme: Theme): CSSObject =>
+export const systemCompose: SystemCompose =
+  (...predicates) =>
+  (props, theme) =>
     predicates.reduce(
-      (styles, predicate) => objectDefaultsDeep(predicate(props, theme), styles),
+      (styles, predicate) => objectDefaultsDeep(predicate!(props, theme), styles),
       {} as CSSObject,
     )
-}
 
 interface ConfigsInterpolation<Value extends string | number> {
   key: string | string[]

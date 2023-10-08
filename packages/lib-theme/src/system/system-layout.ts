@@ -1,93 +1,66 @@
-import type { CSSObject } from '@emotion/css'
-import type {
-  SystemDisplay,
-  SystemHeight,
-  SystemLayout,
-  SystemMaxHeight,
-  SystemMaxSize,
-  SystemMaxWidth,
-  SystemMinHeight,
-  SystemMinSize,
-  SystemMinWidth,
-  SystemOverflow,
-  SystemOverflowX,
-  SystemOverflowY,
-  SystemSize,
-  SystemWidth,
-  Theme,
-} from '@gnowth/lib-types'
-
-import type { ThemeScale } from '../types'
+import type { System, ThemeScale } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
-export function systemDisplay() {
-  return (props: SystemDisplay, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'display', theme, value: props.display })
-}
+type SystemDisplay = { display?: string }
+type SystemHeight = { height?: string }
+type SystemMaxHeight = { maxHeight?: string }
+type SystemMaxSize = { maxSize?: string }
+type SystemMaxWidth = { maxWidth?: string }
+type SystemMinHeight = { minHeight?: string }
+type SystemMinSize = { minSize?: string }
+type SystemMinWidth = { minWidth?: string }
+type SystemOverflow = { overflow?: string }
+type SystemOverflowX = { overflowX?: string }
+type SystemOverflowY = { overflowY?: string }
+type SystemSize = { size?: string | number }
+type SystemWidth = { width?: string | number }
 
-export function systemHeight() {
-  return (props: SystemHeight, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'height', theme, value: props.height })
-}
+export const systemDisplay: () => System<SystemDisplay> = () => (props, theme) =>
+  systemInterpolate({ key: 'display', theme, value: props.display })
 
-export function systemMaxHeight() {
-  return (props: SystemMaxHeight, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'maxHeight', theme, value: props.maxHeight })
-}
+export const systemHeight: () => System<SystemHeight> = () => (props, theme) =>
+  systemInterpolate({ key: 'height', theme, value: props.height })
 
-export function systemMaxSize() {
-  return (props: SystemMaxSize, theme: Theme): CSSObject =>
-    systemInterpolate({ key: ['maxHeight', 'maxWidth'], theme, value: props.maxSize })
-}
+export const systemMaxHeight: () => System<SystemMaxHeight> = () => (props, theme) =>
+  systemInterpolate({ key: 'maxHeight', theme, value: props.maxHeight })
 
-export function systemMaxWidth() {
-  return (props: SystemMaxWidth, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'maxWidth', theme, value: props.maxWidth })
-}
+export const systemMaxSize: () => System<SystemMaxSize> = () => (props, theme) =>
+  systemInterpolate({ key: ['maxHeight', 'maxWidth'], theme, value: props.maxSize })
 
-export function systemMinHeight() {
-  return (props: SystemMinHeight, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'minHeight', theme, value: props.minHeight })
-}
+export const systemMaxWidth: () => System<SystemMaxWidth> = () => (props, theme) =>
+  systemInterpolate({ key: 'maxWidth', theme, value: props.maxWidth })
 
-export function systemMinSize() {
-  return (props: SystemMinSize, theme: Theme): CSSObject =>
-    systemInterpolate({ key: ['minHeight', 'minWidth'], theme, value: props.minSize })
-}
+export const systemMinHeight: () => System<SystemMinHeight> = () => (props, theme) =>
+  systemInterpolate({ key: 'minHeight', theme, value: props.minHeight })
 
-export function systemMinWidth() {
-  return (props: SystemMinWidth, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'minWidth', theme, value: props.minWidth })
-}
+export const systemMinSize: () => System<SystemMinSize> = () => (props, theme) =>
+  systemInterpolate({ key: ['minHeight', 'minWidth'], theme, value: props.minSize })
 
-export function systemOverflow() {
-  return (props: SystemOverflow, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'overflow', theme, value: props.overflow })
-}
+export const systemMinWidth: () => System<SystemMinWidth> = () => (props, theme) =>
+  systemInterpolate({ key: 'minWidth', theme, value: props.minWidth })
 
-export function systemOverflowX() {
-  return (props: SystemOverflowX, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'overflowX', theme, value: props.overflowX })
-}
+export const systemOverflow: () => System<SystemOverflow> = () => (props, theme) =>
+  systemInterpolate({ key: 'overflow', theme, value: props.overflow })
 
-export function systemOverflowY() {
-  return (props: SystemOverflowY, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'overflowY', theme, value: props.overflowY })
-}
+export const systemOverflowX: () => System<SystemOverflowX> = () => (props, theme) =>
+  systemInterpolate({ key: 'overflowX', theme, value: props.overflowX })
+
+export const systemOverflowY: () => System<SystemOverflowY> = () => (props, theme) =>
+  systemInterpolate({ key: 'overflowY', theme, value: props.overflowY })
 
 // TODO set the proper scale default when creating width scale
-export function systemSize(scale: ThemeScale | string = 'space') {
-  return (props: SystemSize, theme: Theme): CSSObject =>
+export const systemSize: (scale?: ThemeScale | string) => System<SystemSize> =
+  (scale = 'space') =>
+  (props, theme) =>
     systemInterpolate({ key: ['height', 'width'], scale, theme, value: props.size })
-}
 
-export function systemWidth(scale = 'length') {
-  return (props: SystemWidth, theme: Theme): CSSObject =>
+export const systemWidth: (scale?: ThemeScale | string) => System<SystemWidth> =
+  (scale = 'length') =>
+  (props, theme) =>
     systemInterpolate({ key: 'width', scale, theme, value: props.width })
-}
 
-export function systemLayout(): (props: SystemLayout, theme: Theme) => CSSObject {
-  return systemCompose<SystemLayout>(
+export const systemLayout = () =>
+  systemCompose(
     systemDisplay(),
     systemSize(), // Note: not in alphabetical order because it can potentially conflict with height and width
     systemMaxSize(),
@@ -102,4 +75,3 @@ export function systemLayout(): (props: SystemLayout, theme: Theme) => CSSObject
     systemOverflowY(),
     systemWidth(),
   )
-}

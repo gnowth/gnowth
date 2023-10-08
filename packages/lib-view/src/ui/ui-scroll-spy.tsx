@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIScrollSpy {
   as?: string
 }
 
 export interface PropsUIScrollSpy {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIScrollSpy: React.FunctionComponent<PropsUIScrollSpy> = (props) => (
+export const UIScrollSpy: FunctionComponent<PropsUIScrollSpy> = (props) => (
   <div className="ui-scroll-spy">{props.children}</div>
 )

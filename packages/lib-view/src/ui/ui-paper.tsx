@@ -1,5 +1,5 @@
 import type { SystemBox, SystemPalette, SystemSpace } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -20,7 +20,7 @@ export interface VariantUIPaper extends SystemUIPapper {
 }
 
 export interface PropsUIPaper extends VariantUIPaper {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
@@ -30,7 +30,7 @@ export interface PropsUIPaper extends VariantUIPaper {
 }
 
 const makeStyles = Theme.makeStyles({
-  uiPaper: systemCompose<PropsUIPaper>(systemBackgroundColorFromPalette(), systemBox(), systemSpace()),
+  uiPaper: systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace()),
 })
 
 const definitions = Theme.makeDefinitions(['', 'box'])
@@ -42,7 +42,7 @@ const propsDefault = {
   variantNamespace: 'uiPaper',
 }
 
-export const UIPaper: React.FunctionComponent<PropsUIPaper> = (props) => {
+export const UIPaper: FunctionComponent<PropsUIPaper> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

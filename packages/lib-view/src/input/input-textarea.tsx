@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface VariantInputTextarea {
   as?: string
@@ -8,6 +8,6 @@ export interface PropsInputTextarea {
   name?: string
 }
 
-export const InputTextarea: React.FunctionComponent<PropsInputTextarea> = (props) => (
+export const InputTextarea: FunctionComponent<PropsInputTextarea> = (props) => (
   <input className="input-textarea" name={props.name} />
 )

@@ -1,14 +1,14 @@
 // Note: see ant design. very similar to skeleton
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIEmpty {
   as?: string
 }
 
 export interface PropsUIEmpty {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIEmpty: React.FunctionComponent<PropsUIEmpty> = (props) => (
+export const UIEmpty: FunctionComponent<PropsUIEmpty> = (props) => (
   <div className="ui-empty">{props.children}</div>
 )

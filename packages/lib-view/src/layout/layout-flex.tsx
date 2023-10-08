@@ -1,31 +1,28 @@
-import type {
-  CSSObject,
-  PropsLayout,
-  SystemFlexbox,
-  SystemLayout,
-  SystemSpace,
-  Theme as ThemeType,
-} from '@gnowth/lib-types'
-import React from 'react'
+import type { PropsLayout } from '@gnowth/lib-types'
+import type { System, SystemType } from '@gnowth/lib-theme'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { Theme, cx, systemCompose, systemFlexbox, systemLayout, systemSpace } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
+import { createElement } from 'react'
 
 interface ComponentProps {
   className?: string
-  children?: React.ReactNode
+  children?: ReactNode
   id?: string
 }
 
-type SystemLayoutFlex = SystemFlexbox & SystemLayout & SystemSpace
+const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
+
+type SystemLayoutFlex = SystemType<typeof layoutFlex>
 
 export interface VariantLayoutFlex extends SystemLayoutFlex {
-  as?: React.ComponentType<ComponentProps> | string | null
+  as?: ComponentType<ComponentProps> | string | null
 }
 
 export interface PropsLayoutFlex extends PropsLayout, VariantLayoutFlex {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
@@ -35,7 +32,7 @@ export interface PropsLayoutFlex extends PropsLayout, VariantLayoutFlex {
 }
 
 // TODO Fix props.flexDirection type
-const systemSpacing = (props: PropsLayoutFlex, theme: ThemeType): CSSObject =>
+const systemSpacing: System<PropsLayoutFlex> = (props, theme) =>
   props.spacing
     ? {
         '> * + *': {
@@ -52,9 +49,7 @@ const systemSpacing = (props: PropsLayoutFlex, theme: ThemeType): CSSObject =>
       }
     : {}
 
-const makeStyles = Theme.makeStyles({
-  layoutFlex: systemCompose<PropsLayoutFlex>(systemFlexbox(), systemLayout(), systemSpace(), systemSpacing),
-})
+const makeStyles = Theme.makeStyles({ layoutFlex: systemCompose(layoutFlex, systemSpacing) })
 
 const variantLocals = {
   horizontalBetween: {
@@ -102,7 +97,7 @@ const propsDefault = {
 }
 
 // TODO: add responsive
-export const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
+export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -110,7 +105,7 @@ export const LayoutFlex: React.FunctionComponent<PropsLayoutFlex> = (props) => {
   const variant = theme.getVariant(props, propsDefault)
   const styles = makeStyles(variant, theme)
 
-  return React.createElement(
+  return createElement(
     variant.as || 'div',
     {
       className: cx(

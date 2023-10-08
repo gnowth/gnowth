@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUICard {
   as?: string
 }
 
 export interface PropsUICard {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UICard: React.FunctionComponent<PropsUICard> = (props) => (
+export const UICard: FunctionComponent<PropsUICard> = (props) => (
   <div className="ui-card">{props.children}</div>
 )

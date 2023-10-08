@@ -6,9 +6,9 @@ import type {
   PropsData,
   PropsDataReadonly,
   Slottable,
-  Theme,
 } from '@gnowth/lib-types'
-import React from 'react'
+import { Theme } from '@gnowth/lib-theme'
+import type { ComponentType, FunctionComponent } from 'react'
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { UtilError } from '@gnowth/lib-util'
 import { objectDefaults } from '@gnowth/lib-utils'
@@ -23,23 +23,23 @@ interface PropsComponent extends PropsData, Slottable {
 
 interface Props extends PropsUseDataConnect {
   awaiting?: boolean
-  component?: React.ComponentType<PropsComponent> | string
+  component?: ComponentType<PropsComponent> | string
   componentVariant?: string
   hidden?: boolean
   id?: string
-  label?: React.ComponentType<PropsDataReadonly & Slottable> | string
+  label?: ComponentType<PropsDataReadonly & Slottable> | string
   labelValue?: string
-  layout?: React.ComponentType<PropsLayout> | string
+  layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number
   layoutVariant?: string
   many?: boolean
   readonly?: boolean
   slot?: string
-  suspense?: React.ComponentType<PropsSuspense> | string | null
+  suspense?: ComponentType<PropsSuspense> | string | null
   suspenseClassName?: string
   theme?: Theme | string
-  warning?: React.ComponentType<PropsBoundary> | string | null
+  warning?: ComponentType<PropsBoundary> | string | null
   warningModel?: Model
 }
 
@@ -60,7 +60,7 @@ const propsDefault = {
 // TODO: option to show loading if errors is processing
 // TODO: add transition if array
 // TODO: convert to generic?
-export const DataConnect: React.FunctionComponent<Props> = (props) => {
+export const DataConnect: FunctionComponent<Props> = (props) => {
   const connection = useDataConnect(props)
   const theme = useAppTheme(props.theme)
 

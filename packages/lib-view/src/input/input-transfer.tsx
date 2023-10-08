@@ -1,4 +1,4 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface VariantInputTransfer {
   as?: string
@@ -9,6 +9,6 @@ export interface PropsInputTransfer {
 }
 
 // Note: see materialui transfer list
-export const InputTransfer: React.FunctionComponent<PropsInputTransfer> = (props) => (
+export const InputTransfer: FunctionComponent<PropsInputTransfer> = (props) => (
   <input className="input-transfer" name={props.name} />
 )

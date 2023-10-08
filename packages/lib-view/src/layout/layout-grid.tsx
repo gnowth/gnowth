@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantLayoutGrid {
   as?: string
 }
 
 export interface PropsLayoutGrid {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const LayoutGrid: React.FunctionComponent<PropsLayoutGrid> = (props) => (
+export const LayoutGrid: FunctionComponent<PropsLayoutGrid> = (props) => (
   <div className="layout-grid">{props.children}</div>
 )

@@ -1,6 +1,5 @@
-import type { ReactNode } from 'react'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import type { PropsSuspense } from '@gnowth/lib-types'
-import React from 'react'
 import { AppSuspense } from '@gnowth/lib-application'
 
 import type { PropsUseDataConnect } from './use-data-connect'
@@ -11,11 +10,11 @@ interface Props extends PropsUseDataConnect {
   children: ReactNode
   hidden?: boolean
   slot?: string
-  suspense?: React.ComponentType<PropsSuspense> | string
+  suspense?: ComponentType<PropsSuspense> | string
   suspenseClassName?: string
 }
 
-export const DataSuspense: React.FunctionComponent<Props> = (props) => {
+export const DataSuspense: FunctionComponent<Props> = (props) => {
   const connection = useDataConnect(props)
 
   if (props.hidden) return null

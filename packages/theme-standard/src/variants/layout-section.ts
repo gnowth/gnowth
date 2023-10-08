@@ -1,4 +1,4 @@
-import type { Theme } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { VariantLayoutSection } from '@gnowth/lib-view'
 import { TokenVariable } from '@gnowth/lib-token'
 

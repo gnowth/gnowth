@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUITooltip {
   as?: string
 }
 
 export interface PropsUITooltip extends VariantUITooltip {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UITooltip: React.FunctionComponent<PropsUITooltip> = (props) => (
+export const UITooltip: FunctionComponent<PropsUITooltip> = (props) => (
   <div className="ui-tooltip">{props.children}</div>
 )

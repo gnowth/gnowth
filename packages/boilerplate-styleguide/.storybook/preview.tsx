@@ -1,5 +1,4 @@
 import { setup } from '@gnowth/core-app'
-import React from 'react'
 
 const configurations = setup()
 

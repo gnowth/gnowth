@@ -1,18 +1,13 @@
-import type { CSSObject } from '@emotion/css'
-import type { SystemCursor, SystemPointer, SystemPointerEvents, Theme } from '@gnowth/lib-types'
-
+import type { Interpolate, System } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
-export function systemCursor() {
-  return (props: SystemCursor, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'cursor', theme, value: props.cursor })
-}
+type SystemCursor = { cursor?: Interpolate<string> }
+type SystemPointerEvents = { pointerEvents?: Interpolate<string> }
 
-export function systemPointerEvents() {
-  return (props: SystemPointerEvents, theme: Theme): CSSObject =>
-    systemInterpolate({ key: 'pointerEvents', theme, value: props.pointerEvents })
-}
+export const systemCursor: () => System<SystemCursor> = () => (props, theme) =>
+  systemInterpolate({ key: 'cursor', theme, value: props.cursor })
 
-export function systemPointer(): (props: SystemPointer, theme: Theme) => CSSObject {
-  return systemCompose<SystemPointer>(systemCursor(), systemPointerEvents())
-}
+export const systemPointerEvents: () => System<SystemPointerEvents> = () => (props, theme) =>
+  systemInterpolate({ key: 'pointerEvents', theme, value: props.pointerEvents })
+
+export const systemPointer = () => systemCompose(systemCursor(), systemPointerEvents())

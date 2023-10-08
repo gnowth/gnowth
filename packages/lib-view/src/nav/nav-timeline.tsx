@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantNavTimeline {
   as?: string
 }
 
 export interface PropsNavTimeline {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const NavTimeline: React.FunctionComponent<PropsNavTimeline> = (props) => (
+export const NavTimeline: FunctionComponent<PropsNavTimeline> = (props) => (
   <div className="nav-timeline">{props.children}</div>
 )

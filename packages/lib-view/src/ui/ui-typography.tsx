@@ -1,12 +1,6 @@
-import type {
-  PropsDataReadonly,
-  SystemDisplay,
-  SystemPalette,
-  SystemSpace,
-  SystemTypography,
-} from '@gnowth/lib-types'
-import type { ReactNode } from 'react'
-import React from 'react'
+import type { PropsDataReadonly, SystemPalette } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -18,24 +12,29 @@ import {
   systemTypography,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
+import { createElement } from 'react'
+
+const uiTypography = systemCompose(
+  systemColorFromPalette(),
+  systemDisplay(),
+  systemSpace(),
+  systemTypography(),
+)
 
 interface ComponentProps {
   className?: string
   id?: string
 }
 
-type SystemUITypography = SystemDisplay & SystemSpace & SystemTypography
+type SystemUITypography = SystemType<typeof uiTypography>
 
 // TODO: mediaPrint should disable elipsis
 export interface VariantUITypography extends SystemUITypography {
-  as?: React.ComponentType<ComponentProps> | string | null
+  as?: ComponentType<ComponentProps> | string | null
   mediaPrintDisabled?: boolean
 }
 
-export interface PropsUITypography
-  extends VariantUITypography,
-    SystemPalette,
-    PropsDataReadonly<React.ReactNode> {
+export interface PropsUITypography extends VariantUITypography, SystemPalette, PropsDataReadonly<ReactNode> {
   className?: string
   children?: ReactNode
   hidden?: boolean
@@ -44,14 +43,7 @@ export interface PropsUITypography
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  uiTypography: systemCompose<PropsUITypography>(
-    systemColorFromPalette(),
-    systemDisplay(),
-    systemSpace(),
-    systemTypography(),
-  ),
-})
+const makeStyles = Theme.makeStyles({ uiTypography })
 
 const propsDefault = {
   palette: 'textPrimary',
@@ -59,7 +51,7 @@ const propsDefault = {
   variantNamespace: 'uiTypography',
 }
 
-export const UITypography: React.FunctionComponent<PropsUITypography> = (props) => {
+export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -69,7 +61,7 @@ export const UITypography: React.FunctionComponent<PropsUITypography> = (props) 
 
   if (variant.as === null) return <>{variant.value}</>
 
-  return React.createElement(
+  return createElement(
     variant.as ?? 'span',
     {
       className: cx(

@@ -1,13 +1,6 @@
-import type {
-  SystemBox,
-  SystemColor,
-  SystemPalette,
-  SystemImage,
-  SystemLayout,
-  SystemPointer,
-  SystemSpace,
-} from '@gnowth/lib-types'
-import React from 'react'
+import type { SystemPalette } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
+import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
   Theme,
@@ -27,11 +20,20 @@ import { UIIcon, PropsUIIcon } from './ui-icon'
 import { UIProgress, PropsUIProgress } from './ui-progress'
 import { UITypography, PropsUITypography } from './ui-typography'
 
-type SystemUIButton = SystemBox & SystemColor & SystemImage & SystemLayout & SystemPointer & SystemSpace
+const uiButton = systemCompose(
+  systemBox(),
+  systemColor(),
+  systemImage(),
+  systemLayout(),
+  systemPointer(),
+  systemSpace(),
+)
+
+type SystemUIButton = SystemType<typeof uiButton>
 
 export interface VariantUIButton extends SystemUIButton {
   breakpoint?: string
-  icon?: React.ComponentType<PropsUIIcon> | string
+  icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
   iconSize?: string | number
@@ -42,7 +44,7 @@ export interface VariantUIButton extends SystemUIButton {
   layoutSpacing?: string | number
   layoutVariant?: string
   mediaPrintDisabled?: boolean
-  progress?: React.ComponentType<PropsUIProgress> | string
+  progress?: ComponentType<PropsUIProgress> | string
   progressClassName?: string
   progressHidden?: boolean
   progressPalette?: string
@@ -50,7 +52,7 @@ export interface VariantUIButton extends SystemUIButton {
   progressPaletteWeight?: string
   progressSize?: string | number
   progressVariant?: string
-  text?: React.ComponentType<PropsUITypography> | string
+  text?: ComponentType<PropsUITypography> | string
   textClassName?: string
   textHidden?: boolean
   textProps?: PropsUITypography
@@ -66,7 +68,7 @@ export interface PropsUIButton extends VariantUIButton, SystemPalette {
   hidden?: boolean
   id?: string
   media?: string
-  onClick?: (event: React.MouseEvent) => void
+  onClick?: (event: MouseEvent) => void
   palette?: string
   variant?: VariantUIButton | string
   variantNamespace?: string
@@ -84,18 +86,9 @@ const propsDefault = {
   variantNamespace: 'uiButton',
 }
 
-const makeStyles = Theme.makeStyles({
-  uiButton: systemCompose<PropsUIButton>(
-    systemBox(),
-    systemColor(),
-    systemImage(),
-    systemLayout(),
-    systemPointer(),
-    systemSpace(),
-  ),
-})
+const makeStyles = Theme.makeStyles({ uiButton })
 
-export const UIButton: React.FunctionComponent<PropsUIButton> = (props) => {
+export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null

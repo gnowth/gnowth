@@ -1,5 +1,5 @@
 import type { DataName } from '@gnowth/lib-types'
-import React from 'react'
+import type { FunctionComponent } from 'react'
 import { DataConnect, DataSource, DataTrigger, DataWarning } from '@gnowth/lib-react'
 
 import type { Task } from '../@types'
@@ -9,7 +9,7 @@ interface Props {
   value?: Task
 }
 
-export const FormTaskCreate: React.FunctionComponent<Props> = (props) => (
+export const FormTaskCreate: FunctionComponent<Props> = (props) => (
   <DataSource onChange={props.onChange} value={props.value}>
     <DataConnect name="title" />
 

@@ -3,7 +3,6 @@ import type {
   MappedType,
   Namespace,
   PropsVariant,
-  Theme as ITheme,
   ThemeConfigsComponent,
   ThemeConfigsPalette,
   ThemeConfigsScale,
@@ -43,10 +42,10 @@ interface Configs {
 }
 
 interface ConfigsMakeStyles<Props> {
-  [key: string]: string | ((props: Props, theme: ITheme) => CSSObject)
+  [key: string]: string | ((props: Props, theme: Theme) => CSSObject)
 }
 
-export class Theme implements ITheme {
+export class Theme {
   static assembleComponents(components: Namespace<unknown>): ThemeComponents {
     return components as ThemeComponents
   }
@@ -68,7 +67,7 @@ export class Theme implements ITheme {
   }
 
   static makeStyles<Props>(configs: ConfigsMakeStyles<Props>) {
-    return function styles(props: Props, theme: ITheme): MappedType<ConfigsMakeStyles<Props>, string> {
+    return function styles(props: Props, theme: Theme): MappedType<ConfigsMakeStyles<Props>, string> {
       return objectMapValues(configs, (makeStyles) =>
         guardString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
       )
@@ -107,7 +106,7 @@ export class Theme implements ITheme {
     this.variants = configs.variants || {}
   }
 
-  extends(configs: Configs): ITheme {
+  extends(configs: Configs): Theme {
     const configsNew = {
       components: { ...this.components, ...configs.components },
       images: { ...this.images, ...configs.images },

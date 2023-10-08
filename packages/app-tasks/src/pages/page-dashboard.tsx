@@ -1,3 +1,3 @@
-import React from 'react'
+import type { FunctionComponent } from 'react'
 
-export const PageDashboard: React.FunctionComponent = () => <p>Dashboard</p>
+export const PageDashboard: FunctionComponent = () => <p>Dashboard</p>

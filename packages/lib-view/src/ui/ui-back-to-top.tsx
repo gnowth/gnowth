@@ -1,13 +1,13 @@
-import React from 'react'
+import type { FunctionComponent, ReactNode } from 'react'
 
 export interface VariantUIBackToTop {
   as?: string
 }
 
 export interface PropsUIBackToTop {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const UIBackToTop: React.FunctionComponent<PropsUIBackToTop> = (props) => (
+export const UIBackToTop: FunctionComponent<PropsUIBackToTop> = (props) => (
   <div className="ui-back-to-top">{props.children}</div>
 )

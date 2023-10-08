@@ -1,4 +1,4 @@
-import type { Theme } from '@gnowth/lib-types'
+import type { Theme } from '@gnowth/lib-theme'
 import type { PropsUIButton, VariantUIButton } from '@gnowth/lib-view'
 import { TokenIconSize, TokenSpace, TokenSelector } from '@gnowth/lib-token'
 import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
