@@ -1,4 +1,4 @@
-import type { Model, QueryResource } from '@gnowth/lib-types'
+import type { Model, QueryResource } from '@gnowth/lib-react'
 import { AppModelApplication } from '@gnowth/lib-react'
 
 import type { Ingredient, Recipe } from '../types'

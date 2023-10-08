@@ -1,7 +1,8 @@
-import type { QueryResource } from '@gnowth/lib-types'
 import { useEffect, useState } from 'react'
 
-export function useDeferredResource(resource: QueryResource): QueryResource {
+import type { QueryResource } from './query-resource'
+
+export function useDeferredResource<Value>(resource: QueryResource<Value>): QueryResource<Value> {
   const [resourceDeferred, setResourceDeferred] = useState(resource)
 
   useEffect(() => {

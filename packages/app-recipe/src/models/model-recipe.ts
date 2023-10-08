@@ -1,11 +1,10 @@
-import type { Model as IModel } from '@gnowth/lib-types'
 import { Fields, Model, QueryApiRest } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'
 import { ModelIngredient } from './model-ingredient'
 
 interface Configs {
-  user: IModel
+  user: Model
 }
 
 // TODO set as token

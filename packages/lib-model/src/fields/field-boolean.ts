@@ -1,10 +1,10 @@
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { ConfigsAny } from './field-any'
-import { FieldAny } from './field-any'
+import type { FieldConfigs } from './field'
+import { Field } from './field'
 
-export class FieldBoolean extends FieldAny<boolean> {
-  constructor(configs: ConfigsAny<boolean> = {}) {
+export class FieldBoolean extends Field<boolean> {
+  constructor(configs: FieldConfigs<boolean> = {}) {
     const configsWithDefault = objectDefaults(configs, { type: 'boolean' })
 
     super(configsWithDefault)

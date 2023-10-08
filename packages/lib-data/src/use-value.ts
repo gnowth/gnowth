@@ -1,8 +1,9 @@
-import type { DataName, DataValue } from '@gnowth/lib-types'
 import { useState, useCallback } from 'react'
 import { TokenMode } from '@gnowth/lib-token'
 import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
 import { objectDefaults, objectSet, UtilError } from '@gnowth/lib-utils'
+
+import type { DataName, DataValue } from './types'
 
 interface Configs {
   errorCustomMode?: Error

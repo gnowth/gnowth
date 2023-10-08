@@ -1,17 +1,15 @@
-import type { QueryResource as IQueryResourse } from '@gnowth/lib-types'
-
 interface Meta {
   count: number
   next?: string
   previous?: string
 }
 
-export interface Response<Value> {
+interface Response<Value> {
   data: Value
   meta?: Meta
 }
 
-export class QueryResource<Value> implements IQueryResourse<Value> {
+export class QueryResource<Value = unknown> {
   error?: Error
 
   isPending = true

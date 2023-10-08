@@ -1,4 +1,4 @@
-import type { PropsDataReadonly } from '@gnowth/lib-types'
+import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'

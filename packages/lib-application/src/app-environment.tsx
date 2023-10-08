@@ -1,4 +1,4 @@
-import type { QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-query'
 import type { ReactElement, ReactNode } from 'react'
 import { useState, Fragment } from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'

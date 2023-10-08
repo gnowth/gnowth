@@ -1,4 +1,5 @@
-import type { PropsData, SystemSpace } from '@gnowth/lib-types'
+import type { SystemSpace } from '@gnowth/lib-types'
+import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { useRef, useCallback } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'

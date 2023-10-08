@@ -1,20 +1,18 @@
-import type {
-  Model,
-  QueryApi as IQueryApi,
-  QueryConfigs,
-  QueryResource,
-  QuerySerializer as IQuerySerializer,
-} from '@gnowth/lib-types'
+import type { Model } from '@gnowth/lib-model'
+import type { ObjectLike } from '@gnowth/lib-utils'
 
+import type { QueryConfigs } from './types'
+import type { QueryResource } from './query-resource'
 import { QuerySerializer } from './query-serializer'
 
-interface QueryConfigsApi<Value> {
+interface QueryConfigsApi<Value extends ObjectLike> {
   endpoint: string
   model: Model<Value>
-  serializer?: IQuerySerializer<Value>
+  serializer?: QuerySerializer<Value>
 }
 
-export abstract class QueryApi<Value> implements IQueryApi<Value> {
+// TODO: queryApi should use field instead of model
+export abstract class QueryApi<Value extends ObjectLike> {
   endpoint: string
 
   model: Model<Value>
@@ -38,13 +36,13 @@ export abstract class QueryApi<Value> implements IQueryApi<Value> {
 
   abstract list(configs?: QueryConfigs<Value>): Promise<Value[]>
 
-  abstract meta<Meta>(configs?: QueryConfigs<Meta>): Promise<Meta>
+  abstract meta<Meta extends ObjectLike>(configs?: QueryConfigs<Meta>): Promise<Meta>
 
   abstract retrieve(configs?: QueryConfigs<Value>): Promise<Value>
 
   abstract resourceList(configs?: QueryConfigs<Value>): QueryResource<Value[]>
 
-  abstract resourceMeta<Meta>(configs?: QueryConfigs<Meta>): QueryResource<Meta>
+  abstract resourceMeta<Meta extends ObjectLike>(configs?: QueryConfigs<Meta>): QueryResource<Meta>
 
   abstract resourceRetrieve(configs?: QueryConfigs<Value>): QueryResource<Value>
 }

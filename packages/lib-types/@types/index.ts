@@ -1,7 +1,4 @@
 export type { CSSObject } from '@emotion/css'
-export type { DataError, DataName, DataValue, PropsData, PropsDataReadonly } from './data'
-export type { Field, Model, SchemaFromValue } from './model'
-export type { QueryApi, QueryConfigs, QueryParams, QueryResource, QuerySerializer } from './query'
 export type { System } from './system/system'
 export type { SystemColor, SystemPalette } from './system/system-palette'
 export type { SystemCursor, SystemPointer, SystemPointerEvents } from './system/system-pointer'

@@ -1,4 +1,4 @@
-import type { QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-query'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
 import { objectDefaults } from '@gnowth/lib-utils'

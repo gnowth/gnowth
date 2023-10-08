@@ -1,4 +1,5 @@
-import type { Model, QueryResource } from '@gnowth/lib-types'
+import type { Model } from '@gnowth/lib-model'
+import type { QueryResource } from '@gnowth/lib-query'
 import { guardString } from '@gnowth/lib-utils'
 
 interface ConfigsApplication {

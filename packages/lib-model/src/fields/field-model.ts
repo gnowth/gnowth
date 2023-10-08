@@ -1,17 +1,19 @@
-import type { DataName, Field, Model } from '@gnowth/lib-types'
+import type { ObjectLike } from '@gnowth/lib-utils'
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { ConfigsAny } from './field-any'
-import { FieldAny } from './field-any'
+import type { DataName } from '../types'
+import type { Model } from '../models/model'
+import type { FieldConfigs } from './field'
+import { Field } from './field'
 
 type Nested = 'id' | 'flat' | 'nested'
 
-interface ConfigsModel<Value> extends ConfigsAny<Value> {
+interface ConfigsModel<Value extends ObjectLike> extends FieldConfigs<Value> {
   model: Model<Value>
   nested?: Nested
 }
 
-export class FieldModel<Value> extends FieldAny<Value> {
+export class FieldModel<Value extends ObjectLike> extends Field {
   model: Model<Value>
 
   nested: Nested

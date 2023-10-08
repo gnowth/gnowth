@@ -1,4 +1,4 @@
-import type { QueryResource } from '@gnowth/lib-types'
+import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
 import { LayoutContent, LayoutPage, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
 
