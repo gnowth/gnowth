@@ -1,7 +1,7 @@
 import type { CSSObject } from '@emotion/css'
-import type { Theme } from '@gnowth/lib-theme'
 import { guardObject, objectMapValues } from '@gnowth/lib-utils'
 
+import type { Theme } from '../theme'
 import type { Interpolate, System, ThemeScale } from '../types'
 import { objectDefaultsDeep } from './system.utils'
 

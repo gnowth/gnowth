@@ -29,6 +29,7 @@
   "devDependencies": {
     "@gnowth/browserslist-config": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/lib-model": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@types/inflected": "1.1.29"

@@ -1,4 +1,5 @@
-import type { Model, ObjectLike } from '@gnowth/lib-react'
+import type { Model } from '@gnowth/lib-model'
+import type { ObjectLike } from '@gnowth/lib-utils'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 

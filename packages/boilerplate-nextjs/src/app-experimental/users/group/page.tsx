@@ -1,1 +1,1 @@
-export { PageGroup as default } from '@gnowth/users-app'
+export { PageGroup as default } from '@gnowth/app-users'

@@ -1,1 +1,1 @@
-# @gnowth/recipes-app
+# @gnowth/app-recipes

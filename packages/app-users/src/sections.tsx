@@ -1,4 +1,4 @@
-import { ViewSpacer } from '@gnowth/core-app'
+import { ViewSpacer } from '@gnowth/app-core'
 
 import { FormUser } from './components/form-user'
 import { FormUserFilter } from './components/form-user-filter'

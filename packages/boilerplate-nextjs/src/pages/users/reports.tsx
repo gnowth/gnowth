@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import type { ComponentType } from 'react'
-import { LayoutDefault, PageReports } from '@gnowth/users-app'
+import { LayoutDefault, PageReports } from '@gnowth/app-users'
 
 const Page: NextPage & { Layout?: ComponentType } = PageReports
 Page.Layout = LayoutDefault

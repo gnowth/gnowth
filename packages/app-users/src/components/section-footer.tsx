@@ -1,6 +1,6 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent, Attributes } from 'react'
-import { withAugmented } from '@gnowth/core-app'
+import { withAugmented } from '@gnowth/app-core'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'

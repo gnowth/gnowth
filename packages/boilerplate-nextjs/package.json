@@ -26,9 +26,9 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/core-app": "0.0.0",
-    "@gnowth/recipes-app": "0.0.0",
-    "@gnowth/users-app": "0.0.0",
+    "@gnowth/app-core": "0.0.0",
+    "@gnowth/app-recipes": "0.0.0",
+    "@gnowth/app-users": "0.0.0",
     "@chakra-ui/react": "2.8.1",
     "@next/mdx": "13.5.4",
     "axios": "1.5.1",

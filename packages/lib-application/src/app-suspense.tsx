@@ -15,11 +15,16 @@ interface Props {
 export function AppSuspense(props: Props): ReactElement {
   const SuspenseMaybe = useAppSuspense(props.suspense)
 
-  if (!SuspenseMaybe) return <>{props.children}</>
+  // TODO: must have a fallback if undefined and log error
+  if (!SuspenseMaybe) {
+    return <>{props.children}</>
+  }
 
   const suspense = <SuspenseMaybe className={props.suspenseClassName} />
 
-  if (props.awaiting) return suspense
+  if (props.awaiting) {
+    return suspense
+  }
 
   return <Suspense fallback={suspense}>{props.children}</Suspense>
 }

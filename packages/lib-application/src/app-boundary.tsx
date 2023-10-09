@@ -1,82 +1,48 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, ErrorInfo, ContextType, ReactElement, ReactNode } from 'react'
-import { Component, createElement } from 'react'
-import { guardString, UtilError } from '@gnowth/lib-utils'
+import type { ComponentType, ErrorInfo, FunctionComponent, ReactNode } from 'react'
+import { UtilError } from '@gnowth/lib-utils'
+import { ErrorBoundary } from 'react-error-boundary'
 
 import type { PropsBoundary } from './types'
-import { ContextEnvironment } from './context-environment'
-import { withAppTheme } from './with-app-theme'
+import { useAppBoundary } from './use-app-boundary'
 
 interface Props {
+  boundary?: ComponentType<PropsBoundary> | string | null
+  boundaryClassName?: string
   children: ReactNode
   onError?: (error: Error, errorInfo: ErrorInfo) => void
-  shouldSkip?: (error: Error) => boolean
 }
 
-interface WithTheme {
-  theme: Theme
-}
+export const AppBoundary: FunctionComponent<Props> = (props) => {
+  const BoundaryMaybe = useAppBoundary(props.boundary)
 
-interface State {
-  error: UtilError | null
-}
-
-class AppBoundaryComponent extends Component<Props & WithTheme, State> {
-  // eslint-disable-next-line react/static-property-placement
-  static contextType = ContextEnvironment
-
-  static getDerivedStateFromError(error: UtilError): State {
-    return {
-      error,
-    }
-  }
-
-  // TODO: check if declare is right here
-  // eslint-disable-next-line react/static-property-placement
-  declare context: ContextType<typeof ContextEnvironment>
-
-  constructor(props: Props & WithTheme) {
-    super(props)
-
-    this.state = { error: null }
-  }
-
-  componentDidCatch(error: UtilError, errorInfo: ErrorInfo): void {
-    if (this.props.shouldSkip?.(error)) throw error
-
-    this.props.onError?.(error, errorInfo)
-  }
-
-  getComponent(error: UtilError): ComponentType<PropsBoundary> | undefined {
-    const keys = Object.keys(this.context.boundaries)
-    const types = guardString(error.type) ? [error.type] : error.type || []
-    const typeError = types.find((type) => keys.includes(type))
-    const ComponentDefault = this.props.theme.getComponent<PropsBoundary>({
-      component: 'error',
-      namespace: 'type',
+  if (BoundaryMaybe === undefined) {
+    // TODO: must have a fallback but must log the error
+    throw new UtilError({
+      message: 'Default error component has not been set',
+      method: 'AppBoundary',
+      package: '@gnowth/lib-application',
+      type: 'internal',
     })
-
-    return this.context.boundaries[typeError ?? ''] || ComponentDefault
   }
 
-  render(): ReactElement | null {
-    if (!this.state.error) return <>{this.props.children}</>
+  return (
+    <ErrorBoundary
+      fallbackRender={({ error, resetErrorBoundary }) => {
+        if (BoundaryMaybe === null) {
+          throw error
+        }
 
-    const props = { value: this.state.error }
-
-    const component = this.getComponent(this.state.error)
-
-    if (!component) {
-      throw new UtilError({
-        message: 'Default error component has not been set',
-        method: 'AppBoundary.render',
-        package: '@gnowth/lib-application',
-        type: 'internal',
-      })
-    }
-
-    return createElement(component, props)
-  }
+        return (
+          <BoundaryMaybe
+            className={props.boundaryClassName}
+            resetErrorBoundary={resetErrorBoundary}
+            value={error}
+          />
+        )
+      }}
+      onError={props.onError}
+    >
+      {props.children}
+    </ErrorBoundary>
+  )
 }
-
-export const AppBoundary = withAppTheme<Props>(AppBoundaryComponent)

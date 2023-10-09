@@ -1,1 +1,1 @@
-export { LayoutDefault as default } from '@gnowth/users-app'
+export { LayoutDefault as default } from '@gnowth/app-users'

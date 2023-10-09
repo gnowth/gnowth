@@ -1,5 +1,5 @@
 import type { ContentsQuery, ContentsQueryVariables } from '@gnowth/boilerplate-tina'
-import type { PageClientComponent } from '@gnowth/lib-utils-react'
+import type { PageClientComponent } from '@gnowth/lib-react'
 import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
 
 import { dependencies } from '../dependencies'

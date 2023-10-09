@@ -1,4 +1,4 @@
-import { LayoutSection, ModelError } from '@gnowth/core-app'
+import { LayoutSection, ModelError } from '@gnowth/app-core'
 import { Box, Button, Text, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker/locale/en'
 import { useTranslation } from 'react-i18next'
