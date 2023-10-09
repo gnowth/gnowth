@@ -1,4 +1,4 @@
-import type { SystemBox, SystemPalette, SystemSpace, SystemTypography, SystemWidth } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { createElement } from 'react'
@@ -28,9 +28,15 @@ interface ComponentProps {
   value?: string
 }
 
-type SystemInputText = SystemBox & SystemPalette & SystemSpace & SystemTypography & SystemWidth
+const inputText = systemCompose(
+  systemBox(),
+  systemColorFromPalette(),
+  systemSpace(),
+  systemTypography(),
+  systemWidth(),
+)
 
-export interface VariantInputText extends SystemInputText {
+export interface VariantInputText extends SystemType<typeof inputText> {
   as?: ComponentType<ComponentProps> | string
   boxVariant?: string
   boxVariantNamespace?: string
@@ -48,16 +54,7 @@ export interface PropsInputText extends VariantInputText, PropsData<string> {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
-  inputText: systemCompose(
-    systemBox(),
-    systemColorFromPalette(),
-    systemSpace(),
-    systemTypography(),
-    systemWidth(),
-  ),
-})
-
+const makeStyles = Theme.makeStyles({ inputText })
 const definitions = Theme.makeDefinitions(['', 'box', 'typography'])
 
 const propsDefault = {

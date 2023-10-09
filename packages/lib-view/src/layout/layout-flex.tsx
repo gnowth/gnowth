@@ -15,9 +15,7 @@ interface ComponentProps {
 
 const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
 
-type SystemLayoutFlex = SystemType<typeof layoutFlex>
-
-export interface VariantLayoutFlex extends SystemLayoutFlex {
+export interface VariantLayoutFlex extends SystemType<typeof layoutFlex> {
   as?: ComponentType<ComponentProps> | string | null
 }
 

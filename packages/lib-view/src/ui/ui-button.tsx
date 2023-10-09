@@ -1,5 +1,4 @@
-import type { SystemPalette } from '@gnowth/lib-types'
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -29,9 +28,7 @@ const uiButton = systemCompose(
   systemSpace(),
 )
 
-type SystemUIButton = SystemType<typeof uiButton>
-
-export interface VariantUIButton extends SystemUIButton {
+export interface VariantUIButton extends SystemType<typeof uiButton> {
   breakpoint?: string
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
@@ -61,7 +58,9 @@ export interface VariantUIButton extends SystemUIButton {
 }
 
 // TODO media print should hide by default
-export interface PropsUIButton extends VariantUIButton, SystemPalette {
+export interface PropsUIButton
+  extends VariantUIButton,
+    SystemType<ReturnType<typeof systemColorFromPalette>> {
   className?: string
   classNameRoot?: string
   disabled?: boolean

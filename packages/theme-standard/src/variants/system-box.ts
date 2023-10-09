@@ -1,5 +1,6 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { SystemBox } from '@gnowth/lib-types'
+import type { SystemType, Theme, systemBox } from '@gnowth/lib-theme'
+
+type SystemBox = SystemType<ReturnType<typeof systemBox>>
 
 export const button: SystemBox = {}
 

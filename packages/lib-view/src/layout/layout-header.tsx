@@ -6,9 +6,7 @@ import { TokenZIndex } from '@gnowth/lib-token'
 
 const layoutHeader = systemCompose(systemSpace(), systemZIndex())
 
-type SystemLayoutHeader = SystemType<typeof layoutHeader>
-
-export interface VariantLayoutHeader extends SystemLayoutHeader {
+export interface VariantLayoutHeader extends SystemType<typeof layoutHeader> {
   as?: string
 }
 

@@ -6,9 +6,7 @@ import { guardString } from '@gnowth/lib-utils'
 
 const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
 
-type SystemUIDivider = SystemType<typeof uiDivider>
-
-export interface VariantUIDivider extends SystemUIDivider {
+export interface VariantUIDivider extends SystemType<typeof uiDivider> {
   as?: string
 }
 

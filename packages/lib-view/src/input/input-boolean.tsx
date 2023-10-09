@@ -1,4 +1,4 @@
-import type { SystemSpace } from '@gnowth/lib-types'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { useRef, useCallback } from 'react'
@@ -11,9 +11,9 @@ import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
 import type { ChangeEventHandler } from './use-value'
 import { useValue } from './use-value'
 
-type SystemInputBoolean = SystemSpace
+const inputBoolean = systemSpace()
 
-export interface VariantInputBoolean extends SystemInputBoolean {
+export interface VariantInputBoolean extends SystemType<typeof inputBoolean> {
   as?: string
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
@@ -38,7 +38,7 @@ export interface PropsInputBoolean extends VariantInputBoolean, PropsData<boolea
 }
 
 const makeStyles = Theme.makeStyles({
-  inputBoolean: systemSpace(),
+  inputBoolean,
   inputBooleanClass: `
     display: inline-block;
     line-height: 0;

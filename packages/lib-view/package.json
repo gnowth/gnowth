@@ -35,7 +35,6 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@gnowth/lib-types": "0.0.0",
     "@testing-library/react": "14.0.0"
   },
   "peerDependencies": {
