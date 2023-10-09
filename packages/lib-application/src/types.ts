@@ -2,7 +2,10 @@ import type { ReactNode } from 'react'
 import type { Slottable } from '@gnowth/lib-utils-react'
 
 // TODO verify if we need to standardise this props with other components
+// TODO: check if props need to be optional
 export interface PropsBoundary extends Slottable {
+  className?: string
+  resetErrorBoundary?: () => void
   value?: Error[] | Error | null
 }
 

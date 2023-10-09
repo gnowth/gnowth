@@ -1,6 +1,6 @@
 export {
   UIButton as button,
-  UIError as error,
+  UIError as boundary,
   UIIcon as icon,
   UILabel as label,
   UIProgress as suspense,
