@@ -1,1 +1,1 @@
-export { PageDashboard as default } from '@gnowth/users-app'
+export { PageDashboard as default } from '@gnowth/app-users'

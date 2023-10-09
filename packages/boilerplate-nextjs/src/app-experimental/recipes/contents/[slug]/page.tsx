@@ -1,4 +1,4 @@
-import { PageContentsServer } from '@gnowth/recipes-app'
+import { PageContentsServer } from '@gnowth/app-recipes'
 
 // TODO: add type
 export const generateStaticParams = PageContentsServer.generateStaticParams

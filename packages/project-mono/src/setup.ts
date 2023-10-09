@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { mockServer } from '@gnowth/lib-mock'
-import { chain } from '@gnowth/lib-utils'
+import { chain, mockServer } from '@gnowth/lib-react'
 
 // TODO: fix types
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

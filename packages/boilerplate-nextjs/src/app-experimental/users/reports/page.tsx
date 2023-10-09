@@ -1,1 +1,1 @@
-export { PageReports as default } from '@gnowth/users-app'
+export { PageReports as default } from '@gnowth/app-users'

@@ -1,1 +1,1 @@
-# @gnowth/users-app
+# @gnowth/app-users

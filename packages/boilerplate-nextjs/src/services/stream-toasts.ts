@@ -1,5 +1,5 @@
-import type { ErrorType } from '@gnowth/core-app'
-import { ModelError } from '@gnowth/core-app'
+import type { ErrorType } from '@gnowth/app-core'
+import { ModelError } from '@gnowth/app-core'
 import { Subject } from 'rxjs'
 
 import type { Notification } from '../models/model-notification'

@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/core-app'
+import { LayoutSection, withAugmented } from '@gnowth/app-core'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 

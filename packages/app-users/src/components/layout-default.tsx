@@ -1,5 +1,5 @@
 import type { FunctionComponent, PropsWithChildren } from 'react'
-import { ViewSpacer } from '@gnowth/core-app'
+import { ViewSpacer } from '@gnowth/app-core'
 import { VStack } from '@chakra-ui/react'
 
 import { SectionFooter } from './section-footer'

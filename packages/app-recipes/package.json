@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/recipes-app",
+  "name": "@gnowth/app-recipes",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@gnowth/boilerplate-tina": "0.0.0",
-    "@gnowth/lib-utils-react": "0.0.0",
+    "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-core": "0.0.0"
   },
   "devDependencies": {

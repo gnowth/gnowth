@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent, Attributes, PropsWithChildren } from 'react'
-import { withAugmented } from '@gnowth/core-app'
+import { withAugmented } from '@gnowth/app-core'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'

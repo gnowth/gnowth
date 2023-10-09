@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection } from '@gnowth/core-app'
+import { LayoutSection } from '@gnowth/app-core'
 import { Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 

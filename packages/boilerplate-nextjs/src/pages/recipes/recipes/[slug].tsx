@@ -1,4 +1,4 @@
-import { PageRecipesClient } from '@gnowth/recipes-app'
+import { PageRecipesClient } from '@gnowth/app-recipes'
 
 export const getStaticPaths = PageRecipesClient.staticPaths
 export const getStaticProps = PageRecipesClient.staticProps

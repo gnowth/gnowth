@@ -20,7 +20,6 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-utils": "0.0.0",
     "@types/faker": "^5.1.7",
     "faker": "5.4.0",
     "inflected": "2.1.0",
