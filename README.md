@@ -53,4 +53,5 @@ Next:
 - routing
 
 TODO:
-move away from commonjs module and use verbatimModuleSyntax for typescript
+- move away from commonjs module and use verbatimModuleSyntax for typescript
+- use create react app for boilerplate-cra
