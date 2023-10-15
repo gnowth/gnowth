@@ -2,9 +2,9 @@ import type { CSSObject } from '@emotion/css'
 import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
 
 // import type { Theme } from '../theme/theme'
+import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
 import type { Theme } from '../theme'
 import type { SystemInterpolate, System } from './system.types'
-import type { ThemeScale } from '../deprecated.types'
 import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
@@ -71,7 +71,7 @@ interface ConfigsInterpolation<Value extends string | number> {
   value?: SystemInterpolate<Value>
   theme: Theme
   responsive?: boolean
-  scale?: ThemeScale | string
+  scale?: ScaleType | ScaleName
 }
 
 // TODO add responsive scale

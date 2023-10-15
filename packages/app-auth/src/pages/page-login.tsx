@@ -8,8 +8,6 @@ import {
   LayoutFlex,
   LayoutPage,
   LayoutSection,
-  TokenMode,
-  TokenSpace,
   UIButton,
   UIDivider,
   UIPaper,
@@ -25,27 +23,22 @@ export function PageLogin(): ReactElement {
 
   return (
     <LayoutPage>
-      <LayoutSection
-        layoutProps={{ maxWidth: '400px' }}
-        paddingBottom={TokenSpace.lg}
-        paddingTop={TokenSpace.lg}
-        variant="page"
-      >
+      <LayoutSection layoutProps={{ maxWidth: '400px' }} paddingBottom="lg" paddingTop="lg" variant="page">
         <UIPaper palette="text" paletteWeight="a100">
-          <UITypography marginBottom={TokenSpace.lg} textAlign="center" value="Log in" variant="h3" />
+          <UITypography marginBottom="lg" textAlign="center" value="Log in" variant="h3" />
 
           <DataSource
             layout="flex"
-            layoutSpacing={TokenSpace.sm}
+            layoutSpacing="sm"
             layoutVariant="verticalStretch"
-            mode={TokenMode.uncontrolled}
+            mode="uncontrolled"
             value={{ password: 'pass', username: 'user' }}
           >
             <DataConnect component="text" labelValue="Username" name="username" />
 
             <DataConnect component="text" labelValue="Password" name="password" />
 
-            <LayoutFlex marginBottom={TokenSpace.md} variant="horizontalBetween">
+            <LayoutFlex marginBottom="md" variant="horizontalBetween">
               <DataConnect
                 component="boolean"
                 labelValue="Remember me?"
@@ -61,11 +54,11 @@ export function PageLogin(): ReactElement {
             <DataTrigger componentPalette="primary" componentValue="Log in" componentVariant="contained" />
           </DataSource>
 
-          <UIDivider marginBottom={TokenSpace.md} marginTop={TokenSpace.md}>
+          <UIDivider marginBottom="md" marginTop="md">
             <LayoutContent
               display="inline-block"
-              paddingLeft={TokenSpace.xs}
-              paddingRight={TokenSpace.xs}
+              paddingLeft="xs"
+              paddingRight="xs"
               palette="text"
               paletteWeight="a100"
             >
@@ -74,9 +67,9 @@ export function PageLogin(): ReactElement {
           </UIDivider>
 
           <LayoutFlex variant="verticalStretch">
-            <UIButton textValue="Login with facebook" variant="outlined" width="100%" />
+            <UIButton textValue="Login with facebook" variant="outlined" width="full" />
 
-            <UIButton textValue="Login with google" variant="outlined" width="100%" />
+            <UIButton textValue="Login with google" variant="outlined" width="full" />
 
             <LayoutFlex variant="horizontalCenter">
               <UITypography display="inline-block" value="Don't have an account?" />

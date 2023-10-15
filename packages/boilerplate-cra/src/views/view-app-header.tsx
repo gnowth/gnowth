@@ -4,8 +4,6 @@ import {
   LayoutHeader,
   LayoutFlex,
   LayoutSection,
-  TokenIconSize,
-  TokenSpace,
   UIButton,
   UIIcon,
   UITypography,
@@ -21,13 +19,13 @@ export const ViewAppHeader: FunctionComponent<Props> = () => (
   <LayoutHeader>
     <LayoutSection
       boxVariant="float"
-      paddingBottom={TokenSpace.none}
-      paddingTop={TokenSpace.none}
+      paddingBottom="none"
+      paddingTop="none"
       palette="text"
       paletteWeight="a100"
       variant="pageRow"
     >
-      <UIIcon size={TokenIconSize.sm} value="home" />
+      <UIIcon size="sm" value="home" />
 
       <UITypography value="Header" />
 

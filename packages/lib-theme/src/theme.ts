@@ -1,33 +1,29 @@
 import type { ComponentType } from 'react'
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
-import { guardFunction, guardObject, guardString, objectDefaults } from '@gnowth/lib-utils'
+import { guardFunction, guardObject, objectDefaults } from '@gnowth/lib-utils'
 
 import type { ConfigsPalette, PaletteType } from './theme/theme-palette.service'
 import type { ConfigsComponent } from './theme/theme-component.service'
 import type { Media, MediaName } from './theme/theme-media.service'
+import type { ConfigsScale, ScaleItem, ScaleType } from './theme/theme-scale.service'
 import type { Variable } from './theme/theme-variable.service'
 import { objectDefaultsDeepByKeys } from './theme/theme.utils'
 import { ServiceThemePalette } from './theme/theme-palette.service'
 import { ServiceThemeComponent } from './theme/theme-component.service'
 import { ServiceThemeVariable } from './theme/theme-variable.service'
 import { ServiceThemeMedia } from './theme/theme-media.service'
+import { ServiceThemeScale } from './theme/theme-scale.service'
 
 type ThemeVariants<Props = Record<string, unknown>> = UtilNamespaced<UtilNamespaced<ThemeVariant<Props>>>
-type ThemeScales = Record<string, ThemeScale | undefined>
-interface ThemeConfigsScale {
-  scale?: ThemeScale | string
-  scaleToken?: string | number
-}
 interface Configs {
   componentsNamespaced?: UtilNamespaced<UtilNamespaced<ComponentType>>
   medias?: UtilNamespaced<Media, MediaName>
   palettes?: PaletteType[]
-  scales?: ThemeScales
+  scales?: UtilNamespaced<ScaleType>
   variables?: UtilNamespaced<Variable>
   variantsNamespaced?: ThemeVariants
 }
 
-export type ThemeScale = (token: number | string) => string | undefined
 export type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
   | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
@@ -47,17 +43,17 @@ export class Theme {
   #serviceThemeComponent: ServiceThemeComponent
   #serviceThemeMedia: ServiceThemeMedia
   #serviceThemePalette: ServiceThemePalette
+  #serviceThemeScale: ServiceThemeScale
   #serviceThemeVariable: ServiceThemeVariable
-  scales: ThemeScales
   variants: ThemeVariants
 
   constructor(configs: Configs = {}) {
     this.#serviceThemeComponent = new ServiceThemeComponent(configs)
     this.#serviceThemeMedia = new ServiceThemeMedia(configs)
     this.#serviceThemePalette = new ServiceThemePalette(configs)
+    this.#serviceThemeScale = new ServiceThemeScale(configs)
     this.#serviceThemeVariable = new ServiceThemeVariable(configs)
 
-    this.scales = configs.scales || {}
     this.variants = configs.variantsNamespaced || {}
   }
 
@@ -75,14 +71,8 @@ export class Theme {
     return this.#serviceThemePalette.getColor(configs)
   }
 
-  getScaleItem(configs: ThemeConfigsScale): string | undefined {
-    const scale = guardString(configs.scale) ? this.scales[configs.scale] : configs.scale
-
-    if (configs.scaleToken === undefined) return undefined
-
-    const maybeTokenString = guardString(configs.scaleToken) ? configs.scaleToken : undefined
-
-    return scale?.(configs.scaleToken) ?? maybeTokenString
+  getScaleItem<Type extends ScaleItem = ScaleItem>(configs: ConfigsScale): Type | undefined {
+    return this.#serviceThemeScale.getScaleItem(configs) as Type
   }
 
   getVariable<Type>(name: string): Type | undefined {

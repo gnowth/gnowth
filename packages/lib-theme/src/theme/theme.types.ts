@@ -33,4 +33,4 @@ export type ConfigsWithDependencies = Configs & {
   dependencies: Dependencies
 }
 
-export type Responsive<Type> = { responsive: true } & { [Key in TokenBreakpoint]: Type }
+export type Responsive<Type> = { responsive: true } & { [Key in TokenBreakpoint]?: Type }

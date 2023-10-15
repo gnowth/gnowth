@@ -49,3 +49,5 @@ export interface PropsData<Value = unknown> extends PropsDataReadonly<Value> {
 export interface WithConnect {
   connect<Value>(name?: DataName): PropsData<Value>
 }
+
+export type TokenMode = 'controlled' | 'shadow' | 'uncontrolled'

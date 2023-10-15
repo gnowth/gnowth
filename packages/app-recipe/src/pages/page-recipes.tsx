@@ -1,6 +1,6 @@
 import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
-import { LayoutContent, LayoutPage, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
+import { LayoutContent, LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
 
 import type { Ingredient, Recipe } from '../types'
 
@@ -21,7 +21,7 @@ export function PageRecipes(props: Props): ReactElement {
   return (
     <LayoutPage>
       <LayoutSection palette="text" paletteWeight="a100" variant="page">
-        <LayoutContent alignSelf="center" marginTop={TokenSpace.xl}>
+        <LayoutContent alignSelf="center" marginTop="xl">
           <UITypography value="Most popular recipes" variant="h3" />
         </LayoutContent>
       </LayoutSection>

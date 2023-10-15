@@ -14,7 +14,6 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenLength } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import type { ChangeEventHandler } from './use-value'
@@ -58,7 +57,7 @@ export interface PropsInputText extends VariantInputText, PropsData<string> {
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])
 
-const propsDefault = {
+const propsDefault: PropsInputText = {
   as: 'input',
   boxVariant: 'input',
   boxVariantNamespace: 'systemBox',
@@ -67,7 +66,7 @@ const propsDefault = {
   typographyVariantNamespace: 'uiTypography',
   variant: 'input',
   variantNamespace: 'inputText',
-  width: TokenLength.full,
+  width: 'full',
 }
 
 export const InputText: FunctionComponent<PropsInputText> = (props) => {

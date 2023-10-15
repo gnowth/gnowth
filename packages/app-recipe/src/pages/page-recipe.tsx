@@ -1,6 +1,6 @@
 import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
-import { DataSource, DataSuspense, LayoutPage, LayoutSection, TokenMode } from '@gnowth/lib-react'
+import { DataSource, DataSuspense, LayoutPage, LayoutSection } from '@gnowth/lib-react'
 
 import type { Recipe } from '../types'
 import { ViewRecipeDescriptions } from '../views/view-recipe-descriptions'
@@ -23,7 +23,7 @@ export function PageRecipe(props: Props): ReactElement {
   return (
     <LayoutPage>
       <LayoutSection variant="page">
-        <DataSource layout="recipe" mode={TokenMode.uncontrolled} value={recipe}>
+        <DataSource layout="recipe" mode="uncontrolled" value={recipe}>
           <ViewRecipeDescriptions slot="descriptions" />
 
           <ViewRecipeIngredients slot="ingredients" />
