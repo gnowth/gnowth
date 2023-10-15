@@ -39,7 +39,7 @@ type ThemeScale = (token: number | string) => string | undefined
 
 interface ThemeConfigsScale {
   scale?: ThemeScale | string
-  token?: string | number
+  scaleToken?: string | number
 }
 
 type MappedType<Type, ToType> = {
@@ -58,14 +58,15 @@ interface PropsVariant<Props> {
 }
 
 interface Configs {
-  components?: ThemeComponents
+  componentsNamespaced?: ThemeComponents
   fonts?: unknown
   images?: ThemeImages
+  medias?: unknown
   palettes?: ThemePalettes
   scales?: ThemeScales
   stylesheets?: unknown
   variables?: ThemeVariables
-  variants?: ThemeVariants
+  variantsNamespaced?: ThemeVariants
 }
 
 interface ConfigsMakeStyles<Props> {
@@ -124,23 +125,23 @@ export class Theme {
 
   variants: ThemeVariants
 
-  constructor(configs: Configs) {
-    this.components = configs.components || {}
+  constructor(configs: Configs = {}) {
+    this.components = configs.componentsNamespaced || {}
     this.images = configs.images || {}
     this.palettes = configs.palettes || {}
     this.scales = configs.scales || {}
     this.variables = configs.variables || {}
-    this.variants = configs.variants || {}
+    this.variants = configs.variantsNamespaced || {}
   }
 
   extends(configs: Configs): Theme {
     const configsNew = {
-      components: { ...this.components, ...configs.components },
+      components: { ...this.components, ...configs.componentsNamespaced },
       images: { ...this.images, ...configs.images },
       palettes: { ...this.palettes, ...configs.palettes },
       scales: { ...this.scales, ...configs.scales },
       variables: { ...this.variables, ...configs.variables },
-      variants: { ...this.variants, ...configs.variants },
+      variants: { ...this.variants, ...configs.variantsNamespaced },
     }
 
     return new Theme(configsNew)
@@ -187,11 +188,11 @@ export class Theme {
   getScaleItem(configs: ThemeConfigsScale): string | undefined {
     const scale = guardString(configs.scale) ? this.scales[configs.scale] : configs.scale
 
-    if (configs.token === undefined) return undefined
+    if (configs.scaleToken === undefined) return undefined
 
-    const maybeTokenString = guardString(configs.token) ? configs.token : undefined
+    const maybeTokenString = guardString(configs.scaleToken) ? configs.scaleToken : undefined
 
-    return scale?.(configs.token) ?? maybeTokenString
+    return scale?.(configs.scaleToken) ?? maybeTokenString
   }
 
   getVariable<Type>(name: string): Type | undefined {

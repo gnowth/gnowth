@@ -1,3 +1,4 @@
+import type { ScaleType } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 
 const spaces: Record<number | string, string | undefined> = {
@@ -12,4 +13,4 @@ const spaces: Record<number | string, string | undefined> = {
   [TokenSpace.xxxl]: '8rem', // 128px
 }
 
-export const space = (token: TokenSpace | string): string | undefined => spaces[token]
+export const space: ScaleType = (token: TokenSpace | string): string | undefined => spaces[token]

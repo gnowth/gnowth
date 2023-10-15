@@ -1,7 +1,7 @@
 import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
-import { Theme, cx, systemBackgroundColorFromPalette } from '@gnowth/lib-theme'
+import { cx, systemBackgroundColorFromPalette, themeStylesMake } from '@gnowth/lib-theme'
 
 import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'
@@ -19,7 +19,7 @@ export interface PropsLayoutApp extends VariantLayoutApp {
   variant?: object | string
 }
 
-const makeStyles = Theme.makeStyles({ layoutApp })
+const makeStyles = themeStylesMake({ layoutApp })
 
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()

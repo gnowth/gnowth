@@ -1,15 +1,15 @@
-import type { Interpolate, System } from '../types'
+import type { SystemInterpolate, System } from './system.types'
 import { systemCompose, systemInterpolate } from './system'
 
-type SystemBorder = { border?: Interpolate<string> }
-type SystemBorderBottom = { borderBottom?: Interpolate<string> }
-type SystemBorderColor = { borderColor?: Interpolate<string> }
-type SystemBorderLeft = { borderLeft?: Interpolate<string> }
-type SystemBorderRadius = { borderRadius?: Interpolate<string> }
-type SystemBorderRight = { borderRight?: Interpolate<string> }
-type SystemBorderTop = { borderTop?: Interpolate<string> }
-type SystemBoxShadow = { boxShadow?: Interpolate<string> }
-type SystemOutline = { outline?: Interpolate<string> }
+type SystemBorder = { border?: SystemInterpolate<string> }
+type SystemBorderBottom = { borderBottom?: SystemInterpolate<string> }
+type SystemBorderColor = { borderColor?: SystemInterpolate<string> }
+type SystemBorderLeft = { borderLeft?: SystemInterpolate<string> }
+type SystemBorderRadius = { borderRadius?: SystemInterpolate<string> }
+type SystemBorderRight = { borderRight?: SystemInterpolate<string> }
+type SystemBorderTop = { borderTop?: SystemInterpolate<string> }
+type SystemBoxShadow = { boxShadow?: SystemInterpolate<string> }
+type SystemOutline = { outline?: SystemInterpolate<string> }
 
 export const systemBorder: () => System<SystemBorder> = () => (props, theme) =>
   systemInterpolate({ key: 'border', theme, value: props.border })

@@ -1,3 +1,4 @@
+import type { ScaleType } from '@gnowth/lib-theme'
 import { TokenZIndex } from '@gnowth/lib-token'
 
 const zindexes: Record<number | string, string | undefined> = {
@@ -16,4 +17,4 @@ const zindexes: Record<number | string, string | undefined> = {
   [TokenZIndex.toast]: '10000',
 }
 
-export const zindex = (token: TokenZIndex | string): string | undefined => zindexes[token]
+export const zindex: ScaleType = (token: TokenZIndex | string): string | undefined => zindexes[token]

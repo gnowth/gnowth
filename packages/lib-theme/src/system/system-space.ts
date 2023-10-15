@@ -1,16 +1,17 @@
-import type { Interpolate, System, ThemeScale } from '../types'
+import type { SystemInterpolate, System } from './system.types'
+import type { ThemeScale } from '../types'
 import { systemCompose, systemInterpolate } from './system'
 
-type SystemMargin = { margin?: Interpolate<number | string> }
-type SystemMarginBottom = { marginBottom?: Interpolate<number | string> }
-type SystemMarginLeft = { marginLeft?: Interpolate<number | string> }
-type SystemMarginRight = { marginRight?: Interpolate<number | string> }
-type SystemMarginTop = { marginTop?: Interpolate<number | string> }
-type SystemPadding = { padding?: Interpolate<number | string> }
-type SystemPaddingBottom = { paddingBottom?: Interpolate<number | string> }
-type SystemPaddingLeft = { paddingLeft?: Interpolate<number | string> }
-type SystemPaddingRight = { paddingRight?: Interpolate<number | string> }
-type SystemPaddingTop = { paddingTop?: Interpolate<number | string> }
+type SystemMargin = { margin?: SystemInterpolate<number | string> }
+type SystemMarginBottom = { marginBottom?: SystemInterpolate<number | string> }
+type SystemMarginLeft = { marginLeft?: SystemInterpolate<number | string> }
+type SystemMarginRight = { marginRight?: SystemInterpolate<number | string> }
+type SystemMarginTop = { marginTop?: SystemInterpolate<number | string> }
+type SystemPadding = { padding?: SystemInterpolate<number | string> }
+type SystemPaddingBottom = { paddingBottom?: SystemInterpolate<number | string> }
+type SystemPaddingLeft = { paddingLeft?: SystemInterpolate<number | string> }
+type SystemPaddingRight = { paddingRight?: SystemInterpolate<number | string> }
+type SystemPaddingTop = { paddingTop?: SystemInterpolate<number | string> }
 
 export const systemMargin: (scale?: ThemeScale | string) => System<SystemMargin> =
   (scale = 'space') =>

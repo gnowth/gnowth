@@ -3,13 +3,13 @@ import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemColorFromPalette,
   systemCompose,
   systemDisplay,
   systemSpace,
   systemTypography,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
@@ -20,6 +20,7 @@ const uiTypography = systemCompose(
   systemSpace(),
   systemTypography(),
 )
+const makeStyles = themeStylesMake({ uiTypography })
 
 interface ComponentProps {
   className?: string
@@ -40,8 +41,6 @@ export interface PropsUITypography extends VariantUITypography, PropsDataReadonl
   variant?: VariantUITypography | string
   variantNamespace?: string
 }
-
-const makeStyles = Theme.makeStyles({ uiTypography })
 
 const propsDefault = {
   palette: 'textPrimary',
@@ -68,6 +67,7 @@ export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
         variant.className,
         styles.uiTypography,
       ),
+      // should be ==> className: styles.uiTypography
       id: variant.id,
     },
     variant.value,

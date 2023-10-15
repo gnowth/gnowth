@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 import type { SystemType } from '@gnowth/lib-theme'
 import { useAppTheme } from '@gnowth/lib-application'
-import { Theme, cx, systemCompose, systemSpace, systemZIndex } from '@gnowth/lib-theme'
+import { cx, systemCompose, systemSpace, systemZIndex, themeStylesMake } from '@gnowth/lib-theme'
 import { TokenZIndex } from '@gnowth/lib-token'
 
 const layoutHeader = systemCompose(systemSpace(), systemZIndex())
@@ -20,7 +20,7 @@ export interface PropsLayoutHeader extends VariantLayoutHeader {
   variant?: object | string
 }
 
-const makeStyles = Theme.makeStyles({ layoutHeader })
+const makeStyles = themeStylesMake({ layoutHeader })
 
 const propsDefault = {
   zIndex: TokenZIndex.frame,
