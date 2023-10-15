@@ -3,13 +3,13 @@ import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemBackgroundColorFromPalette,
   systemCompose,
   systemDisplay,
   systemFlexbox,
   systemSpace,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
@@ -39,7 +39,7 @@ export interface PropsLayoutContent extends VariantLayoutContent {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({ layoutContent })
+const makeStyles = themeStylesMake({ layoutContent })
 
 const propsDefault = {
   variantNamespace: 'layoutContent',

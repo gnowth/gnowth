@@ -3,7 +3,7 @@ import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { useRef, useCallback } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
-import { Theme, cx, systemSpace } from '@gnowth/lib-theme'
+import { cx, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
@@ -37,7 +37,7 @@ export interface PropsInputBoolean extends VariantInputBoolean, PropsData<boolea
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({
+const makeStyles = themeStylesMake({
   inputBoolean,
   inputBooleanClass: `
     display: inline-block;

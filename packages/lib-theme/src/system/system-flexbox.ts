@@ -1,19 +1,19 @@
-import type { Interpolate, System } from '../types'
+import type { SystemInterpolate, System } from './system.types'
 import { systemCompose, systemInterpolate } from './system'
 
-type SystemAlignContent = { alignContent?: Interpolate<string> }
-type SystemAlignItems = { alignItems?: Interpolate<string> }
-type SystemAlignSelf = { alignSelf?: Interpolate<string> }
-type SystemFlex = { flex?: Interpolate<string> }
-type SystemFlexBasis = { flexBasis?: Interpolate<string> }
-type SystemFlexDirection = { flexDirection?: Interpolate<string> }
-type SystemFlexGrow = { flexGrow?: Interpolate<string> }
-type SystemFlexShrink = { flexShrink?: Interpolate<string> }
-type SystemFlexWrap = { flexWrap?: Interpolate<string> }
-type SystemJustifyContent = { justifyContent?: Interpolate<string> }
-type SystemJustifyItems = { justifyItems?: Interpolate<string> }
-type SystemJustifySelf = { justifySelf?: Interpolate<string> }
-type SystemOrder = { order?: Interpolate<string> }
+type SystemAlignContent = { alignContent?: SystemInterpolate<string> }
+type SystemAlignItems = { alignItems?: SystemInterpolate<string> }
+type SystemAlignSelf = { alignSelf?: SystemInterpolate<string> }
+type SystemFlex = { flex?: SystemInterpolate<string> }
+type SystemFlexBasis = { flexBasis?: SystemInterpolate<string> }
+type SystemFlexDirection = { flexDirection?: SystemInterpolate<string> }
+type SystemFlexGrow = { flexGrow?: SystemInterpolate<string> }
+type SystemFlexShrink = { flexShrink?: SystemInterpolate<string> }
+type SystemFlexWrap = { flexWrap?: SystemInterpolate<string> }
+type SystemJustifyContent = { justifyContent?: SystemInterpolate<string> }
+type SystemJustifyItems = { justifyItems?: SystemInterpolate<string> }
+type SystemJustifySelf = { justifySelf?: SystemInterpolate<string> }
+type SystemOrder = { order?: SystemInterpolate<string> }
 
 export const systemAlignContent: () => System<SystemAlignContent> = () => (props, theme) =>
   systemInterpolate({ key: 'alignContent', theme, value: props.alignContent })

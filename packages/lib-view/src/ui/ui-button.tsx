@@ -2,7 +2,6 @@ import type { SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemBox,
   systemColor,
@@ -11,6 +10,7 @@ import {
   systemLayout,
   systemPointer,
   systemSpace,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
@@ -85,7 +85,7 @@ const propsDefault = {
   variantNamespace: 'uiButton',
 }
 
-const makeStyles = Theme.makeStyles({ uiButton })
+const makeStyles = themeStylesMake({ uiButton })
 
 export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
   const theme = useAppTheme()

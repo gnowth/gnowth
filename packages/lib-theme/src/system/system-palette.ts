@@ -1,7 +1,7 @@
-import type { Interpolate, System } from '../types'
+import type { SystemInterpolate, System } from './system.types'
 import { systemInterpolate } from './system'
 
-type SystemColor = { color?: Interpolate<string> }
+type SystemColor = { color?: SystemInterpolate<string> }
 type SystemPalette = {
   palette?: string
   paletteForContrast?: boolean

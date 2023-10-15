@@ -4,7 +4,6 @@ import type { ComponentType, FunctionComponent } from 'react'
 import { createElement } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemBox,
   systemCompose,
@@ -12,6 +11,8 @@ import {
   systemSpace,
   systemTypography,
   systemWidth,
+  themeDefinitionsMake,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { TokenLength } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
@@ -54,8 +55,8 @@ export interface PropsInputText extends VariantInputText, PropsData<string> {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({ inputText })
-const definitions = Theme.makeDefinitions(['', 'box', 'typography'])
+const makeStyles = themeStylesMake({ inputText })
+const definitions = themeDefinitionsMake(['', 'box', 'typography'])
 
 const propsDefault = {
   as: 'input',

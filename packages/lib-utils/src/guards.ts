@@ -4,6 +4,7 @@ export type GuardFilter<Guard extends Item, Item> = (
   items: Item[],
 ) => item is Guard
 type Guard<Type> = (item: unknown) => item is Type
+type FunctionType = (...args: unknown[]) => unknown
 
 export const guardBoolean: Guard<boolean> = (value): value is boolean => typeof value === 'boolean'
 export const guardDate: Guard<Date> = (value): value is Date => value instanceof Date
@@ -18,6 +19,7 @@ export const guardUndefined: Guard<undefined> = (value): value is undefined => v
 export const guardNullish: Guard<null | undefined> = (value): value is undefined | null =>
   guardNull(value) || guardUndefined(value)
 
-export const guardFunction = (value: unknown): value is (...args: unknown[]) => unknown =>
+export const guardFunction = <Type extends FunctionType = FunctionType>(value: unknown): value is Type =>
   typeof value === 'function'
-// export const guardArray = (value: unknown): value is Array => Array.isArray(value)
+
+export const guardArray = <Value = unknown>(value: unknown): value is Array<Value> => Array.isArray(value)

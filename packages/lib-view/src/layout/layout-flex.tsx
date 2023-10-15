@@ -2,7 +2,14 @@ import type { PropsLayout } from '@gnowth/lib-application'
 import type { System, SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
-import { Theme, cx, systemCompose, systemFlexbox, systemLayout, systemSpace } from '@gnowth/lib-theme'
+import {
+  cx,
+  systemCompose,
+  systemFlexbox,
+  systemLayout,
+  systemSpace,
+  themeStylesMake,
+} from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
@@ -41,13 +48,13 @@ const systemSpacing: System<PropsLayoutFlex> = (props, theme) =>
             'row-reverse': 'marginRight',
           }[props.flexDirection as string] || 'marginLeft']: theme.getScaleItem({
             scale: 'space',
-            token: props.spacing,
+            scaleToken: props.spacing,
           }),
         },
       }
     : {}
 
-const makeStyles = Theme.makeStyles({ layoutFlex: systemCompose(layoutFlex, systemSpacing) })
+const makeStyles = themeStylesMake({ layoutFlex: systemCompose(layoutFlex, systemSpacing) })
 
 const variants = {
   horizontalBetween: {

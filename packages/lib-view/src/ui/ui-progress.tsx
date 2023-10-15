@@ -1,24 +1,25 @@
-import type { SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
+import type { Theme, SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import type { PropsLayout } from '@gnowth/lib-application'
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   keyframes,
   systemCompose,
   systemDisplay,
   systemSize,
   systemSpace,
+  themeStylesCreate,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import { UtilSlot } from '../util/util-slot'
 
-const stylesLayout = Theme.createStyles({
+const stylesLayout = themeStylesCreate({
   layoutContainer: `
     box-sizing: border-box;
     padding: 10%;
@@ -168,7 +169,7 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
   }
 `
 
-const makeStyles = Theme.makeStyles({
+const makeStyles = themeStylesMake({
   uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({
     animationName: spinnerStrokeRotate(props),

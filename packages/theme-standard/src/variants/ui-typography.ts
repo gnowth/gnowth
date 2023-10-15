@@ -1,8 +1,9 @@
+import type { VariantType } from '@gnowth/lib-theme'
 import type { VariantUITypography } from '@gnowth/lib-view'
 import { TokenFont, TokenFontSize } from '@gnowth/lib-token'
 
 // TODO: add variant link
-export const body1: VariantUITypography = {
+export const body1: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x100,
@@ -10,7 +11,7 @@ export const body1: VariantUITypography = {
   letterSpacing: '0.5px',
 }
 
-export const body2: VariantUITypography = {
+export const body2: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,
@@ -18,7 +19,7 @@ export const body2: VariantUITypography = {
   letterSpacing: '0.25px',
 }
 
-export const button: VariantUITypography = {
+export const button: VariantType<VariantUITypography> = {
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,
   fontWeight: 500,
@@ -26,7 +27,7 @@ export const button: VariantUITypography = {
   textTransform: 'uppercase',
 }
 
-export const caption: VariantUITypography = {
+export const caption: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x50,
@@ -34,7 +35,7 @@ export const caption: VariantUITypography = {
   letterSpacing: '0.4px',
 }
 
-export const code: VariantUITypography = {
+export const code: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x50,
@@ -42,7 +43,7 @@ export const code: VariantUITypography = {
   letterSpacing: '0.4px',
 }
 
-export const h1: VariantUITypography = {
+export const h1: VariantType<VariantUITypography> = {
   as: 'h1',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x1200,
@@ -50,7 +51,7 @@ export const h1: VariantUITypography = {
   letterSpacing: '-1.5px',
 }
 
-export const h2: VariantUITypography = {
+export const h2: VariantType<VariantUITypography> = {
   as: 'h2',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x1000,
@@ -58,7 +59,7 @@ export const h2: VariantUITypography = {
   letterSpacing: '-0.5px',
 }
 
-export const h3: VariantUITypography = {
+export const h3: VariantType<VariantUITypography> = {
   as: 'h3',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x800,
@@ -66,7 +67,7 @@ export const h3: VariantUITypography = {
   letterSpacing: '0',
 }
 
-export const h4: VariantUITypography = {
+export const h4: VariantType<VariantUITypography> = {
   as: 'h4',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x600,
@@ -74,7 +75,7 @@ export const h4: VariantUITypography = {
   letterSpacing: '0.25px',
 }
 
-export const h5: VariantUITypography = {
+export const h5: VariantType<VariantUITypography> = {
   as: 'h5',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x400,
@@ -82,7 +83,7 @@ export const h5: VariantUITypography = {
   letterSpacing: '0',
 }
 
-export const h6: VariantUITypography = {
+export const h6: VariantType<VariantUITypography> = {
   as: 'h6',
   fontFamily: TokenFont.header,
   fontSize: TokenFontSize.x200,
@@ -90,14 +91,14 @@ export const h6: VariantUITypography = {
   letterSpacing: '0.15px',
 }
 
-export const input: VariantUITypography = {
+export const input: VariantType<VariantUITypography> = {
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,
   fontWeight: 400,
   letterSpacing: '0.25px',
 }
 
-export const label: VariantUITypography = {
+export const label: VariantType<VariantUITypography> = {
   as: 'label',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,
@@ -105,7 +106,7 @@ export const label: VariantUITypography = {
   letterSpacing: '0.25px',
 }
 
-export const link: VariantUITypography = {
+export const link: VariantType<VariantUITypography> = {
   as: 'span',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,
@@ -114,7 +115,7 @@ export const link: VariantUITypography = {
   textDecoration: 'underline',
 }
 
-export const overline: VariantUITypography = {
+export const overline: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x25,
@@ -123,7 +124,7 @@ export const overline: VariantUITypography = {
   textTransform: 'uppercase',
 }
 
-export const subtitle1: VariantUITypography = {
+export const subtitle1: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x100,
@@ -131,7 +132,7 @@ export const subtitle1: VariantUITypography = {
   letterSpacing: '0.15px',
 }
 
-export const subtitle2: VariantUITypography = {
+export const subtitle2: VariantType<VariantUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,
   fontSize: TokenFontSize.x75,

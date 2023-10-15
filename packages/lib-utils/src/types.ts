@@ -35,3 +35,5 @@ export type UtilRequired<Item extends ObjectLiteral, Key = void> = Key extends v
   : Key extends keyof Item
   ? Required<Pick<Item, Key>> & Omit<Item, Key>
   : never
+
+export type UtilNamespaced<Value = unknown, Key extends ObjectKey = string> = Record<Key, Value | undefined>

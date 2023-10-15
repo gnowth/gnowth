@@ -2,12 +2,13 @@ import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
   systemCompose,
   systemSpace,
+  themeDefinitionsMake,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
@@ -29,8 +30,8 @@ export interface PropsUIPaper extends VariantUIPaper {
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({ uiPaper })
-const definitions = Theme.makeDefinitions(['', 'box'])
+const makeStyles = themeStylesMake({ uiPaper })
+const definitions = themeDefinitionsMake(['', 'box'])
 
 const propsDefault = {
   boxVariant: 'float',

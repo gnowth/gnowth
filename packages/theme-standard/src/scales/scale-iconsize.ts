@@ -1,3 +1,4 @@
+import type { ScaleType } from '@gnowth/lib-theme'
 import { TokenIconSize } from '@gnowth/lib-token'
 
 const iconsizes: Record<number | string, string | undefined> = {
@@ -11,4 +12,4 @@ const iconsizes: Record<number | string, string | undefined> = {
   [TokenIconSize.xxxl]: '16rem', // 256px
 }
 
-export const iconsize = (token: TokenIconSize | string): string | undefined => iconsizes[token]
+export const iconsize: ScaleType = (token: TokenIconSize | string): string | undefined => iconsizes[token]

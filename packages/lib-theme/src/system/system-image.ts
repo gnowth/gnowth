@@ -1,12 +1,12 @@
-import type { Interpolate, System } from '../types'
+import type { SystemInterpolate, System } from './system.types'
 import { systemCompose, systemInterpolate } from './system'
 
-type SystemBackground = { background?: Interpolate<string> }
-type SystemBackgroundColor = { backgroundColor?: Interpolate<string> }
-type SystemBackgroundImage = { backgroundImage?: Interpolate<string> }
-type SystemBackgroundPosition = { backgroundPosition?: Interpolate<string> }
-type SystemBackgroundRepeat = { backgroundRepeat?: Interpolate<string> }
-type SystemBackgroundSize = { backgroundSize?: Interpolate<string> }
+type SystemBackground = { background?: SystemInterpolate<string> }
+type SystemBackgroundColor = { backgroundColor?: SystemInterpolate<string> }
+type SystemBackgroundImage = { backgroundImage?: SystemInterpolate<string> }
+type SystemBackgroundPosition = { backgroundPosition?: SystemInterpolate<string> }
+type SystemBackgroundRepeat = { backgroundRepeat?: SystemInterpolate<string> }
+type SystemBackgroundSize = { backgroundSize?: SystemInterpolate<string> }
 
 export const systemBackground: () => System<SystemBackground> = () => (props, theme) =>
   systemInterpolate({ key: 'background', theme, value: props.background })

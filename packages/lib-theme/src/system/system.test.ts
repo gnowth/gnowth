@@ -2,7 +2,7 @@ import type { CSSObject } from '@emotion/css'
 import { Theme } from '../theme'
 import { systemCompose, systemInterpolate } from './system'
 
-const theme = new Theme({})
+const theme = new Theme()
 
 describe('systemInterpolate', () => {
   it('returns empty object is no value is provided', () => {

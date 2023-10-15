@@ -3,12 +3,13 @@ import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  Theme,
   cx,
   systemCompose,
   systemColorFromPalette,
   systemSpace,
   systemTypography,
+  themeDefinitionsMake,
+  themeStylesMake,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
@@ -27,9 +28,8 @@ export interface PropsUILabel extends VariantUILabel, PropsDataReadonly<string> 
   variantNamespace?: string
 }
 
-const makeStyles = Theme.makeStyles({ uiLabel })
-
-const definitions = Theme.makeDefinitions(['', 'typography'])
+const makeStyles = themeStylesMake({ uiLabel })
+const definitions = themeDefinitionsMake(['', 'typography'])
 
 const propsDefault = {
   typographyVariant: 'label',
