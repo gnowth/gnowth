@@ -31,9 +31,11 @@ export class ServiceThemeComponent {
   }
 
   // TODO: allow multiple configs which will be used as fallback or allow multiple component name
-  getComponent<Props extends ObjectLiteral>(configs: ConfigsComponent<Props>): ComponentType<Props> | null {
+  getComponent<Props extends ObjectLiteral>(
+    configs: ConfigsComponent<Props>,
+  ): ComponentType<Props> | undefined {
     if (!configs.component) {
-      return null
+      return undefined
     }
 
     if (!guardString(configs.component)) {
@@ -45,7 +47,7 @@ export class ServiceThemeComponent {
       this.#getComponentsByNamespace(configs.componentNamespace),
     )
 
-    return components[configs.component] ?? null
+    return components[configs.component]
   }
 
   #getComponentsByNamespace<Props extends ObjectLiteral>(namespace = 'type'): Components<Props> {

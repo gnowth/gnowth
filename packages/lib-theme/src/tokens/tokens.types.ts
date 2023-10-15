@@ -1,4 +1,18 @@
-export type TokenColorWeight = '50' | '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900'
+export type TokenColorWeight =
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | 'a100'
+  | 'a200'
+  | 'a400'
+  | 'a700'
 
 export type TokenBreakpoint = 'none' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 export type TokenPalette =

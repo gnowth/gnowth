@@ -1,11 +1,12 @@
 import type { SystemInterpolate, System } from './system.types'
+import type { TokenColorWeight } from '../tokens/tokens.types'
 import { systemInterpolate } from './system'
 
 type SystemColor = { color?: SystemInterpolate<string> }
 type SystemPalette = {
   palette?: string
   paletteForContrast?: boolean
-  paletteWeight?: string | number
+  paletteWeight?: TokenColorWeight
 }
 
 export const systemColor: () => System<SystemColor> = () => (props, theme) =>

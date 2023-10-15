@@ -4,7 +4,7 @@ import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 import type { TokenBreakpoint } from '../tokens/tokens.types'
 import type { Responsive } from './theme.types'
 
-type ScaleDynamic<Token extends string> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | null
+type ScaleDynamic<Token extends string> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends string> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends string> = Record<Token, ScaleItem>
 type Scales<Token extends string = string> = UtilNamespaced<ScaleType<Token>, ScaleName>
@@ -39,13 +39,13 @@ export class ServiceThemeScale {
   }
 
   // TODO: scaleBreakpoint should follow mobile first, if there is no value at this breakpoint, it should check lower breakpoint
-  getScaleItem(configs: ConfigsScale): ScaleItem | null {
+  getScaleItem(configs: ConfigsScale): ScaleItem | undefined {
     const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
 
     const scale = guardString(configs.scale) ? scales[configs.scale] : configs.scale
 
     if (!scale || !configs.scaleToken) {
-      return null
+      return undefined
     }
 
     if (guardFunction<ScaleDynamic<string>>(scale)) {
@@ -54,14 +54,14 @@ export class ServiceThemeScale {
 
     // TODO: add default token in ScaleDynamic { token: Token, [token: Token]: ScaleItem }
     if (!configs.scaleToken) {
-      return null
+      return undefined
     }
 
     if (this.#guardScaleResponsive(scale)) {
-      return scale[configs.scaleBreakpoint ?? 'none'][configs.scaleToken] ?? null
+      return scale[configs.scaleBreakpoint ?? 'none'][configs.scaleToken]
     }
 
-    return scale[configs.scaleToken] ?? null
+    return scale[configs.scaleToken]
   }
 
   #guardScaleResponsive<Token extends string>(scale: ScaleType<Token>): scale is ScaleResponsive<Token> {

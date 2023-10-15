@@ -34,11 +34,13 @@ export class ServiceThemeVariant {
     return { variantsNamespaced: namespacedMerge(configs.map((config) => config.variantsNamespaced)) }
   }
 
-  getVariant<Props extends ObjectLiteral>(configOverrides: ConfigsVariant<Props>[]): Variant<Props> | null {
+  getVariant<Props extends ObjectLiteral>(
+    configOverrides: ConfigsVariant<Props>[],
+  ): Variant<Props> | undefined {
     const configs = this.#mergeConfigs(configOverrides)
     const variantNamespace = transformToArray(configs.variantNamespace)
     if (!variantNamespace.length || !configs.variant) {
-      return null
+      return undefined
     }
     const configsWithTheme = {
       theme: this.#theme,
@@ -49,10 +51,10 @@ export class ServiceThemeVariant {
     const variant = variants[configs.variant]
 
     if (guardFunction<VariantDynamic<Props>>(variant)) {
-      return variant(configsWithTheme) ?? null
+      return variant(configsWithTheme)
     }
 
-    return variant ?? null
+    return variant
   }
 
   getVariantByDefinitions<Props extends ObjectLiteral>(
