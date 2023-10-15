@@ -1,62 +1,29 @@
-import type { CSSObject } from '@emotion/css'
 import type { ComponentType } from 'react'
-import { css } from '@emotion/css'
-import {
-  arrayKeyBy,
-  guardFunction,
-  guardObject,
-  guardString,
-  objectDefaults,
-  objectMapValues,
-} from '@gnowth/lib-utils'
+import { arrayKeyBy, guardFunction, guardObject, guardString, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaultsDeepByKeys } from './theme/theme.utils'
 
-import { objectDefaultsDeepByKeys } from './theme.utils'
-
-import type {
-  ThemeComponents,
-  ThemeImages,
-  ThemeNamespace,
-  ThemePalette,
-  ThemePalettes,
-  ThemeScales,
-  ThemeVariables,
-  ThemeVariants,
-} from './deprecated.types'
-
+// eslint-disable-next-line @typescript-eslint/ban-types
+type ThemeComponents<Props = {}> = ThemeNamespace<ComponentType<Props>>
+type ThemeImages = Record<string, string | undefined>
+type ThemeScales = Record<string, ThemeScale | undefined>
+type ThemeVariable = unknown
+type ThemeVariables = Record<string, ThemeVariable | undefined>
+type ThemeVariants<Props = Record<string, unknown>> = ThemeNamespace<ThemeVariant<Props>>
+type ThemePalettes = Record<string, ThemePalette | string | undefined>
 interface ThemeConfigsComponent<Props> {
   component?: ComponentType<Props> | string
   componentNamespace?: string
   components?: Record<string, ComponentType<Props> | undefined>
 }
-
 interface ThemeConfigsPalette {
   palette?: string
   paletteForContrast?: boolean
   paletteWeight?: string | number
 }
-
-type ThemeScale = (token: number | string) => string | undefined
-
 interface ThemeConfigsScale {
   scale?: ThemeScale | string
   scaleToken?: string | number
 }
-
-type MappedType<Type, ToType> = {
-  [Key in keyof Type]: ToType
-}
-
-type ThemeVariant<Props = Record<string, unknown>> =
-  | Partial<Props>
-  | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
-
-export interface PropsVariant<Props> {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  variant?: object | string
-  variantNamespace?: string
-  variants?: Record<string, ThemeVariant<Props> | undefined>
-}
-
 interface Configs {
   componentsNamespaced?: ThemeComponents
   fonts?: unknown
@@ -68,9 +35,31 @@ interface Configs {
   variables?: ThemeVariables
   variantsNamespaced?: ThemeVariants
 }
+interface Color {
+  darkContrast: boolean
+  hex: string
+  name: string
+}
+interface ThemeNamespace<Type> {
+  [namespace: string]: Record<string, Type | undefined> | undefined
+}
 
-interface ConfigsMakeStyles<Props> {
-  [key: string]: string | ((props: Props, theme: Theme) => CSSObject)
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ThemeScale = (token: number | string) => string | undefined
+export type ThemeVariant<Props = Record<string, unknown>> =
+  | Partial<Props>
+  | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
+
+export interface PropsVariant<Props> {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  variant?: object | string
+  variantNamespace?: string
+  variants?: Record<string, ThemeVariant<Props> | undefined>
+}
+interface ThemePalette {
+  base: string
+  colors: Color[]
+  name: string
 }
 
 export class Theme {
@@ -90,39 +79,11 @@ export class Theme {
     return variants as ThemeVariants
   }
 
-  static createStyles<Styles extends Record<string, string>>(styles: Styles): Record<keyof Styles, string> {
-    return objectMapValues(styles, (style) => css(style))
-  }
-
-  static makeStyles<Props>(configs: ConfigsMakeStyles<Props>) {
-    return function styles(props: Props, theme: Theme): MappedType<ConfigsMakeStyles<Props>, string> {
-      return objectMapValues(configs, (makeStyles) =>
-        guardString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
-      )
-    }
-  }
-
-  static makeDefinitions(prefixes: string[]) {
-    return <Props extends PropsVariant<Props>>(props: Props): PropsVariant<Props>[] =>
-      prefixes.map((prefix) => ({
-        variant: prefix ? props[`${prefix}Variant` as 'variant'] : props.variant,
-        variantNamespace: prefix
-          ? props[`${prefix}VariantNamespace` as 'variantNamespace']
-          : props.variantNamespace,
-        variants: prefix ? props[`${prefix}Variants` as 'variants'] : props.variants,
-      }))
-  }
-
   components: ThemeComponents
-
   images: ThemeImages
-
   palettes: ThemePalettes
-
   scales: ThemeScales
-
   variables: ThemeVariables
-
   variants: ThemeVariants
 
   constructor(configs: Configs = {}) {
