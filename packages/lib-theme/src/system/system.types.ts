@@ -1,6 +1,7 @@
 import type { CSSObject } from '@emotion/css'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
+// import type { Theme } from '../theme/theme'
 import type { Theme } from '../theme'
 
 export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]

@@ -4,7 +4,8 @@ export type GuardFilter<Guard extends Item, Item> = (
   items: Item[],
 ) => item is Guard
 type Guard<Type> = (item: unknown) => item is Type
-type FunctionType = (...args: unknown[]) => unknown
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type FunctionType = (...args: any[]) => any
 
 export const guardBoolean: Guard<boolean> = (value): value is boolean => typeof value === 'boolean'
 export const guardDate: Guard<Date> = (value): value is Date => value instanceof Date

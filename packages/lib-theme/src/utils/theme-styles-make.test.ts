@@ -1,4 +1,5 @@
 import { Theme } from '../theme'
+// import { Theme } from '../theme/theme'
 import { themeStylesMake } from './theme-styles-make'
 
 interface Props {

@@ -49,6 +49,7 @@ export interface VariantUIButton extends SystemType<typeof uiButton> {
   progressPaletteWeight?: string
   progressSize?: string | number
   progressVariant?: string
+  // progressVariants?: string[]
   text?: ComponentType<PropsUITypography> | string
   textClassName?: string
   textHidden?: boolean

@@ -1,5 +1,6 @@
-import type { SystemInterpolate, System } from './system.types'
-import type { ThemeScale } from '../types'
+import type { System, SystemInterpolate } from './system.types'
+
+import type { ThemeScale } from '../deprecated.types'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemMargin = { margin?: SystemInterpolate<number | string> }

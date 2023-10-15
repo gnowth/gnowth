@@ -21,7 +21,7 @@ import type {
   ThemeScales,
   ThemeVariables,
   ThemeVariants,
-} from './types'
+} from './deprecated.types'
 
 interface ThemeConfigsComponent<Props> {
   component?: ComponentType<Props> | string
@@ -50,7 +50,7 @@ type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
   | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
 
-interface PropsVariant<Props> {
+export interface PropsVariant<Props> {
   // eslint-disable-next-line @typescript-eslint/ban-types
   variant?: object | string
   variantNamespace?: string

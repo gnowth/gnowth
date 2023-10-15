@@ -2,7 +2,8 @@ import type { CSSObject } from '@emotion/css'
 import { TokenFont, TokenFontToVariable } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
-import type { System, ThemeScale } from '../types'
+import type { System } from './system.types'
+import type { ThemeScale } from '../deprecated.types'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemFontFamily = { fontFamily?: string | number }

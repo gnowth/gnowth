@@ -3,6 +3,7 @@ import { css } from '@emotion/css'
 import { guardString, objectMapValues } from '@gnowth/lib-utils'
 
 import type { Theme } from '../theme'
+// import type { Theme } from '../theme/theme'
 
 type ConfigsMakeStyles<Props> = {
   [key: string]: string | ((props: Props, theme: Theme) => CSSObject)
