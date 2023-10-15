@@ -1,9 +1,10 @@
 import type { CSSObject } from '@emotion/css'
-import { guardObject, objectMapValues } from '@gnowth/lib-utils'
+import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
 
+// import type { Theme } from '../theme/theme'
 import type { Theme } from '../theme'
 import type { SystemInterpolate, System } from './system.types'
-import type { ThemeScale } from '../types'
+import type { ThemeScale } from '../deprecated.types'
 import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
@@ -79,14 +80,16 @@ export function systemInterpolate<Value extends string | number>(
 ): CSSObject {
   if (configs.value === undefined) return {}
 
-  const keys = Array.isArray(configs.key) ? configs.key : [configs.key]
+  const keys = transformToArray(configs.key)
   const makeCSSObject = (scaleToken?: Value) => {
     const scaleItem = configs.theme.getScaleItem({ scale: configs.scale, scaleToken })
 
     return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
   }
 
-  if (!guardObject(configs.value)) return makeCSSObject(configs.value)
+  if (!guardObject(configs.value)) {
+    return makeCSSObject(configs.value)
+  }
 
   return objectMapValues(configs.value, makeCSSObject)
 }

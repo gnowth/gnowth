@@ -1,4 +1,6 @@
-import type { System, ThemeScale } from '../types'
+import type { System } from './system.types'
+
+import type { ThemeScale } from '../deprecated.types'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemBottom = { bottom?: string }
