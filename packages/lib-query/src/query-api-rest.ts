@@ -1,4 +1,4 @@
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { QueryConfigs, QueryParams } from './types'
 import { QueryApi } from './query-api'
@@ -12,7 +12,7 @@ async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promi
   return (await response.json()) as Response
 }
 
-export class QueryApiRest<Value extends ObjectLike> extends QueryApi<Value> {
+export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
   async list(configs?: QueryConfigs<Value>): Promise<Value[]> {
     const response = await fetchGet<Record<string, unknown>>(this.getPath(configs))
     const serializer = configs?.serializer ?? this.serializer
@@ -27,7 +27,7 @@ export class QueryApiRest<Value extends ObjectLike> extends QueryApi<Value> {
     return serializer.toValue(response)
   }
 
-  meta<Meta extends ObjectLike>(_configs?: QueryConfigs<Meta>): Promise<Meta> {
+  meta<Meta extends ObjectLiteral>(_configs?: QueryConfigs<Meta>): Promise<Meta> {
     return Promise.resolve((_configs ? {} : {}) as unknown as Meta)
   }
 
@@ -36,7 +36,7 @@ export class QueryApiRest<Value extends ObjectLike> extends QueryApi<Value> {
     return new QueryResource(this.list(configs).then((data) => ({ data })))
   }
 
-  resourceMeta<Meta extends ObjectLike>(configs?: QueryConfigs<Meta>): QueryResource<Meta> {
+  resourceMeta<Meta extends ObjectLiteral>(configs?: QueryConfigs<Meta>): QueryResource<Meta> {
     return new QueryResource(this.meta<Meta>(configs).then((data) => ({ data })))
   }
 

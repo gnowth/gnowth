@@ -14,7 +14,7 @@ export function useAppLayout(layout?: ComponentLayout | string): ComponentLayout
 
   return theme.getComponent({
     component: layout,
+    componentNamespace: TokenNamespaceComponent.layout,
     components: contextEnvironment.layouts,
-    namespace: TokenNamespaceComponent.layout,
   })
 }

@@ -58,7 +58,7 @@ const makeStyles = Theme.makeStyles({
   `,
 })
 
-const variantLocals = {
+const variants = {
   checkbox: {
     iconValueFalse: 'checkbox',
     iconValueNull: 'checkboxIntermediate',
@@ -77,8 +77,8 @@ const propsDefault = {
   iconSize: TokenIconSize.sm,
   inputType: 'checkbox',
   variant: 'checkbox',
-  variantLocals,
   variantNamespace: 'inputBoolean',
+  variants,
 }
 
 function iconValue(props: PropsInputBoolean, value?: boolean | null) {

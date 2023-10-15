@@ -18,15 +18,12 @@ export function useAppBoundary(boundary?: Boundary | string): Boundary | undefin
   if (boundaryOrName === null) return null
 
   if (!boundaryOrName) {
-    return theme.getComponent({
-      component: 'boundary',
-      namespace: 'type',
-    })
+    return theme.getComponent({ component: 'boundary' })
   }
 
   return theme.getComponent({
     component: boundaryOrName,
+    componentNamespace: TokenNamespaceComponent.boundary,
     components: contextEnvironment.boundaries,
-    namespace: TokenNamespaceComponent.boundary,
   })
 }

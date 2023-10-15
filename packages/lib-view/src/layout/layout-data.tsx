@@ -17,7 +17,7 @@ export interface PropsLayoutData extends VariantLayoutData {
   variant?: object | string
 }
 
-const variantLocals = {
+const variants = {
   block: {
     wrapperVariant: 'verticalStretch',
   },
@@ -34,8 +34,8 @@ const variantLocals = {
 const propsDefault = {
   spacing: TokenSpace.xxs,
   variant: 'block',
-  variantLocals,
   variantNamespace: 'layoutData',
+  variants,
 }
 
 export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {

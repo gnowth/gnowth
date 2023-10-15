@@ -62,14 +62,11 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
 
   const propsWithDefault = objectDefaults(props, propsDefault)
 
-  const LabelComponent = theme.getComponent({
-    component: propsWithDefault.label,
-    namespace: 'type',
-  })
+  const LabelComponent = theme.getComponent({ component: propsWithDefault.label })
 
   const Component = theme.getComponent({
     component: propsWithDefault.component ?? connection.field?.type,
-    namespace: propsWithDefault.readonly ? 'type' : 'input',
+    componentNamespace: propsWithDefault.readonly ? 'type' : 'input',
   })
 
   if (!Component) throw errorCustomComponent

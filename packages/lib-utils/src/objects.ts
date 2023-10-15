@@ -1,11 +1,11 @@
-import type { ObjectKey, ObjectLike, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
+import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
 import type { PredicateObjectFilter } from './predicates'
 import { guardNumberLike, guardObject, guardUndefined } from './guards'
 import { operatorObjectFilterNot } from './operators'
 
-type ObjectDefaults = <Item extends ObjectLike>(item: Item, ...items: Partial<Item | undefined>[]) => Item
+type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
 
-type ObjectFilter = <Item extends ObjectLike>(item: Item, predicate: PredicateObjectFilter<Item>) => Item
+type ObjectFilter = <Item extends ObjectLiteral>(item: Item, predicate: PredicateObjectFilter<Item>) => Item
 
 type ObjectFromPairs = {
   <Key extends ObjectKey, Value>(pairs: [Key, Value][]): Record<Key, Value>
@@ -13,18 +13,18 @@ type ObjectFromPairs = {
   <Pairs extends readonly [ObjectKey, unknown][]>(pairs: Pairs): UtilObjectFromPairs<Pairs>
 }
 
-type ObjectMapValues = <Value, Item extends ObjectLike>(
+type ObjectMapValues = <Value, Item extends ObjectLiteral>(
   item: Item,
   predicate: (value: Item[keyof Item], key: keyof Item, item: Item) => Value,
 ) => { [key in keyof Item]: Value }
 
-type ObjectToEntries = <Item extends ObjectLike>(item: Item) => UtilEntriesFromObject<Item>[]
+type ObjectToEntries = <Item extends ObjectLiteral>(item: Item) => UtilEntriesFromObject<Item>[]
 
-type ObjectToKeys = <Item extends ObjectLike>(item: Item) => (keyof Item)[]
+type ObjectToKeys = <Item extends ObjectLiteral>(item: Item) => (keyof Item)[]
 
-type ObjectGet = <Item extends ObjectLike>(item: Item, path: string | string[]) => unknown
+type ObjectGet = <Item extends ObjectLiteral>(item: Item, path: string | string[]) => unknown
 
-type ObjectSet = <Item extends ObjectLike | unknown[]>(
+type ObjectSet = <Item extends ObjectLiteral | unknown[]>(
   item: Item,
   name: ObjectKey | ObjectKey[],
   value: unknown,

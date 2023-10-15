@@ -25,8 +25,8 @@ import type {
 
 interface ThemeConfigsComponent<Props> {
   component?: ComponentType<Props> | string
+  componentNamespace?: string
   components?: Record<string, ComponentType<Props> | undefined>
-  namespace?: string
 }
 
 interface ThemeConfigsPalette {
@@ -54,7 +54,7 @@ interface PropsVariant<Props> {
   // eslint-disable-next-line @typescript-eslint/ban-types
   variant?: object | string
   variantNamespace?: string
-  variantLocals?: Record<string, ThemeVariant<Props> | undefined>
+  variants?: Record<string, ThemeVariant<Props> | undefined>
 }
 
 interface Configs {
@@ -105,10 +105,10 @@ export class Theme {
     return <Props extends PropsVariant<Props>>(props: Props): PropsVariant<Props>[] =>
       prefixes.map((prefix) => ({
         variant: prefix ? props[`${prefix}Variant` as 'variant'] : props.variant,
-        variantLocals: prefix ? props[`${prefix}VariantLocals` as 'variantLocals'] : props.variantLocals,
         variantNamespace: prefix
           ? props[`${prefix}VariantNamespace` as 'variantNamespace']
           : props.variantNamespace,
+        variants: prefix ? props[`${prefix}Variants` as 'variants'] : props.variants,
       }))
   }
 
@@ -151,7 +151,7 @@ export class Theme {
 
     const components = objectDefaults(
       configs.components ?? {},
-      this.components[configs.namespace || 'type'] as Record<string, ComponentType<Props>>,
+      this.components[configs.componentNamespace || 'type'] as Record<string, ComponentType<Props>>,
     )
 
     return components[configs.component]
@@ -216,7 +216,7 @@ export class Theme {
     if (guardObject(configs.variant)) return configs.variant as Props
 
     const variants = this.variants as ThemeVariants<Props>
-    const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variantLocals)
+    const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variants)
 
     const variantMaybe = variantRecord[configs.variant]
     const variant = guardFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe

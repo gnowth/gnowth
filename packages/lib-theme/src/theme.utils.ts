@@ -1,7 +1,7 @@
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import { guardObject, objectDefaults, objectMapValues } from '@gnowth/lib-utils'
 
-type ObjectDefaultsDeepByKeys = <Output extends ObjectLike>(
+type ObjectDefaultsDeepByKeys = <Output extends ObjectLiteral>(
   keys: Array<keyof Output>,
   item: Output,
   ...items: Partial<Output | undefined>[]
