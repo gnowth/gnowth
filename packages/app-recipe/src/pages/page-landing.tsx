@@ -1,23 +1,17 @@
 import type { FunctionComponent } from 'react'
-import { LayoutPage, LayoutContent, LayoutSection, TokenSpace, UITypography } from '@gnowth/lib-react'
+import { LayoutPage, LayoutContent, LayoutSection, UITypography } from '@gnowth/lib-react'
 
 export const PageLanding: FunctionComponent = () => (
   <LayoutPage>
-    <LayoutSection paddingBottom={TokenSpace.xl} paddingTop={TokenSpace.xl} variant="page">
+    <LayoutSection paddingBottom="xl" paddingTop="xl" variant="page">
       <LayoutContent alignSelf="center">
         <UITypography value="Welcome" variant="h1" />
       </LayoutContent>
 
-      <UITypography marginTop={TokenSpace.xl} value="Some text jdiof odfijdof odifj f" />
+      <UITypography marginTop="xl" value="Some text jdiof odfijdof odifj f" />
     </LayoutSection>
 
-    <LayoutSection
-      layoutSpacing={TokenSpace.lg}
-      paddingBottom={TokenSpace.xxxl}
-      paddingTop={TokenSpace.xxxl}
-      palette="primary"
-      variant="page"
-    >
+    <LayoutSection layoutSpacing="lg" paddingBottom="xxxl" paddingTop="xxxl" palette="primary" variant="page">
       <UITypography palette="primary" paletteForContrast value="Some text jdiof odfijdof odifj f" />
 
       <UITypography
@@ -28,9 +22,9 @@ export const PageLanding: FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
-      layoutSpacing={TokenSpace.lg}
-      paddingBottom={TokenSpace.xxxl}
-      paddingTop={TokenSpace.xxxl}
+      layoutSpacing="lg"
+      paddingBottom="xxxl"
+      paddingTop="xxxl"
       palette="text"
       paletteWeight="a100"
       variant="page"
@@ -41,9 +35,9 @@ export const PageLanding: FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
-      layoutSpacing={TokenSpace.lg}
-      paddingBottom={TokenSpace.xxxl}
-      paddingTop={TokenSpace.xxxl}
+      layoutSpacing="lg"
+      paddingBottom="xxxl"
+      paddingTop="xxxl"
       palette="secondary"
       variant="page"
     >
@@ -57,9 +51,9 @@ export const PageLanding: FunctionComponent = () => (
     </LayoutSection>
 
     <LayoutSection
-      layoutSpacing={TokenSpace.lg}
-      paddingBottom={TokenSpace.xxxl}
-      paddingTop={TokenSpace.xxxl}
+      layoutSpacing="lg"
+      paddingBottom="xxxl"
+      paddingTop="xxxl"
       palette="text"
       paletteWeight="a100"
       variant="page"

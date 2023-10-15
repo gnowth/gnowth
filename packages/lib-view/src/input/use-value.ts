@@ -1,6 +1,5 @@
-import type { DataName } from '@gnowth/lib-data'
+import type { DataName, TokenMode } from '@gnowth/lib-data'
 import { useCallback, useState } from 'react'
-import { TokenMode } from '@gnowth/lib-token'
 
 interface ChangeEvent<Value> {
   target: {
@@ -27,7 +26,7 @@ interface PropsUseValue<Value> {
 }
 
 export function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Value): Return<Value> {
-  const { mode = TokenMode.controlled, name, onChange, onSubmit, value = valueDefault } = props
+  const { mode = 'controlled', name, onChange, onSubmit, value = valueDefault } = props
   const [valueLocal, setValueLocal] = useState(value)
 
   const handleSubmitControlled = useCallback(
@@ -54,11 +53,11 @@ export function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Valu
   return {
     name: Array.isArray(props.name) ? props.name.at(-1) : props.name,
     onChange: {
-      [TokenMode.controlled]: handleChangeControlled,
-      [TokenMode.shadow]: handleChangeShadow,
-      [TokenMode.uncontrolled]: handleChangeUncontrolled,
+      controlled: handleChangeControlled,
+      shadow: handleChangeShadow,
+      uncontrolled: handleChangeUncontrolled,
     }[mode],
-    onSubmit: mode === TokenMode.shadow ? handleChangeControlled : handleSubmitControlled,
-    value: mode === TokenMode.controlled ? props.value ?? valueDefault : valueLocal,
+    onSubmit: mode === 'shadow' ? handleChangeControlled : handleSubmitControlled,
+    value: mode === 'controlled' ? props.value ?? valueDefault : valueLocal,
   }
 }

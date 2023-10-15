@@ -1,11 +1,10 @@
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { PropsData } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent } from 'react'
 import { useRef, useCallback } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
-import { TokenIconSize } from '@gnowth/lib-token'
-import { guardString } from '@gnowth/lib-utils'
+import { UtilNamespaced, guardString } from '@gnowth/lib-utils'
 
 import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
 import type { ChangeEventHandler } from './use-value'
@@ -18,7 +17,7 @@ export interface VariantInputBoolean extends SystemType<typeof inputBoolean> {
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
-  iconSize?: string | number
+  iconSize?: TokenIconSize
   iconValueFalse?: string
   iconValueNull?: string
   iconValueTrue?: string
@@ -35,6 +34,7 @@ export interface PropsInputBoolean extends VariantInputBoolean, PropsData<boolea
   slot?: string
   variant?: VariantInputBoolean | string
   variantNamespace?: string
+  variants?: UtilNamespaced<VariantInputBoolean>
 }
 
 const makeStyles = themeStylesMake({
@@ -73,8 +73,8 @@ const variants = {
   },
 }
 
-const propsDefault = {
-  iconSize: TokenIconSize.sm,
+const propsDefault: Partial<PropsInputBoolean> = {
+  iconSize: 'sm',
   inputType: 'checkbox',
   variant: 'checkbox',
   variantNamespace: 'inputBoolean',

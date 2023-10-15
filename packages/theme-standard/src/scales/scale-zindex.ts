@@ -1,20 +1,17 @@
-import type { ScaleType } from '@gnowth/lib-theme'
-import { TokenZIndex } from '@gnowth/lib-token'
+import type { ScaleType, TokenZIndex } from '@gnowth/lib-theme'
 
-const zindexes: Record<number | string, string | undefined> = {
-  [TokenZIndex.deepdive]: '-99999',
-  [TokenZIndex.default]: '1',
-  [TokenZIndex.docked]: '4',
-  [TokenZIndex.frame]: '50',
-  [TokenZIndex.sticky]: '100',
-  [TokenZIndex.popup]: '5000',
-  [TokenZIndex.dialog]: '6000',
-  [TokenZIndex.dropdown]: '7000',
-  [TokenZIndex.overlay]: '8000',
-  [TokenZIndex.reminder]: '8500',
-  [TokenZIndex.modal]: '9000',
-  [TokenZIndex.spinner]: '9500',
-  [TokenZIndex.toast]: '10000',
-}
-
-export const zindex: ScaleType = (token: TokenZIndex | string): string | undefined => zindexes[token]
+export const zindex = {
+  deepdive: '-99999',
+  default: '1',
+  dialog: '6000',
+  docked: '4',
+  dropdown: '7000',
+  frame: '50',
+  modal: '9000',
+  overlay: '8000',
+  popup: '5000',
+  reminder: '8500',
+  spinner: '9500',
+  sticky: '100',
+  toast: '10000',
+} satisfies ScaleType<TokenZIndex>

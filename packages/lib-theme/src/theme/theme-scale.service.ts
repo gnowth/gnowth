@@ -1,13 +1,14 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 
-import type { TokenBreakpoint } from '../tokens/tokens.types'
+import type { TokenBase, TokenBreakpoint } from '../tokens/tokens.types'
 import type { Responsive } from './theme.types'
 
-type ScaleDynamic<Token extends string> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
-type ScaleResponsive<Token extends string> = Responsive<ScaleStatic<Token>>
-type ScaleStatic<Token extends string> = Record<Token, ScaleItem>
-type Scales<Token extends string = string> = UtilNamespaced<ScaleType<Token>, ScaleName>
+// TODO: review responsiveScale. currently not supported by system
+type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
+type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
+type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
+type Scales<Token extends TokenBase = TokenBase> = UtilNamespaced<ScaleType<Token>, ScaleName>
 type Configs = { scales?: Scales }
 type ConfigsScaleDynamic<Token> = {
   scaleToken?: Token
@@ -16,11 +17,11 @@ type ConfigsScaleDynamic<Token> = {
 
 export type ScaleItem = string // TODO: should it allow array?
 export type ScaleName = string
-export type ScaleType<Token extends string = string> =
+export type ScaleType<Token extends TokenBase = TokenBase> =
   | ScaleDynamic<Token>
   | ScaleStatic<Token>
   | ScaleResponsive<Token>
-export type ConfigsScale<Token extends string = string> = {
+export type ConfigsScale<Token extends TokenBase = TokenBase> = {
   scale?: ScaleType<Token> | ScaleName
   scales?: Scales<Token>
   scaleToken?: Token
@@ -58,7 +59,7 @@ export class ServiceThemeScale {
     }
 
     if (this.#guardScaleResponsive(scale)) {
-      return scale[configs.scaleBreakpoint ?? 'none'][configs.scaleToken]
+      return scale[configs.scaleBreakpoint ?? 'none']?.[configs.scaleToken]
     }
 
     return scale[configs.scaleToken]

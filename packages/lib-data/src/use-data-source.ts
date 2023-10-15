@@ -1,9 +1,8 @@
 import { useContext, useCallback } from 'react'
-import { TokenMode } from '@gnowth/lib-token'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
 import { objectDefaults, objectGet, UtilError } from '@gnowth/lib-utils'
 
-import type { DataName, DataValue, PropsData, WithConnect } from './types'
+import type { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
 import { DataContext } from './data-context'
 import { useValue } from './use-value'
 
@@ -43,7 +42,7 @@ export function useDataSource<Value extends DataValue>(
   props: PropsUseDataSource<Value>,
   configs: Configs = {},
 ): PropsData<Value> & WithConnect {
-  const { mode = TokenMode.controlled } = props
+  const { mode = 'controlled' } = props
   const configsWithDefault = objectDefaults(configs, configsDefault)
   useEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
 
@@ -82,7 +81,7 @@ export function useDataSource<Value extends DataValue>(
     name: props.name,
     onCancel: props.onCancel,
     onChange,
-    onReset: mode === TokenMode.controlled ? props.onReset : handleReset,
+    onReset: mode === 'controlled' ? props.onReset : handleReset,
     onSubmit,
     value,
   }

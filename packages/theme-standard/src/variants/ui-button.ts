@@ -1,6 +1,6 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
 import type { PropsUIButton, VariantUIButton } from '@gnowth/lib-view'
-import { TokenIconSize, TokenSpace, TokenSelector } from '@gnowth/lib-token'
+import { TokenSelector } from '@gnowth/lib-token'
 import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
 
 // TODO find a way to abstract it across in a library
@@ -73,8 +73,8 @@ export const text: VariantType<VariantUIButton> = (
   },
   minWidth: '8rem',
   paddingBottom: '11px',
-  paddingLeft: TokenSpace.sm,
-  paddingRight: TokenSpace.sm,
+  paddingLeft: 'sm',
+  paddingRight: 'sm',
   paddingTop: '11px',
   progressPalette: propsWithDefault.palette,
   textVariant: 'button',
@@ -103,10 +103,10 @@ export const navigation: VariantType<VariantUIButton> = (
   },
   borderRadius: '0',
   minWidth: '6rem',
-  paddingBottom: TokenSpace.md,
-  paddingLeft: TokenSpace.xs,
-  paddingRight: TokenSpace.xs,
-  paddingTop: TokenSpace.md,
+  paddingBottom: 'md',
+  paddingLeft: 'xs',
+  paddingRight: 'xs',
+  paddingTop: 'md',
 })
 
 export const contained: VariantType<VariantUIButton> = (
@@ -148,10 +148,10 @@ export const icon: VariantType<VariantUIButton> = (
     [TokenSelector.disabled]: 'auto',
   },
   iconHidden: !propsWithDefault.progressHidden,
-  iconSize: TokenIconSize.sm,
-  padding: TokenSpace.xxs,
+  iconSize: 'sm',
+  padding: 'xxs',
   progressPalette: propsWithDefault.palette,
-  progressSize: propsWithDefault.iconSize ?? TokenIconSize.sm,
+  progressSize: propsWithDefault.iconSize ?? 'sm',
   textHidden: true,
 })
 
@@ -167,8 +167,8 @@ export const fab: VariantType<VariantUIButton> = (
   borderRadius: '50%',
   boxShadow: 'materialHover3',
   color: interpolateColorFlat(theme, propsWithDefault.palette, '*'),
-  iconSize: TokenIconSize.md,
+  iconSize: 'md',
   padding: '20%',
   progressPaletteForContrast: true,
-  progressSize: propsWithDefault.iconSize ?? TokenIconSize.md,
+  progressSize: propsWithDefault.iconSize ?? 'md',
 })

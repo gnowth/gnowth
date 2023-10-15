@@ -1,6 +1,7 @@
 import type { System } from './system.types'
 
-import type { ThemeScale } from '../deprecated.types'
+import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { TokenBase, TokenZIndex } from '../tokens/tokens.types'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemBottom = { bottom?: string }
@@ -8,7 +9,7 @@ type SystemLeft = { left?: string }
 type SystemPosition = { position?: string }
 type SystemRight = { right?: string }
 type SystemTop = { top?: string }
-type SystemZIndex = { zIndex?: number | string }
+type SystemZIndex<Value> = { zIndex?: Value }
 
 export const systemBottom: () => System<SystemBottom> = () => (props, theme) =>
   systemInterpolate({ key: 'bottom', theme, value: props.bottom })
@@ -25,7 +26,9 @@ export const systemRight: () => System<SystemRight> = () => (props, theme) =>
 export const systemTop: () => System<SystemTop> = () => (props, theme) =>
   systemInterpolate({ key: 'top', theme, value: props.top })
 
-export const systemZIndex: (scale?: ThemeScale | string) => System<SystemZIndex> =
+export const systemZIndex: <Token extends TokenBase = TokenZIndex>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemZIndex<Token>> =
   (scale = 'zindex') =>
   (props, theme) =>
     systemInterpolate({ key: 'zIndex', scale, theme, value: props.zIndex })

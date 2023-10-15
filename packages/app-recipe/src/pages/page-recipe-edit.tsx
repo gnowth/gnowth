@@ -6,8 +6,6 @@ import {
   DataTrigger,
   LayoutPage,
   LayoutSection,
-  TokenMode,
-  TokenSpace,
   UIPaper,
   UITypography,
   useAppApplication,
@@ -36,13 +34,13 @@ export function PageRecipeEdit(props: Props): ReactElement {
     <LayoutPage>
       <LayoutSection variant="page">
         <UIPaper palette="text" paletteWeight="a100">
-          <UITypography marginBottom={TokenSpace.lg} value={locale.title} variant="h3" />
+          <UITypography marginBottom="lg" value={locale.title} variant="h3" />
 
           <DataSource
             field={application.models.recipe.toField()}
             layout="flex"
             layoutVariant="verticalStretch"
-            mode={TokenMode.uncontrolled}
+            mode="uncontrolled"
             value={recipe}
           >
             <DataConnect labelValue="Name of dish" name="name" />

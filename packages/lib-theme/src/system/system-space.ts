@@ -1,70 +1,91 @@
 import type { System, SystemInterpolate } from './system.types'
 
-import type { ThemeScale } from '../deprecated.types'
+import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { TokenBase, TokenPropertyValue, TokenSpace, TokenUnits } from '../tokens/tokens.types'
 import { systemCompose, systemInterpolate } from './system'
 
-type SystemMargin = { margin?: SystemInterpolate<number | string> }
-type SystemMarginBottom = { marginBottom?: SystemInterpolate<number | string> }
-type SystemMarginLeft = { marginLeft?: SystemInterpolate<number | string> }
-type SystemMarginRight = { marginRight?: SystemInterpolate<number | string> }
-type SystemMarginTop = { marginTop?: SystemInterpolate<number | string> }
-type SystemPadding = { padding?: SystemInterpolate<number | string> }
-type SystemPaddingBottom = { paddingBottom?: SystemInterpolate<number | string> }
-type SystemPaddingLeft = { paddingLeft?: SystemInterpolate<number | string> }
-type SystemPaddingRight = { paddingRight?: SystemInterpolate<number | string> }
-type SystemPaddingTop = { paddingTop?: SystemInterpolate<number | string> }
+type SystemMargin<Value> = { margin?: SystemInterpolate<Value> }
+type SystemMarginBottom<Value> = { marginBottom?: SystemInterpolate<Value> }
+type SystemMarginLeft<Value> = { marginLeft?: SystemInterpolate<Value> }
+type SystemMarginRight<Value> = { marginRight?: SystemInterpolate<Value> }
+type SystemMarginTop<Value> = { marginTop?: SystemInterpolate<Value> }
+type SystemPadding<Value> = { padding?: SystemInterpolate<Value> }
+type SystemPaddingBottom<Value> = { paddingBottom?: SystemInterpolate<Value> }
+type SystemPaddingLeft<Value> = { paddingLeft?: SystemInterpolate<Value> }
+type SystemPaddingRight<Value> = { paddingRight?: SystemInterpolate<Value> }
+type SystemPaddingTop<Value> = { paddingTop?: SystemInterpolate<Value> }
 
-export const systemMargin: (scale?: ThemeScale | string) => System<SystemMargin> =
+export const systemMargin: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemMargin<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'margin', scale, theme, value: props.margin })
 
-export const systemMarginBottom: (scale?: ThemeScale | string) => System<SystemMarginBottom> =
+export const systemMarginBottom: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemMarginBottom<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'marginBottom', scale, theme, value: props.marginBottom })
 
-export const systemMarginLeft: (scale?: ThemeScale | string) => System<SystemMarginLeft> =
+export const systemMarginLeft: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemMarginLeft<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'marginLeft', scale, theme, value: props.marginLeft })
 
-export const systemMarginRight: (scale?: ThemeScale | string) => System<SystemMarginRight> =
+export const systemMarginRight: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemMarginRight<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'marginRight', scale, theme, value: props.marginRight })
 
-export const systemMarginTop: (scale?: ThemeScale | string) => System<SystemMarginTop> =
+export const systemMarginTop: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemMarginTop<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'marginTop', scale, theme, value: props.marginTop })
 
-export const systemPadding: (scale?: ThemeScale | string) => System<SystemPadding> =
+export const systemPadding: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemPadding<Token | `${number}%`>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'padding', scale, theme, value: props.padding })
 
-export const systemPaddingBottom: (scale?: ThemeScale | string) => System<SystemPaddingBottom> =
+export const systemPaddingBottom: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemPaddingBottom<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'paddingBottom', scale, theme, value: props.paddingBottom })
 
-export const systemPaddingLeft: (scale?: ThemeScale | string) => System<SystemPaddingLeft> =
+export const systemPaddingLeft: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemPaddingLeft<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'paddingLeft', scale, theme, value: props.paddingLeft })
 
-export const systemPaddingRight: (scale?: ThemeScale | string) => System<SystemPaddingRight> =
+export const systemPaddingRight: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemPaddingRight<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'paddingRight', scale, theme, value: props.paddingRight })
 
-export const systemPaddingTop: (scale?: ThemeScale | string) => System<SystemPaddingTop> =
+export const systemPaddingTop: <Token extends TokenBase = TokenSpace>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemPaddingTop<Token | TokenUnits | TokenPropertyValue>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: 'paddingTop', scale, theme, value: props.paddingTop })
 
-export const systemSpace = (scale?: ThemeScale | string) =>
+export const systemSpace = (scale?: ScaleType | ScaleName) =>
   systemCompose(
     systemMargin(scale),
     systemMarginBottom(scale),

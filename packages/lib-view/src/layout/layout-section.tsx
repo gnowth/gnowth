@@ -10,7 +10,6 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
@@ -38,12 +37,12 @@ export interface PropsLayoutSection extends VariantLayoutSection {
 const makeStyles = themeStylesMake({ layoutSection })
 const definitions = themeDefinitionsMake(['', 'box'])
 
-const propsDefault = {
+const propsDefault: Partial<PropsLayoutSection> = {
   boxVariantNamespace: 'systemBox',
-  paddingBottom: TokenSpace.sm,
-  paddingLeft: TokenSpace.md,
-  paddingRight: TokenSpace.md,
-  paddingTop: TokenSpace.sm,
+  paddingBottom: 'sm',
+  paddingLeft: 'md',
+  paddingRight: 'md',
+  paddingTop: 'sm',
   variantNamespace: 'layoutSection',
 }
 

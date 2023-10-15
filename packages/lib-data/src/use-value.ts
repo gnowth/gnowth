@@ -1,9 +1,8 @@
 import { useState, useCallback } from 'react'
-import { TokenMode } from '@gnowth/lib-token'
 import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
 import { objectDefaults, objectSet, UtilError } from '@gnowth/lib-utils'
 
-import type { DataName, DataValue } from './types'
+import type { DataName, DataValue, TokenMode } from './types'
 
 interface Configs {
   errorCustomMode?: Error
@@ -36,13 +35,13 @@ const configsDefault = {
 }
 
 export function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
-  const { mode = TokenMode.controlled, onChange } = props
+  const { mode = 'controlled', onChange } = props
   const configsWithDefault = objectDefaults(configs, configsDefault)
 
   useEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
   useEnsureConstant(props.value, {
     errorCustom: configsWithDefault.errorCustomValue,
-    skip: mode === TokenMode.controlled,
+    skip: mode === 'controlled',
   })
 
   const valueRef = useRefValue(props.value)
@@ -69,11 +68,11 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
 
   return {
     onChange: {
-      [TokenMode.controlled]: handleChangeControlled,
-      [TokenMode.shadow]: handleChangeShadow,
-      [TokenMode.uncontrolled]: handleChangeUncontrolled,
+      controlled: handleChangeControlled,
+      shadow: handleChangeShadow,
+      uncontrolled: handleChangeUncontrolled,
     }[mode],
-    onSubmit: mode === TokenMode.shadow ? props.onChange : props.onSubmit,
-    value: mode === TokenMode.controlled ? props.value : value,
+    onSubmit: mode === 'shadow' ? props.onChange : props.onSubmit,
+    value: mode === 'controlled' ? props.value : value,
   }
 }

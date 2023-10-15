@@ -1,15 +1,12 @@
-import type { ScaleType } from '@gnowth/lib-theme'
-import { TokenIconSize } from '@gnowth/lib-token'
+import type { ScaleType, TokenIconSize } from '@gnowth/lib-theme'
 
-const iconsizes: Record<number | string, string | undefined> = {
-  [TokenIconSize.xxs]: '.5rem', // 8px
-  [TokenIconSize.xs]: '1rem', // 16px
-  [TokenIconSize.sm]: '1.5rem', // 24px
-  [TokenIconSize.md]: '2rem', // 32px
-  [TokenIconSize.lg]: '3rem', // 48px
-  [TokenIconSize.xl]: '4rem', // 64px
-  [TokenIconSize.xxl]: '8rem', // 128px
-  [TokenIconSize.xxxl]: '16rem', // 256px
-}
-
-export const iconsize: ScaleType = (token: TokenIconSize | string): string | undefined => iconsizes[token]
+export const iconsize = {
+  lg: '3rem', // 48px
+  md: '2rem', // 32px
+  sm: '1.5rem', // 24px
+  xl: '4rem', // 64px
+  xs: '1rem', // 16px
+  xxl: '8rem', // 128px
+  xxs: '.5rem', // 8px
+  xxxl: '16rem', // 256px
+} satisfies ScaleType<TokenIconSize>

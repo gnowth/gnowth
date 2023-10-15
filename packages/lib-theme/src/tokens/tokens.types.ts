@@ -1,3 +1,5 @@
+export type TokenBase = string | number // TODO: should this be string only?
+
 export type TokenColorWeight =
   | '50'
   | '100'
@@ -44,7 +46,8 @@ export type TokenFontSize =
   | 'x1200'
   | 'x1300'
 
-export type TokenSpace = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
+export type TokenIconSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
+export type TokenSpace = 'none' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
 
 export type TokenTypography = 'text' | 'header'
 export type TokenMedia = 'screen' | 'print'
@@ -83,6 +86,7 @@ type TokenUnitsRelative =
   | `${number}vmax`
   | `${number}%`
 export type TokenUnits = TokenUnitsAbsolute | TokenUnitsRelative
+export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
 
 export type Tokens = {
   color?: {

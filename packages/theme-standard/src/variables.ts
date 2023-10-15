@@ -1,4 +1,4 @@
-import { TokenBreakpoint, TokenSpace, TokenVariable } from '@gnowth/lib-token'
+import { TokenVariable } from '@gnowth/lib-token'
 
 import { breakpoint } from './scales/scale-breakpoint'
 import { space } from './scales/scale-space'
@@ -9,8 +9,8 @@ export const headerHeight = '' // maybe pos
 export const fontHeader = 'Raleway, Trebuchet MS, Avenir, Segoe UI, sans‑serif'
 export const fontBody = 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif'
 export const widthContent = '340px'
-export const gridSpacing = space(TokenSpace.md)
-export const mobileBreakpoint = breakpoint(TokenBreakpoint.sm)
+export const gridSpacing = space.md
+export const mobileBreakpoint = breakpoint.sm
 
 export const variables = {
   [TokenVariable.fontBody]: 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif',
