@@ -1,4 +1,4 @@
-import type { Theme, SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
+import type { Theme, SystemType, systemColorFromPalette, TokenColorWeight } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import type { PropsLayout } from '@gnowth/lib-application'
@@ -77,7 +77,7 @@ export interface VariantUIProgress extends SystemUIProgress {
   as?: string
   bufferPalette?: string
   bufferPaletteForContrast?: boolean
-  bufferPaletteWeight?: string
+  bufferPaletteWeight?: TokenColorWeight
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number

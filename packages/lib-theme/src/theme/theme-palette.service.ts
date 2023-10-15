@@ -19,6 +19,7 @@ type Palettes = UtilNamespaced<PaletteType, PaletteName>
 type Configs = { palettes?: PaletteType[] }
 
 export type ColorHex = `#${number}`
+// export type ColorHex = string
 export type PaletteType = Palette | PaletteReference
 export type ConfigsPalette = {
   palette?: PaletteName
@@ -43,16 +44,16 @@ export class ServiceThemePalette {
   }
 
   // TODO add opacity to palette?
-  getColor(configs: ConfigsPalette): ColorHex | null {
+  getColor(configs: ConfigsPalette): ColorHex | undefined {
     if (!configs.palette) {
-      return null
+      return undefined
     }
 
     const palette = this.#getPalette(configs.palette)
     const paletteColor = this.#getPaletteColor(palette, configs.paletteWeight)
 
     if (!paletteColor) {
-      return null
+      return undefined
     }
 
     if (!configs.paletteForContrast) {
@@ -61,7 +62,7 @@ export class ServiceThemePalette {
 
     const paletteText = this.#getPalette(paletteColor.darkContrast ? 'textPrimary' : 'textInverse')
     const paletteColorText = this.#getPaletteColor(paletteText, '500')
-    return paletteColorText?.hex ?? null
+    return paletteColorText?.hex
   }
 
   #getPaletteColor(palette?: Palette, weight: TokenColorWeight = '500'): PaletteColor | undefined {

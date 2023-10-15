@@ -19,3 +19,4 @@ export * from './utils/theme-styles-create'
 export * from './utils/theme-styles-make'
 
 export * from './deprecated.types'
+export type { TokenColorWeight } from './tokens/tokens.types'

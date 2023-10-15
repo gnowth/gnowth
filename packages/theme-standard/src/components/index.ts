@@ -1,5 +1,5 @@
-import { Theme } from '@gnowth/lib-theme'
-import { layouts as layout } from '@gnowth/lib-view'
+import type { ComponentType } from 'react'
+import { layouts } from '@gnowth/lib-view'
 
 import * as boundary from './namespace-boundary'
 import * as icon from './namespace-icon'
@@ -7,11 +7,11 @@ import * as input from './namespace-input'
 import * as suspense from './namespace-suspense'
 import * as type from './namespace-type'
 
-export const componentsNamespaced = Theme.assembleComponents({
+export const componentsNamespaced = {
   boundary,
   icon,
   input,
-  layout,
+  layout: layouts as unknown as Record<string, ComponentType>,
   suspense,
   type,
-})
+}

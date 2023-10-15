@@ -17,7 +17,7 @@ export class ServiceThemeMedia {
     return { medias: Object.assign({}, ...configs.map((config) => config.medias)) }
   }
 
-  getMedia(name: MediaName): Media | null {
-    return this.#medias[name] ?? null
+  getMedia(name: MediaName): Media | undefined {
+    return this.#medias[name]
   }
 }

@@ -1,4 +1,4 @@
-import type { SystemType, systemColorFromPalette } from '@gnowth/lib-theme'
+import type { SystemType, TokenColorWeight, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -46,7 +46,7 @@ export interface VariantUIButton extends SystemType<typeof uiButton> {
   progressHidden?: boolean
   progressPalette?: string
   progressPaletteForContrast?: boolean
-  progressPaletteWeight?: string
+  progressPaletteWeight?: TokenColorWeight
   progressSize?: string | number
   progressVariant?: string
   // progressVariants?: string[]

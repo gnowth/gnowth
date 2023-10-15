@@ -46,7 +46,9 @@ export class ServiceTheme {
     return new ServiceTheme(this.#configsMerge(this.#configs, configs))
   }
 
-  getComponent<Props extends ObjectLiteral>(configs: ConfigsComponent<Props>): ComponentType<Props> | null {
+  getComponent<Props extends ObjectLiteral>(
+    configs: ConfigsComponent<Props>,
+  ): ComponentType<Props> | undefined {
     return this.#serviceThemeComponent.getComponent(configs)
   }
 
@@ -54,20 +56,19 @@ export class ServiceTheme {
     return this.#serviceThemeMedia.getMedia(name)
   }
 
-  getPaletteColor(configs: ConfigsPalette): ColorHex | null {
+  getPaletteColor(configs: ConfigsPalette): ColorHex | undefined {
     return this.#serviceThemePalette.getColor(configs)
   }
 
-  getScaleItem<Type extends ScaleItem = ScaleItem>(configs: ConfigsScale): Type | null {
+  getScaleItem<Type extends ScaleItem = ScaleItem>(configs: ConfigsScale): Type | undefined {
     return this.#serviceThemeScale.getScaleItem(configs) as Type
   }
 
-  // TODO: check if exception for not sending null is valid
   getVariable<Type>(name: string): Type | undefined {
     return this.#serviceThemeVariable.getVariable<Type>(name)
   }
 
-  getVariant<Props extends ObjectLiteral>(...configs: ConfigsVariant<Props>[]): Variant<Props> | null {
+  getVariant<Props extends ObjectLiteral>(...configs: ConfigsVariant<Props>[]): Variant<Props> | undefined {
     return this.#serviceThemeVariant.getVariant(configs)
   }
 

@@ -1,50 +1,32 @@
 import type { ComponentType } from 'react'
-import { arrayKeyBy, guardFunction, guardObject, guardString, objectDefaults } from '@gnowth/lib-utils'
-import { objectDefaultsDeepByKeys } from './theme/theme.utils'
+import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
+import { guardFunction, guardObject, guardString, objectDefaults } from '@gnowth/lib-utils'
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-type ThemeComponents<Props = {}> = ThemeNamespace<ComponentType<Props>>
-type ThemeImages = Record<string, string | undefined>
+import type { ConfigsPalette, PaletteType } from './theme/theme-palette.service'
+import type { ConfigsComponent } from './theme/theme-component.service'
+import type { Media, MediaName } from './theme/theme-media.service'
+import type { Variable } from './theme/theme-variable.service'
+import { objectDefaultsDeepByKeys } from './theme/theme.utils'
+import { ServiceThemePalette } from './theme/theme-palette.service'
+import { ServiceThemeComponent } from './theme/theme-component.service'
+import { ServiceThemeVariable } from './theme/theme-variable.service'
+import { ServiceThemeMedia } from './theme/theme-media.service'
+
+type ThemeVariants<Props = Record<string, unknown>> = UtilNamespaced<UtilNamespaced<ThemeVariant<Props>>>
 type ThemeScales = Record<string, ThemeScale | undefined>
-type ThemeVariable = unknown
-type ThemeVariables = Record<string, ThemeVariable | undefined>
-type ThemeVariants<Props = Record<string, unknown>> = ThemeNamespace<ThemeVariant<Props>>
-type ThemePalettes = Record<string, ThemePalette | string | undefined>
-interface ThemeConfigsComponent<Props> {
-  component?: ComponentType<Props> | string
-  componentNamespace?: string
-  components?: Record<string, ComponentType<Props> | undefined>
-}
-interface ThemeConfigsPalette {
-  palette?: string
-  paletteForContrast?: boolean
-  paletteWeight?: string | number
-}
 interface ThemeConfigsScale {
   scale?: ThemeScale | string
   scaleToken?: string | number
 }
 interface Configs {
-  componentsNamespaced?: ThemeComponents
-  fonts?: unknown
-  images?: ThemeImages
-  medias?: unknown
-  palettes?: ThemePalettes
+  componentsNamespaced?: UtilNamespaced<UtilNamespaced<ComponentType>>
+  medias?: UtilNamespaced<Media, MediaName>
+  palettes?: PaletteType[]
   scales?: ThemeScales
-  stylesheets?: unknown
-  variables?: ThemeVariables
+  variables?: UtilNamespaced<Variable>
   variantsNamespaced?: ThemeVariants
 }
-interface Color {
-  darkContrast: boolean
-  hex: string
-  name: string
-}
-interface ThemeNamespace<Type> {
-  [namespace: string]: Record<string, Type | undefined> | undefined
-}
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type ThemeScale = (token: number | string) => string | undefined
 export type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
@@ -56,94 +38,41 @@ export interface PropsVariant<Props> {
   variantNamespace?: string
   variants?: Record<string, ThemeVariant<Props> | undefined>
 }
-interface ThemePalette {
-  base: string
-  colors: Color[]
-  name: string
-}
 
 export class Theme {
-  static assembleComponents(components: ThemeNamespace<unknown>): ThemeComponents {
-    return components as ThemeComponents
-  }
-
-  static assemblePalettesFromJSON(...palettes: ThemePalette[]): ThemePalettes {
-    return arrayKeyBy(palettes, (palette) => palette.name)
-  }
-
-  static assembleScales(scales: ThemeScales): ThemeScales {
-    return scales
-  }
-
-  static assembleVariants(variants: ThemeNamespace<unknown>): ThemeVariants {
+  static assembleVariants(variants: UtilNamespaced<UtilNamespaced<unknown>>): ThemeVariants {
     return variants as ThemeVariants
   }
 
-  components: ThemeComponents
-  images: ThemeImages
-  palettes: ThemePalettes
+  #serviceThemeComponent: ServiceThemeComponent
+  #serviceThemeMedia: ServiceThemeMedia
+  #serviceThemePalette: ServiceThemePalette
+  #serviceThemeVariable: ServiceThemeVariable
   scales: ThemeScales
-  variables: ThemeVariables
   variants: ThemeVariants
 
   constructor(configs: Configs = {}) {
-    this.components = configs.componentsNamespaced || {}
-    this.images = configs.images || {}
-    this.palettes = configs.palettes || {}
+    this.#serviceThemeComponent = new ServiceThemeComponent(configs)
+    this.#serviceThemeMedia = new ServiceThemeMedia(configs)
+    this.#serviceThemePalette = new ServiceThemePalette(configs)
+    this.#serviceThemeVariable = new ServiceThemeVariable(configs)
+
     this.scales = configs.scales || {}
-    this.variables = configs.variables || {}
     this.variants = configs.variantsNamespaced || {}
   }
 
-  extends(configs: Configs): Theme {
-    const configsNew = {
-      components: { ...this.components, ...configs.componentsNamespaced },
-      images: { ...this.images, ...configs.images },
-      palettes: { ...this.palettes, ...configs.palettes },
-      scales: { ...this.scales, ...configs.scales },
-      variables: { ...this.variables, ...configs.variables },
-      variants: { ...this.variants, ...configs.variantsNamespaced },
-    }
-
-    return new Theme(configsNew)
+  getComponent<Props extends ObjectLiteral>(
+    configs: ConfigsComponent<Props>,
+  ): ComponentType<Props> | undefined {
+    return this.#serviceThemeComponent.getComponent(configs)
   }
 
-  getComponent<Props>(configs: ThemeConfigsComponent<Props>): ComponentType<Props> | undefined {
-    if (!guardString(configs.component)) return configs.component
-
-    const components = objectDefaults(
-      configs.components ?? {},
-      this.components[configs.componentNamespace || 'type'] as Record<string, ComponentType<Props>>,
-    )
-
-    return components[configs.component]
+  getMedia(name: MediaName): Media | undefined {
+    return this.#serviceThemeMedia.getMedia(name)
   }
 
-  // TODO add opacity to palette?
-  getPaletteColor(configs: ThemeConfigsPalette): string | undefined {
-    if (!configs.palette) return undefined
-
-    const { paletteWeight = '500' } = configs
-    const maybePalette = this.palettes[configs.palette]
-    const palette = guardString(maybePalette) ? this.palettes[maybePalette] : maybePalette
-
-    if (guardString(palette)) return undefined
-
-    const colorDefinition = palette?.colors.find((color) => color.name === paletteWeight)
-
-    if (!colorDefinition) return undefined
-
-    if (!configs.paletteForContrast) return colorDefinition.hex
-
-    const maybePaletteText = this.palettes[colorDefinition.darkContrast ? 'textPrimary' : 'textInverse']
-
-    const paletteText = guardString(maybePaletteText) ? this.palettes[maybePaletteText] : maybePaletteText
-
-    if (guardString(paletteText)) return undefined
-
-    const colorDefinitionText = paletteText?.colors.find((color) => color.name === '500')
-
-    return colorDefinitionText?.hex
+  getPaletteColor(configs: ConfigsPalette): string | undefined {
+    return this.#serviceThemePalette.getColor(configs)
   }
 
   getScaleItem(configs: ThemeConfigsScale): string | undefined {
@@ -157,7 +86,7 @@ export class Theme {
   }
 
   getVariable<Type>(name: string): Type | undefined {
-    return this.variables[name] as Type
+    return this.#serviceThemeVariable.getVariable<Type>(name)
   }
 
   getVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
