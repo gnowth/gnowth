@@ -10,7 +10,6 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
 
@@ -95,7 +94,7 @@ const variants = {
 
 const propsDefault = {
   display: 'flex',
-  spacing: TokenSpace.md,
+  spacing: 'md',
   variant: 'horizontalLeft',
   variantNamespace: 'layoutFlex',
   variants,

@@ -82,7 +82,7 @@ export function systemInterpolate<Value extends string | number>(
 
   const keys = transformToArray(configs.key)
   const makeCSSObject = (scaleToken?: Value) => {
-    const scaleItem = configs.theme.getScaleItem({ scale: configs.scale, scaleToken })
+    const scaleItem = configs.theme.getScaleItem({ scale: configs.scale, scaleToken }) ?? scaleToken
 
     return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
   }

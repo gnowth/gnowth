@@ -1,19 +1,18 @@
 import type { VariantType } from '@gnowth/lib-theme'
 import type { VariantInputText } from '@gnowth/lib-view'
-import { TokenSpace } from '@gnowth/lib-token'
 
 export const input: VariantType<VariantInputText> = {
   paddingBottom: '11px',
-  paddingLeft: TokenSpace.sm,
-  paddingRight: TokenSpace.sm,
+  paddingLeft: 'sm',
+  paddingRight: 'sm',
   paddingTop: '11px',
 }
 
 export const input2: VariantType<VariantInputText> = {
-  paddingBottom: TokenSpace.xxs,
-  paddingLeft: TokenSpace.xs,
-  paddingRight: TokenSpace.xs,
-  paddingTop: TokenSpace.xxs,
+  paddingBottom: 'xxs',
+  paddingLeft: 'xs',
+  paddingRight: 'xs',
+  paddingTop: 'xxs',
 }
 
 // export function input(props: Props): CSSProperties {

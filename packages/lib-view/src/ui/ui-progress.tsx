@@ -1,4 +1,10 @@
-import type { Theme, SystemType, systemColorFromPalette, TokenColorWeight } from '@gnowth/lib-theme'
+import type {
+  Theme,
+  SystemType,
+  systemColorFromPalette,
+  TokenColorWeight,
+  TokenIconSize,
+} from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 import type { PropsLayout } from '@gnowth/lib-application'
@@ -14,7 +20,6 @@ import {
   themeStylesCreate,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenIconSize } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import { UtilSlot } from '../util/util-slot'
@@ -69,7 +74,7 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   </UtilSlot.Provider>
 )
 
-const uiProgress = systemCompose(systemDisplay(), systemSize('iconsize'), systemSpace())
+const uiProgress = systemCompose(systemDisplay(), systemSize<TokenIconSize>('iconsize'), systemSpace())
 
 type SystemUIProgress = SystemType<ReturnType<typeof systemColorFromPalette>> & SystemType<typeof uiProgress>
 
@@ -214,16 +219,16 @@ const makeStyles = themeStylesMake({
   }),
 })
 
-const propsDefault = {
+const propsDefault: Partial<PropsUIProgress> = {
   bufferPalette: 'primary',
   display: 'inline-block',
   layout: LayoutSuperImpose,
   palette: 'primary',
-  size: TokenIconSize.xs,
+  size: 'xs',
   thickness: 1,
   transitionDuration: '225ms',
   value: null,
-  valueInitial: 0,
+  // valueInitial: 0,
   valueMax: 100,
   variantNamespace: 'uiProgress',
 }

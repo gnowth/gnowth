@@ -3,11 +3,12 @@ import { TokenFont, TokenFontToVariable } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import type { System } from './system.types'
-import type { ThemeScale } from '../deprecated.types'
+import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { TokenBase, TokenFontSize } from '../tokens/tokens.types'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemFontFamily = { fontFamily?: string | number }
-type SystemFontSize = { fontSize?: string | number }
+type SystemFontSize<Value> = { fontSize?: Value }
 type SystemFontStyle = { fontStyle?: string }
 type SystemFontWeight = { fontWeight?: string | number }
 type SystemLetterSpacing = { letterSpacing?: string }
@@ -31,7 +32,9 @@ export const systemFontFamily: () => System<SystemFontFamily> = () => (props, th
   return fontFamily ? { fontFamily } : {}
 }
 
-export const systemFontSize: (scale?: ThemeScale | string) => System<SystemFontSize> =
+export const systemFontSize: <Token extends TokenBase = TokenFontSize>(
+  scale?: ScaleType | ScaleName,
+) => System<SystemFontSize<Token>> =
   (scale = 'fontsize') =>
   (props, theme) =>
     systemInterpolate({ key: 'fontSize', responsive: true, scale, theme, value: props.fontSize })

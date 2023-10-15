@@ -1,6 +1,5 @@
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
-import { TokenSpace } from '@gnowth/lib-token'
 
 import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'
@@ -32,7 +31,7 @@ const variants = {
 }
 
 const propsDefault = {
-  spacing: TokenSpace.xxs,
+  spacing: 'xxs',
   variant: 'block',
   variantNamespace: 'layoutData',
   variants,

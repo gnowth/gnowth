@@ -1,9 +1,8 @@
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { FunctionComponent } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemColorFromPalette, systemCompose, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
-import { TokenIconSize } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 interface ComponentProps {
@@ -22,7 +21,7 @@ export interface VariantUIIcon extends SystemType<typeof uiIcon> {
 export interface PropsUIIcon extends VariantUIIcon, PropsDataReadonly<string> {
   className?: string
   hidden?: boolean
-  size?: string | number
+  size?: TokenIconSize
   slot?: string
   variant?: VariantUIIcon | string
   variantNamespace?: string
@@ -30,9 +29,9 @@ export interface PropsUIIcon extends VariantUIIcon, PropsDataReadonly<string> {
 
 const makeStyles = themeStylesMake({ uiIcon })
 
-const propsDefault = {
+const propsDefault: Partial<PropsUIIcon> = {
   palette: 'textPrimary',
-  size: TokenIconSize.xs,
+  size: 'xs',
   variantNamespace: 'uiIcon',
 }
 

@@ -57,7 +57,7 @@ export interface PropsInputText extends VariantInputText, PropsData<string> {
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])
 
-const propsDefault: PropsInputText = {
+const propsDefault: Partial<PropsInputText> = {
   as: 'input',
   boxVariant: 'input',
   boxVariantNamespace: 'systemBox',

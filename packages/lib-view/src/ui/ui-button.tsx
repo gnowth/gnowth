@@ -1,4 +1,4 @@
-import type { SystemType, TokenColorWeight, systemColorFromPalette } from '@gnowth/lib-theme'
+import type { SystemType, TokenColorWeight, TokenIconSize, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -12,7 +12,6 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import { UIIcon, PropsUIIcon } from './ui-icon'
@@ -33,7 +32,7 @@ export interface VariantUIButton extends SystemType<typeof uiButton> {
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
-  iconSize?: string | number
+  iconSize?: TokenIconSize
   iconValue?: string
   iconVariant?: string
   layout?: string
@@ -47,7 +46,7 @@ export interface VariantUIButton extends SystemType<typeof uiButton> {
   progressPalette?: string
   progressPaletteForContrast?: boolean
   progressPaletteWeight?: TokenColorWeight
-  progressSize?: string | number
+  progressSize?: TokenIconSize
   progressVariant?: string
   // progressVariants?: string[]
   text?: ComponentType<PropsUITypography> | string
@@ -77,7 +76,7 @@ export interface PropsUIButton
 // TODO: add default palette?
 const propsDefault = {
   layout: 'flex',
-  layoutSpacing: TokenSpace.xs,
+  layoutSpacing: 'xs',
   layoutVariant: 'horizontalCenter',
   palette: 'textPrimary',
   progressHidden: true,

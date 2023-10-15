@@ -10,7 +10,6 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { TokenSpace } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
@@ -33,10 +32,10 @@ export interface PropsUIPaper extends VariantUIPaper {
 const makeStyles = themeStylesMake({ uiPaper })
 const definitions = themeDefinitionsMake(['', 'box'])
 
-const propsDefault = {
+const propsDefault: Partial<PropsUIPaper> = {
   boxVariant: 'float',
   boxVariantNamespace: 'systemBox',
-  padding: TokenSpace.md,
+  padding: 'md',
   variantNamespace: 'uiPaper',
 }
 

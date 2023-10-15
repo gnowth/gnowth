@@ -1,10 +1,10 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 
-import type { TokenBreakpoint } from '../tokens/tokens.types'
+import type { TokenBase, TokenBreakpoint } from '../tokens/tokens.types'
 import type { Responsive } from './theme.types'
 
-type TokenBase = string | number // TODO: should this be string only?
+// TODO: review responsiveScale. currently not supported by system
 type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
