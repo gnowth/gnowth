@@ -63,10 +63,7 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   const propsWithDefault = objectDefaults(props as UtilRequired<Props<Value>, 'event'>, propsDefault)
 
-  const Component = theme.getComponent({
-    component: propsWithDefault.component,
-    namespace: 'type',
-  })
+  const Component = theme.getComponent({ component: propsWithDefault.component })
 
   if (!Component) throw errorCustomComponent
 

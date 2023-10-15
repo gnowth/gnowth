@@ -18,15 +18,12 @@ export function useAppSuspense(suspense?: Suspense | string): Suspense | undefin
   if (suspenseOrName === null) return null
 
   if (!suspenseOrName) {
-    return theme.getComponent({
-      component: 'suspense',
-      namespace: 'type',
-    })
+    return theme.getComponent({ component: 'suspense' })
   }
 
   return theme.getComponent({
     component: suspenseOrName,
+    componentNamespace: TokenNamespaceComponent.suspense,
     components: contextEnvironment.suspenses,
-    namespace: TokenNamespaceComponent.suspense,
   })
 }

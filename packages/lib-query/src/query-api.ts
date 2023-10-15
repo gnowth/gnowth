@@ -1,18 +1,18 @@
 import type { Model } from '@gnowth/lib-model'
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { QueryConfigs } from './types'
 import type { QueryResource } from './query-resource'
 import { QuerySerializer } from './query-serializer'
 
-interface QueryConfigsApi<Value extends ObjectLike> {
+interface QueryConfigsApi<Value extends ObjectLiteral> {
   endpoint: string
   model: Model<Value>
   serializer?: QuerySerializer<Value>
 }
 
 // TODO: queryApi should use field instead of model
-export abstract class QueryApi<Value extends ObjectLike> {
+export abstract class QueryApi<Value extends ObjectLiteral> {
   endpoint: string
 
   model: Model<Value>
@@ -36,13 +36,13 @@ export abstract class QueryApi<Value extends ObjectLike> {
 
   abstract list(configs?: QueryConfigs<Value>): Promise<Value[]>
 
-  abstract meta<Meta extends ObjectLike>(configs?: QueryConfigs<Meta>): Promise<Meta>
+  abstract meta<Meta extends ObjectLiteral>(configs?: QueryConfigs<Meta>): Promise<Meta>
 
   abstract retrieve(configs?: QueryConfigs<Value>): Promise<Value>
 
   abstract resourceList(configs?: QueryConfigs<Value>): QueryResource<Value[]>
 
-  abstract resourceMeta<Meta extends ObjectLike>(configs?: QueryConfigs<Meta>): QueryResource<Meta>
+  abstract resourceMeta<Meta extends ObjectLiteral>(configs?: QueryConfigs<Meta>): QueryResource<Meta>
 
   abstract resourceRetrieve(configs?: QueryConfigs<Value>): QueryResource<Value>
 }

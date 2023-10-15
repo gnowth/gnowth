@@ -49,7 +49,7 @@ const systemSpacing: System<PropsLayoutFlex> = (props, theme) =>
 
 const makeStyles = Theme.makeStyles({ layoutFlex: systemCompose(layoutFlex, systemSpacing) })
 
-const variantLocals = {
+const variants = {
   horizontalBetween: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -90,8 +90,8 @@ const propsDefault = {
   display: 'flex',
   spacing: TokenSpace.md,
   variant: 'horizontalLeft',
-  variantLocals,
   variantNamespace: 'layoutFlex',
+  variants,
 }
 
 // TODO: add responsive

@@ -1,4 +1,4 @@
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import { guardString, objectMapValues } from '@gnowth/lib-utils'
 
 import type { DataName } from '../types'
@@ -12,7 +12,10 @@ type SchemaFromValue<Value> = {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export class Model<Value extends ObjectLike = ObjectLike, Configs extends ObjectLike = ObjectLike> {
+export class Model<
+  Value extends ObjectLiteral = ObjectLiteral,
+  Configs extends ObjectLiteral = ObjectLiteral,
+> {
   // api?: QueryApi<Value>
 
   configs: Configs

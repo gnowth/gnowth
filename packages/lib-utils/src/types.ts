@@ -1,6 +1,6 @@
 export type ObjectKey = string | number | symbol
 // TODO: update proper type
-export type ObjectLike = object
+export type ObjectLiteral = object
 
 export type UtilIntersectionFromUnion<Union> = (Union extends unknown ? (k: Union) => void : never) extends (
   k: infer Item,
@@ -30,7 +30,7 @@ export type UtilObjectFromPairs<ArrayType extends readonly unknown[]> = ArrayTyp
 export type UtilOptional<Type, Key extends keyof Type> = Partial<Pick<Type, Key>> & Omit<Type, Key>
 
 // TODO: implement properly. it does not support union type
-export type UtilRequired<Item extends ObjectLike, Key = void> = Key extends void
+export type UtilRequired<Item extends ObjectLiteral, Key = void> = Key extends void
   ? Item
   : Key extends keyof Item
   ? Required<Pick<Item, Key>> & Omit<Item, Key>

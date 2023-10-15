@@ -1,5 +1,5 @@
 import type { CSSObject } from '@emotion/css'
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
 
 import type { Theme } from './theme'
@@ -34,7 +34,7 @@ export type ThemeVariables = Record<string, ThemeVariable | undefined>
 export type ThemeVariants<Props = Record<string, unknown>> = ThemeNamespace<ThemeVariant<Props>>
 export type ThemePalettes = Record<string, ThemePalette | string | undefined>
 
-export type SystemType<Type extends System<ObjectLike>> = Parameters<Type>[0]
+export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]
 
 export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject
 

@@ -1,9 +1,9 @@
-import type { ObjectLike } from '@gnowth/lib-utils'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import { pluralize } from 'inflected'
 
 import type { QueryApi } from './query-api'
 
-interface Configs<Value extends ObjectLike> {
+interface Configs<Value extends ObjectLiteral> {
   api: QueryApi<Value>
 }
 
@@ -13,7 +13,7 @@ interface Configs<Value extends ObjectLike> {
 // TODO: allow specific field override?
 // TODO: allow extending class
 // TODO: allow querying missing data for model field. e.g if we only have the id, but we want it flat or nested
-export class QuerySerializer<Value extends ObjectLike> {
+export class QuerySerializer<Value extends ObjectLiteral> {
   api: QueryApi<Value>
 
   // static chain<Data>(model: Model): void {

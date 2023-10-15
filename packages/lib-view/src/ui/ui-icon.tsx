@@ -45,7 +45,7 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
   const styles = makeStyles(variant, theme)
   const Component = theme.getComponent<ComponentProps>({
     component: variant.value || undefined,
-    namespace: 'icon',
+    componentNamespace: 'icon',
   })
 
   if (!Component) return null
