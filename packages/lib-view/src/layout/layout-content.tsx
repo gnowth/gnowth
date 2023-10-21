@@ -17,7 +17,6 @@ interface ComponentProps {
   className?: string
   id?: string
 }
-
 export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
   as?: ComponentType<ComponentProps> | string
   children: ReactNode

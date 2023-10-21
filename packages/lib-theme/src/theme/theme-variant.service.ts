@@ -1,25 +1,24 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
-import { guardFunction, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { guardFunction, guardObject, objectDefaults, transformToArray } from '@gnowth/lib-utils'
 
-import type { Theme } from './theme.next'
+import type { Theme } from './theme'
 import { namespacedMerge } from '../utils/namespace-merge'
-import { objectDefaultsDeepByKeys } from './theme.utils'
 
+type Configs = { variantsNamespaced?: VariantsNamespaced }
+type ConfigsVariant<Props extends ObjectLiteral> = WithThemeVariant<Props> & { theme: Theme }
+type Variant<Props extends ObjectLiteral> = Partial<Props>
 type VariantDynamic<Props extends ObjectLiteral> = (props: Props & { theme: Theme }) => Variant<Props>
 type VariantName = string
 type VariantNamespace = string
 type Variants<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<VariantType<Props>, VariantName>
 type VariantsNamespaced = UtilNamespaced<Variants, VariantNamespace>
-type Configs = { variantsNamespaced?: VariantsNamespaced }
 
-export type Variant<Props extends ObjectLiteral> = Partial<Props>
 export type VariantType<Props extends ObjectLiteral = ObjectLiteral> = VariantDynamic<Props> | Variant<Props>
-export type ConfigsVariant<Props extends ObjectLiteral> = {
-  theme: Theme
-  variant?: string // TODO: check if it should allow as an object
+export type WithThemeVariant<Props extends ObjectLiteral> = Props & {
+  variant?: Variant<Props> | VariantName
   variantNamespace?: VariantNamespace | VariantNamespace[]
   variants?: Variants<Props>
-} & Props
+}
 
 export class ServiceThemeVariant {
   #variantsNamespaced: VariantsNamespaced = {}
@@ -32,13 +31,16 @@ export class ServiceThemeVariant {
     return { variantsNamespaced: namespacedMerge(configs.map((config) => config.variantsNamespaced)) }
   }
 
-  getVariant<Props extends ObjectLiteral>(
-    configOverrides: ConfigsVariant<Props>[],
-  ): Variant<Props> | undefined {
-    const configs = this.#mergeConfigs(configOverrides)
+  // TODO: think how will the variant override the nested component
+  getVariant<Props extends ObjectLiteral>(configs: ConfigsVariant<Props>): Variant<Props> | undefined {
     const variantNamespace = transformToArray(configs.variantNamespace)
     if (!variantNamespace.length || !configs.variant) {
       return undefined
+    }
+
+    // TODO check logic around nested variant. we want to move away from variant as an object
+    if (guardObject(configs.variant)) {
+      return configs.variant
     }
 
     const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
@@ -51,34 +53,11 @@ export class ServiceThemeVariant {
     return variant
   }
 
-  getVariantByDefinitions<Props extends ObjectLiteral>(
-    definitions: (props: Props) => Variant<Props>[],
-    theme: Theme,
-    props: Props,
-    propsDefault?: Partial<Props>,
-    mergeKeys: Array<keyof Props> = [],
-  ): Props {
-    const propsWithDefault = objectDefaults(props, propsDefault, { theme } as Props) as ConfigsVariant<Props>
-
-    const variants = definitions(propsWithDefault).map(
-      (definition) =>
-        this.getVariant([{ theme, ...definition } as ConfigsVariant<Props>, propsWithDefault]) ?? undefined,
-    )
-
-    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
-  }
-
-  #getVariantsByNamespace<Props extends ObjectLiteral>(namespace: VariantNamespace[]): Variants<Props> {
+  #getVariantsByNamespace<Props extends ObjectLiteral>(
+    namespace: VariantNamespace[],
+  ): Variants<Props> | undefined {
     const maybeNamespace = namespace.find((nspace) => this.#variantsNamespaced[nspace])
 
-    return maybeNamespace ? this.#variantsNamespaced[maybeNamespace] ?? {} : {}
-  }
-
-  #mergeConfigs<Props extends ObjectLiteral>(configs: ConfigsVariant<Props>[]): ConfigsVariant<Props> {
-    return {
-      ...Object.assign({}, ...configs),
-      variantNamespace: configs.flatMap((config) => transformToArray(config.variantNamespace)),
-      variants: Object.assign({}, ...configs.map((config) => config.variants)),
-    }
+    return maybeNamespace ? this.#variantsNamespaced[maybeNamespace] : undefined
   }
 }
