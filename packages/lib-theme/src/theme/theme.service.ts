@@ -1,16 +1,16 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
+import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { Theme } from './theme.next'
+import type { Theme } from './theme'
 import type { ConfigsWithDependencies } from './theme.types'
 import type { ServiceThemeMedia, Media, MediaName } from './theme-media.service'
 import type { ConfigsComponent, ServiceThemeComponent } from './theme-component.service'
 import type { ConfigsPalette, ColorHex, ServiceThemePalette } from './theme-palette.service'
 import type { ConfigsScale, ScaleItem, ServiceThemeScale } from './theme-scale.service'
 import type { ServiceThemeVariable } from './theme-variable.service'
-import type { ConfigsVariant, ServiceThemeVariant, Variant } from './theme-variant.service'
-
-type ConfigsPropsVariants<Props extends ObjectLiteral> = Omit<ConfigsVariant<Props>, 'theme'>
+import type { WithThemeVariant, ServiceThemeVariant } from './theme-variant.service'
+import { objectDefaultsDeepByKeys } from './theme.utils'
 
 export class ServiceTheme {
   #configs: ConfigsWithDependencies
@@ -58,27 +58,29 @@ export class ServiceTheme {
   }
 
   getPropsVariant<Props extends ObjectLiteral>(
-    ...configs: ConfigsPropsVariants<Props>[]
-  ): Variant<Props> | undefined {
-    return this.#serviceThemeVariant.getVariant(
-      configs.map((config) => ({ theme: this, ...config }) as ConfigsVariant<Props>),
-    )
+    props: WithThemeVariant<Props>,
+    propsDefault?: Partial<WithThemeVariant<Props>>,
+  ): WithThemeVariant<Props> {
+    const propsWithDefault = objectDefaults(props, propsDefault)
+    const variant = this.#serviceThemeVariant.getVariant({ theme: this, ...propsWithDefault })
+
+    return objectDefaults(props, variant, propsDefault)
   }
 
   // TODO: check if the right approach
   getPropsVariantByDefinitions<Props extends ObjectLiteral>(
-    definitions: (props: Props) => Variant<Props>[],
-    props: Props,
-    propsDefault?: Partial<Props>,
+    definitions: (props: Props) => WithThemeVariant<Props>[],
+    props: WithThemeVariant<Props>,
+    propsDefault?: Partial<WithThemeVariant<Props>>,
     mergeKeys: Array<keyof Props> = [],
-  ): Props {
-    return this.#serviceThemeVariant.getVariantByDefinitions(
-      definitions,
-      this,
-      props,
-      propsDefault,
-      mergeKeys,
-    )
+  ): WithThemeVariant<Props> {
+    const propsWithDefault = objectDefaults(props, propsDefault)
+    const variants = definitions(propsWithDefault).map((definition) => {
+      const configs = objectDefaults(definition, propsWithDefault)
+      return this.#serviceThemeVariant.getVariant({ theme: this, ...configs }) ?? undefined
+    })
+
+    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
   }
 
   #configsMerge(...configs: ConfigsWithDependencies[]): ConfigsWithDependencies {
