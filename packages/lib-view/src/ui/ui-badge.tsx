@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIBadge {
-  as?: string
-}
-
 export interface PropsUIBadge {
+  as?: string
   children: ReactNode
 }
 

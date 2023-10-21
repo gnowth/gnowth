@@ -2,11 +2,8 @@ import type { ReactElement } from 'react'
 import { LayoutContent } from '../layout/layout-content'
 import { UITypography } from './ui-typography'
 
-export interface VariantUIError {
-  as?: string
-}
-
 export interface PropsUIError {
+  as?: string
   value?: Error[] | Error | null
 }
 

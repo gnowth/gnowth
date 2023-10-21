@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIAvatar {
-  as?: string
-}
-
 export interface PropsUIAvatar {
+  as?: string
   children: ReactNode
 }
 

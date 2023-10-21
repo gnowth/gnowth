@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputDate {
-  as?: string
-}
-
 export interface PropsInputDate {
+  as?: string
   name?: string
 }
 

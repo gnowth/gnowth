@@ -13,25 +13,20 @@ import {
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
-
-export interface VariantUILabel extends SystemType<typeof uiLabel> {
-  typographyVariant?: string
-  typographyVariantNamespace?: string
-}
-
-export interface PropsUILabel extends VariantUILabel, PropsDataReadonly<string> {
+export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReadonly<string> {
   className?: string
   hidden?: boolean
   slot?: string
-  variant?: VariantUILabel | string
+  typographyVariant?: string
+  typographyVariantNamespace?: string
+  variant?: PropsUILabel | string
   variantNamespace?: string
 }
 
+const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
 const makeStyles = themeStylesMake({ uiLabel })
 const definitions = themeDefinitionsMake(['', 'typography'])
-
-const propsDefault = {
+const propsDefault: Partial<PropsUILabel> = {
   typographyVariant: 'label',
   typographyVariantNamespace: 'uiTypography',
 }

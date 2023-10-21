@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantNavTimeline {
-  as?: string
-}
-
 export interface PropsNavTimeline {
+  as?: string
   children: ReactNode
 }
 

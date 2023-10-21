@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantLayoutGrid {
-  as?: string
-}
-
 export interface PropsLayoutGrid {
+  as?: string
   children: ReactNode
 }
 

@@ -1,3 +1,4 @@
+import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 
@@ -5,32 +6,21 @@ import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'
 import { LayoutFlex } from './layout-flex'
 
-export interface VariantLayoutData {
+export interface PropsLayoutData {
+  children: ReactNode
   spacing?: string | number
+  variant?: PropsLayoutData | string
+  variants?: UtilNamespaced<Partial<PropsLayoutData>>
+  variantNamespace?: string
   wrapperVariant?: string
 }
 
-export interface PropsLayoutData extends VariantLayoutData {
-  children: ReactNode
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  variant?: object | string
-}
-
 const variants = {
-  block: {
-    wrapperVariant: 'verticalStretch',
-  },
-
-  inlineLabel: {
-    wrapperVariant: 'horizontalLeft',
-  },
-
-  inlineLabelRight: {
-    wrapperVariant: 'horizontalReverseLeft',
-  },
+  block: { wrapperVariant: 'verticalStretch' },
+  inlineLabel: { wrapperVariant: 'horizontalLeft' },
+  inlineLabelRight: { wrapperVariant: 'horizontalReverseLeft' },
 }
-
-const propsDefault = {
+const propsDefault: Partial<PropsLayoutData> = {
   spacing: 'xxs',
   variant: 'block',
   variantNamespace: 'layoutData',

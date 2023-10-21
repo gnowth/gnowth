@@ -18,27 +18,23 @@ interface ComponentProps {
   id?: string
 }
 
+export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
+  as?: ComponentType<ComponentProps> | string
+  children: ReactNode
+  className?: string
+  hidden?: boolean
+  id?: string
+  slot?: string
+  variant?: PropsLayoutContent | string
+  variantNamespace?: string
+}
+
 const layoutContent = systemCompose(
   systemBackgroundColorFromPalette(),
   systemDisplay(),
   systemFlexbox(),
   systemSpace(),
 )
-
-export interface VariantLayoutContent extends SystemType<typeof layoutContent> {
-  as?: ComponentType<ComponentProps> | string
-}
-
-export interface PropsLayoutContent extends VariantLayoutContent {
-  children: ReactNode
-  className?: string
-  hidden?: boolean
-  id?: string
-  slot?: string
-  variant?: VariantLayoutContent | string
-  variantNamespace?: string
-}
-
 const makeStyles = themeStylesMake({ layoutContent })
 
 const propsDefault = {

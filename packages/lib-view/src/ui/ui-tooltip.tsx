@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUITooltip {
+export interface PropsUITooltip {
   as?: string
-}
-
-export interface PropsUITooltip extends VariantUITooltip {
   children: ReactNode
 }
 

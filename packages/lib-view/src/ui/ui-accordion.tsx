@@ -1,11 +1,8 @@
 // Note: should UICollapse be different?
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIAccordion {
-  as?: string
-}
-
 export interface PropsUIAccordion {
+  as?: string
   children: ReactNode
 }
 

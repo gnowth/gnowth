@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIButtonGroup {
-  as?: string
-}
-
 export interface PropsUIButtonGroup {
+  as?: string
   children: ReactNode
 }
 

@@ -11,24 +11,20 @@ interface ComponentProps {
   id?: string
   size?: string
 }
-const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
-
-export interface VariantUIIcon extends SystemType<typeof uiIcon> {
-  mediaPrintDisabled?: boolean
-}
 
 // TODO: fix icon size. svg height/width supports number only
-export interface PropsUIIcon extends VariantUIIcon, PropsDataReadonly<string> {
+export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonly<string> {
   className?: string
   hidden?: boolean
+  mediaPrintDisabled?: boolean
   size?: TokenIconSize
   slot?: string
-  variant?: VariantUIIcon | string
+  variant?: PropsUIIcon | string
   variantNamespace?: string
 }
 
+const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
 const makeStyles = themeStylesMake({ uiIcon })
-
 const propsDefault: Partial<PropsUIIcon> = {
   palette: 'textPrimary',
   size: 'xs',

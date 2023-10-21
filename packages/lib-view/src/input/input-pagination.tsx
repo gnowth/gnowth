@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputPagination {
-  as?: string
-}
-
 export interface PropsInputPagination {
+  as?: string
   name?: string
 }
 

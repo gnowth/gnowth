@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIAlert {
-  as?: string
-}
-
 export interface PropsUIAlert {
+  as?: string
   children: ReactNode
 }
 

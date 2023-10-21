@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputTextarea {
-  as?: string
-}
-
 export interface PropsInputTextarea {
+  as?: string
   name?: string
 }
 

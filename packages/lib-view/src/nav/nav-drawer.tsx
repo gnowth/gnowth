@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantNavDrawer {
-  as?: string
-}
-
 export interface PropsNavDrawer {
+  as?: string
   children: ReactNode
 }
 

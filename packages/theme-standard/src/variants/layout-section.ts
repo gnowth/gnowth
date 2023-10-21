@@ -1,8 +1,8 @@
 import type { VariantType } from '@gnowth/lib-theme'
-import type { VariantLayoutSection } from '@gnowth/lib-view'
+import type { PropsLayoutSection } from '@gnowth/lib-view'
 import { TokenVariable } from '@gnowth/lib-token'
 
-export const page: VariantType<VariantLayoutSection> = (theme) => ({
+export const page: VariantType<PropsLayoutSection> = (theme) => ({
   layout: 'flex',
   layoutProps: {
     alignItems: 'stretch',
@@ -13,7 +13,7 @@ export const page: VariantType<VariantLayoutSection> = (theme) => ({
   },
 })
 
-export const pageRow: VariantType<VariantLayoutSection> = (theme) => ({
+export const pageRow: VariantType<PropsLayoutSection> = (theme) => ({
   layout: 'flex',
   layoutProps: {
     marginLeft: 'auto',

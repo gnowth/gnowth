@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputEnum {
-  as?: string
-}
-
 export interface PropsInputEnum {
+  as?: string
   name?: string
 }
 

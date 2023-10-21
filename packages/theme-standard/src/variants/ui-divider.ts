@@ -1,7 +1,7 @@
-import type { Theme, VariantType } from '@gnowth/lib-theme'
-import type { VariantUIDivider } from '@gnowth/lib-view'
+import type { VariantType } from '@gnowth/lib-theme'
+import type { PropsUIDivider } from '@gnowth/lib-view'
 
-export const horizontal: VariantType<VariantUIDivider> = (theme: Theme): VariantUIDivider => ({
+export const horizontal: VariantType<PropsUIDivider> = (theme) => ({
   backgroundImage: `linear-gradient(${
     theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''
   }, ${theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''})`,

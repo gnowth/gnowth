@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputSlider {
-  as?: string
-}
-
 export interface PropsInputSlider {
+  as?: string
   name?: string
 }
 

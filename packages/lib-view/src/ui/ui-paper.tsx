@@ -12,26 +12,21 @@ import {
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
-
-export interface VariantUIPaper extends SystemType<typeof uiPaper> {
+export interface PropsUIPaper extends SystemType<typeof uiPaper> {
   boxVariant?: string
   boxVariantNamespace?: string
-}
-
-export interface PropsUIPaper extends VariantUIPaper {
   children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
   slot?: string
-  variant?: VariantUIPaper | string
+  variant?: PropsUIPaper | string
   variantNamespace?: string
 }
 
+const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeStylesMake({ uiPaper })
 const definitions = themeDefinitionsMake(['', 'box'])
-
 const propsDefault: Partial<PropsUIPaper> = {
   boxVariant: 'float',
   boxVariantNamespace: 'systemBox',

@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputSwitch {
-  as?: string
-}
-
 export interface PropsInputSwitch {
+  as?: string
   name?: string
 }
 

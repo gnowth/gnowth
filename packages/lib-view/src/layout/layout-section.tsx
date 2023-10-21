@@ -12,31 +12,26 @@ import {
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
-
-export interface VariantLayoutSection extends SystemType<typeof layoutSection> {
+export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   boxVariant?: string
   boxVariantNamespace?: string
+  children: ReactNode
+  className?: string
+  classNamespace?: string
+  hidden?: boolean
+  id?: string
   layout?: string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number
   layoutVariant?: string
-}
-
-export interface PropsLayoutSection extends VariantLayoutSection {
-  children: ReactNode
-  className?: string
-  classNameRoot?: string
-  hidden?: boolean
-  id?: string
   slot?: string
-  variant?: VariantLayoutSection | string
+  variant?: PropsLayoutSection | string
   variantNamespace?: string
 }
 
+const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeStylesMake({ layoutSection })
 const definitions = themeDefinitionsMake(['', 'box'])
-
 const propsDefault: Partial<PropsLayoutSection> = {
   boxVariantNamespace: 'systemBox',
   paddingBottom: 'sm',
@@ -66,7 +61,10 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
       id={variant.id}
     >
       <AppLayout
-        className={cx('layout-section__layout', variant.classNameRoot && `${variant.classNameRoot}__layout`)}
+        className={cx(
+          'layout-section__layout',
+          variant.classNamespace && `${variant.classNamespace}__layout`,
+        )}
         id={variant.id && `${variant.id}__layout`}
         layout={variant.layout}
         layoutProps={variant.layoutProps}

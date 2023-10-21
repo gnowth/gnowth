@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIBackToTop {
-  as?: string
-}
-
 export interface PropsUIBackToTop {
+  as?: string
   children: ReactNode
 }
 
