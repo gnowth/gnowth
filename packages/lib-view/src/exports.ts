@@ -61,4 +61,4 @@ export * from './ui/ui-typography'
 
 export * from './util/util-slot'
 
-export * as layouts from './layout'
+export * as layouts from './layout/layouts'

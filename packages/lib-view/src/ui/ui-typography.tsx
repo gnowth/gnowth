@@ -18,12 +18,11 @@ interface ComponentProps {
   className?: string
   id?: string
 }
-
 // TODO: mediaPrint should disable elipsis
 export interface PropsUITypography extends SystemType<typeof uiTypography>, PropsDataReadonly<ReactNode> {
   as?: ComponentType<ComponentProps> | string | null
-  className?: string
   children?: ReactNode
+  className?: string
   hidden?: boolean
   mediaPrintDisabled?: boolean
   slot?: string

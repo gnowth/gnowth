@@ -36,8 +36,7 @@ const layoutContent = systemCompose(
   systemSpace(),
 )
 const makeStyles = themeStylesMake({ layoutContent })
-
-const propsDefault = {
+const propsDefault: Partial<PropsLayoutContent> = {
   variantNamespace: 'layoutContent',
 }
 

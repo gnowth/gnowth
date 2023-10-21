@@ -20,7 +20,7 @@ export interface PropsLayout {
   children: ReactNode
   id?: string
   spacing?: string | number
-  variant?: string
+  variant?: PropsLayout | string
 }
 
 export interface PropsSuspense {

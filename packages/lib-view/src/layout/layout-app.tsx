@@ -1,5 +1,4 @@
 import type { SystemType } from '@gnowth/lib-theme'
-import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemBackgroundColorFromPalette, themeStylesMake } from '@gnowth/lib-theme'
@@ -11,7 +10,7 @@ import { LayoutFlex } from './layout-flex'
 export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
   children: ReactNode
   spacing?: string | number
-  variant?: ObjectLiteral | string
+  variant?: PropsLayoutApp | string
 }
 
 const layoutApp = systemBackgroundColorFromPalette()
@@ -19,7 +18,6 @@ const makeStyles = themeStylesMake({ layoutApp })
 
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()
-
   const propsVariant = theme.getPropsVariant(props)
   const styles = makeStyles(propsVariant, theme)
 

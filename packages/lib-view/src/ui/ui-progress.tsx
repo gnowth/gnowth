@@ -105,7 +105,6 @@ const spinnerRotateLinear = keyframes`
   0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 `
-
 const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
   0% {
     stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;

@@ -4,6 +4,7 @@ import { objectDefaults } from '@gnowth/lib-utils'
 import type { PropsLayout } from './types'
 import { useAppLayout } from './use-app-layout'
 
+// TODO: check whether we need layoutProps, can it be layoutVariant with object or vice versa
 interface Props {
   className?: string
   classNamespace?: string

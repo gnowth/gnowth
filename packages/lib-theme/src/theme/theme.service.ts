@@ -1,7 +1,7 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
 
-import type { Theme } from './theme'
+import type { Theme } from './theme.next'
 import type { ConfigsWithDependencies } from './theme.types'
 import type { ServiceThemeMedia, Media, MediaName } from './theme-media.service'
 import type { ConfigsComponent, ServiceThemeComponent } from './theme-component.service'

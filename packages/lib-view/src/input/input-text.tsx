@@ -27,7 +27,6 @@ interface ComponentProps {
   onChange?: ChangeEventHandler<string>
   value?: string
 }
-
 export interface PropsInputText extends SystemType<typeof inputText>, PropsData<string> {
   as?: ComponentType<ComponentProps> | string
   boxVariant?: string
