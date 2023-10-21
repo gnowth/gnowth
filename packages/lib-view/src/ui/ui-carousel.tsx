@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUICarousel {
-  as?: string
-}
-
 export interface PropsUICarousel {
+  as?: string
   children: ReactNode
 }
 

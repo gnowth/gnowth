@@ -18,28 +18,30 @@ import { UIIcon, PropsUIIcon } from './ui-icon'
 import { UIProgress, PropsUIProgress } from './ui-progress'
 import { UITypography, PropsUITypography } from './ui-typography'
 
-const uiButton = systemCompose(
-  systemBox(),
-  systemColor(),
-  systemImage(),
-  systemLayout(),
-  systemPointer(),
-  systemSpace(),
-)
-
-export interface VariantUIButton extends SystemType<typeof uiButton> {
+// TODO media print should hide by default
+export interface PropsUIButton
+  extends SystemType<typeof uiButton>,
+    SystemType<ReturnType<typeof systemColorFromPalette>> {
   breakpoint?: string
+  className?: string
+  classNamespace?: string
+  disabled?: boolean
+  hidden?: boolean
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
   iconSize?: TokenIconSize
   iconValue?: string
   iconVariant?: string
+  id?: string
   layout?: string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number
   layoutVariant?: string
+  media?: string
   mediaPrintDisabled?: boolean
+  onClick?: (event: MouseEvent) => void
+  palette?: string
   progress?: ComponentType<PropsUIProgress> | string
   progressClassName?: string
   progressHidden?: boolean
@@ -55,24 +57,19 @@ export interface VariantUIButton extends SystemType<typeof uiButton> {
   textProps?: PropsUITypography
   textValue?: string
   textVariant?: string
-}
-
-// TODO media print should hide by default
-export interface PropsUIButton
-  extends VariantUIButton,
-    SystemType<ReturnType<typeof systemColorFromPalette>> {
-  className?: string
-  classNameRoot?: string
-  disabled?: boolean
-  hidden?: boolean
-  id?: string
-  media?: string
-  onClick?: (event: MouseEvent) => void
-  palette?: string
-  variant?: VariantUIButton | string
+  variant?: PropsUIButton | string
   variantNamespace?: string
 }
 
+const uiButton = systemCompose(
+  systemBox(),
+  systemColor(),
+  systemImage(),
+  systemLayout(),
+  systemPointer(),
+  systemSpace(),
+)
+const makeStyles = themeStylesMake({ uiButton })
 // TODO: add default palette?
 const propsDefault = {
   layout: 'flex',
@@ -84,8 +81,6 @@ const propsDefault = {
   variant: 'text',
   variantNamespace: 'uiButton',
 }
-
-const makeStyles = themeStylesMake({ uiButton })
 
 export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
   const theme = useAppTheme()
@@ -104,7 +99,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
         'ui-button',
         guardString(variant.variant) && `ui-button--${variant.variant}`,
         variant.className,
-        variant.classNameRoot,
+        variant.classNamespace,
         styles.uiButton,
       )}
       disabled={variant.disabled}
@@ -113,7 +108,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
       type="button"
     >
       <AppLayout
-        className={cx('ui-button__layout', variant.classNameRoot && `${variant.classNameRoot}__layout`)}
+        className={cx('ui-button__layout', variant.classNamespace && `${variant.classNamespace}__layout`)}
         id={variant.id && `${variant.id}__layout`}
         layout={variant.layout}
         layoutProps={variant.layoutProps}
@@ -124,7 +119,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
           <ComponentIcon
             className={cx(
               'ui-button__icon',
-              variant.classNameRoot && `${variant.classNameRoot}__icon`,
+              variant.classNamespace && `${variant.classNamespace}__icon`,
               variant.iconClassName,
             )}
             id={variant.id && `${variant.id}__icon`}
@@ -139,7 +134,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
           <ComponentTypography
             className={cx(
               'ui-button__text',
-              variant.classNameRoot && `${variant.classNameRoot}__text`,
+              variant.classNamespace && `${variant.classNamespace}__text`,
               variant.textClassName,
             )}
             id={variant.id && `${variant.id}__text`}
@@ -153,7 +148,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
           <ComponentProgress
             className={cx(
               'ui-button__progress',
-              variant.classNameRoot && `${variant.classNameRoot}__progress`,
+              variant.classNamespace && `${variant.classNamespace}__progress`,
               variant.progressClassName,
             )}
             id={variant.id && `${variant.id}__progress`}

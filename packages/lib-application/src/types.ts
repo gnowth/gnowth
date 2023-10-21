@@ -16,7 +16,7 @@ export interface PropsFrame {
 
 export interface PropsLayout {
   className?: string
-  classNameRoot?: string
+  classNamespace?: string
   children: ReactNode
   id?: string
   spacing?: string | number

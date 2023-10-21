@@ -19,13 +19,8 @@ interface ComponentProps {
   id?: string
 }
 
-const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
-
-export interface VariantLayoutFlex extends SystemType<typeof layoutFlex> {
+export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFlex> {
   as?: ComponentType<ComponentProps> | string | null
-}
-
-export interface PropsLayoutFlex extends PropsLayout, VariantLayoutFlex {
   children: ReactNode
   className?: string
   hidden?: boolean
@@ -35,6 +30,7 @@ export interface PropsLayoutFlex extends PropsLayout, VariantLayoutFlex {
   variantNamespace?: string
 }
 
+const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
 // TODO Fix props.flexDirection type
 const systemSpacing: System<PropsLayoutFlex> = (props, theme) =>
   props.spacing

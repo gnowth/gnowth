@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantNavMenu {
-  as?: string
-}
-
 export interface PropsNavMenu {
+  as?: string
   children: ReactNode
 }
 

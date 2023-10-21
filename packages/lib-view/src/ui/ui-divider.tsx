@@ -11,25 +11,20 @@ import {
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
 
-const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
-
-export interface VariantUIDivider extends SystemType<typeof uiDivider> {
+export interface PropsUIDivider extends SystemType<typeof uiDivider> {
   as?: string
-}
-
-export interface PropsUIDivider extends VariantUIDivider {
   children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
   slot?: string
-  variant?: VariantUIDivider | string
+  variant?: PropsUIDivider | string
   variantNamespace?: string
 }
 
+const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
 const makeStyles = themeStylesMake({ uiDivider })
-
-const propsDefault = {
+const propsDefault: Partial<PropsUIDivider> = {
   textAlign: 'center',
   variant: 'horizontal',
   variantNamespace: 'uiDivider',

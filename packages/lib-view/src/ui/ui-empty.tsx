@@ -1,11 +1,8 @@
 // Note: see ant design. very similar to skeleton
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIEmpty {
-  as?: string
-}
-
 export interface PropsUIEmpty {
+  as?: string
   children: ReactNode
 }
 

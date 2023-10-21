@@ -6,7 +6,7 @@ import { useAppLayout } from './use-app-layout'
 
 interface Props {
   className?: string
-  classNameRoot?: string
+  classNamespace?: string
   children: ReactNode
   id?: string
   layout?: ComponentType<PropsLayout> | string
@@ -25,7 +25,7 @@ export function AppLayout(props: Props): ReactElement {
   const propsCombined = objectDefaults(
     {
       className: props.className,
-      classNameRoot: props.classNameRoot,
+      classNamespace: props.classNamespace,
       id: props.id,
       spacing: props.layoutSpacing,
       variant: props.layoutVariant,

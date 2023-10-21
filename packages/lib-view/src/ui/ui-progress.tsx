@@ -49,12 +49,12 @@ const stylesLayout = themeStylesCreate({
 
 const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   <UtilSlot.Provider slots={props.children}>
-    <div className={cx(props.className, props.classNameRoot, stylesLayout.layoutContainer)} id={props.id}>
+    <div className={cx(props.className, props.classNamespace, stylesLayout.layoutContainer)} id={props.id}>
       <UtilSlot.Test test="progress">
         <div
           className={cx(
             stylesLayout.layoutProgress,
-            props.classNameRoot && `${props.classNameRoot}__progress`,
+            props.classNamespace && `${props.classNamespace}__progress`,
           )}
           id={props.id && `${props.id}__progress`}
         >
@@ -64,7 +64,10 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
 
       <UtilSlot.Test test="content">
         <div
-          className={cx(stylesLayout.layoutContent, props.classNameRoot && `${props.classNameRoot}__content`)}
+          className={cx(
+            stylesLayout.layoutContent,
+            props.classNamespace && `${props.classNamespace}__content`,
+          )}
           id={props.id && `${props.id}__content`}
         >
           <UtilSlot.Content name="content" />
@@ -74,31 +77,27 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   </UtilSlot.Provider>
 )
 
-const uiProgress = systemCompose(systemDisplay(), systemSize<TokenIconSize>('iconsize'), systemSpace())
-
-type SystemUIProgress = SystemType<ReturnType<typeof systemColorFromPalette>> & SystemType<typeof uiProgress>
-
-export interface VariantUIProgress extends SystemUIProgress {
+export interface PropsUIProgress
+  extends PropsDataReadonly<number | null>,
+    SystemType<ReturnType<typeof systemColorFromPalette>>,
+    SystemType<typeof uiProgress> {
   as?: string
   bufferPalette?: string
   bufferPaletteForContrast?: boolean
   bufferPaletteWeight?: TokenColorWeight
+  children?: ReactNode
+  className?: string
+  classNamespace?: string
+  hidden?: boolean
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutSpacing?: string | number
   layoutVariant?: string
+  slot?: string
   thickness?: number
   transitionDuration?: string
-}
-
-export interface PropsUIProgress extends PropsDataReadonly<number | null>, VariantUIProgress {
-  children?: ReactNode
-  className?: string
-  classNameRoot?: string
-  hidden?: boolean
-  slot?: string
   valueMax?: number
-  variant?: VariantUIProgress | string
+  variant?: PropsUIProgress | string
   variantNamespace?: string
 }
 
@@ -174,6 +173,7 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
   }
 `
 
+const uiProgress = systemCompose(systemDisplay(), systemSize<TokenIconSize>('iconsize'), systemSpace())
 const makeStyles = themeStylesMake({
   uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({
@@ -218,7 +218,6 @@ const makeStyles = themeStylesMake({
     ...(props.value === null && { animation: `${spinnerRotateLinear} 2s linear infinite` }),
   }),
 })
-
 const propsDefault: Partial<PropsUIProgress> = {
   bufferPalette: 'primary',
   display: 'inline-block',
@@ -258,7 +257,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
       id={variant.id}
     >
       <AppLayout
-        classNameRoot="ui-progress__layout"
+        classNamespace="ui-progress__layout"
         id={variant.id && `${variant.id}__layout`}
         layout={variant.layout}
         layoutProps={variant.layoutProps}
@@ -269,7 +268,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
           <svg
             className={cx(
               'ui-progress__svg',
-              variant.classNameRoot && `${variant.classNameRoot}__svg`,
+              variant.classNamespace && `${variant.classNamespace}__svg`,
               styles.uiProgressSvg,
             )}
             focusable="false"
@@ -280,7 +279,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
               <circle
                 className={cx(
                   'ui-progress__circle-buffer',
-                  variant.classNameRoot && `${variant.classNameRoot}__circle-buffer`,
+                  variant.classNamespace && `${variant.classNamespace}__circle-buffer`,
                   styles.uiProgressCircle,
                   styles.uiProgressCircleBuffer,
                 )}
@@ -293,7 +292,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
             <circle
               className={cx(
                 'ui-progress__circle',
-                variant.classNameRoot && `${variant.classNameRoot}__circle`,
+                variant.classNamespace && `${variant.classNamespace}__circle`,
                 styles.uiProgressCircle,
                 variant.value !== null && !ready && styles.uiProgressCircleInitial,
               )}

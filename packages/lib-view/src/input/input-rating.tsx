@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputRating {
-  as?: string
-}
-
 export interface PropsInputRating {
+  as?: string
   name?: string
 }
 

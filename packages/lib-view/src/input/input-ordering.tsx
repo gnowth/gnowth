@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputOrdering {
-  as?: string
-}
-
 export interface PropsInputOrdering {
+  as?: string
   name?: string
 }
 

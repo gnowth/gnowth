@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUISnackbar {
-  as?: string
-}
-
 export interface PropsUISnackbar {
+  as?: string
   children: ReactNode
 }
 

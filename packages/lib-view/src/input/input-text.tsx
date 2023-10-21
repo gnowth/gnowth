@@ -28,6 +28,21 @@ interface ComponentProps {
   value?: string
 }
 
+export interface PropsInputText extends SystemType<typeof inputText>, PropsData<string> {
+  as?: ComponentType<ComponentProps> | string
+  boxVariant?: string
+  boxVariantNamespace?: string
+  className?: string
+  hidden?: boolean
+  id?: string
+  slot?: string
+  type?: string
+  typographyVariant?: string
+  typographyVariantNamespace?: string
+  variant?: PropsInputText | string
+  variantNamespace?: string
+}
+
 const inputText = systemCompose(
   systemBox(),
   systemColorFromPalette(),
@@ -35,28 +50,8 @@ const inputText = systemCompose(
   systemTypography(),
   systemWidth(),
 )
-
-export interface VariantInputText extends SystemType<typeof inputText> {
-  as?: ComponentType<ComponentProps> | string
-  boxVariant?: string
-  boxVariantNamespace?: string
-  type?: string
-  typographyVariant?: string
-  typographyVariantNamespace?: string
-}
-
-export interface PropsInputText extends VariantInputText, PropsData<string> {
-  className?: string
-  hidden?: boolean
-  id?: string
-  slot?: string
-  variant?: VariantInputText | string
-  variantNamespace?: string
-}
-
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])
-
 const propsDefault: Partial<PropsInputText> = {
   as: 'input',
   boxVariant: 'input',

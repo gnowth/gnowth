@@ -1,14 +1,14 @@
 import type { VariantType } from '@gnowth/lib-theme'
-import type { VariantInputText } from '@gnowth/lib-view'
+import type { PropsInputText } from '@gnowth/lib-view'
 
-export const input: VariantType<VariantInputText> = {
+export const input: VariantType<PropsInputText> = {
   paddingBottom: '11px',
   paddingLeft: 'sm',
   paddingRight: 'sm',
   paddingTop: '11px',
 }
 
-export const input2: VariantType<VariantInputText> = {
+export const input2: VariantType<PropsInputText> = {
   paddingBottom: 'xxs',
   paddingLeft: 'xs',
   paddingRight: 'xs',

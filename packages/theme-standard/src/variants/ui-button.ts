@@ -1,5 +1,5 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
-import type { PropsUIButton, VariantUIButton } from '@gnowth/lib-view'
+import type { PropsUIButton } from '@gnowth/lib-view'
 import { TokenSelector } from '@gnowth/lib-token'
 import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
 
@@ -58,10 +58,10 @@ function interpolateColor(theme: Theme, color = 'white') {
 }
 
 // TODO use theme token for border size, border radius, boxShadow
-export const text: VariantType<VariantUIButton> = (
+export const text: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   backgroundColor: interpolateColor(theme),
   border: '0',
   borderColor: interpolateColor(theme),
@@ -80,19 +80,19 @@ export const text: VariantType<VariantUIButton> = (
   textVariant: 'button',
 })
 
-export const outlined: VariantType<VariantUIButton> = (
+export const outlined: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...text(theme, propsWithDefault),
   border: '1px solid',
   borderColor: interpolateColorFlat(theme, propsWithDefault.palette),
 })
 
-export const navigation: VariantType<VariantUIButton> = (
+export const navigation: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...text(theme, propsWithDefault),
   borderBottom: {
     '&.active': `2px solid ${
@@ -109,10 +109,10 @@ export const navigation: VariantType<VariantUIButton> = (
   paddingTop: 'md',
 })
 
-export const contained: VariantType<VariantUIButton> = (
+export const contained: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...outlined(theme, propsWithDefault),
   backgroundColor: interpolateColorFlat(theme, propsWithDefault.palette),
   color: interpolateColorFlat(theme, propsWithDefault.palette, '*'),
@@ -120,26 +120,26 @@ export const contained: VariantType<VariantUIButton> = (
   progressPaletteForContrast: true,
 })
 
-export const flat: VariantType<VariantUIButton> = (
+export const flat: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...contained(theme, propsWithDefault),
   borderRadius: '0',
 })
 
-export const raised: VariantType<VariantUIButton> = (
+export const raised: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...flat(theme, propsWithDefault),
   boxShadow: 'material2',
 })
 
-export const icon: VariantType<VariantUIButton> = (
+export const icon: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   backgroundColor: interpolateColor(theme),
   border: '0',
   color: interpolateColorFlat(theme, propsWithDefault.palette, '*', true),
@@ -156,10 +156,10 @@ export const icon: VariantType<VariantUIButton> = (
 })
 
 // TODO: allow it to grow with iconSize
-export const fab: VariantType<VariantUIButton> = (
+export const fab: VariantType<PropsUIButton> = (
   theme: Theme,
   propsWithDefault: PropsUIButton,
-): VariantUIButton => ({
+): PropsUIButton => ({
   ...icon(theme, propsWithDefault),
   backgroundColor: interpolateColorFlat(theme, propsWithDefault.palette),
   border: '1px solid',

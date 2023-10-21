@@ -14,6 +14,23 @@ import {
 import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
 
+interface ComponentProps {
+  className?: string
+  id?: string
+}
+
+// TODO: mediaPrint should disable elipsis
+export interface PropsUITypography extends SystemType<typeof uiTypography>, PropsDataReadonly<ReactNode> {
+  as?: ComponentType<ComponentProps> | string | null
+  className?: string
+  children?: ReactNode
+  hidden?: boolean
+  mediaPrintDisabled?: boolean
+  slot?: string
+  variant?: PropsUITypography | string
+  variantNamespace?: string
+}
+
 const uiTypography = systemCompose(
   systemColorFromPalette(),
   systemDisplay(),
@@ -21,28 +38,7 @@ const uiTypography = systemCompose(
   systemTypography(),
 )
 const makeStyles = themeStylesMake({ uiTypography })
-
-interface ComponentProps {
-  className?: string
-  id?: string
-}
-
-// TODO: mediaPrint should disable elipsis
-export interface VariantUITypography extends SystemType<typeof uiTypography> {
-  as?: ComponentType<ComponentProps> | string | null
-  mediaPrintDisabled?: boolean
-}
-
-export interface PropsUITypography extends VariantUITypography, PropsDataReadonly<ReactNode> {
-  className?: string
-  children?: ReactNode
-  hidden?: boolean
-  slot?: string
-  variant?: VariantUITypography | string
-  variantNamespace?: string
-}
-
-const propsDefault = {
+const propsDefault: Partial<PropsUITypography> = {
   palette: 'textPrimary',
   variant: 'body1',
   variantNamespace: 'uiTypography',

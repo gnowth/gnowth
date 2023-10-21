@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputTree {
-  as?: string
-}
-
 export interface PropsInputTree {
+  as?: string
   name?: string
 }
 

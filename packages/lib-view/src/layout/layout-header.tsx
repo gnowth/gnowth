@@ -3,13 +3,8 @@ import type { SystemType } from '@gnowth/lib-theme'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemCompose, systemSpace, systemZIndex, themeStylesMake } from '@gnowth/lib-theme'
 
-const layoutHeader = systemCompose(systemSpace(), systemZIndex())
-
-export interface VariantLayoutHeader extends SystemType<typeof layoutHeader> {
+export interface PropsLayoutHeader extends SystemType<typeof layoutHeader> {
   as?: string
-}
-
-export interface PropsLayoutHeader extends VariantLayoutHeader {
   children: ReactNode
   className?: string
   hidden?: boolean
@@ -19,8 +14,8 @@ export interface PropsLayoutHeader extends VariantLayoutHeader {
   variant?: object | string
 }
 
+const layoutHeader = systemCompose(systemSpace(), systemZIndex())
 const makeStyles = themeStylesMake({ layoutHeader })
-
 const propsDefault: Partial<PropsLayoutHeader> = {
   zIndex: 'frame',
 }

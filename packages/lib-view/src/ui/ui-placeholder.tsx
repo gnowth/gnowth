@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIPlaceholder {
-  as?: string
-}
-
 export interface PropsUIPlaceholder {
+  as?: string
   children?: ReactNode
   hidden?: boolean
 }

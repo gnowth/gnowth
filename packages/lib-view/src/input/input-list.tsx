@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputList {
-  as?: string
-}
-
 export interface PropsInputList {
+  as?: string
   name?: string
 }
 

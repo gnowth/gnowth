@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUICard {
-  as?: string
-}
-
 export interface PropsUICard {
+  as?: string
   children: ReactNode
 }
 

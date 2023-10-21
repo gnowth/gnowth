@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputDropzone {
-  as?: string
-}
-
 export interface PropsInputDropzone {
+  as?: string
   name?: string
 }
 

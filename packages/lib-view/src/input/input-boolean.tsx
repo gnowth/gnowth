@@ -10,10 +10,11 @@ import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
 import type { ChangeEventHandler } from './use-value'
 import { useValue } from './use-value'
 
-const inputBoolean = systemSpace()
-
-export interface VariantInputBoolean extends SystemType<typeof inputBoolean> {
+export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, PropsData<boolean | null> {
   as?: string
+  className?: string
+  classNamespace?: string
+  hidden?: boolean
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
@@ -22,21 +23,16 @@ export interface VariantInputBoolean extends SystemType<typeof inputBoolean> {
   iconValueNull?: string
   iconValueTrue?: string
   iconVariant?: string
+  id?: string
   inputClassName?: string
   inputType?: string
-}
-
-export interface PropsInputBoolean extends VariantInputBoolean, PropsData<boolean | null> {
-  className?: string
-  classNameRoot?: string
-  hidden?: boolean
-  id?: string
   slot?: string
-  variant?: VariantInputBoolean | string
+  variant?: PropsInputBoolean | string
   variantNamespace?: string
-  variants?: UtilNamespaced<VariantInputBoolean>
+  variants?: UtilNamespaced<PropsInputBoolean>
 }
 
+const inputBoolean = systemSpace()
 const makeStyles = themeStylesMake({
   inputBoolean,
   inputBooleanClass: `
@@ -57,7 +53,6 @@ const makeStyles = themeStylesMake({
     width: 100%;
   `,
 })
-
 const variants = {
   checkbox: {
     iconValueFalse: 'checkbox',
@@ -72,7 +67,6 @@ const variants = {
     inputType: 'radio',
   },
 }
-
 const propsDefault: Partial<PropsInputBoolean> = {
   iconSize: 'sm',
   inputType: 'checkbox',
@@ -120,7 +114,7 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
       <ComponentIcon
         className={cx(
           'input-boolean__icon',
-          variant.classNameRoot && `${variant.classNameRoot}__icon`,
+          variant.classNamespace && `${variant.classNamespace}__icon`,
           variant.iconClassName,
         )}
         id={variant.id && `${variant.id}__icon`}
@@ -134,7 +128,7 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
         checked={!!value}
         className={cx(
           'input-boolean__input',
-          variant.classNameRoot && `${variant.classNameRoot}__icon`,
+          variant.classNamespace && `${variant.classNamespace}__icon`,
           variant.inputClassName,
           styles.inputBooleanInput,
         )}

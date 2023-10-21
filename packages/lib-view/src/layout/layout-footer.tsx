@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantLayoutFooter {
-  as?: string
-}
-
 export interface PropsLayoutFooter {
+  as?: string
   children: ReactNode
 }
 

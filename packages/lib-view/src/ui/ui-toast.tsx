@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIToast {
+export interface PropsUIToast {
   as?: string
-}
-
-export interface PropsUIToast extends VariantUIToast {
   children: ReactNode
 }
 

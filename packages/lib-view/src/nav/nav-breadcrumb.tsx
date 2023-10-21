@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantNavBreadcrumb {
-  as?: string
-}
-
 export interface PropsNavBreadcrumb {
+  as?: string
   children: ReactNode
 }
 

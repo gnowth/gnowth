@@ -1,4 +1,5 @@
 import type { SystemType } from '@gnowth/lib-theme'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemBackgroundColorFromPalette, themeStylesMake } from '@gnowth/lib-theme'
@@ -7,18 +8,13 @@ import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'
 import { LayoutFlex } from './layout-flex'
 
-const layoutApp = systemBackgroundColorFromPalette()
-
-export interface VariantLayoutApp extends SystemType<typeof layoutApp> {
-  spacing?: string | number
-}
-
-export interface PropsLayoutApp extends VariantLayoutApp {
+export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
   children: ReactNode
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  variant?: object | string
+  spacing?: string | number
+  variant?: ObjectLiteral | string
 }
 
+const layoutApp = systemBackgroundColorFromPalette()
 const makeStyles = themeStylesMake({ layoutApp })
 
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {

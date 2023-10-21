@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantLayoutPage {
-  as?: string
-}
-
 export interface PropsLayoutPage {
+  as?: string
   children: ReactNode
 }
 

@@ -1,10 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-export interface VariantInputCascader {
-  as?: string
-}
-
 export interface PropsInputCascader {
+  as?: string
   name?: string
 }
 

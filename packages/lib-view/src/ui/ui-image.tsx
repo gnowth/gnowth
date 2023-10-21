@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantUIImage {
-  as?: string
-}
-
 export interface PropsUIImage {
+  as?: string
   children: ReactNode
 }
 

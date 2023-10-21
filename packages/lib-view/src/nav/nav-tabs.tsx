@@ -1,10 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-export interface VariantNavTabs {
-  as?: string
-}
-
 export interface PropsNavTabs {
+  as?: string
   children: ReactNode
 }
 

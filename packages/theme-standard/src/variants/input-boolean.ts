@@ -1,13 +1,13 @@
 import type { VariantType } from '@gnowth/lib-theme'
-import type { VariantInputBoolean } from '@gnowth/lib-view'
+import type { PropsInputBoolean } from '@gnowth/lib-view'
 
-export const checkbox: VariantType<VariantInputBoolean> = {
+export const checkbox: VariantType<PropsInputBoolean> = {
   iconValueFalse: 'checkbox',
   iconValueNull: 'checkboxIntermediate',
   iconValueTrue: 'checkboxChecked',
 }
 
-export const radio: VariantType<VariantInputBoolean> = {
+export const radio: VariantType<PropsInputBoolean> = {
   iconValueFalse: 'radio',
   iconValueTrue: 'radioChecked',
 }
