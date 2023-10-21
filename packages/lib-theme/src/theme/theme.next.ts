@@ -11,12 +11,12 @@ export class Theme extends ServiceTheme {
   constructor(configs?: Configs) {
     super({
       dependencies: {
-        ServiceThemeComponent,
-        ServiceThemeMedia,
-        ServiceThemePalette,
-        ServiceThemeScale,
-        ServiceThemeVariable,
-        ServiceThemeVariant,
+        serviceThemeComponent: new ServiceThemeComponent(configs),
+        serviceThemeMedia: new ServiceThemeMedia(configs),
+        serviceThemePalette: new ServiceThemePalette(configs),
+        serviceThemeScale: new ServiceThemeScale(configs),
+        serviceThemeVariable: new ServiceThemeVariable(configs),
+        serviceThemeVariant: new ServiceThemeVariant(configs),
       },
       ...configs,
     })
