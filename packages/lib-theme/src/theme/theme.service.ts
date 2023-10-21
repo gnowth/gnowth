@@ -10,6 +10,8 @@ import type { ConfigsScale, ScaleItem, ServiceThemeScale } from './theme-scale.s
 import type { ServiceThemeVariable } from './theme-variable.service'
 import type { ConfigsVariant, ServiceThemeVariant, Variant } from './theme-variant.service'
 
+type ConfigsPropsVariants<Props extends ObjectLiteral> = Omit<ConfigsVariant<Props>, 'theme'>
+
 export class ServiceTheme {
   #configs: ConfigsWithDependencies
   #serviceThemeComponent: ServiceThemeComponent
@@ -20,26 +22,13 @@ export class ServiceTheme {
   #serviceThemeVariant: ServiceThemeVariant
 
   constructor(configs: ConfigsWithDependencies) {
-    const {
-      ServiceThemeComponent,
-      ServiceThemeMedia,
-      ServiceThemePalette,
-      ServiceThemeScale,
-      ServiceThemeVariable,
-      ServiceThemeVariant,
-    } = configs.dependencies
-    const configsWithTheme = {
-      theme: this,
-      ...configs,
-    }
-
     this.#configs = configs
-    this.#serviceThemeComponent = new ServiceThemeComponent(configsWithTheme)
-    this.#serviceThemeMedia = new ServiceThemeMedia(configsWithTheme)
-    this.#serviceThemePalette = new ServiceThemePalette(configsWithTheme)
-    this.#serviceThemeScale = new ServiceThemeScale(configsWithTheme)
-    this.#serviceThemeVariable = new ServiceThemeVariable(configsWithTheme)
-    this.#serviceThemeVariant = new ServiceThemeVariant(configsWithTheme)
+    this.#serviceThemeComponent = configs.dependencies.serviceThemeComponent
+    this.#serviceThemeMedia = configs.dependencies.serviceThemeMedia
+    this.#serviceThemePalette = configs.dependencies.serviceThemePalette
+    this.#serviceThemeScale = configs.dependencies.serviceThemeScale
+    this.#serviceThemeVariable = configs.dependencies.serviceThemeVariable
+    this.#serviceThemeVariant = configs.dependencies.serviceThemeVariant
   }
 
   extends(configs: ConfigsWithDependencies): Theme {
@@ -69,9 +58,11 @@ export class ServiceTheme {
   }
 
   getPropsVariant<Props extends ObjectLiteral>(
-    ...configs: ConfigsVariant<Props>[]
+    ...configs: ConfigsPropsVariants<Props>[]
   ): Variant<Props> | undefined {
-    return this.#serviceThemeVariant.getVariant(configs)
+    return this.#serviceThemeVariant.getVariant(
+      configs.map((config) => ({ theme: this, ...config }) as ConfigsVariant<Props>),
+    )
   }
 
   // TODO: check if the right approach
@@ -81,7 +72,13 @@ export class ServiceTheme {
     propsDefault?: Partial<Props>,
     mergeKeys: Array<keyof Props> = [],
   ): Props {
-    return this.#serviceThemeVariant.getVariantByDefinitions(definitions, props, propsDefault, mergeKeys)
+    return this.#serviceThemeVariant.getVariantByDefinitions(
+      definitions,
+      this,
+      props,
+      propsDefault,
+      mergeKeys,
+    )
   }
 
   #configsMerge(...configs: ConfigsWithDependencies[]): ConfigsWithDependencies {

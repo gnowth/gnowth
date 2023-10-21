@@ -10,12 +10,12 @@ import type { ServiceThemeVariant, VariantType } from './theme-variant.service'
 import { TokenBreakpoint } from '../tokens/tokens.types'
 
 type Dependencies = {
-  ServiceThemeMedia: typeof ServiceThemeMedia
-  ServiceThemeComponent: typeof ServiceThemeComponent
-  ServiceThemePalette: typeof ServiceThemePalette
-  ServiceThemeScale: typeof ServiceThemeScale
-  ServiceThemeVariable: typeof ServiceThemeVariable
-  ServiceThemeVariant: typeof ServiceThemeVariant
+  serviceThemeMedia: ServiceThemeMedia
+  serviceThemeComponent: ServiceThemeComponent
+  serviceThemePalette: ServiceThemePalette
+  serviceThemeScale: ServiceThemeScale
+  serviceThemeVariable: ServiceThemeVariable
+  serviceThemeVariant: ServiceThemeVariant
 }
 
 export type Configs = {
