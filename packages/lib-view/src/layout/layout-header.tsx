@@ -25,11 +25,11 @@ export const LayoutHeader: FunctionComponent<PropsLayoutHeader> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
-    <header className={cx('layout-header', variant.className, styles.layoutHeader)} id={variant.id}>
+    <header className={cx('layout-header', propsVariant.className, styles.layoutHeader)} id={propsVariant.id}>
       {props.children}
     </header>
   )

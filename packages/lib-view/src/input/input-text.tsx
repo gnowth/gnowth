@@ -70,18 +70,18 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariantByDefinitions(definitions, props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getVariantByDefinitions(definitions, props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
-  return createElement(variant.as || 'input', {
+  return createElement(propsVariant.as || 'input', {
     className: cx(
       'input-text',
-      guardString(variant.variant) && `input-text--${variant.variant}`,
-      variant.className,
+      guardString(propsVariant.variant) && `input-text--${propsVariant.variant}`,
+      propsVariant.className,
       styles.inputText,
     ),
-    disabled: variant.disabled,
-    id: variant.id,
+    disabled: propsVariant.disabled,
+    id: propsVariant.id,
     name: value.name,
     onChange: value.onChange,
     value: value.value,

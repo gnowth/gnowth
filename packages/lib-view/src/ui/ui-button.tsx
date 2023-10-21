@@ -87,77 +87,80 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
-  const ComponentIcon = theme.getComponent({ component: variant.icon }) || UIIcon
-  const ComponentTypography = theme.getComponent({ component: variant.text }) || UITypography
-  const ComponentProgress = theme.getComponent({ component: variant.progress }) || UIProgress
+  const propsVariant = theme.getVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
+  const ComponentIcon = theme.getComponent({ component: propsVariant.icon }) || UIIcon
+  const ComponentTypography = theme.getComponent({ component: propsVariant.text }) || UITypography
+  const ComponentProgress = theme.getComponent({ component: propsVariant.progress }) || UIProgress
 
   return (
     <button
       className={cx(
         'ui-button',
-        guardString(variant.variant) && `ui-button--${variant.variant}`,
-        variant.className,
-        variant.classNamespace,
+        guardString(propsVariant.variant) && `ui-button--${propsVariant.variant}`,
+        propsVariant.className,
+        propsVariant.classNamespace,
         styles.uiButton,
       )}
-      disabled={variant.disabled}
-      id={variant.id}
-      onClick={variant.onClick}
+      disabled={propsVariant.disabled}
+      id={propsVariant.id}
+      onClick={propsVariant.onClick}
       type="button"
     >
       <AppLayout
-        className={cx('ui-button__layout', variant.classNamespace && `${variant.classNamespace}__layout`)}
-        id={variant.id && `${variant.id}__layout`}
-        layout={variant.layout}
-        layoutProps={variant.layoutProps}
-        layoutSpacing={variant.layoutSpacing}
-        layoutVariant={variant.layoutVariant}
+        className={cx(
+          'ui-button__layout',
+          propsVariant.classNamespace && `${propsVariant.classNamespace}__layout`,
+        )}
+        id={propsVariant.id && `${propsVariant.id}__layout`}
+        layout={propsVariant.layout}
+        layoutProps={propsVariant.layoutProps}
+        layoutSpacing={propsVariant.layoutSpacing}
+        layoutVariant={propsVariant.layoutVariant}
       >
-        {!variant.iconHidden && !!variant.iconValue && (
+        {!propsVariant.iconHidden && !!propsVariant.iconValue && (
           <ComponentIcon
             className={cx(
               'ui-button__icon',
-              variant.classNamespace && `${variant.classNamespace}__icon`,
-              variant.iconClassName,
+              propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+              propsVariant.iconClassName,
             )}
-            id={variant.id && `${variant.id}__icon`}
-            size={variant.iconSize}
+            id={propsVariant.id && `${propsVariant.id}__icon`}
+            size={propsVariant.iconSize}
             slot="icon"
-            value={variant.iconValue}
-            variant={variant.iconVariant}
+            value={propsVariant.iconValue}
+            variant={propsVariant.iconVariant}
           />
         )}
 
-        {!variant.textHidden && guardString(variant.textValue) && (
+        {!propsVariant.textHidden && guardString(propsVariant.textValue) && (
           <ComponentTypography
             className={cx(
               'ui-button__text',
-              variant.classNamespace && `${variant.classNamespace}__text`,
-              variant.textClassName,
+              propsVariant.classNamespace && `${propsVariant.classNamespace}__text`,
+              propsVariant.textClassName,
             )}
-            id={variant.id && `${variant.id}__text`}
+            id={propsVariant.id && `${propsVariant.id}__text`}
             slot="text"
-            value={variant.textValue}
-            variant={variant.textVariant}
+            value={propsVariant.textValue}
+            variant={propsVariant.textVariant}
           />
         )}
 
-        {!variant.progressHidden && (
+        {!propsVariant.progressHidden && (
           <ComponentProgress
             className={cx(
               'ui-button__progress',
-              variant.classNamespace && `${variant.classNamespace}__progress`,
-              variant.progressClassName,
+              propsVariant.classNamespace && `${propsVariant.classNamespace}__progress`,
+              propsVariant.progressClassName,
             )}
-            id={variant.id && `${variant.id}__progress`}
-            palette={variant.progressPalette}
-            paletteForContrast={variant.progressPaletteForContrast}
-            paletteWeight={variant.progressPaletteWeight}
-            size={variant.progressSize}
+            id={propsVariant.id && `${propsVariant.id}__progress`}
+            palette={propsVariant.progressPalette}
+            paletteForContrast={propsVariant.progressPaletteForContrast}
+            paletteWeight={propsVariant.progressPaletteWeight}
+            size={propsVariant.progressSize}
             slot="progress"
-            variant={variant.progressVariant}
+            variant={propsVariant.progressVariant}
           />
         )}
       </AppLayout>

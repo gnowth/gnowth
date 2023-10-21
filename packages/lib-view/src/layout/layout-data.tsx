@@ -29,15 +29,15 @@ const propsDefault: Partial<PropsLayoutData> = {
 
 export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {
   const theme = useAppTheme()
-  const variant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getVariant(props, propsDefault)
 
   return (
     <UtilSlot.Provider slots={props.children}>
-      <LayoutFlex className="layout-data" spacing={variant.spacing} variant="verticalStretch">
+      <LayoutFlex className="layout-data" spacing={propsVariant.spacing} variant="verticalStretch">
         <LayoutFlex
           className="layout-data__content-wrapper"
-          spacing={variant.spacing}
-          variant={variant.wrapperVariant}
+          spacing={propsVariant.spacing}
+          variant={propsVariant.wrapperVariant}
         >
           <UtilSlot.Content name="label" />
 

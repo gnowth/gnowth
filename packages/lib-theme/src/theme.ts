@@ -26,7 +26,7 @@ interface Configs {
 
 export type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
-  | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
+  | ((props: Props & { theme: Theme }) => Partial<Props>)
 
 export interface PropsVariant<Props> {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -100,7 +100,9 @@ export class Theme {
     const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variants)
 
     const variantMaybe = variantRecord[configs.variant]
-    const variant = guardFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe
+    const variant = guardFunction(variantMaybe)
+      ? variantMaybe({ theme: this, ...propsWithDefault })
+      : variantMaybe
 
     return (variant || {}) as Props
   }

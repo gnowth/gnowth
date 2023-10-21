@@ -36,15 +36,15 @@ export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariantByDefinitions(definitions, props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getVariantByDefinitions(definitions, props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <label
       className={cx(
         'ui-label',
-        guardString(variant.variant) && `ui-label--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-label--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiLabel,
       )}
       htmlFor={props.id}

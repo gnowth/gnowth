@@ -35,18 +35,18 @@ export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <div
       className={cx(
         'ui-divider',
-        guardString(variant.variant) && `ui-divider--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-divider--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiDivider,
       )}
-      id={variant.id}
+      id={propsVariant.id}
     >
       {props.children}
     </div>
