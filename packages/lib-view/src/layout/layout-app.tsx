@@ -20,7 +20,7 @@ const makeStyles = themeStylesMake({ layoutApp })
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()
 
-  const propsVariant = theme.getVariant(props)
+  const propsVariant = theme.getPropsVariant(props)
   const styles = makeStyles(propsVariant, theme)
 
   return (

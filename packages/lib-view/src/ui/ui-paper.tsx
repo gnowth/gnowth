@@ -39,7 +39,7 @@ export const UIPaper: FunctionComponent<PropsUIPaper> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getVariantByDefinitions(definitions, props, propsDefault)
+  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
   return (

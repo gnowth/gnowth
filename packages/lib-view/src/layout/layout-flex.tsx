@@ -102,7 +102,7 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
   return createElement(

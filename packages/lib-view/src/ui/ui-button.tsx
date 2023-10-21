@@ -87,7 +87,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
   const ComponentIcon = theme.getComponent({ component: propsVariant.icon }) || UIIcon
   const ComponentTypography = theme.getComponent({ component: propsVariant.text }) || UITypography

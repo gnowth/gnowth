@@ -47,7 +47,7 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getVariantByDefinitions(definitions, props, propsDefault, ['layoutProps'])
+  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault, ['layoutProps'])
   const styles = makeStyles(propsVariant, theme)
 
   return (

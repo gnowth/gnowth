@@ -96,7 +96,7 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
     refInput.current.indeterminate = value === null
   }
 
-  const propsVariant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
   const ComponentIcon = theme.getComponent({ component: propsVariant.icon }) || UIIcon
 

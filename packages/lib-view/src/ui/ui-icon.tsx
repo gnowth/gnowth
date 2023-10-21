@@ -36,7 +36,7 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
   const Component = theme.getComponent<ComponentProps>({
     component: propsVariant.value || undefined,

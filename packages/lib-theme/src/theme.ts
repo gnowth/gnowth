@@ -79,16 +79,31 @@ export class Theme {
     return this.#serviceThemeVariable.getVariable<Type>(name)
   }
 
-  getVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
+  getPropsVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
     const propsWithDefault = objectDefaults(props, propsDefault)
 
-    const variant = this.getVariantPartial(propsWithDefault, propsWithDefault)
+    const variant = this.getVariant(propsWithDefault, propsWithDefault)
 
     return objectDefaults(props, variant, propsDefault)
   }
 
+  getPropsVariantByDefinitions<Props extends PropsVariant<Props>>(
+    definitions: (props: Props) => PropsVariant<Props>[],
+    props: Props,
+    propsDefault?: Partial<Props>,
+    mergeKeys: Array<keyof Props> = [],
+  ): Props {
+    const propsWithDefault = objectDefaults(props, propsDefault)
+
+    const variants = definitions(propsWithDefault).map((definition) =>
+      this.getVariant(definition, propsWithDefault),
+    )
+
+    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
+  }
+
   // TODO: fix all types around getVariant
-  getVariantPartial<Props extends PropsVariant<Props>>(
+  getVariant<Props extends PropsVariant<Props>>(
     configs: PropsVariant<Props>,
     propsWithDefault: Props,
   ): Props {
@@ -105,20 +120,5 @@ export class Theme {
       : variantMaybe
 
     return (variant || {}) as Props
-  }
-
-  getVariantByDefinitions<Props extends PropsVariant<Props>>(
-    definitions: (props: Props) => PropsVariant<Props>[],
-    props: Props,
-    propsDefault?: Partial<Props>,
-    mergeKeys: Array<keyof Props> = [],
-  ): Props {
-    const propsWithDefault = objectDefaults(props, propsDefault)
-
-    const variants = definitions(propsWithDefault).map((definition) =>
-      this.getVariantPartial(definition, propsWithDefault),
-    )
-
-    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
   }
 }

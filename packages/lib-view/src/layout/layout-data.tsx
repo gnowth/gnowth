@@ -29,7 +29,7 @@ const propsDefault: Partial<PropsLayoutData> = {
 
 export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {
   const theme = useAppTheme()
-  const propsVariant = theme.getVariant(props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
 
   return (
     <UtilSlot.Provider slots={props.children}>
