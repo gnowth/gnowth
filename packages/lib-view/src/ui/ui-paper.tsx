@@ -39,18 +39,18 @@ export const UIPaper: FunctionComponent<PropsUIPaper> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariantByDefinitions(definitions, props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <div
       className={cx(
         'ui-paper',
-        guardString(variant.variant) && `ui-paper--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-paper--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiPaper,
       )}
-      id={variant.id}
+      id={propsVariant.id}
     >
       {props.children}
     </div>

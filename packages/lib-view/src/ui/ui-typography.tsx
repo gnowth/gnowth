@@ -49,23 +49,23 @@ export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
-  if (variant.as === null) return <>{variant.value}</>
+  if (propsVariant.as === null) return <>{propsVariant.value}</>
 
   return createElement(
-    variant.as ?? 'span',
+    propsVariant.as ?? 'span',
     {
       className: cx(
         'ui-typography',
-        guardString(variant.variant) && `ui-typography--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-typography--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiTypography,
       ),
       // should be ==> className: styles.uiTypography
-      id: variant.id,
+      id: propsVariant.id,
     },
-    variant.value,
+    propsVariant.value,
   )
 }

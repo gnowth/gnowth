@@ -102,20 +102,20 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return createElement(
-    variant.as || 'div',
+    propsVariant.as || 'div',
     {
       className: cx(
         'layout-flex',
-        guardString(variant.variant) && `layout-flex--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `layout-flex--${propsVariant.variant}`,
+        propsVariant.className,
         styles.layoutFlex,
       ),
-      id: variant.id,
+      id: propsVariant.id,
     },
-    variant.children,
+    propsVariant.children,
   )
 }

@@ -26,7 +26,7 @@ interface Configs {
 
 export type ThemeVariant<Props = Record<string, unknown>> =
   | Partial<Props>
-  | ((theme: Theme, propsWithDefault: Props) => Partial<Props>)
+  | ((props: Props & { theme: Theme }) => Partial<Props>)
 
 export interface PropsVariant<Props> {
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -79,16 +79,31 @@ export class Theme {
     return this.#serviceThemeVariable.getVariable<Type>(name)
   }
 
-  getVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
+  getPropsVariant<Props extends PropsVariant<Props>>(props: Props, propsDefault?: Partial<Props>): Props {
     const propsWithDefault = objectDefaults(props, propsDefault)
 
-    const variant = this.getVariantPartial(propsWithDefault, propsWithDefault)
+    const variant = this.getVariant(propsWithDefault, propsWithDefault)
 
     return objectDefaults(props, variant, propsDefault)
   }
 
+  getPropsVariantByDefinitions<Props extends PropsVariant<Props>>(
+    definitions: (props: Props) => PropsVariant<Props>[],
+    props: Props,
+    propsDefault?: Partial<Props>,
+    mergeKeys: Array<keyof Props> = [],
+  ): Props {
+    const propsWithDefault = objectDefaults(props, propsDefault)
+
+    const variants = definitions(propsWithDefault).map((definition) =>
+      this.getVariant(definition, propsWithDefault),
+    )
+
+    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
+  }
+
   // TODO: fix all types around getVariant
-  getVariantPartial<Props extends PropsVariant<Props>>(
+  getVariant<Props extends PropsVariant<Props>>(
     configs: PropsVariant<Props>,
     propsWithDefault: Props,
   ): Props {
@@ -100,23 +115,10 @@ export class Theme {
     const variantRecord = objectDefaults(variants[configs.variantNamespace] ?? {}, configs.variants)
 
     const variantMaybe = variantRecord[configs.variant]
-    const variant = guardFunction(variantMaybe) ? variantMaybe(this, propsWithDefault) : variantMaybe
+    const variant = guardFunction(variantMaybe)
+      ? variantMaybe({ theme: this, ...propsWithDefault })
+      : variantMaybe
 
     return (variant || {}) as Props
-  }
-
-  getVariantByDefinitions<Props extends PropsVariant<Props>>(
-    definitions: (props: Props) => PropsVariant<Props>[],
-    props: Props,
-    propsDefault?: Partial<Props>,
-    mergeKeys: Array<keyof Props> = [],
-  ): Props {
-    const propsWithDefault = objectDefaults(props, propsDefault)
-
-    const variants = definitions(propsWithDefault).map((definition) =>
-      this.getVariantPartial(definition, propsWithDefault),
-    )
-
-    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
   }
 }

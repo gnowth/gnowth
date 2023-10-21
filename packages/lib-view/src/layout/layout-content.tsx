@@ -46,20 +46,20 @@ export const LayoutContent: FunctionComponent<PropsLayoutContent> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return createElement(
-    variant.as ?? 'div',
+    propsVariant.as ?? 'div',
     {
       className: cx(
         'layout-content',
-        guardString(variant.variant) && `layout-content--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `layout-content--${propsVariant.variant}`,
+        propsVariant.className,
         styles.layoutContent,
       ),
-      id: variant.id,
+      id: propsVariant.id,
     },
-    variant.children,
+    propsVariant.children,
   )
 }

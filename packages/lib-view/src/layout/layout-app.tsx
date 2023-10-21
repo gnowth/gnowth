@@ -20,8 +20,8 @@ const makeStyles = themeStylesMake({ layoutApp })
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()
 
-  const variant = theme.getVariant(props)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <UtilSlot.Provider slots={props.children}>

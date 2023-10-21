@@ -243,67 +243,67 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <div
       className={cx(
         'ui-progress',
-        guardString(variant.variant) && `ui-progress--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-progress--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiProgress,
       )}
-      id={variant.id}
+      id={propsVariant.id}
     >
       <AppLayout
         classNamespace="ui-progress__layout"
-        id={variant.id && `${variant.id}__layout`}
-        layout={variant.layout}
-        layoutProps={variant.layoutProps}
-        layoutSpacing={variant.layoutSpacing}
-        layoutVariant={variant.layoutVariant}
+        id={propsVariant.id && `${propsVariant.id}__layout`}
+        layout={propsVariant.layout}
+        layoutProps={propsVariant.layoutProps}
+        layoutSpacing={propsVariant.layoutSpacing}
+        layoutVariant={propsVariant.layoutVariant}
       >
         <UtilSlot slot="progress">
           <svg
             className={cx(
               'ui-progress__svg',
-              variant.classNamespace && `${variant.classNamespace}__svg`,
+              propsVariant.classNamespace && `${propsVariant.classNamespace}__svg`,
               styles.uiProgressSvg,
             )}
             focusable="false"
             preserveAspectRatio="xMidYMid meet"
             viewBox="0 0 100 100"
           >
-            {variant.bufferPalette && variant.value === null && (
+            {propsVariant.bufferPalette && propsVariant.value === null && (
               <circle
                 className={cx(
                   'ui-progress__circle-buffer',
-                  variant.classNamespace && `${variant.classNamespace}__circle-buffer`,
+                  propsVariant.classNamespace && `${propsVariant.classNamespace}__circle-buffer`,
                   styles.uiProgressCircle,
                   styles.uiProgressCircleBuffer,
                 )}
                 cx="50%"
                 cy="50%"
-                r={50 - (variant.thickness ?? 1) * 10}
+                r={50 - (propsVariant.thickness ?? 1) * 10}
               />
             )}
 
             <circle
               className={cx(
                 'ui-progress__circle',
-                variant.classNamespace && `${variant.classNamespace}__circle`,
+                propsVariant.classNamespace && `${propsVariant.classNamespace}__circle`,
                 styles.uiProgressCircle,
-                variant.value !== null && !ready && styles.uiProgressCircleInitial,
+                propsVariant.value !== null && !ready && styles.uiProgressCircleInitial,
               )}
               cx="50%"
               cy="50%"
-              r={50 - (variant.thickness ?? 1) * 10}
+              r={50 - (propsVariant.thickness ?? 1) * 10}
             />
           </svg>
         </UtilSlot>
 
-        <UtilSlot slot="content">{variant.children}</UtilSlot>
+        <UtilSlot slot="content">{propsVariant.children}</UtilSlot>
       </AppLayout>
     </div>
   )

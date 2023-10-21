@@ -47,31 +47,31 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariantByDefinitions(definitions, props, propsDefault, ['layoutProps'])
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault, ['layoutProps'])
+  const styles = makeStyles(propsVariant, theme)
 
   return (
     <section
       className={cx(
         'layout-section',
-        guardString(variant.variant) && `layout-section--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `layout-section--${propsVariant.variant}`,
+        propsVariant.className,
         styles.layoutSection,
       )}
-      id={variant.id}
+      id={propsVariant.id}
     >
       <AppLayout
         className={cx(
           'layout-section__layout',
-          variant.classNamespace && `${variant.classNamespace}__layout`,
+          propsVariant.classNamespace && `${propsVariant.classNamespace}__layout`,
         )}
-        id={variant.id && `${variant.id}__layout`}
-        layout={variant.layout}
-        layoutProps={variant.layoutProps}
-        layoutSpacing={variant.layoutSpacing}
-        layoutVariant={variant.layoutVariant}
+        id={propsVariant.id && `${propsVariant.id}__layout`}
+        layout={propsVariant.layout}
+        layoutProps={propsVariant.layoutProps}
+        layoutSpacing={propsVariant.layoutSpacing}
+        layoutVariant={propsVariant.layoutVariant}
       >
-        {variant.children}
+        {propsVariant.children}
       </AppLayout>
     </section>
   )

@@ -96,48 +96,48 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
     refInput.current.indeterminate = value === null
   }
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
-  const ComponentIcon = theme.getComponent({ component: variant.icon }) || UIIcon
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
+  const ComponentIcon = theme.getComponent({ component: propsVariant.icon }) || UIIcon
 
   return (
     <div
       className={cx(
         'input-boolean',
-        guardString(variant.variant) && `input-boolean--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `input-boolean--${propsVariant.variant}`,
+        propsVariant.className,
         styles.inputBooleanClass,
         styles.inputBoolean,
       )}
-      id={variant.id}
+      id={propsVariant.id}
     >
       <ComponentIcon
         className={cx(
           'input-boolean__icon',
-          variant.classNamespace && `${variant.classNamespace}__icon`,
-          variant.iconClassName,
+          propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+          propsVariant.iconClassName,
         )}
-        id={variant.id && `${variant.id}__icon`}
-        size={variant.iconSize}
+        id={propsVariant.id && `${propsVariant.id}__icon`}
+        size={propsVariant.iconSize}
         slot="icon"
-        value={iconValue(variant, value)}
-        variant={variant.iconVariant}
+        value={iconValue(propsVariant, value)}
+        variant={propsVariant.iconVariant}
       />
 
       <input
         checked={!!value}
         className={cx(
           'input-boolean__input',
-          variant.classNamespace && `${variant.classNamespace}__icon`,
-          variant.inputClassName,
+          propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+          propsVariant.inputClassName,
           styles.inputBooleanInput,
         )}
-        disabled={variant.disabled}
+        disabled={propsVariant.disabled}
         name={name}
         onChange={handleChange}
         ref={refInput}
         slot="input"
-        type={variant.inputType}
+        type={propsVariant.inputType}
       />
     </div>
   )

@@ -68,12 +68,14 @@ export class ServiceTheme {
     return this.#serviceThemeVariable.getVariable<Type>(name)
   }
 
-  getVariant<Props extends ObjectLiteral>(...configs: ConfigsVariant<Props>[]): Variant<Props> | undefined {
+  getPropsVariant<Props extends ObjectLiteral>(
+    ...configs: ConfigsVariant<Props>[]
+  ): Variant<Props> | undefined {
     return this.#serviceThemeVariant.getVariant(configs)
   }
 
   // TODO: check if the right approach
-  getVariantByDefinitions<Props extends ObjectLiteral>(
+  getPropsVariantByDefinitions<Props extends ObjectLiteral>(
     definitions: (props: Props) => Variant<Props>[],
     props: Props,
     propsDefault?: Partial<Props>,

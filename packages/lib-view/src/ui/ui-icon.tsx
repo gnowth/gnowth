@@ -36,10 +36,10 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
 
   if (props.hidden) return null
 
-  const variant = theme.getVariant(props, propsDefault)
-  const styles = makeStyles(variant, theme)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
+  const styles = makeStyles(propsVariant, theme)
   const Component = theme.getComponent<ComponentProps>({
-    component: variant.value || undefined,
+    component: propsVariant.value || undefined,
     componentNamespace: 'icon',
   })
 
@@ -49,12 +49,12 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
     <Component
       className={cx(
         'ui-icon',
-        guardString(variant.variant) && `ui-icon--${variant.variant}`,
-        variant.className,
+        guardString(propsVariant.variant) && `ui-icon--${propsVariant.variant}`,
+        propsVariant.className,
         styles.uiIcon,
       )}
-      id={variant.id}
-      size={theme.getScaleItem({ scale: 'iconsize', scaleToken: variant.size })}
+      id={propsVariant.id}
+      size={theme.getScaleItem({ scale: 'iconsize', scaleToken: propsVariant.size })}
     />
   )
 }
