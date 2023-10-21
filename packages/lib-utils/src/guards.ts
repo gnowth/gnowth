@@ -12,7 +12,7 @@ export const guardDate: Guard<Date> = (value): value is Date => value instanceof
 export const guardNull: Guard<null> = (value): value is null => value === null
 export const guardNumber: Guard<number> = (value): value is number => typeof value === 'number'
 export const guardNumberLike: Guard<number> = (value): value is number => !isNaN(value as number)
-export const guardObject: Guard<object> = (value): value is object =>
+export const guardObject = <ObjectType extends object = object>(value: unknown): value is ObjectType =>
   !!value && typeof value === 'object' && value.constructor === Object
 export const guardString: Guard<string> = (value): value is string => typeof value === 'string'
 export const guardUndefined: Guard<undefined> = (value): value is undefined => value === undefined

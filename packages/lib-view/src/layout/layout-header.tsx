@@ -10,8 +10,7 @@ export interface PropsLayoutHeader extends SystemType<typeof layoutHeader> {
   hidden?: boolean
   id?: string
   slot?: string
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  variant?: object | string
+  variant?: PropsLayoutHeader | string
 }
 
 const layoutHeader = systemCompose(systemSpace(), systemZIndex())

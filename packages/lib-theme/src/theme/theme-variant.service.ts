@@ -1,7 +1,7 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import { guardFunction, objectDefaults, transformToArray } from '@gnowth/lib-utils'
 
-import type { Theme } from './theme'
+import type { Theme } from './theme.next'
 import { namespacedMerge } from '../utils/namespace-merge'
 import { objectDefaultsDeepByKeys } from './theme.utils'
 

@@ -11,7 +11,6 @@ interface ComponentProps {
   id?: string
   size?: string
 }
-
 // TODO: fix icon size. svg height/width supports number only
 export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonly<string> {
   className?: string

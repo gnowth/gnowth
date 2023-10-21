@@ -1,6 +1,5 @@
 import type { CSSObject } from '@emotion/css'
-import { Theme } from '../theme'
-// import { Theme } from '../theme/theme'
+import { Theme } from '../theme/theme'
 import { systemCompose, systemInterpolate } from './system'
 
 const theme = new Theme()

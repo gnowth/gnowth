@@ -5,12 +5,12 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import { Theme } from '@gnowth/lib-theme'
 
-import * as medias from './assets'
-import { componentsNamespaced } from './components'
+import * as medias from './medias'
+import { componentsNamespaced } from './components/components'
 import { palettes } from './palettes/palettes'
-import { scales } from './scales'
+import { scales } from './scales/scales'
 import { variables } from './variables'
-import { variantsNamespaced } from './variants'
+import { variantsNamespaced } from './variants/variants'
 
 export const themeStandard = new Theme({
   componentsNamespaced,

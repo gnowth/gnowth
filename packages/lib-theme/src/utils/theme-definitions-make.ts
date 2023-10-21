@@ -1,4 +1,4 @@
-import { PropsVariant } from '../theme'
+import { PropsVariant } from '../theme/theme'
 
 export const themeDefinitionsMake = (prefixes: string[]) => {
   return <Props extends PropsVariant<Props>>(props: Props): PropsVariant<Props>[] =>
