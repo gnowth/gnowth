@@ -1,7 +1,7 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 
-import type { TokenBase, TokenBreakpoint } from '../tokens/tokens.types'
+import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 import type { Responsive } from './theme.types'
 
 // TODO: review responsiveScale. currently not supported by system

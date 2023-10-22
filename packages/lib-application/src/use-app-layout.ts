@@ -1,9 +1,9 @@
 import type { ComponentType } from 'react'
-import { TokenNamespaceComponent } from '@gnowth/lib-token'
 import { useContext } from 'react'
 
 import type { PropsLayout } from './types'
 import { ContextEnvironment } from './context-environment'
+import { TokenComponentNamespace } from './token-component-namespace'
 import { useAppTheme } from './use-app-theme'
 
 type ComponentLayout = ComponentType<PropsLayout>
@@ -14,7 +14,7 @@ export function useAppLayout(layout?: ComponentLayout | string): ComponentLayout
 
   return theme.getComponent({
     component: layout,
-    componentNamespace: TokenNamespaceComponent.layout,
+    componentNamespace: TokenComponentNamespace.layout,
     components: contextEnvironment.layouts,
   })
 }

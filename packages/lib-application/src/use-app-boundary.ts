@@ -1,10 +1,10 @@
 import type { ComponentType } from 'react'
-import { TokenNamespaceComponent } from '@gnowth/lib-token'
 import { useContext } from 'react'
 
 import type { PropsBoundary } from './types'
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
+import { TokenComponentNamespace } from './token-component-namespace'
 import { useAppTheme } from './use-app-theme'
 
 type Boundary = ComponentType<PropsBoundary> | null
@@ -23,7 +23,7 @@ export function useAppBoundary(boundary?: Boundary | string): Boundary | undefin
 
   return theme.getComponent({
     component: boundaryOrName,
-    componentNamespace: TokenNamespaceComponent.boundary,
+    componentNamespace: TokenComponentNamespace.boundary,
     components: contextEnvironment.boundaries,
   })
 }

@@ -1,11 +1,11 @@
 import type { CSSObject } from '@emotion/css'
-import { TokenFont, TokenFontToVariable } from '@gnowth/lib-token'
 import { guardString } from '@gnowth/lib-utils'
 
 import type { System } from './system.types'
 import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
-import type { TokenBase, TokenFontSize } from '../tokens/tokens.types'
+import type { TokenBase, TokenFontSize } from '../tokens/tokens'
 import { systemCompose, systemInterpolate } from './system'
+import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'
 
 type SystemFontFamily = { fontFamily?: string | number }
 type SystemFontSize<Value> = { fontSize?: Value }

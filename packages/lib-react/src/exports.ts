@@ -9,5 +9,3 @@ export * from '@gnowth/lib-theme'
 export * from '@gnowth/lib-utils'
 export * from '@gnowth/lib-utils-react'
 export * from '@gnowth/lib-view'
-
-export { TokenError } from '@gnowth/lib-token'

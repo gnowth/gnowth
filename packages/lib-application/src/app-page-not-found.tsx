@@ -1,5 +1,4 @@
-import { TokenError } from '@gnowth/lib-token'
-import { UtilError } from '@gnowth/lib-utils'
+import { TokenError, UtilError } from '@gnowth/lib-utils'
 
 export function AppPageNotFound(): never {
   throw new UtilError({
