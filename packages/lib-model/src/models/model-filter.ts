@@ -9,7 +9,7 @@ interface DefaultFilter {
 
 export class ModelFilter<
   Params extends DefaultFilter = DefaultFilter,
-  Value extends DefaultFilter = DefaultFilter, // eslint-disable-line prettier/prettier
+  Value extends DefaultFilter = DefaultFilter,
 > extends ModelUuid<Value> {
   schema = {
     page: new Fields.FieldNumber(),

@@ -1,3 +1,4 @@
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { Field } from '@gnowth/lib-model'
 
 export type DataError = Error
@@ -6,8 +7,7 @@ export type DataOptionMap = Record<string, Promise<unknown[]>>
 
 export type DataName = string | Array<string>
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type DataValue = object
+export type DataValue = ObjectLiteral
 
 // TODO: Remove
 // export interface PropsData<Value = DataValue, OptionMap = DataOptionMap> {
