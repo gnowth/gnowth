@@ -1,3 +1,4 @@
+import type { ObjectLiteral } from '@gnowth/lib-react'
 import type { Server } from 'miragejs'
 import type { ServerConfig } from 'miragejs/server'
 import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
@@ -28,7 +29,6 @@ export interface ServiceQueryKeyList<Filters = Record<string, string>> {
   scope: string
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type HigherComponent<Props = {}, Props2 = Props> = (
+export type HigherComponent<Props = ObjectLiteral, Props2 = Props> = (
   Component: ComponentType<Props>,
 ) => ComponentType<Props2>

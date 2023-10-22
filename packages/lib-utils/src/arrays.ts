@@ -18,6 +18,7 @@ export const arrayKeyBy: ArrayKeyBy = (items, predicate) =>
     {} as Record<ObjectKey, (typeof items)[number]>,
   )
 
+// TODO: implement
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const arrayUniqBy: ArrayUniqBy = (items, predicate) => {
   return items

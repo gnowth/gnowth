@@ -1,14 +1,9 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { chain, mockServer } from '@gnowth/lib-react'
+import type { AppSetup } from '@gnowth/lib-react'
+import { mockServer } from '@gnowth/lib-react'
 
-// TODO: fix types
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const setupDummy = () => (_settings: unknown) => undefined
+type ConfigurationMock = { mockServer?: ReturnType<typeof mockServer> }
+const setupMock: AppSetup<ConfigurationMock> = () => ({
+  mockServer: process.env.NODE_ENV === 'development' ? mockServer({ env: 'development' }) : undefined,
+})
 
-const setupMock = () => () => {
-  if (process.env.NODE_ENV === 'development') {
-    mockServer({ env: 'development' })
-  }
-}
-
-export const setup = chain(setupMock(), setupDummy())
+export const setup = setupMock

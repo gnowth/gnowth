@@ -1,6 +1,9 @@
+import type { AppSetup } from '@gnowth/lib-application'
+import type { i18n } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import { createInstance } from 'i18next'
+import { appSetupCompose } from '@gnowth/lib-application'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
@@ -8,7 +11,8 @@ import { ModelError } from './models/model-error'
 import { streamErrors } from './services/stream-errors'
 // import makeServer from './services/make-server'
 
-function setupI18n() {
+type ConfigurationI18n = { i18n: i18n }
+const setupI18n: AppSetup<ConfigurationI18n> = () => {
   const i18n = createInstance()
 
   i18n
@@ -21,10 +25,11 @@ function setupI18n() {
     }) // for all options docs: https://www.i18next.com/overview/configuration-options
     .catch(streamErrors.pushErrorUnknown)
 
-  return i18n
+  return { i18n }
 }
 
-function setupMockServer() {
+type ConfigurationMockServer = { mockServer: undefined }
+const setupMockServer: AppSetup<ConfigurationMockServer> = () => {
   // const server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
   // Note: uncomment code below to remove miragejs in production mode
   // let server
@@ -32,10 +37,12 @@ function setupMockServer() {
   //   server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
   // }
   // return server
+  return { mockServer: undefined }
 }
 
-function setupReactQuery() {
-  return new QueryClient({
+type ConfigurationReactQuery = { queryClient: QueryClient }
+const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
+  queryClient: new QueryClient({
     defaultOptions: {
       queries: {
         keepPreviousData: true,
@@ -45,13 +52,7 @@ function setupReactQuery() {
       },
     },
     queryCache: new QueryCache({ onError: streamErrors.pushErrorUnknown }),
-  })
-}
+  }),
+})
 
-export function setup() {
-  return {
-    i18n: setupI18n(),
-    mockServer: setupMockServer(),
-    queryClient: setupReactQuery(),
-  }
-}
+export const setup = appSetupCompose(setupI18n, setupMockServer, setupReactQuery)
