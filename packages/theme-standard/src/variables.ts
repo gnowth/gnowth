@@ -1,4 +1,4 @@
-import { TokenVariable } from '@gnowth/lib-token'
+import { TokenVariable } from '@gnowth/lib-theme'
 
 import { breakpoint } from './scales/scale-breakpoint'
 import { space } from './scales/scale-space'

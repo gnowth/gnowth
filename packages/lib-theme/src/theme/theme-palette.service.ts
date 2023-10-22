@@ -1,7 +1,7 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 import { arrayKeyBy, arrayUniqBy, chain } from '@gnowth/lib-utils'
 
-import type { TokenColorWeight } from '../tokens/tokens.types'
+import type { TokenColorWeight } from '../tokens/tokens'
 
 type PaletteColor = {
   darkContrast: boolean

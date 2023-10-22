@@ -1,7 +1,8 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
 import type { PropsUIButton } from '@gnowth/lib-view'
-import { TokenSelector } from '@gnowth/lib-token'
 import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
+
+import { TokenSelector } from '../tokens/wip-token-selector'
 
 // TODO find a way to abstract it across in a library
 function select(selector = '', child?: string) {

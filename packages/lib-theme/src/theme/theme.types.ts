@@ -7,7 +7,7 @@ import type { ServiceThemePalette, PaletteType } from './theme-palette.service'
 import type { ServiceThemeScale, ScaleType } from './theme-scale.service'
 import type { ServiceThemeVariable, Variable } from './theme-variable.service'
 import type { ServiceThemeVariant, VariantType } from './theme-variant.service'
-import { TokenBreakpoint } from '../tokens/tokens.types'
+import { TokenBreakpoint } from '../tokens/tokens'
 
 type Dependencies = {
   serviceThemeMedia: ServiceThemeMedia

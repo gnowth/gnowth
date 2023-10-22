@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+import { TokenComponentNamespace } from '@gnowth/lib-application'
 import { layouts } from '@gnowth/lib-view'
 
 import * as boundary from './namespace-boundary'
@@ -8,10 +9,10 @@ import * as suspense from './namespace-suspense'
 import * as type from './namespace-type'
 
 export const componentsNamespaced = {
-  boundary,
-  icon,
-  input,
-  layout: layouts as unknown as Record<string, ComponentType>,
-  suspense,
-  type,
+  [TokenComponentNamespace.boundary]: boundary,
+  [TokenComponentNamespace.icon]: icon,
+  [TokenComponentNamespace.input]: input,
+  [TokenComponentNamespace.layout]: layouts as unknown as Record<string, ComponentType>,
+  [TokenComponentNamespace.suspense]: suspense,
+  [TokenComponentNamespace.type]: type,
 }

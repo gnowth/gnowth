@@ -1,5 +1,4 @@
-import { TokenError } from '@gnowth/lib-token'
-import { UtilError } from '@gnowth/lib-utils'
+import { TokenError, UtilError } from '@gnowth/lib-utils'
 
 import { useAppWhoAmI } from './use-app-who-am-i'
 

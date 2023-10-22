@@ -1,150 +1,29 @@
+import type { TokenBreakpoint } from './token-breakpoint'
+import type { TokenColorWeight } from './token-color-weight'
+import type { TokenFontSize } from './token-font-size'
+import type { TokenIconSize } from './token-icon-size'
+import type { TokenPalette } from './token-palette'
+import type { TokenSpace } from './token-space'
+import type { TokenZIndex } from './token-z-index'
+
 export type TokenBase = string | number // TODO: should this be string only?
-
-export type TokenColorWeight =
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | 'a100'
-  | 'a200'
-  | 'a400'
-  | 'a700'
-
-export type TokenBreakpoint = 'none' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
-export type TokenPalette =
-  | 'background'
-  | 'danger'
-  | 'foreground'
-  | 'gray'
-  | 'primary'
-  | 'secondary'
-  | 'tertiary'
-  | 'transparent'
-
-export type TokenFontSize =
-  | 'x10'
-  | 'x25'
-  | 'x50'
-  | 'x75'
-  | 'x100'
-  | 'x200'
-  | 'x300'
-  | 'x400'
-  | 'x500'
-  | 'x600'
-  | 'x700'
-  | 'x800'
-  | 'x900'
-  | 'x1000'
-  | 'x1100'
-  | 'x1200'
-  | 'x1300'
-
-export type TokenIconSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
-export type TokenSpace = 'none' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
-
-export type TokenTypography = 'text' | 'header'
 export type TokenMedia = 'screen' | 'print'
-export type TokenZIndex =
-  | 'deepdive'
-  | 'default'
-  | 'docked'
-  | 'frame'
-  | 'sticky'
-  | 'popup'
-  | 'dialog'
-  | 'dropdown'
-  | 'overlay'
-  | 'reminder'
-  | 'modal'
-  | 'spinner'
-  | 'toast'
-
-export type TokenLength = 'full' | 'half' | 'quarter' | 'tenth'
-
-type TokenUnitsAbsolute =
-  | `${number}cm`
-  | `${number}mm`
-  | `${number}in`
-  | `${number}px`
-  | `${number}pt`
-  | `${number}pc`
-type TokenUnitsRelative =
-  | `${number}em`
-  | `${number}ex`
-  | `${number}ch`
-  | `${number}rem`
-  | `${number}vw`
-  | `${number}vh`
-  | `${number}vmin`
-  | `${number}vmax`
-  | `${number}%`
-export type TokenUnits = TokenUnitsAbsolute | TokenUnitsRelative
-export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
 
 export type Tokens = {
-  color?: {
-    primary?: string
-    secondary?: string
-    tertiary?: string
-  }
+  color?: Record<TokenPalette, string | undefined>
   breakpoint?: Record<TokenBreakpoint, string | undefined>
   fontSize?: Record<TokenFontSize, string | undefined>
   fontSizeDesktop?: Record<TokenFontSize, string | undefined>
-  iconSize?: {
-    xxs?: string
-    xs?: string
-    sm?: string
-    md?: string
-    lg?: string
-    xl?: string
-    xxl?: string
-    xxxl?: string
-  }
+  iconSize?: Record<TokenIconSize, string | undefined>
   palette: Record<
     string,
     {
       name: string
-      colors: Record<
-        TokenColorWeight,
-        {
-          hex: string
-          name: string
-        }
-      >
+      colors: Record<TokenColorWeight, { hex: string; name: string }>
     }
   >
-  space?: {
-    xxs?: string
-    xs?: string
-    sm?: string
-    md?: string
-    lg?: string
-    xl?: string
-    xxl?: string
-    xxxl?: string
-  }
-  zIndex?: {
-    deepdive: string
-    default: string
-    docked: string
-    frame: string
-    sticky: string
-    popup: string
-    dialog: string
-    dropdown: string
-    overlay: string
-    reminder: string
-    modal: string
-    spinner: string
-    toast: string
-  }
+  space?: Record<TokenSpace, string | undefined>
+  zIndex?: Record<TokenZIndex, string | undefined>
 }
 
 // type Palette = {

@@ -1,10 +1,10 @@
 import type { ComponentType } from 'react'
-import { TokenNamespaceComponent } from '@gnowth/lib-token'
 import { useContext } from 'react'
 
 import type { PropsSuspense } from './types'
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
+import { TokenComponentNamespace } from './token-component-namespace'
 import { useAppTheme } from './use-app-theme'
 
 type Suspense = ComponentType<PropsSuspense> | null
@@ -23,7 +23,7 @@ export function useAppSuspense(suspense?: Suspense | string): Suspense | undefin
 
   return theme.getComponent({
     component: suspenseOrName,
-    componentNamespace: TokenNamespaceComponent.suspense,
+    componentNamespace: TokenComponentNamespace.suspense,
     components: contextEnvironment.suspenses,
   })
 }

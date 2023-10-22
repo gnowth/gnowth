@@ -1,5 +1,5 @@
 import type { SystemInterpolate, System } from './system.types'
-import type { TokenColorWeight } from '../tokens/tokens.types'
+import type { TokenColorWeight } from '../tokens/tokens'
 import { systemInterpolate } from './system'
 
 type SystemColor = { color?: SystemInterpolate<string> }
