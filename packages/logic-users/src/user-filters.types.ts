@@ -1,0 +1,37 @@
+import type { UserStatus } from './users'
+
+export type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
+export type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
+
+export type UserFilter = {
+  email?: string
+  nameFirst?: string
+  nameLast?: string
+  page?: number
+  pageSize?: number
+  search?: string
+  sortBy: UserSortKey[]
+  status?: UserStatus
+}
+
+export type UserFilterData = {
+  email?: string
+  nameFirst?: string
+  nameLast?: string
+  page?: number
+  pageSize?: number
+  search?: string
+  sortBy?: UserSortKey[]
+  status?: UserStatus
+}
+
+export type UserFilterParams = {
+  email?: string
+  nameFirst?: string
+  nameLast?: string
+  page?: number
+  pageSize?: number
+  search?: string
+  sortBy: UserSortKey[]
+  status?: UserStatus
+}

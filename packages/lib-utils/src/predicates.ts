@@ -44,3 +44,6 @@ export const predicateSortFn: PredicateSortFn = (options) => (value1, value2) =>
 
   return compare(value1, value2) * directionCoefficient
 }
+
+// TODO: implement
+// export const predicateFilterFn: PredicateFilterFn = () => {}

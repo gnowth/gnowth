@@ -3,6 +3,7 @@
   "description": "Smart mock",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
+  "module": "src/exports.ts",
   "name": "@gnowth/lib-mock",
   "prettier": "@gnowth/prettier-config",
   "private": true,

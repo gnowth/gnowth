@@ -1,1 +1,0 @@
-# @gnowth/entities-lib
