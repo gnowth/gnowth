@@ -1,1 +1,0 @@
-# @gnowth/app-core

@@ -3,6 +3,7 @@
   "description": "Pages app",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
+  "module": "src/exports.ts",
   "name": "@gnowth/app-pages",
   "prettier": "@gnowth/prettier-config",
   "private": true,
