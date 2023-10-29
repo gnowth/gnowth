@@ -12,7 +12,7 @@ type Props = {
 }
 
 // DEBT: to simplify fallbackRender
-export const SystemBoundaryDeprecated: FunctionComponent<Props> = (props) => {
+export const SystemBoundary: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
     return <>{props.children}</>
   }

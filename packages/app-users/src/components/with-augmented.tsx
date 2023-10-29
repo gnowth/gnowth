@@ -1,12 +1,12 @@
 import type { HigherComponent } from '@gnowth/lib-react'
 import type { ComponentProps, ComponentType } from 'react'
 
-import { SystemBoundaryDeprecated } from './system-boundary-deprecated'
-import { SystemSuspenseDeprecated } from './system-suspense-deprecated'
+import { SystemBoundary } from './system-boundary'
+import { SystemSuspense } from './system-suspense'
 
 type PropsAugmented = {
-  ErrorComponent?: ComponentProps<typeof SystemBoundaryDeprecated>['FallbackComponent']
-  LoadingComponent?: ComponentProps<typeof SystemSuspenseDeprecated>['FallbackComponent']
+  ErrorComponent?: ComponentProps<typeof SystemBoundary>['FallbackComponent']
+  LoadingComponent?: ComponentProps<typeof SystemSuspense>['FallbackComponent']
 }
 
 type AugmentedComponentType<Props> = ComponentType<Props> & {
@@ -17,20 +17,20 @@ type AugmentedComponentType<Props> = ComponentType<Props> & {
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent
 // TODO: remove JSX and use react Attributes
-export function withAugmentedDeprecated<Props extends JSX.IntrinsicAttributes>(
+export function withAugmented<Props extends JSX.IntrinsicAttributes>(
   propsAugmented?: PropsAugmented,
 ): HigherComponent<Props> {
   return function withAugmentedHOC(Component: AugmentedComponentType<Props>) {
     return function WithAugmentedComponent(props: Props) {
       return (
-        <SystemSuspenseDeprecated
+        <SystemSuspense
           FallbackComponent={
             Component.LoadingComponent === undefined
               ? propsAugmented?.LoadingComponent
               : Component.LoadingComponent
           }
         >
-          <SystemBoundaryDeprecated
+          <SystemBoundary
             FallbackComponent={
               Component.ErrorComponent === undefined
                 ? propsAugmented?.ErrorComponent
@@ -38,8 +38,8 @@ export function withAugmentedDeprecated<Props extends JSX.IntrinsicAttributes>(
             }
           >
             <Component {...props} />
-          </SystemBoundaryDeprecated>
-        </SystemSuspenseDeprecated>
+          </SystemBoundary>
+        </SystemSuspense>
       )
     }
   }

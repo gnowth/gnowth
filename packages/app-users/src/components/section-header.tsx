@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
 import { NavLink } from './nav-link'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { ViewProgressGlobalDeprecated } from './view-progress-global-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { ViewProgressGlobal } from './view-progress-global'
+import { withAugmented } from './with-augmented'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
@@ -14,7 +14,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
 
   return (
     <div data-semantic="Header">
-      <LayoutSectionDeprecated
+      <LayoutSection
         rootProps={{
           bg: 'teal.600',
           borderBottom: '1px solid',
@@ -35,9 +35,9 @@ const SectionHeaderComponent: FunctionComponent = () => {
             <Button size="xs">{t('Log in')}</Button>
           </HStack>
         </Flex>
-      </LayoutSectionDeprecated>
+      </LayoutSection>
 
-      <LayoutSectionDeprecated
+      <LayoutSection
         containerProps={{ px: '0' }}
         rootProps={{
           bg: 'teal.50',
@@ -70,11 +70,11 @@ const SectionHeaderComponent: FunctionComponent = () => {
             {t('Generated page')}
           </NavLink>
         </HStack>
-      </LayoutSectionDeprecated>
+      </LayoutSection>
 
-      <ViewProgressGlobalDeprecated />
+      <ViewProgressGlobal />
     </div>
   )
 }
 
-export const SectionHeader = withAugmentedDeprecated()(SectionHeaderComponent)
+export const SectionHeader = withAugmented()(SectionHeaderComponent)

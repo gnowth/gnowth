@@ -23,9 +23,9 @@ import { ModelApp } from '../models/model-app'
 import { ModelUser } from '../models/model-user'
 import { ModelUserFilter } from '../models/model-user-filter'
 import { serviceUsers } from '../services/service-users'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { InputPaginationDeprecated } from './input-pagination-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { InputPagination } from './input-pagination'
+import { withAugmented } from './with-augmented'
 
 export const stateUserFilter = atom({
   default: ModelUserFilter.fromUserFilterSerializedPaginated({}),
@@ -43,7 +43,7 @@ const SectionUsersComponent: FunctionComponent = () => {
   const { data } = useQuery(serviceUsers.queryKeys.list(filtersSerialized), serviceUsers.listVerbose)
 
   return (
-    <LayoutSectionDeprecated>
+    <LayoutSection>
       <VStack spacing="10">
         <Table variant="simple">
           <Thead>
@@ -106,7 +106,7 @@ const SectionUsersComponent: FunctionComponent = () => {
 
         {/* DEBT add visibility so that there is no Content Layout Shift */}
         {!!data?.meta && !!filters.page && !!filters.pageSize && (
-          <InputPaginationDeprecated
+          <InputPagination
             onChange={(newFilters) =>
               setFilters({ ...filters, page: newFilters.page, pageSize: newFilters.pageSize })
             }
@@ -115,10 +115,10 @@ const SectionUsersComponent: FunctionComponent = () => {
           />
         )}
       </VStack>
-    </LayoutSectionDeprecated>
+    </LayoutSection>
   )
 }
 
-export const SectionUsers = withAugmentedDeprecated({ LoadingComponent: () => <Skeleton height="10" /> })(
+export const SectionUsers = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(
   SectionUsersComponent,
 )

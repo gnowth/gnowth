@@ -6,8 +6,8 @@ import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
 import { ModelApp } from '../models/model-app'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {
@@ -20,7 +20,7 @@ const FormUserFilterComponent: FunctionComponent = () => {
       initialValues={filters}
       onSubmit={(values) => setFilters({ ...values, page: 1 })}
     >
-      <LayoutSectionDeprecated>
+      <LayoutSection>
         <HStack alignItems="flex-end" as={Form} spacing="5">
           <Box>
             <FormLabel htmlFor="form-user-filter-email">{t('Email')}</FormLabel>
@@ -34,9 +34,9 @@ const FormUserFilterComponent: FunctionComponent = () => {
 
           <Button type="submit">{t('Submit')}</Button>
         </HStack>
-      </LayoutSectionDeprecated>
+      </LayoutSection>
     </Formik>
   )
 }
 
-export const FormUserFilter = withAugmentedDeprecated()(FormUserFilterComponent)
+export const FormUserFilter = withAugmented()(FormUserFilterComponent)

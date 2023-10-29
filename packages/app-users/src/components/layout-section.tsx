@@ -7,7 +7,7 @@ interface Props {
   rootProps?: ChakraProps
 }
 
-export const LayoutSectionDeprecated: FunctionComponent<PropsWithChildren<Props>> = (props) => {
+export const LayoutSection: FunctionComponent<PropsWithChildren<Props>> = (props) => {
   return (
     <Box as="section" {...props.rootProps}>
       <Container maxW="container.xl" {...props.containerProps}>

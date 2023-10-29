@@ -8,8 +8,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { ModelApp } from '../models/model-app'
 import { ModelUser } from '../models/model-user'
 import { serviceUsers } from '../services/service-users'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {
@@ -22,7 +22,7 @@ const FormUserComponent: FunctionComponent = () => {
   const userQuery = useQuery(serviceUsers.queryKeys.detail(id), serviceUsers.detail, { enabled: !!id })
 
   return (
-    <LayoutSectionDeprecated>
+    <LayoutSection>
       <Formik
         initialValues={userQuery.data ?? ModelUser.fromUserSerialized({})}
         onSubmit={(user) => userMutation.mutate(user)}
@@ -51,10 +51,8 @@ const FormUserComponent: FunctionComponent = () => {
           <Button type="submit">{t('Submit')}</Button>
         </VStack>
       </Formik>
-    </LayoutSectionDeprecated>
+    </LayoutSection>
   )
 }
 
-export const FormUser = withAugmentedDeprecated({ LoadingComponent: () => <Skeleton height="10" /> })(
-  FormUserComponent,
-)
+export const FormUser = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUserComponent)

@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { ModelApp } from '../models/model-app'
 import packageJson from '../../package.json'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { withAugmented } from './with-augmented'
 
 type Props = ChakraProps & Attributes
 
@@ -30,4 +30,4 @@ const SectionFooterComponent: FunctionComponent<Props> = (props) => {
   )
 }
 
-export const SectionFooter = withAugmentedDeprecated()(SectionFooterComponent)
+export const SectionFooter = withAugmented()(SectionFooterComponent)

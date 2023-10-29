@@ -3,7 +3,7 @@ import { VStack } from '@chakra-ui/react'
 
 import { SectionFooter } from './section-footer'
 import { SectionHeader } from './section-header'
-import { ViewSpacerDeprecated } from './view-spacer-deprecated'
+import { ViewSpacer } from './view-spacer'
 
 export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
   return (
@@ -12,7 +12,7 @@ export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
 
       {props.children}
 
-      <ViewSpacerDeprecated />
+      <ViewSpacer />
 
       <SectionFooter />
     </VStack>

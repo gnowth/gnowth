@@ -2,17 +2,17 @@ import type { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 const FormGroupComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
-    <LayoutSectionDeprecated>
+    <LayoutSection>
       <form>{t('Form group')}</form>
-    </LayoutSectionDeprecated>
+    </LayoutSection>
   )
 }
 
-export const FormGroup = withAugmentedDeprecated()(FormGroupComponent)
+export const FormGroup = withAugmented()(FormGroupComponent)

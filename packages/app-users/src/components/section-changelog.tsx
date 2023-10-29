@@ -1,15 +1,15 @@
 import type { FunctionComponent } from 'react'
 
 import MdChangelog from '../../CHANGELOG.md'
-import { LayoutSectionDeprecated } from './layout-section-deprecated'
-import { withAugmentedDeprecated } from './with-augmented-deprecated'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 const SectionChangelogComponent: FunctionComponent = () => {
   return (
-    <LayoutSectionDeprecated>
+    <LayoutSection>
       <MdChangelog />
-    </LayoutSectionDeprecated>
+    </LayoutSection>
   )
 }
 
-export const SectionChangelog = withAugmentedDeprecated()(SectionChangelogComponent)
+export const SectionChangelog = withAugmented()(SectionChangelogComponent)
