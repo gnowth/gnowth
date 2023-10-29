@@ -1,4 +1,5 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
+import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 type Params<Slug = string[] | string | undefined> = { slug: Slug }
 
@@ -26,3 +27,7 @@ export interface PageClientComponent<Props, Slug = string[] | string | undefined
 export interface Slottable {
   slot?: string
 }
+
+export type HigherComponent<Props = ObjectLiteral, Props2 = Props> = (
+  Component: ComponentType<Props>,
+) => ComponentType<Props2>

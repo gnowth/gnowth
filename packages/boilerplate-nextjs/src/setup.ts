@@ -1,6 +1,5 @@
 import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
-import { ModelError } from '@gnowth/app-core'
 import { appSetupCompose } from '@gnowth/lib-application'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
@@ -8,8 +7,8 @@ import { createInstance } from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-import { streamErrors } from './services/stream-errors'
 import { makeServer } from './services/make-server'
+import { dependencies } from './dependencies'
 
 type ConfigurationI18n = { i18n: i18n }
 const setupI18n: AppSetup<ConfigurationI18n> = () => {
@@ -23,7 +22,7 @@ const setupI18n: AppSetup<ConfigurationI18n> = () => {
       debug: false,
       fallbackLng: 'en',
     }) // for all options docs: https://www.i18next.com/overview/configuration-options
-    .catch(streamErrors.pushErrorUnknown)
+    .catch(dependencies.streamErrors.pushErrorUnknown)
 
   return { i18n }
 }
@@ -51,10 +50,10 @@ const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
         keepPreviousData: true,
         refetchOnWindowFocus: false,
         suspense: true,
-        useErrorBoundary: ModelError.isErrorQuery,
+        useErrorBoundary: dependencies.modelError.isErrorQuery,
       },
     },
-    queryCache: new QueryCache({ onError: streamErrors.pushErrorUnknown }),
+    queryCache: new QueryCache({ onError: dependencies.streamErrors.pushErrorUnknown }),
   }),
 })
 

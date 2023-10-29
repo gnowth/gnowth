@@ -13,5 +13,3 @@ export class ServiceNotifications {
     withCredentials: true,
   })
 }
-
-export const serviceNotifications = new ServiceNotifications()

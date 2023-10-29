@@ -22,5 +22,3 @@ export class ServiceConfigs {
     return Promise.resolve({})
   }
 }
-
-export const serviceConfigs = new ServiceConfigs()

@@ -1,4 +1,4 @@
-import type { MockConfigs, ServerEx } from '@gnowth/app-core'
+import type { MockConfigs, ServerEx } from '@gnowth/logic-core'
 import type { AnyResponse } from 'miragejs/-types'
 import { faker } from '@faker-js/faker/locale/en'
 import { SerializerRest } from '@gnowth/app-core'

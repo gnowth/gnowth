@@ -24,14 +24,16 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-utils": "0.0.0"
+    "@gnowth/lib-utils": "0.0.0",
+    "axios": "1.5.1"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@faker-js/faker": "8.1.0"
+    "@faker-js/faker": "8.1.0",
+    "miragejs": "0.1.47"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

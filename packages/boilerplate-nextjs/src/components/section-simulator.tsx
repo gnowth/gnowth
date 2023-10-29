@@ -1,10 +1,10 @@
-import { LayoutSection, ModelError } from '@gnowth/app-core'
+import { LayoutSection } from '@gnowth/app-core'
 import { Box, Button, Text, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker/locale/en'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
-import { streamToasts } from '../services/stream-toasts'
+import { dependencies } from '../dependencies'
 
 export function SectionSimulator() {
   const { t } = useTranslation('other')
@@ -18,7 +18,7 @@ export function SectionSimulator() {
           <Button
             ml="4"
             onClick={() =>
-              streamToasts.pushNotification({
+              dependencies.streamToasts.pushNotification({
                 id: uuid(),
                 message: faker.lorem.sentence(),
                 title: faker.lorem.words(3),
@@ -34,7 +34,11 @@ export function SectionSimulator() {
 
           <Button
             ml="4"
-            onClick={() => streamToasts.pushError(ModelError.fromError(new Error('Unknown error')))}
+            onClick={() =>
+              dependencies.streamToasts.pushError(
+                dependencies.modelError.fromError(new Error('Unknown error')),
+              )
+            }
           >
             {t('Fire error')}
           </Button>

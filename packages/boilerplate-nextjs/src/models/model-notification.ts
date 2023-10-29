@@ -11,7 +11,7 @@ interface NotificationSerialized {
 }
 
 export class ModelNotification {
-  static deserialize = (notification: NotificationSerialized): Notification => {
+  deserialize = (notification: NotificationSerialized): Notification => {
     return {
       id: notification.id,
       message: notification.message,
@@ -19,24 +19,24 @@ export class ModelNotification {
     }
   }
 
-  static toId = (notification: Notification) => {
+  toId = (notification: Notification) => {
     return notification.id
   }
 
-  static toString = (notification: Notification) => {
+  toString = (notification: Notification) => {
     return notification.message
   }
 
-  static toTitle = (notification: Notification) => {
+  toTitle = (notification: Notification) => {
     return notification.title
   }
 
-  static toToast = (notification: Notification) => {
+  toToast = (notification: Notification) => {
     return {
-      description: ModelNotification.toString(notification),
+      description: this.toString(notification),
       isClosable: true,
       status: 'info' as const,
-      title: ModelNotification.toTitle(notification),
+      title: this.toTitle(notification),
     }
   }
 }

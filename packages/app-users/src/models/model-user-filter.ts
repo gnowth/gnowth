@@ -1,4 +1,4 @@
-import { FilterPageSize, ModelFilter } from '@gnowth/app-core'
+import { FilterPageSize, ModelFilter } from '@gnowth/logic-core'
 
 export interface UserFilter {
   email: string
