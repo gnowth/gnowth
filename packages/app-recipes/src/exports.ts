@@ -5,7 +5,6 @@ export { PageIngredientsServer } from './pages/page-ingredients-server'
 export { PageRecipesClient } from './pages/page-recipes-client'
 export { PageRecipesServer } from './pages/page-recipes-server'
 
-export * from './application-recipes'
 export * from './modules/application-recipes'
 export * from './modules/ingredients.models'
 export * from './modules/recipes.models'
