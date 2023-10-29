@@ -1,4 +1,4 @@
-import type { UserStatus } from './users.models'
+export type UserStatus = 'active' | 'deactivated'
 
 export type User = {
   avatar?: string

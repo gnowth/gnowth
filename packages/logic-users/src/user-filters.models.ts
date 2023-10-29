@@ -1,5 +1,6 @@
 import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gnowth/lib-utils'
 import type { SortDirection } from '@gnowth/logic-core'
+import type { SortKeyType } from '@gnowth/logic-core/src/filters/filters'
 import {
   objectToKeys,
   operatorArrayFilterAnd,
@@ -7,11 +8,13 @@ import {
   predicateSortFn,
 } from '@gnowth/lib-utils'
 
-import { USER_STATUSES, type User, type UserStatus } from './users'
+import type { User, UserStatus } from './users'
 import type { UserFilter, UserFilterData, UserFilterKey, UserSortKey } from './user-filters.types'
 import { TokenQueryPageSize } from './queries.tokens'
 
 export class ModelUserFilter {
+  #userStatuses: UserStatus[] = ['active', 'deactivated']
+
   filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
     return (users) => users.filter(this.#filter(filters)).toSorted(this.#sort(filters))
   }
@@ -65,33 +68,40 @@ export class ModelUserFilter {
     return operatorArrayFilterAnd(...filterPredicates)
   }
 
-  // TODO use filterPredicateFn
   #filterByEmail(email?: string): PredicateArrayFilter<User> {
-    return (user) => user.email === email
+    return !email ? this.#filterNone() : (user) => user.email === email
   }
 
   #filterByNameFirst(nameFirst?: string): PredicateArrayFilter<User> {
-    return (user) => user.nameFirst === nameFirst
+    return !nameFirst ? this.#filterNone() : (user) => user.nameFirst === nameFirst
   }
 
   #filterByNameLast(nameLast?: string): PredicateArrayFilter<User> {
-    return (user) => user.nameLast === nameLast
+    return !nameLast ? this.#filterNone() : (user) => user.nameLast === nameLast
   }
 
   #filterByStatus(status?: UserStatus): PredicateArrayFilter<User> {
-    return (user) => user.status === status
+    return !status ? this.#filterNone() : (user) => user.status === status
+  }
+
+  #filterNone(): PredicateArrayFilter<User> {
+    return () => true
   }
 
   #sort(filter: UserFilter): PredicateSort<User> {
-    // TODO: fix sort direction
-    const sorts: Record<UserSortKey, PredicateSort<User>> = {
-      email: this.#sortByEmail(),
-      nameFirst: this.#sortByNameFirst(),
-      nameLast: this.#sortByNameLast(),
-      status: this.#sortByStatus(),
+    const sorts: Record<UserSortKey, (direction?: SortDirection) => PredicateSort<User>> = {
+      email: this.#sortByEmail,
+      nameFirst: this.#sortByNameFirst,
+      nameLast: this.#sortByNameLast,
+      status: this.#sortByStatus,
     }
 
-    const sortPredicates = filter.sortBy.map((key) => sorts[key])
+    const sortPredicates = filter.sortBy.map((key) => {
+      const descending = key.startsWith('-')
+      const dictionaryKey = (descending ? key.slice(1) : key) as SortKeyType<UserSortKey>
+
+      return sorts[dictionaryKey](descending ? 'descending' : 'ascending')
+    })
 
     return operatorSortMultiple(...sortPredicates)
   }
@@ -126,17 +136,10 @@ export class ModelUserFilter {
   #sortByStatus(direction?: SortDirection): PredicateSort<User> {
     return predicateSortFn<User>({
       compare: (item1, item2) =>
-        USER_STATUSES.findIndex((status) => item1.status === status) -
-        USER_STATUSES.findIndex((status) => item2.status === status),
+        this.#userStatuses.findIndex((status) => item1.status === status) -
+        this.#userStatuses.findIndex((status) => item2.status === status),
       direction,
-      isNullish: (item) => !USER_STATUSES.includes(item.status),
+      isNullish: (item) => !this.#userStatuses.includes(item.status),
     })
   }
-
-  // private sortUsingKey(key: UserSortKey): SortPredicate<User> {
-  //   const descending = key.startsWith('-')
-  //   const dictionaryKey = (descending ? key.slice(1) : key) as SortKeyType<UserSortKey>
-
-  //   return this.dictionarySort[dictionaryKey](descending ? 'descending' : 'ascending')
-  // }
 }

@@ -1,36 +1,19 @@
 import type { UtilOptional } from '@gnowth/lib-utils'
-import type { ServiceFaker, ServiceFlag, ServiceLogger, ErrorType, ModelError } from '@gnowth/logic-core'
+import type { ServiceFaker } from '@gnowth/logic-core'
 import { v4 as uuid } from 'uuid'
 
+import type { ErrorType } from './errors'
+import type { ServiceEvent } from './events'
 import type { User, UserData } from './users.types'
-
-export const USER_STATUSES = ['active', 'deactivated'] as const
-export type UserStatus = (typeof USER_STATUSES)[number]
-
-type Dependencies = {
-  modelError: ModelError
-  serviceFaker?: ServiceFaker
-  serviceFlag?: ServiceFlag
-  serviceLogger?: ServiceLogger
-}
+import { TokenErrorInternal } from './errors.tokens'
+import { errorMessagesInternal } from './errors.messages'
 
 type Parameters = {
-  dependencies: Dependencies
+  serviceEvent?: ServiceEvent
+  serviceFaker?: ServiceFaker
 }
 
-// TODO: implement
 export class ModelUser {
-  private dependencies: Dependencies
-  private options: Parameters
-
-  constructor(options: Parameters) {
-    this.dependencies = {
-      ...options.dependencies,
-      serviceLogger: options.dependencies.serviceLogger?.clone({ name: 'ModelUser' }),
-    }
-    this.options = options
-  }
-
   getId(user: User) {
     return user.id
   }
@@ -65,39 +48,46 @@ export class ModelUser {
     return `${user.nameLast}, ${user.nameFirst}`
   }
 
-  generate(user: UtilOptional<User, 'status'>): User {
+  generate(user: UtilOptional<User, 'status'>, parameters?: Parameters): User {
     const userGenerated = { ...user, status: user.status ?? 'deactivated' }
-    const errors = this.validate(userGenerated)
 
-    this.dependencies.serviceLogger?.bugIfErrors({
-      errors,
-      message: 'unable to create a valid User',
+    parameters?.serviceEvent?.logIfError({
+      code: TokenErrorInternal.IN0000,
+      errors: this.validate(userGenerated),
+      messages: errorMessagesInternal,
       method: 'generate',
       payload: userGenerated,
+      values: { entity: 'user' },
     })
 
     return userGenerated
   }
 
-  // TODO: decorator to check for dependency
-  // @dependencyCheck('serviceFaker', 'unable to create a valid User')
-  // this.dependencies.serviceLogger?.bugIfErrors({
-  //   errors: this.dependencies.serviceFaker
-  //     ? []
-  //     : [this.dependencies.modelError.generateForInternal({ message: 'serviceFaker is not available' })],
-  //   method: 'generateFake',
-  //   message: 'unable to create a valid User',
-  // })
-  generateFake(user?: Partial<User>): User {
-    const id = this.dependencies.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
-    const nameFirst =
-      this.dependencies.serviceFaker?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
-    const nameLast = this.dependencies.serviceFaker?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
+  generateFake(user?: Partial<User>, parameters?: Parameters): User {
+    parameters?.serviceEvent?.logIfError({
+      code: TokenErrorInternal.IN0000,
+      errors: parameters?.serviceFaker
+        ? []
+        : [
+            {
+              code: TokenErrorInternal.IN0001,
+              messages: errorMessagesInternal,
+              values: { service: 'faker' },
+            },
+          ],
+      messages: errorMessagesInternal,
+      method: 'generateFake',
+      values: { entity: 'user' },
+    })
+
+    const id = parameters?.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
+    const nameFirst = parameters?.serviceFaker?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
+    const nameLast = parameters?.serviceFaker?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
 
     return this.generate({
       ...user,
       email:
-        this.dependencies.serviceFaker?.internetEmail({
+        parameters?.serviceFaker?.internetEmail({
           firstName: nameFirst,
           lastName: nameLast,
           seed: id,
