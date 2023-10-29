@@ -1,16 +1,11 @@
-import type {
-  Detail,
-  List,
-  ListVerbose,
-  ServiceQueryKeyDetail,
-  ServiceQueryKeyList,
-} from '@gnowth/logic-core'
 import type { QueryFunctionContext } from 'react-query'
-import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
+import type { Detail, List, ListVerbose } from './axios'
+import type { ServiceQueryKeyDetail, ServiceQueryKeyList } from './queries'
 import type { User, UserData } from './users.models'
 import type { UserFilterData } from './user-filters.models'
+import { ModelAxios } from './axios'
 import { ModelUser } from './users.models'
 import { configs } from '../configs'
 

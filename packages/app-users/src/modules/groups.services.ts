@@ -1,18 +1,13 @@
-import type {
-  Detail,
-  List,
-  ListVerbose,
-  ServiceQueryKeyDetail,
-  ServiceQueryKeyList,
-} from '@gnowth/logic-core'
 import type { QueryFunctionContext } from 'react-query'
-import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
+import type { Detail, List, ListVerbose } from './axios'
+import type { ServiceQueryKeyDetail, ServiceQueryKeyList } from './queries'
 import type { Group, GroupData } from './groups.models'
 import type { GroupFilterData } from './group-filters.models'
 import { ModelGroup } from './groups.models'
 import { configs } from '../configs'
+import { ModelAxios } from './axios'
 
 export class ServiceGroups {
   static scope = 'groups'
