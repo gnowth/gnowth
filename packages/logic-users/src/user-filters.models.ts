@@ -9,13 +9,35 @@ import {
 import { TokenQueryPageSize } from '@gnowth/logic-core'
 
 import type { User, UserStatus } from './users'
-import type { UserFilter, UserFilterData, UserFilterKey, UserSortKey } from './user-filters.types'
+import type {
+  UserFilter,
+  UserFilterData,
+  UserFilterKey,
+  UserFilterParams,
+  UserSortKey,
+} from './user-filters.types'
 
 export class ModelUserFilter {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
 
+  filter(filter: UserFilter): PredicateArrayFilter<User> {
+    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
+      email: this.#filterByNameFirst(filter.email),
+      nameFirst: this.#filterByNameFirst(filter.nameFirst),
+      nameLast: this.#filterByNameFirst(filter.nameLast),
+      status: this.#filterByStatus(filter.status),
+    }
+
+    // TODO: check when value is not undefined but also filter is not required
+    const filterPredicates = objectToKeys(filters)
+      .filter((key) => filter[key] !== undefined)
+      .map((key) => filters[key])
+
+    return operatorArrayFilterAnd(...filterPredicates)
+  }
+
   filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
-    return (users) => users.filter(this.#filter(filters)).toSorted(this.#sort(filters))
+    return (users) => users.filter(this.filter(filters)).toSorted(this.#sort(filters))
   }
 
   fromData(data: UserFilterData): UserFilter {
@@ -37,8 +59,13 @@ export class ModelUserFilter {
   }
 
   // TODO:
-  generate(filters: Partial<UserFilter>): UserFilter {
-    return { ...filters, page: filters.page ?? 1, sortBy: filters.sortBy ?? [] }
+  generate(filters?: Partial<UserFilter>): UserFilter {
+    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
+  }
+
+  // TODO:
+  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
+    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
   }
 
   toData(filter: UserFilter): UserFilterData {
@@ -51,20 +78,8 @@ export class ModelUserFilter {
     }
   }
 
-  #filter(filter: UserFilter): PredicateArrayFilter<User> {
-    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
-      email: this.#filterByNameFirst(filter.email),
-      nameFirst: this.#filterByNameFirst(filter.nameFirst),
-      nameLast: this.#filterByNameFirst(filter.nameLast),
-      status: this.#filterByStatus(filter.status),
-    }
-
-    // TODO: check when value is not undefined but also filter is not required
-    const filterPredicates = objectToKeys(filters)
-      .filter((key) => filter[key] !== undefined)
-      .map((key) => filters[key])
-
-    return operatorArrayFilterAnd(...filterPredicates)
+  toParams(filter: UserFilter): UserFilterParams {
+    return filter
   }
 
   #filterByEmail(email?: string): PredicateArrayFilter<User> {

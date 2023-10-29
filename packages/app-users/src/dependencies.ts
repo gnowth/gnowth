@@ -1,12 +1,16 @@
-import { ModelGroup, ServiceGroups } from './modules/groups'
-import { ModelUser, ServiceUsers } from './modules/users'
+import { ServiceQuery } from '@gnowth/logic-core'
+import { ModelGroup, ServiceGroups, ModelUser, ServiceUsers, ModelUserFilter } from '@gnowth/logic-users'
+
+import { configs } from './configs'
 
 const modelUser = new ModelUser()
 const modelGroup = new ModelGroup()
+const serviceQuery = new ServiceQuery()
 
 export const dependencies = {
   modelGroup,
   modelUser,
-  serviceGroups: new ServiceGroups({ dependencies: { modelGroup } }),
-  serviceUsers: new ServiceUsers({ dependencies: { modelUser } }),
+  modelUserFilter: new ModelUserFilter(),
+  serviceGroups: new ServiceGroups({ ...configs, dependencies: { modelGroup, serviceQuery } }),
+  serviceUsers: new ServiceUsers({ ...configs, dependencies: { modelUser, serviceQuery } }),
 }

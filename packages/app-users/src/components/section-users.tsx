@@ -20,14 +20,13 @@ import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
 
 import { ModelApp } from '../modules/app.models'
-import { ModelUserFilter } from '../modules/user-filters.models'
 import { LayoutSection } from './layout-section'
 import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
 
 export const stateUserFilter = atom({
-  default: ModelUserFilter.fromDataPaginated({}),
+  default: dependencies.modelUserFilter.generatePaginated(),
   key: 'usersFilter',
 })
 
@@ -38,10 +37,10 @@ export const stateUserFilter = atom({
 const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  const filtersData = useMemo(() => ModelUserFilter.toData(filters), [filters])
+  const filtersData = useMemo(() => dependencies.modelUserFilter.toData(filters), [filters])
   const { data } = useQuery(
     dependencies.serviceUsers.queryKeys.list(filtersData),
-    dependencies.serviceUsers.listVerbose,
+    dependencies.serviceUsers.list,
   )
 
   return (
