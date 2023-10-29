@@ -18,7 +18,7 @@ export function SectionSimulator() {
           <Button
             ml="4"
             onClick={() =>
-              dependencies.streamToasts.pushNotification({
+              dependencies.streamNotifications.pushNotification({
                 id: uuid(),
                 message: faker.lorem.sentence(),
                 title: faker.lorem.words(3),
@@ -35,7 +35,7 @@ export function SectionSimulator() {
           <Button
             ml="4"
             onClick={() =>
-              dependencies.streamToasts.pushError(
+              dependencies.streamNotifications.pushError(
                 dependencies.modelError.fromError(new Error('Unknown error')),
               )
             }

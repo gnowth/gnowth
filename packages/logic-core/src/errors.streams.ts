@@ -1,5 +1,7 @@
-import type { ErrorData, ModelError } from '@gnowth/logic-core'
 import { Subject } from 'rxjs'
+
+import type { ModelError } from './errors.models'
+import type { ErrorData } from './errors.types'
 
 type Parameters = { dependencies: Dependencies }
 type Dependencies = { modelError: ModelError }

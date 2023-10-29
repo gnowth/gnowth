@@ -1,8 +1,6 @@
 import { Subject } from 'rxjs'
 
-interface Log {
-  id: string
-}
+import type { Log } from './logs.types'
 
 export class StreamLogs {
   stream = new Subject<Log>()

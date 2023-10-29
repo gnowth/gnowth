@@ -11,7 +11,7 @@ import dynamic from 'next/dynamic'
 import { AppError } from '../components/app-error'
 import { AppHead } from '../components/app-head'
 import { AppLoading } from '../components/app-loading'
-import { SystemToasts } from '../components/system-toasts'
+import { SystemNotifications } from '../components/system-notifications'
 import { setup } from '../setup'
 
 const configurations = setup()
@@ -48,7 +48,7 @@ const App: FunctionComponent<Props> = (props) => {
             <AppHead />
           </Head>
 
-          <SystemToasts />
+          <SystemNotifications />
 
           <Wrapper>{page}</Wrapper>
         </ChakraProvider>

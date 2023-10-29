@@ -1,7 +1,7 @@
-import type { ErrorData, ModelError } from '@gnowth/logic-core'
 import { Subject } from 'rxjs'
 
-import type { ModelNotification, Notification } from '../models/model-notification'
+import type { ErrorData, ModelError } from './errors'
+import type { ModelNotification, Notification } from './notifications.models'
 
 interface Toast {
   description?: string
@@ -16,7 +16,7 @@ type Dependencies = {
   modelNotification: ModelNotification
 }
 
-export class StreamToasts {
+export class StreamNotifications {
   stream = new Subject<Toast>()
   #modelError: ModelError
   #modelNotification: ModelNotification

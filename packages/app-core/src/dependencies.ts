@@ -1,6 +1,4 @@
-import { ModelError } from '@gnowth/logic-core'
-
-import { StreamErrors } from './services/stream-errors'
+import { ModelError, StreamErrors } from '@gnowth/logic-core'
 
 const modelError = new ModelError()
 

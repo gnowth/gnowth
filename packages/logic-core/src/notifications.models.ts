@@ -4,14 +4,14 @@ export interface Notification {
   title: string
 }
 
-interface NotificationSerialized {
+interface NotificationData {
   id: string
   message: string
   title: string
 }
 
 export class ModelNotification {
-  deserialize = (notification: NotificationSerialized): Notification => {
+  deserialize = (notification: NotificationData): Notification => {
     return {
       id: notification.id,
       message: notification.message,

@@ -1,5 +1,6 @@
 export * from './hooks/use-ensure-constant'
 export * from './hooks/use-previous'
 export * from './hooks/use-ref-value'
+export * from './hooks/use-stream'
 export * from './hooks/use-warning'
 export * from './types'
