@@ -3,11 +3,13 @@ import axios from 'axios'
 
 import type { Detail, List, ListVerbose } from './axios'
 import type { ServiceQueryKeyDetail, ServiceQueryKeyList } from './queries'
-import type { User, UserData } from './users.models'
+import type { ModelUser, User, UserData } from './users.models'
 import type { UserFilterData } from './user-filters.models'
 import { ModelAxios } from './axios'
-import { ModelUser } from './users.models'
 import { configs } from '../configs'
+
+type Parameters = { dependencies: Dependencies }
+type Dependencies = { modelUser: ModelUser }
 
 export class ServiceUsers {
   static scope = 'users'
@@ -26,13 +28,21 @@ export class ServiceUsers {
     list: (filters: UserFilterData) => [{ entity: 'list', filters, scope: ServiceUsers.scope }],
   }
 
+  #parameters: Parameters
+  #modelUser: ModelUser
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.#modelUser = parameters.dependencies.modelUser
+  }
+
   detail = (configs: QueryFunctionContext<ServiceQueryKeyDetail[]>): Promise<User> => {
     return this.axios
       .get<Detail<UserData>>(ServiceUsers.routes.users(configs.queryKey[0].id), {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelUser.fromData))
+      .then(ModelAxios.detailDeserializer(this.#modelUser.fromData))
   }
 
   list = (configs: QueryFunctionContext<ServiceQueryKeyList<UserFilterData>[]>): Promise<User[]> => {
@@ -42,7 +52,7 @@ export class ServiceUsers {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listDeserializer(ModelUser.fromData))
+      .then(ModelAxios.listDeserializer(this.#modelUser.fromData))
   }
 
   listVerbose = (
@@ -54,16 +64,14 @@ export class ServiceUsers {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listVerboseDeserializer(ModelUser.fromData))
+      .then(ModelAxios.listVerboseDeserializer(this.#modelUser.fromData))
   }
 
   save = (user: User): Promise<User> => {
-    const save = ModelUser.getIdServer(user) === undefined ? this.axios.post : this.axios.put
+    const save = this.#modelUser.getId(user) === undefined ? this.axios.post : this.axios.put
 
-    return save<Detail<UserData>>(ServiceUsers.routes.users(user.id), ModelUser.toData(user))
+    return save<Detail<UserData>>(ServiceUsers.routes.users(user.id), this.#modelUser.toData(user))
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelUser.fromData))
+      .then(ModelAxios.detailDeserializer(this.#modelUser.fromData))
   }
 }
-
-export const serviceUsers = new ServiceUsers()

@@ -17,7 +17,7 @@ export interface GroupData {
 
 export class ModelGroup {
   // Transform
-  static fromData = (group: GroupData): Group => {
+  fromData = (group: GroupData): Group => {
     return {
       avatar: group.avatar,
       id: group.id,
@@ -27,7 +27,7 @@ export class ModelGroup {
     }
   }
 
-  static toData = (group: Group): GroupData => {
+  toData = (group: Group): GroupData => {
     return group
   }
 }

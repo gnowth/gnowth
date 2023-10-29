@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
 import { ModelApp } from '../modules/app.models'
-import { ModelUser, serviceUsers } from '../modules/users'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
+import { dependencies } from '../dependencies'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {
@@ -16,14 +16,19 @@ const FormUserComponent: FunctionComponent = () => {
   const searchParams = useSearchParams()
   const id = searchParams?.get('id') ?? ''
   const queryClient = useQueryClient()
-  const handleOnUserMutation = () => queryClient.invalidateQueries(serviceUsers.queryKeys.list({}))
-  const userMutation = useMutation(serviceUsers.save, { onSuccess: handleOnUserMutation })
-  const userQuery = useQuery(serviceUsers.queryKeys.detail(id), serviceUsers.detail, { enabled: !!id })
+  const handleOnUserMutation = () =>
+    queryClient.invalidateQueries(dependencies.serviceUsers.queryKeys.list({}))
+  const userMutation = useMutation(dependencies.serviceUsers.save, { onSuccess: handleOnUserMutation })
+  const userQuery = useQuery(
+    dependencies.serviceUsers.queryKeys.detail(id),
+    dependencies.serviceUsers.detail,
+    { enabled: !!id },
+  )
 
   return (
     <LayoutSection>
       <Formik
-        initialValues={userQuery.data ?? ModelUser.fromData({})}
+        initialValues={userQuery.data ?? dependencies.modelUser.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
         <VStack alignItems="stretch" as={Form} spacing="5">

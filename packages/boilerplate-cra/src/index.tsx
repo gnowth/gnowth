@@ -7,7 +7,7 @@ import { createRoot } from 'react-dom/client'
 import { ViewFrameDefault } from './views/view-frame-default'
 import { ViewFrameRecipes } from './views/view-frame-recipes'
 import { ViewFrameTasks } from './views/view-frame-tasks'
-import { appModelEnvironment, TokenApplication } from './app-model-environment'
+import { TokenApplication } from './app-model-environment'
 import { settings } from './settings'
 import { setup } from './setup'
 import { theme } from './theme'
@@ -19,7 +19,7 @@ const ApplicationTasks = lazy(() =>
   import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),
 )
 
-setup(settings)
+const configurations = setup(settings)
 
 // Note should theme include layouts or should it be separate
 // Datasource if offline mode, these can be added to appEnvironment
@@ -34,7 +34,7 @@ createRoot(document.getElementById('main')!).render(
       [TokenErrorType.api403]: PageNotPermitted,
       [TokenErrorType.api404]: PageNotFound,
     }}
-    environment={appModelEnvironment}
+    environment={configurations.appModelEnvironment}
     frame="default"
     frames={{ default: ViewFrameDefault, recipes: ViewFrameRecipes, tasks: ViewFrameTasks }}
     theme={theme}

@@ -3,11 +3,13 @@ import axios from 'axios'
 
 import type { Detail, List, ListVerbose } from './axios'
 import type { ServiceQueryKeyDetail, ServiceQueryKeyList } from './queries'
-import type { Group, GroupData } from './groups.models'
+import type { Group, GroupData, ModelGroup } from './groups.models'
 import type { GroupFilterData } from './group-filters.models'
-import { ModelGroup } from './groups.models'
 import { configs } from '../configs'
 import { ModelAxios } from './axios'
+
+type Parameters = { dependencies: Dependencies }
+type Dependencies = { modelGroup: ModelGroup }
 
 export class ServiceGroups {
   static scope = 'groups'
@@ -25,13 +27,21 @@ export class ServiceGroups {
     list: (filters: GroupFilterData) => [{ entity: 'list', filters, scope: ServiceGroups.scope }],
   }
 
+  #parameters: Parameters
+  #modelGroup: ModelGroup
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.#modelGroup = parameters.dependencies.modelGroup
+  }
+
   detail = (configs: QueryFunctionContext<ServiceQueryKeyDetail[]>): Promise<Group> => {
     return this.axios
       .get<Detail<GroupData>>(ServiceGroups.routes.groups(configs.queryKey[0].id), {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelGroup.fromData))
+      .then(ModelAxios.detailDeserializer(this.#modelGroup.fromData))
   }
 
   list = (configs: QueryFunctionContext<ServiceQueryKeyList<GroupFilterData>[]>) => {
@@ -41,7 +51,7 @@ export class ServiceGroups {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listDeserializer(ModelGroup.fromData))
+      .then(ModelAxios.listDeserializer(this.#modelGroup.fromData))
   }
 
   listVerbose = (
@@ -53,16 +63,14 @@ export class ServiceGroups {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listVerboseDeserializer(ModelGroup.fromData))
+      .then(ModelAxios.listVerboseDeserializer(this.#modelGroup.fromData))
   }
 
   save = (group: Group): Promise<Group> => {
     const save = group.id === undefined ? this.axios.post : this.axios.put
 
-    return save<Detail<GroupData>>(ServiceGroups.routes.groups(group.id), ModelGroup.toData(group))
+    return save<Detail<GroupData>>(ServiceGroups.routes.groups(group.id), this.#modelGroup.toData(group))
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelGroup.fromData))
+      .then(ModelAxios.detailDeserializer(this.#modelGroup.fromData))
   }
 }
-
-export const serviceGroups = new ServiceGroups()

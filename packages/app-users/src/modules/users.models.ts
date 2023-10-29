@@ -23,22 +23,22 @@ export interface UserData {
 
 export class ModelUser {
   // Getter
-  static getId = (user: User) => {
+  getKey = (user: User) => {
     return user.id ?? user.idLocal
   }
 
-  static getIdServer = (user: User) => {
+  getId = (user: User) => {
     return user.id
   }
 
-  static getNameFull = (user: User) => {
+  getNameFull = (user: User) => {
     return `${user.nameFirst} ${user.nameLast}`
   }
 
   // Filter
 
   // Transform
-  static fromData = (user: UserData): User => {
+  fromData = (user: UserData): User => {
     return {
       avatar: user.avatar,
       email: user.email ?? '',
@@ -51,11 +51,11 @@ export class ModelUser {
     }
   }
 
-  static toString = (user: User) => {
+  toString = (user: User) => {
     return `${user.nameLast}, ${user.nameFirst}`
   }
 
-  static toData = (user: User): UserData => {
+  toData = (user: User): UserData => {
     return user
   }
 }
