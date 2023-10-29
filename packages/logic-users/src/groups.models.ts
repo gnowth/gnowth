@@ -4,18 +4,16 @@ import { v4 as uuid } from 'uuid'
 import type { ErrorType } from './errors'
 import type { ServiceEvent } from './events'
 import type { Group, GroupData } from './groups'
-import { errorMessagesValidation } from './errors.messages'
-import { TokenErrorValidation } from './errors.tokens'
 
 type Parameters = { serviceEvent?: ServiceEvent }
 
 export class ModelGroup {
   fromData(group: GroupData, parameters?: Parameters): Group {
     parameters?.serviceEvent?.logIfError({
-      code: TokenErrorValidation.VA0000,
+      code: 'logic-users--model-group--from-data--01',
       errors: this.#dataValidate(group),
       logLevel: 'bug',
-      messages: errorMessagesValidation,
+      message: 'Invalid group data received',
       method: 'fromData',
       payload: { group },
       source: 'ModelGroup',
@@ -44,13 +42,23 @@ export class ModelGroup {
 
   #dataValidateId(id?: string): ErrorType[] {
     return guardNullish(id)
-      ? [{ code: TokenErrorValidation.VA0001, messages: errorMessagesValidation, values: { field: 'id' } }]
+      ? [
+          {
+            code: 'logic-users--model-group--#dataValidateId--01',
+            message: 'Field (id) data is required',
+          },
+        ]
       : []
   }
 
   #dataValidateName(name?: string): ErrorType[] {
     return !name
-      ? [{ code: TokenErrorValidation.VA0001, messages: errorMessagesValidation, values: { field: 'name' } }]
+      ? [
+          {
+            code: 'logic-users--model-group--#dataValidateName--01',
+            message: 'Field (name) data is required',
+          },
+        ]
       : []
   }
 }

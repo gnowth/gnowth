@@ -5,8 +5,6 @@ import { v4 as uuid } from 'uuid'
 import type { ErrorType } from './errors'
 import type { ServiceEvent } from './events'
 import type { User, UserData } from './users.types'
-import { TokenErrorInternal } from './errors.tokens'
-import { errorMessagesInternal } from './errors.messages'
 
 type Parameters = {
   serviceEvent?: ServiceEvent
@@ -52,12 +50,11 @@ export class ModelUser {
     const userGenerated = { ...user, status: user.status ?? 'deactivated' }
 
     parameters?.serviceEvent?.logIfError({
-      code: TokenErrorInternal.IN0000,
+      code: 'logic-users--model-users--generate--01',
       errors: this.validate(userGenerated),
-      messages: errorMessagesInternal,
+      message: 'Unable to create valid User',
       method: 'generate',
       payload: userGenerated,
-      values: { entity: 'user' },
     })
 
     return userGenerated
@@ -65,19 +62,17 @@ export class ModelUser {
 
   generateFake(user?: Partial<User>, parameters?: Parameters): User {
     parameters?.serviceEvent?.logIfError({
-      code: TokenErrorInternal.IN0000,
+      code: 'logic-users--model-user--generate-fake--01',
       errors: parameters?.serviceFaker
         ? []
         : [
             {
-              code: TokenErrorInternal.IN0001,
-              messages: errorMessagesInternal,
-              values: { service: 'faker' },
+              code: 'logic-users--model-user--generate-fake--02',
+              message: 'Service faker is not available',
             },
           ],
-      messages: errorMessagesInternal,
+      message: 'Unable to create valid User',
       method: 'generateFake',
-      values: { entity: 'user' },
     })
 
     const id = parameters?.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
