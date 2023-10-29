@@ -1,2 +1,2 @@
 export * from './application-auth'
-export * from './models/app-model-application-auth'
+export * from './modules/application-auth'
