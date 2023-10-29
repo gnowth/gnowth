@@ -1,6 +1,6 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { ErrorType } from '../errors'
+import type { ErrorType } from './errors'
 import type { LogLevel } from './loggers.utils'
 
 export { LogLevel }

@@ -1,9 +1,9 @@
-export enum ContextApp {
+enum ContextApp {
   Recipes = 'recipes',
   Users = 'users',
 }
 
-export enum ContextRecipes {
+enum ContextRecipes {
   Recipes = 'recipes',
   Ingredients = 'ingredients',
 }

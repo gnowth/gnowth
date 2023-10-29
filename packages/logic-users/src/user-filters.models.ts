@@ -1,16 +1,15 @@
 import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gnowth/lib-utils'
-import type { SortDirection } from '@gnowth/logic-core'
-import type { SortKeyType } from '@gnowth/logic-core/src/filters/filters'
+import type { SortDirection, SortKeyType } from '@gnowth/logic-core'
 import {
   objectToKeys,
   operatorArrayFilterAnd,
   operatorSortMultiple,
   predicateSortFn,
 } from '@gnowth/lib-utils'
+import { TokenQueryPageSize } from '@gnowth/logic-core'
 
 import type { User, UserStatus } from './users'
 import type { UserFilter, UserFilterData, UserFilterKey, UserSortKey } from './user-filters.types'
-import { TokenQueryPageSize } from './queries.tokens'
 
 export class ModelUserFilter {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
