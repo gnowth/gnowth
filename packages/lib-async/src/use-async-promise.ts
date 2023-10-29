@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from 'react'
-import { UtilError } from '@gnowth/lib-utils'
+import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { AsyncStatus } from './types'
 import { ModelPromise } from './model-promise'
@@ -39,10 +39,14 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
   switch (action.type) {
     case actions.reject: {
       if (!action.errors) {
-        throw new UtilError({
+        throw new ErrorCustom({
+          code: 'lib-async--reducer--01',
           message: 'errors are required',
-          method: 'reducer',
-          package: 'lib-async.useAsyncPromise',
+          trace: {
+            caller: 'reducer',
+            context: 'user-async-promise',
+            source: '@gnowth/lib-async',
+          },
         })
       }
 

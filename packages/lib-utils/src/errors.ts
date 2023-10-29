@@ -1,5 +1,3 @@
-type Type = 'generic-error' | 'internal-error' | 'network-error' | 'not-found-error' | 'validation-error'
-
 type ErrorType = {
   code: string
   contextId?: string
@@ -8,7 +6,7 @@ type ErrorType = {
   description?: string
   message: string
   traces: Trace[]
-  type: Type
+  type: string | string[]
 }
 
 type Trace = {
@@ -18,7 +16,7 @@ type Trace = {
   stack?: string
 }
 
-type Options = {
+type Parameters = {
   cause?: Error | ErrorCustom | ErrorType
   code: string
   contextId?: string
@@ -27,29 +25,40 @@ type Options = {
   description?: string
   message: string
   trace: Trace
-  type: Type
+  type?: string | string[]
+}
+
+export enum TokenErrorType {
+  api = 'api',
+  api400 = 'api-400',
+  api401 = 'api-401',
+  api403 = 'api-403',
+  api404 = 'api-404',
+  api500 = 'api-500',
+  data = 'data',
+  internal = 'internal',
 }
 
 export class ErrorCustom extends Error {
   traces: Trace[]
 
-  constructor(options: Options) {
-    const cause = options.cause instanceof Error ? options.cause : undefined
-    super(options.message, cause)
+  constructor(parameters: Parameters) {
+    const cause = parameters.cause instanceof Error ? parameters.cause : undefined
+    super(parameters.message, cause)
 
-    this.options = options
-    this.traces = ErrorCustom.getTraces(options.trace, options.cause)
+    this.parameters = { ...parameters, type: parameters.type ?? TokenErrorType.internal }
+    this.traces = ErrorCustom.getTraces(parameters.trace, parameters.cause)
   }
 
   toErrorType(): ErrorType {
     return {
-      code: this.options.code,
-      contextId: this.options.contextId,
-      contextType: this.options.contextType,
-      data: this.options.data,
-      message: this.options.message,
+      code: this.parameters.code,
+      contextId: this.parameters.contextId,
+      contextType: this.parameters.contextType,
+      data: this.parameters.data,
+      message: this.parameters.message,
       traces: this.traces,
-      type: this.options.type,
+      type: this.parameters.type ?? TokenErrorType.internal,
     }
   }
 
@@ -69,33 +78,5 @@ export class ErrorCustom extends Error {
     return [trace]
   }
 
-  private options: Options
-}
-
-interface Configs {
-  message: string
-  method: string
-  package: string
-  type?: string[] | string
-}
-
-export class UtilError extends Error {
-  type?: string[] | string
-
-  constructor(configs: Configs) {
-    super(`${configs.package} [${configs.method}]: ${configs.message}`)
-
-    this.type = configs.type
-  }
-}
-
-export enum TokenError {
-  api = 'api',
-  api400 = 'api-400',
-  api401 = 'api-401',
-  api403 = 'api-403',
-  api404 = 'api-404',
-  api500 = 'api-500',
-  data = 'data',
-  internal = 'internal',
+  private parameters: Parameters
 }

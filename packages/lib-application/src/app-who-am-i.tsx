@@ -1,4 +1,4 @@
-import { TokenError, UtilError } from '@gnowth/lib-utils'
+import { TokenErrorType, ErrorCustom } from '@gnowth/lib-utils'
 
 import { useAppWhoAmI } from './use-app-who-am-i'
 
@@ -12,11 +12,15 @@ export function AppWhoAmI(props: Props): null {
   if (props.authenticated === undefined) return null
   if (!whoami) {
     if (props.authenticated) {
-      throw new UtilError({
+      throw new ErrorCustom({
+        code: 'lib-application--app-who-am-i--01',
         message: 'You are not authorised to view this page',
-        method: 'AppWhoAmI',
-        package: '@gnowth/lib-application',
-        type: [TokenError.api401, TokenError.api, TokenError.internal],
+        trace: {
+          caller: 'AppWhoAmI',
+          context: 'app-who-am-i',
+          source: '@gnowth/lib-application',
+        },
+        type: [TokenErrorType.api401, TokenErrorType.api, TokenErrorType.internal],
       })
     }
 

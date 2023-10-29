@@ -1,6 +1,6 @@
 import { useContext, useCallback } from 'react'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
-import { objectDefaults, objectGet, UtilError } from '@gnowth/lib-utils'
+import { objectDefaults, objectGet, ErrorCustom } from '@gnowth/lib-utils'
 
 import type { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
 import { DataContext } from './data-context'
@@ -19,22 +19,34 @@ export interface PropsUseDataSource<Value> extends PropsData<Value> {
 }
 
 const configsDefault = {
-  errorCustomContext: new UtilError({
+  errorCustomContext: new ErrorCustom({
+    code: 'lib-data--user-data-source--01',
     message: 'props "context" is not allowed to be changed. If this behaviour is needed, remount component',
-    method: 'useDataSource',
-    package: '@gnowth/lib-data',
+    trace: {
+      caller: 'useDataSource',
+      context: 'use-data-source',
+      source: '@gnowth/lib-data',
+    },
   }),
 
-  errorCustomMode: new UtilError({
+  errorCustomMode: new ErrorCustom({
+    code: 'lib-data--user-data-source--02',
     message: 'props "mode" is not allowed to be changed. If this behaviour is needed, remount component',
-    method: 'useDataSource',
-    package: '@gnowth/lib-data',
+    trace: {
+      caller: 'useDataSource',
+      context: 'use-data-source',
+      source: '@gnowth/lib-data',
+    },
   }),
 
-  errorCustomValue: new UtilError({
+  errorCustomValue: new ErrorCustom({
+    code: 'lib-data--user-data-source--03',
     message: 'props "value" is not allowed to be changed since component is in "uncontrolled" mode',
-    method: 'useDataSource',
-    package: '@gnowth/lib-data',
+    trace: {
+      caller: 'useDataSource',
+      context: 'use-data-source',
+      source: '@gnowth/lib-data',
+    },
   }),
 }
 

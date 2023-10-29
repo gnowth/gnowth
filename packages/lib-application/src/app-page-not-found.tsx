@@ -1,10 +1,14 @@
-import { TokenError, UtilError } from '@gnowth/lib-utils'
+import { TokenErrorType, ErrorCustom } from '@gnowth/lib-utils'
 
 export function AppPageNotFound(): never {
-  throw new UtilError({
+  throw new ErrorCustom({
+    code: 'lib-application--app-page-not-found--01',
     message: 'Page not found',
-    method: 'AppPageNotFound',
-    package: '@gnowth/lib-application',
-    type: [TokenError.api404, TokenError.internal],
+    trace: {
+      caller: 'AppPageNotFound',
+      context: 'app-page-not-found',
+      source: '@gnowth/lib-application',
+    },
+    type: [TokenErrorType.api404, TokenErrorType.internal],
   })
 }

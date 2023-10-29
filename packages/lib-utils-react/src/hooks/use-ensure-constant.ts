@@ -1,4 +1,4 @@
-import { UtilError } from '@gnowth/lib-utils'
+import { ErrorCustom } from '@gnowth/lib-utils'
 
 import { usePrevious } from './use-previous'
 
@@ -7,10 +7,14 @@ interface Configs {
   skip?: boolean
 }
 
-const errorCustom = new UtilError({
+const errorCustom = new ErrorCustom({
+  code: 'lib-utils-react--use-ensure-constant--01',
   message: 'unexpected change in value',
-  method: 'useEnsureConstant',
-  package: '@gnowth/lib-utils',
+  trace: {
+    caller: 'useEnsureConstant',
+    context: 'use-ensure-constant',
+    source: '@gnowth/lib-utils',
+  },
 })
 
 export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {

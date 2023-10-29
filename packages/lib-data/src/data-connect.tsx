@@ -4,7 +4,7 @@ import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
 import type { Slottable } from '@gnowth/lib-utils-react'
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { objectDefaults, UtilError } from '@gnowth/lib-utils'
+import { objectDefaults, ErrorCustom } from '@gnowth/lib-utils'
 
 import type { PropsData, PropsDataReadonly } from './types'
 import type { PropsUseDataConnect } from './use-data-connect'
@@ -37,12 +37,6 @@ interface Props extends PropsUseDataConnect {
   warningModel?: Model
 }
 
-const errorCustomComponent = new UtilError({
-  message: 'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
-  method: 'DataConnect',
-  package: '@gnowth/lib-application',
-})
-
 const propsDefault = {
   label: 'label',
   layout: 'data',
@@ -69,7 +63,18 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
     componentNamespace: propsWithDefault.readonly ? 'type' : 'input',
   })
 
-  if (!Component) throw errorCustomComponent
+  if (!Component) {
+    throw new ErrorCustom({
+      code: 'lib-data--data-connect--01',
+      message:
+        'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
+      trace: {
+        caller: 'DataConnect',
+        context: 'data-connect',
+        source: '@gnowth/lib-data',
+      },
+    })
+  }
 
   return (
     <AppTheme theme={propsWithDefault.theme}>
