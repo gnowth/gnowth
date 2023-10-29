@@ -19,14 +19,13 @@ export const logicSwitch: LogicSwitch =
 
     if (!predicate) {
       throw new ErrorCustom({
-        code: 'lib-utils-logic-switch-01',
+        code: 'lib-utils--logic-switch--01',
         message: 'Unable to find matching predicate',
         trace: {
           caller: 'logicSwitch',
           context: 'logics',
           source: 'lib-utils',
         },
-        type: 'internal-error',
       })
     }
 

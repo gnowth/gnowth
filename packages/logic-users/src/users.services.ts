@@ -1,6 +1,3 @@
-import type { User, UserData } from './users.types'
-import type { UserFilterParams } from './user-filters'
-import type { ModelUser } from './users.models'
 import type {
   QueryDetail,
   QueryKeyDetail,
@@ -9,8 +6,12 @@ import type {
   QueryParametersDetail,
   QueryParametersList,
   ServiceQuery,
-} from './queries'
-import { TokenQueryEntity } from './queries'
+} from '@gnowth/logic-core'
+import { TokenQueryEntity } from '@gnowth/logic-core'
+
+import type { User, UserData } from './users.types'
+import type { UserFilterParams } from './user-filters'
+import type { ModelUser } from './users.models'
 
 type QueryKeys = {
   detail: QueryKeyDetail

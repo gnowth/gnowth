@@ -9,12 +9,11 @@ export type Log = {
   code: string
   errors?: ErrorType[]
   logLevel?: LogLevel
-  messages?: Record<string, string>
+  message: string
   method: string
   payload?: ObjectLiteral
   source?: string
   sourceNamespace?: string
-  values?: Record<string, string>
 }
 
 export interface EventLog extends Event {

@@ -3,7 +3,7 @@ import type { ComponentType, ReactElement } from 'react'
 import { createElement, useState, useCallback, useContext } from 'react'
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { useRefValue } from '@gnowth/lib-utils-react'
-import { UtilRequired, objectDefaults, UtilError } from '@gnowth/lib-utils'
+import { UtilRequired, objectDefaults, ErrorCustom } from '@gnowth/lib-utils'
 
 import type { DataName } from './types'
 import { DataContext } from './data-context'
@@ -29,12 +29,6 @@ interface Props<Value> {
   theme?: Theme | string
   submit?: boolean
 }
-
-const errorCustomComponent = new UtilError({
-  message: 'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
-  method: 'DataTrigger',
-  package: '@gnowth/lib-application',
-})
 
 const propsDefault = {
   component: 'button',
@@ -65,7 +59,18 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   const Component = theme.getComponent({ component: propsWithDefault.component })
 
-  if (!Component) throw errorCustomComponent
+  if (!Component) {
+    throw new ErrorCustom({
+      code: 'lib-data--data-trigger--01',
+      message:
+        'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
+      trace: {
+        caller: 'DataTrigger',
+        context: 'data-trigger',
+        source: '@gnowth/lib-data',
+      },
+    })
+  }
 
   const component = createElement(Component, {
     ...propsWithDefault.componentProps,

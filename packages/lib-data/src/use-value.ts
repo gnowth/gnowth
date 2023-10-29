@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
-import { objectDefaults, objectSet, UtilError } from '@gnowth/lib-utils'
+import { objectDefaults, objectSet, ErrorCustom } from '@gnowth/lib-utils'
 
 import type { DataName, DataValue, TokenMode } from './types'
 
@@ -21,16 +21,24 @@ interface Props<Value> extends Return<Value> {
 }
 
 const configsDefault = {
-  errorCustomMode: new UtilError({
+  errorCustomMode: new ErrorCustom({
+    code: 'lib-data--use-value--01',
     message: 'prop "mode" is not allowed to be changed. If this behaviour is needed, remount component',
-    method: 'useValue',
-    package: '@gnowth/lib-data',
+    trace: {
+      caller: 'useValue',
+      context: 'use-value',
+      source: '@gnowth/lib-data',
+    },
   }),
 
-  errorCustomValue: new UtilError({
+  errorCustomValue: new ErrorCustom({
+    code: 'lib-data--use-value--02',
     message: 'prop "value" is not allowed to be changed since component is in "uncontrolled" mode',
-    method: 'useValue',
-    package: '@gnowth/lib-data',
+    trace: {
+      caller: 'useValue',
+      context: 'use-value',
+      source: '@gnowth/lib-data',
+    },
   }),
 }
 

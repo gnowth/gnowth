@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactNode } from 'react'
 import { createContext, useCallback, useEffect, useReducer } from 'react'
-import { UtilError } from '@gnowth/lib-utils'
+import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { AsyncStatus } from './types'
 import { ModelPromise } from './model-promise'
@@ -43,10 +43,14 @@ export const AsyncContext = createContext<AsyncContext>({
   addPromise: () => {
     // eslint-disable-next-line no-console
     console.warn(
-      new UtilError({
+      new ErrorCustom({
+        code: 'lib-async--async-context-01',
         message: 'must be used within an Async Provider',
-        method: 'addPromise',
-        package: 'lib-async.AsyncContext',
+        trace: {
+          caller: 'addPromise',
+          context: 'async-context',
+          source: 'lib-async.AsyncContext',
+        },
       }),
     )
   },
@@ -54,10 +58,14 @@ export const AsyncContext = createContext<AsyncContext>({
   removePromise: () => {
     // eslint-disable-next-line no-console
     console.warn(
-      new UtilError({
+      new ErrorCustom({
+        code: 'lib-async--async-context-02',
         message: 'must be used within an Async Provider',
-        method: 'addPromise',
-        package: 'lib-async.AsyncContext',
+        trace: {
+          caller: 'removePromise',
+          context: 'async-context',
+          source: 'lib-async.AsyncContext',
+        },
       }),
     )
   },
@@ -82,10 +90,14 @@ function reducer(state: State, action: Action): State {
   switch (action.type) {
     case actions.addPromise: {
       if (!action.payload) {
-        throw new UtilError({
+        throw new ErrorCustom({
+          code: 'lib-async--async-context-03',
           message: 'payload must contain a promise',
-          method: 'reducer',
-          package: 'lib-async.AsyncProvider',
+          trace: {
+            caller: 'reducer',
+            context: 'async-context',
+            source: 'lib-async.AsyncProvider',
+          },
         })
       }
 
@@ -100,10 +112,14 @@ function reducer(state: State, action: Action): State {
 
     case actions.reject: {
       if (!action.errors) {
-        throw new UtilError({
+        throw new ErrorCustom({
+          code: 'lib-async--async-context-04',
           message: 'errors are required',
-          method: 'reducer',
-          package: 'lib-async.AsyncProvider',
+          trace: {
+            caller: 'reducer',
+            context: 'async-context',
+            source: 'lib-async.AsyncProvider',
+          },
         })
       }
 
@@ -116,20 +132,28 @@ function reducer(state: State, action: Action): State {
 
     case actions.removePromise: {
       if (!action.payload) {
-        throw new UtilError({
+        throw new ErrorCustom({
+          code: 'lib-async--async-context-05',
           message: 'payload must contain a promise',
-          method: 'reducer',
-          package: 'lib-async.AsyncProvider',
+          trace: {
+            caller: 'reducer',
+            context: 'async-context',
+            source: 'lib-async.AsyncProvider',
+          },
         })
       }
 
       const didDelete = state.promises.delete(action.payload)
 
       if (!didDelete) {
-        throw new UtilError({
+        throw new ErrorCustom({
+          code: 'lib-async--async-context-06',
           message: 'invalid promise provided',
-          method: 'reducer',
-          package: 'lib-async.AsyncProvider',
+          trace: {
+            caller: 'reducer',
+            context: 'async-context',
+            source: 'lib-async.AsyncProvider',
+          },
         })
       }
 
@@ -148,10 +172,14 @@ function reducer(state: State, action: Action): State {
       }
 
     default:
-      throw new UtilError({
+      throw new ErrorCustom({
+        code: 'lib-async--async-context-07',
         message: 'invalid action',
-        method: 'reducer',
-        package: 'lib-async.AsyncProvider',
+        trace: {
+          caller: 'reducer',
+          context: 'async-context',
+          source: 'lib-async.AsyncProvider',
+        },
       })
   }
 }

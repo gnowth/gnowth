@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { ApplicationAuth } from '@gnowth/app-auth'
 import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
-import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenError } from '@gnowth/lib-react'
+import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenErrorType } from '@gnowth/lib-react'
 import { createRoot } from 'react-dom/client'
 
 import { ViewFrameDefault } from './views/view-frame-default'
@@ -30,9 +30,9 @@ setup(settings)
 createRoot(document.getElementById('main')!).render(
   <AppEnvironment
     boundaries={{
-      [TokenError.api401]: PageNotAuthorised,
-      [TokenError.api403]: PageNotPermitted,
-      [TokenError.api404]: PageNotFound,
+      [TokenErrorType.api401]: PageNotAuthorised,
+      [TokenErrorType.api403]: PageNotPermitted,
+      [TokenErrorType.api404]: PageNotFound,
     }}
     environment={appModelEnvironment}
     frame="default"

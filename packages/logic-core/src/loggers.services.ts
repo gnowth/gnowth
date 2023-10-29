@@ -1,4 +1,4 @@
-import type { ServiceStorage } from '../storages/storages.services'
+import type { ServiceStorage } from './storages'
 import type { APILogger, Log, LogLevel } from './loggers.types'
 
 interface Dependencies {

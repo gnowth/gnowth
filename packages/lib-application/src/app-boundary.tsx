@@ -1,5 +1,5 @@
 import type { ComponentType, ErrorInfo, FunctionComponent, ReactNode } from 'react'
-import { UtilError } from '@gnowth/lib-utils'
+import { ErrorCustom } from '@gnowth/lib-utils'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import type { PropsBoundary } from './types'
@@ -17,11 +17,14 @@ export const AppBoundary: FunctionComponent<Props> = (props) => {
 
   if (BoundaryMaybe === undefined) {
     // TODO: must have a fallback but must log the error
-    throw new UtilError({
+    throw new ErrorCustom({
+      code: 'lib-application--app-boundary--01',
       message: 'Default error component has not been set',
-      method: 'AppBoundary',
-      package: '@gnowth/lib-application',
-      type: 'internal',
+      trace: {
+        caller: 'AppBoundary',
+        context: 'app-boundary',
+        source: '@gnowth/lib-application',
+      },
     })
   }
 
@@ -32,6 +35,7 @@ export const AppBoundary: FunctionComponent<Props> = (props) => {
           throw error
         }
 
+        // TODO: get boundary based on error type
         return (
           <BoundaryMaybe
             className={props.boundaryClassName}

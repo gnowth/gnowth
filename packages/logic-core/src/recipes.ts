@@ -1,4 +1,4 @@
-import type { Media } from '../assets/assets'
+import type { Media } from './assets'
 
 export type Recipe = {
   name: string
