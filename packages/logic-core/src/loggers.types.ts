@@ -1,12 +1,12 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { ErrorType } from './errors'
+import type { ErrorData } from './errors'
 import type { LogLevel } from './loggers.utils'
 
 export { LogLevel }
 
 export type Log = {
-  errors: ErrorType[]
+  errors: ErrorData[]
   message: string
   method: string
   payload?: ObjectLiteral

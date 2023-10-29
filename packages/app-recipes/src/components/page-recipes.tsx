@@ -2,7 +2,8 @@ import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
 import { LayoutContent, LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
 
-import type { Ingredient, Recipe } from '../types'
+import type { Ingredient } from '../modules/ingredients'
+import type { Recipe } from '../modules/recipes'
 
 interface Props {
   resources: {

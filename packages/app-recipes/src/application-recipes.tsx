@@ -7,7 +7,7 @@ import { PageIngredient } from './components/page-ingredient'
 import { PageLanding } from './components/page-landing'
 import { PageRecipeEdit } from './components/page-recipe-edit'
 import { PageRecipes } from './components/page-recipes'
-import { TokenPage } from './models/app-model-application-recipes'
+import { TokenPage } from './modules/application-recipes'
 
 interface Props {
   application?: AppModelApplication | string

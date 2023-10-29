@@ -1,6 +1,12 @@
-import type { Detail, List, ListVerbose, ServiceQueryKeyDetail, ServiceQueryKeyList } from '@gnowth/app-core'
+import type {
+  Detail,
+  List,
+  ListVerbose,
+  ServiceQueryKeyDetail,
+  ServiceQueryKeyList,
+} from '@gnowth/logic-core'
 import type { QueryFunctionContext } from 'react-query'
-import { ModelAxios } from '@gnowth/app-core'
+import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
 import type { Group, GroupSerialized } from '../models/model-group'

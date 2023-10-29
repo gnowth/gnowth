@@ -1,14 +1,20 @@
+import type { ErrorData, ModelError } from '@gnowth/logic-core'
 import { Subject } from 'rxjs'
 
-import type { ErrorType } from '../models/model-error'
-import { ModelError } from '../models/model-error'
+type Parameters = { dependencies: Dependencies }
+type Dependencies = { modelError: ModelError }
 
-// DEBT(investigation): where do we consume it?
 export class StreamErrors {
-  stream = new Subject<ErrorType>()
+  stream = new Subject<ErrorData>()
+  #modelError: ModelError
+  #parameters: Parameters
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.#modelError = parameters.dependencies.modelError
+  }
 
   pushErrorUnknown = (error: unknown) => {
-    return this.stream.next(ModelError.fromErrorUnknown(error))
+    return this.stream.next(this.#modelError.fromErrorUnknown(error))
   }
 }
-export const streamErrors = new StreamErrors()

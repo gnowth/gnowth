@@ -2,7 +2,7 @@ import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
 import { DataSource, DataSuspense, LayoutPage, LayoutSection } from '@gnowth/lib-react'
 
-import type { Recipe } from '../types'
+import type { Recipe } from '../modules/recipes'
 import { ViewRecipeDescriptions } from '../views/view-recipe-descriptions'
 import { ViewRecipeIngredients } from '../views/view-recipe-ingredients'
 import { ViewRecipeInstructions } from '../views/view-recipe-instructions'

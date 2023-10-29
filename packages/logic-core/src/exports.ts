@@ -1,13 +1,14 @@
-export type { Media } from './assets'
-export type { Ingredient, Recipe } from './recipes'
-export type { SortDirection, SortType, SortKeyType } from './filters'
-
+export * from './assets'
+export * from './axios'
 export * from './authentications'
 export * from './errors'
 export * from './logs'
 export * from './events'
 export * from './fakers'
+export * from './filters'
 export * from './flags'
 export * from './loggers'
 export * from './queries'
 export * from './routes'
+
+export * from './others-to-deprecate'
