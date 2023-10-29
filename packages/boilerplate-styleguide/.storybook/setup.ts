@@ -46,4 +46,4 @@ const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
   }),
 })
 
-export const setup = appSetupCompose(setupI18n, setupMockServer, setupReactQuery)
+export const setup = appSetupCompose(setupI18n, setupReactQuery)
