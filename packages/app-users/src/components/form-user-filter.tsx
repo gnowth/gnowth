@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
+import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +19,7 @@ const FormUserFilterComponent: FunctionComponent = () => {
       initialValues={filters}
       onSubmit={(values) => setFilters({ ...values, page: 1 })}
     >
-      <LayoutSection>
+      <LayoutSectionDeprecated>
         <HStack alignItems="flex-end" as={Form} spacing="5">
           <Box>
             <FormLabel htmlFor="form-user-filter-email">{t('Email')}</FormLabel>
@@ -33,9 +33,9 @@ const FormUserFilterComponent: FunctionComponent = () => {
 
           <Button type="submit">{t('Submit')}</Button>
         </HStack>
-      </LayoutSection>
+      </LayoutSectionDeprecated>
     </Formik>
   )
 }
 
-export const FormUserFilter = withAugmented()(FormUserFilterComponent)
+export const FormUserFilter = withAugmentedDeprecated()(FormUserFilterComponent)

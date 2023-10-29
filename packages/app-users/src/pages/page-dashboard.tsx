@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection } from '@gnowth/app-core'
+import { LayoutSectionDeprecated } from '@gnowth/app-core'
 import { Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -10,9 +10,9 @@ export const PageDashboard: FunctionComponent = () => {
 
   return (
     <VStack alignItems="stretch" as="main" spacing="10">
-      <LayoutSection>
+      <LayoutSectionDeprecated>
         <Text>{t('Dashboard page')}</Text>
-      </LayoutSection>
+      </LayoutSectionDeprecated>
     </VStack>
   )
 }

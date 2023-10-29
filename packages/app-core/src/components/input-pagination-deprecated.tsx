@@ -19,7 +19,7 @@ interface Props {
   value: Value
 }
 
-export const InputPagination: FunctionComponent<Props> = (props) => {
+export const InputPaginationDeprecated: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation('app-core')
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
 

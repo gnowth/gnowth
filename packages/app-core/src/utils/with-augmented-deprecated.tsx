@@ -1,12 +1,12 @@
 import type { HigherComponent } from '@gnowth/lib-react'
 import type { ComponentProps, ComponentType } from 'react'
 
-import { SystemBoundary } from '../components/system-boundary'
-import { SystemSuspense } from '../components/system-suspense'
+import { SystemBoundaryDeprecated } from '../components/system-boundary-deprecated'
+import { SystemSuspenseDeprecated } from '../components/system-suspense-deprecated'
 
 type PropsAugmented = {
-  ErrorComponent?: ComponentProps<typeof SystemBoundary>['FallbackComponent']
-  LoadingComponent?: ComponentProps<typeof SystemSuspense>['FallbackComponent']
+  ErrorComponent?: ComponentProps<typeof SystemBoundaryDeprecated>['FallbackComponent']
+  LoadingComponent?: ComponentProps<typeof SystemSuspenseDeprecated>['FallbackComponent']
 }
 
 type AugmentedComponentType<Props> = ComponentType<Props> & {
@@ -17,20 +17,20 @@ type AugmentedComponentType<Props> = ComponentType<Props> & {
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent
 // TODO: remove JSX and use react Attributes
-export function withAugmented<Props extends JSX.IntrinsicAttributes>(
+export function withAugmentedDeprecated<Props extends JSX.IntrinsicAttributes>(
   propsAugmented?: PropsAugmented,
 ): HigherComponent<Props> {
   return function withAugmentedHOC(Component: AugmentedComponentType<Props>) {
     return function WithAugmentedComponent(props: Props) {
       return (
-        <SystemSuspense
+        <SystemSuspenseDeprecated
           FallbackComponent={
             Component.LoadingComponent === undefined
               ? propsAugmented?.LoadingComponent
               : Component.LoadingComponent
           }
         >
-          <SystemBoundary
+          <SystemBoundaryDeprecated
             FallbackComponent={
               Component.ErrorComponent === undefined
                 ? propsAugmented?.ErrorComponent
@@ -38,8 +38,8 @@ export function withAugmented<Props extends JSX.IntrinsicAttributes>(
             }
           >
             <Component {...props} />
-          </SystemBoundary>
-        </SystemSuspense>
+          </SystemBoundaryDeprecated>
+        </SystemSuspenseDeprecated>
       )
     }
   }

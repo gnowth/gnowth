@@ -1,4 +1,4 @@
-import { ViewSpacer } from '@gnowth/app-core'
+import { ViewSpacerDeprecated } from '@gnowth/app-core'
 
 import { FormUser } from './components/form-user'
 import { FormUserFilter } from './components/form-user-filter'
@@ -20,5 +20,5 @@ export const sections = {
   SectionGroups,
   SectionHeader,
   SectionUsers,
-  ViewSpacer,
+  ViewSpacer: ViewSpacerDeprecated,
 }

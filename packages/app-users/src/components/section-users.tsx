@@ -1,4 +1,4 @@
-import { InputPagination, LayoutSection, withAugmented } from '@gnowth/app-core'
+import { InputPaginationDeprecated, LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import {
   Avatar,
   Button,
@@ -41,7 +41,7 @@ const SectionUsersComponent: FunctionComponent = () => {
   const { data } = useQuery(serviceUsers.queryKeys.list(filtersSerialized), serviceUsers.listVerbose)
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <VStack spacing="10">
         <Table variant="simple">
           <Thead>
@@ -104,7 +104,7 @@ const SectionUsersComponent: FunctionComponent = () => {
 
         {/* DEBT add visibility so that there is no Content Layout Shift */}
         {!!data?.meta && !!filters.page && !!filters.pageSize && (
-          <InputPagination
+          <InputPaginationDeprecated
             onChange={(newFilters) =>
               setFilters({ ...filters, page: newFilters.page, pageSize: newFilters.pageSize })
             }
@@ -113,10 +113,10 @@ const SectionUsersComponent: FunctionComponent = () => {
           />
         )}
       </VStack>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }
 
-export const SectionUsers = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(
+export const SectionUsers = withAugmentedDeprecated({ LoadingComponent: () => <Skeleton height="10" /> })(
   SectionUsersComponent,
 )

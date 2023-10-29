@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode
 }
 
-export const SystemSuspense: FunctionComponent<Props> = (props) => {
+export const SystemSuspenseDeprecated: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
     return <>{props.children}</>
   }

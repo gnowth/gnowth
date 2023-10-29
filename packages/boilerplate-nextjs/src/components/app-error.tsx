@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection } from '@gnowth/app-core'
+import { LayoutSectionDeprecated } from '@gnowth/app-core'
 import { Button, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { useQueryErrorResetBoundary } from 'react-query'
@@ -14,7 +14,7 @@ export const AppError: FunctionComponent<Props> = (props) => {
   const { reset } = useQueryErrorResetBoundary()
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <Text as="span">{t('There was an error!')}</Text>
 
       <Button
@@ -26,6 +26,6 @@ export const AppError: FunctionComponent<Props> = (props) => {
       >
         {t('Try again')}
       </Button>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }

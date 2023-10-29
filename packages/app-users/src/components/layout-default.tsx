@@ -1,5 +1,5 @@
 import type { FunctionComponent, PropsWithChildren } from 'react'
-import { ViewSpacer } from '@gnowth/app-core'
+import { ViewSpacerDeprecated } from '@gnowth/app-core'
 import { VStack } from '@chakra-ui/react'
 
 import { SectionFooter } from './section-footer'
@@ -12,7 +12,7 @@ export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
 
       {props.children}
 
-      <ViewSpacer />
+      <ViewSpacerDeprecated />
 
       <SectionFooter />
     </VStack>

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent, Attributes, PropsWithChildren } from 'react'
-import { withAugmented } from '@gnowth/app-core'
+import { withAugmentedDeprecated } from '@gnowth/app-core'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
@@ -24,7 +24,7 @@ interface Props extends AppProps {
 
 const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children
 // TODO: use SystemAugmented
-const Wrapper = withAugmented<PropsWithChildren<Attributes>>({
+const Wrapper = withAugmentedDeprecated<PropsWithChildren<Attributes>>({
   ErrorComponent: AppError,
   LoadingComponent: AppLoading,
 })(WrapperComponent)

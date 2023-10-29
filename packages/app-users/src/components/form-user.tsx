@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
+import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -21,7 +21,7 @@ const FormUserComponent: FunctionComponent = () => {
   const userQuery = useQuery(serviceUsers.queryKeys.detail(id), serviceUsers.detail, { enabled: !!id })
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <Formik
         initialValues={userQuery.data ?? ModelUser.fromUserSerialized({})}
         onSubmit={(user) => userMutation.mutate(user)}
@@ -50,8 +50,10 @@ const FormUserComponent: FunctionComponent = () => {
           <Button type="submit">{t('Submit')}</Button>
         </VStack>
       </Formik>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }
 
-export const FormUser = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUserComponent)
+export const FormUser = withAugmentedDeprecated({ LoadingComponent: () => <Skeleton height="10" /> })(
+  FormUserComponent,
+)

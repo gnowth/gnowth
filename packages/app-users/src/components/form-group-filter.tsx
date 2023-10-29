@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
+import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
@@ -8,10 +8,10 @@ const FormGroupFilterComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <form>{t('Group filter')}</form>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }
 
-export const FormGroupFilter = withAugmented()(FormGroupFilterComponent)
+export const FormGroupFilter = withAugmentedDeprecated()(FormGroupFilterComponent)

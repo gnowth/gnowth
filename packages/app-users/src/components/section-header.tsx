@@ -1,5 +1,9 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, ViewProgressGlobal, withAugmented } from '@gnowth/app-core'
+import {
+  LayoutSectionDeprecated,
+  ViewProgressGlobalDeprecated,
+  withAugmentedDeprecated,
+} from '@gnowth/app-core'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -12,7 +16,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
 
   return (
     <div data-semantic="Header">
-      <LayoutSection
+      <LayoutSectionDeprecated
         rootProps={{
           bg: 'teal.600',
           borderBottom: '1px solid',
@@ -33,9 +37,9 @@ const SectionHeaderComponent: FunctionComponent = () => {
             <Button size="xs">{t('Log in')}</Button>
           </HStack>
         </Flex>
-      </LayoutSection>
+      </LayoutSectionDeprecated>
 
-      <LayoutSection
+      <LayoutSectionDeprecated
         containerProps={{ px: '0' }}
         rootProps={{
           bg: 'teal.50',
@@ -68,11 +72,11 @@ const SectionHeaderComponent: FunctionComponent = () => {
             {t('Generated page')}
           </NavLink>
         </HStack>
-      </LayoutSection>
+      </LayoutSectionDeprecated>
 
-      <ViewProgressGlobal />
+      <ViewProgressGlobalDeprecated />
     </div>
   )
 }
 
-export const SectionHeader = withAugmented()(SectionHeaderComponent)
+export const SectionHeader = withAugmentedDeprecated()(SectionHeaderComponent)

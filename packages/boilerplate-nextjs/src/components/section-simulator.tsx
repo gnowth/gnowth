@@ -1,4 +1,4 @@
-import { LayoutSection } from '@gnowth/app-core'
+import { LayoutSectionDeprecated } from '@gnowth/app-core'
 import { Box, Button, Text, VStack } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker/locale/en'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +10,7 @@ export function SectionSimulator() {
   const { t } = useTranslation('other')
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <VStack alignItems="stretch" spacing="10">
         <Box>
           <Text as="span">{t('Simulate notification in app')}</Text>
@@ -44,6 +44,6 @@ export function SectionSimulator() {
           </Button>
         </Box>
       </VStack>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }

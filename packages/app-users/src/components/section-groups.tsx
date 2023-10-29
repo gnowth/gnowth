@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
+import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
@@ -9,10 +9,10 @@ const SectionGroupsComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
 
   return (
-    <LayoutSection>
+    <LayoutSectionDeprecated>
       <Text>{t('Groups page')}</Text>
-    </LayoutSection>
+    </LayoutSectionDeprecated>
   )
 }
 
-export const SectionGroups = withAugmented()(SectionGroupsComponent)
+export const SectionGroups = withAugmentedDeprecated()(SectionGroupsComponent)
