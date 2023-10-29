@@ -2,15 +2,15 @@ import type { FunctionComponent } from 'react'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { ModelApp } from '../modules/app.models'
 import { NavLink } from './nav-link'
 import { LayoutSection } from './layout-section'
 import { ViewProgressGlobal } from './view-progress-global'
 import { withAugmented } from './with-augmented'
+import { dependencies } from '../dependencies'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
 
   return (
     <div data-semantic="Header">
@@ -46,25 +46,25 @@ const SectionHeaderComponent: FunctionComponent = () => {
         }}
       >
         <HStack>
-          <NavLink href={ModelApp.routes.dashboard()} prefetch={false}>
+          <NavLink href={dependencies.modelApp.routes.dashboard()} prefetch={false}>
             {t('Dashboard')}
           </NavLink>
 
-          <NavLink href={ModelApp.routes.groups()} prefetch={false}>
+          <NavLink href={dependencies.modelApp.routes.groups()} prefetch={false}>
             {t('Teams')}
           </NavLink>
 
-          <NavLink href={ModelApp.routes.users()} prefetch={false}>
+          <NavLink href={dependencies.modelApp.routes.users()} prefetch={false}>
             {t('Members')}
           </NavLink>
 
-          <NavLink href={ModelApp.routes.reports()} prefetch={false}>
+          <NavLink href={dependencies.modelApp.routes.reports()} prefetch={false}>
             {t('Reports')}
           </NavLink>
 
           <NavLink
-            href={ModelApp.routes.generated()}
-            hrefActive={ModelApp.routes.generated('')}
+            href={dependencies.modelApp.routes.generated()}
+            hrefActive={dependencies.modelApp.routes.generated('')}
             prefetch={false}
           >
             {t('Generated page')}

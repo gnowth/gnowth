@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRecoilState } from 'recoil'
 
-import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
@@ -14,7 +13,7 @@ import { stateUserFilter } from './section-users'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
   const searchParams = useSearchParams()
   const id = searchParams?.get('id') ?? ''
   const [filters] = useRecoilState(stateUserFilter)

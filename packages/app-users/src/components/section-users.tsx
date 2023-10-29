@@ -19,7 +19,6 @@ import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
 
-import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
@@ -35,7 +34,7 @@ export const stateUserFilter = atom({
 // DEBT: Update users buttons to use icons? and only visible on hover
 // DEBT: Make add new user button more visible
 const SectionUsersComponent: FunctionComponent = () => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
   const filtersData = useMemo(() => dependencies.modelUserFilter.toData(filters), [filters])
   const { data } = useQuery(
@@ -58,7 +57,7 @@ const SectionUsersComponent: FunctionComponent = () => {
               <Th>{t('Status')}</Th>
 
               <Th textAlign="end">
-                <Link href={ModelApp.routes.user()} prefetch={false}>
+                <Link href={dependencies.modelApp.routes.user()} prefetch={false}>
                   {t('Add new user')}
                 </Link>
               </Th>
@@ -84,7 +83,10 @@ const SectionUsersComponent: FunctionComponent = () => {
 
                 <Td py="2">
                   <HStack justifyContent="flex-end">
-                    <Link href={ModelApp.routes.user(dependencies.modelUser.getId(user))} prefetch={false}>
+                    <Link
+                      href={dependencies.modelApp.routes.user(dependencies.modelUser.getId(user))}
+                      prefetch={false}
+                    >
                       {t('Edit')}
                     </Link>
 

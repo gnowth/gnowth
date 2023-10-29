@@ -4,19 +4,19 @@ import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
-import { ModelApp } from '../modules/app.models'
-import packageJson from '../../package.json'
+import { dependencies } from '../dependencies'
 import { withAugmented } from './with-augmented'
+import packageJson from '../../package.json'
 
 type Props = ChakraProps & Attributes
 
 const SectionFooterComponent: FunctionComponent<Props> = (props) => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
 
   return (
     <Box as="footer" {...props}>
       <Text fontSize="sm" p="3" textAlign="end">
-        <Link href={ModelApp.routes.changelog()} prefetch={false}>
+        <Link href={dependencies.modelApp.routes.changelog()} prefetch={false}>
           {t('Current version: {{packageJson.version}}', { packageJson })}
         </Link>
       </Text>
