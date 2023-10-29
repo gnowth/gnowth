@@ -27,7 +27,7 @@ import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
 
 export const stateUserFilter = atom({
-  default: ModelUserFilter.fromUserFilterSerializedPaginated({}),
+  default: ModelUserFilter.fromDataPaginated({}),
   key: 'usersFilter',
 })
 
@@ -38,8 +38,8 @@ export const stateUserFilter = atom({
 const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  const filtersSerialized = useMemo(() => ModelUserFilter.toUserFilterSerialized(filters), [filters])
-  const { data } = useQuery(serviceUsers.queryKeys.list(filtersSerialized), serviceUsers.listVerbose)
+  const filtersData = useMemo(() => ModelUserFilter.toData(filters), [filters])
+  const { data } = useQuery(serviceUsers.queryKeys.list(filtersData), serviceUsers.listVerbose)
 
   return (
     <LayoutSection>

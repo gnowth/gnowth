@@ -7,7 +7,7 @@ export interface UserFilter {
   status: string
 }
 
-export interface UserFilterSerialized {
+export interface UserFilterData {
   email?: string
   page?: string
   pageSize?: string
@@ -17,15 +17,15 @@ export interface UserFilterSerialized {
 export class ModelUserFilter {
   // Filters
   static filterByEmail(email: string) {
-    return (user: UserFilterSerialized) => !email || !!user.email?.includes(email)
+    return (user: UserFilterData) => !email || !!user.email?.includes(email)
   }
 
   static filterByStatus(status: string) {
-    return (user: UserFilterSerialized) => !status || user.status === status
+    return (user: UserFilterData) => !status || user.status === status
   }
 
   // Transform
-  static fromUserFilterSerialized = (filter: UserFilterSerialized): UserFilter => {
+  static fromData = (filter: UserFilterData): UserFilter => {
     return {
       email: filter.email ?? '',
       page: filter.page ? Number(filter.page) : undefined,
@@ -34,15 +34,15 @@ export class ModelUserFilter {
     }
   }
 
-  static fromUserFilterSerializedPaginated = (filter: UserFilterSerialized): UserFilter => {
-    return ModelUserFilter.fromUserFilterSerialized({
+  static fromDataPaginated = (filter: UserFilterData): UserFilter => {
+    return ModelUserFilter.fromData({
       ...filter,
       page: filter?.page ?? '1',
       pageSize: filter?.pageSize ?? '10',
     })
   }
 
-  static toUserFilterSerialized = (filter: UserFilter): UserFilterSerialized => {
+  static toData = (filter: UserFilter): UserFilterData => {
     return {
       email: filter.email || undefined,
       page: filter.page?.toString(),

@@ -9,8 +9,8 @@ import type { QueryFunctionContext } from 'react-query'
 import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
-import type { User, UserSerialized } from './users.models'
-import type { UserFilterSerialized } from './user-filters.models'
+import type { User, UserData } from './users.models'
+import type { UserFilterData } from './user-filters.models'
 import { ModelUser } from './users.models'
 import { configs } from '../configs'
 
@@ -28,46 +28,46 @@ export class ServiceUsers {
 
   queryKeys = {
     detail: (id: string) => [{ entity: 'detail', id, scope: ServiceUsers.scope }],
-    list: (filters: UserFilterSerialized) => [{ entity: 'list', filters, scope: ServiceUsers.scope }],
+    list: (filters: UserFilterData) => [{ entity: 'list', filters, scope: ServiceUsers.scope }],
   }
 
   detail = (configs: QueryFunctionContext<ServiceQueryKeyDetail[]>): Promise<User> => {
     return this.axios
-      .get<Detail<UserSerialized>>(ServiceUsers.routes.users(configs.queryKey[0].id), {
+      .get<Detail<UserData>>(ServiceUsers.routes.users(configs.queryKey[0].id), {
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelUser.fromUserSerialized))
+      .then(ModelAxios.detailDeserializer(ModelUser.fromData))
   }
 
-  list = (configs: QueryFunctionContext<ServiceQueryKeyList<UserFilterSerialized>[]>): Promise<User[]> => {
+  list = (configs: QueryFunctionContext<ServiceQueryKeyList<UserFilterData>[]>): Promise<User[]> => {
     return this.axios
-      .get<List<UserSerialized>>(ServiceUsers.routes.users(), {
+      .get<List<UserData>>(ServiceUsers.routes.users(), {
         params: configs.queryKey[0].filters,
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listDeserializer(ModelUser.fromUserSerialized))
+      .then(ModelAxios.listDeserializer(ModelUser.fromData))
   }
 
   listVerbose = (
-    configs: QueryFunctionContext<ServiceQueryKeyList<UserFilterSerialized>[]>,
+    configs: QueryFunctionContext<ServiceQueryKeyList<UserFilterData>[]>,
   ): Promise<ListVerbose<User>> => {
     return this.axios
-      .get<List<UserSerialized>>(ServiceUsers.routes.users(), {
+      .get<List<UserData>>(ServiceUsers.routes.users(), {
         params: configs.queryKey[0].filters,
         signal: configs.signal,
       })
       .then(ModelAxios.toData)
-      .then(ModelAxios.listVerboseDeserializer(ModelUser.fromUserSerialized))
+      .then(ModelAxios.listVerboseDeserializer(ModelUser.fromData))
   }
 
   save = (user: User): Promise<User> => {
     const save = ModelUser.getIdServer(user) === undefined ? this.axios.post : this.axios.put
 
-    return save<Detail<UserSerialized>>(ServiceUsers.routes.users(user.id), ModelUser.toUserSerialized(user))
+    return save<Detail<UserData>>(ServiceUsers.routes.users(user.id), ModelUser.toData(user))
       .then(ModelAxios.toData)
-      .then(ModelAxios.detailDeserializer(ModelUser.fromUserSerialized))
+      .then(ModelAxios.detailDeserializer(ModelUser.fromData))
   }
 }
 

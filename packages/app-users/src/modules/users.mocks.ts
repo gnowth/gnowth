@@ -4,7 +4,7 @@ import { faker } from '@faker-js/faker/locale/en'
 import { operatorArrayFilterAnd } from '@gnowth/lib-react'
 import { Factory, Model, createServer } from 'miragejs'
 
-import type { UserSerialized } from './users'
+import type { UserData } from './users'
 import { SerializerRest } from './users.utils'
 import { configs } from '../configs'
 import { ModelUserFilter } from './user-filters.models'
@@ -14,7 +14,7 @@ export function mockUsers(configsMock: MockConfigs) {
     environment: configsMock.environment,
 
     factories: {
-      user: Factory.extend<UserSerialized>({
+      user: Factory.extend<UserData>({
         avatar: () => faker.internet.avatar(),
         email() {
           // DEBT(hack): dirty ts fix, miragejs typescript is poor
@@ -31,7 +31,7 @@ export function mockUsers(configsMock: MockConfigs) {
     },
 
     models: {
-      user: Model.extend<UserSerialized>({}),
+      user: Model.extend<UserData>({}),
     },
 
     routes() {

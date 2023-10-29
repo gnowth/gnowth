@@ -20,24 +20,24 @@ export interface ListVerbose<Type> {
   }
 }
 
-type Deserializer<Type, TypeSerialized> = (type: TypeSerialized) => Type
-type ListDeserializerReturn<Type, TypeSerialized> = (data: List<TypeSerialized>) => Type[]
-type ListVerboseDeserializerReturn<Type, TypeSerialized> = (data: List<TypeSerialized>) => ListVerbose<Type>
+type Deserializer<Type, TypeData> = (type: TypeData) => Type
+type ListDeserializerReturn<Type, TypeData> = (data: List<TypeData>) => Type[]
+type ListVerboseDeserializerReturn<Type, TypeData> = (data: List<TypeData>) => ListVerbose<Type>
 
 export class ModelAxios {
   static toData = <Data>(response: AxiosResponse<Data>): Data => {
     return response.data
   }
 
-  static detailDeserializer = <TypeSerialized, Type>(deserializer: (type: TypeSerialized) => Type) => {
-    return (data: Detail<TypeSerialized>) => {
-      return deserializer(data.data ?? ({} as TypeSerialized))
+  static detailDeserializer = <TypeData, Type>(deserializer: (type: TypeData) => Type) => {
+    return (data: Detail<TypeData>) => {
+      return deserializer(data.data ?? ({} as TypeData))
     }
   }
 
-  static listDeserializer = <Type, TypeSerialized>(
-    deserializer: Deserializer<Type, TypeSerialized>,
-  ): ListDeserializerReturn<Type, TypeSerialized> => {
+  static listDeserializer = <Type, TypeData>(
+    deserializer: Deserializer<Type, TypeData>,
+  ): ListDeserializerReturn<Type, TypeData> => {
     return (data) => {
       const list = Array.isArray(data.data) ? data.data : []
 
@@ -45,9 +45,9 @@ export class ModelAxios {
     }
   }
 
-  static listVerboseDeserializer = <TypeSerialized, Type>(
-    deserializer: Deserializer<Type, TypeSerialized>,
-  ): ListVerboseDeserializerReturn<Type, TypeSerialized> => {
+  static listVerboseDeserializer = <TypeData, Type>(
+    deserializer: Deserializer<Type, TypeData>,
+  ): ListVerboseDeserializerReturn<Type, TypeData> => {
     return (data) => {
       const list = Array.isArray(data.data) ? data.data : []
 

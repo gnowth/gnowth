@@ -23,7 +23,7 @@ const FormUserComponent: FunctionComponent = () => {
   return (
     <LayoutSection>
       <Formik
-        initialValues={userQuery.data ?? ModelUser.fromUserSerialized({})}
+        initialValues={userQuery.data ?? ModelUser.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
         <VStack alignItems="stretch" as={Form} spacing="5">

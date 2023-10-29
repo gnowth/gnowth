@@ -4,7 +4,7 @@ export interface GroupFilter {
   pageSize?: string
 }
 
-export interface GroupFilterSerialized {
+export interface GroupFilterData {
   name?: string
   page?: string
   pageSize?: string
