@@ -1,7 +1,8 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
 
 import MdChangelog from '../../CHANGELOG.md'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 const SectionChangelogComponent: FunctionComponent = () => {
   return (

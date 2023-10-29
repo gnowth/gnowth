@@ -1,4 +1,3 @@
-import { InputPagination, LayoutSection, withAugmented } from '@gnowth/app-core'
 import {
   Avatar,
   Button,
@@ -24,6 +23,9 @@ import { ModelApp } from '../models/model-app'
 import { ModelUser } from '../models/model-user'
 import { ModelUserFilter } from '../models/model-user-filter'
 import { serviceUsers } from '../services/service-users'
+import { LayoutSection } from './layout-section'
+import { InputPagination } from './input-pagination'
+import { withAugmented } from './with-augmented'
 
 export const stateUserFilter = atom({
   default: ModelUserFilter.fromUserFilterSerializedPaginated({}),

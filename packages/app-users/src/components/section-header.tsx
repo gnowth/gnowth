@@ -1,9 +1,12 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, NavLink, ViewProgressGlobal, withAugmented } from '@gnowth/app-core'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
+import { NavLink } from './nav-link'
+import { LayoutSection } from './layout-section'
+import { ViewProgressGlobal } from './view-progress-global'
+import { withAugmented } from './with-augmented'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {

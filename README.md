@@ -61,3 +61,4 @@ TODO:
 - theme => serializable
 - context => none serializable stuff
 - when using a boundary/suspense, it should always have a fallback unless we explicitly ask it not to
+- also lint .storybook folder

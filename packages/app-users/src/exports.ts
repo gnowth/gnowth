@@ -1,6 +1,8 @@
 export * from './components/layout-default'
+export * from './components/layout-section'
 export * from './components/section-footer'
 export * from './components/section-header'
+export * from './components/with-augmented'
 
 export * from './pages/page-generated-server'
 export * from './pages/page-changelog'

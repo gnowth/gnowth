@@ -1,12 +1,12 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent, Attributes } from 'react'
-import { withAugmented } from '@gnowth/app-core'
 import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
 import { ModelApp } from '../models/model-app'
 import packageJson from '../../package.json'
+import { withAugmented } from './with-augmented'
 
 type Props = ChakraProps & Attributes
 

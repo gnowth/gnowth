@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { ComponentType, FunctionComponent, Attributes, PropsWithChildren } from 'react'
-import { withAugmented } from '@gnowth/app-core'
+import { withAugmented } from '@gnowth/app-users'
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
@@ -11,7 +11,7 @@ import dynamic from 'next/dynamic'
 import { AppError } from '../components/app-error'
 import { AppHead } from '../components/app-head'
 import { AppLoading } from '../components/app-loading'
-import { SystemToasts } from '../components/system-toasts'
+import { SystemNotifications } from '../components/system-notifications'
 import { setup } from '../setup'
 
 const configurations = setup()
@@ -48,7 +48,7 @@ const App: FunctionComponent<Props> = (props) => {
             <AppHead />
           </Head>
 
-          <SystemToasts />
+          <SystemNotifications />
 
           <Wrapper>{page}</Wrapper>
         </ChakraProvider>

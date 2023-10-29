@@ -1,8 +1,9 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSection, withAugmented } from '@gnowth/app-core'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 const FormGroupFilterComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)

@@ -4,7 +4,7 @@ import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 
 import { setup } from '../setup'
-import { SystemToasts } from './system-toasts'
+import { SystemNotifications } from './system-notifications'
 
 type Props = {
   children: ReactNode
@@ -19,7 +19,7 @@ export const AppLayout: FunctionComponent<Props> = (props) => {
         <RecoilRoot>
           <QueryClientProvider client={configurations.queryClient}>
             <ChakraProvider>
-              <SystemToasts />
+              <SystemNotifications />
 
               {props.children}
             </ChakraProvider>

@@ -1,9 +1,9 @@
 import type { FunctionComponent, PropsWithChildren } from 'react'
-import { ViewSpacer } from '@gnowth/app-core'
 import { VStack } from '@chakra-ui/react'
 
 import { SectionFooter } from './section-footer'
 import { SectionHeader } from './section-header'
+import { ViewSpacer } from './view-spacer'
 
 export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => {
   return (
