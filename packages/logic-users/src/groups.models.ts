@@ -1,4 +1,4 @@
-import type { ErrorType, ServiceEvent } from '@gnowth/logic-core'
+import type { ErrorData, ServiceEvent } from '@gnowth/logic-core'
 import { guardNullish } from '@gnowth/lib-utils'
 import { v4 as uuid } from 'uuid'
 
@@ -35,11 +35,11 @@ export class ModelGroup {
     return group
   }
 
-  #dataValidate(group: GroupData): ErrorType[] {
+  #dataValidate(group: GroupData): ErrorData[] {
     return [this.#dataValidateId(group.id), this.#dataValidateName(group.name)].flat()
   }
 
-  #dataValidateId(id?: string): ErrorType[] {
+  #dataValidateId(id?: string): ErrorData[] {
     return guardNullish(id)
       ? [
           {
@@ -50,7 +50,7 @@ export class ModelGroup {
       : []
   }
 
-  #dataValidateName(name?: string): ErrorType[] {
+  #dataValidateName(name?: string): ErrorData[] {
     return !name
       ? [
           {

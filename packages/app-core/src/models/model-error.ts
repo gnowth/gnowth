@@ -2,14 +2,14 @@ import type { AxiosError } from 'axios'
 import { v4 as uuid } from 'uuid'
 import { isAxiosError } from 'axios'
 
-export interface ErrorType {
+export interface ErrorData {
   idLocal: string
   message: string
   title: string
 }
 
 export class ModelError {
-  static fromError = (error: Error): ErrorType => {
+  static fromError = (error: Error): ErrorData => {
     return {
       idLocal: uuid(),
       message: error.message,
@@ -17,7 +17,7 @@ export class ModelError {
     }
   }
 
-  static fromErrorUnknown = (error: unknown): ErrorType => {
+  static fromErrorUnknown = (error: unknown): ErrorData => {
     if (isAxiosError(error)) return this.fromErrorAxios(error)
 
     if (error instanceof Error) return this.fromError(error)
@@ -26,7 +26,7 @@ export class ModelError {
   }
 
   // DEBT: to implement properly
-  static fromErrorAxios = (error: AxiosError): ErrorType => {
+  static fromErrorAxios = (error: AxiosError): ErrorData => {
     return {
       idLocal: uuid(),
       message: error.message,
@@ -39,19 +39,19 @@ export class ModelError {
     return !isAxiosError(error) || (error.response?.status ?? 0) >= 500
   }
 
-  static toId = (error: ErrorType) => {
+  static toId = (error: ErrorData) => {
     return error.idLocal
   }
 
-  static toString = (error: ErrorType) => {
+  static toString = (error: ErrorData) => {
     return error.message
   }
 
-  static toTitle = (error: ErrorType) => {
+  static toTitle = (error: ErrorData) => {
     return error.title
   }
 
-  static toToast = (error: ErrorType) => {
+  static toToast = (error: ErrorData) => {
     return {
       description: ModelError.toString(error),
       isClosable: true,

@@ -1,6 +1,7 @@
 import type { Event } from './events'
 
-export type ErrorType = {
+// TODO: use ErrorCustom within App and only convert when sending to server
+export type ErrorData = {
   code: string
   message: string
   method?: string
@@ -11,5 +12,5 @@ export type ErrorType = {
 export interface EventError extends Event {
   target: 'serviceError'
   type: 'error'
-  payload: { errors: ErrorType[] }
+  payload: { errors: ErrorData[] }
 }

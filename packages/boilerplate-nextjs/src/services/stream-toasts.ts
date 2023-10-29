@@ -1,4 +1,4 @@
-import type { ErrorType } from '@gnowth/app-core'
+import type { ErrorData } from '@gnowth/app-core'
 import { ModelError } from '@gnowth/app-core'
 import { Subject } from 'rxjs'
 
@@ -15,7 +15,7 @@ interface Toast {
 export class StreamToasts {
   stream = new Subject<Toast>()
 
-  pushError = (error: ErrorType) => {
+  pushError = (error: ErrorData) => {
     return this.stream.next(ModelError.toToast(error))
   }
 

@@ -1,5 +1,5 @@
 import type { UtilOptional } from '@gnowth/lib-utils'
-import type { ErrorType, ServiceEvent, ServiceFaker } from '@gnowth/logic-core'
+import type { ErrorData, ServiceEvent, ServiceFaker } from '@gnowth/logic-core'
 import { v4 as uuid } from 'uuid'
 
 import type { User, UserData } from './users.types'
@@ -97,7 +97,7 @@ export class ModelUser {
     return this.validate(user).length === 0
   }
 
-  validate(user: User): ErrorType[] {
+  validate(user: User): ErrorData[] {
     return user ? [] : []
   }
 }
