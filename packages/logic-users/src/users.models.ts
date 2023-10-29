@@ -1,9 +1,7 @@
 import type { UtilOptional } from '@gnowth/lib-utils'
-import type { ServiceFaker } from '@gnowth/logic-core'
+import type { ErrorType, ServiceEvent, ServiceFaker } from '@gnowth/logic-core'
 import { v4 as uuid } from 'uuid'
 
-import type { ErrorType } from './errors'
-import type { ServiceEvent } from './events'
 import type { User, UserData } from './users.types'
 
 type Parameters = {

@@ -6,7 +6,7 @@ import {
   predicateSortFn,
 } from '@gnowth/lib-utils'
 
-import type { ErrorType, ModelError } from '../errors/errors'
+import type { ErrorType } from '../errors'
 import type { ServiceFaker } from '../fakers/fakers.services'
 import type { FilterPredicate, SortDirection, SortKeyType, SortPredicate, SortType } from '../filters/filters'
 import type { ServiceLogger } from '../loggers/loggers.services'
@@ -18,7 +18,6 @@ export type UserStatus = (typeof USER_STATUSES)[number]
 export type UserSortKey = SortType<keyof InstanceType<typeof ModelUserFilters>['dictionarySort']>
 
 interface Dependencies {
-  modelError: ModelError
   serviceFaker?: ServiceFaker
   serviceFlag?: ServiceFlag
   serviceLogger?: ServiceLogger
@@ -54,15 +53,6 @@ export class ModelUser {
     return userGenerated
   }
 
-  // TODO: decorator to check for dependency
-  // @dependencyCheck('serviceFaker', 'unable to create a valid User')
-  // this.dependencies.serviceLogger?.bugIfErrors({
-  //   errors: this.dependencies.serviceFaker
-  //     ? []
-  //     : [this.dependencies.modelError.generateForInternal({ message: 'serviceFaker is not available' })],
-  //   method: 'generateFake',
-  //   message: 'unable to create a valid User',
-  // })
   generateFake(user?: Partial<User>): User {
     const id = this.dependencies.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
     const nameFirst =

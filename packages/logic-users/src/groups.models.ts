@@ -1,8 +1,7 @@
+import type { ErrorType, ServiceEvent } from '@gnowth/logic-core'
 import { guardNullish } from '@gnowth/lib-utils'
 import { v4 as uuid } from 'uuid'
 
-import type { ErrorType } from './errors'
-import type { ServiceEvent } from './events'
 import type { Group, GroupData } from './groups'
 
 type Parameters = { serviceEvent?: ServiceEvent }
