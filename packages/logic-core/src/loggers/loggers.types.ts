@@ -1,3 +1,5 @@
+import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import type { ErrorType } from '../errors/errors'
 import type { LogLevel } from './loggers.utils'
 
@@ -7,7 +9,7 @@ export type Log = {
   errors: ErrorType[]
   message: string
   method: string
-  payload?: unknown
+  payload?: ObjectLiteral
 }
 
 export interface OptionsLoggerFn {

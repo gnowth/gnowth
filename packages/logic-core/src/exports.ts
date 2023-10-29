@@ -1,6 +1,6 @@
 export type { Media } from './assets/assets'
 export type { Ingredient, Recipe } from './recipes/recipes'
-export type { SortDirection } from './filters/filters'
+export type { SortDirection, SortType } from './filters/filters'
 export { ModelRoute } from './routes/routes.models'
 
 export * from './errors/errors'
