@@ -1,5 +1,4 @@
 import { SortType } from '@gnowth/logic-core'
-import type { UserStatus } from './users'
 
 export type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
 export type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
@@ -12,7 +11,7 @@ export type UserFilter = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }
 
 export type UserFilterData = {
@@ -23,7 +22,7 @@ export type UserFilterData = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }
 
 export type UserFilterParams = {
@@ -34,5 +33,5 @@ export type UserFilterParams = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }

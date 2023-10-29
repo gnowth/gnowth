@@ -18,7 +18,7 @@ const routes = {
   [TokenApplication.tasks]: () => `/${TokenApplication.tasks}/`,
 }
 
-class AppModelEnvironmentMono extends AppModelEnvironment {
+export class AppModelEnvironmentMono extends AppModelEnvironment {
   routes = routes
 
   initializeApplications() {
@@ -42,5 +42,3 @@ class AppModelEnvironmentMono extends AppModelEnvironment {
     }
   }
 }
-
-export const appModelEnvironment = new AppModelEnvironmentMono()

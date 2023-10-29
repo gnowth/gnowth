@@ -1,13 +1,12 @@
+import type { UserData } from '@gnowth/logic-users'
 import type { AnyResponse } from 'miragejs/-types'
 import { faker } from '@faker-js/faker/locale/en'
-import { operatorArrayFilterAnd } from '@gnowth/lib-react'
 import { Factory, Model, createServer } from 'miragejs'
 
 import type { MockConfigs, ServerEx } from './mocks'
-import type { UserData } from './users'
 import { SerializerRest } from './users.utils'
 import { configs } from '../configs'
-import { ModelUserFilter } from './user-filters.models'
+import { dependencies } from '../dependencies'
 
 export function mockUsers(configsMock: MockConfigs) {
   return createServer({
@@ -48,10 +47,7 @@ export function mockUsers(configsMock: MockConfigs) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const users = schema.users.where(
-          operatorArrayFilterAnd(
-            ModelUserFilter.filterByEmail(request.queryParams?.email),
-            ModelUserFilter.filterByStatus(request.queryParams?.status),
-          ),
+          dependencies.modelUserFilter.filter({ ...request.queryParams, sortBy: [] }),
         )
 
         return this.serialize?.(users, 'application') as AnyResponse

@@ -56,7 +56,7 @@ export class ServiceUsers {
     }
   }
 
-  detail(parameters: QueryParametersDetail): Promise<QueryDetail<User>> {
+  detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
     return this.#serviceQuery.detail({
       route: this.routes.users(parameters.queryKey.at(0)?.id),
       signal: parameters.signal,
@@ -64,7 +64,7 @@ export class ServiceUsers {
     })
   }
 
-  list(parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> {
+  list = (parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> => {
     return this.#serviceQuery.list({
       params: parameters.queryKey.at(0)?.params,
       route: this.routes.users(),
@@ -73,11 +73,11 @@ export class ServiceUsers {
     })
   }
 
-  save(user: User, parameters: QueryParametersDetail): Promise<QueryDetail<User>> {
+  // TODO: check how to cancel
+  save = (user: User): Promise<QueryDetail<User>> => {
     return this.#serviceQuery.save(this.#modelUser.toData(user), {
       method: this.#modelUser.getId(user) ? 'post' : 'put',
       route: this.routes.users(user.id),
-      signal: parameters.signal,
       transform: (data: UserData) => this.#modelUser.fromData(data),
     })
   }

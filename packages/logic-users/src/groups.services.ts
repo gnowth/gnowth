@@ -56,7 +56,7 @@ export class ServiceGroups {
     }
   }
 
-  detail(parameters: QueryParametersDetail): Promise<QueryDetail<Group>> {
+  detail = (parameters: QueryParametersDetail): Promise<QueryDetail<Group>> => {
     return this.#serviceQuery.detail({
       route: this.routes.groups(parameters.queryKey.at(0)?.id),
       signal: parameters.signal,
@@ -64,7 +64,7 @@ export class ServiceGroups {
     })
   }
 
-  list(parameters: QueryParametersList<GroupFilterParams>): Promise<QueryList<Group>> {
+  list = (parameters: QueryParametersList<GroupFilterParams>): Promise<QueryList<Group>> => {
     return this.#serviceQuery.list({
       params: parameters.queryKey.at(0)?.params,
       route: this.routes.groups(),
@@ -73,11 +73,10 @@ export class ServiceGroups {
     })
   }
 
-  save(group: Group, parameters: QueryParametersDetail): Promise<QueryDetail<Group>> {
+  save = (group: Group): Promise<QueryDetail<Group>> => {
     return this.#serviceQuery.save(this.#modelGroup.toData(group), {
       method: this.#modelGroup.getId(group) ? 'post' : 'put',
       route: this.routes.groups(group.id),
-      signal: parameters.signal,
       transform: (data: GroupData) => this.#modelGroup.fromData(data),
     })
   }

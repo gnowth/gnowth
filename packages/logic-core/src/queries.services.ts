@@ -44,7 +44,10 @@ export class ServiceQuery {
 
     return {
       data: response.data.data.map(transform),
-      meta: response.data.meta,
+      meta: {
+        count: response.data.meta?.count ?? response.data.data.length,
+        pages: response.data.meta?.pages ?? 1,
+      },
     }
   }
 
