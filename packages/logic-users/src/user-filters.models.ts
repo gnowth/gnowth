@@ -46,7 +46,7 @@ export class ModelUserFilter {
       page: data.page,
       pageSize: data.pageSize,
       sortBy: data.sortBy ?? [],
-      status: data.status ?? 'deactivated',
+      status: data.status ?? '',
     }
   }
 
@@ -94,7 +94,7 @@ export class ModelUserFilter {
     return !nameLast ? this.#filterNone() : (user) => user.nameLast === nameLast
   }
 
-  #filterByStatus(status?: UserStatus): PredicateArrayFilter<User> {
+  #filterByStatus(status?: string): PredicateArrayFilter<User> {
     return !status ? this.#filterNone() : (user) => user.status === status
   }
 

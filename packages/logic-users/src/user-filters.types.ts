@@ -12,7 +12,7 @@ export type UserFilter = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }
 
 export type UserFilterData = {
@@ -23,7 +23,7 @@ export type UserFilterData = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }
 
 export type UserFilterParams = {
@@ -34,5 +34,5 @@ export type UserFilterParams = {
   pageSize?: number
   search?: string
   sortBy: SortType<UserSortKey>[]
-  status?: UserStatus
+  status?: string
 }

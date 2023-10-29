@@ -46,7 +46,9 @@ export function mockUsers(configsMock: MockConfigs) {
         // DEBT(hack): dirty ts fix
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const users = schema.users.where(dependencies.modelUserFilter({ ...request.queryParams, sortBy: [] }))
+        const users = schema.users.where(
+          dependencies.modelUserFilter.filter({ ...request.queryParams, sortBy: [] }),
+        )
 
         return this.serialize?.(users, 'application') as AnyResponse
       })
