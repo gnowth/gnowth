@@ -1,6 +1,6 @@
 import { AppModelApplicationAuth } from '@gnowth/app-auth'
 import { AppModelApplicationPages } from '@gnowth/app-pages'
-import { AppModelApplicationRecipes } from '@gnowth/app-recipe'
+import { AppModelApplicationRecipes } from '@gnowth/app-recipes'
 import { AppModelApplicationTasks } from '@gnowth/app-tasks'
 import { AppModelEnvironment } from '@gnowth/lib-react'
 

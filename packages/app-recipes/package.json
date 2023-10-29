@@ -1,6 +1,6 @@
 {
   "author": "Thierry Wong",
-  "description": "CMS tina",
+  "description": "Recipes app",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
