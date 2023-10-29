@@ -33,18 +33,10 @@
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "inflected": "2.1.0",
-    "miragejs": "0.1.47"
+    "@gnowth/typescript-config": "0.0.0"
   },
   "peerDependencies": {
-    "next": "^13.0.0",
     "react": "^18.0.0"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    }
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

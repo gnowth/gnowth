@@ -1,7 +1,5 @@
 export * from './components/input-pagination'
 export * from './components/layout-section'
-export * from './components/nav-link'
 export * from './components/view-progress-global'
 export * from './components/view-spacer'
-export * from './utils/serializer-rest'
 export * from './utils/with-augmented'
