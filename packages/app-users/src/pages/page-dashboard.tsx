@@ -1,9 +1,9 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated } from '@gnowth/app-core'
 import { Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
+import { LayoutSectionDeprecated } from '../exports'
 
 export const PageDashboard: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)

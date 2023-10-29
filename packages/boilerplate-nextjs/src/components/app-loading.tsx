@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated } from '@gnowth/app-core'
+import { LayoutSectionDeprecated } from '@gnowth/app-users'
 import { Spinner } from '@chakra-ui/react'
 
 export const AppLoading: FunctionComponent = () => {

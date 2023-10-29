@@ -1,5 +1,4 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -9,6 +8,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { ModelApp } from '../models/model-app'
 import { ModelUser } from '../models/model-user'
 import { serviceUsers } from '../services/service-users'
+import { LayoutSectionDeprecated } from './layout-section-deprecated'
+import { withAugmentedDeprecated } from './with-augmented-deprecated'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {

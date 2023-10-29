@@ -1,8 +1,8 @@
 import type { HigherComponent } from '@gnowth/lib-react'
 import type { ComponentProps, ComponentType } from 'react'
 
-import { SystemBoundaryDeprecated } from '../components/system-boundary-deprecated'
-import { SystemSuspenseDeprecated } from '../components/system-suspense-deprecated'
+import { SystemBoundaryDeprecated } from './system-boundary-deprecated'
+import { SystemSuspenseDeprecated } from './system-suspense-deprecated'
 
 type PropsAugmented = {
   ErrorComponent?: ComponentProps<typeof SystemBoundaryDeprecated>['FallbackComponent']

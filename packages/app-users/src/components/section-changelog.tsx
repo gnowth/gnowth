@@ -1,7 +1,8 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 
 import MdChangelog from '../../CHANGELOG.md'
+import { LayoutSectionDeprecated } from './layout-section-deprecated'
+import { withAugmentedDeprecated } from './with-augmented-deprecated'
 
 const SectionChangelogComponent: FunctionComponent = () => {
   return (

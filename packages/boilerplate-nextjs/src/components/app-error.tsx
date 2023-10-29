@@ -1,5 +1,5 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated } from '@gnowth/app-core'
+import { LayoutSectionDeprecated } from '@gnowth/app-users'
 import { Button, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { useQueryErrorResetBoundary } from 'react-query'

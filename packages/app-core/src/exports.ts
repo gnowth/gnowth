@@ -1,5 +1,0 @@
-export * from './components/input-pagination-deprecated'
-export * from './components/layout-section-deprecated'
-export * from './components/view-progress-global-deprecated'
-export * from './components/view-spacer-deprecated'
-export * from './utils/with-augmented-deprecated'

@@ -1,8 +1,9 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
+import { LayoutSectionDeprecated } from './layout-section-deprecated'
+import { withAugmentedDeprecated } from './with-augmented-deprecated'
 
 const FormGroupComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)

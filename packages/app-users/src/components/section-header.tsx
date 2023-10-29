@@ -1,14 +1,12 @@
 import type { FunctionComponent } from 'react'
-import {
-  LayoutSectionDeprecated,
-  ViewProgressGlobalDeprecated,
-  withAugmentedDeprecated,
-} from '@gnowth/app-core'
 import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
 import { ModelApp } from '../models/model-app'
 import { NavLink } from './nav-link'
+import { LayoutSectionDeprecated } from './layout-section-deprecated'
+import { ViewProgressGlobalDeprecated } from './view-progress-global-deprecated'
+import { withAugmentedDeprecated } from './with-augmented-deprecated'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {

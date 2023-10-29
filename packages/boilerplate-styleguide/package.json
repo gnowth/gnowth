@@ -21,7 +21,6 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/app-core": "0.0.0",
     "@gnowth/app-users": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-core": "0.0.0",

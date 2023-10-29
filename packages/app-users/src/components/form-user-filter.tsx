@@ -1,5 +1,4 @@
 import type { FunctionComponent } from 'react'
-import { LayoutSectionDeprecated, withAugmentedDeprecated } from '@gnowth/app-core'
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
 import { Formik, Field, Form } from 'formik'
 import { useTranslation } from 'react-i18next'
@@ -7,6 +6,8 @@ import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
 import { ModelApp } from '../models/model-app'
+import { LayoutSectionDeprecated } from './layout-section-deprecated'
+import { withAugmentedDeprecated } from './with-augmented-deprecated'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {

@@ -1,4 +1,4 @@
-import { ViewSpacerDeprecated } from '@gnowth/app-core'
+import { ViewSpacerDeprecated } from '@gnowth/app-users'
 
 import { FormUser } from './components/form-user'
 import { FormUserFilter } from './components/form-user-filter'
