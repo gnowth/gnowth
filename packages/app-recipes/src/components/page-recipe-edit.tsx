@@ -11,8 +11,8 @@ import {
   useAppApplication,
 } from '@gnowth/lib-react'
 
-import type { Recipe } from '../types'
-import type { AppModelApplicationRecipes } from '../models/app-model-application-recipes'
+import type { Recipe } from '../modules/recipes'
+import type { AppModelApplicationRecipes } from '../modules/application-recipes'
 
 interface Props {
   resources: {

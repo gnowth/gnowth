@@ -1,7 +1,6 @@
-export type { Media } from './assets'
-export type { Ingredient, Recipe } from './recipes'
 export type { SortDirection, SortType, SortKeyType } from './filters'
 
+export * from './assets'
 export * from './authentications'
 export * from './errors'
 export * from './logs'

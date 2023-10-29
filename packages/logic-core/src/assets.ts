@@ -1,3 +1,1 @@
-export type Media = {
-  name: string
-}
+export * from './assets.types'

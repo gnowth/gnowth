@@ -10,7 +10,7 @@ import {
   UITypography,
 } from '@gnowth/lib-react'
 
-import type { Ingredient } from '../types'
+import type { Ingredient } from '../modules/ingredients'
 
 interface Props {
   slot: string
