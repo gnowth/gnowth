@@ -1,4 +1,4 @@
-import { setup } from '@gnowth/app-core'
+import { setup } from './setup'
 
 const configurations = setup()
 

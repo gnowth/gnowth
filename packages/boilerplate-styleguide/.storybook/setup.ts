@@ -1,14 +1,18 @@
 import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
+import { appSetupCompose } from '@gnowth/lib-application'
+import { ModelError, StreamErrors } from '@gnowth/logic-core'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import { createInstance } from 'i18next'
-import { appSetupCompose } from '@gnowth/lib-application'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-// import makeServer from './services/make-server'
-import { dependencies } from './dependencies'
+const modelError = new ModelError()
+const dependencies = {
+  modelError,
+  streamErrors: new StreamErrors({ dependencies: { modelError } }),
+}
 
 type ConfigurationI18n = { i18n: i18n }
 const setupI18n: AppSetup<ConfigurationI18n> = () => {
@@ -25,18 +29,6 @@ const setupI18n: AppSetup<ConfigurationI18n> = () => {
     .catch(dependencies.streamErrors.pushErrorUnknown)
 
   return { i18n }
-}
-
-type ConfigurationMockServer = { mockServer: undefined }
-const setupMockServer: AppSetup<ConfigurationMockServer> = () => {
-  // const server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
-  // Note: uncomment code below to remove miragejs in production mode
-  // let server
-  // if (process.env.NODE_ENV === 'development') {
-  //   server = makeServer({ environment: process.env.NODE_ENV ?? 'development' })
-  // }
-  // return server
-  return { mockServer: undefined }
 }
 
 type ConfigurationReactQuery = { queryClient: QueryClient }
