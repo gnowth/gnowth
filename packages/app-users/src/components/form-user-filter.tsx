@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
-import { ModelApp } from '../models/model-app'
+import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
 

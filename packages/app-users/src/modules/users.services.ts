@@ -9,9 +9,9 @@ import type { QueryFunctionContext } from 'react-query'
 import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
-import type { User, UserSerialized } from '../models/model-user'
-import type { UserFilterSerialized } from '../models/model-user-filter'
-import { ModelUser } from '../models/model-user'
+import type { User, UserSerialized } from './users.models'
+import type { UserFilterSerialized } from './user-filters.models'
+import { ModelUser } from './users.models'
 import { configs } from '../configs'
 
 export class ServiceUsers {

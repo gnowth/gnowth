@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react'
 import { Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { ModelApp } from '../models/model-app'
+import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from '../exports'
 
 export const PageReports: FunctionComponent = () => {

@@ -9,9 +9,9 @@ import type { QueryFunctionContext } from 'react-query'
 import { ModelAxios } from '@gnowth/logic-core'
 import axios from 'axios'
 
-import type { Group, GroupSerialized } from '../models/model-group'
-import type { GroupFilterSerialized } from '../models/model-group-filter'
-import { ModelGroup } from '../models/model-group'
+import type { Group, GroupSerialized } from './groups.models'
+import type { GroupFilterSerialized } from './group-filters.models'
+import { ModelGroup } from './groups.models'
 import { configs } from '../configs'
 
 export class ServiceGroups {

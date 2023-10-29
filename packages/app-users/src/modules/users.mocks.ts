@@ -4,10 +4,10 @@ import { faker } from '@faker-js/faker/locale/en'
 import { operatorArrayFilterAnd } from '@gnowth/lib-react'
 import { Factory, Model, createServer } from 'miragejs'
 
-import type { UserSerialized } from '../models/model-user'
-import { SerializerRest } from './serializer-rest'
+import type { UserSerialized } from './users'
+import { SerializerRest } from './users.utils'
 import { configs } from '../configs'
-import { ModelUserFilter } from '../models/model-user-filter'
+import { ModelUserFilter } from './user-filters.models'
 
 export function mockUsers(configsMock: MockConfigs) {
   return createServer({
