@@ -11,7 +11,7 @@ export interface User {
   status: 'active' | 'deactivated'
 }
 
-export interface UserSerialized {
+export interface UserData {
   avatar?: string
   email?: string
   id?: string
@@ -38,7 +38,7 @@ export class ModelUser {
   // Filter
 
   // Transform
-  static fromUserSerialized = (user: UserSerialized): User => {
+  static fromData = (user: UserData): User => {
     return {
       avatar: user.avatar,
       email: user.email ?? '',
@@ -55,7 +55,7 @@ export class ModelUser {
     return `${user.nameLast}, ${user.nameFirst}`
   }
 
-  static toUserSerialized = (user: User): UserSerialized => {
+  static toData = (user: User): UserData => {
     return user
   }
 }

@@ -2,9 +2,9 @@ import type { AppModelApplication } from '@gnowth/lib-react'
 import type { FunctionComponent } from 'react'
 import { AppApplication, AppPage, AppPageNotFound } from '@gnowth/lib-react'
 
+import { TokenPage } from './application-auth.tokens'
 import { PageLogin } from './pages/page-login'
 import { PageSignup } from './pages/page-signup'
-import { TokenPage } from './models/app-model-application-auth'
 
 interface Props {
   application?: AppModelApplication | string

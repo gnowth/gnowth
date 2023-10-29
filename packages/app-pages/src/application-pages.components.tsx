@@ -11,7 +11,7 @@ import { PageNotFound } from './pages/page-not-found'
 import { PageNotPermitted } from './pages/page-not-permitted'
 import { PagePrivacy } from './pages/page-privacy'
 import { PageTermsAndConditions } from './pages/page-terms-and-conditions'
-import { TokenPage } from './app-model-application-pages'
+import { TokenPage } from './application-pages.models'
 
 interface Props {
   application?: AppModelApplication | string

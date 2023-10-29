@@ -1,11 +1,16 @@
-import { AppModelApplication } from '@gnowth/lib-react'
+import { AppModelApplication, Model } from '@gnowth/lib-react'
 
-import { ModelUser } from './model-user'
+import { TokenPage } from './application-auth.tokens'
 
-export enum TokenPage {
-  signup = 'signup',
-  login = 'login',
-  root = 'root',
+interface User {
+  nameFirst: string
+  nameLast: string
+  uuid: string
+}
+
+// TODO: remove model user
+class ModelUser<Value extends User = User> extends Model<Value> {
+  modelName = 'user'
 }
 
 export class AppModelApplicationAuth extends AppModelApplication {

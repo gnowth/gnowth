@@ -1,5 +1,4 @@
 export * from './assets'
-export * from './axios'
 export * from './authentications'
 export * from './configs'
 export * from './errors'
@@ -12,5 +11,3 @@ export * from './loggers'
 export * from './notifications'
 export * from './queries'
 export * from './routes'
-
-export * from './others-to-deprecate'

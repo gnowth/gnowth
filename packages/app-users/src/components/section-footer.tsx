@@ -4,7 +4,7 @@ import { Box, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
-import { ModelApp } from '../models/model-app'
+import { ModelApp } from '../modules/app.models'
 import packageJson from '../../package.json'
 import { withAugmented } from './with-augmented'
 

@@ -19,16 +19,15 @@ import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
 
-import { ModelApp } from '../models/model-app'
-import { ModelUser } from '../models/model-user'
-import { ModelUserFilter } from '../models/model-user-filter'
-import { serviceUsers } from '../services/service-users'
+import { ModelApp } from '../modules/app.models'
+import { ModelUser, serviceUsers } from '../modules/users'
+import { ModelUserFilter } from '../modules/user-filters.models'
 import { LayoutSection } from './layout-section'
 import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
 
 export const stateUserFilter = atom({
-  default: ModelUserFilter.fromUserFilterSerializedPaginated({}),
+  default: ModelUserFilter.fromDataPaginated({}),
   key: 'usersFilter',
 })
 
@@ -39,8 +38,8 @@ export const stateUserFilter = atom({
 const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(ModelApp.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  const filtersSerialized = useMemo(() => ModelUserFilter.toUserFilterSerialized(filters), [filters])
-  const { data } = useQuery(serviceUsers.queryKeys.list(filtersSerialized), serviceUsers.listVerbose)
+  const filtersData = useMemo(() => ModelUserFilter.toData(filters), [filters])
+  const { data } = useQuery(serviceUsers.queryKeys.list(filtersData), serviceUsers.listVerbose)
 
   return (
     <LayoutSection>

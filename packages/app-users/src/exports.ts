@@ -14,6 +14,6 @@ export * from './pages/page-reports'
 export * from './pages/page-user'
 export * from './pages/page-users'
 
-export * from './services/mock-users'
+export * from './modules/users.mocks'
 
 export { createConfigs } from './configs'

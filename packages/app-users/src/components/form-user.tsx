@@ -5,9 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 
-import { ModelApp } from '../models/model-app'
-import { ModelUser } from '../models/model-user'
-import { serviceUsers } from '../services/service-users'
+import { ModelApp } from '../modules/app.models'
+import { ModelUser, serviceUsers } from '../modules/users'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
 
@@ -24,7 +23,7 @@ const FormUserComponent: FunctionComponent = () => {
   return (
     <LayoutSection>
       <Formik
-        initialValues={userQuery.data ?? ModelUser.fromUserSerialized({})}
+        initialValues={userQuery.data ?? ModelUser.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
         <VStack alignItems="stretch" as={Form} spacing="5">

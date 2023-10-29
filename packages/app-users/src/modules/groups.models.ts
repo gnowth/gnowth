@@ -8,7 +8,7 @@ export interface Group {
   role: string
 }
 
-export interface GroupSerialized {
+export interface GroupData {
   avatar?: string
   id?: string
   name?: string
@@ -17,7 +17,7 @@ export interface GroupSerialized {
 
 export class ModelGroup {
   // Transform
-  static fromGroupSerialized = (group: GroupSerialized): Group => {
+  static fromData = (group: GroupData): Group => {
     return {
       avatar: group.avatar,
       id: group.id,
@@ -27,7 +27,7 @@ export class ModelGroup {
     }
   }
 
-  static toGroupSerialized = (group: Group): GroupSerialized => {
+  static toData = (group: Group): GroupData => {
     return group
   }
 }

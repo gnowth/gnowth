@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { ModelApp } from '../models/model-app'
+import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
 
