@@ -13,7 +13,7 @@ import { setup } from './setup'
 import { theme } from './theme'
 
 const ApplicationRecipes = lazy(() =>
-  import('@gnowth/app-recipe').then((module) => ({ default: module.ApplicationRecipes })),
+  import('@gnowth/app-recipes').then((module) => ({ default: module.ApplicationRecipes })),
 )
 const ApplicationTasks = lazy(() =>
   import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),

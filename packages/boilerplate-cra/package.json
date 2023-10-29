@@ -23,7 +23,7 @@
   "dependencies": {
     "@gnowth/app-auth": "0.0.0",
     "@gnowth/app-pages": "0.0.0",
-    "@gnowth/app-recipe": "0.0.0",
+    "@gnowth/app-recipes": "0.0.0",
     "@gnowth/app-tasks": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/theme-standard": "0.0.0",
