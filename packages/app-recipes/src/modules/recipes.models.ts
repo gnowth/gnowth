@@ -4,7 +4,9 @@ import type { Recipe } from './recipes.types'
 import { ModelIngredient } from './ingredients'
 
 interface Configs {
-  user: Model
+  dependencies: {
+    modelUser: Model
+  }
 }
 
 // TODO set as token
@@ -29,7 +31,7 @@ export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Con
 
   schema = {
     createdBy: new Fields.FieldModel({
-      model: this.configs.user,
+      model: this.dependencies.modelUser,
     }),
     description: new Fields.FieldText(),
     designation: new Fields.FieldText(),

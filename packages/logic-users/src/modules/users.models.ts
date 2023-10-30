@@ -1,5 +1,6 @@
 import type { UtilOptional } from '@gnowth/lib-utils'
 import type { ErrorData, ServiceEvent, ServiceFaker } from '@gnowth/logic-core'
+import { Model } from '@gnowth/lib-model'
 import { v4 as uuid } from 'uuid'
 
 import type { User, UserData } from './users.types'
@@ -9,7 +10,7 @@ type Parameters = {
   serviceFaker?: ServiceFaker
 }
 
-export class ModelUser {
+export class ModelUser extends Model<User> {
   getId(user: User) {
     return user.id
   }

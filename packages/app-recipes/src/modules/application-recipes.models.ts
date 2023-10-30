@@ -40,7 +40,7 @@ export enum TokenPage {
 export class AppModelApplicationRecipes extends AppModelApplication<Configs> {
   models = {
     ingredient: new ModelIngredient({}),
-    recipe: new ModelRecipe({ user: this.configs.user }),
+    recipe: new ModelRecipe({ dependencies: { modelUser: this.configs.user } }),
   }
 
   permissions = {

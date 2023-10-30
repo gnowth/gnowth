@@ -1,5 +1,6 @@
 import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gnowth/lib-utils'
 import type { SortDirection, SortKeyType } from '@gnowth/logic-core'
+import { Model } from '@gnowth/lib-model'
 import {
   objectToKeys,
   operatorArrayFilterAnd,
@@ -17,7 +18,7 @@ import type {
   UserSortKey,
 } from './user-filters.types'
 
-export class ModelUserFilter {
+export class ModelUserFilter extends Model<UserFilter> {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
 
   filter(filter: UserFilter): PredicateArrayFilter<User> {

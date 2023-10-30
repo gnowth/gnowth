@@ -3,6 +3,7 @@ import { AppModelApplicationPages } from '@gnowth/app-pages'
 import { AppModelApplicationRecipes } from '@gnowth/app-recipes'
 import { AppModelApplicationTasks } from '@gnowth/app-tasks'
 import { AppModelEnvironment } from '@gnowth/lib-react'
+import { ModelUser } from '@gnowth/logic-users'
 
 export enum TokenApplication {
   auth = 'auth',
@@ -33,7 +34,7 @@ export class AppModelEnvironmentMono extends AppModelEnvironment {
 
       [TokenApplication.recipes]: new AppModelApplicationRecipes({
         route: routes[TokenApplication.recipes](),
-        user: applicationAuth.models.user,
+        user: new ModelUser({}),
       }),
 
       [TokenApplication.tasks]: new AppModelApplicationTasks({

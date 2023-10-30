@@ -1,4 +1,3 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { DataName } from '../types'
@@ -8,14 +7,13 @@ import { Field } from './field'
 
 type Nested = 'id' | 'flat' | 'nested'
 
-interface ConfigsModel<Value extends ObjectLiteral> extends FieldConfigs<Value> {
+interface ConfigsModel<Value> extends FieldConfigs<Value> {
   model: Model<Value>
   nested?: Nested
 }
 
-export class FieldModel<Value extends ObjectLiteral> extends Field {
+export class FieldModel<Value> extends Field {
   model: Model<Value>
-
   nested: Nested
 
   constructor(configs: ConfigsModel<Value>) {
