@@ -1,12 +1,12 @@
 import type { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
+import { dependencies } from '../dependencies'
 
 const FormGroupComponent: FunctionComponent = () => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
 
   return (
     <LayoutSection>

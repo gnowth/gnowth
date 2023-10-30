@@ -2,12 +2,12 @@ import type { FunctionComponent } from 'react'
 import { Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { ModelApp } from '../modules/app.models'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
+import { dependencies } from '../dependencies'
 
 const SectionGroupsComponent: FunctionComponent = () => {
-  const { t } = useTranslation(ModelApp.namespace)
+  const { t } = useTranslation(dependencies.modelApp.namespace)
 
   return (
     <LayoutSection>
