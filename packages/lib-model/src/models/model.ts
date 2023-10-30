@@ -11,21 +11,23 @@ type SchemaFromValue<Value> = {
     : Field<NonNullable<Value[Key]>>
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export class Model<
-  Value extends ObjectLiteral = ObjectLiteral,
-  Configs extends ObjectLiteral = ObjectLiteral,
-> {
+interface ParametersModel {
+  dependencies?: ObjectLiteral
+}
+
+export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = ParametersModel> {
   // api?: QueryApi<Value>
 
-  configs: Configs
+  protected parameters: Parameters
+  protected dependencies: Parameters['dependencies']
 
   modelName = ''
 
   schema = {}
 
-  constructor(configs: Configs) {
-    this.configs = configs
+  constructor(parameters: Parameters) {
+    this.parameters = parameters
+    this.dependencies = parameters.dependencies ?? {}
   }
 
   getDefault(partial?: Partial<Value>): Value {

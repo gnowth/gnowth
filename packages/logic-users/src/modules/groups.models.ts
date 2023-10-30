@@ -1,4 +1,5 @@
 import type { ErrorData, ServiceEvent } from '@gnowth/logic-core'
+import { Model } from '@gnowth/lib-model'
 import { guardNullish } from '@gnowth/lib-utils'
 import { v4 as uuid } from 'uuid'
 
@@ -6,7 +7,7 @@ import type { Group, GroupData } from './groups'
 
 type Parameters = { serviceEvent?: ServiceEvent }
 
-export class ModelGroup {
+export class ModelGroup extends Model<Group> {
   fromData(group: GroupData, parameters?: Parameters): Group {
     parameters?.serviceEvent?.logIfError({
       code: 'logic-users--model-group--from-data--01',

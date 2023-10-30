@@ -4,15 +4,15 @@ import { ModelGroup, ServiceGroups, ModelUser, ServiceUsers, ModelUserFilter } f
 import { configs } from './configs'
 import { ModelApp } from './modules/app.models'
 
-const modelUser = new ModelUser()
-const modelGroup = new ModelGroup()
+const modelUser = new ModelUser({})
+const modelGroup = new ModelGroup({})
 const serviceQuery = new ServiceQuery()
 
 export const dependencies = {
   modelApp: new ModelApp(),
   modelGroup,
   modelUser,
-  modelUserFilter: new ModelUserFilter(),
+  modelUserFilter: new ModelUserFilter({}),
   serviceGroups: new ServiceGroups({ ...configs, dependencies: { modelGroup, serviceQuery } }),
   serviceUsers: new ServiceUsers({ ...configs, dependencies: { modelUser, serviceQuery } }),
 }

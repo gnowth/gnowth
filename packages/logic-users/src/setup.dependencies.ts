@@ -21,16 +21,16 @@ type ConfigurationDependencies = {
   }
 }
 export const setupDependencies: AppSetup<ConfigurationDependencies, Configs> = (configs: Configs) => {
-  const modelGroup = new ModelGroup()
-  const modelUser = new ModelUser()
+  const modelGroup = new ModelGroup({})
+  const modelUser = new ModelUser({})
   const serviceQuery = new ServiceQuery()
 
   return {
     dependencies: {
       modelGroup,
-      modelGroupFilter: new ModelGroupFilter(),
+      modelGroupFilter: new ModelGroupFilter({}),
       modelUser,
-      modelUserFilter: new ModelUserFilter(),
+      modelUserFilter: new ModelUserFilter({}),
       serviceGroups: new ServiceGroups({ ...configs, dependencies: { modelGroup, serviceQuery } }),
       serviceUsers: new ServiceUsers({ ...configs, dependencies: { modelUser, serviceQuery } }),
     },
