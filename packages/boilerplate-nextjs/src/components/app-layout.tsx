@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode
 }
 
-const configurations = setup()
+const configurations = setup({})
 
 export const AppLayout: FunctionComponent<Props> = (props) => {
   return (

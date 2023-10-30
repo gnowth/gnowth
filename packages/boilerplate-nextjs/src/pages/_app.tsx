@@ -14,7 +14,7 @@ import { AppLoading } from '../components/app-loading'
 import { SystemNotifications } from '../components/system-notifications'
 import { setup } from '../setup'
 
-const configurations = setup()
+const configurations = setup({})
 
 interface Props extends AppProps {
   Component: NextPage & {
