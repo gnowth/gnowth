@@ -6,5 +6,5 @@ export type {
   RecipesQuery,
   RecipesQueryVariables,
 } from './client'
-export { ServiceTina } from './tina.services'
+export { TinaService } from './tina.services'
 export { UIMarkdownTina } from './ui-markdown-tina'

@@ -2,6 +2,6 @@ import { Subject } from 'rxjs'
 
 import type { Event } from './events.types'
 
-export class StreamEvents {
+export class EventStream {
   stream = new Subject<Event>()
 }

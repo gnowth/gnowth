@@ -17,8 +17,8 @@ export function AppWhoAmI(props: Props): null {
         message: 'You are not authorised to view this page',
         trace: {
           caller: 'AppWhoAmI',
-          context: 'app-who-am-i',
-          source: '@gnowth/lib-application',
+          context: 'AppWhoAmI',
+          source: 'lib-application',
         },
         type: [TokenErrorType.api401, TokenErrorType.api, TokenErrorType.internal],
       })

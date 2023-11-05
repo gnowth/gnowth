@@ -2,7 +2,7 @@ import type { ChakraProps } from '@chakra-ui/react'
 import type { FilterPageSize } from '@gnowth/logic-core'
 import type { FunctionComponent } from 'react'
 import { Button, HStack, Select, Text } from '@chakra-ui/react'
-import { ModelFilter } from '@gnowth/logic-core'
+import { FilterModel } from '@gnowth/logic-core'
 import { useTranslation } from 'react-i18next'
 import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useMemo } from 'react'
@@ -34,7 +34,7 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
             if (!target.value) return
             return props.onChange({
               ...props.value,
-              page: ModelFilter.actionRecalculatePage(
+              page: FilterModel.actionRecalculatePage(
                 props.value.page,
                 props.value.pageSize,
                 Number(target.value) as FilterPageSize,
@@ -45,7 +45,7 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
           placeholder={t('Select option')}
           value={props.value.pageSize}
         >
-          {ModelFilter.optionsPageSize.map((size) => (
+          {FilterModel.optionsPageSize.map((size) => (
             <option key={size} value={size}>
               {size}
             </option>

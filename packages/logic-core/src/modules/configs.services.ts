@@ -10,7 +10,7 @@ export type Configs = {
 
 // TODO: new service to provider locale/internationalisation
 // TODO: allow config from local, environment variable, online config
-export class ServiceConfigs {
+export class ConfigService {
   routes = {
     configs: (id: string) => `/${id}`,
   }

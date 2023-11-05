@@ -1,3 +1,3 @@
-import { ModelUuid } from './model-uuid'
+import { UuidModel } from './model-uuid'
 
-export class ModelLocale extends ModelUuid {}
+export class LocaleModel extends UuidModel {}

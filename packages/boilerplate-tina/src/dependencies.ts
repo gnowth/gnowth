@@ -1,8 +1,8 @@
-import { ModelRoute } from '@gnowth/logic-core'
+import { RouteModel } from '@gnowth/logic-core'
 
 import { ModelTinaSchema } from './tina.models'
 
-const modelRoute = new ModelRoute()
+const routeModel = new RouteModel()
 export const dependencies = {
-  modelTinaSchema: new ModelTinaSchema({ dependencies: { modelRoute } }),
+  modelTinaSchema: new ModelTinaSchema({ dependencies: { routeModel } }),
 }

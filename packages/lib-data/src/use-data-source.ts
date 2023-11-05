@@ -20,32 +20,32 @@ export interface PropsUseDataSource<Value> extends PropsData<Value> {
 
 const configsDefault = {
   errorCustomContext: new ErrorCustom({
-    code: 'lib-data--user-data-source--01',
+    code: 'lib-data--use-data-source--01',
     message: 'props "context" is not allowed to be changed. If this behaviour is needed, remount component',
     trace: {
       caller: 'useDataSource',
-      context: 'use-data-source',
-      source: '@gnowth/lib-data',
+      context: 'useDataSource',
+      source: 'lib-data',
     },
   }),
 
   errorCustomMode: new ErrorCustom({
-    code: 'lib-data--user-data-source--02',
+    code: 'lib-data--use-data-source--02',
     message: 'props "mode" is not allowed to be changed. If this behaviour is needed, remount component',
     trace: {
       caller: 'useDataSource',
-      context: 'use-data-source',
-      source: '@gnowth/lib-data',
+      context: 'useDataSource',
+      source: 'lib-data',
     },
   }),
 
   errorCustomValue: new ErrorCustom({
-    code: 'lib-data--user-data-source--03',
+    code: 'lib-data--use-data-source--03',
     message: 'props "value" is not allowed to be changed since component is in "uncontrolled" mode',
     trace: {
       caller: 'useDataSource',
-      context: 'use-data-source',
-      source: '@gnowth/lib-data',
+      context: 'useDataSource',
+      source: 'lib-data',
     },
   }),
 }

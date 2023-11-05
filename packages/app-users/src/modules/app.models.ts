@@ -1,4 +1,4 @@
-export class ModelApp {
+export class AppModel {
   namespace = 'users' as const
 
   routes = {

@@ -13,26 +13,24 @@ import { stateUserFilter } from './section-users'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
   const searchParams = useSearchParams()
   const id = searchParams?.get('id') ?? ''
   const [filters] = useRecoilState(stateUserFilter)
   const queryClient = useQueryClient()
   const handleOnUserMutation = () =>
     queryClient.invalidateQueries(
-      dependencies.serviceUsers.queryKeys.list(dependencies.modelUserFilter.toParams(filters)),
+      dependencies.userService.queryKeys.list(dependencies.userFilterModel.toParams(filters)),
     )
-  const userMutation = useMutation(dependencies.serviceUsers.save, { onSuccess: handleOnUserMutation })
-  const userQuery = useQuery(
-    dependencies.serviceUsers.queryKeys.detail(id),
-    dependencies.serviceUsers.detail,
-    { enabled: !!id },
-  )
+  const userMutation = useMutation(dependencies.userService.save, { onSuccess: handleOnUserMutation })
+  const userQuery = useQuery(dependencies.userService.queryKeys.detail(id), dependencies.userService.detail, {
+    enabled: !!id,
+  })
 
   return (
     <LayoutSection>
       <Formik
-        initialValues={userQuery.data?.data ?? dependencies.modelUser.fromData({})}
+        initialValues={userQuery.data?.data ?? dependencies.userModel.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
         <VStack alignItems="stretch" as={Form} spacing="5">

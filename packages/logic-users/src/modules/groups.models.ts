@@ -1,22 +1,22 @@
-import type { ErrorData, ServiceEvent } from '@gnowth/logic-core'
+import type { ErrorData, EventService } from '@gnowth/logic-core'
 import { Model } from '@gnowth/lib-model'
 import { guardNullish } from '@gnowth/lib-utils'
 import { v4 as uuid } from 'uuid'
 
 import type { Group, GroupData } from './groups'
 
-type Parameters = { serviceEvent?: ServiceEvent }
+type Parameters = { eventService?: EventService }
 
-export class ModelGroup extends Model<Group> {
+export class GroupModel extends Model<Group> {
   fromData(group: GroupData, parameters?: Parameters): Group {
-    parameters?.serviceEvent?.logIfError({
+    parameters?.eventService?.logIfError({
       code: 'logic-users--model-group--from-data--01',
       errors: this.#dataValidate(group),
       logLevel: 'bug',
       message: 'Invalid group data received',
       method: 'fromData',
       payload: { group },
-      source: 'ModelGroup',
+      source: 'GroupModel',
       sourceNamespace: '@gnowth/logic-users',
     })
 

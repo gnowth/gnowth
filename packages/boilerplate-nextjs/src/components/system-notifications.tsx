@@ -7,7 +7,7 @@ export function SystemNotifications() {
   const toast = useToast({ position: 'bottom-right' })
 
   // DEBT(investigation): watch notification channels and push to toast or in setup?
-  useStream(dependencies.streamNotifications.stream, toast)
+  useStream(dependencies.notificationStream.stream, toast)
 
   return null
 }

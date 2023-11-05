@@ -10,7 +10,7 @@ interface NotificationData {
   title: string
 }
 
-export class ModelNotification {
+export class NotificationModel {
   deserialize = (notification: NotificationData): Notification => {
     return {
       id: notification.id,

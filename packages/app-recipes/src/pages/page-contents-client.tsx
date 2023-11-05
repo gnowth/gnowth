@@ -15,7 +15,7 @@ export const PageContentsClient: PageClientComponent<Props> = (props) => {
 }
 
 PageContentsClient.staticPaths = async () => {
-  const slugs = await dependencies.serviceTina.getContentsSlugs()
+  const slugs = await dependencies.tinaService.getContentsSlugs()
 
   return {
     fallback: false,
@@ -26,7 +26,7 @@ PageContentsClient.staticPaths = async () => {
 PageContentsClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
   // TODO: validate output
-  const props = await dependencies.serviceTina.getContentsContent(slug)
+  const props = await dependencies.tinaService.getContentsContent(slug)
 
   return { props }
 }

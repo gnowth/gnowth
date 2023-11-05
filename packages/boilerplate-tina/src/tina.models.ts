@@ -1,12 +1,12 @@
 import type { Schema, Collection } from 'tinacms'
 import { defineSchema } from 'tinacms'
 
-interface ModelRoute {
+interface RouteModel {
   recipes(context?: string, id?: string): string
 }
 
 interface Dependencies {
-  modelRoute: ModelRoute
+  routeModel: RouteModel
 }
 
 interface OptionsModelSchema {
@@ -107,7 +107,7 @@ export class ModelTinaSchema {
   }
 
   private router: NonNullable<Collection['ui']>['router'] = (configs) => {
-    return this.dependencies.modelRoute.recipes(
+    return this.dependencies.routeModel.recipes(
       configs.collection.name === CollectionEnum.Contents ? undefined : configs.collection.name,
       configs.document._sys.filename,
     )

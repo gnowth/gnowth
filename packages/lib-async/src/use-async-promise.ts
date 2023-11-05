@@ -2,7 +2,7 @@ import { useEffect, useReducer } from 'react'
 import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { AsyncStatus } from './types'
-import { ModelPromise } from './model-promise'
+import { PromiseModel } from './model-promise'
 
 type ActionTypes = 'reject' | 'reset' | 'resolve'
 
@@ -32,7 +32,7 @@ const actions: ActionTypeMap = {
 
 const initialState = {
   errors: [],
-  status: ModelPromise.status.pending,
+  status: PromiseModel.status.pending,
 }
 
 function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value> {
@@ -40,19 +40,19 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
     case actions.reject: {
       if (!action.errors) {
         throw new ErrorCustom({
-          code: 'lib-async--reducer--01',
+          code: 'lib-async--use-async-promise--01',
           message: 'errors are required',
           trace: {
-            caller: 'reducer',
-            context: 'user-async-promise',
-            source: '@gnowth/lib-async',
+            caller: 'useAsyncPromise.reducer',
+            context: 'useAsyncPromise',
+            source: 'lib-async',
           },
         })
       }
 
       return {
         errors: action.errors,
-        status: ModelPromise.status.rejected,
+        status: PromiseModel.status.rejected,
         value: state.value,
       }
     }
@@ -63,7 +63,7 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
     case actions.resolve:
       return {
         errors: state.errors.length === 0 ? state.errors : [],
-        status: ModelPromise.status.resolved,
+        status: PromiseModel.status.resolved,
         value: action.value,
       }
 

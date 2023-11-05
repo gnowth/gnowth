@@ -1,16 +1,16 @@
 import type { UtilOptional } from '@gnowth/lib-utils'
-import type { ErrorData, ServiceEvent, ServiceFaker } from '@gnowth/logic-core'
+import type { ErrorData, EventService, FakerService } from '@gnowth/logic-core'
 import { Model } from '@gnowth/lib-model'
 import { v4 as uuid } from 'uuid'
 
 import type { User, UserData } from './users.types'
 
 type Parameters = {
-  serviceEvent?: ServiceEvent
-  serviceFaker?: ServiceFaker
+  eventService?: EventService
+  fakerService?: FakerService
 }
 
-export class ModelUser extends Model<User> {
+export class UserModel extends Model<User> {
   getId(user: User) {
     return user.id
   }
@@ -48,7 +48,7 @@ export class ModelUser extends Model<User> {
   generate(user: UtilOptional<User, 'status'>, parameters?: Parameters): User {
     const userGenerated = { ...user, status: user.status ?? 'deactivated' }
 
-    parameters?.serviceEvent?.logIfError({
+    parameters?.eventService?.logIfError({
       code: 'logic-users--model-users--generate--01',
       errors: this.validate(userGenerated),
       message: 'Unable to create valid User',
@@ -60,9 +60,9 @@ export class ModelUser extends Model<User> {
   }
 
   generateFake(user?: Partial<User>, parameters?: Parameters): User {
-    parameters?.serviceEvent?.logIfError({
+    parameters?.eventService?.logIfError({
       code: 'logic-users--model-user--generate-fake--01',
-      errors: parameters?.serviceFaker
+      errors: parameters?.fakerService
         ? []
         : [
             {
@@ -74,14 +74,14 @@ export class ModelUser extends Model<User> {
       method: 'generateFake',
     })
 
-    const id = parameters?.serviceFaker?.stringUuid({ value: user?.id }) ?? ''
-    const nameFirst = parameters?.serviceFaker?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
-    const nameLast = parameters?.serviceFaker?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
+    const id = parameters?.fakerService?.stringUuid({ value: user?.id }) ?? ''
+    const nameFirst = parameters?.fakerService?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
+    const nameLast = parameters?.fakerService?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
 
     return this.generate({
       ...user,
       email:
-        parameters?.serviceFaker?.internetEmail({
+        parameters?.fakerService?.internetEmail({
           firstName: nameFirst,
           lastName: nameLast,
           seed: id,

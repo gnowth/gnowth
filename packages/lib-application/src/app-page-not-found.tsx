@@ -6,8 +6,8 @@ export function AppPageNotFound(): never {
     message: 'Page not found',
     trace: {
       caller: 'AppPageNotFound',
-      context: 'app-page-not-found',
-      source: '@gnowth/lib-application',
+      context: 'AppPageNotFound',
+      source: 'lib-application',
     },
     type: [TokenErrorType.api404, TokenErrorType.internal],
   })

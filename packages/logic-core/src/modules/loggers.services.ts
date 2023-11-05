@@ -1,8 +1,8 @@
-import type { ServiceStorage } from './storages'
+import type { StorageService } from './storages'
 import type { APILogger, Log, LogLevel } from './loggers.types'
 
 interface Dependencies {
-  serviceStorage?: ServiceStorage
+  storageService?: StorageService
 }
 
 interface OptionsLogger {
@@ -17,7 +17,7 @@ const storageKeys = {
 }
 
 // TODO: set up flag to exclude/include specific logs: 'logLevel' | 'name' | 'namespace' | 'method'
-export class ServiceLogger {
+export class LoggerService {
   private apis: APILogger[]
   private dependencies: Dependencies
   private options: OptionsLogger
@@ -28,13 +28,13 @@ export class ServiceLogger {
     this.options = options
   }
 
-  clone(options?: Partial<OptionsLogger>): ServiceLogger {
-    return new ServiceLogger({ ...this.options, ...options })
+  clone(options?: Partial<OptionsLogger>): LoggerService {
+    return new LoggerService({ ...this.options, ...options })
   }
 
   async bug(log: Log): Promise<void> {
     const logLevel =
-      this.dependencies.serviceStorage?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
+      this.dependencies.storageService?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
 
     const promises = this.apis.map((api) =>
       api.bug({ log, logLevel, name: this.options.name, namespace: this.options.namespace }),
@@ -50,7 +50,7 @@ export class ServiceLogger {
 
   async debug(log: Log): Promise<void> {
     const logLevel =
-      this.dependencies.serviceStorage?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
+      this.dependencies.storageService?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
 
     const promises = this.apis.map((api) =>
       api.debug({ log, logLevel, name: this.options.name, namespace: this.options.namespace }),
@@ -60,7 +60,7 @@ export class ServiceLogger {
 
   async error(log: Log): Promise<void> {
     const logLevel =
-      this.dependencies.serviceStorage?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
+      this.dependencies.storageService?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
 
     const promises = this.apis.map((api) =>
       api.error({ log, logLevel, name: this.options.name, namespace: this.options.namespace }),
@@ -70,7 +70,7 @@ export class ServiceLogger {
 
   async info(log: Log): Promise<void> {
     const logLevel =
-      this.dependencies.serviceStorage?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
+      this.dependencies.storageService?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
 
     const promises = this.apis.map((api) =>
       api.info({ log, logLevel, name: this.options.name, namespace: this.options.namespace }),
@@ -80,7 +80,7 @@ export class ServiceLogger {
 
   async warn(log: Log): Promise<void> {
     const logLevel =
-      this.dependencies.serviceStorage?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
+      this.dependencies.storageService?.getItem<LogLevel>({ key: storageKeys.LOG_LEVEL }) ?? 'NONE'
 
     const promises = this.apis.map((api) =>
       api.warn({ log, logLevel, name: this.options.name, namespace: this.options.namespace }),

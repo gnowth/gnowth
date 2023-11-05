@@ -6,7 +6,7 @@ import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
 
 const FormGroupFilterComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
     <LayoutSection>

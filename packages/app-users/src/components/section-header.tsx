@@ -10,7 +10,7 @@ import { dependencies } from '../dependencies'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
     <div data-semantic="Header">
@@ -46,25 +46,25 @@ const SectionHeaderComponent: FunctionComponent = () => {
         }}
       >
         <HStack>
-          <NavLink href={dependencies.modelApp.routes.dashboard()} prefetch={false}>
+          <NavLink href={dependencies.appModel.routes.dashboard()} prefetch={false}>
             {t('Dashboard')}
           </NavLink>
 
-          <NavLink href={dependencies.modelApp.routes.groups()} prefetch={false}>
+          <NavLink href={dependencies.appModel.routes.groups()} prefetch={false}>
             {t('Teams')}
           </NavLink>
 
-          <NavLink href={dependencies.modelApp.routes.users()} prefetch={false}>
+          <NavLink href={dependencies.appModel.routes.users()} prefetch={false}>
             {t('Members')}
           </NavLink>
 
-          <NavLink href={dependencies.modelApp.routes.reports()} prefetch={false}>
+          <NavLink href={dependencies.appModel.routes.reports()} prefetch={false}>
             {t('Reports')}
           </NavLink>
 
           <NavLink
-            href={dependencies.modelApp.routes.generated()}
-            hrefActive={dependencies.modelApp.routes.generated('')}
+            href={dependencies.appModel.routes.generated()}
+            hrefActive={dependencies.appModel.routes.generated('')}
             prefetch={false}
           >
             {t('Generated page')}

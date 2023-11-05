@@ -1,5 +1,5 @@
-import { ServiceTina } from '@gnowth/boilerplate-tina'
+import { TinaService } from '@gnowth/boilerplate-tina'
 
 export const dependencies = {
-  serviceTina: new ServiceTina(),
+  tinaService: new TinaService(),
 }

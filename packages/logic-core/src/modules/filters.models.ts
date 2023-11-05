@@ -5,8 +5,8 @@ export enum FilterPageSize {
   i100 = 100,
 }
 
-export class ModelFilter {
-  static optionsPageSize = Object.values(FilterPageSize).filter(ModelFilter.isFilterPageSize)
+export class FilterModel {
+  static optionsPageSize = Object.values(FilterPageSize).filter(FilterModel.isFilterPageSize)
 
   static actionRecalculatePage(page: number, pageSize: FilterPageSize, newPageSize: FilterPageSize) {
     const currentIndex = pageSize * (page - 1)

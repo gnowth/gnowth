@@ -1,4 +1,4 @@
-export class ServiceContent {
+export class ContentService {
   test() {
     return
   }

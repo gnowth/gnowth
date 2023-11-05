@@ -5,7 +5,7 @@ import { ModelIngredient } from './ingredients'
 
 interface Configs {
   dependencies: {
-    modelUser: Model
+    userModel: Model
   }
 }
 
@@ -31,7 +31,7 @@ export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Con
 
   schema = {
     createdBy: new Fields.FieldModel({
-      model: this.dependencies.modelUser,
+      model: this.dependencies.userModel,
     }),
     description: new Fields.FieldText(),
     designation: new Fields.FieldText(),

@@ -22,8 +22,8 @@ export const AppBoundary: FunctionComponent<Props> = (props) => {
       message: 'Default error component has not been set',
       trace: {
         caller: 'AppBoundary',
-        context: 'app-boundary',
-        source: '@gnowth/lib-application',
+        context: 'AppBoundary',
+        source: 'lib-application',
       },
     })
   }

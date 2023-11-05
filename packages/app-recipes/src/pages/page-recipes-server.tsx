@@ -10,17 +10,17 @@ type Props = { params?: Params }
 export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
   if (!props.params?.slug) {
     throw new ErrorCustom({
-      code: 'app-recipes--page-recipes-server-01',
+      code: 'app-recipes--page-recipes-server--01',
       message: 'Page not found',
       trace: {
         caller: 'PageRecipesServer',
-        context: 'page-recipes-server',
-        source: '@gnowth/app-recipes',
+        context: 'PageRecipesServer',
+        source: 'app-recipes',
       },
     })
   }
 
-  const content = await dependencies.serviceTina.getRecipesContent(props.params.slug)
+  const content = await dependencies.tinaService.getRecipesContent(props.params.slug)
 
   return (
     <UIMarkdownTina data={content.data} query={content.query} type="recipes" variables={content.variables} />
@@ -28,7 +28,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
 }
 
 PageRecipesServer.generateStaticParams = async (): Promise<Params[]> => {
-  const pagesKey = await dependencies.serviceTina.getRecipesSlugs()
+  const pagesKey = await dependencies.tinaService.getRecipesSlugs()
 
   return pagesKey.map((slug) => ({ slug }))
 }

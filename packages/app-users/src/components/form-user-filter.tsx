@@ -11,7 +11,7 @@ import { dependencies } from '../dependencies'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
 
   return (

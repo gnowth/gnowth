@@ -6,7 +6,7 @@ interface Status {
   resolved: AsyncStatusResolved
 }
 
-export class ModelPromise {
+export class PromiseModel {
   static status: Status = {
     pending: 'pending',
     rejected: 'rejected',

@@ -1,22 +1,22 @@
 import { Subject } from 'rxjs'
 
-import type { ModelError } from './errors.models'
+import type { ErrorModel } from './errors.models'
 import type { ErrorData } from './errors.types'
 
 type Parameters = { dependencies: Dependencies }
-type Dependencies = { modelError: ModelError }
+type Dependencies = { errorModel: ErrorModel }
 
-export class StreamErrors {
+export class ErrorStream {
   stream = new Subject<ErrorData>()
-  #modelError: ModelError
+  #errorModel: ErrorModel
   #parameters: Parameters
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#modelError = parameters.dependencies.modelError
+    this.#errorModel = parameters.dependencies.errorModel
   }
 
   pushErrorUnknown = (error: unknown) => {
-    return this.stream.next(this.#modelError.fromErrorUnknown(error))
+    return this.stream.next(this.#errorModel.fromErrorUnknown(error))
   }
 }

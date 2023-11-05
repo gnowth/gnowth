@@ -6,7 +6,7 @@ import { LayoutSection } from '../components/layout-section'
 import { dependencies } from '../dependencies'
 
 export const PageReports: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
     <VStack alignItems="stretch" as="main" spacing="10">
