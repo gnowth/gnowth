@@ -20,7 +20,7 @@ export type WithThemeVariant<Props extends ObjectLiteral> = Props & {
   variants?: Variants<Props>
 }
 
-export class ServiceThemeVariant {
+export class VariantManager {
   #variantsNamespaced: VariantsNamespaced = {}
 
   constructor(configs?: Configs) {
@@ -32,7 +32,7 @@ export class ServiceThemeVariant {
   }
 
   // TODO: think how will the variant override the nested component
-  getVariant<Props extends ObjectLiteral>(configs: ConfigsVariant<Props>): Variant<Props> | undefined {
+  get<Props extends ObjectLiteral>(configs: ConfigsVariant<Props>): Variant<Props> | undefined {
     const variantNamespace = transformToArray(configs.variantNamespace)
     if (!variantNamespace.length || !configs.variant) {
       return undefined

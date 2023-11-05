@@ -2,7 +2,7 @@ import type { CSSObject } from '@emotion/css'
 import { guardString } from '@gnowth/lib-utils'
 
 import type { System } from './system.types'
-import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { ScaleName, ScaleType } from '../theme/scales'
 import type { TokenBase, TokenFontSize } from '../tokens/tokens'
 import { systemCompose, systemInterpolate } from './system'
 import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'

@@ -19,7 +19,7 @@ export type ConfigsComponent<Props extends ObjectLiteral> = {
   components?: Components<Props>
 }
 
-export class ServiceThemeComponent {
+export class ComponentManager {
   #componentsNamespaced: ComponentsNamespaced = {}
 
   constructor(configs?: Configs) {
@@ -31,9 +31,7 @@ export class ServiceThemeComponent {
   }
 
   // TODO: allow multiple configs which will be used as fallback or allow multiple component name
-  getComponent<Props extends ObjectLiteral>(
-    configs: ConfigsComponent<Props>,
-  ): ComponentType<Props> | undefined {
+  get<Props extends ObjectLiteral>(configs: ConfigsComponent<Props>): ComponentType<Props> | undefined {
     if (!configs.component) {
       return undefined
     }

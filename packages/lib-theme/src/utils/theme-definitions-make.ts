@@ -1,5 +1,5 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
-import type { WithThemeVariant } from '../theme/theme-variant.service'
+import type { WithThemeVariant } from '../theme/variants'
 
 // TODO review this and whole definition type
 export const themeDefinitionsMake = (prefixes: string[]) => {

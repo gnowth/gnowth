@@ -6,7 +6,7 @@ type Configs = { variables?: Variables }
 
 export type Variable = unknown
 
-export class ServiceThemeVariable {
+export class VariableManager {
   #variables: Variables
 
   constructor(configs?: Configs) {
@@ -17,7 +17,7 @@ export class ServiceThemeVariable {
     return { variables: Object.assign({}, ...configs.map((config) => config.variables)) }
   }
 
-  getVariable<Type>(name: VariableName): Type | undefined {
+  get<Type>(name: VariableName): Type | undefined {
     return this.#variables[name] as Type
   }
 }
