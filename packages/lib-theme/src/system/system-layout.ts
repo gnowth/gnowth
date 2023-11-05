@@ -1,6 +1,6 @@
 import type { System } from './system.types'
 
-import type { ScaleType, ScaleName } from '../theme/theme-scale.service'
+import type { ScaleType, ScaleName } from '../theme/scales'
 import type { TokenBase, TokenLength, TokenSpace } from '../tokens/tokens'
 import { systemCompose, systemInterpolate } from './system'
 

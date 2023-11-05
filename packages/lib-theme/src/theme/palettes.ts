@@ -27,7 +27,7 @@ export type ConfigsPalette = {
   paletteWeight?: TokenColorWeight
 }
 
-export class ServiceThemePalette {
+export class PaletteManager {
   #palettes: Palettes = {}
 
   constructor(configs?: Configs) {
@@ -49,7 +49,7 @@ export class ServiceThemePalette {
       return undefined
     }
 
-    const palette = this.#getPalette(configs.palette)
+    const palette = this.#get(configs.palette)
     const paletteColor = this.#getPaletteColor(palette, configs.paletteWeight)
 
     if (!paletteColor) {
@@ -60,16 +60,12 @@ export class ServiceThemePalette {
       return paletteColor.hex
     }
 
-    const paletteText = this.#getPalette(paletteColor.darkContrast ? 'textPrimary' : 'textInverse')
+    const paletteText = this.#get(paletteColor.darkContrast ? 'textPrimary' : 'textInverse')
     const paletteColorText = this.#getPaletteColor(paletteText, '500')
     return paletteColorText?.hex
   }
 
-  #getPaletteColor(palette?: Palette, weight: TokenColorWeight = '500'): PaletteColor | undefined {
-    return palette?.colors.find((color) => color.name === weight)
-  }
-
-  #getPalette(palette?: PaletteName): Palette | undefined {
+  #get(palette?: PaletteName): Palette | undefined {
     if (!palette) {
       return undefined
     }
@@ -81,10 +77,14 @@ export class ServiceThemePalette {
     }
 
     if (this.#guardPaletteReference(maybePalette)) {
-      return this.#getPalette(maybePalette.reference)
+      return this.#get(maybePalette.reference)
     }
 
     return maybePalette
+  }
+
+  #getPaletteColor(palette?: Palette, weight: TokenColorWeight = '500'): PaletteColor | undefined {
+    return palette?.colors.find((color) => color.name === weight)
   }
 
   #guardPaletteReference(paletteType: PaletteType): paletteType is PaletteReference {

@@ -1,5 +1,5 @@
 import type { System, SystemInterpolate, SystemUnits } from './system.types'
-import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { ScaleName, ScaleType } from '../theme/scales'
 import type { TokenBase, TokenPropertyValue, TokenSpace } from '../tokens/tokens'
 import { systemCompose, systemInterpolate } from './system'
 

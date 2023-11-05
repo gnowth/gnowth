@@ -2,9 +2,9 @@ import type { UtilNamespaced } from '@gnowth/lib-utils'
 import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 
 import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
-import type { Responsive } from './theme.types'
 
 // TODO: review responsiveScale. currently not supported by system
+type Responsive<Type> = { responsive: true } & { [Key in TokenBreakpoint]?: Type }
 type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
@@ -28,7 +28,7 @@ export type ConfigsScale<Token extends TokenBase = TokenBase> = {
   scaleBreakpoint?: TokenBreakpoint
 }
 
-export class ServiceThemeScale {
+export class ScaleManager {
   #scales: Scales
 
   constructor(configs?: Configs) {

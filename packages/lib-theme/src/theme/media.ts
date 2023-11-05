@@ -6,7 +6,7 @@ type Configs = { medias?: Medias }
 export type MediaName = string
 export type Media = unknown
 
-export class ServiceThemeMedia {
+export class MediaManager {
   #medias: Medias
 
   constructor(configs?: Configs) {
@@ -17,7 +17,7 @@ export class ServiceThemeMedia {
     return { medias: Object.assign({}, ...configs.map((config) => config.medias)) }
   }
 
-  getMedia(name: MediaName): Media | undefined {
+  get(name: MediaName): Media | undefined {
     return this.#medias[name]
   }
 }

@@ -2,7 +2,7 @@ import type { CSSObject } from '@emotion/css'
 import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
 
 import type { Theme } from '../theme/theme'
-import type { ScaleName, ScaleType } from '../theme/theme-scale.service'
+import type { ScaleName, ScaleType } from '../theme/scales'
 import type { SystemInterpolate, System } from './system.types'
 import { objectDefaultsDeep } from './system.utils'
 
