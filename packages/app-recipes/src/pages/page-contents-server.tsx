@@ -10,12 +10,12 @@ type Props = { params?: Params }
 export const PageContentsServer: PageServerComponent<Props> = async (props) => {
   if (!props.params?.slug) {
     throw new ErrorCustom({
-      code: 'app-recipes--page-contents-server-01',
+      code: 'app-recipes--page-contents-server--01',
       message: 'Page not found',
       trace: {
         caller: 'PageContentsServer',
-        context: 'page-contents-server',
-        source: '@gnowth/app-recipes',
+        context: 'PageContentsServer',
+        source: 'app-recipes',
       },
     })
   }

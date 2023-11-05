@@ -70,8 +70,8 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
         'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
       trace: {
         caller: 'DataConnect',
-        context: 'data-connect',
-        source: '@gnowth/lib-data',
+        context: 'DataConnect',
+        source: 'lib-data',
       },
     })
   }

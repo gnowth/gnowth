@@ -12,8 +12,8 @@ const errorCustom = new ErrorCustom({
   message: 'unexpected change in value',
   trace: {
     caller: 'useEnsureConstant',
-    context: 'use-ensure-constant',
-    source: '@gnowth/lib-utils',
+    context: 'useEnsureConstant',
+    source: 'lib-utils',
   },
 })
 

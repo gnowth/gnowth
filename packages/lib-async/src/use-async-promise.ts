@@ -40,12 +40,12 @@ function reducer<Value>(state: State<Value>, action: Action<Value>): State<Value
     case actions.reject: {
       if (!action.errors) {
         throw new ErrorCustom({
-          code: 'lib-async--reducer--01',
+          code: 'lib-async--use-async-promise--01',
           message: 'errors are required',
           trace: {
-            caller: 'reducer',
-            context: 'user-async-promise',
-            source: '@gnowth/lib-async',
+            caller: 'useAsyncPromise.reducer',
+            context: 'useAsyncPromise',
+            source: 'lib-async',
           },
         })
       }

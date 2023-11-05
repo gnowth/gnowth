@@ -26,8 +26,8 @@ const configsDefault = {
     message: 'prop "mode" is not allowed to be changed. If this behaviour is needed, remount component',
     trace: {
       caller: 'useValue',
-      context: 'use-value',
-      source: '@gnowth/lib-data',
+      context: 'useValue',
+      source: 'lib-data',
     },
   }),
 
@@ -36,8 +36,8 @@ const configsDefault = {
     message: 'prop "value" is not allowed to be changed since component is in "uncontrolled" mode',
     trace: {
       caller: 'useValue',
-      context: 'use-value',
-      source: '@gnowth/lib-data',
+      context: 'useValue',
+      source: 'lib-data',
     },
   }),
 }

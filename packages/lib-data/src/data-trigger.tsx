@@ -66,8 +66,8 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
         'unable to get component. Check props "component" or "type" or "theme" or "field" from dataSource',
       trace: {
         caller: 'DataTrigger',
-        context: 'data-trigger',
-        source: '@gnowth/lib-data',
+        context: 'DataTrigger',
+        source: 'lib-data',
       },
     })
   }

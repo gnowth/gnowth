@@ -44,12 +44,12 @@ export const AsyncContext = createContext<AsyncContext>({
     // eslint-disable-next-line no-console
     console.warn(
       new ErrorCustom({
-        code: 'lib-async--async-context-01',
+        code: 'lib-async--async-context--01',
         message: 'must be used within an Async Provider',
         trace: {
-          caller: 'addPromise',
-          context: 'async-context',
-          source: 'lib-async.AsyncContext',
+          caller: 'AsyncContext.addPromise',
+          context: 'AsyncContext',
+          source: 'lib-async',
         },
       }),
     )
@@ -59,12 +59,12 @@ export const AsyncContext = createContext<AsyncContext>({
     // eslint-disable-next-line no-console
     console.warn(
       new ErrorCustom({
-        code: 'lib-async--async-context-02',
+        code: 'lib-async--async-context--02',
         message: 'must be used within an Async Provider',
         trace: {
-          caller: 'removePromise',
-          context: 'async-context',
-          source: 'lib-async.AsyncContext',
+          caller: 'AsyncContext.removePromise',
+          context: 'AsyncContext',
+          source: 'lib-async',
         },
       }),
     )
@@ -91,12 +91,12 @@ function reducer(state: State, action: Action): State {
     case actions.addPromise: {
       if (!action.payload) {
         throw new ErrorCustom({
-          code: 'lib-async--async-context-03',
+          code: 'lib-async--async-context--03',
           message: 'payload must contain a promise',
           trace: {
             caller: 'reducer',
-            context: 'async-context',
-            source: 'lib-async.AsyncProvider',
+            context: 'AsyncContext',
+            source: 'lib-async',
           },
         })
       }
@@ -113,12 +113,12 @@ function reducer(state: State, action: Action): State {
     case actions.reject: {
       if (!action.errors) {
         throw new ErrorCustom({
-          code: 'lib-async--async-context-04',
+          code: 'lib-async--async-context--04',
           message: 'errors are required',
           trace: {
             caller: 'reducer',
-            context: 'async-context',
-            source: 'lib-async.AsyncProvider',
+            context: 'AsyncContext',
+            source: 'lib-async',
           },
         })
       }
@@ -133,12 +133,12 @@ function reducer(state: State, action: Action): State {
     case actions.removePromise: {
       if (!action.payload) {
         throw new ErrorCustom({
-          code: 'lib-async--async-context-05',
+          code: 'lib-async--async-context--05',
           message: 'payload must contain a promise',
           trace: {
             caller: 'reducer',
-            context: 'async-context',
-            source: 'lib-async.AsyncProvider',
+            context: 'AsyncContext',
+            source: 'lib-async',
           },
         })
       }
@@ -147,12 +147,12 @@ function reducer(state: State, action: Action): State {
 
       if (!didDelete) {
         throw new ErrorCustom({
-          code: 'lib-async--async-context-06',
+          code: 'lib-async--async-context--06',
           message: 'invalid promise provided',
           trace: {
             caller: 'reducer',
-            context: 'async-context',
-            source: 'lib-async.AsyncProvider',
+            context: 'AsyncContext',
+            source: 'lib-async',
           },
         })
       }
@@ -173,12 +173,12 @@ function reducer(state: State, action: Action): State {
 
     default:
       throw new ErrorCustom({
-        code: 'lib-async--async-context-07',
+        code: 'lib-async--async-context--07',
         message: 'invalid action',
         trace: {
           caller: 'reducer',
-          context: 'async-context',
-          source: 'lib-async.AsyncProvider',
+          context: 'AsyncContext',
+          source: 'lib-async',
         },
       })
   }
