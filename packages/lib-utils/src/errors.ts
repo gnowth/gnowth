@@ -1,5 +1,5 @@
 type ErrorType = {
-  code: string
+  code: string // `${source}--${context}--#`
   contextId?: string
   contextType?: string
   data?: unknown
@@ -10,9 +10,9 @@ type ErrorType = {
 }
 
 type Trace = {
-  context: string
-  caller: string
-  source: string
+  caller: string // functionName / class.methodName / componentName
+  context: string // moduleName/componentName
+  source: string // npm package
   stack?: string
 }
 
