@@ -62,3 +62,4 @@ TODO:
 - context => none serializable stuff
 - when using a boundary/suspense, it should always have a fallback unless we explicitly ask it not to
 - also lint .storybook folder
+- fix quick lint, it is not returning all the errors
