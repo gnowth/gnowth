@@ -1,7 +1,7 @@
 import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
 import { appSetupCompose } from '@gnowth/lib-application'
-import { ErrorModel, StreamErrors } from '@gnowth/logic-core'
+import { ErrorModel, ErrorStream } from '@gnowth/logic-core'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
 import { createInstance } from 'i18next'
@@ -11,7 +11,7 @@ import i18nLanguageDetector from 'i18next-browser-languagedetector'
 const errorModel = new ErrorModel()
 const dependencies = {
   errorModel,
-  errorStream: new StreamErrors({ dependencies: { errorModel } }),
+  errorStream: new ErrorStream({ dependencies: { errorModel } }),
 }
 
 type ConfigurationI18n = { i18n: i18n }

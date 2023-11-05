@@ -19,8 +19,8 @@ type QueryKeys = {
 }
 
 type Dependencies = {
-  userModel: UserModel
   queryService: QueryService
+  userModel: UserModel
 }
 
 type Parameters = {
@@ -30,15 +30,15 @@ type Parameters = {
 }
 
 export class UserService {
-  #userModel: UserModel
   #parameters: Parameters
-  #scope = 'users'
   #queryService: QueryService
+  #scope = 'users'
+  #userModel: UserModel
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#userModel = parameters.dependencies.userModel
     this.#queryService = parameters.dependencies.queryService
+    this.#userModel = parameters.dependencies.userModel
   }
 
   get queryKeys(): QueryKeys {

@@ -20,7 +20,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
     })
   }
 
-  const content = await dependencies.serviceTina.getRecipesContent(props.params.slug)
+  const content = await dependencies.tinaService.getRecipesContent(props.params.slug)
 
   return (
     <UIMarkdownTina data={content.data} query={content.query} type="recipes" variables={content.variables} />
@@ -28,7 +28,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
 }
 
 PageRecipesServer.generateStaticParams = async (): Promise<Params[]> => {
-  const pagesKey = await dependencies.serviceTina.getRecipesSlugs()
+  const pagesKey = await dependencies.tinaService.getRecipesSlugs()
 
   return pagesKey.map((slug) => ({ slug }))
 }

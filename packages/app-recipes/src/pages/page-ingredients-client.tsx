@@ -17,7 +17,7 @@ export const PageIngredientsClient: PageClientComponent<Props> = (props) => {
 }
 
 PageIngredientsClient.staticPaths = async () => {
-  const slugs = await dependencies.serviceTina.getIngredientsSlugs()
+  const slugs = await dependencies.tinaService.getIngredientsSlugs()
 
   return {
     fallback: false,
@@ -27,7 +27,7 @@ PageIngredientsClient.staticPaths = async () => {
 
 PageIngredientsClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
-  const props = await dependencies.serviceTina.getIngredientsContent(slug)
+  const props = await dependencies.tinaService.getIngredientsContent(slug)
 
   return { props }
 }

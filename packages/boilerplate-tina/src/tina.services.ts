@@ -3,7 +3,7 @@ import { schema } from './client.configs'
 import { dependencies } from './dependencies'
 import { CollectionEnum } from './tina.models'
 
-export class ServiceTina {
+export class TinaService {
   private dependencies = dependencies
   private schema = schema
 
