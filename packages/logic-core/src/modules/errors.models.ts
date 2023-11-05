@@ -3,7 +3,7 @@ import { isAxiosError } from 'axios'
 
 import type { ErrorData } from './errors.types'
 
-export class ModelError {
+export class ErrorModel {
   fromError = (error: Error): ErrorData => {
     return {
       code: error.name,

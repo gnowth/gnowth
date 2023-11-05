@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-import { ModelPromise } from './model-promise'
+import { PromiseModel } from './model-promise'
 import { useAsyncPromise } from './use-async-promise'
 
 interface Props {
@@ -12,11 +12,11 @@ interface Props {
 export const AsyncSuspense: FunctionComponent<Props> = (props) => {
   const asyncPromise = useAsyncPromise(props.promise)
 
-  if (asyncPromise.status === ModelPromise.status.pending) {
+  if (asyncPromise.status === PromiseModel.status.pending) {
     return <>Processing</>
   }
 
-  if (asyncPromise.status === ModelPromise.status.rejected) {
+  if (asyncPromise.status === PromiseModel.status.rejected) {
     return <>Has errors</>
   }
 

@@ -2,7 +2,7 @@
 // TODO: add support for passwordless, multi-factor authentication, user emulation, single sign on, OAuth(google)
 // TODO: allow multiple auth system
 // https://auth0.com/blog/five-common-authentication-and-authorization-mistakes-to-avoid-in-your-saas-application/
-export class ServiceAuthentication {
+export class AuthenticationService {
   signup() {
     return
   }

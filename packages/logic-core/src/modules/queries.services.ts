@@ -12,7 +12,7 @@ type Parameters<Item, ItemData> = {
   transform?: (item: ItemData) => Item
 }
 
-export class ServiceQuery {
+export class QueryService {
   #axios = axios.create({ withCredentials: true })
 
   // TODO: add override if transform is not provided

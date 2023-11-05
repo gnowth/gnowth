@@ -1,10 +1,10 @@
 import type { AppSetup } from '@gnowth/lib-application'
-import { ServiceQuery } from '@gnowth/logic-core'
+import { QueryService } from '@gnowth/logic-core'
 
-import { ModelGroupFilter } from './modules/group-filters'
-import { ModelGroup, ServiceGroups } from './modules/groups'
-import { ModelUserFilter } from './modules/user-filters'
-import { ModelUser, ServiceUsers } from './modules/users'
+import { GroupFilterModel } from './modules/group-filters'
+import { GroupModel, GroupService } from './modules/groups'
+import { UserFilterModel } from './modules/user-filters'
+import { UserModel, UserService } from './modules/users'
 
 type Configs = {
   apiContext: string
@@ -12,27 +12,27 @@ type Configs = {
 }
 type ConfigurationDependencies = {
   dependencies: {
-    modelGroup: ModelGroup
-    modelGroupFilter: ModelGroupFilter
-    modelUser: ModelUser
-    modelUserFilter: ModelUserFilter
-    serviceGroups: ServiceGroups
-    serviceUsers: ServiceUsers
+    groupFilterModel: GroupFilterModel
+    groupModel: GroupModel
+    groupService: GroupService
+    userFilterModel: UserFilterModel
+    userModel: UserModel
+    userService: UserService
   }
 }
 export const setupDependencies: AppSetup<ConfigurationDependencies, Configs> = (configs: Configs) => {
-  const modelGroup = new ModelGroup({})
-  const modelUser = new ModelUser({})
-  const serviceQuery = new ServiceQuery()
+  const groupModel = new GroupModel({})
+  const queryService = new QueryService()
+  const userModel = new UserModel({})
 
   return {
     dependencies: {
-      modelGroup,
-      modelGroupFilter: new ModelGroupFilter({}),
-      modelUser,
-      modelUserFilter: new ModelUserFilter({}),
-      serviceGroups: new ServiceGroups({ ...configs, dependencies: { modelGroup, serviceQuery } }),
-      serviceUsers: new ServiceUsers({ ...configs, dependencies: { modelUser, serviceQuery } }),
+      groupFilterModel: new GroupFilterModel({}),
+      groupModel,
+      groupService: new GroupService({ ...configs, dependencies: { groupModel, queryService } }),
+      userFilterModel: new UserFilterModel({}),
+      userModel,
+      userService: new UserService({ ...configs, dependencies: { queryService, userModel } }),
     },
   }
 }

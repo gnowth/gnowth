@@ -25,7 +25,7 @@ import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
 
 export const stateUserFilter = atom({
-  default: dependencies.modelUserFilter.generatePaginated(),
+  default: dependencies.userFilterModel.generatePaginated(),
   key: 'usersFilter',
 })
 
@@ -34,12 +34,12 @@ export const stateUserFilter = atom({
 // DEBT: Update users buttons to use icons? and only visible on hover
 // DEBT: Make add new user button more visible
 const SectionUsersComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  const filtersData = useMemo(() => dependencies.modelUserFilter.toData(filters), [filters])
+  const filtersData = useMemo(() => dependencies.userFilterModel.toData(filters), [filters])
   const { data } = useQuery(
-    dependencies.serviceUsers.queryKeys.list(filtersData),
-    dependencies.serviceUsers.list,
+    dependencies.userService.queryKeys.list(filtersData),
+    dependencies.userService.list,
   )
 
   return (
@@ -57,7 +57,7 @@ const SectionUsersComponent: FunctionComponent = () => {
               <Th>{t('Status')}</Th>
 
               <Th textAlign="end">
-                <Link href={dependencies.modelApp.routes.user()} prefetch={false}>
+                <Link href={dependencies.appModel.routes.user()} prefetch={false}>
                   {t('Add new user')}
                 </Link>
               </Th>
@@ -66,12 +66,12 @@ const SectionUsersComponent: FunctionComponent = () => {
 
           <Tbody>
             {data?.data.map((user) => (
-              <Tr key={dependencies.modelUser.getKey(user)}>
+              <Tr key={dependencies.userModel.getKey(user)}>
                 <Td py="2">
                   <HStack>
-                    <Avatar name={dependencies.modelUser.getNameFull(user)} size="sm" src={user.avatar} />
+                    <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
-                    <Text>{dependencies.modelUser.getNameFull(user)}</Text>
+                    <Text>{dependencies.userModel.getNameFull(user)}</Text>
                   </HStack>
                 </Td>
 
@@ -84,7 +84,7 @@ const SectionUsersComponent: FunctionComponent = () => {
                 <Td py="2">
                   <HStack justifyContent="flex-end">
                     <Link
-                      href={dependencies.modelApp.routes.user(dependencies.modelUser.getId(user))}
+                      href={dependencies.appModel.routes.user(dependencies.userModel.getId(user))}
                       prefetch={false}
                     >
                       {t('Edit')}

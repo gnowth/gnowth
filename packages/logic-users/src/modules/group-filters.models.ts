@@ -2,7 +2,7 @@ import { Model } from '@gnowth/lib-model'
 
 import type { GroupFilter, GroupFilterData, GroupFilterParams } from './group-filters.types'
 
-export class ModelGroupFilter extends Model<GroupFilter> {
+export class GroupFilterModel extends Model<GroupFilter> {
   fromData(data: GroupFilterData): GroupFilter {
     return data
   }

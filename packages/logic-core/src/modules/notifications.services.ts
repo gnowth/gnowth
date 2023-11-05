@@ -1,26 +1,26 @@
 import type { AxiosInstance } from 'axios'
 import axios from 'axios'
 
-import type { ServiceConfigs } from './configs'
+import type { ConfigService } from './configs'
 
 type Parameters = { dependencies: Dependencies }
-type Dependencies = { serviceConfigs: ServiceConfigs }
+type Dependencies = { configService: ConfigService }
 
 // DEBT(investigation): to investigate around using sockets
-export class ServiceNotifications {
+export class NotificationService {
   static routes = {
     notifications: (id = '') => `/${id}`,
   }
 
   #axios: AxiosInstance
   #parameters: Parameters
-  #serviceConfigs: ServiceConfigs
+  #configService: ConfigService
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#serviceConfigs = parameters.dependencies.serviceConfigs
+    this.#configService = parameters.dependencies.configService
 
-    const configs = this.#serviceConfigs.getConfigs()
+    const configs = this.#configService.getConfigs()
     this.#axios = axios.create({
       baseURL: `${configs.apiOrigin}${configs.apiContextDefault}/notifications`,
       withCredentials: true,

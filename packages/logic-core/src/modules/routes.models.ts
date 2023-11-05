@@ -14,7 +14,7 @@ enum ContextUsers {
   Groups = 'groups',
 }
 
-export class ModelRoute {
+export class RouteModel {
   recipes = (context?: string, id?: string) => {
     return `/${ContextApp.Recipes}/${context}${id ? `/${id}` : ''}`
   }

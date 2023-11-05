@@ -3,7 +3,7 @@ import { createContext, useCallback, useEffect, useReducer } from 'react'
 import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { AsyncStatus } from './types'
-import { ModelPromise } from './model-promise'
+import { PromiseModel } from './model-promise'
 
 // TODO check if we can get it from action map
 type ActionTypes = 'add_promise' | 'reject' | 'remove_promise' | 'reset' | 'resolve'
@@ -69,7 +69,7 @@ export const AsyncContext = createContext<AsyncContext>({
       }),
     )
   },
-  status: ModelPromise.status.pending,
+  status: PromiseModel.status.pending,
 })
 
 const initialState: State = {
@@ -106,7 +106,7 @@ function reducer(state: State, action: Action): State {
         promises: state.promises.has(action.payload)
           ? state.promises
           : new Set(state.promises.add(action.payload)),
-        status: ModelPromise.status.pending,
+        status: PromiseModel.status.pending,
       }
     }
 
@@ -126,7 +126,7 @@ function reducer(state: State, action: Action): State {
       return {
         errors: state.errors.concat(action.errors),
         promises: state.promises,
-        status: ModelPromise.status.rejected,
+        status: PromiseModel.status.rejected,
       }
     }
 
@@ -160,7 +160,7 @@ function reducer(state: State, action: Action): State {
       return {
         errors: [],
         promises: state.promises,
-        status: ModelPromise.status.pending,
+        status: PromiseModel.status.pending,
       }
     }
 
@@ -168,7 +168,7 @@ function reducer(state: State, action: Action): State {
       return {
         errors: state.errors,
         promises: state.promises,
-        status: ModelPromise.status.resolved,
+        status: PromiseModel.status.resolved,
       }
 
     default:

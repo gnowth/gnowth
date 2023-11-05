@@ -1,5 +1,5 @@
-import { ModelRoute } from '@gnowth/logic-core'
+import { RouteModel } from '@gnowth/logic-core'
 
 export const dependencies = {
-  modelRoute: new ModelRoute(),
+  routeModel: new RouteModel(),
 }

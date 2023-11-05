@@ -5,13 +5,13 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-  ServiceQuery,
+  QueryService,
 } from '@gnowth/logic-core'
 import { TokenQueryEntity } from '@gnowth/logic-core'
 
 import type { User, UserData } from './users.types'
 import type { UserFilterParams } from './user-filters'
-import type { ModelUser } from './users.models'
+import type { UserModel } from './users.models'
 
 type QueryKeys = {
   detail: QueryKeyDetail
@@ -19,8 +19,8 @@ type QueryKeys = {
 }
 
 type Dependencies = {
-  modelUser: ModelUser
-  serviceQuery: ServiceQuery
+  userModel: UserModel
+  queryService: QueryService
 }
 
 type Parameters = {
@@ -29,16 +29,16 @@ type Parameters = {
   dependencies: Dependencies
 }
 
-export class ServiceUsers {
-  #modelUser: ModelUser
+export class UserService {
+  #userModel: UserModel
   #parameters: Parameters
   #scope = 'users'
-  #serviceQuery: ServiceQuery
+  #queryService: QueryService
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#modelUser = parameters.dependencies.modelUser
-    this.#serviceQuery = parameters.dependencies.serviceQuery
+    this.#userModel = parameters.dependencies.userModel
+    this.#queryService = parameters.dependencies.queryService
   }
 
   get queryKeys(): QueryKeys {
@@ -57,28 +57,28 @@ export class ServiceUsers {
   }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
-    return this.#serviceQuery.detail({
+    return this.#queryService.detail({
       route: this.routes.users(parameters.queryKey.at(0)?.id),
       signal: parameters.signal,
-      transform: (data: UserData) => this.#modelUser.fromData(data),
+      transform: (data: UserData) => this.#userModel.fromData(data),
     })
   }
 
   list = (parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> => {
-    return this.#serviceQuery.list({
+    return this.#queryService.list({
       params: parameters.queryKey.at(0)?.params,
       route: this.routes.users(),
       signal: parameters.signal,
-      transform: (data: UserData) => this.#modelUser.fromData(data),
+      transform: (data: UserData) => this.#userModel.fromData(data),
     })
   }
 
   // TODO: check how to cancel
   save = (user: User): Promise<QueryDetail<User>> => {
-    return this.#serviceQuery.save(this.#modelUser.toData(user), {
-      method: this.#modelUser.getId(user) ? 'post' : 'put',
+    return this.#queryService.save(this.#userModel.toData(user), {
+      method: this.#userModel.getId(user) ? 'post' : 'put',
       route: this.routes.users(user.id),
-      transform: (data: UserData) => this.#modelUser.fromData(data),
+      transform: (data: UserData) => this.#userModel.fromData(data),
     })
   }
 }

@@ -1,5 +1,5 @@
 import * as Fields from '../fields'
-import { ModelUuid } from './model-uuid'
+import { UuidModel } from './model-uuid'
 
 interface DefaultFilter {
   page: number
@@ -7,10 +7,10 @@ interface DefaultFilter {
   uuid: string
 }
 
-export class ModelFilter<
+export class FilterModel<
   Params extends DefaultFilter = DefaultFilter,
   Value extends DefaultFilter = DefaultFilter,
-> extends ModelUuid<Value> {
+> extends UuidModel<Value> {
   schema = {
     page: new Fields.FieldNumber(),
     pageSize: new Fields.FieldNumber(),

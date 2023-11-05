@@ -6,7 +6,7 @@ interface DefaultOption {
   value: string
 }
 
-export class ModelOption<Value extends DefaultOption = DefaultOption> extends Model<Value> {
+export class OptionModel<Value extends DefaultOption = DefaultOption> extends Model<Value> {
   schema = {
     label: new Fields.FieldText(),
     value: new Fields.FieldText(),

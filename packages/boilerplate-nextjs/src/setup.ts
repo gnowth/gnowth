@@ -22,7 +22,7 @@ const setupI18n: AppSetup<ConfigurationI18n> = () => {
       debug: false,
       fallbackLng: 'en',
     }) // for all options docs: https://www.i18next.com/overview/configuration-options
-    .catch(dependencies.streamErrors.pushErrorUnknown)
+    .catch(dependencies.errorStream.pushErrorUnknown)
 
   return { i18n }
 }
@@ -50,10 +50,10 @@ const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
         keepPreviousData: true,
         refetchOnWindowFocus: false,
         suspense: true,
-        useErrorBoundary: dependencies.modelError.isErrorQuery,
+        useErrorBoundary: dependencies.errorModel.isErrorQuery,
       },
     },
-    queryCache: new QueryCache({ onError: dependencies.streamErrors.pushErrorUnknown }),
+    queryCache: new QueryCache({ onError: dependencies.errorStream.pushErrorUnknown }),
   }),
 })
 

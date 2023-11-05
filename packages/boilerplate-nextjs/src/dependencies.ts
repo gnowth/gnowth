@@ -1,27 +1,27 @@
 import {
-  ModelError,
-  ModelNotification,
-  ServiceConfigs,
-  ServiceNotifications,
-  StreamErrors,
-  StreamEvents,
-  StreamLogs,
-  StreamNotifications,
+  ErrorModel,
+  NotificationModel,
+  ConfigService,
+  NotificationService,
+  ErrorStream,
+  EventStream,
+  LogStream,
+  NotificationStream,
 } from '@gnowth/logic-core'
 
 import { configs } from './configs'
 
-const modelError = new ModelError()
-const modelNotification = new ModelNotification()
-const serviceConfigs = new ServiceConfigs({ configs })
+const errorModel = new ErrorModel()
+const notificationModel = new NotificationModel()
+const configService = new ConfigService({ configs })
 
 export const dependencies = {
-  modelError,
-  modelNotification,
-  serviceConfigs,
-  serviceNotifications: new ServiceNotifications({ dependencies: { serviceConfigs } }),
-  streamErrors: new StreamErrors({ dependencies: { modelError } }),
-  streamEvents: new StreamEvents(),
-  streamLogs: new StreamLogs(),
-  streamNotifications: new StreamNotifications({ dependencies: { modelError, modelNotification } }),
+  configService,
+  errorModel,
+  errorStream: new ErrorStream({ dependencies: { errorModel } }),
+  eventStream: new EventStream(),
+  logStream: new LogStream(),
+  notificationModel,
+  notificationService: new NotificationService({ dependencies: { configService } }),
+  notificationStream: new NotificationStream({ dependencies: { errorModel, notificationModel } }),
 }

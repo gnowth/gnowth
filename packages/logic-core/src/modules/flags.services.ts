@@ -1,4 +1,4 @@
-export class ServiceFlag {
+export class FlagService {
   test() {
     return
   }

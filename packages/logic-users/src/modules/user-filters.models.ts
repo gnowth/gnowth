@@ -18,7 +18,7 @@ import type {
   UserSortKey,
 } from './user-filters.types'
 
-export class ModelUserFilter extends Model<UserFilter> {
+export class UserFilterModel extends Model<UserFilter> {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
 
   filter(filter: UserFilter): PredicateArrayFilter<User> {

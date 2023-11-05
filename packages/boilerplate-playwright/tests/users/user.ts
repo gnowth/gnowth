@@ -35,7 +35,7 @@ export class TestModelPageUser {
   }
 
   async load() {
-    await this.page.goto(dependencies.modelRoute.usersUserNew())
+    await this.page.goto(dependencies.routeModel.usersUserNew())
   }
 
   async inputData(options: OptionsInputData) {

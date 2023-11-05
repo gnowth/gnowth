@@ -5,7 +5,7 @@ interface DefaultUuid {
   uuid: string
 }
 
-export class ModelUuid<Value extends DefaultUuid = DefaultUuid> extends Model<Value> {
+export class UuidModel<Value extends DefaultUuid = DefaultUuid> extends Model<Value> {
   schema = {
     uuid: new Fields.FieldText(),
   }

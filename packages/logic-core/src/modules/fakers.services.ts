@@ -14,7 +14,7 @@ interface OptionsFakerEmail<Type> extends OptionsFakerBase<Type> {
   lastName?: string
 }
 
-export class ServiceFaker {
+export class FakerService {
   private faker: Faker
 
   constructor(options: OptionsFaker) {

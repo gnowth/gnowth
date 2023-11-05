@@ -7,7 +7,7 @@
 
 // import type { UserSerialized } from '../models/model-user'
 // import { configs } from '../configs'
-// import { ModelUserFilter } from '../models/model-user-filter'
+// import { UserFilterModel } from '../models/model-user-filter'
 
 // export function mockUsers(configsMock: MockConfigs) {
 //   return createServer({
@@ -49,8 +49,8 @@
 //         // @ts-ignore
 //         const users = schema.users.where(
 //           operatorArrayFilterAnd(
-//             ModelUserFilter.filterByEmail(request.queryParams?.email),
-//             ModelUserFilter.filterByStatus(request.queryParams?.status),
+//             UserFilterModel.filterByEmail(request.queryParams?.email),
+//             UserFilterModel.filterByStatus(request.queryParams?.status),
 //           ),
 //         )
 

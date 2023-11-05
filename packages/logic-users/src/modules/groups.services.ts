@@ -5,13 +5,13 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-  ServiceQuery,
+  QueryService,
 } from '@gnowth/logic-core'
 import { TokenQueryEntity } from '@gnowth/logic-core'
 
 import type { Group, GroupData } from './groups.types'
 import type { GroupFilterParams } from './group-filters'
-import type { ModelGroup } from './groups.models'
+import type { GroupModel } from './groups.models'
 
 type QueryKeys = {
   detail: QueryKeyDetail
@@ -19,8 +19,8 @@ type QueryKeys = {
 }
 
 type Dependencies = {
-  modelGroup: ModelGroup
-  serviceQuery: ServiceQuery
+  groupModel: GroupModel
+  queryService: QueryService
 }
 
 type Parameters = {
@@ -29,16 +29,16 @@ type Parameters = {
   dependencies: Dependencies
 }
 
-export class ServiceGroups {
-  #modelGroup: ModelGroup
+export class GroupService {
+  #groupModel: GroupModel
   #parameters: Parameters
   #scope = 'groups'
-  #serviceQuery: ServiceQuery
+  #queryService: QueryService
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#modelGroup = parameters.dependencies.modelGroup
-    this.#serviceQuery = parameters.dependencies.serviceQuery
+    this.#groupModel = parameters.dependencies.groupModel
+    this.#queryService = parameters.dependencies.queryService
   }
 
   get queryKeys(): QueryKeys {
@@ -57,27 +57,27 @@ export class ServiceGroups {
   }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<Group>> => {
-    return this.#serviceQuery.detail({
+    return this.#queryService.detail({
       route: this.routes.groups(parameters.queryKey.at(0)?.id),
       signal: parameters.signal,
-      transform: (data: GroupData) => this.#modelGroup.fromData(data),
+      transform: (data: GroupData) => this.#groupModel.fromData(data),
     })
   }
 
   list = (parameters: QueryParametersList<GroupFilterParams>): Promise<QueryList<Group>> => {
-    return this.#serviceQuery.list({
+    return this.#queryService.list({
       params: parameters.queryKey.at(0)?.params,
       route: this.routes.groups(),
       signal: parameters.signal,
-      transform: (data: GroupData) => this.#modelGroup.fromData(data),
+      transform: (data: GroupData) => this.#groupModel.fromData(data),
     })
   }
 
   save = (group: Group): Promise<QueryDetail<Group>> => {
-    return this.#serviceQuery.save(this.#modelGroup.toData(group), {
-      method: this.#modelGroup.getId(group) ? 'post' : 'put',
+    return this.#queryService.save(this.#groupModel.toData(group), {
+      method: this.#groupModel.getId(group) ? 'post' : 'put',
       route: this.routes.groups(group.id),
-      transform: (data: GroupData) => this.#modelGroup.fromData(data),
+      transform: (data: GroupData) => this.#groupModel.fromData(data),
     })
   }
 }

@@ -11,12 +11,12 @@ import packageJson from '../../package.json'
 type Props = ChakraProps & Attributes
 
 const SectionFooterComponent: FunctionComponent<Props> = (props) => {
-  const { t } = useTranslation(dependencies.modelApp.namespace)
+  const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
     <Box as="footer" {...props}>
       <Text fontSize="sm" p="3" textAlign="end">
-        <Link href={dependencies.modelApp.routes.changelog()} prefetch={false}>
+        <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
           {t('Current version: {{packageJson.version}}', { packageJson })}
         </Link>
       </Text>

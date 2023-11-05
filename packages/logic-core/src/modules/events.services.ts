@@ -1,7 +1,7 @@
 import type { Log } from './logs'
 import type { Event } from './events.types'
 
-export class ServiceEvent {
+export class EventService {
   dispatch(event: Event): void {
     console.log(event)
   }
@@ -23,7 +23,7 @@ export class ServiceEvent {
 // }
 
 // // use for audit trail, analytics, communication between mfes
-// export class ServiceEvent {
+// export class EventService {
 //   private apis: APIEvent[]
 //   private options: OptionsEvent
 

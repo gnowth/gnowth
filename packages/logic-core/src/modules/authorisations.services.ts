@@ -1,4 +1,4 @@
-export class ServiceAuthorisation {
+export class AuthorisationService {
   test() {
     return
   }
