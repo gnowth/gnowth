@@ -18,10 +18,10 @@ const configService = new ConfigService({ configs })
 export const dependencies = {
   configService,
   errorModel,
-  errorStream: new ErrorStream({ dependencies: { errorModel } }),
+  errorStream: new ErrorStream({ errorModel }),
   eventStream: new EventStream(),
   logStream: new LogStream(),
   notificationModel,
-  notificationService: new NotificationService({ dependencies: { configService } }),
-  notificationStream: new NotificationStream({ dependencies: { errorModel, notificationModel } }),
+  notificationService: new NotificationService({ configService }),
+  notificationStream: new NotificationStream({ errorModel, notificationModel }),
 }

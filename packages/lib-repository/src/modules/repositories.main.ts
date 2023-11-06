@@ -13,12 +13,15 @@ export class Repository {
     this.#mfeManager = new MfeManager()
     this.#resourceManager = new ResourceManager()
     this.#serviceManager = new ServiceManager({ repository: this })
-  }
 
-  async initialize(): Promise<void> {
-    // TODO: check how Repository itsef could use some services, like configs, events, dependencies etc... and pass down to managers
+    // TODO: move to initialise method later on
     const eventService = new EventService({ repository: this })
     this.#serviceManager.add(TokenServices.events, eventService)
+  }
+
+  async initialise(): Promise<void> {
+    return undefined
+    // TODO: check how Repository itsef could use some services, like configs, events, dependencies etc... and pass down to managers
   }
 
   serviceGet(name: TokenServices.events): EventService

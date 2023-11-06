@@ -18,27 +18,23 @@ type QueryKeys = {
   list: QueryKeyList<GroupFilterParams>
 }
 
-type Dependencies = {
-  groupModel: GroupModel
-  queryService: QueryService
-}
-
 type Parameters = {
   apiOrigin: string
   apiContext: string
-  dependencies: Dependencies
+  groupModel: GroupModel
+  queryService: QueryService
 }
 
 export class GroupService {
   #groupModel: GroupModel
   #parameters: Parameters
-  #scope = 'groups'
   #queryService: QueryService
+  #scope = 'groups'
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#groupModel = parameters.dependencies.groupModel
-    this.#queryService = parameters.dependencies.queryService
+    this.#groupModel = parameters.groupModel
+    this.#queryService = parameters.queryService
   }
 
   get queryKeys(): QueryKeys {

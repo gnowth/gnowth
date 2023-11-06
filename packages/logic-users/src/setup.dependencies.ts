@@ -29,10 +29,10 @@ export const setupDependencies: AppSetup<ConfigurationDependencies, Configs> = (
     dependencies: {
       groupFilterModel: new GroupFilterModel({}),
       groupModel,
-      groupService: new GroupService({ ...configs, dependencies: { groupModel, queryService } }),
+      groupService: new GroupService({ ...configs, groupModel, queryService }),
       userFilterModel: new UserFilterModel({}),
       userModel,
-      userService: new UserService({ ...configs, dependencies: { queryService, userModel } }),
+      userService: new UserService({ ...configs, queryService, userModel }),
     },
   }
 }

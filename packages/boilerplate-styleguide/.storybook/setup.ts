@@ -11,7 +11,7 @@ import i18nLanguageDetector from 'i18next-browser-languagedetector'
 const errorModel = new ErrorModel()
 const dependencies = {
   errorModel,
-  errorStream: new ErrorStream({ dependencies: { errorModel } }),
+  errorStream: new ErrorStream({ errorModel }),
 }
 
 type ConfigurationI18n = { i18n: i18n }

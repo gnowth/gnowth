@@ -18,15 +18,11 @@ type QueryKeys = {
   list: QueryKeyList<UserFilterParams>
 }
 
-type Dependencies = {
-  queryService: QueryService
-  userModel: UserModel
-}
-
 type Parameters = {
   apiOrigin: string
   apiContext: string
-  dependencies: Dependencies
+  queryService: QueryService
+  userModel: UserModel
 }
 
 export class UserService {
@@ -37,8 +33,8 @@ export class UserService {
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#queryService = parameters.dependencies.queryService
-    this.#userModel = parameters.dependencies.userModel
+    this.#queryService = parameters.queryService
+    this.#userModel = parameters.userModel
   }
 
   get queryKeys(): QueryKeys {

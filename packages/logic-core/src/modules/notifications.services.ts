@@ -3,8 +3,7 @@ import axios from 'axios'
 
 import type { ConfigService } from './configs'
 
-type Parameters = { dependencies: Dependencies }
-type Dependencies = { configService: ConfigService }
+type Parameters = { configService: ConfigService }
 
 // DEBT(investigation): to investigate around using sockets
 export class NotificationService {
@@ -18,7 +17,7 @@ export class NotificationService {
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#configService = parameters.dependencies.configService
+    this.#configService = parameters.configService
 
     const configs = this.#configService.getConfigs()
     this.#axios = axios.create({

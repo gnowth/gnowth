@@ -10,8 +10,7 @@ interface Toast {
   title: string
 }
 
-type Parameters = { dependencies: Dependencies }
-type Dependencies = {
+type Parameters = {
   errorModel: ErrorModel
   notificationModel: NotificationModel
 }
@@ -24,8 +23,8 @@ export class NotificationStream {
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters
-    this.#errorModel = parameters.dependencies.errorModel
-    this.#notificationModel = parameters.dependencies.notificationModel
+    this.#errorModel = parameters.errorModel
+    this.#notificationModel = parameters.notificationModel
   }
 
   pushError = (error: ErrorData) => {
