@@ -5,6 +5,6 @@ export type {
   IngredientsQueryVariables,
   RecipesQuery,
   RecipesQueryVariables,
-} from '../.tina/__generated__/types'
+} from '../../.tina/__generated__/types'
 
-export { client } from '../.tina/__generated__/client'
+export * from './tina.services'

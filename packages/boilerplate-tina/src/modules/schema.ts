@@ -1,22 +1,15 @@
 import type { Schema, Collection } from 'tinacms'
 import { defineSchema } from 'tinacms'
 
-interface RouteModel {
+type Parameters = { routeModel: RouteModel }
+type RouteModel = {
   recipes(context?: string, id?: string): string
 }
 
-interface Dependencies {
-  routeModel: RouteModel
-}
-
-interface OptionsModelSchema {
-  dependencies: Dependencies
-}
-
 export enum CollectionEnum {
-  Contents = 'contents',
-  Ingredients = 'ingredients',
-  Recipes = 'recipes',
+  contents = 'contents',
+  ingredients = 'ingredients',
+  recipes = 'recipes',
 }
 
 // DEBT: current can move the content to the root as tina is not dealing well with relative path that are above the root
@@ -24,13 +17,19 @@ export enum CollectionEnum {
 const APP_CONTEXT = 'recipes'
 const CONTEXT_PATH = 'contents'
 
-export class ModelTinaSchema {
-  private dependencies: Dependencies
-  private options: OptionsModelSchema
+export class SchemaService {
+  #parameters: Parameters
+  #routeModel: RouteModel
 
-  constructor(options: OptionsModelSchema) {
-    this.dependencies = options.dependencies
-    this.options = options
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.#routeModel = parameters.routeModel
+  }
+
+  formatGet(schema: Schema, collectionName: CollectionEnum): NonNullable<Collection['format']> {
+    const collection = schema.collections.find((collection) => collection.name === collectionName)
+
+    return collection?.format ?? 'json'
   }
 
   generate(): Schema {
@@ -46,10 +45,10 @@ export class ModelTinaSchema {
             },
           ],
           format: 'mdx',
-          label: CollectionEnum.Contents,
-          name: CollectionEnum.Contents,
-          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Contents}`,
-          ui: { router: this.router },
+          label: CollectionEnum.contents,
+          name: CollectionEnum.contents,
+          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.contents}`,
+          ui: { router: this.#router },
         },
 
         {
@@ -62,10 +61,10 @@ export class ModelTinaSchema {
             },
           ],
           format: 'mdx',
-          label: CollectionEnum.Ingredients,
-          name: CollectionEnum.Ingredients,
-          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Ingredients}`,
-          ui: { router: this.router },
+          label: CollectionEnum.ingredients,
+          name: CollectionEnum.ingredients,
+          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.ingredients}`,
+          ui: { router: this.#router },
         },
 
         {
@@ -91,24 +90,18 @@ export class ModelTinaSchema {
             },
           ],
           format: 'mdx',
-          label: CollectionEnum.Recipes,
-          name: CollectionEnum.Recipes,
-          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.Recipes}`,
-          ui: { router: this.router },
+          label: CollectionEnum.recipes,
+          name: CollectionEnum.recipes,
+          path: `${CONTEXT_PATH}/${APP_CONTEXT}/${CollectionEnum.recipes}`,
+          ui: { router: this.#router },
         },
       ],
     })
   }
 
-  getFormatFromSchema(schema: Schema, collectionName: CollectionEnum): NonNullable<Collection['format']> {
-    const collection = schema.collections.find((collection) => collection.name === collectionName)
-
-    return collection?.format ?? 'json'
-  }
-
-  private router: NonNullable<Collection['ui']>['router'] = (configs) => {
-    return this.dependencies.routeModel.recipes(
-      configs.collection.name === CollectionEnum.Contents ? undefined : configs.collection.name,
+  #router: NonNullable<Collection['ui']>['router'] = (configs) => {
+    return this.#routeModel.recipes(
+      configs.collection.name === CollectionEnum.contents ? undefined : configs.collection.name,
       configs.document._sys.filename,
     )
   }

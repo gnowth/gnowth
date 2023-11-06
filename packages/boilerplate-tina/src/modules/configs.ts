@@ -1,8 +1,9 @@
 import { defineConfig } from 'tinacms'
 
-import { dependencies } from './dependencies'
+import { TinaService } from './tina.services'
 
-export const schema = dependencies.modelTinaSchema.generate()
+const tinaService = new TinaService()
+
 export const configs = defineConfig({
   branch: '',
   build: {
@@ -10,6 +11,6 @@ export const configs = defineConfig({
     publicFolder: '../boilerplate-nextjs/public',
   },
   clientId: '',
-  schema,
+  schema: tinaService.schema,
   token: '',
 })

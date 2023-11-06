@@ -1,3 +1,3 @@
-import { configs } from '../src/client.configs'
+import { configs } from '../src/modules/configs'
 
 export default configs

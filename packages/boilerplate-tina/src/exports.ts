@@ -1,10 +1,2 @@
-export type {
-  ContentsQuery,
-  ContentsQueryVariables,
-  IngredientsQuery,
-  IngredientsQueryVariables,
-  RecipesQuery,
-  RecipesQueryVariables,
-} from './client'
-export { TinaService } from './tina.services'
-export { UIMarkdownTina } from './ui-markdown-tina'
+export * from './modules/tina'
+export { UIMarkdownTina } from './components/ui-markdown-tina'

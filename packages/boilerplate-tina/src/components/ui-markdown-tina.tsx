@@ -10,8 +10,8 @@ import type {
   IngredientsQueryVariables,
   RecipesQuery,
   RecipesQueryVariables,
-} from './client'
-import { CollectionEnum } from './tina.models'
+} from '../modules/tina'
+import { CollectionEnum } from '../modules/schema'
 
 type Queries = {
   contents: ContentsQuery
