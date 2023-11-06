@@ -2,7 +2,7 @@ import { QueryService } from '@gnowth/logic-core'
 import { GroupModel, GroupService, UserModel, UserService, UserFilterModel } from '@gnowth/logic-users'
 
 import { configs } from './configs'
-import { AppModel } from './modules/app.models'
+import { AppModel } from './modules/app'
 
 const userModel = new UserModel({})
 const groupModel = new GroupModel({})

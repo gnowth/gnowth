@@ -1,8 +1,8 @@
 import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
-import { FormUserFilter } from '../components/form-user-filter'
-import { SectionUsers } from '../components/section-users'
+import { FormUserFilter } from './form-user-filter'
+import { SectionUsers } from './section-users'
 
 export const PageUsers: FunctionComponent = () => {
   return (

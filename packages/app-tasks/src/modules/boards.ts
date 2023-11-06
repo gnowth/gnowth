@@ -1,8 +1,8 @@
 import type { User } from '@gnowth/logic-users'
 
-import type { Task } from './task.types'
+import type { Task } from './task'
 
-export type TaskBoard = {
+export type Board = {
   createdBy: User
   isPublic: boolean
   name: string

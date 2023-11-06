@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
-import { FormUser } from '../components/form-user'
+import { FormUser } from './form-user'
 
 export const PageUser: FunctionComponent = () => {
   return (

@@ -4,18 +4,14 @@ import { lazy } from 'react'
 import { AppApplication, AppPage, AppRedirect, AppPageNotFound } from '@gnowth/lib-react'
 
 // Note: AppModelApplicationTasks should probably be imported at root only? and pass down
-import { AppModelApplicationTasks } from './application-tasks.models'
+import { AppModelApplicationTasks } from '../modules/application-tasks'
 
-const PageBoard = lazy(() => import('./pages/page-board').then((module) => ({ default: module.PageBoard })))
+const PageBoard = lazy(() => import('./page-board').then((module) => ({ default: module.PageBoard })))
 const PageDashboard = lazy(() =>
-  import('./pages/page-dashboard').then((module) => ({ default: module.PageDashboard })),
+  import('./page-dashboard').then((module) => ({ default: module.PageDashboard })),
 )
-const PageLanding = lazy(() =>
-  import('./pages/page-landing').then((module) => ({ default: module.PageLanding })),
-)
-const PageReport = lazy(() =>
-  import('./pages/page-report').then((module) => ({ default: module.PageReport })),
-)
+const PageLanding = lazy(() => import('./page-landing').then((module) => ({ default: module.PageLanding })))
+const PageReport = lazy(() => import('./page-report').then((module) => ({ default: module.PageReport })))
 
 interface Props {
   application?: AppModelApplication | string

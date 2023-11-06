@@ -1,12 +1,12 @@
 import type { FunctionComponent } from 'react'
 import { VStack } from '@chakra-ui/react'
 
-import { FormGroup } from '../components/form-group'
+import { SectionChangelog } from './section-changelog'
 
-export const PageGroup: FunctionComponent = () => {
+export const PageChangelog: FunctionComponent = () => {
   return (
     <VStack alignItems="stretch" as="main" spacing="10">
-      <FormGroup />
+      <SectionChangelog />
     </VStack>
   )
 }

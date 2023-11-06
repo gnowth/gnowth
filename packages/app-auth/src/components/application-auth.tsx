@@ -2,9 +2,9 @@ import type { AppModelApplication } from '@gnowth/lib-react'
 import type { FunctionComponent } from 'react'
 import { AppApplication, AppPage, AppPageNotFound } from '@gnowth/lib-react'
 
-import { TokenPage } from './application-auth.tokens'
-import { PageLogin } from './pages/page-login'
-import { PageSignup } from './pages/page-signup'
+import { AuthPageToken } from '../modules/application-auth.tokens'
+import { PageLogin } from './page-login'
+import { PageSignup } from './page-signup'
 
 interface Props {
   application?: AppModelApplication | string
@@ -13,9 +13,9 @@ interface Props {
 
 export const ApplicationAuth: FunctionComponent<Props> = (props) => (
   <AppApplication application={props.application ?? 'auth'} path={props.path}>
-    <AppPage component={PageLogin} page={TokenPage.login} />
+    <AppPage component={PageLogin} page={AuthPageToken.login} />
 
-    <AppPage component={PageSignup} page={TokenPage.signup} />
+    <AppPage component={PageSignup} page={AuthPageToken.signup} />
 
     <AppPage component={AppPageNotFound} />
   </AppApplication>

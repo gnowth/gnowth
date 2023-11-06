@@ -1,6 +1,6 @@
 import type { User } from '@gnowth/logic-users'
 
-export type TaskComment = {
+export type Comment = {
   content: string
   createdBy: User
   uuid: string

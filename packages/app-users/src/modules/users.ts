@@ -8,7 +8,7 @@ import { SerializerRest } from './users.utils'
 import { configs } from '../configs'
 import { dependencies } from '../dependencies'
 
-export function mockUsers(configsMock: MockConfigs) {
+export function userMock(configsMock: MockConfigs) {
   return createServer({
     environment: configsMock.environment,
 

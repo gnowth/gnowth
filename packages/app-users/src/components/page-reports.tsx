@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react'
 import { Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { LayoutSection } from '../components/layout-section'
+import { LayoutSection } from './layout-section'
 import { dependencies } from '../dependencies'
 
 export const PageReports: FunctionComponent = () => {
