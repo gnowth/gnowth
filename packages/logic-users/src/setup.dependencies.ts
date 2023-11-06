@@ -1,5 +1,4 @@
 import type { AppSetup } from '@gnowth/lib-application'
-import { QueryService } from '@gnowth/logic-core'
 
 import { GroupFilterModel } from './modules/group-filters'
 import { GroupModel, GroupService } from './modules/groups'
@@ -21,18 +20,14 @@ type ConfigurationDependencies = {
   }
 }
 export const setupDependencies: AppSetup<ConfigurationDependencies, Configs> = (configs: Configs) => {
-  const groupModel = new GroupModel({})
-  const queryService = new QueryService()
-  const userModel = new UserModel({})
-
   return {
     dependencies: {
       groupFilterModel: new GroupFilterModel({}),
-      groupModel,
-      groupService: new GroupService({ ...configs, groupModel, queryService }),
+      groupModel: new GroupModel({}),
+      groupService: new GroupService(configs),
       userFilterModel: new UserFilterModel({}),
-      userModel,
-      userService: new UserService({ ...configs, queryService, userModel }),
+      userModel: new UserModel({}),
+      userService: new UserService(configs),
     },
   }
 }

@@ -5,13 +5,12 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-  QueryService,
 } from '@gnowth/logic-core'
-import { TokenQueryEntity } from '@gnowth/logic-core'
+import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
 
 import type { User, UserData } from './users.types'
 import type { UserFilterParams } from './user-filters'
-import type { UserModel } from './users.models'
+import { UserModel } from './users.models'
 
 type QueryKeys = {
   detail: QueryKeyDetail
@@ -21,21 +20,13 @@ type QueryKeys = {
 type Parameters = {
   apiOrigin: string
   apiContext: string
-  queryService: QueryService
-  userModel: UserModel
 }
 
 export class UserService {
   #parameters: Parameters
-  #queryService: QueryService
+  #queryService!: QueryService
   #scope = 'users'
-  #userModel: UserModel
-
-  constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.#queryService = parameters.queryService
-    this.#userModel = parameters.userModel
-  }
+  #userModel!: UserModel
 
   get queryKeys(): QueryKeys {
     return {
@@ -50,6 +41,16 @@ export class UserService {
     return {
       users: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
     }
+  }
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.onInit()
+  }
+
+  onInit() {
+    this.#queryService = new QueryService()
+    this.#userModel = new UserModel({})
   }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
