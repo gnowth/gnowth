@@ -8,10 +8,9 @@ import { createInstance } from 'i18next'
 import i18nBackend from 'i18next-http-backend'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-const errorModel = new ErrorModel()
 const dependencies = {
-  errorModel,
-  errorStream: new ErrorStream({ dependencies: { errorModel } }),
+  errorModel: new ErrorModel(),
+  errorStream: new ErrorStream(),
 }
 
 type ConfigurationI18n = { i18n: i18n }

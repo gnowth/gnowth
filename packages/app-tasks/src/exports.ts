@@ -1,1 +1,2 @@
-export * from './application-tasks'
+export * from './components/application-tasks'
+export * from './modules/application-tasks'

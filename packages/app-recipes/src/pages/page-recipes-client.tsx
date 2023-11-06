@@ -15,7 +15,7 @@ export const PageRecipesClient: PageClientComponent<Props> = (props) => {
 }
 
 PageRecipesClient.staticPaths = async () => {
-  const slugs = await dependencies.tinaService.getRecipesSlugs()
+  const slugs = await dependencies.tinaService.recipeGetSlugs()
 
   return {
     fallback: false,
@@ -25,7 +25,7 @@ PageRecipesClient.staticPaths = async () => {
 
 PageRecipesClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
-  const props = await dependencies.tinaService.getRecipesContent(slug)
+  const props = await dependencies.tinaService.recipeGetContent(slug)
 
   return { props }
 }

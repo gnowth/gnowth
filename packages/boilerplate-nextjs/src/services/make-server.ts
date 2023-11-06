@@ -1,1 +1,1 @@
-export { mockUsers as makeServer } from '@gnowth/app-users'
+export { userMock as makeServer } from '@gnowth/app-users'

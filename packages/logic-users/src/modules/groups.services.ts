@@ -5,41 +5,28 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-  QueryService,
 } from '@gnowth/logic-core'
-import { TokenQueryEntity } from '@gnowth/logic-core'
+import { TokenQueryEntity, QueryService } from '@gnowth/logic-core'
 
 import type { Group, GroupData } from './groups.types'
 import type { GroupFilterParams } from './group-filters'
-import type { GroupModel } from './groups.models'
+import { GroupModel } from './groups.models'
 
 type QueryKeys = {
   detail: QueryKeyDetail
   list: QueryKeyList<GroupFilterParams>
 }
 
-type Dependencies = {
-  groupModel: GroupModel
-  queryService: QueryService
-}
-
 type Parameters = {
   apiOrigin: string
   apiContext: string
-  dependencies: Dependencies
 }
 
 export class GroupService {
-  #groupModel: GroupModel
+  #groupModel!: GroupModel
   #parameters: Parameters
+  #queryService!: QueryService
   #scope = 'groups'
-  #queryService: QueryService
-
-  constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.#groupModel = parameters.dependencies.groupModel
-    this.#queryService = parameters.dependencies.queryService
-  }
 
   get queryKeys(): QueryKeys {
     return {
@@ -54,6 +41,16 @@ export class GroupService {
     return {
       groups: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
     }
+  }
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.onInit()
+  }
+
+  onInit() {
+    this.#groupModel = new GroupModel({})
+    this.#queryService = new QueryService()
   }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<Group>> => {

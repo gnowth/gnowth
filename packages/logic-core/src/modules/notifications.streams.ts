@@ -1,7 +1,9 @@
 import { Subject } from 'rxjs'
 
-import type { ErrorData, ErrorModel } from './errors'
-import type { NotificationModel, Notification } from './notifications.models'
+import type { ErrorData } from './errors'
+import type { Notification } from './notifications.models'
+import { ErrorModel } from './errors'
+import { NotificationModel } from './notifications.models'
 
 interface Toast {
   description?: string
@@ -10,22 +12,20 @@ interface Toast {
   title: string
 }
 
-type Parameters = { dependencies: Dependencies }
-type Dependencies = {
-  errorModel: ErrorModel
-  notificationModel: NotificationModel
-}
-
 export class NotificationStream {
   stream = new Subject<Toast>()
-  #errorModel: ErrorModel
-  #notificationModel: NotificationModel
-  #parameters: Parameters
+  #errorModel!: ErrorModel
+  #notificationModel!: NotificationModel
 
-  constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.#errorModel = parameters.dependencies.errorModel
-    this.#notificationModel = parameters.dependencies.notificationModel
+  // TODO: remove
+  constructor() {
+    this.onInit()
+  }
+
+  // TODO: align with repository
+  onInit() {
+    this.#errorModel = new ErrorModel()
+    this.#notificationModel = new NotificationModel()
   }
 
   pushError = (error: ErrorData) => {

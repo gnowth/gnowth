@@ -3,11 +3,11 @@ import type { ReactElement } from 'react'
 import { DataSource, DataSuspense, LayoutPage, LayoutSection } from '@gnowth/lib-react'
 
 import type { Recipe } from '../modules/recipes'
-import { ViewRecipeDescriptions } from '../views/view-recipe-descriptions'
-import { ViewRecipeIngredients } from '../views/view-recipe-ingredients'
-import { ViewRecipeInstructions } from '../views/view-recipe-instructions'
-import { ViewRecipeNutritionalValues } from '../views/view-recipe-nutritional-values'
-import { ViewRecipeUtensils } from '../views/view-recipe-utensils'
+import { ViewRecipeDescriptions } from './view-recipe-descriptions'
+import { ViewRecipeIngredients } from './view-recipe-ingredients'
+import { ViewRecipeInstructions } from './view-recipe-instructions'
+import { ViewRecipeNutritionalValues } from './view-recipe-nutritional-values'
+import { ViewRecipeUtensils } from './view-recipe-utensils'
 
 interface Props {
   resources: {
