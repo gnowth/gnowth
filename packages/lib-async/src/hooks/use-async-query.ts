@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect, useCallback } from 'react'
 
-import { AsyncContext } from './async-context'
+import { AsyncContext } from '../components/async-context'
 
 interface Configs {
   dependencies?: Array<unknown>

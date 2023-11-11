@@ -1,8 +1,8 @@
 import { useEffect, useReducer } from 'react'
 import { ErrorCustom } from '@gnowth/lib-utils'
 
-import type { AsyncStatus } from './types'
-import { PromiseModel } from './model-promise'
+import type { AsyncStatus } from '../types'
+import { PromiseModel } from '../modules/promises'
 
 type ActionTypes = 'reject' | 'reset' | 'resolve'
 
