@@ -1,19 +1,17 @@
+import type { MockConfigs, MockResponseAny, MockServer } from '@gnowth/lib-react'
 import type { UserData } from '@gnowth/logic-users'
-import type { AnyResponse } from 'miragejs/-types'
 import { faker } from '@faker-js/faker/locale/en'
-import { Factory, Model, createServer } from 'miragejs'
+import { MockFactory, MockModel, RestMockSerializer, mockServer } from '@gnowth/lib-react'
 
-import type { MockConfigs, ServerEx } from './mocks'
-import { SerializerRest } from './users.utils'
 import { configs } from '../configs'
 import { dependencies } from '../dependencies'
 
 export function userMock(configsMock: MockConfigs) {
-  return createServer({
+  return mockServer({
     environment: configsMock.environment,
 
     factories: {
-      user: Factory.extend<UserData>({
+      user: MockFactory.extend<UserData>({
         avatar: () => faker.internet.avatar(),
         email() {
           // DEBT(hack): dirty ts fix, miragejs typescript is poor
@@ -30,7 +28,7 @@ export function userMock(configsMock: MockConfigs) {
     },
 
     models: {
-      user: Model.extend<UserData>({}),
+      user: MockModel.extend<UserData>({}),
     },
 
     routes() {
@@ -42,7 +40,7 @@ export function userMock(configsMock: MockConfigs) {
       this.urlPrefix = configs.apiOrigin
       this.namespace = '/boilerplate/v1'
       this.resource?.('users')
-      this.get('/users', function (this: ServerEx, schema, request) {
+      this.get('/users', function (this: MockServer, schema, request) {
         // DEBT(hack): dirty ts fix
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -50,7 +48,7 @@ export function userMock(configsMock: MockConfigs) {
           dependencies.userFilterModel.filter({ ...request.queryParams, sortBy: [] }),
         )
 
-        return this.serialize?.(users, 'application') as AnyResponse
+        return this.serialize?.(users, 'application') as MockResponseAny
       })
 
       this.passthrough()
@@ -60,6 +58,6 @@ export function userMock(configsMock: MockConfigs) {
       server.createList('user', 100)
     },
 
-    serializers: { application: SerializerRest },
+    serializers: { application: RestMockSerializer },
   } as MockConfigs)
 }

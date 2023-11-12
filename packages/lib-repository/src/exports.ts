@@ -1,5 +1,6 @@
 export * from './modules/dependencies'
 export * from './modules/events'
+export * from './modules/localisation'
 export * from './modules/repositories'
 export * from './modules/scripts'
 export * from './modules/services'

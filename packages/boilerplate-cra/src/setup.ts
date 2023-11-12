@@ -1,11 +1,11 @@
 import type { AppSetup } from '@gnowth/lib-react'
-import { appSetupCompose, mockServer } from '@gnowth/lib-react'
+import { appSetupCompose, mockServerDummy } from '@gnowth/lib-react'
 
 import { AppModelEnvironmentMono } from './app-model-environment'
 
-type ConfigurationMock = { mockServer?: ReturnType<typeof mockServer> }
+type ConfigurationMock = { mockServer?: ReturnType<typeof mockServerDummy> }
 const setupMock: AppSetup<ConfigurationMock> = () => ({
-  mockServer: process.env.NODE_ENV === 'development' ? mockServer({ env: 'development' }) : undefined,
+  mockServer: process.env.NODE_ENV === 'development' ? mockServerDummy({ env: 'development' }) : undefined,
 })
 
 type ConfigurationEnvironment = { appModelEnvironment: AppModelEnvironmentMono }

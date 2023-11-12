@@ -4,7 +4,7 @@ import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
 
 // DEBT: move to mock-server file
 // DEBT(hack): dirty ts fix
-export interface ServerEx extends Server {
+export interface MockServer extends Server {
   // DEBT: why is this different from the one in boilerplate-nextjs?
   // resource?(endpoint: string): void
   serialize?(primaryResource: unknown, request: unknown): AnyResponse
@@ -12,5 +12,9 @@ export interface ServerEx extends Server {
 
 // DEBT(hack): dirty ts fix
 export interface MockConfigs extends ServerConfig<AnyModels, AnyFactories> {
-  routes?: (this: ServerEx) => void
+  routes?: (this: MockServer) => void
 }
+
+export type { AnyResponse as MockResponseAny } from 'miragejs/-types'
+
+export { Factory as MockFactory, Model as MockModel, createServer as mockServer } from 'miragejs'

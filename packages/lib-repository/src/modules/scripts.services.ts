@@ -1,15 +1,21 @@
 import type { ParametersScript } from './scripts.main'
 import { TokenServices } from './repositories.tokens'
-import { Script } from './scripts.main'
-import { Service } from './services.main'
+import { ScriptMain } from './scripts.main'
+import { Service } from './services'
+import { repositoryGetAsync } from './repositories.utils'
 
 export class ScriptService extends Service {
-  #script!: Script
+  #script: ScriptMain
   #eventRegistry!: string
 
+  constructor() {
+    super()
+    this.#script = new ScriptMain()
+  }
+
   async onInit(): Promise<void> {
-    this.#script = new Script()
-    const eventService = this.repository.serviceGet(TokenServices.events)
+    const repository = await repositoryGetAsync()
+    const eventService = repository.serviceGet(TokenServices.events)
     this.#eventRegistry = eventService.register()
   }
 

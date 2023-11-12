@@ -6,7 +6,7 @@ export type ParametersScript = {
   url: string
 }
 
-export class Script {
+export class ScriptMain {
   inject(parameters: ParametersScript): Promise<Event> {
     if (parameters.preload) {
       this.#scriptPreload(parameters)

@@ -1,28 +1,39 @@
-import type { Dependency } from './dependencies.main'
-import type { Repository } from './repositories'
+import type { Service } from './services'
 
-export type DependencyType = DependencyTypeMfe | DependencyTypeResource | DependencyTypeService
-export type DependencyConstructor = {
-  getDependencies: () => DependencyType[]
-  getPreloads: () => DependencyType[]
-  new (parameters: { repository: Repository }): Dependency
-}
+export type DependencyDefinition =
+  | DependencyDefinitionMfe
+  | DependencyDefinitionResource
+  | DependencyDefinitionService
+  | DependencyDefinitionStream
 
-type DependencyTypeMfe = {
+type DependencyDefinitionMfe = {
   name: string
   type: 'mfe'
   url?: string
 }
 
-type DependencyTypeResource = {
+type DependencyDefinitionResource = {
   name: string
   type: 'resource'
   url?: string
 }
 
-export type DependencyTypeService = {
+export type DependencyDefinitionService = {
+  Constructor?: { new (): Service }
   name: string
-  service?: DependencyConstructor
   type: 'service'
   url?: string
+}
+
+type DependencyDefinitionStream = {
+  name: string
+  type: 'stream'
+  url?: string
+}
+
+export type DependencyRecord = {
+  mfes?: Record<string, unknown>
+  resources?: Record<string, unknown>
+  services?: Record<string, { new (): Service }>
+  streams?: Record<string, unknown>
 }

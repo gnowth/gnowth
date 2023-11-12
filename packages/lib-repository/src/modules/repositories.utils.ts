@@ -1,10 +1,12 @@
+import type { DependencyRecord } from './dependencies'
 import { Repository } from './repositories.main'
-import { Script } from './scripts.main'
+import { ScriptMain } from './scripts.main'
 
 type GlobalThis = typeof globalThis & {
   repository?: Repository
 }
 type Parameters = {
+  dependencies?: DependencyRecord
   url: string
 }
 
@@ -12,35 +14,25 @@ const globalThisGet = (): GlobalThis => globalThis
 
 export const repositoryGet = (): Repository | undefined => globalThisGet().repository
 
-// TODO: remove after everywhere is migrated to repository properly
-export const repositoryGetSync = (): Repository | undefined => {
+export const repositoryGetAsync = async (parameters?: Parameters): Promise<Repository> => {
   const repositoryMaybe = repositoryGet()
 
   if (repositoryMaybe) {
     return repositoryMaybe
   }
 
-  const repository = new Repository()
-
-  const globalThis = globalThisGet()
-  globalThis.repository = repository
-
-  return repository
-}
-
-// TODO implement properly
-export const repositoryGetAsync = async (parameters: Parameters): Promise<Repository> => {
-  const repositoryMaybe = repositoryGet()
-
-  if (repositoryMaybe) {
-    return repositoryMaybe
+  // TODO implement
+  const getRepositoryFromUrl = async (url: string) => {
+    const script = new ScriptMain()
+    await script.inject({ async: true, preload: true, url })
+    const Constructor = await import(url)
+    return Constructor as { new (): Repository }
   }
 
-  const script = new Script()
-  await script.inject({ async: true, preload: true, url: parameters.url })
-  const Module = await import(parameters.url)
+  // TODO: only load from url
+  const Constructor = parameters?.url ? await getRepositoryFromUrl(parameters.url) : Repository
 
-  const repository = new Module() as Repository
+  const repository = new Constructor(parameters)
   await repository.initialise()
 
   const globalThis = globalThisGet()
@@ -49,18 +41,18 @@ export const repositoryGetAsync = async (parameters: Parameters): Promise<Reposi
   return repository
 }
 
-export const repositoryGetOrCreate = async (): Promise<Repository> => {
-  const repositoryMaybe = repositoryGet()
+// export const repositoryGetOrCreate = async (): Promise<Repository> => {
+//   const repositoryMaybe = repositoryGet()
 
-  if (repositoryMaybe) {
-    return repositoryMaybe
-  }
+//   if (repositoryMaybe) {
+//     return repositoryMaybe
+//   }
 
-  const repository = new Repository()
-  await repository.initialise()
+//   const repository = new Repository()
+//   await repository.initialise()
 
-  const globalThis = globalThisGet()
-  globalThis.repository = repository
+//   const globalThis = globalThisGet()
+//   globalThis.repository = repository
 
-  return repository
-}
+//   return repository
+// }

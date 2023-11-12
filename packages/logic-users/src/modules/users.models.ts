@@ -1,5 +1,6 @@
+import type { FakerService } from '@gnowth/lib-mock'
 import type { UtilOptional } from '@gnowth/lib-utils'
-import type { ErrorData, EventService, FakerService } from '@gnowth/logic-core'
+import type { ErrorData, EventService } from '@gnowth/logic-core'
 import { Model } from '@gnowth/lib-model'
 import { v4 as uuid } from 'uuid'
 
