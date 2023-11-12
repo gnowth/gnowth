@@ -13,7 +13,7 @@ interface Serv {
 
 // TODO: add mock data from faker
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function mockServer(_configs: Configs): Server {
+export function mockServerDummy(_configs: Configs): Server {
   return createServer({
     factories: {
       recipe: Factory.extend({

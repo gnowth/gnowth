@@ -29,7 +29,7 @@ interface Serializer {
 }
 
 // DEBT(hack): dirty ts fix
-export const SerializerRest = RestSerializer.extend({
+export const RestMockSerializer = RestSerializer.extend({
   normalize(data) {
     return (RestSerializer.prototype as Serializer).normalize.call(this, {
       [(this as Serializer).type]: data,

@@ -33,6 +33,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/lib-application": "0.0.0",
+    "@gnowth/lib-mock": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0"
   },

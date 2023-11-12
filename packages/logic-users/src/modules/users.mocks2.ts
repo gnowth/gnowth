@@ -1,16 +1,20 @@
-// import type { AnyResponse, MockConfigs, ServerEx } from '@gnowth/lib-mocks'
-// import { RestMockSerializer, Factory, Model, createServer, faker } from '@gnowth/lib-mock'
+// import type { MockConfigs, ServerEx } from '@gnowth/app-core'
+// import type { AnyResponse } from 'miragejs/-types'
+// import { faker } from '@faker-js/faker/locale/en'
+// import { SerializerRest } from '@gnowth/app-core'
+// import { operatorArrayFilterAnd } from '@gnowth/lib-react'
+// import { Factory, Model, createServer } from 'miragejs'
 
-// import type { UserData } from './users.types'
+// import type { UserSerialized } from '../models/model-user'
 // import { configs } from '../configs'
-// import { dependencies } from '../dependencies'
+// import { UserFilterModel } from '../models/model-user-filter'
 
-// export function userMock(configsMock: MockConfigs) {
+// export function mockUsers(configsMock: MockConfigs) {
 //   return createServer({
 //     environment: configsMock.environment,
 
 //     factories: {
-//       user: Factory.extend<UserData>({
+//       user: Factory.extend<UserSerialized>({
 //         avatar: () => faker.internet.avatar(),
 //         email() {
 //           // DEBT(hack): dirty ts fix, miragejs typescript is poor
@@ -27,7 +31,7 @@
 //     },
 
 //     models: {
-//       user: Model.extend<UserData>({}),
+//       user: Model.extend<UserSerialized>({}),
 //     },
 
 //     routes() {
@@ -44,7 +48,10 @@
 //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //         // @ts-ignore
 //         const users = schema.users.where(
-//           dependencies.userFilterModel.filter({ ...request.queryParams, sortBy: [] }),
+//           operatorArrayFilterAnd(
+//             UserFilterModel.filterByEmail(request.queryParams?.email),
+//             UserFilterModel.filterByStatus(request.queryParams?.status),
+//           ),
 //         )
 
 //         return this.serialize?.(users, 'application') as AnyResponse
@@ -57,6 +64,6 @@
 //       server.createList('user', 100)
 //     },
 
-//     serializers: { application: RestMockSerializer },
+//     serializers: { application: SerializerRest },
 //   } as MockConfigs)
 // }

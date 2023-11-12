@@ -1,4 +1,4 @@
-import { Service } from './services.main'
+import { Service } from './services'
 
 export class EventService extends Service {
   dispatch() {

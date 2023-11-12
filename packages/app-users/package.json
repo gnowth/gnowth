@@ -40,10 +40,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0",
-    "@types/inflected": "1.1.29",
-    "inflected": "2.1.0",
-    "miragejs": "0.1.47"
+    "@gnowth/typescript-config": "0.0.0"
   },
   "peerDependencies": {
     "next": "^13.0.0",

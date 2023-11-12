@@ -1,34 +1,25 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
 
-import type { DependencyService } from './dependencies.services'
-import type { DependencyTypeService } from './dependencies.types'
-import type { Repository } from './repositories'
-import { Service } from './services.main'
+import type { Dependency, DependencyDefinitionService } from './dependencies'
+import type { DependencyMain } from './dependencies.main'
+import { Service } from './services.bases'
 
-type Parameters = { repository: Repository }
+type Parameters = { dependencyMain: DependencyMain }
 
 export class ServiceManager {
-  // TODO fix non nullable
-  #dependencyService!: DependencyService
-  #parameters: Parameters
-  #repository: Repository
+  #dependencyMain: DependencyMain
   #services: Map<string, Service> = new Map()
 
   constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.#repository = parameters.repository
+    this.#dependencyMain = parameters.dependencyMain
   }
 
-  add(name: string, service: Service): void {
-    this.#services.set(name, service)
-  }
+  async addAsync(dependency: DependencyDefinitionService): Promise<void> {
+    const Constructor = await this.#dependencyMain.getAsync(dependency)
 
-  async addAsync(dependency: DependencyTypeService): Promise<void> {
-    const Constructor = await this.#dependencyService.getAsync(dependency)
+    const service = new Constructor()
 
-    const instance = new Constructor({ repository: this.#repository })
-
-    if (!(instance instanceof Service)) {
+    if (!this.#guard(service)) {
       throw new ErrorCustom({
         code: 'lib-repository--services--01',
         message: `dependency (${dependency.name}) is not of type ${dependency.type}`,
@@ -42,14 +33,14 @@ export class ServiceManager {
 
     // TODO: add dependencies and call onInit
 
-    this.add(dependency.name, instance)
+    this.#services.set(dependency.name, service)
   }
 
   get<ServiceType>(name: string): ServiceType | undefined {
     return this.#services.get(name) as ServiceType
   }
 
-  async getAsync<ServiceType>(dependency: DependencyTypeService): Promise<ServiceType> {
+  async getAsync<ServiceType>(dependency: DependencyDefinitionService): Promise<ServiceType> {
     const service = this.get<ServiceType>(dependency.name)
 
     if (service) {
@@ -62,5 +53,9 @@ export class ServiceManager {
     // TODO: throw error if service is not loaded
 
     return serviceLoaded
+  }
+
+  #guard(dependency: Dependency): dependency is Service {
+    return dependency instanceof Service
   }
 }
