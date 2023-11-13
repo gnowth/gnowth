@@ -40,19 +40,3 @@ export const repositoryGetAsync = async (parameters?: Parameters): Promise<Repos
 
   return repository
 }
-
-// export const repositoryGetOrCreate = async (): Promise<Repository> => {
-//   const repositoryMaybe = repositoryGet()
-
-//   if (repositoryMaybe) {
-//     return repositoryMaybe
-//   }
-
-//   const repository = new Repository()
-//   await repository.initialise()
-
-//   const globalThis = globalThisGet()
-//   globalThis.repository = repository
-
-//   return repository
-// }

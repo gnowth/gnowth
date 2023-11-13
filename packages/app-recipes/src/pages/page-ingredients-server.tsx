@@ -1,8 +1,6 @@
 import type { PageServerComponent } from '@gnowth/lib-react'
-import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
-import { ErrorCustom } from '@gnowth/lib-react'
-
-import { dependencies } from '../dependencies'
+import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
+import { ErrorCustom, repositoryGetAsync } from '@gnowth/lib-react'
 
 type Params = { slug: string }
 type Props = { params?: Params }
@@ -20,7 +18,13 @@ export const PageIngredientsServer: PageServerComponent<Props> = async (props) =
     })
   }
 
-  const content = await dependencies.tinaService.ingredientGetContent(props.params.slug)
+  const repository = await repositoryGetAsync()
+  const tinaService = await repository.serviceGetAsync<TinaService>({
+    Constructor: TinaService,
+    name: 'tina',
+    type: 'service',
+  })
+  const content = await tinaService.ingredientGetContent(props.params.slug)
 
   return (
     <UIMarkdownTina
@@ -33,7 +37,13 @@ export const PageIngredientsServer: PageServerComponent<Props> = async (props) =
 }
 
 PageIngredientsServer.generateStaticParams = async () => {
-  const pagesKey = await dependencies.tinaService.ingredientGetSlugs()
+  const repository = await repositoryGetAsync()
+  const tinaService = await repository.serviceGetAsync<TinaService>({
+    Constructor: TinaService,
+    name: 'tina',
+    type: 'service',
+  })
+  const pagesKey = await tinaService.ingredientGetSlugs()
 
   return pagesKey.map((slug) => ({ slug }))
 }
