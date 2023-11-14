@@ -69,6 +69,8 @@ export class DependencyMain {
     }
 
     await this.#scriptMain.inject({ url: definition.url })
+    // https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234
+    // https://webpack.js.org/api/module-methods/
     const module = await import(definition.url)
 
     // TODO: might need an export name

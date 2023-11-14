@@ -25,6 +25,8 @@ export const repositoryGetAsync = async (parameters?: Parameters): Promise<Repos
   const getRepositoryFromUrl = async (url: string) => {
     const script = new ScriptMain()
     await script.inject({ async: true, preload: true, url })
+    // https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234
+    // https://webpack.js.org/api/module-methods/
     const Constructor = await import(url)
     return Constructor as { new (): Repository }
   }
