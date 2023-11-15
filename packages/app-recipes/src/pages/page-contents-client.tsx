@@ -1,10 +1,9 @@
 import type { ContentsQuery, ContentsQueryVariables } from '@gnowth/boilerplate-tina'
 import type { PageClientComponent } from '@gnowth/lib-react'
-import { UIMarkdownTina } from '@gnowth/boilerplate-tina'
+import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
+import { repositoryGetAsync } from '@gnowth/lib-react'
 
-import { dependencies } from '../dependencies'
-
-interface Props {
+type Props = {
   data: ContentsQuery
   query: string
   variables: ContentsQueryVariables
@@ -15,7 +14,13 @@ export const PageContentsClient: PageClientComponent<Props> = (props) => {
 }
 
 PageContentsClient.staticPaths = async () => {
-  const slugs = await dependencies.tinaService.contentGetSlugs()
+  const repository = await repositoryGetAsync()
+  const tinaService = await repository.serviceGetAsync<TinaService>({
+    Constructor: TinaService,
+    name: 'tina',
+    type: 'service',
+  })
+  const slugs = await tinaService.contentGetSlugs()
 
   return {
     fallback: false,
@@ -26,7 +31,13 @@ PageContentsClient.staticPaths = async () => {
 PageContentsClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
   // TODO: validate output
-  const props = await dependencies.tinaService.contentGetContent(slug)
+  const repository = await repositoryGetAsync()
+  const tinaService = await repository.serviceGetAsync<TinaService>({
+    Constructor: TinaService,
+    name: 'tina',
+    type: 'service',
+  })
+  const props = await tinaService.contentGetContent(slug)
 
   return { props }
 }

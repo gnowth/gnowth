@@ -24,6 +24,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-core": "0.0.0",
     "tinacms": "1.5.13"
   },
