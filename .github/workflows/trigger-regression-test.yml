@@ -26,15 +26,15 @@ jobs:
     steps:
       - name: Cancelling - Branch must either be a main/release branch
         if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Environment] is invalid
         if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'sys' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Tag name] is invalid
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
   # Phase 2: End to end regression test
   e2e_regression:

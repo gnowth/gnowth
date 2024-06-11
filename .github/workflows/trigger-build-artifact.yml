@@ -20,11 +20,11 @@ jobs:
     steps:
       - name: Cancelling - Branch must be a release branch
         if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Pre Release] is invalid
         if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
   # Phase 2: Build artifact
   build_artifact:
