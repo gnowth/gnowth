@@ -34,7 +34,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tinacms/cli": "1.5.22"
+    "@tinacms/cli": "1.5.52"
   },
   "scripts": {
     "audit": "tinacms audit",
