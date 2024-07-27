@@ -37,6 +37,7 @@
     "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
+    "test": "jest",
     "typecheck": "tsc"
   }
 }

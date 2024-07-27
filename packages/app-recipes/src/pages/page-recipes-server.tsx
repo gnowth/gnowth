@@ -1,6 +1,6 @@
 import type { PageServerComponent } from '@gnowth/lib-react'
 import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
-import { ErrorCustom, repositoryGetAsync } from '@gnowth/lib-react'
+import { ErrorCustom, repositoryGet } from '@gnowth/lib-react'
 
 type Params = { slug: string }
 type Props = { params?: Params }
@@ -18,7 +18,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
     })
   }
 
-  const repository = await repositoryGetAsync()
+  const repository = await repositoryGet()
   const tinaService = await repository.serviceGetAsync<TinaService>({
     Constructor: TinaService,
     name: 'tina',
@@ -32,7 +32,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
 }
 
 PageRecipesServer.generateStaticParams = async (): Promise<Params[]> => {
-  const repository = await repositoryGetAsync()
+  const repository = await repositoryGet()
   const tinaService = await repository.serviceGetAsync<TinaService>({
     Constructor: TinaService,
     name: 'tina',

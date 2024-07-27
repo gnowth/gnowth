@@ -12,10 +12,8 @@ type Parameters = {
 
 const globalThisGet = (): GlobalThis => globalThis
 
-export const repositoryGet = (): Repository | undefined => globalThisGet().repository
-
-export const repositoryGetAsync = async (parameters?: Parameters): Promise<Repository> => {
-  const repositoryMaybe = repositoryGet()
+export const repositoryGet = async (parameters?: Parameters): Promise<Repository> => {
+  const repositoryMaybe = globalThisGet().repository
 
   if (repositoryMaybe) {
     return repositoryMaybe

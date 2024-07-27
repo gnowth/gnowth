@@ -1,1 +1,1 @@
-export class MfeManager {}
+export * from './mfes.managers'

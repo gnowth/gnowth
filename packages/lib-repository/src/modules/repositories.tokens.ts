@@ -1,6 +1,6 @@
 export enum TokenServices {
   dependencies = 'dependencies',
   events = 'events',
-  localisations = 'localisations',
+  locales = 'locales',
   scripts = 'scripts',
 }

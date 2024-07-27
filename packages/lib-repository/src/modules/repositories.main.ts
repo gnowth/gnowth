@@ -1,5 +1,5 @@
 import type { DependencyRecord } from './dependencies'
-import type { LocalisationService } from './localisation'
+import type { LocaleService } from './locales'
 import { DependencyMain } from './dependencies.main'
 import { EventService } from './events'
 import { MfeManager } from './mfes'
@@ -29,7 +29,7 @@ export class Repository {
   }
 
   serviceGet(name: TokenServices.events): EventService
-  serviceGet(name: TokenServices.localisations): LocalisationService
+  serviceGet(name: TokenServices.locales): LocaleService
   serviceGet<Service>(name: string): Service | undefined
   serviceGet<Service>(name: string): Service | undefined {
     return this.#serviceManager.get(name) as Service
