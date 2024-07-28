@@ -1,6 +1,6 @@
 import type { Faker } from '@faker-js/faker'
 import * as fakerModule from '@faker-js/faker'
-import { LocaleService, RepositoryService, TokenServices, repositoryGet } from '@gnowth/lib-repository'
+import { LocaleService, RepositoryService, TokenService } from '@gnowth/lib-repository'
 
 interface ParametersFaker<Type> {
   seed?: string
@@ -16,8 +16,7 @@ export class FakerService extends RepositoryService {
   #faker!: Faker
 
   async onInit(): Promise<void> {
-    const repository = await repositoryGet()
-    const localeService = await repository.serviceGet<LocaleService>({ name: TokenServices.locales })
+    const localeService = await this.repository.serviceGet<LocaleService>({ name: TokenService.locale })
     const locales = localeService.localesSnake
     const FakerConstructor = fakerModule.Faker
     this.#faker = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })

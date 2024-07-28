@@ -1,7 +1,7 @@
 import type { RepositoryModule, RepositoryService } from './repositories.modules'
 
 export type RepositoryModuleDefinition = {
-  Constructor?: { new (): RepositoryModule }
+  Constructor?: typeof RepositoryModule
   name: string
   preload?: RepositoryModuleDefinition[]
   url?: string
@@ -11,6 +11,6 @@ export type RepositoryModuleDefinition = {
 export type DependencyRecord = {
   mfes?: Record<string, unknown>
   resources?: Record<string, unknown>
-  services?: Record<string, { new (): RepositoryService }>
+  services?: Record<string, typeof RepositoryService>
   streams?: Record<string, unknown>
 }

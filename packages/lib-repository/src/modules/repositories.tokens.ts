@@ -1,6 +1,9 @@
-export enum TokenServices {
-  dependencies = 'dependencies',
-  events = 'events',
-  locales = 'locales',
-  scripts = 'scripts',
+export enum TokenService {
+  auth = 'AuthService',
+  config = 'ConfigService',
+  data = 'DataService',
+  event = 'EventService',
+  eventEmitter = 'EventEmitterService',
+  locale = 'LocaleService',
+  script = 'ScriptService',
 }

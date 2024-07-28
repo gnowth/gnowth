@@ -9,8 +9,13 @@ import {
   RepositoryStream,
 } from './repositories.modules'
 import { EventService } from './events.exports'
-import { TokenServices } from './repositories.tokens'
-import { ScriptService } from './scripts.services'
+import { TokenService } from './repositories.tokens'
+import { ScriptService } from './scripts.exports'
+import { DataService } from './data.exports'
+import { ConfigService } from './configs.exports'
+import { AuthService } from './auth.exports'
+import { LocaleService } from './locales.exports'
+import { EventEmitterService } from './event-emitters.exports'
 
 type Parameters = {
   dependencies?: DependencyRecord
@@ -37,8 +42,13 @@ export class Repository {
 
   async initialise(): Promise<void> {
     // Note order matters due to dependencies
-    await this.serviceGet({ Constructor: EventService, name: TokenServices.events })
-    await this.serviceGet({ Constructor: ScriptService, name: TokenServices.scripts })
+    await this.serviceGet({ Constructor: EventEmitterService, name: TokenService.eventEmitter })
+    await this.serviceGet({ Constructor: EventService, name: TokenService.event })
+    await this.serviceGet({ Constructor: ScriptService, name: TokenService.script })
+    await this.serviceGet({ Constructor: DataService, name: TokenService.data })
+    await this.serviceGet({ Constructor: ConfigService, name: TokenService.config })
+    await this.serviceGet({ Constructor: AuthService, name: TokenService.auth })
+    await this.serviceGet({ Constructor: LocaleService, name: TokenService.locale })
 
     // TODO: check how Repository itsef could use some services, like configs, events, dependencies etc... and pass down to managers
   }
@@ -63,7 +73,7 @@ export class Repository {
       })
     }
 
-    const scriptService = await this.serviceGet<ScriptService>({ name: TokenServices.scripts })
+    const scriptService = await this.serviceGet<ScriptService>({ name: TokenService.script })
 
     // add preload if needed
     return scriptService.import({ url: definition.url })
@@ -80,10 +90,12 @@ export class Repository {
 
     // Need to document that named export need to match module name
     // there can be multiple module in a bundle
-    const Constructor = definition.Constructor ?? (await this.moduleGet(definition))[definition.name]
+    const Constructor =
+      definition.Constructor ??
+      ((await this.moduleGet(definition))[definition.name] as typeof RepositoryModule)
     // need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call
     // check if constructor has requirement
-    const service = new Constructor()
+    const service = new Constructor({ repository: this })
     if (!this.#guardService(service)) {
       throw new ErrorCustom({
         code: 'lib-repository--repositories--02',
@@ -98,7 +110,7 @@ export class Repository {
     // get dependencies
     // load dependencies from service
     // initialize dependencies
-    await service.onInit(this)
+    await service.onInit()
 
     this.#moduleServices.set(definition.name, service)
     return service as Service

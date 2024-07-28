@@ -1,8 +1,7 @@
-import type { Repository } from './repositories.main'
-import { TokenServices } from './repositories.tokens'
 import { RepositoryService } from './repositories.modules'
-import { EventService } from './events.services'
+import { EventService } from './events.exports'
 import { scriptImport, scriptInject } from './scripts.utils'
+import { TokenService } from './repositories.tokens'
 
 type ScriptParameters = {
   async?: boolean
@@ -13,11 +12,10 @@ type ScriptParameters = {
 }
 
 export class ScriptService extends RepositoryService {
-  #eventRegistry!: string
+  #eventService!: EventService
 
-  async onInit(repository: Repository): Promise<void> {
-    const eventService = await repository.serviceGet<EventService>({ name: TokenServices.events })
-    this.#eventRegistry = eventService.register()
+  async onInit(): Promise<void> {
+    this.#eventService = await this.repository.serviceGet<EventService>({ name: TokenService.event })
   }
 
   async import(parameters: ScriptParameters) {

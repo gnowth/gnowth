@@ -6,9 +6,18 @@ type Configs = {
   preloads: RepositoryModuleDefinition[]
 }
 
+type Parameters = {
+  repository: Repository
+}
+
 export class RepositoryModule {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async onInit(_repository: Repository): Promise<void> {
+  protected repository: Repository
+
+  constructor(parameters: Parameters) {
+    this.repository = parameters.repository
+  }
+
+  async onInit(): Promise<void> {
     return
   }
 
