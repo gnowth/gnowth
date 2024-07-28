@@ -1,6 +1,6 @@
-import { Service } from './services'
+import { RepositoryService } from './repositories.modules'
 
-export class EventService extends Service {
+export class EventService extends RepositoryService {
   dispatch() {
     return undefined
   }

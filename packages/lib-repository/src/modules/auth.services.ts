@@ -1,3 +1,3 @@
-import { Service } from './services'
+import { RepositoryService } from './repositories.modules'
 
-export class AuthService extends Service {}
+export class AuthService extends RepositoryService {}

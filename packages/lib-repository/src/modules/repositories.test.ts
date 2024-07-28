@@ -1,4 +1,4 @@
-import { repositoryGet, Repository } from './repositories'
+import { repositoryGet, Repository } from './repositories.exports'
 
 describe('repositoryGet', () => {
   it('return a repository instance', async () => {

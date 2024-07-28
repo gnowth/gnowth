@@ -17,15 +17,9 @@ export const PageContentsServer: PageServerComponent<Props> = async (props) => {
       },
     })
   }
-
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const content = await tinaService.contentGetContent(props.params.slug)
-
   return (
     <UIMarkdownTina data={content.data} query={content.query} type="contents" variables={content.variables} />
   )
@@ -33,12 +27,7 @@ export const PageContentsServer: PageServerComponent<Props> = async (props) => {
 
 PageContentsServer.generateStaticParams = async () => {
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const pagesKey = await tinaService.contentGetSlugs()
-
   return pagesKey.map((slug) => ({ slug }))
 }

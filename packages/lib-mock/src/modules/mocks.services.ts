@@ -1,7 +1,7 @@
 import type { Server } from 'miragejs'
-import { Service } from '@gnowth/lib-repository'
+import { RepositoryService } from '@gnowth/lib-repository'
 
-export class MockService extends Service {
+export class MockService extends RepositoryService {
   #server!: Server
 
   async onInit(): Promise<void> {

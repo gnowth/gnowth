@@ -17,13 +17,8 @@ export const PageIngredientsClient: PageClientComponent<Props> = (props) => {
 
 PageIngredientsClient.staticPaths = async () => {
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const slugs = await tinaService.ingredientGetSlugs()
-
   return {
     fallback: false,
     paths: slugs.map((slug) => ({ params: { slug } })),
@@ -33,12 +28,7 @@ PageIngredientsClient.staticPaths = async () => {
 PageIngredientsClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const props = await tinaService.ingredientGetContent(slug)
-
   return { props }
 }

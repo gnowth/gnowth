@@ -1,7 +1,7 @@
 import type { ConfigEnvironment } from './configs.types'
-import { Service } from './services'
+import { RepositoryService } from './repositories.modules'
 
-export class ConfigService extends Service {
+export class ConfigService extends RepositoryService {
   async detail<Configs>(): Promise<Configs> {
     return {
       env: 'prd',

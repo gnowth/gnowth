@@ -1,11 +1,11 @@
 import type { Schema } from 'tinacms'
-import { Service } from '@gnowth/lib-react'
+import { RepositoryService } from '@gnowth/lib-react'
 import { RouteModel } from '@gnowth/logic-core'
 
 import { client } from './tina.clients'
 import { CollectionEnum, SchemaService } from './schema'
 
-export class TinaService extends Service {
+export class TinaService extends RepositoryService {
   #schemaService = new SchemaService({ routeModel: new RouteModel() })
   #schema = this.#schemaService.generate()
   #tinaClient = client

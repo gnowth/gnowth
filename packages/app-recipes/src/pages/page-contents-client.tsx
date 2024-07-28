@@ -15,13 +15,8 @@ export const PageContentsClient: PageClientComponent<Props> = (props) => {
 
 PageContentsClient.staticPaths = async () => {
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const slugs = await tinaService.contentGetSlugs()
-
   return {
     fallback: false,
     paths: slugs.map((slug) => ({ params: { slug } })),
@@ -32,12 +27,7 @@ PageContentsClient.staticProps = async (context) => {
   const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
   // TODO: validate output
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
-  })
+  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
   const props = await tinaService.contentGetContent(slug)
-
   return { props }
 }
