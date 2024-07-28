@@ -1,6 +1,6 @@
-import type { DependencyRecord } from './dependencies'
+import type { DependencyRecord } from './repositories.types'
 import { Repository } from './repositories.main'
-import { ScriptMain } from './scripts.main'
+import { scriptImport } from './scripts.utils'
 
 type GlobalThis = typeof globalThis & {
   repository?: Repository
@@ -11,34 +11,23 @@ type Parameters = {
 }
 
 const globalThisGet = (): GlobalThis => globalThis
-
-export const repositoryGet = (): Repository | undefined => globalThisGet().repository
-
-export const repositoryGetAsync = async (parameters?: Parameters): Promise<Repository> => {
-  const repositoryMaybe = repositoryGet()
-
+export const repositoryGet = async (parameters?: Parameters): Promise<Repository> => {
+  const repositoryMaybe = globalThisGet().repository
   if (repositoryMaybe) {
     return repositoryMaybe
   }
 
   // TODO implement
   const getRepositoryFromUrl = async (url: string) => {
-    const script = new ScriptMain()
-    await script.inject({ async: true, preload: true, url })
-    // https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234
-    // https://webpack.js.org/api/module-methods/
-    const Constructor = await import(url)
-    return Constructor as { new (): Repository }
+    const module = await scriptImport({ async: true, preload: true, url })
+    return module.Repository as typeof Repository
   }
 
   // TODO: only load from url
   const Constructor = parameters?.url ? await getRepositoryFromUrl(parameters.url) : Repository
 
-  const repository = new Constructor(parameters)
-  await repository.initialise()
-
-  const globalThis = globalThisGet()
-  globalThis.repository = repository
+  const repository = await Constructor.create()
+  globalThisGet().repository = repository
 
   return repository
 }

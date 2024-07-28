@@ -1,9 +1,9 @@
-import { Service } from './services'
+import { RepositoryService } from './repositories.modules'
 
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'
 
-export class LocalisationService extends Service {
+export class LocaleService extends RepositoryService {
   get locale(): Locale {
     return 'en-US'
   }

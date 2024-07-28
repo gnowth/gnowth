@@ -7,10 +7,11 @@
   "explorer.fileNesting.patterns": {
     "*.tsx": "${capture}.*",
     "*.ts": "${capture}.*",
+    "*.md": "${capture}.*",
     "package.json": ".*, *.json, *.config.js, next-*, Dockerfile"
   },
   "files.autoSave": "onFocusChange",
-  "workbench.editor.showTabs": false,
+  "workbench.editor.showTabs": "single",
 
   // test
   "jest.autoRun": { "watch": false },

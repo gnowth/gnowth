@@ -1,12 +1,14 @@
 import type { PageServerComponent } from '@gnowth/lib-react'
-import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
-import { ErrorCustom, repositoryGetAsync } from '@gnowth/lib-react'
+import { MDXRemote } from 'next-mdx-remote'
+import { ErrorCustom, repositoryGet } from '@gnowth/lib-react'
+
+import { RecipeService } from '../modules/recipes.services'
 
 type Params = { slug: string }
 type Props = { params?: Params }
 
 export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
-  if (!props.params?.slug) {
+  if (!props.params) {
     throw new ErrorCustom({
       code: 'app-recipes--page-recipes-server--01',
       message: 'Page not found',
@@ -17,28 +19,22 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
       },
     })
   }
-
-  const repository = await repositoryGetAsync()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
+  const repository = await repositoryGet()
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
   })
-  const content = await tinaService.recipeGetContent(props.params.slug)
-
+  const source = await recipeService.recipeGetSource(props.params)
   return (
-    <UIMarkdownTina data={content.data} query={content.query} type="recipes" variables={content.variables} />
+    <MDXRemote compiledSource={source.compiledSource} frontmatter={source.frontmatter} scope={source.scope} />
   )
 }
 
 PageRecipesServer.generateStaticParams = async (): Promise<Params[]> => {
-  const repository = await repositoryGetAsync()
-  const tinaService = await repository.serviceGetAsync<TinaService>({
-    Constructor: TinaService,
-    name: 'tina',
-    type: 'service',
+  const repository = await repositoryGet()
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
   })
-  const pagesKey = await tinaService.recipeGetSlugs()
-
-  return pagesKey.map((slug) => ({ slug }))
+  return recipeService.recipeGetParams()
 }

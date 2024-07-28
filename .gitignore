@@ -115,10 +115,6 @@ artifact.zip
 # storybook
 **/__diff_output__/
 
-# tina
-**/__generated__/
-**/public/admin/tina/
-
 # nextjs
 **/.next/
 

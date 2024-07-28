@@ -13,9 +13,6 @@
       "next/core-web-vitals",
       "@gnowth/eslint-config"
     ],
-    "ignorePatterns": [
-      "**/public/admin/tina/"
-    ],
     "rules": {
       "@next/next/no-html-link-for-pages": "off"
     }
@@ -62,7 +59,7 @@
     "build-dev": "next build",
     "build": "next build",
     "clean:modules": "rm -rf node_modules",
-    "clean:temp": "rm -rf .next .turbo public/admin/tina",
+    "clean:temp": "rm -rf .next .turbo",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
     "lint:script": "eslint --ext js,ts,tsx .",
     "lint": "npm run lint:script",

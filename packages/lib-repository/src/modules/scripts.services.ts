@@ -1,25 +1,28 @@
-import type { ParametersScript } from './scripts.main'
-import { TokenServices } from './repositories.tokens'
-import { ScriptMain } from './scripts.main'
-import { Service } from './services'
-import { repositoryGetAsync } from './repositories.utils'
+import { RepositoryService } from './repositories.modules'
+import { EventService } from './events.exports'
+import { scriptImport, scriptInject } from './scripts.utils'
+import { TokenService } from './repositories.tokens'
 
-export class ScriptService extends Service {
-  #script: ScriptMain
-  #eventRegistry!: string
+type ScriptParameters = {
+  async?: boolean
+  container?: HTMLElement
+  defer?: boolean
+  preload?: boolean
+  url: string
+}
 
-  constructor() {
-    super()
-    this.#script = new ScriptMain()
-  }
+export class ScriptService extends RepositoryService {
+  #eventService!: EventService
 
   async onInit(): Promise<void> {
-    const repository = await repositoryGetAsync()
-    const eventService = repository.serviceGet(TokenServices.events)
-    this.#eventRegistry = eventService.register()
+    this.#eventService = await this.repository.serviceGet<EventService>({ name: TokenService.event })
   }
 
-  inject(parameters: ParametersScript): Promise<Event> {
-    return this.#script.inject(parameters)
+  async import(parameters: ScriptParameters) {
+    return scriptImport(parameters)
+  }
+
+  async inject(parameters: ScriptParameters): Promise<Event> {
+    return scriptInject(parameters)
   }
 }
