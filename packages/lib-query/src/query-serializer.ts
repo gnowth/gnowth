@@ -1,4 +1,5 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import { pluralize } from 'inflected'
 
 import type { QueryApi } from './query-api'

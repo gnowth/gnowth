@@ -1,13 +1,14 @@
 import type { FunctionComponent } from 'react'
+
 import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
-import { Formik, Field, Form } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
+import { dependencies } from '../dependencies'
 import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
-import { dependencies } from '../dependencies'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {

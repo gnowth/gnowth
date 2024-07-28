@@ -10,7 +10,7 @@ export type ErrorData = {
 }
 
 export interface EventError extends Event {
+  payload: { errors: ErrorData[] }
   target: 'serviceError'
   type: 'error'
-  payload: { errors: ErrorData[] }
 }

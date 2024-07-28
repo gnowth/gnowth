@@ -6,10 +6,12 @@ import type {
   QueryParametersDetail,
   QueryParametersList,
 } from '@gnowth/logic-core'
-import { TokenQueryEntity, QueryService } from '@gnowth/logic-core'
 
-import type { Group, GroupData } from './groups.types'
+import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
+
 import type { GroupFilterParams } from './group-filters'
+import type { Group, GroupData } from './groups.types'
+
 import { GroupModel } from './groups.models'
 
 type QueryKeys = {
@@ -18,8 +20,8 @@ type QueryKeys = {
 }
 
 type Parameters = {
-  apiOrigin: string
   apiContext: string
+  apiOrigin: string
 }
 
 export class GroupService {
@@ -27,31 +29,6 @@ export class GroupService {
   #parameters: Parameters
   #queryService!: QueryService
   #scope = 'groups'
-
-  get queryKeys(): QueryKeys {
-    return {
-      detail: (id) => [{ entity: TokenQueryEntity.detail, id, scope: this.#scope }],
-      list: (params) => [{ entity: TokenQueryEntity.list, params, scope: this.#scope }],
-    }
-  }
-
-  get routes() {
-    const urlBase = `${this.#parameters.apiOrigin}${this.#parameters.apiContext}`
-
-    return {
-      groups: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
-    }
-  }
-
-  constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.onInit()
-  }
-
-  onInit() {
-    this.#groupModel = new GroupModel({})
-    this.#queryService = new QueryService()
-  }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<Group>> => {
     return this.#queryService.detail({
@@ -76,5 +53,30 @@ export class GroupService {
       route: this.routes.groups(group.id),
       transform: (data: GroupData) => this.#groupModel.fromData(data),
     })
+  }
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.onInit()
+  }
+
+  onInit() {
+    this.#groupModel = new GroupModel({})
+    this.#queryService = new QueryService()
+  }
+
+  get queryKeys(): QueryKeys {
+    return {
+      detail: (id) => [{ entity: TokenQueryEntity.detail, id, scope: this.#scope }],
+      list: (params) => [{ entity: TokenQueryEntity.list, params, scope: this.#scope }],
+    }
+  }
+
+  get routes() {
+    const urlBase = `${this.#parameters.apiOrigin}${this.#parameters.apiContext}`
+
+    return {
+      groups: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
+    }
   }
 }

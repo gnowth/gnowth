@@ -1,14 +1,15 @@
 import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
+
 import { appSetupCompose } from '@gnowth/lib-application'
+import { createInstance } from 'i18next'
+import i18nLanguageDetector from 'i18next-browser-languagedetector'
+import i18nBackend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from 'react-query'
-import { createInstance } from 'i18next'
-import i18nBackend from 'i18next-http-backend'
-import i18nLanguageDetector from 'i18next-browser-languagedetector'
 
-import { makeServer } from './services/make-server'
 import { dependencies } from './dependencies'
+import { makeServer } from './services/make-server'
 
 type ConfigurationI18n = { i18n: i18n }
 const setupI18n: AppSetup<ConfigurationI18n> = () => {

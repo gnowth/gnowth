@@ -1,4 +1,5 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import { chain } from '@gnowth/lib-utils'
 
 export type AppSetup<Configuration, Configs = ObjectLiteral> = (configs: Configs) => Configuration

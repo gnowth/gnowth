@@ -1,12 +1,13 @@
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import type { ComponentType, FunctionComponent, Attributes, PropsWithChildren } from 'react'
-import { withAugmented } from '@gnowth/app-users'
+import type { Attributes, ComponentType, FunctionComponent, PropsWithChildren } from 'react'
+
 import { ChakraProvider, VStack } from '@chakra-ui/react'
+import { withAugmented } from '@gnowth/app-users'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
-import Head from 'next/head'
-import dynamic from 'next/dynamic'
 
 import { AppError } from '../components/app-error'
 import { AppHead } from '../components/app-head'
@@ -17,9 +18,9 @@ import { setup } from '../setup'
 const configurations = setup({})
 
 interface Props extends AppProps {
-  Component: NextPage & {
+  Component: {
     Layout?: ComponentType<PropsWithChildren<Attributes>>
-  }
+  } & NextPage
 }
 
 const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children

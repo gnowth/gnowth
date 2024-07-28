@@ -1,5 +1,6 @@
 import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gnowth/lib-utils'
 import type { SortDirection, SortKeyType } from '@gnowth/logic-core'
+
 import { Model } from '@gnowth/lib-model'
 import {
   objectToKeys,
@@ -9,7 +10,6 @@ import {
 } from '@gnowth/lib-utils'
 import { TokenQueryPageSize } from '@gnowth/logic-core'
 
-import type { User, UserStatus } from './users'
 import type {
   UserFilter,
   UserFilterData,
@@ -17,71 +17,10 @@ import type {
   UserFilterParams,
   UserSortKey,
 } from './user-filters.types'
+import type { User, UserStatus } from './users'
 
 export class UserFilterModel extends Model<UserFilter> {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
-
-  filter(filter: UserFilter): PredicateArrayFilter<User> {
-    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
-      email: this.#filterByNameFirst(filter.email),
-      nameFirst: this.#filterByNameFirst(filter.nameFirst),
-      nameLast: this.#filterByNameFirst(filter.nameLast),
-      status: this.#filterByStatus(filter.status),
-    }
-
-    // TODO: check when value is not undefined but also filter is not required
-    const filterPredicates = objectToKeys(filters)
-      .filter((key) => filter[key] !== undefined)
-      .map((key) => filters[key])
-
-    return operatorArrayFilterAnd(...filterPredicates)
-  }
-
-  filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
-    return (users) => users.filter(this.filter(filters)).toSorted(this.#sort(filters))
-  }
-
-  fromData(data: UserFilterData): UserFilter {
-    return {
-      email: data.email ?? '',
-      page: data.page,
-      pageSize: data.pageSize,
-      sortBy: data.sortBy ?? [],
-      status: data.status ?? '',
-    }
-  }
-
-  fromDataPaginated(data: UserFilterData): UserFilter {
-    return this.fromData({
-      ...data,
-      page: data?.page ?? 1,
-      pageSize: data?.pageSize ?? TokenQueryPageSize.dx20,
-    })
-  }
-
-  // TODO:
-  generate(filters?: Partial<UserFilter>): UserFilter {
-    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
-  }
-
-  // TODO:
-  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
-    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
-  }
-
-  toData(filter: UserFilter): UserFilterData {
-    return {
-      email: filter.email || undefined,
-      page: filter.page,
-      pageSize: filter.pageSize,
-      sortBy: filter.sortBy,
-      status: filter.status || undefined,
-    }
-  }
-
-  toParams(filter: UserFilter): UserFilterParams {
-    return filter
-  }
 
   #filterByEmail(email?: string): PredicateArrayFilter<User> {
     return !email ? this.#filterNone() : (user) => user.email === email
@@ -156,5 +95,67 @@ export class UserFilterModel extends Model<UserFilter> {
       direction,
       isNullish: (item) => !this.#userStatuses.includes(item.status),
     })
+  }
+
+  filter(filter: UserFilter): PredicateArrayFilter<User> {
+    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
+      email: this.#filterByNameFirst(filter.email),
+      nameFirst: this.#filterByNameFirst(filter.nameFirst),
+      nameLast: this.#filterByNameFirst(filter.nameLast),
+      status: this.#filterByStatus(filter.status),
+    }
+
+    // TODO: check when value is not undefined but also filter is not required
+    const filterPredicates = objectToKeys(filters)
+      .filter((key) => filter[key] !== undefined)
+      .map((key) => filters[key])
+
+    return operatorArrayFilterAnd(...filterPredicates)
+  }
+
+  filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
+    return (users) => users.filter(this.filter(filters)).toSorted(this.#sort(filters))
+  }
+
+  fromData(data: UserFilterData): UserFilter {
+    return {
+      email: data.email ?? '',
+      page: data.page,
+      pageSize: data.pageSize,
+      sortBy: data.sortBy ?? [],
+      status: data.status ?? '',
+    }
+  }
+
+  fromDataPaginated(data: UserFilterData): UserFilter {
+    return this.fromData({
+      ...data,
+      page: data?.page ?? 1,
+      pageSize: data?.pageSize ?? TokenQueryPageSize.dx20,
+    })
+  }
+
+  // TODO:
+  generate(filters?: Partial<UserFilter>): UserFilter {
+    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
+  }
+
+  // TODO:
+  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
+    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
+  }
+
+  toData(filter: UserFilter): UserFilterData {
+    return {
+      email: filter.email || undefined,
+      page: filter.page,
+      pageSize: filter.pageSize,
+      sortBy: filter.sortBy,
+      status: filter.status || undefined,
+    }
+  }
+
+  toParams(filter: UserFilter): UserFilterParams {
+    return filter
   }
 }

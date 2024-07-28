@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-import { PromiseModel } from '../modules/promises'
 import { useAsyncPromise } from '../hooks/use-async-promise'
+import { PromiseModel } from '../modules/promises'
 
 interface Props {
   children: ReactNode

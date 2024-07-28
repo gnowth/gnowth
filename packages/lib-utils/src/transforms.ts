@@ -1,6 +1,6 @@
 import { guardArray, guardNullish } from './guards'
 
-export const transformToArray = <Item>(item: Item | Item[] | undefined | null): Item[] => {
+export const transformToArray = <Item>(item: Item | Item[] | null | undefined): Item[] => {
   if (guardNullish(item)) {
     return []
   }

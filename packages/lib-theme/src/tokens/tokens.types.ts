@@ -6,20 +6,20 @@ import type { TokenPalette } from './token-palette'
 import type { TokenSpace } from './token-space'
 import type { TokenZIndex } from './token-z-index'
 
-export type TokenBase = string | number // TODO: should this be string only?
-export type TokenMedia = 'screen' | 'print'
+export type TokenBase = number | string // TODO: should this be string only?
+export type TokenMedia = 'print' | 'screen'
 
 export type Tokens = {
-  color?: Record<TokenPalette, string | undefined>
   breakpoint?: Record<TokenBreakpoint, string | undefined>
+  color?: Record<TokenPalette, string | undefined>
   fontSize?: Record<TokenFontSize, string | undefined>
   fontSizeDesktop?: Record<TokenFontSize, string | undefined>
   iconSize?: Record<TokenIconSize, string | undefined>
   palette: Record<
     string,
     {
-      name: string
       colors: Record<TokenColorWeight, { hex: string; name: string }>
+      name: string
     }
   >
   space?: Record<TokenSpace, string | undefined>

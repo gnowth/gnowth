@@ -1,4 +1,5 @@
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+
 import { ErrorBoundary } from 'react-error-boundary'
 
 type PropsFallback = {

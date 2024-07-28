@@ -1,9 +1,11 @@
 import type { Model } from '@gnowth/lib-model'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+
 import { Link } from 'react-router-dom'
 
 import type { AppModelApplication } from './app-model-application'
+
 import { useAppLink } from './use-app-link'
 import { useAppTheme } from './use-app-theme'
 

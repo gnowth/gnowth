@@ -12,10 +12,12 @@ module.exports = {
     'plugin:promise/recommended',
     './configs/eslint--sort-keys',
     './configs/import--no-default-export',
-    './configs/import--order',
+    // './configs/import--order',
     './configs/import',
+    './configs/perfectionist',
     './configs/prettier',
     './configs/react',
+    './configs/sonarjs',
     './configs/tests',
   ],
 

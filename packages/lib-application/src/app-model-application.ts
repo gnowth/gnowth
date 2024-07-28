@@ -1,5 +1,6 @@
 import type { Model } from '@gnowth/lib-model'
 import type { QueryResource } from '@gnowth/lib-query'
+
 import { guardString } from '@gnowth/lib-utils'
 
 interface ConfigsApplication {
@@ -17,7 +18,7 @@ export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApp
 
   models: Record<string, Model | undefined> = {}
 
-  resources: Record<string, (paramsRoute: ParamsRoute) => unknown | undefined> = {}
+  resources: Record<string, (paramsRoute: ParamsRoute) => undefined | unknown> = {}
 
   route: string
 

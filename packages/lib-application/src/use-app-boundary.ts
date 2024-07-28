@@ -1,7 +1,9 @@
 import type { ComponentType } from 'react'
+
 import { useContext } from 'react'
 
 import type { PropsBoundary } from './types'
+
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
 import { TokenComponentNamespace } from './token-component-namespace'

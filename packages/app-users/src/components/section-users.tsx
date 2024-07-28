@@ -13,16 +13,16 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react'
-import { FunctionComponent, useMemo } from 'react'
-import { useQuery } from 'react-query'
-import { useTranslation } from 'react-i18next'
-import { atom, useRecoilState } from 'recoil'
 import Link from 'next/link'
+import { FunctionComponent, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useQuery } from 'react-query'
+import { atom, useRecoilState } from 'recoil'
 
-import { LayoutSection } from './layout-section'
-import { InputPagination } from './input-pagination'
-import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
+import { InputPagination } from './input-pagination'
+import { LayoutSection } from './layout-section'
+import { withAugmented } from './with-augmented'
 
 export const stateUserFilter = atom({
   default: dependencies.userFilterModel.generatePaginated(),

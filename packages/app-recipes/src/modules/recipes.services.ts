@@ -1,9 +1,10 @@
-import fs from 'fs'
-import path from 'path'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+
 import { RepositoryService } from '@gnowth/lib-react'
-import { serialize } from 'next-mdx-remote/serialize'
+import fs from 'fs'
 import matter from 'gray-matter'
+import { serialize } from 'next-mdx-remote/serialize'
+import path from 'path'
 
 // TODO: fix path. it is relative to boilerplate-nextjs at the moment
 const RecipeConstant = {
@@ -13,20 +14,14 @@ const RecipeConstant = {
 type Params = { slug: string }
 
 export class RecipeService extends RepositoryService {
-  async contentGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
-    const source = fs.readFileSync(`${RecipeConstant.rootPath}/contents/${params.slug}.mdx`, 'utf-8')
-    const { content, data } = matter(source)
-    return serialize(content, { scope: data })
-  }
-
   async contentGetParams(): Promise<Params[]> {
     return fs
       .readdirSync(`${RecipeConstant.rootPath}/contents`)
       .map((path) => ({ slug: path.replace(/\.mdx$/, '') }))
   }
 
-  async ingredientGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
-    const source = fs.readFileSync(`${RecipeConstant.rootPath}/ingredients/${params.slug}.mdx`, 'utf-8')
+  async contentGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
+    const source = fs.readFileSync(`${RecipeConstant.rootPath}/contents/${params.slug}.mdx`, 'utf-8')
     const { content, data } = matter(source)
     return serialize(content, { scope: data })
   }
@@ -37,8 +32,8 @@ export class RecipeService extends RepositoryService {
       .map((path) => ({ slug: path.replace(/\.mdx$/, '') }))
   }
 
-  async recipeGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
-    const source = fs.readFileSync(`${RecipeConstant.rootPath}/recipes/${params.slug}.mdx`, 'utf-8')
+  async ingredientGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
+    const source = fs.readFileSync(`${RecipeConstant.rootPath}/ingredients/${params.slug}.mdx`, 'utf-8')
     const { content, data } = matter(source)
     return serialize(content, { scope: data })
   }
@@ -47,5 +42,11 @@ export class RecipeService extends RepositoryService {
     return fs
       .readdirSync(`${RecipeConstant.rootPath}/recipes`)
       .map((path) => ({ slug: path.replace(/\.mdx$/, '') }))
+  }
+
+  async recipeGetSource(params: Params): Promise<MDXRemoteSerializeResult> {
+    const source = fs.readFileSync(`${RecipeConstant.rootPath}/recipes/${params.slug}.mdx`, 'utf-8')
+    const { content, data } = matter(source)
+    return serialize(content, { scope: data })
   }
 }

@@ -9,10 +9,10 @@ type PropsAugmented = {
   LoadingComponent?: ComponentProps<typeof SystemSuspense>['FallbackComponent']
 }
 
-type AugmentedComponentType<Props> = ComponentType<Props> & {
+type AugmentedComponentType<Props> = {
   ErrorComponent?: PropsAugmented['ErrorComponent']
   LoadingComponent?: PropsAugmented['LoadingComponent']
-}
+} & ComponentType<Props>
 
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent

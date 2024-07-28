@@ -1,4 +1,5 @@
 import type { APILogger, OptionsLoggerFn } from './loggers.types'
+
 import { shouldLog } from './loggers.utils'
 
 export class APILoggerConsole implements APILogger {

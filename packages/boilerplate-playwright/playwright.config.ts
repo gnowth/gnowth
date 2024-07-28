@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test'
 
+const Constant = {
+  device: { chromeDesktop: 'Desktop Chrome' },
+  glob: { mockTs: '**/*.mock.ts' },
+}
 export default defineConfig({
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
@@ -7,49 +11,42 @@ export default defineConfig({
   projects: [
     {
       name: 'mock',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices[Constant.device.chromeDesktop] },
     },
-
     {
       name: 'regresssion-chromium-mobile',
-      testIgnore: '**/*.mock.ts',
+      testIgnore: Constant.glob.mockTs,
       use: { ...devices['Pixel 5'] },
     },
-
     {
       name: 'regression-chromium',
-      testIgnore: '**/*.mock.ts',
-      use: { ...devices['Desktop Chrome'] },
+      testIgnore: Constant.glob.mockTs,
+      use: { ...devices[Constant.device.chromeDesktop] },
     },
-
     {
       name: 'regression-firefox-mobile',
-      testIgnore: '**/*.mock.ts',
+      testIgnore: Constant.glob.mockTs,
       use: { ...devices['Desktop Firefox'], isMobile: true, viewport: { height: 667, width: 375 } },
     },
-
     {
       name: 'regression-firefox',
-      testIgnore: '**/*.mock.ts',
+      testIgnore: Constant.glob.mockTs,
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'regression-webkit-mobile',
-      testIgnore: '**/*.mock.ts',
+      testIgnore: Constant.glob.mockTs,
       use: { ...devices['iPhone 12'] },
     },
-
     {
       name: 'regression-webkit',
-      testIgnore: '**/*.mock.ts',
+      testIgnore: Constant.glob.mockTs,
       use: { ...devices['Desktop Safari'] },
     },
-
     {
       name: 'smoke',
       testMatch: '*/*.*smoke.ts',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices[Constant.device.chromeDesktop] },
     },
   ],
   reporter: 'list',

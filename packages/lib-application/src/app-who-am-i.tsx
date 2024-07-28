@@ -1,4 +1,4 @@
-import { TokenErrorType, ErrorCustom } from '@gnowth/lib-utils'
+import { ErrorCustom, TokenErrorType } from '@gnowth/lib-utils'
 
 import { useAppWhoAmI } from './use-app-who-am-i'
 

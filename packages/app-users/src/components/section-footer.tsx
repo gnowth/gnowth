@@ -1,14 +1,15 @@
 import type { ChakraProps } from '@chakra-ui/react'
-import type { FunctionComponent, Attributes } from 'react'
-import { Box, Text } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
-import Link from 'next/link'
+import type { Attributes, FunctionComponent } from 'react'
 
+import { Box, Text } from '@chakra-ui/react'
+import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
+
+import packageJson from '../../package.json'
 import { dependencies } from '../dependencies'
 import { withAugmented } from './with-augmented'
-import packageJson from '../../package.json'
 
-type Props = ChakraProps & Attributes
+type Props = Attributes & ChakraProps
 
 const SectionFooterComponent: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation(dependencies.appModel.namespace)

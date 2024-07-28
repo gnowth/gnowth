@@ -1,8 +1,10 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import { guardString, objectMapValues } from '@gnowth/lib-utils'
 
-import type { DataName } from '../types'
 import type { Field } from '../fields/field'
+import type { DataName } from '../types'
+
 import { FieldModel } from '../fields/field-model'
 
 type SchemaFromValue<Value> = {
@@ -18,10 +20,10 @@ interface ParametersModel {
 export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = ParametersModel> {
   // api?: QueryApi<Value>
 
-  protected parameters: Parameters
   protected dependencies: Parameters['dependencies']
-
   modelName = ''
+
+  protected parameters: Parameters
 
   schema = {}
 
@@ -71,11 +73,13 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   }
 
   // TODO
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   valueToRoute(_value?: Value | null): string {
-    return _value ? '' : ''
+    return ''
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   valueToString(_value: Value | null): string {
-    return _value ? '' : ''
+    return ''
   }
 }

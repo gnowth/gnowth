@@ -1,4 +1,5 @@
-import type { SystemInterpolate, System } from './system.types'
+import type { System, SystemInterpolate } from './system.types'
+
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemBorder = { border?: SystemInterpolate<string> }

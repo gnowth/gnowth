@@ -1,11 +1,13 @@
 import type { QueryResource } from '@gnowth/lib-query'
 import type { ReactElement, ReactNode } from 'react'
-import { useState, Fragment } from 'react'
+
 import { objectDefaults } from '@gnowth/lib-utils'
+import { Fragment, useState } from 'react'
 import { HashRouter } from 'react-router-dom'
 
 import type { PropsApplication } from './context-application'
 import type { PropsEnvironment } from './context-environment'
+
 import { AppBoundary } from './app-boundary'
 import { AppProvider } from './app-provider'
 import { AppSuspense } from './app-suspense'

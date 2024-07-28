@@ -1,4 +1,5 @@
 import type { Collection, Request } from 'miragejs'
+
 import { pluralize } from 'inflected'
 import { RestSerializer } from 'miragejs'
 
@@ -23,9 +24,9 @@ function paginate<Type>(data: Type[], request: Request) {
 
 // DEBT(hack): dirty ts fix
 interface Serializer {
-  type: string
   normalize(data: Record<string, string>): unknown
   serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
+  type: string
 }
 
 // DEBT(hack): dirty ts fix

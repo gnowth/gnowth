@@ -1,11 +1,12 @@
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { DataName } from '../types'
 import type { Model } from '../models/model'
+import type { DataName } from '../types'
 import type { FieldConfigs } from './field'
+
 import { Field } from './field'
 
-type Nested = 'id' | 'flat' | 'nested'
+type Nested = 'flat' | 'id' | 'nested'
 
 interface ConfigsModel<Value> extends FieldConfigs<Value> {
   model: Model<Value>

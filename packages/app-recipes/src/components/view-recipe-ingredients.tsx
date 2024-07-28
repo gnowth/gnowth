@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
+
 import {
-  useDataConnect,
   AppLayout,
   DataConnect,
   DataSource,
@@ -8,6 +8,7 @@ import {
   UIPaper,
   UIPlaceholder,
   UITypography,
+  useDataConnect,
 } from '@gnowth/lib-react'
 
 import type { Ingredient } from '../modules/ingredients'

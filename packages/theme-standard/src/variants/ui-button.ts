@@ -1,5 +1,6 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
 import type { PropsUIButton } from '@gnowth/lib-view'
+
 import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
 
 import { TokenSelector } from '../tokens/wip-token-selector'
@@ -18,10 +19,9 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
         paletteWeight: '500',
       }),
 
-      [select(TokenSelector.hover, child)]: theme.getPaletteColor({
-        palette,
-        paletteForContrast: !!child && !forTextStyle,
-        paletteWeight: '400',
+      [select(TokenSelector.disabled, child)]: theme.getPaletteColor({
+        palette: 'gray',
+        paletteWeight: child ? '800' : '200',
       }),
 
       [select(TokenSelector.focus, child)]: theme.getPaletteColor({
@@ -30,9 +30,10 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
         paletteWeight: '700',
       }),
 
-      [select(TokenSelector.disabled, child)]: theme.getPaletteColor({
-        palette: 'gray',
-        paletteWeight: child ? '800' : '200',
+      [select(TokenSelector.hover, child)]: theme.getPaletteColor({
+        palette,
+        paletteForContrast: !!child && !forTextStyle,
+        paletteWeight: '400',
       }),
     },
     guardUndefined,
@@ -44,14 +45,14 @@ function interpolateColor(theme: Theme, color = 'white') {
     {
       '&': color,
 
-      [select(TokenSelector.hover)]: theme.getPaletteColor({
-        palette: 'gray',
-        paletteWeight: '50',
-      }),
-
       [select(TokenSelector.disabled)]: theme.getPaletteColor({
         palette: 'gray',
         paletteWeight: '200',
+      }),
+
+      [select(TokenSelector.hover)]: theme.getPaletteColor({
+        palette: 'gray',
+        paletteWeight: '50',
       }),
     },
     guardUndefined,

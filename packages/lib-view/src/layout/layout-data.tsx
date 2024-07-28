@@ -1,5 +1,6 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { FunctionComponent, ReactNode } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 
 import { UtilSlot } from '../util/util-slot'
@@ -8,10 +9,10 @@ import { LayoutFlex } from './layout-flex'
 
 export interface PropsLayoutData {
   children: ReactNode
-  spacing?: string | number
+  spacing?: number | string
   variant?: PropsLayoutData | string
-  variants?: UtilNamespaced<Partial<PropsLayoutData>>
   variantNamespace?: string
+  variants?: UtilNamespaced<Partial<PropsLayoutData>>
   wrapperVariant?: string
 }
 

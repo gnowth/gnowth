@@ -1,5 +1,6 @@
 import type { VariantType } from '@gnowth/lib-theme'
 import type { PropsUITypography } from '@gnowth/lib-view'
+
 import { TokenFont } from '@gnowth/lib-theme'
 
 // TODO: add variant link

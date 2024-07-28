@@ -1,11 +1,12 @@
-import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
-  systemCompose,
   systemColorFromPalette,
+  systemCompose,
   systemSpace,
   systemTypography,
   themeDefinitionsMake,

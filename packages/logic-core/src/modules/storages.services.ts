@@ -1,4 +1,4 @@
-type StorageType = 'SESSION' | 'LOCAL'
+type StorageType = 'LOCAL' | 'SESSION'
 
 interface OptionsStorageRemoveItem {
   key: string

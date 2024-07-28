@@ -1,5 +1,6 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
+
 import { guardString, objectDefaults } from '@gnowth/lib-utils'
 
 import { namespacedMerge } from '../utils/namespace-merge'
@@ -14,7 +15,7 @@ type ComponentsNamespaced = UtilNamespaced<Components, ComponentNamespace>
 type Configs = { componentsNamespaced?: ComponentsNamespaced }
 
 export type ConfigsComponent<Props extends ObjectLiteral> = {
-  component?: ComponentType<Props> | ComponentName
+  component?: ComponentName | ComponentType<Props>
   componentNamespace?: ComponentNamespace // default: 'type'
   components?: Components<Props>
 }
@@ -24,6 +25,10 @@ export class ComponentManager {
 
   constructor(configs?: Configs) {
     this.#componentsNamespaced = configs?.componentsNamespaced ?? {}
+  }
+
+  #getComponentsByNamespace<Props extends ObjectLiteral>(namespace = 'type'): Components<Props> {
+    return (this.#componentsNamespaced[namespace] ?? {}) as Components<Props>
   }
 
   configsMerge(...configs: Configs[]): Configs {
@@ -46,9 +51,5 @@ export class ComponentManager {
     )
 
     return components[configs.component]
-  }
-
-  #getComponentsByNamespace<Props extends ObjectLiteral>(namespace = 'type'): Components<Props> {
-    return (this.#componentsNamespaced[namespace] ?? {}) as Components<Props>
   }
 }

@@ -1,5 +1,6 @@
 import type { VariantType } from '@gnowth/lib-theme'
 import type { PropsLayoutSection } from '@gnowth/lib-view'
+
 import { TokenVariable } from '@gnowth/lib-theme'
 
 export const page: VariantType<PropsLayoutSection> = (props) => ({

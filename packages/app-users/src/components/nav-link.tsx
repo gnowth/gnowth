@@ -1,9 +1,10 @@
 import type { FunctionComponent } from 'react'
-import { Box } from '@chakra-ui/react'
-import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 
-type Props = Parameters<typeof Link>[0] & { hrefActive?: string }
+import { Box } from '@chakra-ui/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+type Props = { hrefActive?: string } & Parameters<typeof Link>[0]
 
 export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
   const pathname = usePathname() ?? '/users' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router

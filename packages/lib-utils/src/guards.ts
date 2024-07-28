@@ -17,7 +17,7 @@ export const guardObject = <ObjectType extends object = object>(value: unknown):
 export const guardString: Guard<string> = (value): value is string => typeof value === 'string'
 export const guardUndefined: Guard<undefined> = (value): value is undefined => value === undefined
 
-export const guardNullish: Guard<null | undefined> = (value): value is undefined | null =>
+export const guardNullish: Guard<null | undefined> = (value): value is null | undefined =>
   guardNull(value) || guardUndefined(value)
 
 export const guardFunction = <Type extends FunctionType = FunctionType>(value: unknown): value is Type =>

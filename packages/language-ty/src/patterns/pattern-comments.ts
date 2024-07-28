@@ -1,5 +1,8 @@
 import type { PatternRecord } from '../types'
 
+const Constant = {
+  punctuationDefinitionCommentTy: 'punctuation.definition.comment.ty',
+}
 export const patternComments: PatternRecord = {
   include: {
     include: '#comments',
@@ -10,7 +13,7 @@ export const patternComments: PatternRecord = {
         {
           captures: {
             '1': {
-              name: 'punctuation.definition.comment.ty',
+              name: Constant.punctuationDefinitionCommentTy,
             },
           },
           match: '\\A^(#!).*$\\n?',
@@ -33,7 +36,7 @@ export const patternComments: PatternRecord = {
               begin: '///',
               beginCaptures: {
                 '0': {
-                  name: 'punctuation.definition.comment.ty',
+                  name: Constant.punctuationDefinitionCommentTy,
                 },
               },
               end: '^',
@@ -43,7 +46,7 @@ export const patternComments: PatternRecord = {
               begin: '//:',
               beginCaptures: {
                 '0': {
-                  name: 'punctuation.definition.comment.ty',
+                  name: Constant.punctuationDefinitionCommentTy,
                 },
               },
               end: '^',
@@ -53,7 +56,7 @@ export const patternComments: PatternRecord = {
               begin: '//',
               beginCaptures: {
                 '0': {
-                  name: 'punctuation.definition.comment.ty',
+                  name: Constant.punctuationDefinitionCommentTy,
                 },
               },
               end: '^',

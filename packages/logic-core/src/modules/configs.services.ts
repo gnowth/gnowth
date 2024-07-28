@@ -1,7 +1,8 @@
 import type { AxiosInstance } from 'axios'
+
 import axios from 'axios'
 
-type Environment = 'local' | 'dev' | 'sit' | 'uat' | 'sys' | 'test' | 'prod'
+type Environment = 'dev' | 'local' | 'prod' | 'sit' | 'sys' | 'test' | 'uat'
 type Parameters = { configs: Configs }
 export type Configs = {
   apiContextDefault: string
@@ -11,13 +12,13 @@ export type Configs = {
 // TODO: new service to provider locale/internationalisation
 // TODO: allow config from local, environment variable, online config
 export class ConfigService {
+  #axios: AxiosInstance
+
+  #configs: Configs
+  #parameters: Parameters
   routes = {
     configs: (id: string) => `/${id}`,
   }
-
-  #axios: AxiosInstance
-  #configs: Configs
-  #parameters: Parameters
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters

@@ -1,10 +1,12 @@
+import type { PropsLayout } from '@gnowth/lib-application'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
-import type { PropsLayout } from '@gnowth/lib-application'
+
 import { AppLayout, AppTheme } from '@gnowth/lib-application'
 
 import type { DataValue } from './types'
 import type { PropsUseDataSource } from './use-data-source'
+
 import { DataContext } from './data-context'
 import { useDataSource } from './use-data-source'
 
@@ -15,7 +17,7 @@ interface Props<Value extends DataValue> extends PropsUseDataSource<Value> {
   children: ReactNode
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: string | number
+  layoutSpacing?: number | string
   layoutVariant?: string
   theme?: Theme | string
 }

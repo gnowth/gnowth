@@ -1,4 +1,5 @@
 import type { GetStaticPropsContext } from 'next'
+
 import { PageGeneratedClient } from '@gnowth/app-users'
 
 export async function getStaticPaths() {

@@ -1,14 +1,16 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+
 import { Suspense } from 'react'
 
 import type { PropsSuspense } from './types'
+
 import { useAppSuspense } from './use-app-suspense'
 
 // TODO check if we want to force suspense with awaiting props
 interface Props {
   awaiting?: boolean
   children: ReactNode
-  suspense?: ComponentType<PropsSuspense> | string | null
+  suspense?: ComponentType<PropsSuspense> | null | string
   suspenseClassName?: string
 }
 

@@ -1,15 +1,16 @@
 import type { FunctionComponent } from 'react'
+
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
-import { Formik, Field, Form } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRecoilState } from 'recoil'
 
-import { LayoutSection } from './layout-section'
-import { withAugmented } from './with-augmented'
 import { dependencies } from '../dependencies'
+import { LayoutSection } from './layout-section'
 import { stateUserFilter } from './section-users'
+import { withAugmented } from './with-augmented'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
 const FormUserComponent: FunctionComponent = () => {

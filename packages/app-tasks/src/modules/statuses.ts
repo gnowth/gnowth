@@ -1,5 +1,5 @@
 export type Status = {
-  name: string
   color: string
+  name: string
   value: string
 }

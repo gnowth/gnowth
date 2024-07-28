@@ -1,9 +1,11 @@
 import type { CSSObject } from '@emotion/css'
+
 import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
 
-import type { Theme } from '../theme/theme'
 import type { ScaleName, ScaleType } from '../theme/scales'
-import type { SystemInterpolate, System } from './system.types'
+import type { Theme } from '../theme/theme'
+import type { System, SystemInterpolate } from './system.types'
+
 import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
@@ -65,16 +67,16 @@ export const systemCompose: SystemCompose =
       {} as CSSObject,
     )
 
-interface ConfigsInterpolation<Value extends string | number> {
+interface ConfigsInterpolation<Value extends number | string> {
   key: string | string[]
-  value?: SystemInterpolate<Value>
-  theme: Theme
   responsive?: boolean
-  scale?: ScaleType | ScaleName
+  scale?: ScaleName | ScaleType
+  theme: Theme
+  value?: SystemInterpolate<Value>
 }
 
 // TODO add responsive scale
-export function systemInterpolate<Value extends string | number>(
+export function systemInterpolate<Value extends number | string>(
   configs: ConfigsInterpolation<Value>,
 ): CSSObject {
   if (configs.value === undefined) return {}

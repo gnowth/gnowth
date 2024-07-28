@@ -1,31 +1,32 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
+
 import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
 
 import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
 // TODO: review responsiveScale. currently not supported by system
-type Responsive<Type> = { responsive: true } & { [Key in TokenBreakpoint]?: Type }
+type Responsive<Type> = { [Key in TokenBreakpoint]?: Type } & { responsive: true }
 type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
 type Scales<Token extends TokenBase = TokenBase> = UtilNamespaced<ScaleType<Token>, ScaleName>
 type Configs = { scales?: Scales }
 type ConfigsScaleDynamic<Token> = {
-  scaleToken?: Token
   scaleBreakpoint?: TokenBreakpoint
+  scaleToken?: Token
 }
 
 export type ScaleItem = string // TODO: should it allow array?
 export type ScaleName = string
 export type ScaleType<Token extends TokenBase = TokenBase> =
   | ScaleDynamic<Token>
-  | ScaleStatic<Token>
   | ScaleResponsive<Token>
+  | ScaleStatic<Token>
 export type ConfigsScale<Token extends TokenBase = TokenBase> = {
-  scale?: ScaleType<Token> | ScaleName
-  scales?: Scales<Token>
-  scaleToken?: Token
+  scale?: ScaleName | ScaleType<Token>
   scaleBreakpoint?: TokenBreakpoint
+  scaleToken?: Token
+  scales?: Scales<Token>
 }
 
 export class ScaleManager {
@@ -33,6 +34,10 @@ export class ScaleManager {
 
   constructor(configs?: Configs) {
     this.#scales = configs?.scales ?? {}
+  }
+
+  #guardScaleResponsive<Token extends string>(scale: ScaleType<Token>): scale is ScaleResponsive<Token> {
+    return 'responsive' in scale && scale.responsive === true
   }
 
   configsMerge(...configs: Configs[]): Configs {
@@ -63,9 +68,5 @@ export class ScaleManager {
     }
 
     return scale[configs.scaleToken]
-  }
-
-  #guardScaleResponsive<Token extends string>(scale: ScaleType<Token>): scale is ScaleResponsive<Token> {
-    return 'responsive' in scale && scale.responsive === true
   }
 }

@@ -1,6 +1,13 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { DependencyRecord, RepositoryModuleDefinition } from './repositories.types'
+
+import { AuthService } from './auth.exports'
+import { ConfigService } from './configs.exports'
+import { DataService } from './data.exports'
+import { EventEmitterService } from './event-emitters.exports'
+import { EventService } from './events.exports'
+import { LocaleService } from './locales.exports'
 import {
   RepositoryMFE,
   RepositoryModule,
@@ -8,14 +15,8 @@ import {
   RepositoryService,
   RepositoryStream,
 } from './repositories.modules'
-import { EventService } from './events.exports'
 import { TokenService } from './repositories.tokens'
 import { ScriptService } from './scripts.exports'
-import { DataService } from './data.exports'
-import { ConfigService } from './configs.exports'
-import { AuthService } from './auth.exports'
-import { LocaleService } from './locales.exports'
-import { EventEmitterService } from './event-emitters.exports'
 
 type Parameters = {
   dependencies?: DependencyRecord
@@ -24,11 +25,15 @@ type Parameters = {
 // add support for multiple resource bundle together
 
 export class Repository {
-  #parameters: Parameters
   #moduleMFEs: Map<string, RepositoryMFE> = new Map()
   #moduleResources: Map<string, RepositoryResource> = new Map()
   #moduleServices: Map<string, RepositoryService> = new Map()
   #moduleStreams: Map<string, RepositoryStream> = new Map()
+  #parameters: Parameters
+
+  constructor(parameters?: Parameters) {
+    this.#parameters = parameters ?? {}
+  }
 
   static async create(parameters?: Parameters): Promise<Repository> {
     const instance = new Repository(parameters)
@@ -36,8 +41,8 @@ export class Repository {
     return instance
   }
 
-  constructor(parameters?: Parameters) {
-    this.#parameters = parameters ?? {}
+  #guardService(module: RepositoryModule): module is RepositoryService {
+    return module instanceof RepositoryService
   }
 
   async initialise(): Promise<void> {
@@ -82,7 +87,6 @@ export class Repository {
   async resourceGet(definition: RepositoryModuleDefinition) {
     return this.#moduleResources.get(definition.name)
   }
-
   async serviceGet<Service>(definition: RepositoryModuleDefinition): Promise<Service> {
     if (this.#moduleServices.get(definition.name)) {
       return this.#moduleServices.get(definition.name) as Service
@@ -115,11 +119,8 @@ export class Repository {
     this.#moduleServices.set(definition.name, service)
     return service as Service
   }
+
   async streamGet(definition: RepositoryModuleDefinition) {
     return this.#moduleStreams.get(definition.name)
-  }
-
-  #guardService(module: RepositoryModule): module is RepositoryService {
-    return module instanceof RepositoryService
   }
 }

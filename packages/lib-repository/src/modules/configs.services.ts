@@ -1,13 +1,8 @@
 import type { ConfigEnvironment } from './configs.types'
+
 import { RepositoryService } from './repositories.modules'
 
 export class ConfigService extends RepositoryService {
-  async detail<Configs>(): Promise<Configs> {
-    return {
-      env: 'prd',
-    } as Configs
-  }
-
   #environmentFromHostname(hostname: string): ConfigEnvironment {
     if (hostname === 'localhost') {
       return 'local'
@@ -28,5 +23,11 @@ export class ConfigService extends RepositoryService {
   #guardConfigEnvironment(environment?: string): environment is ConfigEnvironment {
     const environments = ['dev', 'local', 'preview', 'prod', 'sit', 'sys', 'test', 'uat']
     return !!environment && environments.includes(environment)
+  }
+
+  async detail<Configs>(): Promise<Configs> {
+    return {
+      env: 'prd',
+    } as Configs
   }
 }

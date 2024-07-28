@@ -23,7 +23,7 @@ export class FilterModel {
   }
 
   // DEBT: dirty implementation. access string value. Need an abstraction for Options
-  static isFilterPageSize(value?: string | FilterPageSize): value is FilterPageSize {
+  static isFilterPageSize(value?: FilterPageSize | string): value is FilterPageSize {
     return FilterPageSize[`i${value}` as keyof typeof FilterPageSize] !== undefined
   }
 }

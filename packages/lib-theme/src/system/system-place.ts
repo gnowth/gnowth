@@ -1,7 +1,7 @@
-import type { System } from './system.types'
-
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { TokenBase, TokenZIndex } from '../tokens/tokens'
+import type { System } from './system.types'
+
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemBottom = { bottom?: string }
@@ -27,7 +27,7 @@ export const systemTop: () => System<SystemTop> = () => (props, theme) =>
   systemInterpolate({ key: 'top', theme, value: props.top })
 
 export const systemZIndex: <Token extends TokenBase = TokenZIndex>(
-  scale?: ScaleType | ScaleName,
+  scale?: ScaleName | ScaleType,
 ) => System<SystemZIndex<Token>> =
   (scale = 'zindex') =>
   (props, theme) =>

@@ -9,7 +9,7 @@ import type { DataName } from './types'
 interface PropsWarning {
   name?: DataName
   slot?: string
-  warning?: ComponentType<PropsBoundary> | string | null
+  warning?: ComponentType<PropsBoundary> | null | string
 }
 
 // TODO: handle case where default boundary is not set. or get from datasource maybe?

@@ -1,4 +1,4 @@
-import { UserModel, UserService, UserFilterModel } from '@gnowth/logic-users'
+import { UserFilterModel, UserModel, UserService } from '@gnowth/logic-users'
 
 import { configs } from './configs'
 import { AppModel } from './modules/app'

@@ -1,5 +1,6 @@
 import type { QueryResource } from '@gnowth/lib-react'
 import type { ReactElement } from 'react'
+
 import {
   DataConnect,
   DataSource,
@@ -11,8 +12,8 @@ import {
   useAppApplication,
 } from '@gnowth/lib-react'
 
-import type { Recipe } from '../modules/recipes'
 import type { AppModelApplicationRecipes } from '../modules/application-recipes'
+import type { Recipe } from '../modules/recipes'
 
 interface Props {
   resources: {

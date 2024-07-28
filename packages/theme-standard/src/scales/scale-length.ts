@@ -1,7 +1,8 @@
 import type { ScaleType } from '@gnowth/lib-theme'
+
 import { guardString } from '@gnowth/lib-utils'
 
-export const length = ((configs: { scaleToken?: string | number }) => {
+export const length = ((configs: { scaleToken?: number | string }) => {
   if (!configs.scaleToken) {
     return undefined
   }

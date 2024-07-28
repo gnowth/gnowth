@@ -1,4 +1,5 @@
 import type { ComponentType } from 'react'
+
 import { TokenComponentNamespace } from '@gnowth/lib-application'
 import { layouts } from '@gnowth/lib-view'
 

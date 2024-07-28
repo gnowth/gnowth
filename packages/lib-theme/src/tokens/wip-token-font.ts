@@ -6,6 +6,6 @@ export enum TokenFont {
 }
 
 export const TokenFontToVariable = {
-  [TokenFont.header]: TokenVariable.fontHeader,
   [TokenFont.body]: TokenVariable.fontBody,
+  [TokenFont.header]: TokenVariable.fontHeader,
 }

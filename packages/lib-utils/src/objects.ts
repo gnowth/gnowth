@@ -1,5 +1,6 @@
-import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
 import type { PredicateObjectFilter } from './predicates'
+import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
+
 import { guardNumberLike, guardObject, guardUndefined } from './guards'
 import { operatorObjectFilterNot } from './operators'
 
@@ -9,8 +10,8 @@ type ObjectFilter = <Item extends ObjectLiteral>(item: Item, predicate: Predicat
 
 type ObjectFromPairs = {
   <Key extends ObjectKey, Value>(pairs: [Key, Value][]): Record<Key, Value>
-  <Type extends ObjectKey>(pairs: Type[][]): Record<Type, Type>
   <Pairs extends readonly [ObjectKey, unknown][]>(pairs: Pairs): UtilObjectFromPairs<Pairs>
+  <Type extends ObjectKey>(pairs: Type[][]): Record<Type, Type>
 }
 
 type ObjectMapValues = <Value, Item extends ObjectLiteral>(

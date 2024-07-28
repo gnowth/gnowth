@@ -1,30 +1,40 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
+
 import { guardFunction, guardObject, objectDefaults, transformToArray } from '@gnowth/lib-utils'
 
 import type { Theme } from './theme'
+
 import { namespacedMerge } from '../utils/namespace-merge'
 
 type Configs = { variantsNamespaced?: VariantsNamespaced }
-type ConfigsVariant<Props extends ObjectLiteral> = WithThemeVariant<Props> & { theme: Theme }
+type ConfigsVariant<Props extends ObjectLiteral> = { theme: Theme } & WithThemeVariant<Props>
 type Variant<Props extends ObjectLiteral> = Partial<Props>
-type VariantDynamic<Props extends ObjectLiteral> = (props: Props & { theme: Theme }) => Variant<Props>
+type VariantDynamic<Props extends ObjectLiteral> = (props: { theme: Theme } & Props) => Variant<Props>
 type VariantName = string
 type VariantNamespace = string
 type Variants<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<VariantType<Props>, VariantName>
 type VariantsNamespaced = UtilNamespaced<Variants, VariantNamespace>
 
-export type VariantType<Props extends ObjectLiteral = ObjectLiteral> = VariantDynamic<Props> | Variant<Props>
-export type WithThemeVariant<Props extends ObjectLiteral> = Props & {
+export type VariantType<Props extends ObjectLiteral = ObjectLiteral> = Variant<Props> | VariantDynamic<Props>
+export type WithThemeVariant<Props extends ObjectLiteral> = {
   variant?: Variant<Props> | VariantName
   variantNamespace?: VariantNamespace | VariantNamespace[]
   variants?: Variants<Props>
-}
+} & Props
 
 export class VariantManager {
   #variantsNamespaced: VariantsNamespaced = {}
 
   constructor(configs?: Configs) {
     this.#variantsNamespaced = configs?.variantsNamespaced ?? {}
+  }
+
+  #getVariantsByNamespace<Props extends ObjectLiteral>(
+    namespace: VariantNamespace[],
+  ): Variants<Props> | undefined {
+    const maybeNamespace = namespace.find((nspace) => this.#variantsNamespaced[nspace])
+
+    return maybeNamespace ? this.#variantsNamespaced[maybeNamespace] : undefined
   }
 
   configsMerge(...configs: Configs[]): Configs {
@@ -51,13 +61,5 @@ export class VariantManager {
     }
 
     return variant
-  }
-
-  #getVariantsByNamespace<Props extends ObjectLiteral>(
-    namespace: VariantNamespace[],
-  ): Variants<Props> | undefined {
-    const maybeNamespace = namespace.find((nspace) => this.#variantsNamespaced[nspace])
-
-    return maybeNamespace ? this.#variantsNamespaced[maybeNamespace] : undefined
   }
 }

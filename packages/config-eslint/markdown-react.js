@@ -10,10 +10,12 @@ module.exports = {
     'plugin:eslint-comments/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:mdx/recommended',
-    './configs/import--order',
+    // './configs/import--order',
     './configs/import',
+    './configs/perfectionist',
     './configs/prettier',
     './configs/react',
+    './configs/sonarjs',
   ],
 
   parser: 'eslint-mdx',

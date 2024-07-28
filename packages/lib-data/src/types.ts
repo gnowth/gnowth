@@ -1,11 +1,11 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { Field } from '@gnowth/lib-model'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 export type DataError = Error
 
 export type DataOptionMap = Record<string, Promise<unknown[]>>
 
-export type DataName = string | Array<string>
+export type DataName = Array<string> | string
 
 export type DataValue = ObjectLiteral
 
@@ -29,7 +29,7 @@ export type DataValue = ObjectLiteral
 // TODO: errors to be both promise and actual errors?
 export interface PropsDataReadonly<Value = unknown> {
   awaiting?: boolean
-  errors?: Promise<DataError[]> | DataError[]
+  errors?: DataError[] | Promise<DataError[]>
   field?: Field
   id?: string
   value?: Value
@@ -39,11 +39,11 @@ export interface PropsDataReadonly<Value = unknown> {
 export interface PropsData<Value = unknown> extends PropsDataReadonly<Value> {
   disabled?: boolean
   name?: DataName
+  onCancel?(value: Value, name?: DataName): Promise<void> | void
+  onChange?(value: Value, name?: DataName): Promise<void> | void
+  onReset?(value: Value, name?: DataName): Promise<void> | void
+  onSubmit?(value: Value, name?: DataName): Promise<void> | void
   options?: Promise<Value[]> | Value[]
-  onCancel?(value: Value, name?: DataName): void | Promise<void>
-  onChange?(value: Value, name?: DataName): void | Promise<void>
-  onReset?(value: Value, name?: DataName): void | Promise<void>
-  onSubmit?(value: Value, name?: DataName): void | Promise<void>
 }
 
 export interface WithConnect {

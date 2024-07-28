@@ -1,4 +1,5 @@
 import type { Environment } from '@gnowth/app-configs'
+
 import { makeConfigs } from '@gnowth/app-configs'
 
 export type Configs = {

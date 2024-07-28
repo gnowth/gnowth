@@ -1,4 +1,5 @@
 import { PaletteType } from '@gnowth/lib-theme'
+
 import paletteGoogle from './palette-google.json'
 import paletteStandard from './palette-standard.json'
 

@@ -1,12 +1,13 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import axios, { AxiosResponse } from 'axios'
 
 import type { QueryDetail, QueryList } from './queries.types'
 
-type TokenRestMethod = 'get' | 'options' | 'put' | 'post'
+type TokenRestMethod = 'get' | 'options' | 'post' | 'put'
 type Parameters<Item, ItemData> = {
-  params?: ObjectLiteral
   method?: TokenRestMethod
+  params?: ObjectLiteral
   route: string
   signal?: AbortSignal
   transform?: (item: ItemData) => Item

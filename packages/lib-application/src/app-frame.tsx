@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
-import { useContext, Fragment } from 'react'
+
 import { guardString } from '@gnowth/lib-utils'
+import { Fragment, useContext } from 'react'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'

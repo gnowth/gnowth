@@ -1,4 +1,5 @@
 import type { Syntax } from './types'
+
 import { patternComments } from './patterns/pattern-comments'
 import { patternKeywords } from './patterns/pattern-keywords'
 import { patternStrings } from './patterns/pattern-strings'

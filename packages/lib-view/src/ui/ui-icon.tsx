@@ -1,6 +1,7 @@
-import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
+import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { FunctionComponent } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemColorFromPalette, systemCompose, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'

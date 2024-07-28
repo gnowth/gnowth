@@ -1,6 +1,7 @@
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
@@ -20,7 +21,7 @@ interface ComponentProps {
 }
 // TODO: mediaPrint should disable elipsis
 export interface PropsUITypography extends SystemType<typeof uiTypography>, PropsDataReadonly<ReactNode> {
-  as?: ComponentType<ComponentProps> | string | null
+  as?: ComponentType<ComponentProps> | null | string
   children?: ReactNode
   className?: string
   hidden?: boolean

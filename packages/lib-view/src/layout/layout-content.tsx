@@ -1,6 +1,6 @@
 import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-import { createElement } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
@@ -12,6 +12,7 @@ import {
   themeStylesMake,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
+import { createElement } from 'react'
 
 interface ComponentProps {
   className?: string

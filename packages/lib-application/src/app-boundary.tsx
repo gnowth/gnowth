@@ -1,12 +1,14 @@
 import type { ComponentType, ErrorInfo, FunctionComponent, ReactNode } from 'react'
+
 import { ErrorCustom } from '@gnowth/lib-utils'
 import { ErrorBoundary } from 'react-error-boundary'
 
 import type { PropsBoundary } from './types'
+
 import { useAppBoundary } from './use-app-boundary'
 
 interface Props {
-  boundary?: ComponentType<PropsBoundary> | string | null
+  boundary?: ComponentType<PropsBoundary> | null | string
   boundaryClassName?: string
   children: ReactNode
   onError?: (error: Error, errorInfo: ErrorInfo) => void

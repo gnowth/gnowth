@@ -11,10 +11,10 @@ describe('objectDefaults', () => {
 
   it('merges the item properly', () => {
     type Item = {
-      someValue: string
-      otherValue?: string
       anothervalue?: string
       anyValue?: string
+      otherValue?: string
+      someValue: string
     }
 
     const item1: Item = { otherValue: 'other', someValue: 'test' }

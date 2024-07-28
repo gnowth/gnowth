@@ -12,6 +12,18 @@ interface Response<Value> {
 export class QueryResource<Value = unknown> {
   error?: Error
 
+  handleError = (error: Error): void => {
+    this.error = error
+    this.isPending = false
+  }
+
+  handleQueryResponse = (response: Response<Value>): Response<Value> => {
+    this.response = response
+    this.isPending = false
+
+    return response
+  }
+
   isPending = true
 
   promise: Promise<Response<Value> | void>
@@ -23,18 +35,6 @@ export class QueryResource<Value = unknown> {
   constructor(promise: Promise<Response<Value>>) {
     this.promiseUnhandled = promise
     this.promise = promise.then(this.handleQueryResponse).catch(this.handleError)
-  }
-
-  handleError = (error: Error): void => {
-    this.error = error
-    this.isPending = false
-  }
-
-  handleQueryResponse = (response: Response<Value>): Response<Value> => {
-    this.response = response
-    this.isPending = false
-
-    return response
   }
 
   read(): Value {

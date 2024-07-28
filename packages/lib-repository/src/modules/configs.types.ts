@@ -1,1 +1,1 @@
-export type ConfigEnvironment = 'dev' | 'local' | 'prod' | 'sit' | 'sys' | 'test' | 'uat' | 'preview'
+export type ConfigEnvironment = 'dev' | 'local' | 'preview' | 'prod' | 'sit' | 'sys' | 'test' | 'uat'

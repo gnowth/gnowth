@@ -1,8 +1,9 @@
 import type { Model } from '@gnowth/lib-model'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { QueryConfigs } from './types'
 import type { QueryResource } from './query-resource'
+import type { QueryConfigs } from './types'
+
 import { QuerySerializer } from './query-serializer'
 
 interface QueryConfigsApi<Value extends ObjectLiteral> {
@@ -38,11 +39,11 @@ export abstract class QueryApi<Value extends ObjectLiteral> {
 
   abstract meta<Meta extends ObjectLiteral>(configs?: QueryConfigs<Meta>): Promise<Meta>
 
-  abstract retrieve(configs?: QueryConfigs<Value>): Promise<Value>
-
   abstract resourceList(configs?: QueryConfigs<Value>): QueryResource<Value[]>
 
   abstract resourceMeta<Meta extends ObjectLiteral>(configs?: QueryConfigs<Meta>): QueryResource<Meta>
 
   abstract resourceRetrieve(configs?: QueryConfigs<Value>): QueryResource<Value>
+
+  abstract retrieve(configs?: QueryConfigs<Value>): Promise<Value>
 }

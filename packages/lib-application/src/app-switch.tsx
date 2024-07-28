@@ -1,5 +1,6 @@
 import type { ReactElement, ReactNode } from 'react'
-import { cloneElement, isValidElement, Children } from 'react'
+
+import { Children, cloneElement, isValidElement } from 'react'
 import { matchPath, useLocation, useRouteMatch } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'
@@ -13,8 +14,8 @@ interface Props {
 interface PropsChild {
   application?: AppModelApplication | string
   from?: string
-  path?: string
   page?: string
+  path?: string
 }
 
 export function AppSwitch(props: Props): ReactElement | null {
@@ -23,7 +24,7 @@ export function AppSwitch(props: Props): ReactElement | null {
   const location = useLocation()
   const matchContext = useRouteMatch()
   let element: ReactElement = <div />
-  let match: typeof matchContext | null = null
+  let match: null | typeof matchContext = null
 
   Children.forEach(props.children, (child) => {
     if (match == null && isValidElement<PropsChild>(child)) {

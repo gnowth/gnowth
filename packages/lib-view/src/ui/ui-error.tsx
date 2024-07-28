@@ -1,10 +1,11 @@
 import type { ReactElement } from 'react'
+
 import { LayoutContent } from '../layout/layout-content'
 import { UITypography } from './ui-typography'
 
 export interface PropsUIError {
   as?: string
-  value?: Error[] | Error | null
+  value?: Error | Error[] | null
 }
 
 export function UIError(props: PropsUIError): ReactElement | null {
