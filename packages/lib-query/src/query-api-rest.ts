@@ -1,6 +1,7 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { QueryConfigs, QueryParams } from './types'
+
 import { QueryApi } from './query-api'
 import { QueryResource } from './query-resource'
 
@@ -20,15 +21,9 @@ export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
     return serializer.toValueArray(response)
   }
 
-  async retrieve(configs?: QueryConfigs<Value>): Promise<Value> {
-    const response = await fetchGet<Record<string, unknown>>(this.getPath(configs))
-    const serializer = configs?.serializer ?? this.serializer
-
-    return serializer.toValue(response)
-  }
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   meta<Meta extends ObjectLiteral>(_configs?: QueryConfigs<Meta>): Promise<Meta> {
-    return Promise.resolve((_configs ? {} : {}) as unknown as Meta)
+    return Promise.resolve({} as unknown as Meta)
   }
 
   resourceList(configs?: QueryConfigs<Value>): QueryResource<Value[]> {
@@ -42,5 +37,12 @@ export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
 
   resourceRetrieve(configs?: QueryConfigs<Value>): QueryResource<Value> {
     return new QueryResource(this.retrieve(configs).then((data) => ({ data })))
+  }
+
+  async retrieve(configs?: QueryConfigs<Value>): Promise<Value> {
+    const response = await fetchGet<Record<string, unknown>>(this.getPath(configs))
+    const serializer = configs?.serializer ?? this.serializer
+
+    return serializer.toValue(response)
   }
 }

@@ -1,4 +1,5 @@
 import type { FunctionComponent, PropsWithChildren } from 'react'
+
 import { VStack } from '@chakra-ui/react'
 
 import { SectionFooter } from './section-footer'

@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react'
+
 import { PagesPageToken } from '@gnowth/app-pages'
 import { AppLink, LayoutFlex, LayoutFooter, LayoutSection, UITypography } from '@gnowth/lib-react'
 

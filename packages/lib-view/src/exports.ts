@@ -26,12 +26,13 @@ export * from './layout/layout-header'
 export * from './layout/layout-page'
 export * from './layout/layout-section'
 
+export * as layouts from './layout/layouts'
 export * from './nav/nav-breadcrumb'
 export * from './nav/nav-drawer'
 export * from './nav/nav-menu'
 export * from './nav/nav-tabs'
-export * from './nav/nav-timeline'
 
+export * from './nav/nav-timeline'
 export * from './ui/ui-accordion'
 export * from './ui/ui-alert'
 export * from './ui/ui-avatar'
@@ -57,8 +58,7 @@ export * from './ui/ui-scroll-spy'
 export * from './ui/ui-snackbar'
 export * from './ui/ui-toast'
 export * from './ui/ui-tooltip'
+
 export * from './ui/ui-typography'
 
 export * from './util/util-slot'
-
-export * as layouts from './layout/layouts'

@@ -1,4 +1,5 @@
 import type { Faker } from '@faker-js/faker'
+
 import * as fakerModule from '@faker-js/faker'
 import { LocaleService, RepositoryService, TokenService } from '@gnowth/lib-repository'
 
@@ -15,11 +16,18 @@ interface ParametersFakerEmail<Type> extends ParametersFaker<Type> {
 export class FakerService extends RepositoryService {
   #faker!: Faker
 
-  async onInit(): Promise<void> {
-    const localeService = await this.repository.serviceGet<LocaleService>({ name: TokenService.locale })
-    const locales = localeService.localesSnake
-    const FakerConstructor = fakerModule.Faker
-    this.#faker = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })
+  #hash(seed?: string): number | undefined {
+    if (seed === undefined) {
+      return undefined
+    }
+
+    return seed
+      .split('')
+      .reduce(
+        (hashCode, currentVal) =>
+          (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
+        0,
+      )
   }
 
   internetEmail(parameters?: ParametersFakerEmail<string>): string {
@@ -30,6 +38,13 @@ export class FakerService extends RepositoryService {
     this.#faker.seed(this.#hash(parameters?.seed))
 
     return this.#faker.internet.email(parameters)
+  }
+
+  async onInit(): Promise<void> {
+    const localeService = await this.repository.serviceGet<LocaleService>({ name: TokenService.locale })
+    const locales = localeService.localesSnake
+    const FakerConstructor = fakerModule.Faker
+    this.#faker = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })
   }
 
   personFirstName(parameters?: ParametersFaker<string>): string {
@@ -60,19 +75,5 @@ export class FakerService extends RepositoryService {
     this.#faker.seed(this.#hash(parameters?.seed))
 
     return this.#faker.string.uuid()
-  }
-
-  #hash(seed?: string): number | undefined {
-    if (seed === undefined) {
-      return undefined
-    }
-
-    return seed
-      .split('')
-      .reduce(
-        (hashCode, currentVal) =>
-          (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
-        0,
-      )
   }
 }

@@ -1,5 +1,6 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FunctionComponent } from 'react'
+
 import { Box } from '@chakra-ui/react'
 
 export const ViewSpacer: FunctionComponent<ChakraProps> = (props) => {

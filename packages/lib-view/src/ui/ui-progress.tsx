@@ -1,13 +1,14 @@
+import type { PropsLayout } from '@gnowth/lib-application'
+import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type {
-  Theme,
   SystemType,
-  systemColorFromPalette,
+  Theme,
   TokenColorWeight,
   TokenIconSize,
+  systemColorFromPalette,
 } from '@gnowth/lib-theme'
-import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-import type { PropsLayout } from '@gnowth/lib-application'
+
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
@@ -78,7 +79,7 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
 )
 
 export interface PropsUIProgress
-  extends PropsDataReadonly<number | null>,
+  extends PropsDataReadonly<null | number>,
     SystemType<ReturnType<typeof systemColorFromPalette>>,
     SystemType<typeof uiProgress> {
   as?: string
@@ -91,7 +92,7 @@ export interface PropsUIProgress
   hidden?: boolean
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: string | number
+  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
   thickness?: number

@@ -1,6 +1,7 @@
 import type { FunctionComponent, ReactElement, ReactNode } from 'react'
-import { createContext, isValidElement, useContext, Children } from 'react'
+
 import { arrayKeyBy } from '@gnowth/lib-utils'
+import { Children, createContext, isValidElement, useContext } from 'react'
 
 interface PropsContent {
   name: string

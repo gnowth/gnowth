@@ -1,5 +1,6 @@
 import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
+
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
@@ -22,7 +23,7 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   id?: string
   layout?: string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: string | number
+  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
   variant?: PropsLayoutSection | string

@@ -1,4 +1,5 @@
 import type { AxiosError } from 'axios'
+
 import { isAxiosError } from 'axios'
 
 import type { ErrorData } from './errors.types'
@@ -11,20 +12,20 @@ export class ErrorModel {
     }
   }
 
-  fromErrorUnknown = (error: unknown): ErrorData => {
-    if (isAxiosError(error)) return this.fromErrorAxios(error)
-
-    if (error instanceof Error) return this.fromError(error)
-
-    return this.fromError(new Error('unknown error'))
-  }
-
   // DEBT: to implement properly
   fromErrorAxios = (error: AxiosError): ErrorData => {
     return {
       code: 'logic-core--model-error--from-error-axios-01',
       message: error.message,
     }
+  }
+
+  fromErrorUnknown = (error: unknown): ErrorData => {
+    if (isAxiosError(error)) return this.fromErrorAxios(error)
+
+    if (error instanceof Error) return this.fromError(error)
+
+    return this.fromError(new Error('unknown error'))
   }
 
   // DEBT: need a better name for checking if network error can be handled by component

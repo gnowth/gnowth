@@ -1,16 +1,18 @@
 import type { CSSObject } from '@emotion/css'
+
 import { guardString } from '@gnowth/lib-utils'
 
-import type { System } from './system.types'
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { TokenBase, TokenFontSize } from '../tokens/tokens'
-import { systemCompose, systemInterpolate } from './system'
-import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'
+import type { System } from './system.types'
 
-type SystemFontFamily = { fontFamily?: string | number }
+import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'
+import { systemCompose, systemInterpolate } from './system'
+
+type SystemFontFamily = { fontFamily?: number | string }
 type SystemFontSize<Value> = { fontSize?: Value }
 type SystemFontStyle = { fontStyle?: string }
-type SystemFontWeight = { fontWeight?: string | number }
+type SystemFontWeight = { fontWeight?: number | string }
 type SystemLetterSpacing = { letterSpacing?: string }
 type SystemLineHeight = { lineHeight?: string }
 type SystemTextAlign = { textAlign?: string }
@@ -33,7 +35,7 @@ export const systemFontFamily: () => System<SystemFontFamily> = () => (props, th
 }
 
 export const systemFontSize: <Token extends TokenBase = TokenFontSize>(
-  scale?: ScaleType | ScaleName,
+  scale?: ScaleName | ScaleType,
 ) => System<SystemFontSize<Token>> =
   (scale = 'fontsize') =>
   (props, theme) =>

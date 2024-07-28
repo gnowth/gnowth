@@ -1,8 +1,10 @@
 import type { ReactElement, ReactNode } from 'react'
-import { useContext } from 'react'
+
 import { objectDefaults } from '@gnowth/lib-utils'
+import { useContext } from 'react'
 
 import type { PropsApplication } from './context-application'
+
 import { ContextApplication } from './context-application'
 
 interface Props extends Partial<PropsApplication> {

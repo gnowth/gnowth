@@ -1,5 +1,6 @@
 import { Factory, Model, createServer } from 'miragejs'
 
+const Constant = { pathRecipeId: '/recipes/:id' }
 export function mockServer(): unknown {
   return createServer({
     factories: {
@@ -33,10 +34,10 @@ export function mockServer(): unknown {
       // this.resource('recipes');
       // this.resource('movies');
       this.get('/recipes')
-      this.get('/recipes/:id')
+      this.get(Constant.pathRecipeId)
       this.post('/recipes')
-      this.patch('/recipes/:id')
-      this.del('/recipes/:id')
+      this.patch(Constant.pathRecipeId)
+      this.del(Constant.pathRecipeId)
 
       // Responding to a POST request
       // this.post('/movies', (schema, request) => {

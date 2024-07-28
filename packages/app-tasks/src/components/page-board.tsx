@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react'
+
 import { AsyncSuspense, useAsyncPromise, useAsyncQuery } from '@gnowth/lib-react'
 
 export const PageBoard: FunctionComponent = () => {

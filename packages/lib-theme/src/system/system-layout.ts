@@ -1,7 +1,7 @@
+import type { ScaleName, ScaleType } from '../theme/scales'
+import type { TokenBase, TokenLength, TokenSpace } from '../tokens/tokens'
 import type { System } from './system.types'
 
-import type { ScaleType, ScaleName } from '../theme/scales'
-import type { TokenBase, TokenLength, TokenSpace } from '../tokens/tokens'
 import { systemCompose, systemInterpolate } from './system'
 
 type SystemDisplay = { display?: string }
@@ -54,14 +54,14 @@ export const systemOverflowY: () => System<SystemOverflowY> = () => (props, them
 // TODO set the proper scale default when creating width scale
 // TODO: make sure that ScaleType matches the type in System
 export const systemSize: <Token extends TokenBase = TokenSpace>(
-  scale?: ScaleType | ScaleName,
+  scale?: ScaleName | ScaleType,
 ) => System<SystemSize<Token>> =
   (scale = 'space') =>
   (props, theme) =>
     systemInterpolate({ key: ['height', 'width'], scale, theme, value: props.size })
 
 export const systemWidth: <Token extends TokenBase = TokenLength>(
-  scale?: ScaleType | ScaleName,
+  scale?: ScaleName | ScaleType,
 ) => System<SystemWidth<Token>> =
   (scale = 'length') =>
   (props, theme) =>

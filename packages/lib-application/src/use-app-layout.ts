@@ -1,7 +1,9 @@
 import type { ComponentType } from 'react'
+
 import { useContext } from 'react'
 
 import type { PropsLayout } from './types'
+
 import { ContextEnvironment } from './context-environment'
 import { TokenComponentNamespace } from './token-component-namespace'
 import { useAppTheme } from './use-app-theme'

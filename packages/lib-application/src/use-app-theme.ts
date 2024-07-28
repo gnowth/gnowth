@@ -1,6 +1,6 @@
 import { Theme } from '@gnowth/lib-theme'
-import { useContext } from 'react'
 import { guardString } from '@gnowth/lib-utils'
+import { useContext } from 'react'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'

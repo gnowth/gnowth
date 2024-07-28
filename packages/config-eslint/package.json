@@ -30,10 +30,13 @@
     "eslint-plugin-eslint-comments": "3.2.0",
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-jest": "27.4.2",
+    "eslint-plugin-jest-formatting": "3.1.0",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-mdx": "2.2.0",
+    "eslint-plugin-perfectionist": "2.11.0",
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-sonarjs": "1.0.4",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-testing-library": "6.0.2"

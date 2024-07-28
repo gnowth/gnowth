@@ -1,5 +1,5 @@
-import { setup } from './setup'
 import { configs } from './configs'
+import { setup } from './setup'
 
-type WindowX = typeof window & { configurations: unknown }
+type WindowX = { configurations: unknown } & typeof window
 ;(window as WindowX).configurations = setup(configs)

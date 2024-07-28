@@ -3,7 +3,7 @@ import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ErrorData } from './errors'
 import type { Event } from './events'
 
-export type LogLevel = 'none' | 'bug' | 'error' | 'warn' | 'info' | 'debug'
+export type LogLevel = 'bug' | 'debug' | 'error' | 'info' | 'none' | 'warn'
 
 export type Log = {
   code: string
@@ -17,9 +17,9 @@ export type Log = {
 }
 
 export interface EventLog extends Event {
-  target: 'serviceLog'
-  type: 'log'
   payload: {
     log: Log
   }
+  target: 'serviceLog'
+  type: 'log'
 }

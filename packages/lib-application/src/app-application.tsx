@@ -1,9 +1,11 @@
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+
 import { Fragment } from 'react'
 import { Route } from 'react-router-dom'
 
 import type { PropsFrame } from './types'
+
 import { AppBoundary } from './app-boundary'
 import { AppModelApplication } from './app-model-application'
 import { AppProvider } from './app-provider'
@@ -14,7 +16,7 @@ import { useAppApplication } from './use-app-application'
 interface Props {
   application?: AppModelApplication | string
   children: ReactNode
-  frame?: ComponentType<PropsFrame> | string | null
+  frame?: ComponentType<PropsFrame> | null | string
   path?: string
   switch?: boolean
   theme?: Theme | string

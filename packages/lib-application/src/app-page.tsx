@@ -1,16 +1,18 @@
 import type { QueryResource } from '@gnowth/lib-query'
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
+
 import { objectDefaults } from '@gnowth/lib-utils'
 import { Route, matchPath, useLocation } from 'react-router-dom'
 
 import type { PropsFrame, PropsSuspense } from './types'
+
 import { AppBoundary } from './app-boundary'
-import { AppSuspense } from './app-suspense'
 import { AppFrame } from './app-frame'
 import { AppProvider } from './app-provider'
-import { useAppApplication } from './use-app-application'
+import { AppSuspense } from './app-suspense'
 import { AppWhoAmI } from './app-who-am-i'
+import { useAppApplication } from './use-app-application'
 
 interface PropsComponent {
   resources: Record<string, QueryResource | undefined>
@@ -20,10 +22,10 @@ interface Props {
   authenticated?: boolean
   component: ComponentType<PropsComponent>
   exact?: boolean
-  frame?: ComponentType<PropsFrame> | string | null
+  frame?: ComponentType<PropsFrame> | null | string
   page?: string
   path?: string
-  suspense?: ComponentType<PropsSuspense> | string | null
+  suspense?: ComponentType<PropsSuspense> | null | string
   suspenseClassName?: string
   theme?: Theme | string
 }

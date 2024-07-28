@@ -1,4 +1,5 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
+
 import { TestModelPageUser } from './user'
 
 // TODO: https://playwright.dev/docs/test-snapshots

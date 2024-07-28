@@ -1,5 +1,6 @@
 import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemBackgroundColorFromPalette, themeStylesMake } from '@gnowth/lib-theme'
 
@@ -9,7 +10,7 @@ import { LayoutFlex } from './layout-flex'
 
 export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
   children: ReactNode
-  spacing?: string | number
+  spacing?: number | string
   variant?: PropsLayoutApp | string
 }
 

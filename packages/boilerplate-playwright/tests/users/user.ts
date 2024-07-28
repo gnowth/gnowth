@@ -3,9 +3,9 @@ import type { Locator, Page } from '@playwright/test'
 import { dependencies } from '../dependencies'
 
 interface OptionsInputData {
+  email: string
   nameFirst: string
   nameLast: string
-  email: string
   role: string
 }
 
@@ -34,15 +34,15 @@ export class TestModelPageUser {
     this.labelRole = page.getByText('Role')
   }
 
-  async load() {
-    await this.page.goto(dependencies.routeModel.usersUserNew())
-  }
-
   async inputData(options: OptionsInputData) {
     await this.fieldNameFirst.fill(options.nameFirst)
     await this.fieldNameLast.fill(options.nameLast)
     await this.fieldEmail.fill(options.email)
     await this.fieldRole.fill(options.role)
+  }
+
+  async load() {
+    await this.page.goto(dependencies.routeModel.usersUserNew())
   }
 
   async submit() {

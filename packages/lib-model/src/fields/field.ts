@@ -25,10 +25,11 @@ export class Field<Value = unknown> {
   }
 
   // TODO: what to return as default if many is on. need proper documentation as there is potential misunderstanding
-  getDefault(_partial?: Partial<Value>): Value[] | Value | null {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getDefault(_partial?: Partial<Value>): Value | Value[] | null {
     if (this.many) return []
 
-    return _partial ? this.default : this.default
+    return this.default
   }
 
   getField(name?: DataName): Field<Value> | undefined {
@@ -36,7 +37,7 @@ export class Field<Value = unknown> {
   }
 
   // TODO implement promises
-  getOptions(): null | Value[] | Promise<Value[]> {
+  getOptions(): Promise<Value[]> | Value[] | null {
     return this.options
   }
 

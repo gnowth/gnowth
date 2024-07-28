@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react'
+
 import { DataConnect, UIPaper } from '@gnowth/lib-react'
 
 interface Props {

@@ -1,5 +1,5 @@
-import type { Log } from './logs'
 import type { Event } from './events.types'
+import type { Log } from './logs'
 
 export class EventService {
   dispatch(event: Event): void {

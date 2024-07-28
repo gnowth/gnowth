@@ -1,13 +1,15 @@
-import type { Model } from '@gnowth/lib-model'
 import type { PropsBoundary, PropsLayout, PropsSuspense } from '@gnowth/lib-application'
+import type { Model } from '@gnowth/lib-model'
 import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent } from 'react'
 import type { Slottable } from '@gnowth/lib-utils-react'
+import type { ComponentType, FunctionComponent } from 'react'
+
 import { AppBoundary, AppLayout, AppSuspense, AppTheme, useAppTheme } from '@gnowth/lib-application'
-import { objectDefaults, ErrorCustom } from '@gnowth/lib-utils'
+import { ErrorCustom, objectDefaults } from '@gnowth/lib-utils'
 
 import type { PropsData, PropsDataReadonly } from './types'
 import type { PropsUseDataConnect } from './use-data-connect'
+
 import { DataWarning } from './data-warning'
 import { useDataConnect } from './use-data-connect'
 
@@ -25,15 +27,15 @@ interface Props extends PropsUseDataConnect {
   labelValue?: string
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: string | number
+  layoutSpacing?: number | string
   layoutVariant?: string
   many?: boolean
   readonly?: boolean
   slot?: string
-  suspense?: ComponentType<PropsSuspense> | string | null
+  suspense?: ComponentType<PropsSuspense> | null | string
   suspenseClassName?: string
   theme?: Theme | string
-  warning?: ComponentType<PropsBoundary> | string | null
+  warning?: ComponentType<PropsBoundary> | null | string
   warningModel?: Model
 }
 

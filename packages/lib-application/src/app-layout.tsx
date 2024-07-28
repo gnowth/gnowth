@@ -1,18 +1,20 @@
 import type { ComponentType, ReactElement, ReactNode } from 'react'
+
 import { objectDefaults } from '@gnowth/lib-utils'
 
 import type { PropsLayout } from './types'
+
 import { useAppLayout } from './use-app-layout'
 
 // TODO: check whether we need layoutProps, can it be layoutVariant with object or vice versa
 interface Props {
+  children: ReactNode
   className?: string
   classNamespace?: string
-  children: ReactNode
   id?: string
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: string | number
+  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
 }

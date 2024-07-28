@@ -1,1 +1,1 @@
-export type TokenIconSize = 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl'
+export type TokenIconSize = 'lg' | 'md' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'

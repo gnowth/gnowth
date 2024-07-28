@@ -1,4 +1,5 @@
 import type { FunctionComponent } from 'react'
+
 import { VStack } from '@chakra-ui/react'
 
 import { FormGroup } from './form-group'

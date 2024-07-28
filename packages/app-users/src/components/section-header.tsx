@@ -1,12 +1,13 @@
 import type { FunctionComponent } from 'react'
-import { Button, Flex, Heading, HStack, Spacer } from '@chakra-ui/react'
+
+import { Button, Flex, HStack, Heading, Spacer } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 
-import { NavLink } from './nav-link'
+import { dependencies } from '../dependencies'
 import { LayoutSection } from './layout-section'
+import { NavLink } from './nav-link'
 import { ViewProgressGlobal } from './view-progress-global'
 import { withAugmented } from './with-augmented'
-import { dependencies } from '../dependencies'
 
 // DEBT: remobe prefect in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {

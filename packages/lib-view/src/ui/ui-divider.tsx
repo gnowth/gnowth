@@ -1,5 +1,6 @@
 import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,

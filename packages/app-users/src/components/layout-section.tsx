@@ -1,5 +1,6 @@
-import type { FunctionComponent, PropsWithChildren } from 'react'
 import type { ChakraProps } from '@chakra-ui/react'
+import type { FunctionComponent, PropsWithChildren } from 'react'
+
 import { Box, Container } from '@chakra-ui/react'
 
 interface Props {

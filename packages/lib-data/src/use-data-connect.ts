@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 
 import type { DataName, PropsData } from './types'
+
 import { DataContext } from './data-context'
 
 export interface PropsUseDataConnect {

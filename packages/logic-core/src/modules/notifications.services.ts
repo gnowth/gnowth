@@ -1,4 +1,5 @@
 import type { AxiosInstance } from 'axios'
+
 import axios from 'axios'
 
 import type { ConfigService } from './configs'
@@ -12,8 +13,8 @@ export class NotificationService {
   }
 
   #axios: AxiosInstance
-  #parameters: Parameters
   #configService: ConfigService
+  #parameters: Parameters
 
   constructor(parameters: Parameters) {
     this.#parameters = parameters

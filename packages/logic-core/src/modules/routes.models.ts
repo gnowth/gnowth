@@ -4,25 +4,22 @@ enum ContextApp {
 }
 
 enum ContextRecipes {
-  Recipes = 'recipes',
   Ingredients = 'ingredients',
+  Recipes = 'recipes',
 }
 
 enum ContextUsers {
+  Groups = 'groups',
   User = 'user',
   Users = 'users',
-  Groups = 'groups',
 }
-
+const idPath = (id?: string) => (id ? `/${id}` : '')
 export class RouteModel {
-  recipes = (context?: string, id?: string) => {
-    return `/${ContextApp.Recipes}/${context}${id ? `/${id}` : ''}`
-  }
-  recipesContents = (id?: string) => `/${ContextApp.Recipes}${id ? `/${id}` : ''}`
-  recipesIngredients = (id?: string) =>
-    `/${ContextApp.Recipes}/${ContextRecipes.Ingredients}${id ? `/${id}` : ''}`
-  recipesRecipes = (id?: string) => `/${ContextApp.Recipes}/${ContextRecipes.Recipes}${id ? `/${id}` : ''}`
-  usersGroups = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Groups}${id ? `/${id}` : ''}`
-  usersUsers = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Users}${id ? `/${id}` : ''}`
+  recipes = (context?: string, id?: string) => `/${ContextApp.Recipes}/${context}${idPath(id)}`
+  recipesContents = (id?: string) => `/${ContextApp.Recipes}${idPath(id)}`
+  recipesIngredients = (id?: string) => `/${ContextApp.Recipes}/${ContextRecipes.Ingredients}${idPath(id)}`
+  recipesRecipes = (id?: string) => `/${ContextApp.Recipes}/${ContextRecipes.Recipes}${idPath(id)}`
+  usersGroups = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Groups}${idPath(id)}`
   usersUserNew = () => `/${ContextApp.Users}/${ContextUsers.User}`
+  usersUsers = (id?: string) => `/${ContextApp.Users}/${ContextUsers.Users}${idPath(id)}`
 }

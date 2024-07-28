@@ -1,4 +1,5 @@
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+
 import { Suspense } from 'react'
 
 type Props = {

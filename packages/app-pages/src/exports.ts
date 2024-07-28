@@ -1,5 +1,5 @@
-export * from './modules/application-pages'
 export * from './components/application-pages'
 export * from './components/page-not-authorised'
 export * from './components/page-not-found'
 export * from './components/page-not-permitted'
+export * from './modules/application-pages'

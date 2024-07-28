@@ -1,11 +1,12 @@
 import type { ChakraProps } from '@chakra-ui/react'
 import type { FilterPageSize } from '@gnowth/logic-core'
 import type { FunctionComponent } from 'react'
+
+import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Button, HStack, Select, Text } from '@chakra-ui/react'
 import { FilterModel } from '@gnowth/logic-core'
-import { useTranslation } from 'react-i18next'
-import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface Value {
   page: number
@@ -13,9 +14,9 @@ interface Value {
 }
 
 interface Props {
-  rootProps?: ChakraProps
   onChange: (value: Value) => void
   pageCount: number
+  rootProps?: ChakraProps
   value: Value
 }
 

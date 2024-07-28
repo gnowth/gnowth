@@ -1,5 +1,5 @@
-import type { StorageService } from './storages'
 import type { APILogger, Log, LogLevel } from './loggers.types'
+import type { StorageService } from './storages'
 
 interface OptionsLogger {
   apis?: APILogger[]
@@ -14,18 +14,14 @@ const storageKeys = {
 
 // TODO: set up flag to exclude/include specific logs: 'logLevel' | 'name' | 'namespace' | 'method'
 export class LoggerService {
+  #storageService?: StorageService
   private apis: APILogger[]
   private options: OptionsLogger
-  #storageService?: StorageService
 
   constructor(options: OptionsLogger) {
     this.apis = options.apis ?? []
     this.options = options
     this.#storageService = options.storageService
-  }
-
-  clone(options?: Partial<OptionsLogger>): LoggerService {
-    return new LoggerService({ ...this.options, ...options })
   }
 
   async bug(log: Log): Promise<void> {
@@ -41,6 +37,10 @@ export class LoggerService {
     if (log.errors.length > 0) {
       return this.bug(log)
     }
+  }
+
+  clone(options?: Partial<OptionsLogger>): LoggerService {
+    return new LoggerService({ ...this.options, ...options })
   }
 
   async debug(log: Log): Promise<void> {

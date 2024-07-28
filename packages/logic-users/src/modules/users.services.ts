@@ -6,10 +6,12 @@ import type {
   QueryParametersDetail,
   QueryParametersList,
 } from '@gnowth/logic-core'
+
 import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
 
-import type { User, UserData } from './users.types'
 import type { UserFilterParams } from './user-filters'
+import type { User, UserData } from './users.types'
+
 import { UserModel } from './users.models'
 
 type QueryKeys = {
@@ -18,8 +20,8 @@ type QueryKeys = {
 }
 
 type Parameters = {
-  apiOrigin: string
   apiContext: string
+  apiOrigin: string
 }
 
 export class UserService {
@@ -27,31 +29,6 @@ export class UserService {
   #queryService!: QueryService
   #scope = 'users'
   #userModel!: UserModel
-
-  get queryKeys(): QueryKeys {
-    return {
-      detail: (id) => [{ entity: TokenQueryEntity.detail, id, scope: this.#scope }],
-      list: (params) => [{ entity: TokenQueryEntity.list, params, scope: this.#scope }],
-    }
-  }
-
-  get routes() {
-    const urlBase = `${this.#parameters.apiOrigin}${this.#parameters.apiContext}`
-
-    return {
-      users: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
-    }
-  }
-
-  constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.onInit()
-  }
-
-  onInit() {
-    this.#queryService = new QueryService()
-    this.#userModel = new UserModel({})
-  }
 
   detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
     return this.#queryService.detail({
@@ -77,5 +54,30 @@ export class UserService {
       route: this.routes.users(user.id),
       transform: (data: UserData) => this.#userModel.fromData(data),
     })
+  }
+
+  constructor(parameters: Parameters) {
+    this.#parameters = parameters
+    this.onInit()
+  }
+
+  onInit() {
+    this.#queryService = new QueryService()
+    this.#userModel = new UserModel({})
+  }
+
+  get queryKeys(): QueryKeys {
+    return {
+      detail: (id) => [{ entity: TokenQueryEntity.detail, id, scope: this.#scope }],
+      list: (params) => [{ entity: TokenQueryEntity.list, params, scope: this.#scope }],
+    }
+  }
+
+  get routes() {
+    const urlBase = `${this.#parameters.apiOrigin}${this.#parameters.apiContext}`
+
+    return {
+      users: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
+    }
   }
 }

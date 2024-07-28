@@ -1,6 +1,6 @@
 import { expect } from '@jest/globals'
-import { Test } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
+import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
 import { AppModule } from './app'

@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react'
+import { ErrorCustom, objectDefaults, objectSet } from '@gnowth/lib-utils'
 import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
-import { objectDefaults, objectSet, ErrorCustom } from '@gnowth/lib-utils'
+import { useCallback, useState } from 'react'
 
 import type { DataName, DataValue, TokenMode } from './types'
 
@@ -11,9 +11,9 @@ interface Configs {
 
 // TODO: make value required
 interface Return<Value> {
+  onChange?(value: Value, name?: DataName): Promise<void> | void
+  onSubmit?(value: Value, name?: DataName): Promise<void> | void
   value: Value
-  onChange?(value: Value, name?: DataName): void | Promise<void>
-  onSubmit?(value: Value, name?: DataName): void | Promise<void>
 }
 
 interface Props<Value> extends Return<Value> {

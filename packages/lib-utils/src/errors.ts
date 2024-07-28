@@ -40,6 +40,8 @@ export enum TokenErrorType {
 }
 
 export class ErrorCustom extends Error {
+  private parameters: Parameters
+
   traces: Trace[]
 
   constructor(parameters: Parameters) {
@@ -48,18 +50,6 @@ export class ErrorCustom extends Error {
 
     this.parameters = { ...parameters, type: parameters.type ?? TokenErrorType.internal }
     this.traces = ErrorCustom.getTraces(parameters.trace, parameters.cause)
-  }
-
-  toErrorType(): ErrorType {
-    return {
-      code: this.parameters.code,
-      contextId: this.parameters.contextId,
-      contextType: this.parameters.contextType,
-      data: this.parameters.data,
-      message: this.parameters.message,
-      traces: this.traces,
-      type: this.parameters.type ?? TokenErrorType.internal,
-    }
   }
 
   private static getTraces(trace: Trace, cause?: Error | ErrorCustom | ErrorType): Trace[] {
@@ -78,5 +68,15 @@ export class ErrorCustom extends Error {
     return [trace]
   }
 
-  private parameters: Parameters
+  toErrorType(): ErrorType {
+    return {
+      code: this.parameters.code,
+      contextId: this.parameters.contextId,
+      contextType: this.parameters.contextType,
+      data: this.parameters.data,
+      message: this.parameters.message,
+      traces: this.traces,
+      type: this.parameters.type ?? TokenErrorType.internal,
+    }
+  }
 }

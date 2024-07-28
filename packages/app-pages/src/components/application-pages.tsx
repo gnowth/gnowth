@@ -1,7 +1,9 @@
 import type { AppModelApplication } from '@gnowth/lib-react'
 import type { FunctionComponent } from 'react'
-import { AppApplication, AppPage, AppRedirect, AppPageNotFound } from '@gnowth/lib-react'
 
+import { AppApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
+
+import { PagesPageToken } from '../modules/application-pages'
 import { PageAboutUs } from './page-about-us'
 import { PageComingSoon } from './page-coming-soon'
 import { PageFrequentlyAskedQuestions } from './page-frequently-asked-questions'
@@ -11,7 +13,6 @@ import { PageNotFound } from './page-not-found'
 import { PageNotPermitted } from './page-not-permitted'
 import { PagePrivacy } from './page-privacy'
 import { PageTermsAndConditions } from './page-terms-and-conditions'
-import { PagesPageToken } from '../modules/application-pages'
 
 interface Props {
   application?: AppModelApplication | string

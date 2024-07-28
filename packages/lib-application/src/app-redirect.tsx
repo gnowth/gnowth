@@ -1,9 +1,11 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { Model } from '@gnowth/lib-model'
+import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { ReactElement } from 'react'
+
 import { Redirect } from 'react-router-dom'
 
 import type { AppModelApplication } from './app-model-application'
+
 import { useAppLink } from './use-app-link'
 
 interface Props<Value extends ObjectLiteral> {

@@ -3,7 +3,11 @@
 // TODO: allow multiple auth system
 // https://auth0.com/blog/five-common-authentication-and-authorization-mistakes-to-avoid-in-your-saas-application/
 export class AuthenticationService {
-  signup() {
+  changePassword() {
+    return
+  }
+
+  getSession() {
     return
   }
 
@@ -15,11 +19,20 @@ export class AuthenticationService {
     return
   }
 
-  verifyToken() {
+  // list, delete
+  multiFactorAddAuthenticator() {
     return
   }
 
-  verifyPasswordStrength() {
+  multifactorVerifyWithOOB() {
+    return
+  }
+
+  multifactorVerifyWithOTP() {
+    return
+  }
+
+  multifactorVerifyWithRecoveryCode() {
     return
   }
 
@@ -31,7 +44,7 @@ export class AuthenticationService {
     return
   }
 
-  changePassword() {
+  signup() {
     return
   }
 
@@ -39,28 +52,15 @@ export class AuthenticationService {
     return
   }
 
-  getSession() {
-    return
-  }
-
-  multifactorVerifyWithOTP() {
-    return
-  }
-
-  multifactorVerifyWithOOB() {
-    return
-  }
-
-  multifactorVerifyWithRecoveryCode() {
-    return
-  }
-
-  // list, delete
-  multiFactorAddAuthenticator() {
-    return
-  }
-
   verifyEmail() {
+    return
+  }
+
+  verifyPasswordStrength() {
+    return
+  }
+
+  verifyToken() {
     return
   }
 }

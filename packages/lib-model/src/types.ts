@@ -1,1 +1,1 @@
-export type DataName = string | Array<string>
+export type DataName = Array<string> | string

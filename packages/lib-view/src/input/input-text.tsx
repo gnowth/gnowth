@@ -1,13 +1,13 @@
-import type { SystemType } from '@gnowth/lib-theme'
 import type { PropsData } from '@gnowth/lib-data'
+import type { SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
-import { createElement } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
   systemBox,
-  systemCompose,
   systemColorFromPalette,
+  systemCompose,
   systemSpace,
   systemTypography,
   systemWidth,
@@ -15,8 +15,10 @@ import {
   themeStylesMake,
 } from '@gnowth/lib-theme'
 import { guardString } from '@gnowth/lib-utils'
+import { createElement } from 'react'
 
 import type { ChangeEventHandler } from './use-value'
+
 import { useValue } from './use-value'
 
 interface ComponentProps {

@@ -1,6 +1,7 @@
-import fs from 'fs'
 import type { Cypress } from 'local-cypress'
+
 import { defineConfig } from 'cypress'
+import fs from 'fs'
 
 function deleteSuccessfulVideo(spec: Cypress.Spec, results: CypressCommandLine.RunResult): void {
   if (!results?.video) {

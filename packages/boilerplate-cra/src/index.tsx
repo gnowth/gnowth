@@ -1,16 +1,16 @@
-import { lazy } from 'react'
 import { ApplicationAuth } from '@gnowth/app-auth'
 import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
 import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenErrorType } from '@gnowth/lib-react'
+import { lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { ViewFrameDefault } from './views/view-frame-default'
-import { ViewFrameRecipes } from './views/view-frame-recipes'
-import { ViewFrameTasks } from './views/view-frame-tasks'
 import { TokenApplication } from './app-model-environment'
 import { settings } from './settings'
 import { setup } from './setup'
 import { theme } from './theme'
+import { ViewFrameDefault } from './views/view-frame-default'
+import { ViewFrameRecipes } from './views/view-frame-recipes'
+import { ViewFrameTasks } from './views/view-frame-tasks'
 
 const ApplicationRecipes = lazy(() =>
   import('@gnowth/app-recipes').then((module) => ({ default: module.ApplicationRecipes })),

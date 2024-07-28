@@ -1,10 +1,11 @@
 import type { DependencyRecord } from './repositories.types'
+
 import { Repository } from './repositories.main'
 import { scriptImport } from './scripts.utils'
 
-type GlobalThis = typeof globalThis & {
+type GlobalThis = {
   repository?: Repository
-}
+} & typeof globalThis
 type Parameters = {
   dependencies?: DependencyRecord
   url: string

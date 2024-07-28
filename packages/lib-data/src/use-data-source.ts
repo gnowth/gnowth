@@ -1,8 +1,9 @@
-import { useContext, useCallback } from 'react'
+import { ErrorCustom, objectDefaults, objectGet } from '@gnowth/lib-utils'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
-import { objectDefaults, objectGet, ErrorCustom } from '@gnowth/lib-utils'
+import { useCallback, useContext } from 'react'
 
 import type { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
+
 import { DataContext } from './data-context'
 import { useValue } from './use-value'
 
@@ -84,7 +85,7 @@ export function useDataSource<Value extends DataValue>(
     connect: <ValueConnect>(name?: DataName): PropsData<ValueConnect> => ({
       field: props.field?.getField(name),
       name,
-      onChange: onChange as unknown as (value: ValueConnect, name?: DataName) => void | Promise<void>,
+      onChange: onChange as unknown as (value: ValueConnect, name?: DataName) => Promise<void> | void,
       value: (name ? objectGet(value, name) : value) as ValueConnect,
     }),
     disabled: props.disabled,

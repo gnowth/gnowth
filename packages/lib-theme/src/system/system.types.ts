@@ -5,23 +5,23 @@ import type { Theme } from '../theme/theme'
 
 export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]
 export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject
-export type SystemInterpolate<Type> = Type | Record<string, Type>
+export type SystemInterpolate<Type> = Record<string, Type> | Type
 
 type SystemUnitsAbsolute =
   | `${number}cm`
-  | `${number}mm`
   | `${number}in`
-  | `${number}px`
-  | `${number}pt`
+  | `${number}mm`
   | `${number}pc`
+  | `${number}pt`
+  | `${number}px`
 type SystemUnitsRelative =
+  | `${number}%`
+  | `${number}ch`
   | `${number}em`
   | `${number}ex`
-  | `${number}ch`
   | `${number}rem`
-  | `${number}vw`
   | `${number}vh`
-  | `${number}vmin`
   | `${number}vmax`
-  | `${number}%`
+  | `${number}vmin`
+  | `${number}vw`
 export type SystemUnits = SystemUnitsAbsolute | SystemUnitsRelative

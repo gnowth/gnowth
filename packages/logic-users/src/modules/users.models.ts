@@ -1,6 +1,7 @@
 import type { FakerService } from '@gnowth/lib-mock'
 import type { UtilOptional } from '@gnowth/lib-utils'
 import type { ErrorData, EventService } from '@gnowth/logic-core'
+
 import { Model } from '@gnowth/lib-model'
 import { v4 as uuid } from 'uuid'
 
@@ -12,18 +13,6 @@ type Parameters = {
 }
 
 export class UserModel extends Model<User> {
-  getId(user: User) {
-    return user.id
-  }
-
-  getKey(user: User) {
-    return user.key
-  }
-
-  getNameFull(user: User) {
-    return `${user.nameFirst} ${user.nameLast}`
-  }
-
   fromData(user: UserData): User {
     // TODO: report error if required field not available
     return {
@@ -36,14 +25,6 @@ export class UserModel extends Model<User> {
       role: user.role ?? 'N/A',
       status: user.status ?? 'deactivated',
     }
-  }
-
-  toData(user: User): UserData {
-    return user
-  }
-
-  toString(user: User) {
-    return `${user.nameLast}, ${user.nameFirst}`
   }
 
   generate(user: UtilOptional<User, 'status'>, parameters?: Parameters): User {
@@ -95,11 +76,32 @@ export class UserModel extends Model<User> {
     })
   }
 
+  getId(user: User) {
+    return user.id
+  }
+
+  getKey(user: User) {
+    return user.key
+  }
+
+  getNameFull(user: User) {
+    return `${user.nameFirst} ${user.nameLast}`
+  }
+
   isValid(user: User): boolean {
     return this.validate(user).length === 0
   }
 
+  toData(user: User): UserData {
+    return user
+  }
+
+  toString(user: User) {
+    return `${user.nameLast}, ${user.nameFirst}`
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   validate(user: User): ErrorData[] {
-    return user ? [] : []
+    return []
   }
 }

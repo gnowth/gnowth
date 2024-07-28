@@ -1,13 +1,15 @@
-import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { PropsData } from '@gnowth/lib-data'
+import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
-import { useRef, useCallback } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
 import { UtilNamespaced, guardString } from '@gnowth/lib-utils'
+import { useCallback, useRef } from 'react'
 
-import { UIIcon, PropsUIIcon } from '../ui/ui-icon'
 import type { ChangeEventHandler } from './use-value'
+
+import { PropsUIIcon, UIIcon } from '../ui/ui-icon'
 import { useValue } from './use-value'
 
 export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, PropsData<boolean | null> {

@@ -1,4 +1,5 @@
 import type { Observable } from 'rxjs'
+
 import { useEffect, useState } from 'react'
 
 export function useStream<Type>(stream: Observable<Type>, action?: (data: Type) => void) {

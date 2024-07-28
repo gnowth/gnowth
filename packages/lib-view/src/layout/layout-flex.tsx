@@ -1,6 +1,7 @@
 import type { PropsLayout } from '@gnowth/lib-application'
 import type { System, SystemType } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   cx,
@@ -14,12 +15,12 @@ import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
 
 interface ComponentProps {
-  className?: string
   children?: ReactNode
+  className?: string
   id?: string
 }
 export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFlex> {
-  as?: ComponentType<ComponentProps> | string | null
+  as?: ComponentType<ComponentProps> | null | string
   children: ReactNode
   className?: string
   hidden?: boolean

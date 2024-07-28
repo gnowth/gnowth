@@ -2,6 +2,7 @@ import type { Model } from '@gnowth/lib-model'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { AppModelApplication } from './app-model-application'
+
 import { useAppApplication } from './use-app-application'
 
 interface Props<Value extends ObjectLiteral> {
@@ -19,9 +20,7 @@ export function useAppLink<Value extends ObjectLiteral>(props: Props<Value>): st
 
   if (props.model) {
     const model = application.getModel(props.model)
-    const route = model?.valueToRoute(props.value)
-
-    return route
+    return model?.valueToRoute(props.value)
   }
 
   return application.getRoute(props.page)

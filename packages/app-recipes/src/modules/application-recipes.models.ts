@@ -1,8 +1,10 @@
 import type { Model, QueryResource } from '@gnowth/lib-react'
+
 import { AppModelApplication } from '@gnowth/lib-react'
 
 import type { Ingredient } from './ingredients'
 import type { Recipe } from './recipes'
+
 import { ModelIngredient } from './ingredients'
 import { ModelRecipe } from './recipes'
 

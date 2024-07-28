@@ -1,11 +1,13 @@
 import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
-import { createElement, useState, useCallback, useContext } from 'react'
+
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
+import { ErrorCustom, UtilRequired, objectDefaults } from '@gnowth/lib-utils'
 import { useRefValue } from '@gnowth/lib-utils-react'
-import { UtilRequired, objectDefaults, ErrorCustom } from '@gnowth/lib-utils'
+import { createElement, useCallback, useContext, useState } from 'react'
 
 import type { DataName } from './types'
+
 import { DataContext } from './data-context'
 
 interface PropsComponent {
@@ -26,8 +28,8 @@ interface Props<Value> {
   event?: string
   hidden?: boolean
   onResolve?: () => Promise<void> | void
-  theme?: Theme | string
   submit?: boolean
+  theme?: Theme | string
 }
 
 const propsDefault = {
@@ -74,10 +76,10 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   const component = createElement(Component, {
     ...propsWithDefault.componentProps,
-    [propsWithDefault.event]: handleEvent,
     disabled: awaiting, // TODO check if error is processing
     palette: propsWithDefault.componentPalette,
     progressHidden: !awaiting,
+    [propsWithDefault.event]: handleEvent,
     textValue: propsWithDefault.componentValue,
     variant: propsWithDefault.componentVariant,
   })
