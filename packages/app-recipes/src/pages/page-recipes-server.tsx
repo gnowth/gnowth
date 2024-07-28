@@ -4,7 +4,7 @@ import { ErrorCustom, repositoryGet } from '@gnowth/lib-react'
 
 import { RecipeService } from '../modules/recipes.services'
 
-type Params = { extension: string; slug: string }
+type Params = { slug: string }
 type Props = { params?: Params }
 
 export const PageRecipesServer: PageServerComponent<Props> = async (props) => {

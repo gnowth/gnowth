@@ -6,7 +6,7 @@ import { repositoryGet } from '@gnowth/lib-react'
 import { RecipeService } from '../modules/recipes.services'
 
 type Props = { source: MDXRemoteSerializeResult }
-type Params = { extension: string; slug: string }
+type Params = { slug: string }
 
 export const PageIngredientsClient: PageClientComponent<Props> = (props) => {
   return (
