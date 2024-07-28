@@ -46,9 +46,6 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      - name: build recipe cms
-        run: npm run ci:project:tinacms:build
-
       - name: Lint workspaces
         run: npm run ci:check:lint
 
@@ -94,9 +91,6 @@ jobs:
 
       - name: Installing node modules
         run: npm run ci:setup
-
-      - name: build recipe cms
-        run: npm run ci:project:tinacms:build
 
       - name: Type check workspaces
         run: npm run ci:check:typecheck

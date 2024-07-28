@@ -26,7 +26,6 @@
       "**/build/**/*",
       "**/coverage/**/*",
       "**/node_modules/**/*",
-      "**/public/admin/tina/**/*",
       "**/volumes/**/*"
     ],
     "root": true
@@ -67,7 +66,6 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tinacms/cli": "1.5.22",
     "concurrently": "8.2.1",
     "github-markdown-css": "5.2.0",
     "husky": "8.0.3",
@@ -102,8 +100,8 @@
     "cd:library:publish": "lerna publish from-package --yes",
     "cd:project:nextjs:deploy": "surge --project ./artifact/build-web --domain $SITE_DOMAIN",
     "cd:project:nextjs:teardown": "surge teardown $SITE_DOMAIN",
-    "ci:build-dev": "npm run --workspace=@gnowth/boilerplate-tina start-dev -- -c 'cd ../.. && turbo run build-dev'",
-    "ci:build": "npm run --workspace=@gnowth/boilerplate-tina start-dev -- -c 'cd ../.. && turbo run build'",
+    "ci:build-dev": "turbo run build-dev'",
+    "ci:build": "turbo run build'",
     "ci:check:lint": "turbo run lint",
     "ci:check:test": "turbo run test",
     "ci:check:typecheck": "turbo run typecheck",
@@ -111,11 +109,9 @@
     "ci:e2e:mock": "BASE_URL_TEST=http://localhost:3000 start-server-and-test 'serve -l 3000 artifact/build-web' http://localhost:3000 'turbo run test:mock'",
     "ci:e2e:regression": "turbo run test:regression",
     "ci:e2e:smoke": "turbo run test:smoke",
-    "ci:project:nextjs:build": "npm run --workspace=@gnowth/boilerplate-tina start-dev -- -c 'cd ../.. && npm run workspace:nextjs build'",
+    "ci:project:nextjs:build": "npm run workspace:nextjs build'",
     "ci:project:storybook:build": "npm run workspace:styleguide build",
     "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
-    "ci:project:tinacms:build": "npm run workspace:tina build-cms",
-    "ci:project:tinacms:start": "npm run workspace:tina start-dev",
     "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
     "docker:compose": "docker-compose -f devops/docker-compose.yml up",
     "docker:service:plantuml": "docker run -d -p 8888:8080 plantuml/plantuml-server:jetty",
@@ -130,7 +126,7 @@
     "local:check:lint": "eslint --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check:test": "jest",
     "local:check:typecheck": "tsc",
-    "local:check": "npm run ci:project:tinacms:build && concurrently npm:local:check:* --group",
+    "local:check": "concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
     "local:clean:temp": "turbo run clean:temp && rm -rf coverage artifact build node_modules/.cache .parcel-cache",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
@@ -145,7 +141,7 @@
     "local:project:storybook:e2e": "npm run workspace:styleguide test:e2e",
     "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:styleguide publish",
     "local:project:storybook:start": "npm run workspace:styleguide start-dev",
-    "local:start-cms": "concurrently 'npm run ci:project:tinacms:start' 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
+    "local:start-cms": "concurrently 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",
     "setup:cache:verify": "npm cache verify",
@@ -158,7 +154,6 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:playwright": "npm run --workspace=@gnowth/playwright-boilerplate",
-    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate",
-    "workspace:tina": "npm run --workspace=@gnowth/boilerplate-tina"
+    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
   }
 }

@@ -1,12 +1,14 @@
 import type { PageServerComponent } from '@gnowth/lib-react'
-import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
+import { MDXRemote } from 'next-mdx-remote'
 import { ErrorCustom, repositoryGet } from '@gnowth/lib-react'
 
-type Params = { slug: string }
+import { RecipeService } from '../modules/recipes.services'
+
+type Params = { extension: string; slug: string }
 type Props = { params?: Params }
 
 export const PageContentsServer: PageServerComponent<Props> = async (props) => {
-  if (!props.params?.slug) {
+  if (!props.params) {
     throw new ErrorCustom({
       code: 'app-recipes--page-contents-server--01',
       message: 'Page not found',
@@ -18,16 +20,21 @@ export const PageContentsServer: PageServerComponent<Props> = async (props) => {
     })
   }
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
-  const content = await tinaService.contentGetContent(props.params.slug)
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
+  })
+  const source = await recipeService.contentGetSource(props.params)
   return (
-    <UIMarkdownTina data={content.data} query={content.query} type="contents" variables={content.variables} />
+    <MDXRemote compiledSource={source.compiledSource} frontmatter={source.frontmatter} scope={source.scope} />
   )
 }
 
 PageContentsServer.generateStaticParams = async () => {
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
-  const pagesKey = await tinaService.contentGetSlugs()
-  return pagesKey.map((slug) => ({ slug }))
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
+  })
+  return recipeService.contentGetParams()
 }

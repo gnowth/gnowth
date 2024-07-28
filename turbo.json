@@ -15,9 +15,6 @@
       "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
       "outputs": ["./artifact/build-web/styleguide"]
     },
-    "@gnowth/boilerplate-tina#build-cms": {
-      "outputs": ["./packages/boilerplate-tina/.tina/__generated__"]
-    },
     "build": {
       "outputs": ["./build"]
     },
@@ -33,7 +30,6 @@
       "outputs": []
     },
     "lint": {
-      "dependsOn": ["@gnowth/boilerplate-tina#build-cms"],
       "outputs": []
     },
     "test": {
@@ -49,7 +45,6 @@
       "outputs": []
     },
     "typecheck": {
-      "dependsOn": ["@gnowth/boilerplate-tina#build-cms"],
       "outputs": []
     }
   }

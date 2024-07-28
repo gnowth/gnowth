@@ -1,32 +1,42 @@
-import type { RecipesQuery, RecipesQueryVariables } from '@gnowth/boilerplate-tina'
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 import type { PageClientComponent } from '@gnowth/lib-react'
-import { TinaService, UIMarkdownTina } from '@gnowth/boilerplate-tina'
+import { MDXRemote } from 'next-mdx-remote'
 import { repositoryGet } from '@gnowth/lib-react'
 
-type Props = {
-  data: RecipesQuery
-  query: string
-  variables: RecipesQueryVariables
-}
+import { RecipeService } from '../modules/recipes.services'
+
+type Props = { source: MDXRemoteSerializeResult }
+type Params = { extension: string; slug: string }
 
 export const PageRecipesClient: PageClientComponent<Props> = (props) => {
-  return <UIMarkdownTina data={props.data} query={props.query} type="recipes" variables={props.variables} />
+  return (
+    <MDXRemote
+      compiledSource={props.source.compiledSource}
+      frontmatter={props.source.frontmatter}
+      scope={props.source.scope}
+    />
+  )
 }
 
 PageRecipesClient.staticPaths = async () => {
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
-  const slugs = await tinaService.recipeGetSlugs()
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
+  })
+  const params = await recipeService.recipeGetParams()
   return {
     fallback: false,
-    paths: slugs.map((slug) => ({ params: { slug } })),
+    paths: params.map((params) => ({ params })),
   }
 }
 
 PageRecipesClient.staticProps = async (context) => {
-  const slug = typeof context.params?.slug === 'string' ? context.params?.slug : ''
   const repository = await repositoryGet()
-  const tinaService = await repository.serviceGet<TinaService>({ Constructor: TinaService, name: 'tina' })
-  const props = await tinaService.recipeGetContent(slug)
-  return { props }
+  const recipeService = await repository.serviceGet<RecipeService>({
+    Constructor: RecipeService,
+    name: 'recipeService',
+  })
+  const source = await recipeService.recipeGetSource(context.params as Params)
+  return { props: { source } }
 }

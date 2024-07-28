@@ -21,9 +21,9 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/boilerplate-tina": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
-    "@gnowth/logic-core": "0.0.0"
+    "@gnowth/logic-core": "0.0.0",
+    "remeda": "2.6.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

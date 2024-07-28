@@ -80,7 +80,6 @@
     "**/coverage/",
     "**/cypress/media/",
     "**/node_modules/",
-    "**/public/admin/tina/",
     "**/volumes/"
   ]
 }
