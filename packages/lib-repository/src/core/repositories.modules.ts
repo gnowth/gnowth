@@ -2,7 +2,6 @@ import type { Repository } from './repositories.main'
 import type { RepositoryModuleDefinition } from './repositories.types'
 
 type Configs = {
-  dependencies: RepositoryModuleDefinition[]
   preloads: RepositoryModuleDefinition[]
 }
 
@@ -17,13 +16,12 @@ export class RepositoryModule {
     this.repository = parameters.repository
   }
 
-  async onInit(): Promise<void> {
-    return
+  static async construct(parameters: Parameters): Promise<RepositoryModule> {
+    return new this(parameters)
   }
 
-  async onPrepare(): Promise<Configs> {
+  static async info(): Promise<Configs> {
     return {
-      dependencies: [],
       preloads: [],
     }
   }

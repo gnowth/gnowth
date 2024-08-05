@@ -1,6 +1,6 @@
 import type { ConfigEnvironment } from './configs.types'
 
-import { RepositoryService } from './repositories.modules'
+import { RepositoryService } from '../core/repositories.modules'
 
 export class ConfigService extends RepositoryService {
   #environmentFromHostname(hostname: string): ConfigEnvironment {

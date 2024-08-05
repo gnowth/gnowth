@@ -1,5 +1,5 @@
 export enum TokenService {
-  auth = 'AuthService',
+  authentication = 'AuthenticationService',
   config = 'ConfigService',
   data = 'DataService',
   event = 'EventService',

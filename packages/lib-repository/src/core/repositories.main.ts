@@ -2,12 +2,13 @@ import { ErrorCustom } from '@gnowth/lib-utils'
 
 import type { DependencyRecord, RepositoryModuleDefinition } from './repositories.types'
 
-import { AuthService } from './auth.exports'
-import { ConfigService } from './configs.exports'
-import { DataService } from './data.exports'
-import { EventEmitterService } from './event-emitters.exports'
-import { EventService } from './events.exports'
-import { LocaleService } from './locales.exports'
+import { AuthenticationService } from '../modules/authentications'
+import { ConfigService } from '../modules/configs'
+import { DataService } from '../modules/data'
+import { EventEmitterService } from '../modules/event-emitters'
+import { EventService } from '../modules/events'
+import { LocaleService } from '../modules/locales'
+import { ScriptService } from '../modules/scripts'
 import {
   RepositoryMFE,
   RepositoryModule,
@@ -16,7 +17,6 @@ import {
   RepositoryStream,
 } from './repositories.modules'
 import { TokenService } from './repositories.tokens'
-import { ScriptService } from './scripts.exports'
 
 type Parameters = {
   dependencies?: DependencyRecord
@@ -52,7 +52,7 @@ export class Repository {
     await this.serviceGet({ Constructor: ScriptService, name: TokenService.script })
     await this.serviceGet({ Constructor: DataService, name: TokenService.data })
     await this.serviceGet({ Constructor: ConfigService, name: TokenService.config })
-    await this.serviceGet({ Constructor: AuthService, name: TokenService.auth })
+    await this.serviceGet({ Constructor: AuthenticationService, name: TokenService.authentication })
     await this.serviceGet({ Constructor: LocaleService, name: TokenService.locale })
 
     // TODO: check how Repository itsef could use some services, like configs, events, dependencies etc... and pass down to managers
@@ -92,6 +92,8 @@ export class Repository {
       return this.#moduleServices.get(definition.name) as Service
     }
 
+    // TODO check name from map passed in initialization
+
     // Need to document that named export need to match module name
     // there can be multiple module in a bundle
     const Constructor =
@@ -99,7 +101,11 @@ export class Repository {
       ((await this.moduleGet(definition))[definition.name] as typeof RepositoryModule)
     // need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call
     // check if constructor has requirement
-    const service = new Constructor({ repository: this })
+    // get dependencies
+    // load dependencies from service
+    // initialize dependencies
+
+    const service = await Constructor.construct({ repository: this })
     if (!this.#guardService(service)) {
       throw new ErrorCustom({
         code: 'lib-repository--repositories--02',
@@ -111,10 +117,6 @@ export class Repository {
         },
       })
     }
-    // get dependencies
-    // load dependencies from service
-    // initialize dependencies
-    await service.onInit()
 
     this.#moduleServices.set(definition.name, service)
     return service as Service

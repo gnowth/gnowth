@@ -83,7 +83,9 @@
   },
   "devDependencies": {
     "eslint": "8.51.0",
+    "nodemon": "3.1.4",
     "prettier": "3.0.3",
+    "ts-node": "10.9.2",
     "typescript": "5.2.2"
   },
   "scripts": {
@@ -123,8 +125,9 @@
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
     "local:check-debug:lint": "eslint --debug --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check-debug:typecheck": "tsc --listFilesOnly",
+    "local:check-watch:test": "jest --coverage --watchAll",
     "local:check:lint": "eslint --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
-    "local:check:test": "jest",
+    "local:check:test": "jest --coverage",
     "local:check:typecheck": "tsc",
     "local:check": "concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
@@ -141,6 +144,7 @@
     "local:project:storybook:e2e": "npm run workspace:styleguide test:e2e",
     "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:styleguide publish",
     "local:project:storybook:start": "npm run workspace:styleguide start-dev",
+    "local:run": "nodemon --exec 'ts-node --transpileOnly'",
     "local:start-cms": "concurrently 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
     "prepare": "if test \"$CI\" != true; then husky install; fi",

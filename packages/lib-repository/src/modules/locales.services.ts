@@ -1,4 +1,4 @@
-import { RepositoryService } from './repositories.modules'
+import { RepositoryService } from '../core/repositories.modules'
 
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'

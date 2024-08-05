@@ -1,6 +1,6 @@
 import EventEmitter from 'eventemitter3'
 
-import { RepositoryService } from './repositories.modules'
+import { RepositoryService } from '../core/repositories.modules'
 
 export class EventEmitterService extends RepositoryService {
   #eventEmitter: EventEmitter = new EventEmitter()

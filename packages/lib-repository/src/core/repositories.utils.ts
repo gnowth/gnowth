@@ -1,7 +1,7 @@
 import type { DependencyRecord } from './repositories.types'
 
+import { scriptImport } from '../modules/scripts.utils'
 import { Repository } from './repositories.main'
-import { scriptImport } from './scripts.utils'
 
 type GlobalThis = {
   repository?: Repository
@@ -31,4 +31,8 @@ export const repositoryGet = async (parameters?: Parameters): Promise<Repository
   globalThisGet().repository = repository
 
   return repository
+}
+
+export const repositoryClear = (): void => {
+  delete globalThisGet().repository
 }
