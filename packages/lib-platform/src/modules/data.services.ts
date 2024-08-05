@@ -1,13 +1,13 @@
 import * as R from 'remeda'
 
-import type { Repository } from '../core/repositories.main'
+import type { Platform } from '../core/platform.main'
 
-import { RepositoryService } from '../core/repositories.modules'
-import { TokenService } from '../core/repositories.tokens'
+import { PlatformService } from '../core/platform.modules'
+import { TokenService } from '../core/platform.tokens'
 import { EventEmitterService } from './event-emitters'
 
 const DataConstant = {
-  eventName: 'repositoryDataService/data',
+  eventName: 'platformDataService/data',
 } as const
 
 type DataGetter<TData = unknown> = () => TData
@@ -20,15 +20,15 @@ type Dependencies = {
 }
 
 type ConstructParameters = {
-  repository: Repository
+  platform: Platform
 }
 
 type Parameters = {
   dependencies: Dependencies
-  repository: Repository
+  platform: Platform
 }
 
-export class DataService extends RepositoryService {
+export class DataService extends PlatformService {
   #data: Map<string, unknown> = new Map()
   #dependencies: Dependencies
   #getters: Map<string, DataGetter> = new Map()
@@ -41,10 +41,10 @@ export class DataService extends RepositoryService {
   }
 
   static async construct(parameters: ConstructParameters): Promise<DataService> {
-    const eventEmitterService = await parameters.repository.serviceGet<EventEmitterService>({
+    const eventEmitterService = await parameters.platform.serviceGet<EventEmitterService>({
       name: TokenService.eventEmitter,
     })
-    return new this({ dependencies: { eventEmitterService }, repository: parameters.repository })
+    return new this({ dependencies: { eventEmitterService }, platform: parameters.platform })
   }
 
   #getterGet<TData>(name: string): DataGetter<TData> | undefined {

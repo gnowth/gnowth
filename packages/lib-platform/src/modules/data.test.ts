@@ -1,13 +1,13 @@
-import { repositoryClear, repositoryGet } from '../core/repositories.utils'
+import { platformClear, platformGet } from '../core/platform.utils'
 import { DataService } from './data.services'
 
 describe('dataService', () => {
-  afterEach(repositoryClear)
+  afterEach(platformClear)
 
   it('gets and sets', async () => {
     expect.assertions(2)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
     expect(dataService.get('name')).toBeUndefined()
 
     dataService.set('name', 'content')
@@ -16,8 +16,8 @@ describe('dataService', () => {
 
   it('subscribes', async () => {
     expect.assertions(6)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
 
     const setter1 = jest.fn()
     const setter2 = jest.fn()
@@ -37,8 +37,8 @@ describe('dataService', () => {
 
   it('subscribes but it does not trigger when same data is set', async () => {
     expect.assertions(3)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
 
     const setter1 = jest.fn()
     dataService.subscribe('name', setter1)
@@ -53,8 +53,8 @@ describe('dataService', () => {
 
   it('makes getter', async () => {
     expect.assertions(4)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
     const getter = dataService.makeGet('name')
     expect(getter()).toBeUndefined()
     expect(dataService.makeGet('name')).toBe(getter)
@@ -66,8 +66,8 @@ describe('dataService', () => {
 
   it('makes setter', async () => {
     expect.assertions(3)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
     const setter = dataService.makeSet('name')
     expect(dataService.get('name')).toBeUndefined()
     expect(dataService.makeSet('name')).toBe(setter)
@@ -78,8 +78,8 @@ describe('dataService', () => {
 
   it('makes subscriber', async () => {
     expect.assertions(7)
-    const repository = await repositoryGet()
-    const dataService = await DataService.construct({ repository })
+    const platform = await platformGet()
+    const dataService = await DataService.construct({ platform })
     const subscriber = dataService.makeSubscribe('name')
     expect(dataService.makeSubscribe('name')).toBe(subscriber)
 

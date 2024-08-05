@@ -1,6 +1,6 @@
-import { RepositoryService } from '../core/repositories.modules'
+import { PlatformService } from '../core/platform.modules'
 
-export class AuthenticationService extends RepositoryService {
+export class AuthenticationService extends PlatformService {
   async login(): Promise<void> {
     return
   }

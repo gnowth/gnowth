@@ -1,4 +1,4 @@
-export * from './core/repositories'
+export * from './core/platform'
 export * from './modules/authentications'
 export * from './modules/configs'
 export * from './modules/data'

@@ -4,7 +4,7 @@
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/lib-repository",
+  "name": "@gnowth/lib-platform",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -19,7 +19,7 @@
     "preset": "@gnowth/jest-config"
   },
   "repository": {
-    "directory": "packages/lib-repository",
+    "directory": "packages/lib-platform",
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },

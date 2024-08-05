@@ -1,8 +1,8 @@
 import EventEmitter from 'eventemitter3'
 
-import { RepositoryService } from '../core/repositories.modules'
+import { PlatformService } from '../core/platform.modules'
 
-export class EventEmitterService extends RepositoryService {
+export class EventEmitterService extends PlatformService {
   #eventEmitter: EventEmitter = new EventEmitter()
 
   dispatch(name: string, event: unknown) {

@@ -28,7 +28,7 @@
     "@gnowth/lib-mock": "0.0.0",
     "@gnowth/lib-model": "0.0.0",
     "@gnowth/lib-query": "0.0.0",
-    "@gnowth/lib-repository": "0.0.0",
+    "@gnowth/lib-platform": "0.0.0",
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",

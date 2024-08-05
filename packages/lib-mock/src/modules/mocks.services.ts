@@ -1,8 +1,8 @@
 import type { Server } from 'miragejs'
 
-import { RepositoryService } from '@gnowth/lib-repository'
+import { PlatformService } from '@gnowth/lib-platform'
 
-export class MockService extends RepositoryService {
+export class MockService extends PlatformService {
   #server!: Server
 
   close() {

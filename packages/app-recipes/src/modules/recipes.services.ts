@@ -1,6 +1,6 @@
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { RepositoryService } from '@gnowth/lib-react'
+import { PlatformService } from '@gnowth/lib-react'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -13,7 +13,7 @@ const RecipeConstant = {
 
 type Params = { slug: string }
 
-export class RecipeService extends RepositoryService {
+export class RecipeService extends PlatformService {
   async contentGetParams(): Promise<Params[]> {
     return fs
       .readdirSync(`${RecipeConstant.rootPath}/contents`)

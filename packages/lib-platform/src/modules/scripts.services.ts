@@ -1,8 +1,8 @@
-import type { Repository } from '../core/repositories.main'
+import type { Platform } from '../core/platform.main'
 import type { EventService } from './events'
 
-import { RepositoryService } from '../core/repositories.modules'
-import { TokenService } from '../core/repositories.tokens'
+import { PlatformService } from '../core/platform.modules'
+import { TokenService } from '../core/platform.tokens'
 import { scriptImport, scriptInject } from './scripts.utils'
 
 type ScriptParameters = {
@@ -18,15 +18,15 @@ type Dependencies = {
 }
 
 type ConstructParameters = {
-  repository: Repository
+  platform: Platform
 }
 
 type Parameters = {
   dependencies: Dependencies
-  repository: Repository
+  platform: Platform
 }
 
-export class ScriptService extends RepositoryService {
+export class ScriptService extends PlatformService {
   #dependencies: Dependencies
 
   constructor(parameters: Parameters) {
@@ -35,8 +35,8 @@ export class ScriptService extends RepositoryService {
   }
 
   static async construct(parameters: ConstructParameters): Promise<ScriptService> {
-    const eventService = await parameters.repository.serviceGet<EventService>({ name: TokenService.event })
-    return new this({ dependencies: { eventService }, repository: parameters.repository })
+    const eventService = await parameters.platform.serviceGet<EventService>({ name: TokenService.event })
+    return new this({ dependencies: { eventService }, platform: parameters.platform })
   }
 
   async import(parameters: ScriptParameters) {

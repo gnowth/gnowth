@@ -1,5 +1,0 @@
-export * from './repositories.main'
-export * from './repositories.modules'
-export * from './repositories.tokens'
-export * from './repositories.types'
-export * from './repositories.utils'
