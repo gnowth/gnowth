@@ -1,7 +1,6 @@
 import type { PageClientComponent } from '@gnowth/lib-react'
 import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
-import { platformGet } from '@gnowth/lib-react'
 import { MDXRemote } from 'next-mdx-remote'
 
 import { RecipeService } from '../modules/recipes.services'
@@ -20,11 +19,7 @@ export const PageContentsClient: PageClientComponent<Props> = (props) => {
 }
 
 PageContentsClient.staticPaths = async () => {
-  const platform = await platformGet()
-  const recipeService = await platform.serviceGet<RecipeService>({
-    Constructor: RecipeService,
-    name: 'recipeService',
-  })
+  const recipeService = new RecipeService()
   const params = await recipeService.contentGetParams()
   return {
     fallback: false,
@@ -33,11 +28,7 @@ PageContentsClient.staticPaths = async () => {
 }
 
 PageContentsClient.staticProps = async (context) => {
-  const platform = await platformGet()
-  const recipeService = await platform.serviceGet<RecipeService>({
-    Constructor: RecipeService,
-    name: 'recipeService',
-  })
+  const recipeService = new RecipeService()
   const source = await recipeService.contentGetSource(context.params as Params)
   return { props: { source } }
 }

@@ -1,6 +1,8 @@
-import { PlatformService } from '../core/platform.modules'
+export class AuthenticationService {
+  static async construct(): Promise<AuthenticationService> {
+    return new this()
+  }
 
-export class AuthenticationService extends PlatformService {
   async login(): Promise<void> {
     return
   }

@@ -1,6 +1,6 @@
 import type { PageServerComponent } from '@gnowth/lib-react'
 
-import { ErrorCustom, platformGet } from '@gnowth/lib-react'
+import { ErrorCustom } from '@gnowth/lib-react'
 import { MDXRemote } from 'next-mdx-remote'
 
 import { RecipeService } from '../modules/recipes.services'
@@ -20,11 +20,7 @@ export const PageIngredientsServer: PageServerComponent<Props> = async (props) =
       },
     })
   }
-  const platform = await platformGet()
-  const recipeService = await platform.serviceGet<RecipeService>({
-    Constructor: RecipeService,
-    name: 'recipeService',
-  })
+  const recipeService = new RecipeService()
   const source = await recipeService.ingredientGetSource(props.params)
   return (
     <MDXRemote compiledSource={source.compiledSource} frontmatter={source.frontmatter} scope={source.scope} />
@@ -32,10 +28,6 @@ export const PageIngredientsServer: PageServerComponent<Props> = async (props) =
 }
 
 PageIngredientsServer.generateStaticParams = async () => {
-  const platform = await platformGet()
-  const recipeService = await platform.serviceGet<RecipeService>({
-    Constructor: RecipeService,
-    name: 'recipeService',
-  })
+  const recipeService = new RecipeService()
   return recipeService.ingredientGetParams()
 }

@@ -1,10 +1,7 @@
+import EventEmitter from 'eventemitter3'
 import * as R from 'remeda'
 
-import type { Platform } from '../core/platform.main'
-
-import { PlatformService } from '../core/platform.modules'
-import { TokenService } from '../core/platform.tokens'
-import { EventEmitterService } from './event-emitters'
+import type { DataModule } from './data.modules'
 
 const DataConstant = {
   eventName: 'platformDataService/data',
@@ -15,36 +12,35 @@ type DataSetter<TData = unknown> = (data: TData) => void
 type DataUnsubscriber = () => void
 type DataSubscriber<TData = unknown> = (setter: DataSetter<TData>) => DataUnsubscriber
 
-type Dependencies = {
-  eventEmitterService: EventEmitterService
+class EventEmitterService {
+  #eventEmitter: EventEmitter = new EventEmitter()
+
+  dispatch(name: string, event: unknown) {
+    this.#eventEmitter.emit(name, event)
+  }
+
+  subscribe<TEvent>(name: string, callback: (event: TEvent) => void): () => void {
+    const listener = (event: TEvent) => {
+      try {
+        callback(event)
+      } catch (error) {}
+    }
+    this.#eventEmitter.on(name, listener)
+    return () => this.#eventEmitter.off(name, listener)
+  }
 }
 
-type ConstructParameters = {
-  platform: Platform
-}
-
-type Parameters = {
-  dependencies: Dependencies
-  platform: Platform
-}
-
-export class DataService extends PlatformService {
+type Parameters = { module: DataModule }
+export class DataService {
   #data: Map<string, unknown> = new Map()
-  #dependencies: Dependencies
+  #eventEmitterService = new EventEmitterService()
   #getters: Map<string, DataGetter> = new Map()
   #setters: Map<string, DataSetter> = new Map()
   #subscribers: Map<string, DataSubscriber> = new Map()
 
-  constructor(parameters: Parameters) {
-    super(parameters)
-    this.#dependencies = parameters.dependencies
-  }
-
-  static async construct(parameters: ConstructParameters): Promise<DataService> {
-    const eventEmitterService = await parameters.platform.serviceGet<EventEmitterService>({
-      name: TokenService.eventEmitter,
-    })
-    return new this({ dependencies: { eventEmitterService }, platform: parameters.platform })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static async construct(parameters: Parameters): Promise<DataService> {
+    return new this()
   }
 
   #getterGet<TData>(name: string): DataGetter<TData> | undefined {
@@ -82,12 +78,12 @@ export class DataService extends PlatformService {
     const dataNext = R.isFunction(data) ? data(dataPrevious) : data
     this.#data.set(name, dataNext)
     if (dataPrevious !== dataNext) {
-      this.#dependencies.eventEmitterService.dispatch(`${DataConstant.eventName}/${name}`, dataNext)
+      this.#eventEmitterService.dispatch(`${DataConstant.eventName}/${name}`, dataNext)
     }
   }
 
   // TODO: allow support for selectors, like zustand/jotai? can custom equality check
   subscribe<TData>(name: string, setter: DataSetter<TData>): DataUnsubscriber {
-    return this.#dependencies.eventEmitterService.subscribe(`${DataConstant.eventName}/${name}`, setter)
+    return this.#eventEmitterService.subscribe(`${DataConstant.eventName}/${name}`, setter)
   }
 }

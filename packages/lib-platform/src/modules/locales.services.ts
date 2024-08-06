@@ -1,9 +1,15 @@
-import { PlatformService } from '../core/platform.modules'
+import type { LocaleModule } from './locales.modules'
 
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'
 
-export class LocaleService extends PlatformService {
+type Parameters = { module: LocaleModule }
+export class LocaleService {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static async construct(parameters: Parameters): Promise<LocaleService> {
+    return new this()
+  }
+
   get locale(): Locale {
     return 'en-US'
   }

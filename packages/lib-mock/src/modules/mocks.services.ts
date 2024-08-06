@@ -1,19 +1,17 @@
 import type { Server } from 'miragejs'
 
-import { PlatformService } from '@gnowth/lib-platform'
-
-export class MockService extends PlatformService {
+export class MockService {
   #server!: Server
+
+  static async construct(): Promise<MockService> {
+    return new this()
+  }
 
   close() {
     return
   }
 
   listen() {
-    return
-  }
-
-  async onInit(): Promise<void> {
     return
   }
 
