@@ -6,7 +6,7 @@ env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
-  NODE_VERSION: 20.5.0
+  NODE_VERSION: 20.16.0
   SITE_DOMAIN: gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -16,7 +16,7 @@ jobs:
   # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
   build_preview_and_e2e:
     container:
-      image: cypress/base:20.5.0
+      image: cypress/base:20.16.0
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -75,7 +75,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: cypress/base:20.5.0
+      image: cypress/base:20.16.0
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15

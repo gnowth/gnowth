@@ -10,7 +10,7 @@ env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-test.surge.sh
-  NODE_VERSION: 20.5.0
+  NODE_VERSION: 20.16.0
   SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -20,7 +20,7 @@ env:
 jobs:
   build_deploy:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -114,7 +114,7 @@ jobs:
 
   clean_test:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     if: always()
     needs: [build_deploy, e2e_regression]

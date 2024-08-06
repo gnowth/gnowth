@@ -5,7 +5,7 @@
   "homepage": "https://github.com/gnowth/gnowth#readme",
   "license": "AGPL-3.0-only",
   "name": "gnowth",
-  "packageManager": "npm@9.8.0",
+  "packageManager": "npm@10.8.1",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "repository": "https://github.com/gnowth/gnowth.git",
@@ -31,8 +31,8 @@
     "root": true
   },
   "engines": {
-    "node": "20.5.0",
-    "npm": "9.8.0"
+    "node": "20.16.0",
+    "npm": "10.8.1"
   },
   "jest": {
     "preset": "@gnowth/jest-config"

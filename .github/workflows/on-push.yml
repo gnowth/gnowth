@@ -5,7 +5,7 @@ on: push
 env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
-  NODE_VERSION: 20.5.0
+  NODE_VERSION: 20.16.0
   STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
   # Phase 1: Verify code
   lint:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -51,7 +51,7 @@ jobs:
 
   test:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -74,7 +74,7 @@ jobs:
 
   typecheck:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -97,7 +97,7 @@ jobs:
 
   build:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
@@ -121,7 +121,7 @@ jobs:
 
   build_and_e2e_mock:
     container:
-      image: cypress/base:20.5.0
+      image: cypress/base:20.16.0
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest
@@ -168,7 +168,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: cypress/base:20.5.0
+      image: cypress/base:20.16.0
       options: --user 1001
     if: ${{ github.ref == 'refs/heads/main' || startsWith( github.ref, 'refs/heads/release-' ) }}
     runs-on: ubuntu-latest

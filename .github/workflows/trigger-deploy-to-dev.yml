@@ -6,7 +6,7 @@ env:
   ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-dev.surge.sh
-  NODE_VERSION: 20.5.0
+  NODE_VERSION: 20.16.0
   SITE_DOMAIN: gnowth-boilerplate-dev.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -15,7 +15,7 @@ env:
 jobs:
   deploy_to_dev:
     container:
-      image: cypress/base:20.5.0
+      image: cypress/base:20.16.0
       options: --user 1001
     environment:
       name: dev
