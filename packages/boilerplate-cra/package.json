@@ -36,7 +36,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/react-dom": "18.2.11",
+    "@types/react-dom": "18.3.0",
     "parcel": "2.0.0-beta.2"
   },
   "scripts": {

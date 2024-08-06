@@ -29,9 +29,9 @@
     "@gnowth/logic-core": "0.0.0",
     "@chakra-ui/react": "2.8.1",
     "@next/mdx": "13.5.4",
-    "i18next": "23.5.1",
-    "i18next-browser-languagedetector": "7.1.0",
-    "i18next-http-backend": "2.2.2",
+    "i18next": "23.12.2",
+    "i18next-browser-languagedetector": "8.0.0",
+    "i18next-http-backend": "2.5.2",
     "next": "13.4.7",
     "next-mdx-remote": "4.4.1",
     "react": "18.3.1",
@@ -52,7 +52,7 @@
     "@types/uuid": "9.0.5",
     "eslint-config-next": "13.5.6",
     "gray-matter": "4.0.3",
-    "i18next-parser": "8.8.0"
+    "i18next-parser": "9.0.1"
   },
   "scripts": {
     "build-analyze": "ANALYZE=true next build",
