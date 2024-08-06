@@ -33,8 +33,8 @@ export type UtilOptional<Type, Key extends keyof Type> = Omit<Type, Key> & Parti
 export type UtilRequired<Item extends ObjectLiteral, Key = void> = Key extends void
   ? Item
   : Key extends keyof Item
-  ? Omit<Item, Key> & Required<Pick<Item, Key>>
-  : never
+    ? Omit<Item, Key> & Required<Pick<Item, Key>>
+    : never
 
 export type UtilNamespaced<Value = unknown, Key extends ObjectKey = string> = Record<Key, Value | undefined>
 

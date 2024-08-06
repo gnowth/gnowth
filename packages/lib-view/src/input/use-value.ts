@@ -59,6 +59,6 @@ export function useValue<Value>(props: PropsUseValue<Value>, valueDefault?: Valu
       uncontrolled: handleChangeUncontrolled,
     }[mode],
     onSubmit: mode === 'shadow' ? handleChangeControlled : handleSubmitControlled,
-    value: mode === 'controlled' ? props.value ?? valueDefault : valueLocal,
+    value: mode === 'controlled' ? (props.value ?? valueDefault) : valueLocal,
   }
 }
