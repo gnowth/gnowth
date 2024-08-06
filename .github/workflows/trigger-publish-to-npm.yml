@@ -36,7 +36,7 @@ jobs:
   # Phase 2: Publish
   publish:
     container:
-      image: node:20.5.0-bullseye-slim
+      image: node:20.16.0-bullseye-slim
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
