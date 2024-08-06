@@ -25,7 +25,7 @@
     "@babel/preset-env": "7.25.3",
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
-    "core-js": "3.33.0",
+    "core-js": "3.38.0",
     "regenerator-runtime": "0.14.0"
   },
   "devDependencies": {

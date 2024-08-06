@@ -27,7 +27,7 @@
     "@gnowth/app-users": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-core": "0.0.0",
-    "@chakra-ui/react": "2.8.1",
+    "@chakra-ui/react": "2.8.2",
     "@next/mdx": "13.5.4",
     "i18next": "23.12.2",
     "i18next-browser-languagedetector": "8.0.0",
