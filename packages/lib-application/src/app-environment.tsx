@@ -30,7 +30,7 @@ export function AppEnvironment(props: Props): ReactElement {
     propsDefaultEnvironment,
   )
 
-  const SwitchComponent = props.switch ?? true ? AppSwitch : Fragment
+  const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 
   return (
     <HashRouter>

@@ -25,7 +25,7 @@ interface Props {
 // TODO: check if path is provided, should it somehow override AppPage root?
 export function AppApplication(props: Props): ReactElement {
   const application = useAppApplication(props.application)
-  const SwitchComponent = props.switch ?? true ? AppSwitch : Fragment
+  const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 
   return (
     <Route path={props.path ?? application.route}>

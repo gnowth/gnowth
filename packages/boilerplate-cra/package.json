@@ -28,15 +28,15 @@
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-users": "0.0.0",
     "@gnowth/theme-standard": "0.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@gnowth/browserslist-config": "0.0.0",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/react-dom": "18.2.11",
+    "@types/react-dom": "18.3.0",
     "parcel": "2.0.0-beta.2"
   },
   "scripts": {
