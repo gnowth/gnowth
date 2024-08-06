@@ -20,11 +20,11 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@babel/core": "7.23.0",
-    "@babel/plugin-proposal-decorators": "7.23.0",
-    "@babel/preset-env": "7.22.20",
-    "@babel/preset-react": "7.22.15",
-    "@babel/preset-typescript": "7.23.0",
+    "@babel/core": "7.25.2",
+    "@babel/plugin-proposal-decorators": "7.24.7",
+    "@babel/preset-env": "7.25.3",
+    "@babel/preset-react": "7.24.7",
+    "@babel/preset-typescript": "7.24.7",
     "core-js": "3.33.0",
     "regenerator-runtime": "0.14.0"
   },
