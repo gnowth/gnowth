@@ -50,7 +50,7 @@
     "@next/bundle-analyzer": "13.5.4",
     "@types/react": "18.2.25",
     "@types/uuid": "9.0.5",
-    "eslint-config-next": "13.5.4",
+    "eslint-config-next": "13.5.6",
     "gray-matter": "4.0.3",
     "i18next-parser": "8.8.0"
   },
