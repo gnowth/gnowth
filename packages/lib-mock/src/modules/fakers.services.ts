@@ -1,7 +1,9 @@
 import type { Faker } from '@faker-js/faker'
+import type { LocaleService } from '@gnowth/lib-platform'
 
 import * as fakerModule from '@faker-js/faker'
-import { LocaleService, PlatformService, TokenService } from '@gnowth/lib-platform'
+
+import type { FakerModule } from './fakers.modules'
 
 interface ParametersFaker<Type> {
   seed?: string
@@ -13,8 +15,26 @@ interface ParametersFakerEmail<Type> extends ParametersFaker<Type> {
   lastName?: string
 }
 
-export class FakerService extends PlatformService {
+type Parameters = { faker?: Faker; module: FakerModule }
+export class FakerService {
   #faker!: Faker
+
+  constructor(parameters: Required<Parameters>) {
+    this.#faker = parameters.faker
+  }
+
+  static async construct(parameters: Parameters): Promise<FakerService> {
+    if (parameters.faker) {
+      return new this({ ...parameters, faker: parameters.faker })
+    }
+    const localeService = await parameters.module.localeModule.providerGet<LocaleService>({
+      name: parameters.module.localeModule.providerToken.service,
+    })
+    const locales = localeService.localesSnake
+    const FakerConstructor = fakerModule.Faker
+    const faker = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })
+    return new this({ faker, ...parameters })
+  }
 
   #hash(seed?: string): number | undefined {
     if (seed === undefined) {
@@ -38,13 +58,6 @@ export class FakerService extends PlatformService {
     this.#faker.seed(this.#hash(parameters?.seed))
 
     return this.#faker.internet.email(parameters)
-  }
-
-  async onInit(): Promise<void> {
-    const localeService = await this.platform.serviceGet<LocaleService>({ name: TokenService.locale })
-    const locales = localeService.localesSnake
-    const FakerConstructor = fakerModule.Faker
-    this.#faker = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })
   }
 
   personFirstName(parameters?: ParametersFaker<string>): string {

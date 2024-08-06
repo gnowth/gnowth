@@ -1,47 +1,32 @@
-import type { Platform } from '../core/platform.main'
+import type { EventModule } from './events.modules'
+import type { EventObservable } from './events.observables'
 import type { PlatformEvent } from './events.types'
 
-import { PlatformService } from '../core/platform.modules'
-import { TokenService } from '../core/platform.tokens'
-import { EventEmitterService } from './event-emitters'
-
-const EventConstant = {
-  eventName: 'platformEventService/event',
-} as const
-
-type Dependencies = {
-  eventEmitterService: EventEmitterService
-}
-
-type ConstructParameters = {
-  platform: Platform
-}
-
 type Parameters = {
-  dependencies: Dependencies
-  platform: Platform
+  eventObservable?: EventObservable
+  module: EventModule
 }
 
-export class EventService extends PlatformService {
-  #dependencies: Dependencies
+export class EventService {
+  #eventObservable: EventObservable
 
-  constructor(parameters: Parameters) {
-    super(parameters)
-    this.#dependencies = parameters.dependencies
+  constructor(parameters: Required<Parameters>) {
+    this.#eventObservable = parameters.eventObservable
   }
 
-  static async construct(parameters: ConstructParameters): Promise<EventService> {
-    const eventEmitterService = await parameters.platform.serviceGet<EventEmitterService>({
-      name: TokenService.eventEmitter,
+  static async construct(parameters: Parameters): Promise<EventService> {
+    const eventObservable = await parameters.module.providerGet<EventObservable>({
+      name: parameters.module.providerToken.observable,
     })
-    return new this({ dependencies: { eventEmitterService }, platform: parameters.platform })
+    return new this({ ...parameters, eventObservable: eventObservable })
   }
 
   dispatch(event: PlatformEvent): void {
-    this.#dependencies.eventEmitterService.dispatch(EventConstant.eventName, event)
+    this.#eventObservable.next(event)
   }
 
   subscribe(callback: (event: PlatformEvent) => void): () => void {
-    return this.#dependencies.eventEmitterService.subscribe(EventConstant.eventName, callback)
+    const subscription = this.#eventObservable.eventOut.subscribe(callback)
+    return () => subscription.unsubscribe()
   }
 }

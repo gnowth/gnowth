@@ -1,8 +1,6 @@
 import type { ConfigEnvironment } from './configs.types'
 
-import { PlatformService } from '../core/platform.modules'
-
-export class ConfigService extends PlatformService {
+export class ConfigService {
   #environmentFromHostname(hostname: string): ConfigEnvironment {
     if (hostname === 'localhost') {
       return 'local'
