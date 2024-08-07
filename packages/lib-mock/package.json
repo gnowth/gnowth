@@ -21,8 +21,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@types/faker": "^5.1.7",
-    "faker": "5.4.0",
+    "@faker-js/faker": "8.4.1",
     "inflected": "2.1.0",
     "miragejs": "0.1.47"
   },

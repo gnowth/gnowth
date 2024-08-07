@@ -1,4 +1,4 @@
-import faker from 'faker'
+import { faker } from '@faker-js/faker'
 import { Factory, Model, RestSerializer, Server, createServer, hasMany } from 'miragejs'
 
 interface Configs {
