@@ -13,7 +13,7 @@ export function userMock(configsMock: MockConfigs) {
 
     factories: {
       user: MockFactory.extend<UserData>({
-        avatar: () => faker.internet.avatar(),
+        avatar: () => faker.image.avatar(),
         email() {
           // DEBT(hack): dirty ts fix, miragejs typescript is poor
           return faker.internet.email({
