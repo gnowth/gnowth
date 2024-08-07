@@ -36,7 +36,7 @@ jobs:
           restore-keys: ${{ runner.os }}-setup-
 
       - name: Installing node modules
-        run: npm run ci:setup
+        run: npm run ci:setup & npx playwright install
 
       - name: Build projects
         run: npm run ci:build-dev
