@@ -26,7 +26,7 @@
     "@babel/preset-react": "7.24.7",
     "@babel/preset-typescript": "7.24.7",
     "core-js": "3.38.0",
-    "regenerator-runtime": "0.14.0"
+    "regenerator-runtime": "0.14.1"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
