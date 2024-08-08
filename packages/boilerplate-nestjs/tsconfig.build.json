@@ -12,7 +12,6 @@
     "**/artifact/",
     "**/build/",
     "**/coverage/",
-    "**/cypress/media/",
     "**/node_modules/",
     "**/volumes/"
   ]

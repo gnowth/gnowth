@@ -14,7 +14,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
-    <div data-semantic="Header">
+    <div data-semantic="Header" data-testid="app-users--section-header">
       <LayoutSection
         rootProps={{
           bg: 'teal.600',

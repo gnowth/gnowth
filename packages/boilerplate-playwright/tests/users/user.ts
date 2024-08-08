@@ -1,6 +1,7 @@
 import type { Locator, Page } from '@playwright/test'
 
-import { dependencies } from '../dependencies'
+import { TestModelFooter } from './footer'
+import { TestModelHeader } from './header'
 
 interface OptionsInputData {
   email: string
@@ -9,43 +10,73 @@ interface OptionsInputData {
   role: string
 }
 
-export class TestModelPageUser {
-  readonly buttonSubmit: Locator
-  readonly fieldEmail: Locator
-  readonly fieldNameFirst: Locator
-  readonly fieldNameLast: Locator
-  readonly fieldRole: Locator
-  readonly labelEmail: Locator
-  readonly labelNameFirst: Locator
-  readonly labelNameLast: Locator
-  readonly labelRole: Locator
+export class TestModelUser {
+  #footer: TestModelFooter
+  #header: TestModelHeader
   readonly page: Page
 
   constructor(page: Page) {
     this.page = page
-    this.buttonSubmit = page.getByRole('button', { name: 'Sign in' })
-    this.fieldEmail = page.getByLabel('Email')
-    this.fieldNameFirst = page.getByLabel('First name')
-    this.fieldNameLast = page.getByLabel('Last name')
-    this.fieldRole = page.getByLabel('Role')
-    this.labelEmail = page.getByText('Email')
-    this.labelNameFirst = page.getByText('First name')
-    this.labelNameLast = page.getByText('Last name')
-    this.labelRole = page.getByText('Role')
+    this.#footer = new TestModelFooter(page)
+    this.#header = new TestModelHeader(page)
+  }
+
+  async goto() {
+    await this.page.goto('/users/user')
   }
 
   async inputData(options: OptionsInputData) {
-    await this.fieldNameFirst.fill(options.nameFirst)
-    await this.fieldNameLast.fill(options.nameLast)
-    await this.fieldEmail.fill(options.email)
-    await this.fieldRole.fill(options.role)
-  }
-
-  async load() {
-    await this.page.goto(dependencies.routeModel.usersUserNew())
+    await this.nameFirstInput.fill(options.nameFirst)
+    await this.nameLastInput.fill(options.nameLast)
+    await this.emailInput.fill(options.email)
+    await this.roleInput.fill(options.role)
   }
 
   async submit() {
-    await this.buttonSubmit.click()
+    await this.submitButton.click()
+  }
+
+  get emailInput(): Locator {
+    return this.page.getByLabel('Email')
+  }
+
+  get emailLabel(): Locator {
+    return this.page.getByText('Email')
+  }
+
+  get footerComponent(): Locator {
+    return this.#footer.component
+  }
+
+  get headerComponent(): Locator {
+    return this.#header.component
+  }
+
+  get nameFirstInput(): Locator {
+    return this.page.getByLabel('First name')
+  }
+
+  get nameFirstLabel(): Locator {
+    return this.page.getByText('First name')
+  }
+
+  get nameLastInput(): Locator {
+    return this.page.getByLabel('Last name')
+  }
+
+  get nameLastLabel(): Locator {
+    return this.page.getByText('Last name')
+  }
+
+  get roleInput(): Locator {
+    return this.page.getByLabel('Role')
+  }
+
+  get roleLabel(): Locator {
+    return this.page.getByText('Role')
+  }
+
+  get submitButton(): Locator {
+    return this.page.getByRole('button', { name: 'Sign in' })
   }
 }

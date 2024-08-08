@@ -1,0 +1,29 @@
+import type { Locator, Page } from '@playwright/test'
+
+export class TestModelLanding {
+  readonly page: Page
+
+  constructor(page: Page) {
+    this.page = page
+  }
+
+  async goto() {
+    await this.page.goto('/')
+  }
+
+  get simulateErrorButton(): Locator {
+    return this.page.getByRole('button', { name: 'Fire error' })
+  }
+
+  get simulateErrorText(): Locator {
+    return this.page.getByText('Simulate error in app')
+  }
+
+  get simulateNotificationButton(): Locator {
+    return this.page.getByRole('button', { name: 'Fire notification' })
+  }
+
+  get simulateNotificationText(): Locator {
+    return this.page.getByText('Simulate notification in app')
+  }
+}
