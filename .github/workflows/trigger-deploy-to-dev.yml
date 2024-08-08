@@ -14,7 +14,7 @@ env:
 jobs:
   deploy_to_dev:
     container:
-      image: cypress/base:20.16.0
+      image: mcr.microsoft.com/playwright:v1.46.0-jammy
       options: --user 1001
     environment:
       name: dev

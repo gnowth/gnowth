@@ -37,7 +37,7 @@ jobs:
 
   # Phase 2: End to end regression test
   e2e_regression:
-    container: cypress/browsers:node14.17.0-chrome91-ff89
+    container: mcr.microsoft.com/playwright:v1.46.0-jammy
     needs: [check_branch]
     runs-on: ubuntu-latest
     timeout-minutes: 15
