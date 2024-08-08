@@ -15,7 +15,7 @@ const SectionFooterComponent: FunctionComponent<Props> = (props) => {
   const { t } = useTranslation(dependencies.appModel.namespace)
 
   return (
-    <Box as="footer" {...props}>
+    <Box as="footer" data-testid="app-users--section-footer" {...props}>
       <Text fontSize="sm" p="3" textAlign="end">
         <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
           {t('Current version: {{packageJson.version}}', { packageJson })}

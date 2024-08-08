@@ -14,7 +14,7 @@ export default defineConfig({
       use: { ...devices[Constant.device.chromeDesktop] },
     },
     {
-      name: 'regresssion-chromium-mobile',
+      name: 'regression-chromium-mobile',
       testIgnore: Constant.glob.mockTs,
       use: { ...devices['Pixel 5'] },
     },

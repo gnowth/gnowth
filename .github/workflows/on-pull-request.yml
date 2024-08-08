@@ -3,7 +3,6 @@ name: onPullRequest
 on: pull_request
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-preview-${{ github.event.number }}.surge.sh
   NODE_VERSION: 20.16.0
@@ -56,14 +55,6 @@ jobs:
 
       - name: End to end smoke test
         run: npm run ci:e2e:smoke
-
-      - name: Upload test artifact cypress
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-cypress
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
-          retention-days: 1
 
       - name: Upload test artifact playwright
         if: failure()

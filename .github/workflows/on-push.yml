@@ -3,7 +3,6 @@ name: onPush
 on: push
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   NODE_VERSION: 20.16.0
   STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
@@ -149,14 +148,6 @@ jobs:
 
       - name: End to end test using mock
         run: npm run ci:e2e:mock
-
-      - name: Upload test artifact cypress
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-cypress
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
-          retention-days: 1
 
       - name: Upload test artifact playwright
         if: failure()

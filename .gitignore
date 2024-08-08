@@ -127,9 +127,6 @@ artifact.zip
 **/node_modules/
 **/.parcel-cache/
 
-# cypress
-**/cypress/media/
-
 # license (nested)
 packages/**/license
 

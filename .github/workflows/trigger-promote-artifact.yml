@@ -33,7 +33,6 @@ on:
         required: false
 
 env:
-  ARTIFACT_PATH_TEST_MEDIA_CYPRESS: artifact/test-media-cypress
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   NODE_VERSION: 20.16.0
@@ -142,14 +141,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - title: cypress-chromium
-            command: npm run workspace:cypress test:regression:chromium
-          - title: cypress-chromium-mobile
-            command: npm run workspace:cypress test:regression:chromium-mobile
-          - title: cypress-firefox
-            command: npm run workspace:cypress test:regression:firefox
-          - title: cypress-firefox-mobile
-            command: npm run workspace:cypress test:regression:firefox-mobile
           - title: playwright-chrome
             command: npm run workspace:playwright test:regression:chromium
           - title: playwright-chrome-mobile
@@ -189,20 +180,8 @@ jobs:
       - name: Installing node modules
         run: npm run ci:setup
 
-      # DEBT(hack): Not recommended. Need to figure out how to get zip action to create file for current user rather than root
-      - name: Update permission to allow cypress to create media
-        run: 'chmod o+w packages/boilerplate-cypress && chmod o+w packages/boilerplate-cypress/cypress'
-
       - name: End to end regression tests for ${{ matrix.title }}
         run: ${{ matrix.command }}
-
-      - name: Upload test artifact cypress
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifact-test-media-cypress-${{ matrix.title }}
-          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_CYPRESS }}
-          retention-days: 1
 
       - name: Upload test artifact playwright
         if: failure()
