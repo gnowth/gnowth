@@ -1,5 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 npm run ci:check:typecheck
-npm exec lint-staged
+lint-staged
