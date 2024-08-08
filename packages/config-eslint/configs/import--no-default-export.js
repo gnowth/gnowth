@@ -7,7 +7,6 @@ module.exports = {
         '**/src/app/**/*',
         '**/src/pages/**/*',
         '**/*.stories.*',
-        '**/cypress.config.*',
         '**/mock/mock-*.js',
         '**/playwright.config.*',
       ],

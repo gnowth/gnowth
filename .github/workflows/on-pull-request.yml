@@ -15,7 +15,7 @@ jobs:
   # Phase 1: Build, e2e with mock, deploy preview and e2e smoke test
   build_preview_and_e2e:
     container:
-      image: cypress/base:20.16.0
+      image: mcr.microsoft.com/playwright:v1.46.0-jammy
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -66,7 +66,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: cypress/base:20.16.0
+      image: mcr.microsoft.com/playwright:v1.46.0-jammy
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
