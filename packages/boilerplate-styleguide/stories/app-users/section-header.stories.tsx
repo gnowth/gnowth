@@ -1,26 +1,26 @@
-import type { ComponentMeta, ComponentStory } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 
-import { SectionHeader as Component } from '@gnowth/app-users'
+import { SectionHeader } from '@gnowth/app-users'
 import { expect } from '@storybook/jest'
 import { within } from '@storybook/testing-library'
 
-const meta: ComponentMeta<typeof Component> = {
-  component: Component,
+type Story = StoryObj<typeof SectionHeader>
+const meta: Meta<typeof SectionHeader> = {
+  component: SectionHeader,
   title: 'AppUsers/SectionHeader',
 }
 
-const Template: ComponentStory<typeof Component> = (args) => <Component {...args} />
+export const Desktop: Story = {
+  parameters: { nextRouter: { pathname: '/users' } },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
 
-export const Desktop = Template.bind({})
-Desktop.parameters = { nextRouter: { pathname: '/users' } }
-Desktop.play = async ({ canvasElement }) => {
-  const canvas = within(canvasElement)
+    const textDashboard = await canvas.findByText('Dashboard')
+    expect(textDashboard).toBeInTheDocument()
 
-  const textDashboard = await canvas.findByText('Dashboard')
-  expect(textDashboard).toBeInTheDocument()
-
-  const textTeams = await canvas.findByText('Teams')
-  expect(textTeams).toBeInTheDocument()
+    const textTeams = await canvas.findByText('Teams')
+    expect(textTeams).toBeInTheDocument()
+  },
 }
 
 export default meta
