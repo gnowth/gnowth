@@ -45,7 +45,7 @@
     "@storybook/node-logger": "7.0.26",
     "@storybook/react": "7.0.26",
     "@storybook/test-runner": "0.11.0",
-    "@storybook/testing-library": "0.2.0",
+    "@storybook/testing-library": "0.2.2",
     "chromatic": "11.7.0"
   },
   "scripts": {
