@@ -38,7 +38,7 @@
     "react": "^18.0.0"
   },
   "scripts": {
-    "lint": "npm run lint:script && npm run lint:style",
+    "lint": "npm run lint:script",
     "lint:script": "eslint --ext .ts,.tsx .",
     "typecheck": "tsc"
   }
