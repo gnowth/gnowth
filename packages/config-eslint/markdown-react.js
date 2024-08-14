@@ -7,18 +7,16 @@ module.exports = {
   },
 
   extends: [
-    'plugin:eslint-comments/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:mdx/recommended',
-    // './configs/import--order',
+    './configs/comments',
     './configs/import',
+    // './configs/import--order',
+    './configs/jsx-a11y',
+    './configs/mdx',
     './configs/perfectionist',
     './configs/prettier',
     './configs/react',
     './configs/sonarjs',
   ],
-
-  parser: 'eslint-mdx',
 
   parserOptions: {
     ecmaFeatures: { impliedStrict: true },
@@ -26,12 +24,5 @@ module.exports = {
     sourceType: 'module',
   },
 
-  plugins: ['mdx'],
-
   root: true,
-
-  settings: {
-    'mdx/code-blocks': true,
-    'mdx/language-mapper': {},
-  },
 }
