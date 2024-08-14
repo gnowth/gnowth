@@ -52,7 +52,7 @@
     "@types/uuid": "10.0.0",
     "eslint-config-next": "13.5.6",
     "gray-matter": "4.0.3",
-    "i18next-parser": "9.0.1"
+    "i18next-parser": "9.0.2"
   },
   "scripts": {
     "build-analyze": "ANALYZE=true next build",
