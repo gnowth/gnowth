@@ -39,7 +39,7 @@
     "eslint-plugin-sonarjs": "1.0.4",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "4.6.2",
-    "eslint-plugin-testing-library": "6.2.2"
+    "eslint-plugin-testing-library": "6.3.0"
   },
   "devDependencies": {
     "@gnowth/prettier-config": "0.0.0"
