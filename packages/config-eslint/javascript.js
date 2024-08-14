@@ -6,15 +6,15 @@ module.exports = {
   },
 
   extends: [
-    'eslint:recommended',
-    'plugin:eslint-comments/recommended',
-    'plugin:promise/recommended',
+    './configs/comments',
     './configs/eslint--sort-keys',
-    './configs/import--no-default-export',
+    './configs/eslint',
     // './configs/import--order',
+    './configs/import--no-default-export',
     './configs/import',
     './configs/perfectionist',
     './configs/prettier',
+    './configs/promise',
     './configs/sonarjs',
     './configs/tests',
   ],
@@ -26,8 +26,4 @@ module.exports = {
   },
 
   root: true,
-
-  // settings: {
-  //   'import/extensions': ['.js', '.cjs', '.mjs', '.json'],
-  // },
 }
