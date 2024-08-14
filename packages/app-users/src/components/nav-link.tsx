@@ -7,9 +7,8 @@ import { usePathname } from 'next/navigation'
 type Props = { hrefActive?: string } & Parameters<typeof Link>[0]
 
 export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
-  const pathname = usePathname() ?? '/users' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router
+  const pathname = usePathname() ?? '/users/' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router
   const isActive = pathname === props.href || (hrefActive && pathname?.startsWith(hrefActive))
-
   return (
     <Link {...props} data-semantic="NavLink">
       <Box

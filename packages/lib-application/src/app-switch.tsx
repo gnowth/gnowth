@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 
 import { Children, cloneElement, isValidElement } from 'react'
-import { matchPath, useLocation, useRouteMatch } from 'react-router-dom'
+import { matchPath, useLocation } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'
 import { useAppApplication } from './use-app-application'
@@ -22,9 +22,8 @@ export function AppSwitch(props: Props): ReactElement | null {
   const application = useAppApplication()
   const environment = useAppEnvironment()
   const location = useLocation()
-  const matchContext = useRouteMatch()
   let element: ReactElement = <div />
-  let match: null | typeof matchContext = null
+  let match: ReturnType<typeof matchPath> | null = null
 
   Children.forEach(props.children, (child) => {
     if (match == null && isValidElement<PropsChild>(child)) {
@@ -33,7 +32,7 @@ export function AppSwitch(props: Props): ReactElement | null {
       const applicationCurrent = environment.getApplication(child.props.application || application)
       const path = child.props.path || child.props.from || applicationCurrent.getRoute(child.props.page)
 
-      match = path ? matchPath(location.pathname, { ...child.props, path }) : matchContext
+      match = path ? matchPath({ ...child.props, path }, location.pathname) : null
     }
   })
 

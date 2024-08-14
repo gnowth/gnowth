@@ -40,20 +40,15 @@ export function AppPage(props: Props): ReactElement {
   const application = useAppApplication()
   const location = useLocation()
   const propsWithDefault = objectDefaults(props, propsDefault)
+  const path = propsWithDefault.path ?? application.getRoute(propsWithDefault.page) ?? ''
 
-  const match = matchPath(location.pathname, {
-    exact: propsWithDefault.exact,
-    path: propsWithDefault.path || application.getRoute(propsWithDefault.page),
-  })
+  const match = matchPath({ end: propsWithDefault.exact, path }, location.pathname)
   const makeResources = application.getResources(propsWithDefault.page)
   const resources = makeResources(match?.params ?? {})
   const Component = propsWithDefault.component
 
   return (
-    <Route
-      exact={propsWithDefault.exact}
-      path={propsWithDefault.path || application.getRoute(propsWithDefault.page)}
-    >
+    <Route path={propsWithDefault.exact ? path : `${path}*`}>
       <AppProvider frame={propsWithDefault.frame} page={propsWithDefault.page} theme={propsWithDefault.theme}>
         <AppFrame>
           <AppBoundary>

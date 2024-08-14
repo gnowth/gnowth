@@ -55,7 +55,11 @@ const SectionHeaderComponent: FunctionComponent = () => {
             {t('Teams')}
           </NavLink>
 
-          <NavLink href={dependencies.appModel.routes.users()} prefetch={false}>
+          <NavLink
+            href={dependencies.appModel.routes.users()}
+            hrefActive={dependencies.appModel.routes.user()}
+            prefetch={false}
+          >
             {t('Members')}
           </NavLink>
 

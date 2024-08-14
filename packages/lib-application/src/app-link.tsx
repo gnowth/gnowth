@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import type { AppModelApplication } from './app-model-application'
 
 import { useAppLink } from './use-app-link'
-import { useAppTheme } from './use-app-theme'
 
 interface Props<Value extends ObjectLiteral> {
   application?: AppModelApplication | string
@@ -21,17 +20,9 @@ interface Props<Value extends ObjectLiteral> {
 
 export function AppLink<Value extends ObjectLiteral>(props: Props<Value>): ReactElement {
   const link = useAppLink(props)
-  const theme = useAppTheme()
-  const component = theme.getComponent({
-    component: props.component === null ? undefined : props.component || 'link',
-  })
 
   if (link) {
-    return (
-      <Link component={component} to={link}>
-        {props.children}
-      </Link>
-    )
+    return <Link to={link}>{props.children}</Link>
   }
 
   return <>{props.children}</>
