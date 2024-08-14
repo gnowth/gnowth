@@ -17,3 +17,8 @@ export type PlatformModuleDefinition = {
 export type PlatformProviderDefinition = {
   name: string
 }
+
+export type PlatformComponentDefinition = {
+  instance?: string // for loader, to reuse an instance
+  name: string
+}

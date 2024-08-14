@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import { SectionFooter } from '@gnowth/app-users'
-import { expect } from '@storybook/jest'
-import { within } from '@storybook/testing-library'
+import { expect, within } from '@storybook/test'
 
 const meta: Meta<typeof SectionFooter> = {
   component: SectionFooter,
