@@ -11,17 +11,6 @@ services:
     volumes:
       - ./gateway-nginx:/etc/nginx/templates
 
-  service_stubby:
-    container_name: service_stubby
-    command: npm run start-docker
-    image: node:20.16.0-bullseye-slim
-    ports:
-      - '8882:8882'
-    volumes:
-      - ../packages/service-stubby:/app:ro
-      - ../node_modules:/node_modules:ro
-    working_dir: /app
-
   # database_postgres:
   #   container_name: database_postgres
   #   environment:
