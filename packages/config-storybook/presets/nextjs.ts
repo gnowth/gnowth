@@ -1,47 +1,49 @@
 import type { StorybookConfig } from '@storybook/nextjs'
 
-const config: StorybookConfig = {
-  addons: [
-    '@chakra-ui/storybook-addon',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-links',
-    'storybook-react-i18next',
-  ],
-  config: (entry = []) => {
-    return [...entry, require.resolve('./default-preview')]
-  },
-  framework: '@storybook/nextjs',
-  previewHead: (head: string) => {
-    return `
-    ${head}
+export const addons: StorybookConfig['addons'] = [
+  '@chakra-ui/storybook-addon',
+  '@storybook/addon-essentials',
+  '@storybook/addon-interactions',
+  '@storybook/addon-links',
+  'storybook-react-i18next',
+]
 
-    <style>
-      .sb-show-main.sb-main-centered #storybook-root {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-      }
-    </style>
-  `
-  },
-  refs: {
-    // DEBT: store url in a config file?
-    storybook: {
-      title: 'Storybook Design System',
-      url: 'https://5ccbc373887ca40020446347-yldsqjoxzb.chromatic.com',
-    },
-  },
-  stories: ['../stories/**/*.stories.@(mdx|ts|tsx)'],
-  typescript: {
-    check: false,
-    // reactDocgen: 'react-docgen-typescript',
-    // reactDocgenTypescriptOptions: {
-    //   shouldExtractLiteralValuesFromEnum: true,
-    //   propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    // },
+export const framework: StorybookConfig['framework'] = '@storybook/nextjs'
+
+export const previewAnnotations: StorybookConfig['previewAnnotations'] = (entry = []) => [
+  ...entry,
+  require.resolve('./default-preview'),
+]
+
+export const previewHead: StorybookConfig['previewHead'] = (head: string | undefined) => `
+  ${head}
+  <style>
+    .sb-show-main.sb-main-centered #storybook-root {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+  </style>
+`
+
+export const refs: StorybookConfig['refs'] = {
+  // DEBT: store url in a config file?
+  storybook: {
+    title: 'Storybook Design System',
+    url: 'https://5ccbc373887ca40020446347-yldsqjoxzb.chromatic.com',
   },
 }
 
-// eslint-disable-next-line import/no-default-export
-export default config
+export const stories: StorybookConfig['stories'] = [
+  '../stories/**/*.stories.@(ts|tsx)',
+  '../stories/**/*.mdx',
+]
+
+export const typescript: StorybookConfig['typescript'] = {
+  check: false,
+  // reactDocgen: 'react-docgen-typescript',
+  // reactDocgenTypescriptOptions: {
+  //   shouldExtractLiteralValuesFromEnum: true,
+  //   propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+  // },
+}
