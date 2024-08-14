@@ -20,11 +20,6 @@
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
-  "stylelint": {
-    "extends": [
-      "@gnowth/stylelint-config"
-    ]
-  },
   "dependencies": {
     "@fontsource/raleway": "5.0.19",
     "@fontsource/roboto": "5.0.14",
@@ -37,16 +32,14 @@
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/stylelint-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"
   },
   "scripts": {
-    "lint": "npm run lint:script && npm run lint:style",
+    "lint": "npm run lint:script",
     "lint:script": "eslint --ext .ts,.tsx .",
-    "lint:style": "stylelint **/*.{ts,tsx}",
     "typecheck": "tsc"
   }
 }
