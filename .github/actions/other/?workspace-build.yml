@@ -1,0 +1,8 @@
+name: 'workspace-build'
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./.github/actions/workspace-setup.yml
+
+    - name: Build workspaces
+      run: npm run ci:build
