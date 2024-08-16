@@ -29,6 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:check:lint
 
@@ -36,6 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:check:test
 
@@ -43,6 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:check:typecheck
 
@@ -52,6 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:build
 
