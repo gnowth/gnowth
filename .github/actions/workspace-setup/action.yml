@@ -8,4 +8,4 @@ runs:
         node-version-file: 'package.json'
         cache: 'npm'
     - run: npm run ci:setup
-      shell: zsh
+      shell: bash
