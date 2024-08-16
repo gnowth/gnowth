@@ -1,4 +1,5 @@
 name: 'workspace-setup'
+description: 'setup workspace'
 runs:
   using: 'composite'
   steps:
@@ -7,3 +8,4 @@ runs:
         node-version-file: 'package.json'
         cache: 'npm'
     - run: npm run ci:setup
+      shell: zsh
