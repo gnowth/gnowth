@@ -35,7 +35,6 @@ on:
 env:
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
-  NODE_VERSION: 20.16.0
   SITE_DOMAIN: gnowth-boilerplate-${{ github.event.inputs.environment }}.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -48,31 +47,31 @@ jobs:
     steps:
       - name: Cancelling - Branch must either be a main/release branch
         if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Environment] is invalid
         if: ${{ github.event.inputs.environment != 'dev' && github.event.inputs.environment != 'sit' && github.event.inputs.environment != 'sys' && github.event.inputs.environment != 'uat' && github.event.inputs.environment != 'prod' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Tag name] is invalid
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Skip provision] is invalid
         if: ${{ github.event.inputs.skip_provision != 'no' && github.event.inputs.skip_provision != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Skip deploy] is invalid
         if: ${{ github.event.inputs.skip_deploy != 'no' && github.event.inputs.skip_deploy != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Skip e2e] is invalid
         if: ${{ github.event.inputs.skip_e2e != 'no' && github.event.inputs.skip_e2e != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Skip migration] is invalid
         if: ${{ github.event.inputs.skip_migration != 'no' && github.event.inputs.skip_migration != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
   # Phase 2: Provision, deploy, migrate
   provision_deploy_migrate:
@@ -97,7 +96,7 @@ jobs:
         run: npm run cd:artifact:unzip
 
       - name: Cache npm cache on linux
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache-npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
@@ -149,9 +148,10 @@ jobs:
           - title: playwright-webkit-mobile
             command: npm run workspace:playwright test:regression:webkit-mobile
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version-file: 'package.json'
+          cache: 'npm'
 
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06
@@ -164,7 +164,7 @@ jobs:
         run: npm run cd:artifact:unzip
 
       - name: Cache npm cache on linux
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.cache-npm
           key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
@@ -178,7 +178,7 @@ jobs:
 
       - name: Upload test artifact playwright
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifact-test-media-playwright-${{ matrix.title }}
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}

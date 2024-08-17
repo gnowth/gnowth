@@ -23,15 +23,15 @@ jobs:
     steps:
       - name: Cancelling - Branch must either be a main/release branch
         if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Tag name] is invalid
         if: ${{ !startsWith( github.event.inputs.tag, 'gnowth@' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Dry run] is invalid
         if: ${{ github.event.inputs.dry_run != 'no' && github.event.inputs.dry_run != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
   # Phase 2: Publish
   publish:
