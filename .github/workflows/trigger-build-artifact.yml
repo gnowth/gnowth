@@ -35,10 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: ./.github/actions/workspace-setup
 
       - name: Set git identity
         run: |
@@ -46,16 +46,6 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache-npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
 
       - name: Pre release - Tag branch and create change log
         if: github.event.inputs.pre_release != 'no'
