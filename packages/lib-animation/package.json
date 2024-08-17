@@ -29,6 +29,8 @@
     "react": "^18.0.0"
   },
   "scripts": {
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf .turbo",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext .ts,.tsx .",
     "typecheck": "tsc"

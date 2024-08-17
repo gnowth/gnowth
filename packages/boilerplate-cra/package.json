@@ -41,7 +41,8 @@
   },
   "scripts": {
     "build-skip": "parcel build src/index.html --dist-dir ../../artifact/build-app",
-    "clean:dist": "rm -rf build dist .cache",
+    "clean:modules": "rm -rf node_modules",
+    "clean:temp": "rm -rf .turbo build dist .cache",
     "lint": "npm run lint:script",
     "lint:script": "eslint --ext .ts,.tsx .",
     "serve": "parcel src/index.html --open",

@@ -43,6 +43,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:build
+      - run: npm run cd:artifact:create
 
   nextjs_build_preview_and_e2e:
     container:
