@@ -74,5 +74,4 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/workspace-setup
       - run: npm run cd:project:nextjs:teardown
