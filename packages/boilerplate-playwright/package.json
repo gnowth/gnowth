@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@cucumber/cucumber": "10.9.0",
-    "@playwright/test": "1.46.0"
+    "@playwright/test": "1.46.1"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
