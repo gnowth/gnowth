@@ -24,7 +24,7 @@ jobs:
       - uses: ./.github/actions/workspace-setup
 
       - name: Build projects
-        run: npm run ci:build
+        run: npm run ci:project:nextjs:build
 
       - name: Deploy to test
         run: npm run cd:project:nextjs:deploy
@@ -61,7 +61,7 @@ jobs:
 
       - name: Upload test artifact playwright
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifact-test-media-playwright-${{ matrix.title }}
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}

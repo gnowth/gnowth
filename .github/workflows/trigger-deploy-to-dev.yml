@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload test artifact playwright
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: artifact-test-media-playwright
           path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}

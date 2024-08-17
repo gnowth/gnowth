@@ -1,4 +1,6 @@
 # https://trstringer.com/github-actions-create-release-upload-artifacts/
+# https://medium.com/@thorstensuckow/downloadable-assets-with-github-actions-e39b76371337
+# https://github.com/softprops/action-gh-release
 name: triggerBuildArtifact
 
 env:
@@ -21,11 +23,11 @@ jobs:
     steps:
       - name: Cancelling - Branch must be a release branch
         if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
       - name: Cancelling - Input [Pre Release] is invalid
         if: ${{ github.event.inputs.pre_release != 'no' && github.event.inputs.pre_release != 'yes' }}
-        uses: andymckay/cancel-action@0.2
+        uses: andymckay/cancel-action@0.5
 
   # Phase 2: Build artifact
   build_artifact:
@@ -56,17 +58,17 @@ jobs:
         if: github.event.inputs.pre_release == 'no'
         run: npm run cd:code:version
 
-      - name: Set version to environment variable
-        run: |
-          ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
-          echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
-
       # Note: needs to be after version in case we use version in our build
       - name: Build projects
         run: npm run ci:build
 
       - name: Build artifact for release
         run: npm run cd:artifact:zip
+
+      - name: Set version to environment variable
+        run: |
+          ARTIFACT_VERSION=$(node -p 'require("./package.json").version')
+          echo "ARTIFACT_VERSION=${ARTIFACT_VERSION}" >> $GITHUB_ENV
 
       - name: Upload release artifact
         uses: svenstaro/upload-release-action@v2
