@@ -54,15 +54,15 @@
       "outputs": []
     },
     "test:mock": {
-      "env": ["PLAYWRIGHT_BROWSERS_PATH"],
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "test:regression": {
-      "env": ["PLAYWRIGHT_BROWSERS_PATH"],
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "test:smoke": {
-      "env": ["PLAYWRIGHT_BROWSERS_PATH"],
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "typecheck": {
