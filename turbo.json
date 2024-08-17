@@ -1,25 +1,43 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "pipeline": {
+  "tasks": {
     "@gnowth/nextjs-boilerplate#build": {
-      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
+      "outputs": [
+        "./packages/boilerplate-nextjs/.next",
+        "./artifact/build-web"
+      ]
     },
     "@gnowth/nextjs-boilerplate#build-dev": {
-      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
+      "outputs": [
+        "./packages/boilerplate-nextjs/.next",
+        "./artifact/build-web"
+      ]
     },
     "@gnowth/styleguide-boilerplate#build": {
-      "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
-      "outputs": ["./artifact/build-web/styleguide"]
+      "dependsOn": [
+        "@gnowth/nextjs-boilerplate#build"
+      ],
+      "outputs": [
+        "./artifact/build-web/styleguide"
+      ]
     },
     "@gnowth/styleguide-boilerplate#build-dev": {
-      "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
-      "outputs": ["./artifact/build-web/styleguide"]
+      "dependsOn": [
+        "@gnowth/nextjs-boilerplate#build-dev"
+      ],
+      "outputs": [
+        "./artifact/build-web/styleguide"
+      ]
     },
     "build": {
-      "outputs": ["./build"]
+      "outputs": [
+        "./build"
+      ]
     },
     "build-dev": {
-      "outputs": ["./build"]
+      "outputs": [
+        "./build"
+      ]
     },
     "clean:modules": {
       "cache": false,
@@ -36,12 +54,15 @@
       "outputs": []
     },
     "test:mock": {
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "test:regression": {
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "test:smoke": {
+      "env": ["BASE_URL_TEST", "PLAYWRIGHT_BROWSERS_PATH"],
       "outputs": []
     },
     "typecheck": {
