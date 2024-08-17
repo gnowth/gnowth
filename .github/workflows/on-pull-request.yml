@@ -70,6 +70,9 @@ jobs:
           retention-days: 1
 
   styleguide_build_and_e2e:
+    container:
+      image: mcr.microsoft.com/playwright:v1.46.0-jammy
+      options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -83,8 +86,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-        # with:
-        #   fetch-depth: 0
+        with:
+          fetch-depth: 0
       - uses: ./.github/actions/workspace-setup
       - uses: chromaui/action@v1
         with:
