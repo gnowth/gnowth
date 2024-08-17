@@ -93,9 +93,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extracting artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq artifact.zip -d .
+        run: npm run cd:artifact:unzip
 
       - uses: ./.github/actions/workspace-setup
 
@@ -158,9 +156,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extracting artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq artifact.zip -d .
+        run: npm run cd:artifact:unzip
 
       - name: Cache npm cache on linux
         uses: actions/cache@v3

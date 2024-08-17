@@ -88,6 +88,8 @@
     "typescript": "5.5.4"
   },
   "scripts": {
+    "cd:artifact:unzip": "unzip -qq artifact.zip -d .",
+    "cd:artifact:zip": "zip -r artifact.zip . -x \\*.git/\\* \\*node_modules/\\* .editorconfig \\*.husky/\\* \\*.vscode/\\* \\*docs/\\* \\*.next/\\* \\*src/\\* \\*public/\\* \\*.turbo/\\* \\*.github/\\*",
     "cd:code:version-pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
     "cd:code:version": "lerna version --exact --conventional-commits --conventional-graduate --yes",
     "cd:database:backup": "echo database to backup",
@@ -130,7 +132,7 @@
     "local:check:typecheck": "tsc",
     "local:check": "concurrently npm:local:check:* --group",
     "local:clean:modules": "turbo run clean:modules && rm -rf node_modules",
-    "local:clean:temp": "turbo run clean:temp && rm -rf coverage artifact build node_modules/.cache .parcel-cache",
+    "local:clean:temp": "turbo run clean:temp && rm -rf coverage artifact build node_modules/.cache .parcel-cache .next .turbo artifact.zip",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",
     "local:environment": "export $(grep -v '^#' .env.local | xargs)",
     "local:format": "prettier --loglevel silent --write **/*.{cjs,css,js,json,jsx,md,mdx,mjs,scss,ts,tsx,yaml,yml}",

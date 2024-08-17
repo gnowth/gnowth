@@ -29,7 +29,7 @@
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
-    "clean:temp": "rm -rf cypress/media .turbo",
+    "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts .",
     "lint": "npm run lint:script",
     "test:mock": "playwright test --project=mock",
