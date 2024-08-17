@@ -1,0 +1,63 @@
+name: Reusable nextjs e2e
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+
+env:
+  ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
+  BASE_URL_TEST: https://gnowth-boilerplate-${{ inputs.environment }}.surge.sh
+
+jobs:
+  e2e:
+    container: mcr.microsoft.com/playwright:v1.46.0-jammy
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - title: playwright-chrome
+            command: npm run workspace:playwright test:regression:chromium
+          - title: playwright-chrome-mobile
+            command: npm run workspace:playwright test:regression:chromium-mobile
+          - title: playwright-firefox
+            command: npm run workspace:playwright test:regression:firefox
+          - title: playwright-firefox-mobile
+            command: npm run workspace:playwright test:regression:firefox-mobile
+          - title: playwright-webkit
+            command: npm run workspace:playwright test:regression:webkit
+          - title: playwright-webkit-mobile
+            command: npm run workspace:playwright test:regression:webkit-mobile
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+
+      - name: Download release artifact
+        uses: dsaltares/fetch-gh-release-asset@0.06
+        with:
+          version: tags/${{ github.event.inputs.tag }}
+          file: artifact.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extracting artifact
+        run: npm run cd:artifact:unzip
+
+      - name: Installing node modules
+        run: npm run ci:setup
+
+      - name: End to end regression tests for ${{ matrix.title }}
+        run: ${{ matrix.command }}
+
+      - name: Upload test artifact playwright
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifact-test-media-playwright-${{ matrix.title }}
+          path: ${{ env.ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT }}
+          retention-days: 1

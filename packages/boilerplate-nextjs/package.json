@@ -29,7 +29,7 @@
     "@gnowth/logic-core": "0.0.0",
     "@chakra-ui/react": "2.8.2",
     "@next/mdx": "14.2.5",
-    "i18next": "23.12.3",
+    "i18next": "23.13.0",
     "i18next-browser-languagedetector": "8.0.0",
     "i18next-http-backend": "2.5.2",
     "next": "14.2.5",
