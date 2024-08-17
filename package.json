@@ -88,7 +88,8 @@
     "typescript": "5.5.4"
   },
   "scripts": {
-    "cd:artifact:create": "zip -r artifact.zip . -x \\*.git/\\* \\*node_modules/\\* .editorconfig \\*.husky/\\* \\*.vscode/\\* \\*docs/\\* \\*.next/\\* \\*src/\\* \\*public/\\* \\*.turbo/\\* \\*.github/\\*",
+    "cd:artifact:unzip": "unzip -qq artifact.zip -d .",
+    "cd:artifact:zip": "zip -r artifact.zip . -x \\*.git/\\* \\*node_modules/\\* .editorconfig \\*.husky/\\* \\*.vscode/\\* \\*docs/\\* \\*.next/\\* \\*src/\\* \\*public/\\* \\*.turbo/\\* \\*.github/\\*",
     "cd:code:version-pre": "lerna version --exact --conventional-commits --conventional-prerelease --yes",
     "cd:code:version": "lerna version --exact --conventional-commits --conventional-graduate --yes",
     "cd:database:backup": "echo database to backup",
