@@ -1,0 +1,14 @@
+name: 'styleguide-to-chromatic'
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./.github/actions/setup.yml
+
+    - name: Publish to Chromatic
+      uses: chromaui/action@v1
+      with:
+        buildScriptName: build-ci
+        exitOnceUploaded: true
+        projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
+        workingDir: packages/boilerplate-styleguide
+        zip: true

@@ -9,7 +9,6 @@ on:
 env:
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   BASE_URL_TEST: https://gnowth-boilerplate-test.surge.sh
-  NODE_VERSION: 20.16.0
   SITE_DOMAIN: gnowth-boilerplate-test.surge.sh
   SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
   SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
@@ -18,24 +17,11 @@ env:
 
 jobs:
   build_deploy:
-    container:
-      image: node:20.16.0-bullseye-slim
-      options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache-npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/workspace-setup
 
       - name: Build projects
         run: npm run ci:build
@@ -67,22 +53,8 @@ jobs:
           - title: playwright-webkit-mobile
             command: npm run workspace:playwright test:regression:webkit-mobile
     steps:
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache-npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/workspace-setup
 
       - name: End to end regression tests for ${{ matrix.title }}
         run: ${{ matrix.command }}
@@ -96,26 +68,11 @@ jobs:
           retention-days: 1
 
   clean_test:
-    container:
-      image: node:20.16.0-bullseye-slim
-      options: --user 1001
     if: always()
     needs: [build_deploy, e2e_regression]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache-npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
-
-      - name: Clean up test environment
-        run: npm run cd:project:nextjs:teardown
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/workspace-setup
+      - run: npm run cd:project:nextjs:teardown

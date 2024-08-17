@@ -29,13 +29,15 @@ category: concept
   graph LR
     anyBranch ===> triggerDeployToDev
 
-    featureBranch ===> onPush --> onPullRequest --> onPullRequestClose
+    featureBranch ===> onPushFeature --> onPullRequest --> onPullRequestClose
 
-    developBranch ===> scheduleOrTriggerRegressionTest
+    mainBranch ===> onPushMain --> buildArtifact --> release
 
-    developBranch ===> scheduleOrTriggerSecurityCheck
+    mainBranch ===> scheduleOrTriggerRegressionTest
 
-    releaseBranch ===> triggerBuildArtifact --> triggerPublishToNpm & triggerRegressionTest & triggerPromoteArtifact & triggerRollbackArtifact
+    mainBranch ===> scheduleOrTriggerSecurityCheck
+
+    releaseTag ===> triggerPublishToNpm & triggerRegressionTest & triggerPromoteArtifact & triggerRollbackArtifact
 ```
 
 ## Any branch
@@ -63,10 +65,7 @@ category: concept
 
 ## Feature / fix branch
 
-### onPush
-
-- E2e to only run on release/main
-- Quality and security check on release/main
+### onPushFeature
 
 ```mermaid
   flowchart LR
@@ -81,8 +80,31 @@ category: concept
       LINT([Lint])
       TEST([Test])
       TYPECHECK([Typecheck])
-      QUALITY([Quality check for release/main])
-      SECURITY([Security check for release/main])
+    end
+
+    BUILD -.-> E2EMOCK
+    SETUP -.-> BUILD & LINT & TEST & TYPECHECK
+```
+
+### onPushMain
+
+- TODO: release
+
+```mermaid
+  flowchart LR
+    BUILD([Build])
+    E2EMOCK([E2e using mock])
+    SETUP([Setup])
+
+    subgraph PHASE1[Phase 1]
+      direction LR
+
+      BUILD
+      LINT([Lint])
+      TEST([Test])
+      TYPECHECK([Typecheck])
+      QUALITY([Quality check])
+      SECURITY([Security check])
     end
 
     BUILD -.-> E2EMOCK

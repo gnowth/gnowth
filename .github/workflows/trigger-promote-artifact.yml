@@ -97,15 +97,7 @@ jobs:
         with:
           args: unzip -qq artifact.zip -d .
 
-      - name: Cache npm cache on linux
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache-npm
-          key: ${{ runner.os }}-setup-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-setup-
-
-      - name: Installing node modules
-        run: npm run ci:setup
+      - uses: ./.github/actions/workspace-setup
 
       - name: Database backup
         run: npm run cd:database:backup

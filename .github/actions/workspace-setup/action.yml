@@ -1,0 +1,11 @@
+name: 'workspace-setup'
+description: 'setup workspace'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: 'package.json'
+        cache: 'npm'
+    - run: npm run ci:setup
+      shell: bash

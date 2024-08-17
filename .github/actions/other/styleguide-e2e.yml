@@ -1,0 +1,8 @@
+name: 'styleguide-e2e'
+runs:
+  using: 'composite'
+  steps:
+    - uses: ./.github/actions/styleguide-build.yml
+
+    - name: End to end test on styleguide
+      run: npm run ci:project:storybook:e2e
