@@ -13,6 +13,11 @@
   "workspaces": [
     "./packages/*"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "@gnowth/eslint-config"
@@ -59,32 +64,32 @@
     "ci:project:storybook:e2e?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312",
     "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:styleguide test:e2e'"
   },
-  "dependencies": {
+  "devDependencies": {
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
+    "@testing-library/jest-dom": "6.4.8",
+    "commitizen": "4.3.0",
     "concurrently": "8.2.2",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.57.0",
     "github-markdown-css": "5.6.1",
     "husky": "9.1.4",
     "jest-environment-jsdom": "29.7.0",
     "lerna": "8.1.8",
     "lint-staged": "15.2.9",
     "netlify-cms-proxy-server": "1.3.24",
+    "nodemon": "3.1.4",
     "npm-check-updates": "17.0.6",
+    "prettier": "3.3.3",
     "serve": "14.2.3",
     "start-server-and-test": "2.0.5",
     "ts-jest": "29.2.4",
-    "turbo": "2.0.12"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "6.4.8",
-    "eslint": "8.57.0",
-    "nodemon": "3.1.4",
-    "prettier": "3.3.3",
     "ts-node": "10.9.2",
+    "turbo": "2.0.12",
     "typescript": "5.5.4"
   },
   "scripts": {
@@ -118,6 +123,7 @@
     "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
     "docker:compose": "docker-compose -f devops/docker-compose.yml up",
     "docker:service:plantuml": "docker run -d -p 8888:8080 plantuml/plantuml-server:jetty",
+    "git:commit": "cz",
     "git:commit:temp": "HUSKY=0 git commit -am 'temp commit'",
     "git:delete:dev": "git branch -d $(git branch -l 'dev-*')",
     "git:delete:tag": "git tag -d $(git tag -l '*gnowth*')",
