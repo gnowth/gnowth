@@ -44,7 +44,7 @@ jobs:
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:build
 
-  build_preview_and_e2e:
+  nextjs_build_preview_and_e2e:
     container:
       image: mcr.microsoft.com/playwright:v1.46.0-jammy
       options: --user 1001
@@ -53,25 +53,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
-
-      - name: Build projects
-        run: npm run ci:build-dev
-
-      - name: End to end test using mock
-        run: npm run ci:e2e:mock
-
-      - name: Deploy to preview
-        run: npm run cd:project:nextjs:deploy
-
-      - name: Comment on PR with deploy link
-        uses: marocchino/sticky-pull-request-comment@v2
+      - run: npm run ci:project:nextjs:build
+      - run: npm run ci:e2e:mock
+      - run: npm run cd:project:nextjs:deploy
+      - uses: ./.github/actions/issue-comment
         with:
-          header: Preview
-          message: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
-          recreate: true
-
-      - name: End to end smoke test
-        run: npm run ci:e2e:smoke
+          body: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>
+      - run: npm run ci:e2e:smoke
 
       - name: Upload test artifact playwright
         if: failure()
