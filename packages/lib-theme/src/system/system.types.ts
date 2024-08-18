@@ -1,4 +1,4 @@
-import type { CSSObject } from '@emotion/css'
+import type { CSSObject } from '@emotion/serialize'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { Theme } from '../theme/theme'

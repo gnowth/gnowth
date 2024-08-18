@@ -1,4 +1,4 @@
-import type { CSSObject } from '@emotion/css'
+import type { CSSObject } from '@emotion/serialize'
 
 import { guardString } from '@gnowth/lib-utils'
 
