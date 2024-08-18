@@ -35,7 +35,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@chakra-ui/storybook-addon": "5.0.0",
+    "@chakra-ui/storybook-addon": "5.1.0",
     "@storybook/addon-essentials": "8.2.9",
     "@storybook/addon-interactions": "8.2.9",
     "@storybook/addon-links": "8.2.9",
