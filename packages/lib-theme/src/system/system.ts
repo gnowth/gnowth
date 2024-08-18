@@ -1,4 +1,4 @@
-import type { CSSObject } from '@emotion/css'
+import type { CSSObject } from '@emotion/serialize'
 
 import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
 

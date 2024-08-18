@@ -1,4 +1,4 @@
-import type { CSSObject } from '@emotion/css'
+import type { CSSObject } from '@emotion/serialize'
 
 import { Theme } from '../theme/theme'
 import { systemCompose, systemInterpolate } from './system'
