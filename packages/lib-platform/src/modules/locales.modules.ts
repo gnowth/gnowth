@@ -1,25 +1,14 @@
-import type { UtilValues } from '@gnowth/lib-utils'
+import type { PlatformParameters } from '../core/platform'
 
-import type { Platform } from '../core/platform.main'
-
-import { PlatformModule, PlatformProviderConstructor } from '../core/platform-module'
+import { PlatformConstant } from '../core/platform.constants'
 import { LocaleService } from './locales.services'
 
-type Parameters = { platform: Platform; providers?: Record<string, PlatformProviderConstructor> }
-export class LocaleModule extends PlatformModule {
-  providerToken = { service: 'service' } as const
-
-  static async construct(parameters: Parameters): Promise<LocaleModule> {
-    const module = new this(this.#addDefaultParameters(parameters))
-    await module.providerMount({ name: module.providerToken.service })
-    return module
-  }
-
-  static #addDefaultParameters(parameters: Parameters): Parameters {
-    return PlatformModule.getParameters(parameters, {
-      providers: {
-        service: LocaleService,
-      } satisfies Record<UtilValues<LocaleModule['providerToken']>, PlatformProviderConstructor>,
+export class LocaleModule {
+  static async construct(parameters: PlatformParameters): Promise<LocaleModule> {
+    await parameters.platform.moduleMountDependencies({
+      constructors: parameters.constructors,
+      constructorsDefault: { providers: { [PlatformConstant.localeService]: LocaleService } },
     })
+    return new this()
   }
 }

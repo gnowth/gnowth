@@ -1,22 +1,20 @@
-import type { EventModule } from './events.modules'
 import type { EventObservable } from './events.observables'
 import type { PlatformEvent } from './events.types'
 
-type Parameters = {
-  eventObservable?: EventObservable
-  module: EventModule
-}
+import { PlatformConstant, type PlatformParameters } from '../core/platform'
 
+type Parameters = { eventObservable: EventObservable } & PlatformParameters
 export class EventService {
   #eventObservable: EventObservable
 
-  constructor(parameters: Required<Parameters>) {
+  constructor(parameters: Parameters) {
     this.#eventObservable = parameters.eventObservable
   }
 
-  static async construct(parameters: Parameters): Promise<EventService> {
-    const eventObservable = await parameters.module.providerGet<EventObservable>({
-      name: parameters.module.providerToken.observable,
+  static async construct(parameters: PlatformParameters): Promise<EventService> {
+    const eventObservable = await parameters.platform.providerGet<EventObservable>({
+      name: PlatformConstant.eventObservable,
+      type: 'provider',
     })
     return new this({ ...parameters, eventObservable: eventObservable })
   }

@@ -1,4 +1,4 @@
-import type { ScriptModule } from './scripts.modules'
+import type { PlatformParameters } from '../core/platform'
 
 import { scriptImport, scriptInject } from './scripts.utils'
 
@@ -10,10 +10,9 @@ type ScriptParameters = {
   url: string
 }
 
-type Parameters = { module: ScriptModule }
 export class ScriptService {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: Parameters): Promise<ScriptService> {
+  static async construct(parameters: PlatformParameters): Promise<ScriptService> {
     return new this()
   }
 

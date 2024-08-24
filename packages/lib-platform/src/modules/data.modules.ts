@@ -1,26 +1,14 @@
-import type { UtilValues } from '@gnowth/lib-utils'
+import type { PlatformParameters } from '../core/platform'
 
-import type { Platform } from '../core/platform'
-import type { PlatformProviderConstructor } from '../core/platform-module.types'
-
-import { PlatformModule } from '../core/platform-module'
+import { PlatformConstant } from '../core/platform.constants'
 import { DataService } from './data.services'
 
-type Parameters = { platform: Platform; providers?: Record<string, PlatformProviderConstructor> }
-export class DataModule extends PlatformModule {
-  providerToken = { service: 'service' } as const
-
-  static async construct(parameters: Parameters): Promise<DataModule> {
-    const module = new this(this.#addDefaultParameters(parameters))
-    await module.providerMount({ name: module.providerToken.service })
-    return module
-  }
-
-  static #addDefaultParameters(parameters: Parameters): Parameters {
-    return PlatformModule.getParameters(parameters, {
-      providers: {
-        service: DataService,
-      } satisfies Record<UtilValues<DataModule['providerToken']>, PlatformProviderConstructor>,
+export class DataModule {
+  static async construct(parameters: PlatformParameters): Promise<DataModule> {
+    await parameters.platform.moduleMountDependencies({
+      constructors: parameters.constructors,
+      constructorsDefault: { providers: { [PlatformConstant.dataService]: DataService } },
     })
+    return new this()
   }
 }

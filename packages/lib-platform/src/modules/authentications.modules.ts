@@ -1,32 +1,28 @@
-import type { UtilValues } from '@gnowth/lib-utils'
+import type { PlatformParameters } from '../core/platform'
 
-import type { Platform } from '../core/platform'
-import type { PlatformProviderConstructor } from '../core/platform-module'
-
-import { PlatformModule } from '../core/platform-module.main'
+import { PlatformConstant } from '../core/platform.constants'
 import { AuthenticationClient } from './authentications.clients'
+import { AuthenticationController } from './authentications.controllers'
 import { AuthenticationObservable } from './authentications.observables'
 import { AuthenticationService } from './authentications.services'
 
-type Parameters = { platform: Platform; providers?: Record<string, PlatformProviderConstructor> }
-export class AuthenticationModule extends PlatformModule {
-  providerToken = { client: 'client', observable: 'observable', service: 'service' } as const
-
-  static async construct(parameters: Parameters): Promise<AuthenticationModule> {
-    const module = new this(this.#addDefaultParameters(parameters))
-    await module.providerMount({ name: module.providerToken.client })
-    await module.providerMount({ name: module.providerToken.observable })
-    await module.providerMount({ name: module.providerToken.service })
-    return module
-  }
-
-  static #addDefaultParameters(parameters: Parameters): Parameters {
-    return PlatformModule.getParameters(parameters, {
-      providers: {
-        client: AuthenticationClient,
-        observable: AuthenticationObservable,
-        service: AuthenticationService,
-      } satisfies Record<UtilValues<AuthenticationModule['providerToken']>, PlatformProviderConstructor>,
+export class AuthenticationModule {
+  static async construct(parameters: PlatformParameters): Promise<AuthenticationModule> {
+    await parameters.platform.moduleMountDependencies({
+      constructors: parameters.constructors,
+      constructorsDefault: {
+        clients: {
+          [PlatformConstant.authenticationClient]: {
+            [PlatformConstant.authenticationClientVariant.client]: AuthenticationClient,
+          },
+        },
+        controllers: { [PlatformConstant.authenticationController]: AuthenticationController },
+        providers: {
+          [PlatformConstant.authenticationObservable]: AuthenticationObservable,
+          [PlatformConstant.authenticationService]: AuthenticationService,
+        },
+      },
     })
+    return new this()
   }
 }

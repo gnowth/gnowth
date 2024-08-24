@@ -1,119 +1,253 @@
-import type { UtilValues } from '@gnowth/lib-utils'
-
 import { ErrorCustom } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { ScriptService } from '../modules/scripts'
-import type { PlatformModuleDefinition } from './platform-module.types'
+import type {
+  PlatformConstructor,
+  PlatformConstructors,
+  PlatformDefinition,
+  PlatformDefinitionClient,
+  PlatformDefinitionController,
+  PlatformDefinitionModule,
+  PlatformDefinitionProvider,
+} from './platform.types'
 
-import { AuthenticationModule } from '../modules/authentications'
-import { DataModule } from '../modules/data'
-import { EventModule } from '../modules/events'
-import { LocaleModule } from '../modules/locales'
-import { ScriptModule } from '../modules/scripts'
-import { PlatformModule } from './platform-module'
+import { PlatformConstant } from './platform.constants'
+import { modules } from './platform.modules'
 
 type Parameters = {
-  moduleUrlBuilder?: (definition: PlatformModuleDefinition) => string
-  modules?: Record<string, typeof PlatformModule>
+  constructors?: PlatformConstructors
+  dependencyUrlBuilder?: (definition: PlatformDefinition) => string
+}
+
+type PlatformModuleDependencies = {
+  constructors?: PlatformConstructors
+  constructorsDefault: PlatformConstructors
 }
 
 // TODO: @ErrorTrace({ context: 'Platform', source: 'lib-platform })
 export class Platform {
-  #modules: Map<string, PlatformModule> = new Map()
+  #clients: Map<string, Map<string, object>> = new Map()
+  #components: Map<string, object> = new Map()
+  #controllers: Map<string, object> = new Map()
+  #modules: Map<string, object> = new Map()
   #parameters: Parameters
-  moduleToken = {
-    authentication: 'platformAuthentication',
-    data: 'platformData',
-    event: 'platformEvent',
-    locale: 'platformLocale',
-    script: 'platformScript',
-  } as const
+  #providers: Map<string, object> = new Map()
 
   constructor(parameters?: Parameters) {
     this.#parameters = parameters ?? {}
   }
 
   static async construct(parameters?: Parameters): Promise<Platform> {
-    const platform = new this(this.#addDefaultParameters(parameters))
-    await platform.#moduleMount({ name: platform.moduleToken.script })
+    const constructors = this.constructorMerge({ modules }, parameters?.constructors)
+    const platform = new this(parameters)
+    await platform.moduleMount({ constructors, name: PlatformConstant.scriptModule, type: 'module' })
+    await platform.moduleMountDependencies({ constructorsDefault: constructors })
     return platform
   }
 
-  static #addDefaultParameters(parameters?: Parameters): Parameters {
-    // TODO
-    const modules: Record<UtilValues<Platform['moduleToken']>, typeof PlatformModule> = {
-      platformAuthentication: AuthenticationModule,
-      platformData: DataModule,
-      platformEvent: EventModule,
-      platformLocale: LocaleModule,
-      platformScript: ScriptModule,
+  static constructorMerge(
+    override1?: PlatformConstructors,
+    override2?: PlatformConstructors,
+  ): PlatformConstructors {
+    return R.mergeDeep(override1 ?? {}, override2 ?? {})
+  }
+
+  #constructorGuard(module: unknown): module is PlatformConstructor {
+    return R.isFunction(module) && 'construct' in module
+  }
+
+  #definitionFromConstructors(constructors: PlatformConstructors): PlatformDefinition[] {
+    return [
+      ...R.pipe(
+        constructors.clients ?? {},
+        R.keys(),
+        R.flatMap((name) =>
+          R.pipe(
+            constructors.clients?.[name] ?? {},
+            R.keys(),
+            R.map((variant) => ({ constructors, name, type: 'client' as const, variant })),
+          ),
+        ),
+      ),
+      ...R.pipe(
+        constructors.components ?? {},
+        R.keys(),
+        R.map((name) => ({ constructors, name, type: 'component' as const })),
+      ),
+      ...R.pipe(
+        constructors.controllers ?? {},
+        R.keys(),
+        R.map((name) => ({ constructors, name, type: 'controller' as const })),
+      ),
+      ...R.pipe(
+        constructors.modules ?? {},
+        R.keys(),
+        R.map((name) => ({ constructors, name, type: 'module' as const })),
+      ),
+      ...R.pipe(
+        constructors.providers ?? {},
+        R.keys(),
+        R.map((name) => ({ constructors, name, type: 'provider' as const })),
+      ),
+    ]
+  }
+
+  #dependencyGet(definition: PlatformDefinition): object | undefined {
+    if (definition.type === 'client') {
+      const map = this.#clients.get(definition.name)
+      return definition.variant ? map?.get(definition.variant) : map?.values().next().value
     }
-    return {
-      ...parameters,
-      modules: { ...modules, ...parameters?.modules },
+    if (definition.type === 'component') {
+      // TODO
+      return this.#components.get(definition.name)
+    }
+    if (definition.type === 'controller') {
+      return this.#controllers.get(definition.name)
+    }
+    if (definition.type === 'module') {
+      return this.#modules.get(definition.name)
+    }
+    if (definition.type === 'provider') {
+      return this.#providers.get(definition.name)
     }
   }
 
-  #moduleGuardConstructor(module: unknown): module is typeof PlatformModule {
-    return (
-      !!module &&
-      typeof module === 'function' &&
-      'prototype' in module &&
-      module.prototype instanceof PlatformModule
-    )
+  #dependencyGetConstructor(definition: PlatformDefinition): PlatformConstructor | undefined {
+    if (definition.type === 'client') {
+      const clients = definition.constructors?.clients?.[definition.name] ?? {}
+      return definition.variant ? clients[definition.name] : R.values(clients).at(0)
+    }
+    if (definition.type === 'component') {
+      // TODO
+      return definition.constructors?.components?.[definition.name]
+    }
+    if (definition.type === 'controller') {
+      return definition.constructors?.controllers?.[definition.name]
+    }
+    if (definition.type === 'module') {
+      return definition.constructors?.modules?.[definition.name]
+    }
+    if (definition.type === 'provider') {
+      return definition.constructors?.providers?.[definition.name]
+    }
+  }
+
+  async #dependencyMount(definition: PlatformDefinition): Promise<void> {
+    if (!!this.#dependencyGet(definition)) {
+      return
+    }
+    // TODO: need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call
+    const Constructor =
+      this.#dependencyGetConstructor(definition) ?? (await this.#packageLoadConstructor(definition))
+    const dependency = await Constructor.construct({ platform: this })
+    this.#dependencySet(definition, dependency)
+  }
+
+  async #dependencyMountModule(definition: PlatformDefinition): Promise<void> {
+    if (definition.type !== 'module' && definition.module) {
+      await this.moduleMount(definition.module)
+    }
+  }
+
+  async #dependencyPreload(definition: PlatformDefinition): Promise<void> {
+    const definitions = definition.preload ?? []
+    const promises = definitions.map((def) => this.#dependencyMount(def))
+    await Promise.allSettled(promises)
+  }
+
+  #dependencySet(definition: PlatformDefinition, dependency: object): void {
+    if (definition.type === 'client') {
+      const map = this.#clients.get(definition.name) ?? new Map()
+      map.set(definition.variant ?? Symbol(), dependency)
+      this.#clients.set(definition.name, map)
+      return
+    }
+    if (definition.type === 'component') {
+      this.#components.set(definition.name, dependency)
+      return
+    }
+    if (definition.type === 'controller') {
+      this.#controllers.set(definition.name, dependency)
+      return
+    }
+    if (definition.type === 'module') {
+      this.#modules.set(definition.name, dependency)
+      return
+    }
+    if (definition.type === 'provider') {
+      this.#providers.set(definition.name, dependency)
+    }
   }
 
   // TODO: @ErrorTrace({ caller: 'platform.#moduleGet' })
-  async #moduleLoad<TModule extends typeof PlatformModule>(
-    definition: PlatformModuleDefinition,
-  ): Promise<TModule> {
-    const url = definition.url ?? this.#parameters.moduleUrlBuilder?.(definition)
+  async #packageLoadConstructor(definition: PlatformDefinition): Promise<PlatformConstructor> {
+    const url = definition.url ?? this.#parameters.dependencyUrlBuilder?.(definition)
     if (!R.isString(url)) {
       throw new ErrorCustom({
         code: 'lib-platform--platform--01',
         message: `not enough data to load dependency: ${definition.name}`,
         trace: {
-          caller: 'platform.#moduleLoad',
+          caller: 'platform.#packageLoadConstructor',
           context: 'platform',
           source: 'lib-platform',
         },
       })
     }
-    const scriptModule = await this.moduleGet<ScriptModule>({ name: this.moduleToken.script })
-    const scriptService = await scriptModule.providerGet<ScriptService>({
-      name: scriptModule.providerToken.service,
+    const scriptService = await this.providerGet<ScriptService>({
+      name: PlatformConstant.scriptService,
+      type: 'provider',
     })
-    // TODO: get named export
-    return scriptService.import({ url })
-  }
-
-  async #moduleMount(definition: PlatformModuleDefinition) {
-    if (this.#modules.has(definition.name)) {
-      return
-    }
-    // need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call
-    // check if constructor has requirement
-    // check for preload
-    const modules = { ...this.#parameters.modules, ...definition.modules }
-    const Module = modules[definition.name] ?? (await this.#moduleLoad(definition))
-    if (!this.#moduleGuardConstructor(Module)) {
+    const importedPackage = await scriptService.import({ url })
+    const Constructor = importedPackage[definition.exportName ?? definition.name]
+    if (!this.#constructorGuard(Constructor)) {
       throw new ErrorCustom({
         code: 'lib-platform--platform--02',
-        message: `module (${definition.name}) is not a valid`,
+        message: `constructor for (${definition.name}) is not a valid`,
         trace: {
-          caller: 'platform.#moduleMount',
+          caller: 'platform.#packageLoadConstructor',
           context: 'platform',
           source: 'lib-platform',
         },
       })
     }
-    const module = await Module.construct({ modules, platform: this })
-    this.#modules.set(definition.name, module)
+    return Constructor
   }
 
-  async moduleGet<TModule extends PlatformModule>(definition: PlatformModuleDefinition): Promise<TModule> {
-    await this.#moduleMount(definition)
-    return this.#modules.get(definition.name) as TModule
+  async clientGet<TClient extends object>(definition: PlatformDefinitionClient): Promise<TClient> {
+    this.#dependencyPreload(definition).catch(R.doNothing())
+    await this.#dependencyMountModule(definition)
+    await this.#dependencyMount(definition)
+    return this.#dependencyGet(definition) as TClient
+  }
+
+  async controllerGet<TController extends object>(
+    definition: PlatformDefinitionController,
+  ): Promise<TController> {
+    this.#dependencyPreload(definition).catch(R.doNothing())
+    await this.#dependencyMountModule(definition)
+    await this.#dependencyMount(definition)
+    return this.#dependencyGet(definition) as TController
+  }
+
+  async moduleMount(definition: PlatformDefinitionModule): Promise<void> {
+    this.#dependencyPreload(definition).catch(R.doNothing())
+    await this.#dependencyMount(definition)
+  }
+
+  async moduleMountDependencies(dependencies: PlatformModuleDependencies): Promise<void> {
+    const constructors = Platform.constructorMerge(
+      dependencies.constructorsDefault,
+      dependencies.constructors,
+    )
+    const definitions = this.#definitionFromConstructors(constructors)
+    await Promise.allSettled(definitions.map((definition) => this.#dependencyMount(definition)))
+  }
+
+  async providerGet<TProvider extends object>(definition: PlatformDefinitionProvider): Promise<TProvider> {
+    this.#dependencyPreload(definition).catch(R.doNothing())
+    await this.#dependencyMountModule(definition)
+    await this.#dependencyMount(definition)
+    return this.#dependencyGet(definition) as TProvider
   }
 }
