@@ -44,7 +44,7 @@
     "storybook": "8.2.9",
     "storybook-react-i18next": "3.1.7",
     "react": "18.3.1",
-    "react-query": "3.39.3"
+    "@tanstack/react-query": "4.0.5"
   },
   "devDependencies": {
     "@gnowth/babel-preset": "0.0.0",
