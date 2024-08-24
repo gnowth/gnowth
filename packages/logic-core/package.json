@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@gnowth/lib-utils": "0.0.0",
-    "axios": "1.7.4"
+    "axios": "1.7.5"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
