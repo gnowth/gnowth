@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3'
 import * as R from 'remeda'
 
-import type { DataModule } from './data.modules'
+import type { PlatformParameters } from '../core/platform'
 
 const DataConstant = {
   eventName: 'platformDataService/data',
@@ -30,7 +30,6 @@ class EventEmitterService {
   }
 }
 
-type Parameters = { module: DataModule }
 export class DataService {
   #data: Map<string, unknown> = new Map()
   #eventEmitterService = new EventEmitterService()
@@ -39,7 +38,7 @@ export class DataService {
   #subscribers: Map<string, DataSubscriber> = new Map()
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: Parameters): Promise<DataService> {
+  static async construct(parameters: PlatformParameters): Promise<DataService> {
     return new this()
   }
 

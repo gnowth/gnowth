@@ -1,25 +1,14 @@
-import type { UtilValues } from '@gnowth/lib-utils'
+import type { PlatformParameters } from '../core/platform'
 
-import type { Platform } from '../core/platform.main'
-
-import { PlatformModule, PlatformProviderConstructor } from '../core/platform-module'
+import { PlatformConstant } from '../core/platform.constants'
 import { ScriptService } from './scripts.services'
 
-type Parameters = { platform: Platform; providers?: Record<string, PlatformProviderConstructor> }
-export class ScriptModule extends PlatformModule {
-  providerToken = { service: 'service' } as const
-
-  static async construct(parameters: Parameters): Promise<ScriptModule> {
-    const module = new this(this.#addDefaultParameters(parameters))
-    await module.providerMount({ name: module.providerToken.service })
-    return module
-  }
-
-  static #addDefaultParameters(parameters: Parameters): Parameters {
-    return PlatformModule.getParameters(parameters, {
-      providers: {
-        service: ScriptService,
-      } satisfies Record<UtilValues<ScriptModule['providerToken']>, PlatformProviderConstructor>,
+export class ScriptModule {
+  static async construct(parameters: PlatformParameters): Promise<ScriptModule> {
+    await parameters.platform.moduleMountDependencies({
+      constructors: parameters.constructors,
+      constructorsDefault: { providers: { [PlatformConstant.scriptService]: ScriptService } },
     })
+    return new this()
   }
 }

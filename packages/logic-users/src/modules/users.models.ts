@@ -1,4 +1,4 @@
-import type { FakerService } from '@gnowth/lib-mock'
+import type { MockService } from '@gnowth/lib-mock'
 import type { UtilOptional } from '@gnowth/lib-utils'
 import type { ErrorData, EventService } from '@gnowth/logic-core'
 
@@ -9,7 +9,7 @@ import type { User, UserData } from './users.types'
 
 type Parameters = {
   eventService?: EventService
-  fakerService?: FakerService
+  mockService?: MockService
 }
 
 export class UserModel extends Model<User> {
@@ -44,7 +44,7 @@ export class UserModel extends Model<User> {
   generateFake(user?: Partial<User>, parameters?: Parameters): User {
     parameters?.eventService?.logIfError({
       code: 'logic-users--model-user--generate-fake--01',
-      errors: parameters?.fakerService
+      errors: parameters?.mockService
         ? []
         : [
             {
@@ -56,14 +56,14 @@ export class UserModel extends Model<User> {
       method: 'generateFake',
     })
 
-    const id = parameters?.fakerService?.stringUuid({ value: user?.id }) ?? ''
-    const nameFirst = parameters?.fakerService?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
-    const nameLast = parameters?.fakerService?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
+    const id = parameters?.mockService?.stringUuid({ value: user?.id }) ?? ''
+    const nameFirst = parameters?.mockService?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
+    const nameLast = parameters?.mockService?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
 
     return this.generate({
       ...user,
       email:
-        parameters?.fakerService?.internetEmail({
+        parameters?.mockService?.internetEmail({
           firstName: nameFirst,
           lastName: nameLast,
           seed: id,

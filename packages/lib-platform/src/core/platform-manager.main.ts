@@ -2,8 +2,7 @@ import { ErrorCustom } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { Platform } from './platform.main'
-import type { PlatformModule } from './platform-module.main'
-import type { PlatformModuleDefinition } from './platform-module.types'
+import type { PlatformConstructors, PlatformDefinition } from './platform.types'
 
 import { scriptImport } from '../modules/scripts.utils'
 
@@ -13,8 +12,8 @@ type GlobalThis = {
 
 type Parameters = {
   Constructor?: typeof Platform
-  moduleUrlBuilder?: (definition: PlatformModuleDefinition) => string
-  modules?: Record<string, typeof PlatformModule>
+  constructors?: PlatformConstructors
+  moduleUrlBuilder?: (definition: PlatformDefinition) => string
   url?: string
 }
 

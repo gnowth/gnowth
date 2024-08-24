@@ -1,0 +1,17 @@
+export const PlatformConstant = {
+  authenticationClient: 'PlatformAuthenticationClient',
+  authenticationClientVariant: { client: 'client' },
+  authenticationController: 'PlatformAuthenticationController',
+  authenticationModule: 'PlatformAuthenticationModule',
+  authenticationObservable: 'PlatformAuthenticationObservable',
+  authenticationService: 'PlatformAuthenticationService',
+  dataModule: 'PlatformDataModule',
+  dataService: 'PlatformDataService',
+  eventModule: 'PlatformEventModule',
+  eventObservable: 'PlatformEventObservable',
+  eventService: 'PlatformEventService',
+  localeModule: 'PlatformLocaleModule',
+  localeService: 'PlatformLocaleService',
+  scriptModule: 'PlatformScriptModule',
+  scriptService: 'PlatformScriptService',
+} as const

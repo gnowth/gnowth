@@ -1,29 +1,20 @@
-import type { UtilValues } from '@gnowth/lib-utils'
+import type { PlatformParameters } from '../core/platform'
 
-import type { Platform } from '../core/platform'
-import type { PlatformProviderConstructor } from '../core/platform-module'
-
-import { PlatformModule } from '../core/platform-module'
+import { PlatformConstant } from '../core/platform.constants'
 import { EventObservable } from './events.observables'
 import { EventService } from './events.services'
 
-type Parameters = { platform: Platform; providers?: Record<string, PlatformProviderConstructor> }
-export class EventModule extends PlatformModule {
-  providerToken = { observable: 'observable', service: 'service' } as const
-
-  static async construct(parameters: Parameters): Promise<EventModule> {
-    const module = new this(this.#addDefaultParameters(parameters))
-    await module.providerMount({ name: module.providerToken.observable })
-    await module.providerMount({ name: module.providerToken.service })
-    return module
-  }
-
-  static #addDefaultParameters(parameters: Parameters): Parameters {
-    return PlatformModule.getParameters(parameters, {
-      providers: {
-        observable: EventObservable,
-        service: EventService,
-      } satisfies Record<UtilValues<EventModule['providerToken']>, PlatformProviderConstructor>,
+export class EventModule {
+  static async construct(parameters: PlatformParameters): Promise<EventModule> {
+    await parameters.platform.moduleMountDependencies({
+      constructors: parameters.constructors,
+      constructorsDefault: {
+        providers: {
+          [PlatformConstant.eventObservable]: EventObservable,
+          [PlatformConstant.eventService]: EventService,
+        },
+      },
     })
+    return new this()
   }
 }
