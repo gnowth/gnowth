@@ -1,6 +1,6 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 
-import { arrayKeyBy, arrayUniqBy, chain } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { TokenColorWeight } from '../tokens/tokens'
 
@@ -32,7 +32,7 @@ export class PaletteManager {
   #palettes: Palettes = {}
 
   constructor(configs?: Configs) {
-    this.#palettes = arrayKeyBy(configs?.palettes ?? [], (palette) => palette.name)
+    this.#palettes = R.indexBy(configs?.palettes ?? [], (palette) => palette.name)
   }
 
   #get(palette?: PaletteName): Palette | undefined {
@@ -63,10 +63,11 @@ export class PaletteManager {
 
   configsMerge(...configsToMerge: Configs[]): Configs {
     return {
-      palettes: chain(
+      palettes: R.pipe(
+        configsToMerge,
         (configs: Configs[]) => configs.flatMap((config) => config.palettes ?? []),
-        (palettes: PaletteType[]) => arrayUniqBy(palettes, (palette) => palette.name),
-      )(configsToMerge),
+        (palettes: PaletteType[]) => R.uniqueBy(palettes, (palette) => palette.name),
+      ),
     }
   }
 
