@@ -2,7 +2,7 @@ import type { AxiosInstance } from 'axios'
 
 import axios from 'axios'
 
-import type { ConfigService } from './configs'
+import type { ConfigService } from './configs.services-deprecated'
 
 type Parameters = { configService: ConfigService }
 

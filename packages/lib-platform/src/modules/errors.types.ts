@@ -1,4 +1,4 @@
-import type { Event } from './events'
+import type { PlatformEvent } from './events'
 
 // TODO: use ErrorCustom within App and only convert when sending to server
 export type ErrorData = {
@@ -9,7 +9,7 @@ export type ErrorData = {
   sourceNamespace?: string
 }
 
-export interface EventError extends Event {
+export interface EventError extends PlatformEvent {
   payload: { errors: ErrorData[] }
   target: 'serviceError'
   type: 'error'

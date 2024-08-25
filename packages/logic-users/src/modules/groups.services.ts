@@ -1,3 +1,5 @@
+import type { GroupFilterParams } from './group-filters'
+import type { Group, GroupData } from './groups.types'
 import type {
   QueryDetail,
   QueryKeyDetail,
@@ -5,14 +7,10 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-} from '@gnowth/logic-core'
-
-import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
-
-import type { GroupFilterParams } from './group-filters'
-import type { Group, GroupData } from './groups.types'
+} from './queries'
 
 import { GroupModel } from './groups.models'
+import { QueryService, TokenQueryEntity } from './queries'
 
 type QueryKeys = {
   detail: QueryKeyDetail

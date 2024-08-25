@@ -1,5 +1,26 @@
+import type { ObjectLiteral } from '@gnowth/lib-utils'
+
 import type { Event } from './events.types'
-import type { Log } from './logs'
+
+// TODO: Get type from error module
+type ErrorData = {
+  code: string
+  message: string
+  method?: string
+  source?: string
+  sourceNamespace?: string
+}
+// TODO: get type form log module
+type Log = {
+  code: string
+  errors?: ErrorData[]
+  logLevel?: 'bug' | 'debug' | 'error' | 'info' | 'none' | 'warn'
+  message: string
+  method: string
+  payload?: ObjectLiteral
+  source?: string
+  sourceNamespace?: string
+}
 
 export class EventService {
   dispatch(event: Event): void {

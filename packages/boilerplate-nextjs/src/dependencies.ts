@@ -1,4 +1,4 @@
-import { ErrorModel, ErrorStream, NotificationStream } from '@gnowth/logic-core'
+import { ErrorModel, ErrorStream, NotificationStream } from '@gnowth/lib-react'
 
 export const dependencies = {
   errorModel: new ErrorModel(),

@@ -1,7 +1,7 @@
 import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
 import { appSetupCompose } from '@gnowth/lib-application'
-import { ErrorModel, ErrorStream } from '@gnowth/logic-core'
+import { ErrorModel, ErrorStream } from '@gnowth/lib-react'
 import { initReactI18next } from 'react-i18next'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
 import { createInstance } from 'i18next'

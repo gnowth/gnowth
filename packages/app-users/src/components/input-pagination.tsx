@@ -1,10 +1,10 @@
 import type { ChakraProps } from '@chakra-ui/react'
-import type { FilterPageSize } from '@gnowth/logic-core'
+import type { FilterPageSize } from '@gnowth/logic-users'
 import type { FunctionComponent } from 'react'
 
 import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import { Button, HStack, Select, Text } from '@chakra-ui/react'
-import { FilterModel } from '@gnowth/logic-core'
+import { FilterModel } from '@gnowth/logic-users'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
