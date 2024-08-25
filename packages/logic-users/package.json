@@ -26,7 +26,8 @@
   "dependencies": {
     "@gnowth/lib-model": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
-    "@gnowth/logic-core": "0.0.0"
+    "@gnowth/logic-core": "0.0.0",
+    "remeda": "2.11.0"
   },
   "devDependencies": {
     "@gnowth/app-configs": "0.0.0",

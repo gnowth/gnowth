@@ -1,7 +1,7 @@
 import type { ErrorData, EventService } from '@gnowth/logic-core'
 
 import { Model } from '@gnowth/lib-model'
-import { guardNullish } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 import { v4 as uuid } from 'uuid'
 
 import type { Group, GroupData } from './groups'
@@ -14,7 +14,7 @@ export class GroupModel extends Model<Group> {
   }
 
   #dataValidateId(id?: string): ErrorData[] {
-    return guardNullish(id)
+    return R.isNullish(id)
       ? [
           {
             code: 'logic-users--model-group--#dataValidateId--01',
