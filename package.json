@@ -120,7 +120,7 @@
     "ci:project:nextjs:build": "npm run workspace:nextjs build",
     "ci:project:storybook:build": "npm run workspace:styleguide build",
     "ci:project:storybook:e2e": "start-server-and-test 'npm run workspace:styleguide start-ci' http://localhost:6006 'npm run workspace:styleguide test:e2e'",
-    "ci:setup": "npm ci --cache ~/.cache-npm --prefer-offline",
+    "ci:setup": "npm ci --prefer-offline",
     "docker:compose": "docker-compose -f devops/docker-compose.yml up",
     "docker:service:plantuml": "docker run -d -p 8888:8080 plantuml/plantuml-server:jetty",
     "git:commit": "cz",
