@@ -2,42 +2,43 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "@gnowth/nextjs-boilerplate#build": {
-      "outputs": [
-        "./packages/boilerplate-nextjs/.next",
-        "./artifact/build-web"
-      ]
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
     },
     "@gnowth/nextjs-boilerplate#build-dev": {
-      "outputs": [
-        "./packages/boilerplate-nextjs/.next",
-        "./artifact/build-web"
-      ]
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
+    },
+    "@gnowth/nextjs-boilerplate#build-web": {
+      "outputs": ["./packages/boilerplate-nextjs/.next", "./artifact/build-web"]
     },
     "@gnowth/styleguide-boilerplate#build": {
-      "dependsOn": [
-        "@gnowth/nextjs-boilerplate#build"
-      ],
-      "outputs": [
-        "./artifact/build-web/styleguide"
-      ]
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
+      "outputs": ["./artifact/build-web/styleguide"]
     },
     "@gnowth/styleguide-boilerplate#build-dev": {
-      "dependsOn": [
-        "@gnowth/nextjs-boilerplate#build-dev"
-      ],
-      "outputs": [
-        "./artifact/build-web/styleguide"
-      ]
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
+      "outputs": ["./artifact/build-web/styleguide"]
+    },
+    "@gnowth/styleguide-boilerplate#build-web": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build-web"],
+      "outputs": ["./artifact/build-web/styleguide"]
+    },
+    "@gnowth/vite-boilerplate#build": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build"],
+      "outputs": ["./artifact/build-web/spa"]
+    },
+    "@gnowth/vite-boilerplate#build-dev": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build-dev"],
+      "outputs": ["./artifact/build-web/spa"]
+    },
+    "@gnowth/vite-boilerplate#build-web": {
+      "dependsOn": ["@gnowth/nextjs-boilerplate#build-web"],
+      "outputs": ["./artifact/build-web/spa"]
     },
     "build": {
-      "outputs": [
-        "./build"
-      ]
+      "outputs": ["./build"]
     },
     "build-dev": {
-      "outputs": [
-        "./build"
-      ]
+      "outputs": ["./build"]
     },
     "clean:modules": {
       "cache": false,

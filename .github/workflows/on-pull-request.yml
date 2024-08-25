@@ -53,9 +53,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
-      - run: npm run ci:project:nextjs:build
+      - run: npm run ci:project:web:build
       - run: npm run ci:e2e:mock
-      - run: npm run cd:project:nextjs:deploy
+      - run: npm run cd:project:web:deploy
       - uses: ./.github/actions/issue-comment
         with:
           body: Preview ${{ github.sha }} at <https://${{ env.SITE_DOMAIN }}>

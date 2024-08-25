@@ -15,4 +15,4 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - run: npm run cd:project:nextjs:teardown
+      - run: npm run cd:project:web:teardown

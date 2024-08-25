@@ -39,6 +39,7 @@
     "supertest": "7.0.0"
   },
   "scripts": {
+    "build-dev": "nest build && cp package.json ../../artifact/build-nestjs/package.json",
     "build": "nest build && cp package.json ../../artifact/build-nestjs/package.json",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",

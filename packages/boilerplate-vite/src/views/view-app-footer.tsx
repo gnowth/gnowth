@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const ViewAppFooter: FunctionComponent<Props> = () => (
-  <LayoutFooter>
+  <LayoutFooter data-testid="spa--layout-footer">
     <LayoutSection
       boxVariant="separator"
       layoutProps={{ spacing: 'xs' }}

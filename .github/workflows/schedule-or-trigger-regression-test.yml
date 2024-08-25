@@ -24,10 +24,10 @@ jobs:
       - uses: ./.github/actions/workspace-setup
 
       - name: Build projects
-        run: npm run ci:project:nextjs:build
+        run: npm run ci:project:web:build
 
       - name: Deploy to test
-        run: npm run cd:project:nextjs:deploy
+        run: npm run cd:project:web:deploy
 
   e2e_regression:
     container:
@@ -74,4 +74,4 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - run: npm run cd:project:nextjs:teardown
+      - run: npm run cd:project:web:teardown

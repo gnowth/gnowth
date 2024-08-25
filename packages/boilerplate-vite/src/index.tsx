@@ -45,7 +45,7 @@ createRoot(document.getElementById('main')!).render(
       <ApplicationPages application={TokenApplication.pages} />
       {/* <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} /> */}
       <AppApplicationLazy application={TokenApplication.tasks} component={ApplicationTasks} />
-      <AppRedirect application={TokenApplication.pages} />
+      <AppRedirect application={TokenApplication.pages} exact from="/" />
     </AppEnvironment>
   </>,
 )

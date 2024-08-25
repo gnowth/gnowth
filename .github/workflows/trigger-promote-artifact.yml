@@ -105,7 +105,7 @@ jobs:
 
       - name: Deploy to given environment
         if: github.event.inputs.skip_deploy == 'no'
-        run: npm run cd:project:nextjs:deploy
+        run: npm run cd:project:web:deploy
 
       - name: Database add fixture
         if: github.event.inputs.skip_migration == 'no'

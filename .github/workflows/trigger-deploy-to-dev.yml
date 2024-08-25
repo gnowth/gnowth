@@ -28,7 +28,7 @@ jobs:
         run: npm run ci:build-dev
 
       - name: Deploy to dev
-        run: npm run cd:project:nextjs:deploy
+        run: npm run cd:project:web:deploy
 
       - name: End to end smoke test
         run: npm run ci:e2e:smoke
