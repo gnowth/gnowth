@@ -21,8 +21,7 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-react": "0.0.0",
-    "@gnowth/logic-core": "0.0.0"
+    "@gnowth/lib-react": "0.0.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
