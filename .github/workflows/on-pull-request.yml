@@ -89,7 +89,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: ./.github/actions/workspace-setup
-      - uses: chromaui/action@v1
+      - uses: chromaui/action@v11
         with:
           buildScriptName: build-ci
           exitOnceUploaded: true
