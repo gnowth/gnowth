@@ -13,6 +13,7 @@ interface Props {
 
 interface PropsChild {
   application?: AppModelApplication | string
+  exact?: boolean
   from?: string
   page?: string
   path?: string
@@ -28,11 +29,10 @@ export function AppSwitch(props: Props): ReactElement | null {
   Children.forEach(props.children, (child) => {
     if (match == null && isValidElement<PropsChild>(child)) {
       element = child
-
       const applicationCurrent = environment.getApplication(child.props.application || application)
       const path = child.props.path || child.props.from || applicationCurrent.getRoute(child.props.page)
-
-      match = path ? matchPath({ ...child.props, path }, location.pathname) : null
+      const end = child.props.exact ?? false
+      match = path ? matchPath({ ...child.props, end, path }, location.pathname) : null
     }
   })
 

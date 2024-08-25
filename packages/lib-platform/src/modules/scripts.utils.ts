@@ -60,5 +60,5 @@ export const scriptImport = async (parameters: ScriptParameters) => {
   await scriptInject(parameters)
   // https://medium.com/front-end-weekly/webpack-and-dynamic-imports-doing-it-right-72549ff49234
   // https://webpack.js.org/api/module-methods/
-  return import(parameters.url)
+  return import(/* @vite-ignore */ '' + parameters.url)
 }
