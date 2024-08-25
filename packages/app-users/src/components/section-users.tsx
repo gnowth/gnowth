@@ -13,10 +13,10 @@ import {
   Tr,
   VStack,
 } from '@chakra-ui/react'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { FunctionComponent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useQuery } from 'react-query'
 import { atom, useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
@@ -37,10 +37,7 @@ const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
   const filtersData = useMemo(() => dependencies.userFilterModel.toData(filters), [filters])
-  const { data } = useQuery(
-    dependencies.userService.queryKeys.list(filtersData),
-    dependencies.userService.list,
-  )
+  const { data } = useSuspenseQuery(dependencies.userService.listOptions({ filtersData }))
 
   return (
     <LayoutSection>

@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { ChakraProvider } from '@chakra-ui/react'
-import { QueryClientProvider } from 'react-query'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { RecoilRoot } from 'recoil'
 
 import { setup } from '../setup'

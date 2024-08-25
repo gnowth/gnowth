@@ -41,10 +41,10 @@
     "@storybook/addon-links": "8.2.9",
     "@storybook/nextjs": "8.2.9",
     "@storybook/preview-api": "8.2.9",
+    "@tanstack/react-query": "5.52.0",
     "storybook": "8.2.9",
     "storybook-react-i18next": "3.1.7",
-    "react": "18.3.1",
-    "react-query": "3.39.3"
+    "react": "18.3.1"
   },
   "devDependencies": {
     "@gnowth/babel-preset": "0.0.0",
