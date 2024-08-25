@@ -1,6 +1,6 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import { chain } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export type AppSetup<Configuration, Configs = ObjectLiteral> = (configs: Configs) => Configuration
 
@@ -56,8 +56,11 @@ type AppSetupCompose = <
   Configs
 >
 
-export const appSetupCompose: AppSetupCompose = (...setups) =>
-  chain(
-    (configs) => setups.map((setup) => setup?.(configs)),
-    (configurations) => Object.assign({}, ...configurations),
-  )
+export const appSetupCompose: AppSetupCompose =
+  (...setups) =>
+  (configs) =>
+    R.pipe(
+      configs,
+      (configs) => setups.map((setup) => setup?.(configs)),
+      (configurations) => Object.assign({}, ...configurations),
+    )

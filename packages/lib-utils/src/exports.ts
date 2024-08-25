@@ -1,5 +1,4 @@
 export * from './errors'
-export * from './functional'
 export * from './guards'
 export * from './objects'
 export * from './operators'
