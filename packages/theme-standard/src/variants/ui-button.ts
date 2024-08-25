@@ -1,7 +1,8 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
 import type { PropsUIButton } from '@gnowth/lib-view'
 
-import { guardUndefined, objectOmitBy } from '@gnowth/lib-utils'
+import { guardUndefined } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { TokenSelector } from '../tokens/wip-token-selector'
 
@@ -11,7 +12,7 @@ function select(selector = '', child?: string) {
 }
 
 function interpolateColorFlat(theme: Theme, palette?: string, child?: string, forTextStyle = false) {
-  return objectOmitBy(
+  return R.omitBy(
     {
       [select('', child)]: theme.getPaletteColor({
         palette,
@@ -41,7 +42,7 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
 }
 
 function interpolateColor(theme: Theme, color = 'white') {
-  return objectOmitBy(
+  return R.omitBy(
     {
       '&': color,
 

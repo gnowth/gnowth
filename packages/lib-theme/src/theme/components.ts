@@ -1,7 +1,8 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
 
-import { guardString, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { namespacedMerge } from '../utils/namespace-merge'
 
@@ -41,7 +42,7 @@ export class ComponentManager {
       return undefined
     }
 
-    if (!guardString(configs.component)) {
+    if (!R.isString(configs.component)) {
       return configs.component
     }
 

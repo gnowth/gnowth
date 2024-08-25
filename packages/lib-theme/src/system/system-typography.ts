@@ -1,6 +1,6 @@
 import type { CSSObject } from '@emotion/serialize'
 
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { TokenBase, TokenFontSize } from '../tokens/tokens'
@@ -20,7 +20,7 @@ type SystemTextDecoration = { textDecoration?: string }
 type SystemTextTransform = { textTransform?: string }
 
 export const systemFontFamily: () => System<SystemFontFamily> = () => (props, theme) => {
-  if (guardString(props.fontFamily)) {
+  if (R.isString(props.fontFamily)) {
     return { fontFamily: props.fontFamily }
   }
 

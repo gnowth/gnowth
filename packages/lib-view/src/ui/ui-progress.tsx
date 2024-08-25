@@ -21,7 +21,7 @@ import {
   themeStylesCreate,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { UtilSlot } from '../util/util-slot'
 
@@ -250,7 +250,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
     <div
       className={cx(
         'ui-progress',
-        guardString(propsVariant.variant) && `ui-progress--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-progress--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiProgress,
       )}

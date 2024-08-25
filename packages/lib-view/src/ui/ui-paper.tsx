@@ -11,7 +11,7 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export interface PropsUIPaper extends SystemType<typeof uiPaper> {
   boxVariant?: string
@@ -47,7 +47,7 @@ export const UIPaper: FunctionComponent<PropsUIPaper> = (props) => {
     <div
       className={cx(
         'ui-paper',
-        guardString(propsVariant.variant) && `ui-paper--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-paper--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiPaper,
       )}

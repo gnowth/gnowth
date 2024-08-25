@@ -1,6 +1,7 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 
-import { guardFunction, guardString, objectDefaults } from '@gnowth/lib-utils'
+import { guardFunction, objectDefaults } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
@@ -48,7 +49,7 @@ export class ScaleManager {
   getScaleItem(configs: ConfigsScale): ScaleItem | undefined {
     const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
 
-    const scale = guardString(configs.scale) ? scales[configs.scale] : configs.scale
+    const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
 
     if (!scale || !configs.scaleToken) {
       return undefined

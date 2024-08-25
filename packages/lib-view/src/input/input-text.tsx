@@ -14,8 +14,8 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
+import * as R from 'remeda'
 
 import type { ChangeEventHandler } from './use-value'
 
@@ -77,7 +77,7 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
   return createElement(propsVariant.as || 'input', {
     className: cx(
       'input-text',
-      guardString(propsVariant.variant) && `input-text--${propsVariant.variant}`,
+      R.isString(propsVariant.variant) && `input-text--${propsVariant.variant}`,
       propsVariant.className,
       styles.inputText,
     ),

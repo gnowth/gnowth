@@ -4,7 +4,7 @@ import type { FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemColorFromPalette, systemCompose, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 interface ComponentProps {
   className?: string
@@ -49,7 +49,7 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
     <Component
       className={cx(
         'ui-icon',
-        guardString(propsVariant.variant) && `ui-icon--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-icon--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiIcon,
       )}

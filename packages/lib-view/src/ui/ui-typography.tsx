@@ -12,8 +12,8 @@ import {
   systemTypography,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
+import * as R from 'remeda'
 
 interface ComponentProps {
   className?: string
@@ -59,7 +59,7 @@ export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
     {
       className: cx(
         'ui-typography',
-        guardString(propsVariant.variant) && `ui-typography--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-typography--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiTypography,
       ),

@@ -1,6 +1,7 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import { guardString, objectMapValues } from '@gnowth/lib-utils'
+import { objectMapValues } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { Field } from '../fields/field'
 import type { DataName } from '../types'
@@ -45,7 +46,7 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
 
     if (!name) return undefined
 
-    if (guardString(name)) return schema[name as keyof Value]
+    if (R.isString(name)) return schema[name as keyof Value]
 
     if (name.length === 0) return undefined
 

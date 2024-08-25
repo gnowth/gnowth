@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 
-import { guardString } from '@gnowth/lib-utils'
 import { Fragment, useContext } from 'react'
+import * as R from 'remeda'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
@@ -16,7 +16,7 @@ export function AppFrame(props: Props): ReactElement {
 
   if (!contextApplication.frame) return <>{props.children}</>
 
-  const FrameComponent = guardString(contextApplication.frame)
+  const FrameComponent = R.isString(contextApplication.frame)
     ? contextEnvironment.frames[contextApplication.frame] || Fragment
     : contextApplication.frame
 

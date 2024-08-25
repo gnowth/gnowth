@@ -11,7 +11,7 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   boxVariant?: string
@@ -55,7 +55,7 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
     <section
       className={cx(
         'layout-section',
-        guardString(propsVariant.variant) && `layout-section--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `layout-section--${propsVariant.variant}`,
         propsVariant.className,
         styles.layoutSection,
       )}

@@ -4,8 +4,9 @@ import type { ComponentType, FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
-import { UtilNamespaced, guardString } from '@gnowth/lib-utils'
+import { UtilNamespaced } from '@gnowth/lib-utils'
 import { useCallback, useRef } from 'react'
+import * as R from 'remeda'
 
 import type { ChangeEventHandler } from './use-value'
 
@@ -106,7 +107,7 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
     <div
       className={cx(
         'input-boolean',
-        guardString(propsVariant.variant) && `input-boolean--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `input-boolean--${propsVariant.variant}`,
         propsVariant.className,
         styles.inputBooleanClass,
         styles.inputBoolean,

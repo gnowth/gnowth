@@ -11,8 +11,8 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
+import * as R from 'remeda'
 
 interface ComponentProps {
   children?: ReactNode
@@ -109,7 +109,7 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
     {
       className: cx(
         'layout-flex',
-        guardString(propsVariant.variant) && `layout-flex--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `layout-flex--${propsVariant.variant}`,
         propsVariant.className,
         styles.layoutFlex,
       ),

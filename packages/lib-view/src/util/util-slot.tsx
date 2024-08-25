@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactElement, ReactNode } from 'react'
 
-import { arrayKeyBy } from '@gnowth/lib-utils'
 import { Children, createContext, isValidElement, useContext } from 'react'
+import * as R from 'remeda'
 
 interface PropsContent {
   name: string
@@ -40,7 +40,7 @@ const SlotContent: FunctionComponent<PropsContent> = (props) => {
 
 const SlotProvider: FunctionComponent<PropsProvider> = (props) => (
   <SlotContext.Provider
-    value={arrayKeyBy(
+    value={R.indexBy(
       Children.toArray(props.slots)
         .filter<ReactElement<Props>>(isValidElement)
         .filter((slot) => slot.props.slot),
