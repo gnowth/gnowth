@@ -1,12 +1,10 @@
-import type { PredicateObjectFilter } from './predicates'
+import * as R from 'remeda'
+
 import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
 
 import { guardNumberLike, guardObject, guardUndefined } from './guards'
-import { operatorObjectFilterNot } from './operators'
 
 type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
-
-type ObjectFilter = <Item extends ObjectLiteral>(item: Item, predicate: PredicateObjectFilter<Item>) => Item
 
 type ObjectFromPairs = {
   <Key extends ObjectKey, Value>(pairs: [Key, Value][]): Record<Key, Value>
@@ -46,23 +44,8 @@ export const objectMapValues: ObjectMapValues = (item, predicate) =>
     {},
   ) as { [key in keyof typeof item]: ReturnType<typeof predicate> }
 
-export const objectPickBy: ObjectFilter = (item, predicate) =>
-  objectToEntries(item).reduce(
-    (output, [key, value]) => (predicate(value, key, item) ? { ...output, [key]: value } : output),
-    {} as typeof item,
-  )
-
-export const objectOmitBy: ObjectFilter = (item, predicate) =>
-  objectPickBy(item, operatorObjectFilterNot(predicate))
-
 export const objectDefaults: ObjectDefaults = (...items) =>
-  Object.assign(
-    {},
-    ...items
-      .filter(guardObject)
-      .toReversed()
-      .map((item) => objectOmitBy(item, guardUndefined)),
-  )
+  Object.assign({}, ...items.filter(guardObject).toReversed().map(R.omitBy(guardUndefined)))
 
 export const objectGet: ObjectGet = (item, name) =>
   Array.isArray(name)

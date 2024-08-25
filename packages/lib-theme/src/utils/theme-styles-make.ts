@@ -1,7 +1,6 @@
 import type { CSSObject } from '@emotion/serialize'
 
 import { css } from '@emotion/css'
-import { objectMapValues } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { Theme } from '../theme/theme'
@@ -17,7 +16,7 @@ type MappedType<Type, ToType> = {
 // TODO: should also merge classNames from props
 export const themeStylesMake = <Props>(configs: ConfigsMakeStyles<Props>) => {
   return function styles(props: Props, theme: Theme): MappedType<ConfigsMakeStyles<Props>, string> {
-    return objectMapValues(configs, (makeStyles) =>
+    return R.mapValues(configs, (makeStyles) =>
       R.isString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
     )
   }

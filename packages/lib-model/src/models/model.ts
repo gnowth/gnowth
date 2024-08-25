@@ -1,6 +1,5 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import { objectMapValues } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { Field } from '../fields/field'
@@ -34,7 +33,7 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   }
 
   getDefault(partial?: Partial<Value>): Value {
-    return objectMapValues(
+    return R.mapValues(
       this.schema,
       <Key extends keyof Value>(field: Field<Value[Key]>, key: Key) =>
         field.getDefault(partial?.[key]) as Value[Key],

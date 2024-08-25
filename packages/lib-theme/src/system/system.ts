@@ -1,6 +1,7 @@
 import type { CSSObject } from '@emotion/serialize'
 
-import { guardObject, objectMapValues, transformToArray } from '@gnowth/lib-utils'
+import { guardObject, transformToArray } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { Theme } from '../theme/theme'
@@ -92,5 +93,5 @@ export function systemInterpolate<Value extends number | string>(
     return makeCSSObject(configs.value)
   }
 
-  return objectMapValues(configs.value, makeCSSObject)
+  return R.mapValues(configs.value, makeCSSObject)
 }
