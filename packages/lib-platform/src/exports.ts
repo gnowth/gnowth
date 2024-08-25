@@ -1,5 +1,6 @@
 export * from './core/platform'
 export * from './core/platform-manager'
+export * from './modules/assets'
 export * from './modules/authentications'
 export * from './modules/configs'
 export * from './modules/data'

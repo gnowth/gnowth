@@ -1,4 +1,4 @@
-import type { Media } from '@gnowth/logic-core'
+import type { Media } from '@gnowth/lib-react'
 
 import type { Ingredient } from './ingredients'
 

@@ -1,7 +1,15 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { ErrorData } from './errors'
 import type { LogLevel } from './loggers.utils'
+
+// TODO: Get type from error module
+type ErrorData = {
+  code: string
+  message: string
+  method?: string
+  source?: string
+  sourceNamespace?: string
+}
 
 export { LogLevel }
 
