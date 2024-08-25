@@ -1,16 +1,10 @@
 import * as R from 'remeda'
 
-import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject, UtilObjectFromPairs } from './types'
+import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
 
 import { guardNumberLike, guardObject, guardUndefined } from './guards'
 
 type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
-
-type ObjectFromPairs = {
-  <Key extends ObjectKey, Value>(pairs: [Key, Value][]): Record<Key, Value>
-  <Pairs extends readonly [ObjectKey, unknown][]>(pairs: Pairs): UtilObjectFromPairs<Pairs>
-  <Type extends ObjectKey>(pairs: Type[][]): Record<Type, Type>
-}
 
 type ObjectMapValues = <Value, Item extends ObjectLiteral>(
   item: Item,
@@ -18,8 +12,6 @@ type ObjectMapValues = <Value, Item extends ObjectLiteral>(
 ) => { [key in keyof Item]: Value }
 
 type ObjectToEntries = <Item extends ObjectLiteral>(item: Item) => UtilEntriesFromObject<Item>[]
-
-type ObjectToKeys = <Item extends ObjectLiteral>(item: Item) => (keyof Item)[]
 
 type ObjectGet = <Item extends ObjectLiteral>(item: Item, path: string | string[]) => unknown
 
@@ -29,14 +21,7 @@ type ObjectSet = <Item extends ObjectLiteral | unknown[]>(
   value: unknown,
 ) => Item
 
-export const objectFromPairs: ObjectFromPairs = <Type extends ObjectKey>(
-  pairs: Type[][],
-): Record<Type, Type> =>
-  pairs.reduce((output, [key, value]) => ({ ...output, [key]: value }), {} as Record<Type, Type>)
-
 export const objectToEntries: ObjectToEntries = Object.entries
-
-export const objectToKeys: ObjectToKeys = Object.keys
 
 export const objectMapValues: ObjectMapValues = (item, predicate) =>
   objectToEntries(item).reduce(
