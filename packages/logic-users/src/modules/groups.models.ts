@@ -1,9 +1,10 @@
-import type { ErrorData, EventService } from '@gnowth/logic-core'
+import type { ErrorData } from '@gnowth/lib-react'
 
 import { Model } from '@gnowth/lib-model'
 import * as R from 'remeda'
 import { v4 as uuid } from 'uuid'
 
+import type { EventService } from './events'
 import type { Group, GroupData } from './groups'
 
 type Parameters = { eventService?: EventService }

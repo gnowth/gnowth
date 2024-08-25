@@ -1,3 +1,4 @@
+export * from './modules/filters'
 export * from './modules/group-filters'
 export * from './modules/groups'
 export * from './modules/user-filters'

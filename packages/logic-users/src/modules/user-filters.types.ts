@@ -1,4 +1,4 @@
-import { SortType } from '@gnowth/logic-core'
+import { SortType } from './filters'
 
 export type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
 export type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'

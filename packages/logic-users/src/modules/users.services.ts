@@ -1,3 +1,5 @@
+import type { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
+
 import type {
   QueryDetail,
   QueryKeyDetail,
@@ -5,14 +7,11 @@ import type {
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
-} from '@gnowth/logic-core'
-import type { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
-
-import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
-
+} from './queries'
 import type { UserFilterData, UserFilterParams } from './user-filters'
 import type { User, UserData } from './users.types'
 
+import { QueryService, TokenQueryEntity } from './queries'
 import { UserModel } from './users.models'
 
 type QueryKeys = {
