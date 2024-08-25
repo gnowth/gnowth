@@ -8,6 +8,7 @@ export interface PropsLayoutHeader extends SystemType<typeof layoutHeader> {
   as?: string
   children: ReactNode
   className?: string
+  'data-testid'?: string
   hidden?: boolean
   id?: string
   slot?: string
@@ -29,7 +30,11 @@ export const LayoutHeader: FunctionComponent<PropsLayoutHeader> = (props) => {
   const styles = makeStyles(propsVariant, theme)
 
   return (
-    <header className={cx('layout-header', propsVariant.className, styles.layoutHeader)} id={propsVariant.id}>
+    <header
+      className={cx('layout-header', propsVariant.className, styles.layoutHeader)}
+      data-testid={props['data-testid']}
+      id={propsVariant.id}
+    >
       {props.children}
     </header>
   )

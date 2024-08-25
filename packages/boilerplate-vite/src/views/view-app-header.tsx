@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const ViewAppHeader: FunctionComponent<Props> = () => (
-  <LayoutHeader>
+  <LayoutHeader data-testid="spa--layout-header">
     <LayoutSection
       boxVariant="float"
       paddingBottom="none"

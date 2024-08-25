@@ -47,6 +47,7 @@
   "scripts": {
     "build-ci": "storybook build --quiet --disable-telemetry",
     "build-dev": "storybook build --disable-telemetry -o ../../artifact/build-web/styleguide",
+    "build-web": "storybook build --quiet --disable-telemetry -o ../../artifact/build-web/styleguide",
     "build": "storybook build --quiet --disable-telemetry -o ../../artifact/build-web/styleguide",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf *.log .turbo",

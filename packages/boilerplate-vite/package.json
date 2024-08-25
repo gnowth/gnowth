@@ -40,7 +40,9 @@
     "vite": "5.4.2"
   },
   "scripts": {
-    "build-skip": "parcel build src/index.html --dist-dir ../../artifact/build-app",
+    "build-dev": "vite build src --outDir ../../../artifact/build-web/spa --base ./",
+    "build-web": "vite build src --outDir ../../../artifact/build-web/spa --base ./",
+    "build": "vite build src --outDir ../../../artifact/build-web/spa --base ./",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo build dist .cache",
     "lint": "npm run lint:script",
