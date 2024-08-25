@@ -150,6 +150,7 @@
     "local:project:storybook:e2e": "npm run workspace:styleguide test:e2e",
     "local:project:storybook:publish": "export $(grep -v '^#' .env.local | xargs) && npm run workspace:styleguide publish",
     "local:project:storybook:start": "npm run workspace:styleguide start-dev",
+    "local:project:vite:start-dev": "npm run workspace:vite start-dev",
     "local:run": "nodemon --exec 'ts-node --transpileOnly'",
     "local:start-cms": "concurrently 'netlify-cms-proxy-server' 'npm run workspace:nextjs start-dev'",
     "local:start-docker": "docker-compose -f ./configs/docker-compose.yml up",
@@ -165,6 +166,7 @@
     "workspace:nestjs": "npm run --workspace=@gnowth/nestjs-boilerplate",
     "workspace:nextjs": "npm run --workspace=@gnowth/nextjs-boilerplate",
     "workspace:playwright": "npm run --workspace=@gnowth/playwright-boilerplate",
-    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate"
+    "workspace:styleguide": "npm run --workspace=@gnowth/styleguide-boilerplate",
+    "workspace:vite": "npm run --workspace=@gnowth/vite-boilerplate"
   }
 }

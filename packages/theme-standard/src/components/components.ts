@@ -10,10 +10,10 @@ import * as suspense from './namespace-suspense'
 import * as type from './namespace-type'
 
 export const componentsNamespaced = {
-  [TokenComponentNamespace.boundary]: boundary,
-  [TokenComponentNamespace.icon]: icon,
-  [TokenComponentNamespace.input]: input,
-  [TokenComponentNamespace.layout]: layouts as unknown as Record<string, ComponentType>,
-  [TokenComponentNamespace.suspense]: suspense,
-  [TokenComponentNamespace.type]: type,
+  [TokenComponentNamespace.boundary]: { ...boundary },
+  [TokenComponentNamespace.icon]: { ...icon },
+  [TokenComponentNamespace.input]: { ...input },
+  [TokenComponentNamespace.layout]: { ...layouts } as unknown as Record<string, ComponentType>,
+  [TokenComponentNamespace.suspense]: { ...suspense },
+  [TokenComponentNamespace.type]: { ...type },
 }

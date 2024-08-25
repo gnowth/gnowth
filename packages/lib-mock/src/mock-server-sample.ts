@@ -32,7 +32,7 @@ export function mockServerDummy(_configs: Configs): Server {
         },
 
         mediaPrimary() {
-          return faker.image.food()
+          return faker.image.urlLoremFlickr({ category: 'food' })
         },
         name() {
           return faker.lorem.words()

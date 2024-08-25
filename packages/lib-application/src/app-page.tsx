@@ -3,7 +3,7 @@ import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement } from 'react'
 
 import { objectDefaults } from '@gnowth/lib-utils'
-import { Route, matchPath, useLocation } from 'react-router-dom'
+import { matchPath, useLocation } from 'react-router-dom'
 
 import type { PropsFrame, PropsSuspense } from './types'
 
@@ -42,27 +42,25 @@ export function AppPage(props: Props): ReactElement {
   const propsWithDefault = objectDefaults(props, propsDefault)
   const path = propsWithDefault.path ?? application.getRoute(propsWithDefault.page) ?? ''
 
-  const match = matchPath({ end: propsWithDefault.exact, path }, location.pathname)
+  const match = matchPath({ end: propsWithDefault.exact ?? false, path }, location.pathname)
   const makeResources = application.getResources(propsWithDefault.page)
   const resources = makeResources(match?.params ?? {})
   const Component = propsWithDefault.component
 
   return (
-    <Route path={propsWithDefault.exact ? path : `${path}*`}>
-      <AppProvider frame={propsWithDefault.frame} page={propsWithDefault.page} theme={propsWithDefault.theme}>
-        <AppFrame>
-          <AppBoundary>
-            <AppSuspense
-              suspense={propsWithDefault.suspense}
-              suspenseClassName={propsWithDefault.suspenseClassName}
-            >
-              <AppWhoAmI authenticated={propsWithDefault.authenticated} />
+    <AppProvider frame={propsWithDefault.frame} page={propsWithDefault.page} theme={propsWithDefault.theme}>
+      <AppFrame>
+        <AppBoundary>
+          <AppSuspense
+            suspense={propsWithDefault.suspense}
+            suspenseClassName={propsWithDefault.suspenseClassName}
+          >
+            <AppWhoAmI authenticated={propsWithDefault.authenticated} />
 
-              <Component resources={resources} />
-            </AppSuspense>
-          </AppBoundary>
-        </AppFrame>
-      </AppProvider>
-    </Route>
+            <Component resources={resources} />
+          </AppSuspense>
+        </AppBoundary>
+      </AppFrame>
+    </AppProvider>
   )
 }

@@ -2,7 +2,6 @@ import type { Theme } from '@gnowth/lib-theme'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 
 import { Fragment } from 'react'
-import { Route } from 'react-router-dom'
 
 import type { PropsFrame } from './types'
 
@@ -28,14 +27,12 @@ export function AppApplication(props: Props): ReactElement {
   const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 
   return (
-    <Route path={props.path ?? application.route}>
-      <AppProvider application={application} frame={props.frame} theme={props.theme}>
-        <AppBoundary>
-          <AppSuspense>
-            <SwitchComponent>{props.children}</SwitchComponent>
-          </AppSuspense>
-        </AppBoundary>
-      </AppProvider>
-    </Route>
+    <AppProvider application={application} frame={props.frame} theme={props.theme}>
+      <AppBoundary>
+        <AppSuspense>
+          <SwitchComponent>{props.children}</SwitchComponent>
+        </AppSuspense>
+      </AppBoundary>
+    </AppProvider>
   )
 }
