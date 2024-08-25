@@ -4,9 +4,9 @@ import type { Attributes, ComponentType, FunctionComponent, PropsWithChildren } 
 
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { withAugmented } from '@gnowth/app-users'
+import { QueryClientProvider } from '@tanstack/react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 
 import { AppError } from '../components/app-error'

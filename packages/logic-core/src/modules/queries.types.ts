@@ -1,4 +1,4 @@
-import type { QueryFunctionContext } from 'react-query'
+import type { QueryFunctionContext } from '@tanstack/react-query'
 
 type FetchMeta = {
   count: number

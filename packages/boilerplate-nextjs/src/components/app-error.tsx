@@ -2,8 +2,8 @@ import type { FunctionComponent } from 'react'
 
 import { Button, Text } from '@chakra-ui/react'
 import { LayoutSection } from '@gnowth/app-users'
+import { useQueryErrorResetBoundary } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { useQueryErrorResetBoundary } from 'react-query'
 
 type Props = {
   error: Error

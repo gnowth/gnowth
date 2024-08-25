@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
 import { Box, Progress } from '@chakra-ui/react'
-import { useIsFetching } from 'react-query'
+import { useIsFetching } from '@tanstack/react-query'
 
 export const ViewProgressGlobal: FunctionComponent = () => {
   const isFetching = useIsFetching()

@@ -2,11 +2,11 @@ import type { AppSetup } from '@gnowth/lib-application'
 import type { i18n } from 'i18next'
 
 import { appSetupCompose } from '@gnowth/lib-application'
+import { QueryCache, QueryClient } from '@tanstack/react-query'
 import { createInstance } from 'i18next'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 import i18nBackend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
-import { QueryCache, QueryClient } from 'react-query'
 
 import { dependencies } from './dependencies'
 import { makeServer } from './services/make-server'
@@ -48,10 +48,7 @@ const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
       queries: {
         // DEBT: disable query server side. find better solution
         enabled: typeof window !== 'undefined',
-        keepPreviousData: true,
         refetchOnWindowFocus: false,
-        suspense: true,
-        useErrorBoundary: dependencies.errorModel.isErrorQuery,
       },
     },
     queryCache: new QueryCache({ onError: dependencies.errorStream.pushErrorUnknown }),

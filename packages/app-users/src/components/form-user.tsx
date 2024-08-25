@@ -1,10 +1,10 @@
 import type { FunctionComponent } from 'react'
 
 import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
+import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
 import { useTranslation } from 'react-i18next'
-import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
@@ -20,13 +20,13 @@ const FormUserComponent: FunctionComponent = () => {
   const [filters] = useRecoilState(stateUserFilter)
   const queryClient = useQueryClient()
   const handleOnUserMutation = () =>
-    queryClient.invalidateQueries(
-      dependencies.userService.queryKeys.list(dependencies.userFilterModel.toParams(filters)),
-    )
-  const userMutation = useMutation(dependencies.userService.save, { onSuccess: handleOnUserMutation })
-  const userQuery = useQuery(dependencies.userService.queryKeys.detail(id), dependencies.userService.detail, {
-    enabled: !!id,
-  })
+    queryClient.invalidateQueries({
+      queryKey: dependencies.userService.queryKeys.list(dependencies.userFilterModel.toParams(filters)),
+    })
+  const userMutation = useMutation(
+    dependencies.userService.mutateOptions({ onSuccess: handleOnUserMutation }),
+  )
+  const userQuery = useSuspenseQuery(dependencies.userService.queryOptions({ id }))
 
   return (
     <LayoutSection>

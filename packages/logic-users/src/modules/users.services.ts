@@ -6,10 +6,11 @@ import type {
   QueryParametersDetail,
   QueryParametersList,
 } from '@gnowth/logic-core'
+import type { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
 
 import { QueryService, TokenQueryEntity } from '@gnowth/logic-core'
 
-import type { UserFilterParams } from './user-filters'
+import type { UserFilterData, UserFilterParams } from './user-filters'
 import type { User, UserData } from './users.types'
 
 import { UserModel } from './users.models'
@@ -61,9 +62,39 @@ export class UserService {
     this.onInit()
   }
 
+  listOptions(
+    options: Partial<{ filtersData: UserFilterData } & UseQueryOptions<QueryList<User>>>,
+  ): UseQueryOptions<QueryList<User>> {
+    return {
+      queryFn: (parameters) => this.list(parameters as QueryParametersList<UserFilterParams>),
+      queryKey: this.queryKeys.list(options.filtersData),
+      ...options,
+    }
+  }
+
+  mutateOptions(
+    options: Partial<UseMutationOptions<QueryDetail<User>, Error, User>>,
+  ): UseMutationOptions<QueryDetail<User>, Error, User> {
+    return {
+      mutationFn: (user: User) => this.save(user),
+      ...options,
+    }
+  }
+
   onInit() {
     this.#queryService = new QueryService()
     this.#userModel = new UserModel({})
+  }
+
+  queryOptions(
+    options: Partial<{ id?: string } & UseQueryOptions<QueryDetail<User>>>,
+  ): UseQueryOptions<QueryDetail<User>> {
+    return {
+      enabled: !!options.id,
+      queryFn: (parameters) => this.detail(parameters as QueryParametersDetail),
+      queryKey: this.queryKeys.detail(options.id!),
+      ...options,
+    }
   }
 
   get queryKeys(): QueryKeys {

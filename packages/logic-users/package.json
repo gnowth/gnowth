@@ -35,7 +35,8 @@
     "@gnowth/lib-application": "0.0.0",
     "@gnowth/lib-mock": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0"
+    "@gnowth/typescript-config": "0.0.0",
+    "@tanstack/react-query": "5.52.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
