@@ -11,8 +11,8 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
 import { createElement } from 'react'
+import * as R from 'remeda'
 
 interface ComponentProps {
   className?: string
@@ -53,7 +53,7 @@ export const LayoutContent: FunctionComponent<PropsLayoutContent> = (props) => {
     {
       className: cx(
         'layout-content',
-        guardString(propsVariant.variant) && `layout-content--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `layout-content--${propsVariant.variant}`,
         propsVariant.className,
         styles.layoutContent,
       ),

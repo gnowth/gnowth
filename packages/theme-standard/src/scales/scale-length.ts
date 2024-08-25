@@ -1,11 +1,11 @@
 import type { ScaleType } from '@gnowth/lib-theme'
 
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export const length = ((configs: { scaleToken?: number | string }) => {
   if (!configs.scaleToken) {
     return undefined
   }
 
-  return guardString(configs.scaleToken) ? configs.scaleToken : `${configs.scaleToken * 100}%`
+  return R.isString(configs.scaleToken) ? configs.scaleToken : `${configs.scaleToken * 100}%`
 }) satisfies ScaleType

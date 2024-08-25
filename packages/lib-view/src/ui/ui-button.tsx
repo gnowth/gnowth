@@ -13,7 +13,7 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { PropsBase } from '../types'
 import type { PropsUIIcon } from './ui-icon'
@@ -98,7 +98,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
     <button
       className={cx(
         'ui-button',
-        guardString(propsVariant.variant) && `ui-button--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-button--${propsVariant.variant}`,
         propsVariant.className,
         propsVariant.classNamespace,
         styles.uiButton,
@@ -134,7 +134,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
           />
         )}
 
-        {!propsVariant.textHidden && guardString(propsVariant.textValue) && (
+        {!propsVariant.textHidden && R.isString(propsVariant.textValue) && (
           <ComponentTypography
             className={cx(
               'ui-button__text',

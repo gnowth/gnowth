@@ -2,13 +2,9 @@ import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gn
 import type { SortDirection, SortKeyType } from '@gnowth/logic-core'
 
 import { Model } from '@gnowth/lib-model'
-import {
-  objectToKeys,
-  operatorArrayFilterAnd,
-  operatorSortMultiple,
-  predicateSortFn,
-} from '@gnowth/lib-utils'
+import { operatorArrayFilterAnd, operatorSortMultiple, predicateSortFn } from '@gnowth/lib-utils'
 import { TokenQueryPageSize } from '@gnowth/logic-core'
+import * as R from 'remeda'
 
 import type {
   UserFilter,
@@ -106,7 +102,7 @@ export class UserFilterModel extends Model<UserFilter> {
     }
 
     // TODO: check when value is not undefined but also filter is not required
-    const filterPredicates = objectToKeys(filters)
+    const filterPredicates = R.keys(filters)
       .filter((key) => filter[key] !== undefined)
       .map((key) => filters[key])
 

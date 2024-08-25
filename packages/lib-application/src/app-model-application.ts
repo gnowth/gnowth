@@ -1,7 +1,7 @@
 import type { Model } from '@gnowth/lib-model'
 import type { QueryResource } from '@gnowth/lib-query'
 
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 interface ConfigsApplication {
   route?: string
@@ -30,7 +30,7 @@ export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApp
   }
 
   getModel(model?: Model | string): Model | undefined {
-    if (!guardString(model)) return model
+    if (!R.isString(model)) return model
 
     return this.models[model]
   }

@@ -1,9 +1,6 @@
-import { guardArray, guardNullish } from './guards'
+import * as R from 'remeda'
 
 export const transformToArray = <Item>(item: Item | Item[] | null | undefined): Item[] => {
-  if (guardNullish(item)) {
-    return []
-  }
-
-  return guardArray(item) ? item : [item]
+  const nonNullishItem = item ?? []
+  return R.isArray(nonNullishItem) ? nonNullishItem : [nonNullishItem]
 }

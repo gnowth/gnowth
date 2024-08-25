@@ -12,7 +12,7 @@ import {
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReadonly<string> {
   className?: string
@@ -44,7 +44,7 @@ export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
     <label
       className={cx(
         'ui-label',
-        guardString(propsVariant.variant) && `ui-label--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-label--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiLabel,
       )}

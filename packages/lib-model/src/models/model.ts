@@ -1,6 +1,6 @@
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
-import { guardString, objectMapValues } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { Field } from '../fields/field'
 import type { DataName } from '../types'
@@ -33,7 +33,7 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   }
 
   getDefault(partial?: Partial<Value>): Value {
-    return objectMapValues(
+    return R.mapValues(
       this.schema,
       <Key extends keyof Value>(field: Field<Value[Key]>, key: Key) =>
         field.getDefault(partial?.[key]) as Value[Key],
@@ -45,7 +45,7 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
 
     if (!name) return undefined
 
-    if (guardString(name)) return schema[name as keyof Value]
+    if (R.isString(name)) return schema[name as keyof Value]
 
     if (name.length === 0) return undefined
 

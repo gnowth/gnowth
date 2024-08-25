@@ -10,7 +10,7 @@ import {
   systemTextAlign,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 export interface PropsUIDivider extends SystemType<typeof uiDivider> {
   as?: string
@@ -43,7 +43,7 @@ export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {
     <div
       className={cx(
         'ui-divider',
-        guardString(propsVariant.variant) && `ui-divider--${propsVariant.variant}`,
+        R.isString(propsVariant.variant) && `ui-divider--${propsVariant.variant}`,
         propsVariant.className,
         styles.uiDivider,
       )}

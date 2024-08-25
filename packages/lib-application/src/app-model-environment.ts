@@ -1,4 +1,4 @@
-import { guardString } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { AppModelApplication } from './app-model-application'
 
@@ -12,7 +12,7 @@ export class AppModelEnvironment {
   }
 
   getApplication(application?: AppModelApplication | string): AppModelApplication {
-    if (!guardString(application)) return application || defaultApplication
+    if (!R.isString(application)) return application || defaultApplication
 
     return this.applications[application] || defaultApplication
   }

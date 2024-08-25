@@ -1,6 +1,6 @@
 import { Theme } from '@gnowth/lib-theme'
-import { guardString } from '@gnowth/lib-utils'
 import { useContext } from 'react'
+import * as R from 'remeda'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
@@ -11,7 +11,7 @@ export function useAppTheme(theme?: Theme | string): Theme {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
   const themeOrName = theme || contextApplication.theme
-  const maybeTheme = guardString(themeOrName) ? contextEnvironment.themes[themeOrName] : themeOrName
+  const maybeTheme = R.isString(themeOrName) ? contextEnvironment.themes[themeOrName] : themeOrName
 
   return maybeTheme || defaultTheme
 }
