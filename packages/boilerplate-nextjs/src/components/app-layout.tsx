@@ -1,10 +1,12 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import { AppEnvironment } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { RecoilRoot } from 'recoil'
 
 import { setup } from '../setup'
+import { theme } from '../theme'
 import { SystemNotifications } from './system-notifications'
 
 type Props = {
@@ -19,11 +21,13 @@ export const AppLayout: FunctionComponent<Props> = (props) => {
       <body>
         <RecoilRoot>
           <QueryClientProvider client={configurations.queryClient}>
-            <ChakraProvider>
-              <SystemNotifications />
+            <AppEnvironment theme={theme}>
+              <ChakraProvider>
+                <SystemNotifications />
 
-              {props.children}
-            </ChakraProvider>
+                {props.children}
+              </ChakraProvider>
+            </AppEnvironment>
           </QueryClientProvider>
         </RecoilRoot>
       </body>
