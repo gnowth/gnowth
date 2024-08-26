@@ -21,8 +21,6 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@fontsource/raleway": "5.0.20",
-    "@fontsource/roboto": "5.0.14",
     "@gnowth/lib-application": "0.0.0",
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",

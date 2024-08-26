@@ -1,14 +1,3 @@
 {
-  "extends": "@gnowth/typescript-config",
-  "exclude": [
-    "**/__generated__/",
-    "**/.next/",
-    "**/.parcel-cache/",
-    "**/.turbo/",
-    "**/artifact/",
-    "**/build/",
-    "**/coverage/",
-    "**/node_modules/",
-    "**/volumes/"
-  ]
+  "extends": "@gnowth/typescript-config"
 }

@@ -20,6 +20,8 @@ import { VariantManager } from './variants'
 
 type Configs = {
   componentsNamespaced?: UtilNamespaced<UtilNamespaced<ComponentType>>
+  // TODO: move global into stylesheet
+  global?: string
   medias?: UtilNamespaced<Media>
   palettes?: PaletteType[]
   scales?: UtilNamespaced<ScaleType>
@@ -37,6 +39,7 @@ export class Theme {
   #scaleManager: ScaleManager
   #variableManager: VariableManager
   #variantManager: VariantManager
+  global?: string
 
   constructor(configs?: Configs) {
     this.#configs = configs
@@ -46,6 +49,7 @@ export class Theme {
     this.#scaleManager = new ScaleManager(configs)
     this.#variableManager = new VariableManager(configs)
     this.#variantManager = new VariantManager(configs)
+    this.global = configs?.global
   }
 
   #configsMerge(...configs: Configs[]): Configs {
