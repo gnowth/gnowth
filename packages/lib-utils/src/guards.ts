@@ -9,7 +9,7 @@ type FunctionType = (...args: any[]) => any
 
 export const guardNumberLike: Guard<number> = (value): value is number => !isNaN(value as number)
 export const guardObject = <ObjectType extends object = object>(value: unknown): value is ObjectType =>
-  !!value && typeof value === 'object' && value.constructor === Object
+  !!value && typeof value === 'object'
 export const guardUndefined: Guard<undefined> = (value): value is undefined => value === undefined
 
 export const guardFunction = <Type extends FunctionType = FunctionType>(value: unknown): value is Type =>
