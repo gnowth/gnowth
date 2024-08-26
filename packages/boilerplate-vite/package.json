@@ -2,6 +2,8 @@
   "author": "Thierry Wong",
   "description": "Boilerplate for mono application",
   "license": "AGPL-3.0-only",
+  "main": "src/exports.ts",
+  "module": "src/exports.ts",
   "name": "@gnowth/vite-boilerplate",
   "prettier": "@gnowth/prettier-config",
   "private": true,

@@ -58,7 +58,7 @@ jobs:
       - uses: ./.github/actions/workspace-setup
 
       - name: Build website
-        run: npm run ci:project:nextjs:build
+        run: npm run ci:project:web:build
 
       - name: End to end test using mock
         run: npm run ci:e2e:mock
