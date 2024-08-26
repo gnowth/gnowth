@@ -96,7 +96,6 @@ jobs:
           autoAcceptChanges: 'main'
           buildScriptName: build-ci
           exitOnceUploaded: true
-          onlyChanged: true
           projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
           workingDir: packages/boilerplate-styleguide
           zip: true
