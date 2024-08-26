@@ -4,6 +4,7 @@ import type { Attributes, ComponentType, FunctionComponent, PropsWithChildren } 
 
 import { ChakraProvider, VStack } from '@chakra-ui/react'
 import { withAugmented } from '@gnowth/app-users'
+import { AppEnvironment } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -14,6 +15,7 @@ import { AppHead } from '../components/app-head'
 import { AppLoading } from '../components/app-loading'
 import { SystemNotifications } from '../components/system-notifications'
 import { setup } from '../setup'
+import { theme } from '../theme'
 
 const configurations = setup({})
 
@@ -44,15 +46,17 @@ const App: FunctionComponent<Props> = (props) => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={configurations.queryClient}>
-        <ChakraProvider>
-          <Head>
-            <AppHead />
-          </Head>
+        <AppEnvironment theme={theme}>
+          <ChakraProvider>
+            <Head>
+              <AppHead />
+            </Head>
 
-          <SystemNotifications />
+            <SystemNotifications />
 
-          <Wrapper>{page}</Wrapper>
-        </ChakraProvider>
+            <Wrapper>{page}</Wrapper>
+          </ChakraProvider>
+        </AppEnvironment>
       </QueryClientProvider>
     </RecoilRoot>
   )
