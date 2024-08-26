@@ -93,6 +93,7 @@ jobs:
       - uses: ./.github/actions/workspace-setup
       - uses: chromaui/action@v11
         with:
+          autoAcceptChanges: 'main'
           buildScriptName: build-ci
           exitOnceUploaded: true
           onlyChanged: true
