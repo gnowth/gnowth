@@ -82,3 +82,20 @@ jobs:
       - uses: ./.github/actions/workspace-setup
       - run: npm run ci:project:storybook:build
       - run: npm run ci:project:storybook:e2e
+
+  styleguide_build_and_publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/workspace-setup
+      - uses: chromaui/action@v11
+        with:
+          autoAcceptChanges: 'main'
+          buildScriptName: build-ci
+          exitOnceUploaded: true
+          projectToken: ${{ env.STYLEGUIDE_CHROMATIC_TOKEN }}
+          workingDir: packages/boilerplate-styleguide
+          zip: true
