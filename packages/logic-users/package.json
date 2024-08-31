@@ -26,7 +26,7 @@
   "dependencies": {
     "@gnowth/lib-model": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
-    "axios": "1.7.5",
+    "axios": "1.7.6",
     "remeda": "2.11.0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "@gnowth/lib-mock": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tanstack/react-query": "5.52.1"
+    "@tanstack/react-query": "5.53.1"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

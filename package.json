@@ -65,8 +65,8 @@
     "ci:project:storybook:e2e": "start-server-and-test 'serve -l 6006 packages/boilerplate-styleguide/storybook-static' http://localhost:6006 'npm run workspace:styleguide test:e2e'"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.4.0",
-    "@commitlint/config-conventional": "19.2.2",
+    "@commitlint/cli": "19.4.1",
+    "@commitlint/config-conventional": "19.4.1",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
@@ -89,7 +89,7 @@
     "start-server-and-test": "2.0.5",
     "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
-    "turbo": "2.0.14",
+    "turbo": "2.1.1",
     "typescript": "5.5.4"
   },
   "scripts": {
