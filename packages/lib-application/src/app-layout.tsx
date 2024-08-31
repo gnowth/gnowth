@@ -14,7 +14,6 @@ interface Props {
   id?: string
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
 }
@@ -30,7 +29,6 @@ export function AppLayout(props: Props): ReactElement {
       className: props.className,
       classNamespace: props.classNamespace,
       id: props.id,
-      spacing: props.layoutSpacing,
       variant: props.layoutVariant,
     },
     props.layoutProps,

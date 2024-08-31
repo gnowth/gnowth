@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Button, Flex, HStack, Heading, Spacer } from '@chakra-ui/react'
+import { Button, Heading, Spacer } from '@chakra-ui/react'
+import { LayoutStack } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 
 import { dependencies } from '../dependencies'
@@ -23,19 +24,19 @@ const SectionHeaderComponent: FunctionComponent = () => {
           paddingY: '3',
         }}
       >
-        <Flex>
+        <LayoutStack gap="none" variant="horizontal">
           <Heading color="white" size="md">
             {t('Teams App')}
           </Heading>
 
           <Spacer />
 
-          <HStack>
+          <LayoutStack gap="xs" variant="horizontal">
             <Button size="xs">{t('Sign up')}</Button>
 
             <Button size="xs">{t('Log in')}</Button>
-          </HStack>
-        </Flex>
+          </LayoutStack>
+        </LayoutStack>
       </LayoutSection>
 
       <LayoutSection
@@ -46,7 +47,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
           borderColor: 'gray.200',
         }}
       >
-        <HStack>
+        <LayoutStack gap="xs" variant="horizontal">
           <NavLink href={dependencies.appModel.routes.dashboard()} prefetch={false}>
             {t('Dashboard')}
           </NavLink>
@@ -74,7 +75,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
           >
             {t('Generated page')}
           </NavLink>
-        </HStack>
+        </LayoutStack>
       </LayoutSection>
 
       <ViewProgressGlobal />

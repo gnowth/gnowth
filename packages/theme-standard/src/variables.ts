@@ -9,7 +9,7 @@ export const headerHeight = '' // maybe pos
 export const fontHeader = 'Raleway, Trebuchet MS, Avenir, Segoe UI, sans‑serif'
 export const fontBody = 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif'
 export const widthContent = '340px'
-export const gridSpacing = space.md
+export const gridGap = space.md
 export const mobileBreakpoint = breakpoint.sm
 
 export const variables = {

@@ -19,11 +19,11 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   children: ReactNode
   className?: string
   classNamespace?: string
+  'data-testid'?: string
   hidden?: boolean
   id?: string
   layout?: string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
   variant?: PropsLayoutSection | string
@@ -59,17 +59,17 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
         propsVariant.className,
         styles.layoutSection,
       )}
+      data-testid={propsVariant['data-testid']}
       id={propsVariant.id}
     >
       <AppLayout
         className={cx(
-          'layout-section__layout',
-          propsVariant.classNamespace && `${propsVariant.classNamespace}__layout`,
+          'layout-section--layout',
+          propsVariant.classNamespace && `${propsVariant.classNamespace}--layout`,
         )}
-        id={propsVariant.id && `${propsVariant.id}__layout`}
+        id={propsVariant.id && `${propsVariant.id}--layout`}
         layout={propsVariant.layout}
         layoutProps={propsVariant.layoutProps}
-        layoutSpacing={propsVariant.layoutSpacing}
         layoutVariant={propsVariant.layoutVariant}
       >
         {propsVariant.children}

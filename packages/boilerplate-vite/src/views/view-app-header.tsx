@@ -1,14 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import {
-  AppLink,
-  LayoutFlex,
-  LayoutHeader,
-  LayoutSection,
-  UIButton,
-  UIIcon,
-  UITypography,
-} from '@gnowth/lib-react'
+import { AppLink, LayoutFlex, LayoutSection, UIButton, UIIcon, UITypography } from '@gnowth/lib-react'
 
 import { TokenApplication } from '../app-model-environment'
 
@@ -16,10 +8,11 @@ interface Props {
   slot?: string
 }
 
-export const ViewAppHeader: FunctionComponent<Props> = () => (
-  <LayoutHeader data-testid="spa--layout-header">
+export const ViewAppHeader: FunctionComponent<Props> = () => {
+  return (
     <LayoutSection
       boxVariant="float"
+      data-testid="spa--layout-header"
       paddingBottom="none"
       paddingTop="none"
       palette="text"
@@ -30,7 +23,7 @@ export const ViewAppHeader: FunctionComponent<Props> = () => (
 
       <UITypography value="Header" />
 
-      <LayoutFlex spacing={0}>
+      <LayoutFlex gap="none">
         <AppLink application={TokenApplication.recipes}>
           <UIButton textValue="Recipes" variant="navigation" />
         </AppLink>
@@ -40,5 +33,5 @@ export const ViewAppHeader: FunctionComponent<Props> = () => (
         </AppLink>
       </LayoutFlex>
     </LayoutSection>
-  </LayoutHeader>
-)
+  )
+}

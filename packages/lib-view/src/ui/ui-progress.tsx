@@ -55,9 +55,9 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
         <div
           className={cx(
             stylesLayout.layoutProgress,
-            props.classNamespace && `${props.classNamespace}__progress`,
+            props.classNamespace && `${props.classNamespace}--progress`,
           )}
-          id={props.id && `${props.id}__progress`}
+          id={props.id && `${props.id}--progress`}
         >
           <UtilSlot.Content name="progress" />
         </div>
@@ -67,9 +67,9 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
         <div
           className={cx(
             stylesLayout.layoutContent,
-            props.classNamespace && `${props.classNamespace}__content`,
+            props.classNamespace && `${props.classNamespace}--content`,
           )}
-          id={props.id && `${props.id}__content`}
+          id={props.id && `${props.id}--content`}
         >
           <UtilSlot.Content name="content" />
         </div>
@@ -92,7 +92,6 @@ export interface PropsUIProgress
   hidden?: boolean
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: number | string
   layoutVariant?: string
   slot?: string
   thickness?: number
@@ -257,18 +256,17 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
       id={propsVariant.id}
     >
       <AppLayout
-        classNamespace="ui-progress__layout"
-        id={propsVariant.id && `${propsVariant.id}__layout`}
+        classNamespace="ui-progress--layout"
+        id={propsVariant.id && `${propsVariant.id}--layout`}
         layout={propsVariant.layout}
         layoutProps={propsVariant.layoutProps}
-        layoutSpacing={propsVariant.layoutSpacing}
         layoutVariant={propsVariant.layoutVariant}
       >
         <UtilSlot slot="progress">
           <svg
             className={cx(
-              'ui-progress__svg',
-              propsVariant.classNamespace && `${propsVariant.classNamespace}__svg`,
+              'ui-progress--svg',
+              propsVariant.classNamespace && `${propsVariant.classNamespace}--svg`,
               styles.uiProgressSvg,
             )}
             focusable="false"
@@ -278,8 +276,8 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
             {propsVariant.bufferPalette && propsVariant.value === null && (
               <circle
                 className={cx(
-                  'ui-progress__circle-buffer',
-                  propsVariant.classNamespace && `${propsVariant.classNamespace}__circle-buffer`,
+                  'ui-progress--circle-buffer',
+                  propsVariant.classNamespace && `${propsVariant.classNamespace}--circle-buffer`,
                   styles.uiProgressCircle,
                   styles.uiProgressCircleBuffer,
                 )}
@@ -291,8 +289,8 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
 
             <circle
               className={cx(
-                'ui-progress__circle',
-                propsVariant.classNamespace && `${propsVariant.classNamespace}__circle`,
+                'ui-progress--circle',
+                propsVariant.classNamespace && `${propsVariant.classNamespace}--circle`,
                 styles.uiProgressCircle,
                 propsVariant.value !== null && !ready && styles.uiProgressCircleInitial,
               )}

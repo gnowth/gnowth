@@ -19,7 +19,6 @@ export interface PropsLayout {
   className?: string
   classNamespace?: string
   id?: string
-  spacing?: number | string
   variant?: PropsLayout | string
 }
 

@@ -9,7 +9,6 @@ import { settings } from './settings'
 import { setup } from './setup'
 import { theme } from './theme'
 import { ViewFrameDefault } from './views/view-frame-default'
-import { ViewFrameRecipes } from './views/view-frame-recipes'
 import { ViewFrameTasks } from './views/view-frame-tasks'
 
 // TODO: add recipe application
@@ -38,7 +37,7 @@ createRoot(document.getElementById('main')!).render(
       }}
       environment={configurations.appModelEnvironment}
       frame="default"
-      frames={{ default: ViewFrameDefault, recipes: ViewFrameRecipes, tasks: ViewFrameTasks }}
+      frames={{ default: ViewFrameDefault, tasks: ViewFrameTasks }}
       theme={theme}
     >
       <ApplicationAuth application={TokenApplication.auth} />

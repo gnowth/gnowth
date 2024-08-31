@@ -4,7 +4,7 @@ import type { FunctionComponent, ReactNode } from 'react'
 import { useAppTheme } from '@gnowth/lib-application'
 import { cx, systemCompose, systemSpace, systemZIndex, themeStylesMake } from '@gnowth/lib-theme'
 
-export interface PropsLayoutHeader extends SystemType<typeof layoutHeader> {
+export interface PropsLayoutAppHeader extends SystemType<typeof layoutAppHeader> {
   as?: string
   children: ReactNode
   className?: string
@@ -12,16 +12,16 @@ export interface PropsLayoutHeader extends SystemType<typeof layoutHeader> {
   hidden?: boolean
   id?: string
   slot?: string
-  variant?: PropsLayoutHeader | string
+  variant?: PropsLayoutAppHeader | string
 }
 
-const layoutHeader = systemCompose(systemSpace(), systemZIndex())
-const makeStyles = themeStylesMake({ layoutHeader })
-const propsDefault: Partial<PropsLayoutHeader> = {
+const layoutAppHeader = systemCompose(systemSpace(), systemZIndex())
+const makeStyles = themeStylesMake({ layoutAppHeader })
+const propsDefault: Partial<PropsLayoutAppHeader> = {
   zIndex: 'frame',
 }
 
-export const LayoutHeader: FunctionComponent<PropsLayoutHeader> = (props) => {
+export const LayoutAppHeader: FunctionComponent<PropsLayoutAppHeader> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -31,7 +31,7 @@ export const LayoutHeader: FunctionComponent<PropsLayoutHeader> = (props) => {
 
   return (
     <header
-      className={cx('layout-header', propsVariant.className, styles.layoutHeader)}
+      className={cx('layout-app-header', propsVariant.className, styles.layoutAppHeader)}
       data-testid={props['data-testid']}
       id={propsVariant.id}
     >
