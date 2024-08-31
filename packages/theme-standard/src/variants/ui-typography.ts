@@ -3,7 +3,6 @@ import type { PropsUITypography } from '@gnowth/lib-view'
 
 import { TokenFont } from '@gnowth/lib-theme'
 
-// TODO: add variant link
 export const body1: VariantType<PropsUITypography> = {
   as: 'p',
   fontFamily: TokenFont.body,

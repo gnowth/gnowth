@@ -116,11 +116,11 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
     >
       <ComponentIcon
         className={cx(
-          'input-boolean__icon',
-          propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+          'input-boolean--icon',
+          propsVariant.classNamespace && `${propsVariant.classNamespace}--icon`,
           propsVariant.iconClassName,
         )}
-        id={propsVariant.id && `${propsVariant.id}__icon`}
+        id={propsVariant.id && `${propsVariant.id}--icon`}
         size={propsVariant.iconSize}
         slot="icon"
         value={iconValue(propsVariant, value)}
@@ -130,8 +130,8 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
       <input
         checked={!!value}
         className={cx(
-          'input-boolean__input',
-          propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+          'input-boolean--input',
+          propsVariant.classNamespace && `${propsVariant.classNamespace}--icon`,
           propsVariant.inputClassName,
           styles.inputBooleanInput,
         )}

@@ -1,17 +1,18 @@
 import type { FunctionComponent } from 'react'
 
 import { PagesPageToken } from '@gnowth/app-pages'
-import { AppLink, LayoutFlex, LayoutFooter, LayoutSection, UITypography } from '@gnowth/lib-react'
+import { AppLink, LayoutFlex, LayoutSection, UITypography } from '@gnowth/lib-react'
 
 interface Props {
   slot?: string
 }
 
-export const ViewAppFooter: FunctionComponent<Props> = () => (
-  <LayoutFooter data-testid="spa--layout-footer">
+export const ViewAppFooter: FunctionComponent<Props> = () => {
+  return (
     <LayoutSection
       boxVariant="separator"
-      layoutProps={{ spacing: 'xs' }}
+      data-testid="spa--layout-footer"
+      layoutProps={{ gap: 'xs' }}
       palette="text"
       paletteWeight="a100"
       variant="page"
@@ -32,5 +33,5 @@ export const ViewAppFooter: FunctionComponent<Props> = () => (
         </AppLink>
       </LayoutFlex>
     </LayoutSection>
-  </LayoutFooter>
-)
+  )
+}

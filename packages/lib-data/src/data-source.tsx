@@ -17,7 +17,6 @@ interface Props<Value extends DataValue> extends PropsUseDataSource<Value> {
   children: ReactNode
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: number | string
   layoutVariant?: string
   theme?: Theme | string
 }
@@ -29,12 +28,7 @@ export function DataSource<Value extends DataValue>(props: Props<Value>): ReactE
   return (
     <AppTheme theme={props.theme}>
       <DataContext.Provider value={dataSource}>
-        <AppLayout
-          layout={props.layout}
-          layoutProps={props.layoutProps}
-          layoutSpacing={props.layoutSpacing}
-          layoutVariant={props.layoutVariant}
-        >
+        <AppLayout layout={props.layout} layoutProps={props.layoutProps} layoutVariant={props.layoutVariant}>
           {props.children}
         </AppLayout>
       </DataContext.Provider>

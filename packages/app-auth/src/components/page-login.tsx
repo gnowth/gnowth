@@ -30,7 +30,7 @@ export function PageLogin(): ReactElement {
 
           <DataSource
             layout="flex"
-            layoutSpacing="sm"
+            layoutProps={{ gap: 'sm' }}
             layoutVariant="verticalStretch"
             mode="uncontrolled"
             value={{ password: 'pass', username: 'user' }}

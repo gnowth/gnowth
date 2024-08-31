@@ -45,50 +45,56 @@ export const ViewRecipeIngredients: FunctionComponent<Props> = () => {
   )
 }
 
-export const ViewRecipeIngredients2: FunctionComponent = () => (
-  <DataSource context layout="panel">
-    <AppLayout layout="horizontal" slot="header">
-      <UITypography>{locale.title}</UITypography>
+export const ViewRecipeIngredients2: FunctionComponent = () => {
+  return (
+    <DataSource context layout="panel">
+      <AppLayout layout="horizontal" slot="header">
+        <UITypography>{locale.title}</UITypography>
 
-      <DataConnect component="display" name="serving" />
-    </AppLayout>
+        <DataConnect component="display" name="serving" />
+      </AppLayout>
 
-    <DataSuspense>
-      <DataConnect component="list" name="ingredients" slot="content" />
-    </DataSuspense>
-  </DataSource>
-)
+      <DataSuspense>
+        <DataConnect component="list" name="ingredients" slot="content" />
+      </DataSuspense>
+    </DataSource>
+  )
+}
 
-export const ViewRecipeIngredients3: FunctionComponent = () => (
-  <DataSource context layout="panel">
-    <AppLayout layout="horizontal" slot="header">
-      <UITypography>{locale.title}</UITypography>
+export const ViewRecipeIngredients3: FunctionComponent = () => {
+  return (
+    <DataSource context layout="panel">
+      <AppLayout layout="horizontal" slot="header">
+        <UITypography>{locale.title}</UITypography>
 
-      <DataConnect component="display" name="serving" />
-    </AppLayout>
+        <DataConnect component="display" name="serving" />
+      </AppLayout>
 
-    <DataConnect component="listColumn" name="ingredients" slot="content" suspense="placeholderList" />
-  </DataSource>
-)
+      <DataConnect component="listColumn" name="ingredients" slot="content" suspense="placeholderList" />
+    </DataSource>
+  )
+}
 
 // interface Mo {
 //   [key: string]: () => unknown;
 // }
 
 // if it was there was an action? transfer/uplink
-export const ViewRecipeIngredients4: FunctionComponent = () => (
-  <DataSource context layout="panel">
-    <AppLayout layout="horizontal" slot="header">
-      <UITypography>{locale.title}</UITypography>
+export const ViewRecipeIngredients4: FunctionComponent = () => {
+  return (
+    <DataSource context layout="panel">
+      <AppLayout layout="horizontal" slot="header">
+        <UITypography>{locale.title}</UITypography>
 
-      <DataConnect component="display" name="serving" />
-    </AppLayout>
+        <DataConnect component="display" name="serving" />
+      </AppLayout>
 
-    <DataConnect component="listColumn" name="ingredients" slot="content" suspense="placeholderList" />
+      <DataConnect component="listColumn" name="ingredients" slot="content" suspense="placeholderList" />
 
-    {/* TODO: implement action below in DataTrigger? */}
-    {/* <DataTrigger action={(model: Mo) => model.saveToBackend()} /> */}
+      {/* TODO: implement action below in DataTrigger? */}
+      {/* <DataTrigger action={(model: Mo) => model.saveToBackend()} /> */}
 
-    {/* <DataTrigger action="textToModel" /> */}
-  </DataSource>
-)
+      {/* <DataTrigger action="textToModel" /> */}
+    </DataSource>
+  )
+}

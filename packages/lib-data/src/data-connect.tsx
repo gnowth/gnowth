@@ -27,7 +27,6 @@ interface Props extends PropsUseDataConnect {
   labelValue?: string
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
-  layoutSpacing?: number | string
   layoutVariant?: string
   many?: boolean
   readonly?: boolean
@@ -89,7 +88,6 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
           <AppLayout
             layout={propsWithDefault.layout}
             layoutProps={propsWithDefault.layoutProps}
-            layoutSpacing={propsWithDefault.layoutSpacing}
             layoutVariant={propsWithDefault.layoutVariant}
           >
             {propsWithDefault.labelValue && LabelComponent && (

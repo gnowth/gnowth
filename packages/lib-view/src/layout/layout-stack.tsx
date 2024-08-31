@@ -20,68 +20,43 @@ interface ComponentProps {
   className?: string
   id?: string
 }
-export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFlex> {
+export interface PropsLayoutStack extends PropsLayout, SystemType<typeof layoutStack> {
   as?: ComponentType<ComponentProps> | null | string
   children: ReactNode
   className?: string
   hidden?: boolean
   id?: string
   slot?: string
-  variant?: PropsLayoutFlex | string
+  variant?: PropsLayoutStack | string
   variantNamespace?: string
-  variants?: UtilNamespaced<Partial<PropsLayoutFlex>>
+  variants?: UtilNamespaced<Partial<PropsLayoutStack>>
 }
 
-const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
-const makeStyles = themeStylesMake({ layoutFlex })
+const layoutStack = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
+const makeStyles = themeStylesMake({ layoutStack })
 
-const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {
-  horizontalBetween: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
-  horizontalCenter: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-
-  horizontalLeft: {
-    alignItems: 'center',
+const variants: UtilNamespaced<Partial<PropsLayoutStack>> = {
+  horizontal: {
+    alignItems: 'stretch',
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
-
-  horizontalReverseLeft: {
-    alignItems: 'center',
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-start',
-  },
-
-  horizontalRight: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-
-  verticalStretch: {
+  vertical: {
     alignItems: 'stretch',
     flexDirection: 'column',
   },
 }
 
-const propsDefault: Partial<PropsLayoutFlex> = {
+const propsDefault: Partial<PropsLayoutStack> = {
   display: 'flex',
   gap: 'md',
-  variant: 'horizontalLeft',
-  variantNamespace: 'layoutFlex',
+  variant: 'vertical',
+  variantNamespace: 'layoutStack',
   variants,
 }
 
 // TODO: add responsive
-export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
+export const LayoutStack: FunctionComponent<PropsLayoutStack> = (props) => {
   const theme = useAppTheme()
 
   if (props.hidden) return null
@@ -93,10 +68,10 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
     propsVariant.as || 'div',
     {
       className: cx(
-        'layout-flex',
-        R.isString(propsVariant.variant) && `layout-flex--${propsVariant.variant}`,
+        'layout-stack',
+        R.isString(propsVariant.variant) && `layout-stack--${propsVariant.variant}`,
         propsVariant.className,
-        styles.layoutFlex,
+        styles.layoutStack,
       ),
       id: propsVariant.id,
     },

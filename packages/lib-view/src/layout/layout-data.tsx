@@ -1,5 +1,5 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
-import type { FunctionComponent, ReactNode } from 'react'
+import type { ComponentProps, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
 
@@ -9,7 +9,7 @@ import { LayoutFlex } from './layout-flex'
 
 export interface PropsLayoutData {
   children: ReactNode
-  spacing?: number | string
+  gap?: ComponentProps<typeof LayoutFlex>['gap']
   variant?: PropsLayoutData | string
   variantNamespace?: string
   variants?: UtilNamespaced<Partial<PropsLayoutData>>
@@ -22,7 +22,7 @@ const variants = {
   inlineLabelRight: { wrapperVariant: 'horizontalReverseLeft' },
 }
 const propsDefault: Partial<PropsLayoutData> = {
-  spacing: 'xxs',
+  gap: 'xxs',
   variant: 'block',
   variantNamespace: 'layoutData',
   variants,
@@ -34,15 +34,15 @@ export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {
 
   return (
     <UtilSlot.Provider slots={props.children}>
-      <LayoutFlex className="layout-data" spacing={propsVariant.spacing} variant="verticalStretch">
+      <LayoutFlex className="layout-data" gap={propsVariant.gap} variant="verticalStretch">
         <LayoutFlex
-          className="layout-data__content-wrapper"
-          spacing={propsVariant.spacing}
+          className="layout-data--content-wrapper"
+          gap={propsVariant.gap}
           variant={propsVariant.wrapperVariant}
         >
           <UtilSlot.Content name="label" />
 
-          <LayoutContent className="layout-data__content" flexGrow="1">
+          <LayoutContent className="layout-data--content" flexGrow="1">
             <UtilSlot.Content name="input" />
           </LayoutContent>
         </LayoutFlex>

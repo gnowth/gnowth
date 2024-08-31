@@ -37,7 +37,6 @@ export type PropsUIButton = PropsBase<
     iconVariant?: string
     layout?: string
     layoutProps?: Record<string, unknown>
-    layoutSpacing?: number | string
     layoutVariant?: string
     media?: string
     mediaPrintDisabled?: boolean
@@ -74,7 +73,7 @@ const makeStyles = themeStylesMake({ uiButton })
 // TODO: add default palette?
 const propsDefault: PropsUIButton = {
   layout: 'flex',
-  layoutSpacing: 'xs',
+  layoutProps: { gap: 'xs' },
   layoutVariant: 'horizontalCenter',
   palette: 'textPrimary',
   progressHidden: true,
@@ -110,23 +109,22 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
     >
       <AppLayout
         className={cx(
-          'ui-button__layout',
-          propsVariant.classNamespace && `${propsVariant.classNamespace}__layout`,
+          'ui-button--layout',
+          propsVariant.classNamespace && `${propsVariant.classNamespace}--layout`,
         )}
-        id={propsVariant.id && `${propsVariant.id}__layout`}
+        id={propsVariant.id && `${propsVariant.id}--layout`}
         layout={propsVariant.layout}
         layoutProps={propsVariant.layoutProps}
-        layoutSpacing={propsVariant.layoutSpacing}
         layoutVariant={propsVariant.layoutVariant}
       >
         {!propsVariant.iconHidden && !!propsVariant.iconValue && (
           <ComponentIcon
             className={cx(
-              'ui-button__icon',
-              propsVariant.classNamespace && `${propsVariant.classNamespace}__icon`,
+              'ui-button--icon',
+              propsVariant.classNamespace && `${propsVariant.classNamespace}--icon`,
               propsVariant.iconClassName,
             )}
-            id={propsVariant.id && `${propsVariant.id}__icon`}
+            id={propsVariant.id && `${propsVariant.id}--icon`}
             size={propsVariant.iconSize}
             slot="icon"
             value={propsVariant.iconValue}
@@ -137,11 +135,11 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
         {!propsVariant.textHidden && R.isString(propsVariant.textValue) && (
           <ComponentTypography
             className={cx(
-              'ui-button__text',
-              propsVariant.classNamespace && `${propsVariant.classNamespace}__text`,
+              'ui-button--text',
+              propsVariant.classNamespace && `${propsVariant.classNamespace}--text`,
               propsVariant.textClassName,
             )}
-            id={propsVariant.id && `${propsVariant.id}__text`}
+            id={propsVariant.id && `${propsVariant.id}--text`}
             slot="text"
             value={propsVariant.textValue}
             variant={propsVariant.textVariant}
@@ -151,11 +149,11 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
         {!propsVariant.progressHidden && (
           <ComponentProgress
             className={cx(
-              'ui-button__progress',
-              propsVariant.classNamespace && `${propsVariant.classNamespace}__progress`,
+              'ui-button--progress',
+              propsVariant.classNamespace && `${propsVariant.classNamespace}--progress`,
               propsVariant.progressClassName,
             )}
-            id={propsVariant.id && `${propsVariant.id}__progress`}
+            id={propsVariant.id && `${propsVariant.id}--progress`}
             palette={propsVariant.progressPalette}
             paletteForContrast={propsVariant.progressPaletteForContrast}
             paletteWeight={propsVariant.progressPaletteWeight}

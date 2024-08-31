@@ -1,7 +1,6 @@
 import {
   Avatar,
   Button,
-  HStack,
   Skeleton,
   Table,
   TableCaption,
@@ -11,8 +10,8 @@ import {
   Th,
   Thead,
   Tr,
-  VStack,
 } from '@chakra-ui/react'
+import { LayoutFlex, LayoutStack } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { FunctionComponent, useMemo } from 'react'
@@ -41,7 +40,7 @@ const SectionUsersComponent: FunctionComponent = () => {
 
   return (
     <LayoutSection>
-      <VStack spacing="10">
+      <LayoutStack gap="lg">
         <Table variant="simple">
           <Thead>
             <Tr>
@@ -65,11 +64,11 @@ const SectionUsersComponent: FunctionComponent = () => {
             {data?.data.map((user) => (
               <Tr key={dependencies.userModel.getKey(user)}>
                 <Td py="2">
-                  <HStack>
+                  <LayoutFlex gap="xs">
                     <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
                     <Text>{dependencies.userModel.getNameFull(user)}</Text>
-                  </HStack>
+                  </LayoutFlex>
                 </Td>
 
                 <Td>{user.role}</Td>
@@ -79,7 +78,7 @@ const SectionUsersComponent: FunctionComponent = () => {
                 <Td>{user.status}</Td>
 
                 <Td py="2">
-                  <HStack justifyContent="flex-end">
+                  <LayoutFlex gap="xs" variant="horizontalRight">
                     <Link
                       href={dependencies.appModel.routes.user(dependencies.userModel.getId(user))}
                       prefetch={false}
@@ -88,7 +87,7 @@ const SectionUsersComponent: FunctionComponent = () => {
                     </Link>
 
                     <Button size="xs">{t('Deactivate')}</Button>
-                  </HStack>
+                  </LayoutFlex>
                 </Td>
               </Tr>
             ))}
@@ -114,7 +113,7 @@ const SectionUsersComponent: FunctionComponent = () => {
             value={{ page: filters.page, pageSize: filters.pageSize }}
           />
         )}
-      </VStack>
+      </LayoutStack>
     </LayoutSection>
   )
 }

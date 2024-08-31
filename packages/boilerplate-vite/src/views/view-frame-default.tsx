@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactNode } from 'react'
 
-import { LayoutApp, UtilSlot } from '@gnowth/lib-react'
+import { AppLayout } from '@gnowth/lib-react'
 
 import { ViewAppFooter } from './view-app-footer'
 import { ViewAppHeader } from './view-app-header'
@@ -10,11 +10,17 @@ type Props = {
 }
 
 export const ViewFrameDefault: FunctionComponent<Props> = (props) => (
-  <LayoutApp palette="text" paletteWeight="100" spacing={0}>
-    <ViewAppHeader slot="header" />
+  <AppLayout layout="app">
+    <AppLayout layout="appHeader" slot="header">
+      <ViewAppHeader />
+    </AppLayout>
 
-    <UtilSlot slot="main">{props.children}</UtilSlot>
+    <AppLayout layout="appMain" layoutProps={{ flexGrow: 1 }} slot="main">
+      {props.children}
+    </AppLayout>
 
-    <ViewAppFooter slot="footer" />
-  </LayoutApp>
+    <AppLayout layout="appFooter" slot="footer">
+      <ViewAppFooter />
+    </AppLayout>
+  </AppLayout>
 )
