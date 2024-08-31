@@ -29,7 +29,7 @@
     "@gnowth/app-configs": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/logic-users": "0.0.0",
-    "@tanstack/react-query": "5.52.1",
+    "@tanstack/react-query": "5.53.1",
     "formik": "2.4.6",
     "react-error-boundary": "4.0.13",
     "react-i18next": "13.2.2",
@@ -40,7 +40,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@testing-library/react": "16.0.0"
+    "@testing-library/react": "16.0.1"
   },
   "peerDependencies": {
     "next": "^14.0.0",
