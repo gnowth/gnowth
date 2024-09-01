@@ -32,7 +32,7 @@ export const ViewRecipeIngredients: FunctionComponent<Props> = () => {
     <UIPaper palette="text" paletteWeight="a100">
       <DataSource awaiting={connection.awaiting} layout="panel" value={connection.value}>
         <AppLayout layout="horizontal" slot="header">
-          <UITypography>{locale.title}</UITypography>
+          <UITypography value={locale.title} />
 
           <DataConnect component="text" name="serving" readonly />
         </AppLayout>
@@ -49,7 +49,7 @@ export const ViewRecipeIngredients2: FunctionComponent = () => {
   return (
     <DataSource context layout="panel">
       <AppLayout layout="horizontal" slot="header">
-        <UITypography>{locale.title}</UITypography>
+        <UITypography value={locale.title} />
 
         <DataConnect component="display" name="serving" />
       </AppLayout>
@@ -65,7 +65,7 @@ export const ViewRecipeIngredients3: FunctionComponent = () => {
   return (
     <DataSource context layout="panel">
       <AppLayout layout="horizontal" slot="header">
-        <UITypography>{locale.title}</UITypography>
+        <UITypography value={locale.title} />
 
         <DataConnect component="display" name="serving" />
       </AppLayout>
@@ -84,7 +84,7 @@ export const ViewRecipeIngredients4: FunctionComponent = () => {
   return (
     <DataSource context layout="panel">
       <AppLayout layout="horizontal" slot="header">
-        <UITypography>{locale.title}</UITypography>
+        <UITypography value={locale.title} />
 
         <DataConnect component="display" name="serving" />
       </AppLayout>

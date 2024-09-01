@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Box, Button, FormLabel, HStack, Input } from '@chakra-ui/react'
+import { Box, Button, FormLabel, Input } from '@chakra-ui/react'
+import { LayoutFlex } from '@gnowth/lib-react'
 import { Field, Form, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
@@ -22,7 +23,7 @@ const FormUserFilterComponent: FunctionComponent = () => {
       onSubmit={(values) => setFilters({ ...values, page: 1 })}
     >
       <LayoutSection>
-        <HStack alignItems="flex-end" as={Form} spacing="5">
+        <LayoutFlex alignItems="flex-end" as={Form} gap="sm">
           <Box>
             <FormLabel htmlFor="form-user-filter-email">{t('Email')}</FormLabel>
             <Field as={Input} id="form-user-filter-email" name="email" placeholder={t('email')} />
@@ -34,7 +35,7 @@ const FormUserFilterComponent: FunctionComponent = () => {
           </Box>
 
           <Button type="submit">{t('Submit')}</Button>
-        </HStack>
+        </LayoutFlex>
       </LayoutSection>
     </Formik>
   )

@@ -10,7 +10,7 @@ import { NavLink } from './nav-link'
 import { ViewProgressGlobal } from './view-progress-global'
 import { withAugmented } from './with-augmented'
 
-// DEBT: remobe prefect in link where possible
+// DEBT: remove prefetch in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
 
