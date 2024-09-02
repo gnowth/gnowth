@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
 import { Text } from '@chakra-ui/react'
-import { LayoutSection, UIBox } from '@gnowth/lib-react'
+import { LayoutSection, UIBox, UITypography } from '@gnowth/lib-react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
@@ -14,11 +14,16 @@ const SectionFooterComponent: FunctionComponent = () => {
 
   return (
     <UIBox data-testid="app-users--section-footer">
-      <Text fontSize="sm" p="3" textAlign="end">
-        <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
-          {t('Current version: {{packageJson.version}}', { packageJson })}
-        </Link>
-      </Text>
+      <LayoutSection layout="flex" layoutVariant="horizontalRight">
+        <UITypography
+          value={
+            <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
+              {t('Current version: {{packageJson.version}}', { packageJson })}
+            </Link>
+          }
+          variant="link"
+        />
+      </LayoutSection>
 
       <LayoutSection palette="teal" paletteWeight="700">
         <Text color="white" fontSize="sm" textAlign="center">

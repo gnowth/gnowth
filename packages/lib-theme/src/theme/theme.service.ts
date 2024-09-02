@@ -3,6 +3,7 @@ import type { ComponentType } from 'react'
 
 import { objectDefaults } from '@gnowth/lib-utils'
 
+import type { TokenBreakpoint } from '../tokens/tokens'
 import type { ConfigsComponent } from './components'
 import type { Media, MediaName } from './media'
 import type { ColorHex, ConfigsPalette, PaletteType } from './palettes'
@@ -106,6 +107,10 @@ export class Theme {
     })
 
     return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
+  }
+
+  getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {
+    return this.#scaleManager.getScaleBreakpoint(configs)
   }
 
   getScaleItem<Type extends ScaleItem = ScaleItem>(configs: ConfigsScale): Type | undefined {

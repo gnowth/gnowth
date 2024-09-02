@@ -39,7 +39,7 @@ export const systemFontSize: <Token extends TokenBase = TokenFontSize>(
 ) => System<SystemFontSize<Token>> =
   (scale = 'fontsize') =>
   (props, theme) =>
-    systemInterpolate({ key: 'fontSize', responsive: true, scale, theme, value: props.fontSize })
+    systemInterpolate({ key: 'fontSize', scale, theme, value: props.fontSize })
 
 export const systemFontStyle: () => System<SystemFontStyle> = () => (props) => ({
   fontStyle: props.fontStyle,

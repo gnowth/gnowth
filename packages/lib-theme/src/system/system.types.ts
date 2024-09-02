@@ -5,7 +5,7 @@ import type { Theme } from '../theme/theme'
 
 export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]
 export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject
-export type SystemInterpolate<Type> = Record<string, Type> | Type
+export type SystemInterpolate<Type> = Record<string, Record<string, Type>> | Record<string, Type> | Type
 
 type SystemUnitsAbsolute =
   | `${number}cm`

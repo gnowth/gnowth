@@ -1,9 +1,10 @@
 import type { ScaleType, TokenBreakpoint } from '@gnowth/lib-theme'
 
+// TODO: check if em or rem is best for breakpoint
 export const breakpoint = {
   lg: '56.25em', // 900px
   md: '45em', // 720px
-  none: '0em',
+  none: '',
   sm: '37.5em', // 600px
   xl: '75em', // 1200px
   xs: '30em', // 480px
