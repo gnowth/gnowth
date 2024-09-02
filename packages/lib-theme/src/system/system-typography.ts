@@ -18,6 +18,7 @@ type SystemLineHeight = { lineHeight?: string }
 type SystemTextAlign = { textAlign?: string }
 type SystemTextDecoration = { textDecoration?: string }
 type SystemTextTransform = { textTransform?: string }
+type SystemWhiteSpace = { whiteSpace?: string }
 
 export const systemFontFamily: () => System<SystemFontFamily> = () => (props, theme) => {
   if (R.isString(props.fontFamily)) {
@@ -69,6 +70,9 @@ export const systemTextDecoration: () => System<SystemTextDecoration> = () => (p
 export const systemTextTransform: () => System<SystemTextTransform> = () => (props) =>
   ({ textTransform: props.textTransform }) as unknown as CSSObject
 
+export const systemWhiteSpace: () => System<SystemWhiteSpace> = () => (props) =>
+  ({ whiteSpace: props.whiteSpace }) as unknown as CSSObject
+
 export const systemTypography = () =>
   systemCompose(
     systemFontFamily(),
@@ -80,4 +84,5 @@ export const systemTypography = () =>
     systemTextAlign(),
     systemTextDecoration(),
     systemTextTransform(),
+    systemWhiteSpace(),
   )

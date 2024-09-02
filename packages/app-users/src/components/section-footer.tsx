@@ -1,6 +1,5 @@
 import type { FunctionComponent } from 'react'
 
-import { Text } from '@chakra-ui/react'
 import { LayoutSection, UIBox, UITypography } from '@gnowth/lib-react'
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
@@ -26,9 +25,14 @@ const SectionFooterComponent: FunctionComponent = () => {
       </LayoutSection>
 
       <LayoutSection palette="teal" paletteWeight="700">
-        <Text color="white" fontSize="sm" textAlign="center">
-          {t('Copyright © 2022 Gnowth')}
-        </Text>
+        <UITypography
+          fontSize="x75"
+          palette="teal"
+          paletteForContrast
+          paletteWeight="700"
+          textAlign="center"
+          value={t('Copyright © 2022 Gnowth')}
+        />
       </LayoutSection>
     </UIBox>
   )

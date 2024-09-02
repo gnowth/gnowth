@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { Text } from '@chakra-ui/react'
+import { UITypography } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 
 import { dependencies } from '../dependencies'
@@ -12,7 +12,7 @@ const SectionGroupsComponent: FunctionComponent = () => {
 
   return (
     <LayoutSection>
-      <Text>{t('Groups page')}</Text>
+      <UITypography value={t('Groups page')} />
     </LayoutSection>
   )
 }

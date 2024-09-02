@@ -1,5 +1,6 @@
 import type { FunctionComponent } from 'react'
 
+import { UITypography } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 
 import { dependencies } from '../dependencies'
@@ -11,7 +12,9 @@ const FormGroupFilterComponent: FunctionComponent = () => {
 
   return (
     <LayoutSection>
-      <form>{t('Group filter')}</form>
+      <form>
+        <UITypography value={t('Group filter')} />
+      </form>
     </LayoutSection>
   )
 }
