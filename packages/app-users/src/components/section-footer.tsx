@@ -14,14 +14,12 @@ const SectionFooterComponent: FunctionComponent = () => {
   return (
     <UIBox data-testid="app-users--section-footer">
       <LayoutSection layout="flex" layoutVariant="horizontalRight">
-        <UITypography
-          value={
-            <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
-              {t('Current version: {{packageJson.version}}', { packageJson })}
-            </Link>
-          }
-          variant="link"
-        />
+        <Link href={dependencies.appModel.routes.changelog()} prefetch={false}>
+          <UITypography
+            value={t('Current version: {{packageJson.version}}', { packageJson })}
+            variant="link"
+          />
+        </Link>
       </LayoutSection>
 
       <LayoutSection palette="teal" paletteWeight="700">

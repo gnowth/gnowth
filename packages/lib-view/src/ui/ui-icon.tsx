@@ -1,5 +1,5 @@
 import type { PropsDataReadonly } from '@gnowth/lib-data'
-import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
+import type { SystemType, TokenSize } from '@gnowth/lib-theme'
 import type { FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -17,7 +17,7 @@ export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonl
   className?: string
   hidden?: boolean
   mediaPrintDisabled?: boolean
-  size?: TokenIconSize
+  size?: TokenSize
   slot?: string
   variant?: PropsUIIcon | string
   variantNamespace?: string

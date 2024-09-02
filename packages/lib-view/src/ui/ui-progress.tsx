@@ -4,7 +4,7 @@ import type {
   SystemType,
   Theme,
   TokenColorWeight,
-  TokenIconSize,
+  TokenSize,
   systemColorFromPalette,
 } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
@@ -16,7 +16,6 @@ import {
   keyframes,
   systemCompose,
   systemDisplay,
-  systemSize,
   systemSpace,
   themeStylesCreate,
   themeStylesMake,
@@ -93,6 +92,7 @@ export interface PropsUIProgress
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutVariant?: string
+  size?: TokenSize
   slot?: string
   thickness?: number
   transitionDuration?: string
@@ -172,7 +172,7 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
   }
 `
 
-const uiProgress = systemCompose(systemDisplay(), systemSize<TokenIconSize>('iconsize'), systemSpace())
+const uiProgress = systemCompose(systemDisplay(), systemSpace())
 const makeStyles = themeStylesMake({
   uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({

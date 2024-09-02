@@ -1,8 +1,8 @@
 import type { TokenBreakpoint } from './token-breakpoint'
 import type { TokenColorWeight } from './token-color-weight'
 import type { TokenFontSize } from './token-font-size'
-import type { TokenIconSize } from './token-icon-size'
 import type { TokenPalette } from './token-palette'
+import type { TokenSize } from './token-size'
 import type { TokenSpace } from './token-space'
 import type { TokenZIndex } from './token-z-index'
 
@@ -14,7 +14,7 @@ export type Tokens = {
   color?: Record<TokenPalette, string | undefined>
   fontSize?: Record<TokenFontSize, string | undefined>
   fontSizeDesktop?: Record<TokenFontSize, string | undefined>
-  iconSize?: Record<TokenIconSize, string | undefined>
+  iconSize?: Record<TokenSize, string | undefined>
   palette: Record<
     string,
     {
