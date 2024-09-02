@@ -71,11 +71,10 @@ export const text: VariantType<PropsUIButton> = (props) => ({
     '&': 'pointer',
     [TokenSelector.disabled]: 'auto',
   },
+  height: '2.5rem',
   minWidth: '8rem',
-  paddingBottom: '11px',
   paddingLeft: 'sm',
   paddingRight: 'sm',
-  paddingTop: '11px',
   progressPalette: props.palette,
   textVariant: 'button',
 })

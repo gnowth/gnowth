@@ -75,10 +75,10 @@ const propsDefault: PropsUIButton = {
   layout: 'flex',
   layoutProps: { gap: 'xs' },
   layoutVariant: 'horizontalCenter',
-  palette: 'textPrimary',
+  palette: 'primary',
   progressHidden: true,
   textVariant: 'button',
-  variant: 'text',
+  variant: 'contained',
   variantNamespace: 'uiButton',
 }
 

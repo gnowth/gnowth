@@ -24,6 +24,7 @@ export const button: VariantType<PropsUITypography> = {
   fontSize: 'x75',
   fontWeight: 500,
   letterSpacing: '1.25px',
+  lineHeight: '1',
   textTransform: 'uppercase',
 }
 

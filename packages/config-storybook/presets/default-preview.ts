@@ -13,7 +13,6 @@ export const parameters: Preview['parameters'] = {
       date: /Date$/,
     },
   },
-  layout: 'centered',
   locale: 'en',
   locales: {
     en: 'English',
