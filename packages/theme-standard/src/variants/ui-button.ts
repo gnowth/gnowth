@@ -41,10 +41,10 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
   ) as Record<string, string>
 }
 
-function interpolateColor(theme: Theme, color = 'white') {
+function interpolateColor(theme: Theme, color = 'white', forTextStyle = true) {
   return R.omitBy(
     {
-      '&': color,
+      '&': forTextStyle && color,
 
       [select(TokenSelector.disabled)]: theme.getPaletteColor({
         palette: 'gray',
@@ -61,39 +61,45 @@ function interpolateColor(theme: Theme, color = 'white') {
 }
 
 // TODO use theme token for border size, border radius, boxShadow
-export const text: VariantType<PropsUIButton> = (props) => ({
-  backgroundColor: interpolateColor(props.theme),
-  border: '0',
-  borderColor: interpolateColor(props.theme),
-  borderRadius: '3px',
-  color: interpolateColorFlat(props.theme, props.palette, '*', true),
-  cursor: {
-    '&': 'pointer',
-    [TokenSelector.disabled]: 'auto',
-  },
-  height: '2.5rem',
-  minWidth: '8rem',
-  paddingLeft: 'sm',
-  paddingRight: 'sm',
-  progressPalette: props.palette,
-  textVariant: 'button',
-})
-
-export const outlined: VariantType<PropsUIButton> = (props) => ({
-  ...text(props),
-  border: '1px solid',
-  borderColor: interpolateColorFlat(props.theme, props.palette),
-})
+export const text: VariantType<PropsUIButton> = (props) => {
+  const colorInterpolated = interpolateColor(props.theme, undefined, false)
+  const height = props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
+  const isExtraLarge = !!props.size && ['xxl', 'xxxl'].includes(props.size)
+  return {
+    backgroundColor: colorInterpolated,
+    border: '0',
+    borderColor: colorInterpolated,
+    borderRadius: '3px',
+    color: interpolateColorFlat(props.theme, props.palette, '*', true),
+    cursor: {
+      '&': 'pointer',
+      [TokenSelector.disabled]: 'auto',
+    },
+    height,
+    iconSize: isExtraLarge ? 'xl' : 'xs',
+    layoutVariant: isExtraLarge ? 'verticalCenter' : 'horizontalCenter',
+    minWidth: `calc(${height} * ${isExtraLarge ? 1.5 : 3})`,
+    paddingLeft: 'xs',
+    paddingRight: 'xs',
+    progressPalette: props.palette,
+    textVariant: 'button',
+  }
+}
 
 export const navigation: VariantType<PropsUIButton> = (props) => ({
   ...text(props),
   borderBottom: { '&.active': `2px solid ${props.theme.getPaletteColor(props) ?? ''}` },
   borderRadius: '0',
-  minWidth: '6rem',
-  paddingBottom: 'sm',
-  paddingLeft: 'xs',
-  paddingRight: 'xs',
-  paddingTop: 'sm',
+  minWidth: undefined,
+  paddingLeft: 'sm',
+  paddingRight: 'sm',
+})
+
+export const outlined: VariantType<PropsUIButton> = (props) => ({
+  ...text(props),
+  backgroundColor: interpolateColor(props.theme),
+  border: '1px solid',
+  borderColor: interpolateColorFlat(props.theme, props.palette),
 })
 
 export const contained: VariantType<PropsUIButton> = (props) => ({
@@ -114,33 +120,39 @@ export const raised: VariantType<PropsUIButton> = (props) => ({
   boxShadow: 'material2',
 })
 
-export const icon: VariantType<PropsUIButton> = (props) => ({
-  backgroundColor: interpolateColor(props.theme),
-  border: '0',
-  color: interpolateColorFlat(props.theme, props.palette, '*', true),
-  cursor: {
-    '&': 'pointer',
-    [TokenSelector.disabled]: 'auto',
-  },
-  iconHidden: !props.progressHidden,
-  iconSize: 'sm',
-  padding: 'xxs',
-  progressPalette: props.palette,
-  progressSize: props.iconSize ?? 'sm',
-  textHidden: true,
-})
+export const icon: VariantType<PropsUIButton> = (props) => {
+  const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
+  return {
+    backgroundColor: interpolateColor(props.theme, undefined, false),
+    border: '0',
+    borderRadius: '50%',
+    color: interpolateColorFlat(props.theme, props.palette, '*', true),
+    cursor: {
+      '&': 'pointer',
+      [TokenSelector.disabled]: 'auto',
+    },
+    height,
+    iconHidden: !props.progressHidden,
+    iconSize: props.iconSize ?? props.size,
+    progressPalette: props.palette,
+    progressSize: props.iconSize ?? 'sm',
+    textHidden: true,
+    width: props.width ?? height,
+  }
+}
 
-// TODO: allow it to grow with iconSize
-export const fab: VariantType<PropsUIButton> = (props) => ({
-  ...icon(props),
-  backgroundColor: interpolateColorFlat(props.theme, props.palette),
-  border: '1px solid',
-  borderColor: interpolateColorFlat(props.theme, props.palette),
-  borderRadius: '50%',
-  boxShadow: 'materialHover3',
-  color: interpolateColorFlat(props.theme, props.palette, '*'),
-  iconSize: 'md',
-  padding: '20%',
-  progressPaletteForContrast: true,
-  progressSize: props.iconSize ?? 'md',
-})
+export const fab: VariantType<PropsUIButton> = (props) => {
+  const height = props.height ?? props.theme.getScaleItem({ scale: 'fabsize', scaleToken: props.size })
+  return {
+    ...icon(props),
+    backgroundColor: interpolateColorFlat(props.theme, props.palette),
+    border: '1px solid',
+    borderColor: interpolateColorFlat(props.theme, props.palette),
+    boxShadow: 'materialHover3',
+    color: interpolateColorFlat(props.theme, props.palette, '*'),
+    height,
+    progressPaletteForContrast: true,
+    progressSize: props.iconSize ?? props.size ?? 'md',
+    width: props.width ?? height,
+  }
+}

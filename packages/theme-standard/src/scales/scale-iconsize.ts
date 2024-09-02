@@ -1,12 +1,12 @@
-import type { ScaleType, TokenIconSize } from '@gnowth/lib-theme'
+import type { ScaleType, TokenSize } from '@gnowth/lib-theme'
 
 export const iconsize = {
-  lg: '3rem', // 48px
+  lg: '2.5rem', // 40px
   md: '2rem', // 32px
   sm: '1.5rem', // 24px
-  xl: '4rem', // 64px
+  xl: '3.5rem', // 56px
   xs: '1rem', // 16px
-  xxl: '8rem', // 128px
+  xxl: '7rem', // 112px
   xxs: '.5rem', // 8px
-  xxxl: '16rem', // 256px
-} satisfies ScaleType<TokenIconSize>
+  xxxl: '14rem', // 224px
+} satisfies ScaleType<TokenSize>

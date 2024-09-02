@@ -20,42 +20,42 @@ export const Styleguide: FunctionComponent = () => (
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Text" variant="text" />
+                <UIButton iconValue="home" size={size} textValue="Text" variant="text" />
               </td>
             ))}
           </tr>
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Outlined" variant="outlined" />
+                <UIButton iconValue="home" size={size} textValue="Outlined" variant="outlined" />
               </td>
             ))}
           </tr>
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Contained" variant="contained" />
+                <UIButton iconValue="home" size={size} textValue="Contained" variant="contained" />
               </td>
             ))}
           </tr>
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Navigation" variant="navigation" />
+                <UIButton iconValue="home" size={size} textValue="Navigation" variant="navigation" />
               </td>
             ))}
           </tr>
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Flat" variant="flat" />
+                <UIButton iconValue="home" size={size} textValue="Flat" variant="flat" />
               </td>
             ))}
           </tr>
           <tr>
             {sizes.map((size) => (
               <td key={size}>
-                <UIButton size={size} textValue="Raised" variant="raised" />
+                <UIButton iconValue="home" size={size} textValue="Raised" variant="raised" />
               </td>
             ))}
           </tr>

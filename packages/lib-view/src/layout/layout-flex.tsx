@@ -66,6 +66,11 @@ const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {
     justifyContent: 'flex-end',
   },
 
+  verticalCenter: {
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+
   verticalStretch: {
     alignItems: 'stretch',
     flexDirection: 'column',

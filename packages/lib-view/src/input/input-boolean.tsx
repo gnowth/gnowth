@@ -1,5 +1,5 @@
 import type { PropsData } from '@gnowth/lib-data'
-import type { SystemType, TokenIconSize } from '@gnowth/lib-theme'
+import type { SystemType, TokenSize } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -21,7 +21,7 @@ export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, Prop
   icon?: ComponentType<PropsUIIcon> | string
   iconClassName?: string
   iconHidden?: boolean
-  iconSize?: TokenIconSize
+  iconSize?: TokenSize
   iconValueFalse?: string
   iconValueNull?: string
   iconValueTrue?: string

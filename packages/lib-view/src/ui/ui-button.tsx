@@ -1,4 +1,4 @@
-import type { SystemType, TokenColorWeight, TokenIconSize, systemColorFromPalette } from '@gnowth/lib-theme'
+import type { SystemType, TokenColorWeight, TokenSize, systemColorFromPalette } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
 
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
@@ -32,7 +32,7 @@ export type PropsUIButton = PropsBase<
     icon?: ComponentType<PropsUIIcon> | string
     iconClassName?: string
     iconHidden?: boolean
-    iconSize?: TokenIconSize
+    iconSize?: TokenSize
     iconValue?: string
     iconVariant?: string
     layout?: string
@@ -48,9 +48,10 @@ export type PropsUIButton = PropsBase<
     progressPalette?: string
     progressPaletteForContrast?: boolean
     progressPaletteWeight?: TokenColorWeight
-    progressSize?: TokenIconSize
+    progressSize?: TokenSize
     progressVariant?: string
     // progressVariants?: string[]
+    size?: TokenSize
     text?: ComponentType<PropsUITypography> | string
     textClassName?: string
     textHidden?: boolean
@@ -77,6 +78,7 @@ const propsDefault: PropsUIButton = {
   layoutVariant: 'horizontalCenter',
   palette: 'primary',
   progressHidden: true,
+  size: 'md',
   textVariant: 'button',
   variant: 'contained',
   variantNamespace: 'uiButton',
