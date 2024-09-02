@@ -13,7 +13,8 @@ export const gridGap = space.md
 export const mobileBreakpoint = breakpoint.sm
 
 export const variables = {
+  [TokenVariable.breakpointToken]: 'breakpoint',
   [TokenVariable.fontBody]: 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif',
   [TokenVariable.fontHeader]: 'Raleway, Trebuchet MS, Avenir, Segoe UI, sans‑serif',
-  [TokenVariable.widthContent]: '1140px',
+  [TokenVariable.widthContent]: '1152px',
 }

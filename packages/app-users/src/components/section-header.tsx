@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Button, Heading, Spacer } from '@chakra-ui/react'
-import { LayoutStack } from '@gnowth/lib-react'
+import { Button, Spacer } from '@chakra-ui/react'
+import { LayoutStack, UITypography } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 
 import { dependencies } from '../dependencies'
@@ -10,7 +10,7 @@ import { NavLink } from './nav-link'
 import { ViewProgressGlobal } from './view-progress-global'
 import { withAugmented } from './with-augmented'
 
-// DEBT: remobe prefect in link where possible
+// DEBT: remove prefetch in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
 
@@ -25,9 +25,13 @@ const SectionHeaderComponent: FunctionComponent = () => {
         }}
       >
         <LayoutStack gap="none" variant="horizontal">
-          <Heading color="white" size="md">
-            {t('Teams App')}
-          </Heading>
+          <UITypography
+            palette="teal"
+            paletteForContrast
+            paletteWeight="700"
+            value={t('Teams App')}
+            variant="title"
+          />
 
           <Spacer />
 

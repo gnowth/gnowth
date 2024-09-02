@@ -1,6 +1,7 @@
-import { Box, Button, Text, VStack } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker/locale/en'
 import { LayoutSection } from '@gnowth/app-users'
+import { LayoutStack, UIBox, UITypography } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
@@ -11,9 +12,9 @@ export function SectionSimulator() {
 
   return (
     <LayoutSection>
-      <VStack alignItems="stretch" spacing="10">
-        <Box>
-          <Text as="span">{t('Simulate notification in app')}</Text>
+      <LayoutStack gap="xl">
+        <UIBox>
+          <UITypography as="span" value={t('Simulate notification in app')} />
 
           <Button
             ml="4"
@@ -27,10 +28,10 @@ export function SectionSimulator() {
           >
             {t('Fire notification')}
           </Button>
-        </Box>
+        </UIBox>
 
-        <Box>
-          <Text as="span">{t('Simulate error in app')}</Text>
+        <UIBox>
+          <UITypography as="span" value={t('Simulate error in app')} />
 
           <Button
             ml="4"
@@ -42,8 +43,8 @@ export function SectionSimulator() {
           >
             {t('Fire error')}
           </Button>
-        </Box>
-      </VStack>
+        </UIBox>
+      </LayoutStack>
     </LayoutSection>
   )
 }

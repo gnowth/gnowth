@@ -45,10 +45,18 @@ export class ScaleManager {
     return Object.assign({}, ...configs)
   }
 
-  // TODO: scaleBreakpoint should follow mobile first, if there is no value at this breakpoint, it should check lower breakpoint
+  getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {
+    const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
+    const scale = (R.isString(configs.scale) ? scales[configs.scale] : configs.scale) ?? {}
+    return this.#guardScaleResponsive(scale)
+      ? (['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const).filter(
+          (breakpoint) => !!scale[breakpoint],
+        )
+      : []
+  }
+
   getScaleItem(configs: ConfigsScale): ScaleItem | undefined {
     const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
-
     const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
 
     if (!scale || !configs.scaleToken) {

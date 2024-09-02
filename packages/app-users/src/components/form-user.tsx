@@ -1,6 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Box, Button, FormLabel, Input, Skeleton, VStack } from '@chakra-ui/react'
+import { Box, Button, FormLabel, Input, Skeleton } from '@chakra-ui/react'
+import { LayoutStack } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -34,7 +35,7 @@ const FormUserComponent: FunctionComponent = () => {
         initialValues={userQuery.data?.data ?? dependencies.userModel.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
-        <VStack alignItems="stretch" as={Form} spacing="5">
+        <LayoutStack as={Form}>
           <Box>
             <FormLabel htmlFor="form-user-nameFirst">{t('First name')}</FormLabel>
             <Field as={Input} id="form-user-nameFirst" name="nameFirst" placeholder="Jane" />
@@ -56,7 +57,7 @@ const FormUserComponent: FunctionComponent = () => {
           </Box>
 
           <Button type="submit">{t('Submit')}</Button>
-        </VStack>
+        </LayoutStack>
       </Formik>
     </LayoutSection>
   )

@@ -1,8 +1,10 @@
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, VariantType } from '@gnowth/lib-theme'
+import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
+  TokenVariable,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
@@ -28,11 +30,41 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   slot?: string
   variant?: PropsLayoutSection | string
   variantNamespace?: string
+  variants?: UtilNamespaced<VariantType<PropsLayoutSection>>
 }
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeStylesMake({ layoutSection })
 const definitions = themeDefinitionsMake(['', 'box'])
+const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
+  container: (props) => ({
+    layout: 'stack',
+    layoutProps: {
+      gap: 'none',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      paddingLeft: 'md',
+      paddingRight: 'md',
+    },
+    paddingLeft: 'none',
+    paddingRight: 'none',
+  }),
+  nav: (props) => ({
+    layout: 'flex',
+    layoutProps: {
+      gap: 'none',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+    },
+    paddingBottom: 'none',
+    paddingLeft: 'none',
+    paddingRight: 'none',
+    paddingTop: 'none',
+  }),
+}
+
 const propsDefault: Partial<PropsLayoutSection> = {
   boxVariantNamespace: 'systemBox',
   paddingBottom: 'sm',
@@ -40,6 +72,7 @@ const propsDefault: Partial<PropsLayoutSection> = {
   paddingRight: 'md',
   paddingTop: 'sm',
   variantNamespace: 'layoutSection',
+  variants,
 }
 
 // TODO: provide a child to allow page section. that way it can have a background and border

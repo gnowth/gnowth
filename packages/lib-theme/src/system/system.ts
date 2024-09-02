@@ -1,12 +1,13 @@
 import type { CSSObject } from '@emotion/serialize'
 
 import { guardObject, transformToArray } from '@gnowth/lib-utils'
-import * as R from 'remeda'
 
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { Theme } from '../theme/theme'
+import type { TokenBreakpoint } from '../tokens/tokens'
 import type { System, SystemInterpolate } from './system.types'
 
+import { TokenVariable } from '../tokens/wip-token-variable'
 import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
@@ -67,34 +68,78 @@ export const systemCompose: SystemCompose =
   (...predicates) =>
   (props, theme) =>
     predicates.reduce(
-      (styles, predicate) => objectDefaultsDeep(predicate!(props, theme), styles),
+      (styles, predicate) => objectDefaultsDeep(predicate?.(props, theme) ?? {}, styles),
       {} as CSSObject,
     )
 
 interface ConfigsInterpolation<Value extends number | string> {
+  breakpoint?: TokenBreakpoint
+  breakpointScale?: ScaleName | ScaleType
   key: string | string[]
-  responsive?: boolean
   scale?: ScaleName | ScaleType
   theme: Theme
   value?: SystemInterpolate<Value>
 }
 
-// TODO add responsive scale
+const isBreakpoint = (key: string): key is TokenBreakpoint =>
+  ['lg', 'md', 'none', 'sm', 'xl', 'xs', 'xxl', 'xxs'].includes(key)
+
 export function systemInterpolate<Value extends number | string>(
   configs: ConfigsInterpolation<Value>,
 ): CSSObject {
   if (configs.value === undefined) return {}
 
-  const keys = transformToArray(configs.key)
-  const makeCSSObject = (scaleToken?: Value) => {
-    const scaleItem = configs.theme.getScaleItem({ scale: configs.scale, scaleToken }) ?? scaleToken
-
-    return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
-  }
-
   if (!guardObject(configs.value)) {
-    return makeCSSObject(configs.value)
+    const breakpoints = configs.theme.getScaleBreakpoint(configs)
+    const scaleToken = configs.value
+
+    if (configs.breakpoint || !breakpoints.length) {
+      const scaleItem =
+        configs.theme.getScaleItem({
+          scale: configs.scale,
+          scaleBreakpoint: configs.breakpoint,
+          scaleToken,
+        }) ?? scaleToken
+      const keys = transformToArray(configs.key)
+      return keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
+    }
+
+    return breakpoints.reduce((cssObject, key) => {
+      const scaleItem =
+        configs.theme.getScaleItem({
+          scale: configs.scale,
+          scaleBreakpoint: key,
+          scaleToken,
+        }) ?? scaleToken
+      const keys = transformToArray(configs.key)
+      const newValue = keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
+      const breakpoint = configs.theme.getScaleItem({
+        scale: configs.breakpointScale ?? configs.theme.getVariable<string>(TokenVariable.breakpointToken),
+        scaleToken: key,
+      })
+      if (breakpoint === '') {
+        return { ...cssObject, ...newValue }
+      }
+      return breakpoint ? { ...cssObject, [`@media(min-width: ${breakpoint})`]: newValue } : cssObject
+    }, {})
   }
 
-  return R.mapValues(configs.value, makeCSSObject)
+  return Object.entries(configs.value).reduce((cssObject, [key, value]) => {
+    const newValue = systemInterpolate({
+      ...configs,
+      breakpoint: isBreakpoint(key) ? key : configs.breakpoint,
+      value,
+    })
+    if (!isBreakpoint(key)) {
+      return { ...cssObject, [key]: newValue }
+    }
+    const breakpoint = configs.theme.getScaleItem({
+      scale: configs.breakpointScale ?? configs.theme.getVariable<string>(TokenVariable.breakpointToken),
+      scaleToken: key,
+    })
+    if (breakpoint === '') {
+      return { ...cssObject, ...newValue }
+    }
+    return breakpoint ? { ...cssObject, [`@media(min-width: ${breakpoint})`]: newValue } : cssObject
+  }, {})
 }

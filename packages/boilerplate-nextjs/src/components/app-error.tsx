@@ -1,7 +1,8 @@
 import type { FunctionComponent } from 'react'
 
-import { Button, Text } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { LayoutSection } from '@gnowth/app-users'
+import { UITypography } from '@gnowth/lib-react'
 import { useQueryErrorResetBoundary } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 
@@ -16,7 +17,7 @@ export const AppError: FunctionComponent<Props> = (props) => {
 
   return (
     <LayoutSection>
-      <Text as="span">{t('There was an error!')}</Text>
+      <UITypography as="span" value={t('There was an error!')} />
 
       <Button
         ml="4"

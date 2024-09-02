@@ -1,17 +1,5 @@
-import {
-  Avatar,
-  Button,
-  Skeleton,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react'
-import { LayoutFlex, LayoutStack } from '@gnowth/lib-react'
+import { Avatar, Button, Skeleton, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
+import { LayoutFlex, LayoutStack, UITypography } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { FunctionComponent, useMemo } from 'react'
@@ -44,13 +32,21 @@ const SectionUsersComponent: FunctionComponent = () => {
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>{t('Name')}</Th>
+              <Th>
+                <UITypography value={t('Name')} variant="label" />
+              </Th>
 
-              <Th>{t('Role')}</Th>
+              <Th>
+                <UITypography value={t('Role')} variant="label" />
+              </Th>
 
-              <Th>{t('Email')}</Th>
+              <Th>
+                <UITypography value={t('Email')} variant="label" />
+              </Th>
 
-              <Th>{t('Status')}</Th>
+              <Th>
+                <UITypography value={t('Status')} variant="label" />
+              </Th>
 
               <Th textAlign="end">
                 <Link href={dependencies.appModel.routes.user()} prefetch={false}>
@@ -67,15 +63,21 @@ const SectionUsersComponent: FunctionComponent = () => {
                   <LayoutFlex gap="xs">
                     <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
-                    <Text>{dependencies.userModel.getNameFull(user)}</Text>
+                    <UITypography value={dependencies.userModel.getNameFull(user)} variant="body2" />
                   </LayoutFlex>
                 </Td>
 
-                <Td>{user.role}</Td>
+                <Td>
+                  <UITypography value={user.role} variant="body2" />
+                </Td>
 
-                <Td>{user.email}</Td>
+                <Td>
+                  <UITypography value={user.email} variant="body2" />
+                </Td>
 
-                <Td>{user.status}</Td>
+                <Td>
+                  <UITypography value={user.status} variant="body2" />
+                </Td>
 
                 <Td py="2">
                   <LayoutFlex gap="xs" variant="horizontalRight">
@@ -95,10 +97,13 @@ const SectionUsersComponent: FunctionComponent = () => {
 
           {!!data && (
             <TableCaption>
-              {t('Showing {{pageCount}} of {{totalCount}}', {
-                pageCount: data.data.length,
-                totalCount: data.meta.count,
-              })}
+              <UITypography
+                value={t('Showing {{pageCount}} of {{totalCount}}', {
+                  pageCount: data.data.length,
+                  totalCount: data.meta.count,
+                })}
+                variant="caption"
+              />
             </TableCaption>
           )}
         </Table>
