@@ -30,7 +30,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
             paletteForContrast
             paletteWeight="700"
             value={t('Teams App')}
-            variant="h6"
+            variant="title"
           />
 
           <Spacer />

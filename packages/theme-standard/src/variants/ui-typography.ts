@@ -139,3 +139,11 @@ export const subtitle2: VariantType<PropsUITypography> = {
   fontWeight: 500,
   letterSpacing: '0.1px',
 }
+
+export const title: VariantType<PropsUITypography> = {
+  as: 'p',
+  fontFamily: TokenFont.header,
+  fontSize: 'x200',
+  fontWeight: 600,
+  letterSpacing: '0.15px',
+}

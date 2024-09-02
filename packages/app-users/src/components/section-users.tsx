@@ -32,13 +32,21 @@ const SectionUsersComponent: FunctionComponent = () => {
         <Table variant="simple">
           <Thead>
             <Tr>
-              <Th>{t('Name')}</Th>
+              <Th>
+                <UITypography value={t('Name')} variant="label" />
+              </Th>
 
-              <Th>{t('Role')}</Th>
+              <Th>
+                <UITypography value={t('Role')} variant="label" />
+              </Th>
 
-              <Th>{t('Email')}</Th>
+              <Th>
+                <UITypography value={t('Email')} variant="label" />
+              </Th>
 
-              <Th>{t('Status')}</Th>
+              <Th>
+                <UITypography value={t('Status')} variant="label" />
+              </Th>
 
               <Th textAlign="end">
                 <Link href={dependencies.appModel.routes.user()} prefetch={false}>
@@ -89,10 +97,13 @@ const SectionUsersComponent: FunctionComponent = () => {
 
           {!!data && (
             <TableCaption>
-              {t('Showing {{pageCount}} of {{totalCount}}', {
-                pageCount: data.data.length,
-                totalCount: data.meta.count,
-              })}
+              <UITypography
+                value={t('Showing {{pageCount}} of {{totalCount}}', {
+                  pageCount: data.data.length,
+                  totalCount: data.meta.count,
+                })}
+                variant="caption"
+              />
             </TableCaption>
           )}
         </Table>
