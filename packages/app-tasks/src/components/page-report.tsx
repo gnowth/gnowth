@@ -1,3 +1,13 @@
 import type { FunctionComponent } from 'react'
 
-export const PageReport: FunctionComponent = () => <p>Report</p>
+import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
+
+export const PageReport: FunctionComponent = () => {
+  return (
+    <LayoutPage>
+      <LayoutSection variant="container">
+        <UITypography value="Report" />
+      </LayoutSection>
+    </LayoutPage>
+  )
+}

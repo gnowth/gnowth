@@ -26,7 +26,7 @@ const SectionHeaderComponent: FunctionComponent = () => {
         </LayoutStack>
       </LayoutSection>
 
-      <LayoutSection palette="primary" paletteWeight="50" variant="nav">
+      <LayoutSection boxVariant="float" palette="primary" paletteWeight="50" variant="navigation">
         <NavLink href={dependencies.appModel.routes.dashboard()} prefetch={false}>
           {t('Dashboard')}
         </NavLink>

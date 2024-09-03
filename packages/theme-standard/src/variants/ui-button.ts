@@ -41,10 +41,10 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
   ) as Record<string, string>
 }
 
-function interpolateColor(theme: Theme, color = 'white', forTextStyle = true) {
+function interpolateColor(theme: Theme, color = 'white', forTextStyle = false) {
   return R.omitBy(
     {
-      '&': forTextStyle && color,
+      '&': forTextStyle ? 'transparent' : color,
 
       [select(TokenSelector.disabled)]: theme.getPaletteColor({
         palette: 'gray',
@@ -62,14 +62,14 @@ function interpolateColor(theme: Theme, color = 'white', forTextStyle = true) {
 
 // TODO use theme token for border size, border radius, boxShadow
 export const text: VariantType<PropsUIButton> = (props) => {
-  const colorInterpolated = interpolateColor(props.theme, undefined, false)
+  const colorInterpolated = interpolateColor(props.theme, undefined, true)
   const height = props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
   const isExtraLarge = !!props.size && ['xxl', 'xxxl'].includes(props.size)
   return {
     backgroundColor: colorInterpolated,
     border: '0',
     borderColor: colorInterpolated,
-    borderRadius: '3px',
+    borderRadius: '4px',
     color: interpolateColorFlat(props.theme, props.palette, '*', true),
     cursor: {
       '&': 'pointer',
@@ -123,7 +123,7 @@ export const raised: VariantType<PropsUIButton> = (props) => ({
 export const icon: VariantType<PropsUIButton> = (props) => {
   const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
   return {
-    backgroundColor: interpolateColor(props.theme, undefined, false),
+    backgroundColor: interpolateColor(props.theme, undefined, true),
     border: '0',
     borderRadius: '50%',
     color: interpolateColorFlat(props.theme, props.palette, '*', true),

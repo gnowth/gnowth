@@ -1,5 +1,13 @@
 import type { FunctionComponent } from 'react'
 
-import { LayoutPage } from '@gnowth/lib-react'
+import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
 
-export const PageNotPermitted: FunctionComponent = () => <LayoutPage>Not Permitted</LayoutPage>
+export const PageNotPermitted: FunctionComponent = () => {
+  return (
+    <LayoutPage>
+      <LayoutSection variant="container">
+        <UITypography value="Not Permitted" />
+      </LayoutSection>
+    </LayoutPage>
+  )
+}
