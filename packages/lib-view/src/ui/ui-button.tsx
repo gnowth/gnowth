@@ -58,6 +58,7 @@ export type PropsUIButton = PropsBase<
     textProps?: PropsUITypography
     textValue?: string
     textVariant?: string
+    type?: 'button' | 'submit'
   } & SystemType<ReturnType<typeof systemColorFromPalette>> &
     SystemType<typeof uiButton>
 >
@@ -107,7 +108,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
       disabled={propsVariant.disabled}
       id={propsVariant.id}
       onClick={propsVariant.onClick}
-      type="button"
+      type={propsVariant.type ?? 'button'}
     >
       <AppLayout
         className={cx(

@@ -22,14 +22,13 @@ const SectionFooterComponent: FunctionComponent = () => {
         </Link>
       </LayoutSection>
 
-      <LayoutSection palette="teal" paletteWeight="700">
+      <LayoutSection palette="primary">
         <UITypography
-          fontSize="x75"
-          palette="teal"
+          palette="primary"
           paletteForContrast
-          paletteWeight="700"
           textAlign="center"
           value={t('Copyright © 2022 Gnowth')}
+          variant="body2"
         />
       </LayoutSection>
     </UIBox>

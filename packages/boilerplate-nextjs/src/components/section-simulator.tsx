@@ -1,7 +1,5 @@
-import { Button } from '@chakra-ui/react'
 import { faker } from '@faker-js/faker/locale/en'
-import { LayoutSection } from '@gnowth/app-users'
-import { LayoutStack, UIBox, UITypography } from '@gnowth/lib-react'
+import { LayoutSection, LayoutStack, UIButton, UITypography } from '@gnowth/lib-react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
 
@@ -11,13 +9,12 @@ export function SectionSimulator() {
   const { t } = useTranslation('other')
 
   return (
-    <LayoutSection>
+    <LayoutSection variant="container">
       <LayoutStack gap="xl">
-        <UIBox>
+        <LayoutStack variant="horizontal">
           <UITypography as="span" value={t('Simulate notification in app')} />
 
-          <Button
-            ml="4"
+          <UIButton
             onClick={() =>
               dependencies.notificationStream.pushNotification({
                 id: uuid(),
@@ -25,25 +22,22 @@ export function SectionSimulator() {
                 title: faker.lorem.words(3),
               })
             }
-          >
-            {t('Fire notification')}
-          </Button>
-        </UIBox>
+            textValue={t('Fire notification')}
+          />
+        </LayoutStack>
 
-        <UIBox>
+        <LayoutStack variant="horizontal">
           <UITypography as="span" value={t('Simulate error in app')} />
 
-          <Button
-            ml="4"
+          <UIButton
             onClick={() =>
               dependencies.notificationStream.pushError(
                 dependencies.errorModel.fromError(new Error('Unknown error')),
               )
             }
-          >
-            {t('Fire error')}
-          </Button>
-        </UIBox>
+            textValue={t('Fire error')}
+          />
+        </LayoutStack>
       </LayoutStack>
     </LayoutSection>
   )

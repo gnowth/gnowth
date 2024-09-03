@@ -1,14 +1,13 @@
 import type { FunctionComponent } from 'react'
 
-import { Button, FormLabel, Input } from '@chakra-ui/react'
-import { LayoutFlex, UIBox, UITypography } from '@gnowth/lib-react'
+import { FormLabel, Input } from '@chakra-ui/react'
+import { LayoutFlex, LayoutSection, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
 import { Field, Form, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
 import { dependencies } from '../dependencies'
-import { LayoutSection } from './layout-section'
 import { withAugmented } from './with-augmented'
 
 // DEBT: Convert status input to dropdown
@@ -17,12 +16,12 @@ const FormUserFilterComponent: FunctionComponent = () => {
   const [filters, setFilters] = useRecoilState(stateUserFilter)
 
   return (
-    <Formik
-      enableReinitialize
-      initialValues={filters}
-      onSubmit={(values) => setFilters({ ...values, page: 1 })}
-    >
-      <LayoutSection>
+    <LayoutSection variant="container">
+      <Formik
+        enableReinitialize
+        initialValues={filters}
+        onSubmit={(values) => setFilters({ ...values, page: 1 })}
+      >
         <LayoutFlex alignItems="flex-end" as={Form} gap="sm">
           <UIBox>
             <FormLabel htmlFor="form-user-filter-email">
@@ -38,10 +37,10 @@ const FormUserFilterComponent: FunctionComponent = () => {
             <Field as={Input} id="form-user-filter-status" name="status" placeholder={t('status')} />
           </UIBox>
 
-          <Button type="submit">{t('Submit')}</Button>
+          <UIButton textValue={t('Submit')} type="submit" />
         </LayoutFlex>
-      </LayoutSection>
-    </Formik>
+      </Formik>
+    </LayoutSection>
   )
 }
 

@@ -1,5 +1,4 @@
-export * from './components/layout-default'
-export * from './components/layout-section'
+export * from './components/frame-default'
 export * from './components/page-changelog'
 export * from './components/page-dashboard'
 export * from './components/page-generated-client'

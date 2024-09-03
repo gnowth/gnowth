@@ -1,10 +1,15 @@
 import type { FunctionComponent } from 'react'
 
-import { Box, Progress } from '@chakra-ui/react'
+import { Progress } from '@chakra-ui/react'
+import { UIBox } from '@gnowth/lib-react'
 import { useIsFetching } from '@tanstack/react-query'
 
 export const ViewProgressGlobal: FunctionComponent = () => {
   const isFetching = useIsFetching()
 
-  return <Box minHeight="1">{!!isFetching && <Progress colorScheme="teal" isIndeterminate size="xs" />}</Box>
+  return (
+    <UIBox minHeight="0.25rem">
+      {!!isFetching && <Progress colorScheme="teal" isIndeterminate size="xs" />}
+    </UIBox>
+  )
 }

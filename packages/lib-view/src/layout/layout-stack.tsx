@@ -37,7 +37,7 @@ const makeStyles = themeStylesMake({ layoutStack })
 
 const variants: UtilNamespaced<Partial<PropsLayoutStack>> = {
   horizontal: {
-    alignItems: 'stretch',
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
