@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { VStack } from '@chakra-ui/react'
+import { LayoutStack } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
 import { sections } from '../sections'
@@ -23,12 +23,12 @@ export const PageGeneratedServer: PageServerComponent<Props> = (props) => {
     ] ?? []
 
   return (
-    <VStack alignItems="stretch" minHeight="100vh" spacing="10">
+    <LayoutStack gap="none" minHeight="100vh">
       {contents.map((section, index) => {
         const Component = sections[section]
         return <Component key={index} />
       })}
-    </VStack>
+    </LayoutStack>
   )
 }
 

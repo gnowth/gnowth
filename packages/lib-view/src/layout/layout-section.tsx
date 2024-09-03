@@ -40,7 +40,6 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
   container: (props) => ({
     layout: 'stack',
     layoutProps: {
-      gap: 'none',
       marginLeft: 'auto',
       marginRight: 'auto',
       maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
@@ -51,6 +50,8 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
     paddingRight: 'none',
   }),
   nav: (props) => ({
+    borderBottom: `1px solid ${props.theme.getPaletteColor({ palette: 'gray', paletteWeight: '400' })}`,
+    borderTop: `1px solid ${props.theme.getPaletteColor({ palette: 'gray', paletteWeight: '400' })}`,
     layout: 'flex',
     layoutProps: {
       gap: 'none',

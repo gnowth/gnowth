@@ -1,8 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { Button } from '@chakra-ui/react'
-import { LayoutSection } from '@gnowth/app-users'
-import { UITypography } from '@gnowth/lib-react'
+import { LayoutSection, UIButton, UITypography } from '@gnowth/lib-react'
 import { useQueryErrorResetBoundary } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 
@@ -16,18 +14,16 @@ export const AppError: FunctionComponent<Props> = (props) => {
   const { reset } = useQueryErrorResetBoundary()
 
   return (
-    <LayoutSection>
+    <LayoutSection layout="flex" variant="container">
       <UITypography as="span" value={t('There was an error!')} />
 
-      <Button
-        ml="4"
+      <UIButton
         onClick={() => {
           reset()
           props.reset()
         }}
-      >
-        {t('Try again')}
-      </Button>
+        textValue={t('Try again')}
+      />
     </LayoutSection>
   )
 }

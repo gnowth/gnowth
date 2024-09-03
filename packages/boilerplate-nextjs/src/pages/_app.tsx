@@ -2,9 +2,9 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import type { Attributes, ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 
-import { ChakraProvider, VStack } from '@chakra-ui/react'
-import { withAugmented } from '@gnowth/app-users'
-import { AppEnvironment } from '@gnowth/lib-react'
+import { ChakraProvider } from '@chakra-ui/react'
+import { FrameDefault, withAugmented } from '@gnowth/app-users'
+import { AppEnvironment, LayoutStack } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
@@ -32,16 +32,25 @@ const Wrapper = withAugmented<PropsWithChildren<Attributes>>({
   LoadingComponent: AppLoading,
 })(WrapperComponent)
 
-const App: FunctionComponent<Props> = (props) => {
-  const page = props.Component.Layout ? (
-    <props.Component.Layout>
-      <props.Component {...props.pageProps} />
-    </props.Component.Layout>
-  ) : (
-    <VStack alignItems="stretch" minHeight="100vh" spacing="10">
-      <props.Component {...props.pageProps} />
-    </VStack>
+const getLayout = (props: Props) => {
+  if (props.Component.Layout) {
+    return props.Component.Layout
+  }
+
+  if (props.Component.Layout === undefined) {
+    return FrameDefault
+  }
+
+  const Layout: FunctionComponent<PropsWithChildren<Attributes>> = (layoutProps) => (
+    <LayoutStack flexGrow="1" gap="none">
+      {layoutProps.children}
+    </LayoutStack>
   )
+  return Layout
+}
+
+const App: FunctionComponent<Props> = (props) => {
+  const Layout = getLayout(props)
 
   return (
     <RecoilRoot>
@@ -54,7 +63,11 @@ const App: FunctionComponent<Props> = (props) => {
 
             <SystemNotifications />
 
-            <Wrapper>{page}</Wrapper>
+            <Wrapper>
+              <Layout>
+                <props.Component {...props.pageProps} />
+              </Layout>
+            </Wrapper>
           </ChakraProvider>
         </AppEnvironment>
       </QueryClientProvider>

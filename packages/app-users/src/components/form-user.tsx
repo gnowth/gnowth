@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Box, Button, FormLabel, Input, Skeleton } from '@chakra-ui/react'
-import { LayoutStack } from '@gnowth/lib-react'
+import { FormLabel, Input, Skeleton } from '@chakra-ui/react'
+import { LayoutSection, LayoutStack, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
-import { LayoutSection } from './layout-section'
 import { stateUserFilter } from './section-users'
 import { withAugmented } from './with-augmented'
 
@@ -30,33 +29,41 @@ const FormUserComponent: FunctionComponent = () => {
   const userQuery = useSuspenseQuery(dependencies.userService.queryOptions({ id }))
 
   return (
-    <LayoutSection>
+    <LayoutSection variant="container">
       <Formik
         initialValues={userQuery.data?.data ?? dependencies.userModel.fromData({})}
         onSubmit={(user) => userMutation.mutate(user)}
       >
         <LayoutStack as={Form}>
-          <Box>
-            <FormLabel htmlFor="form-user-nameFirst">{t('First name')}</FormLabel>
+          <UIBox>
+            <FormLabel htmlFor="form-user-nameFirst">
+              <UITypography value={t('First name')} variant="label" />
+            </FormLabel>
             <Field as={Input} id="form-user-nameFirst" name="nameFirst" placeholder="Jane" />
-          </Box>
+          </UIBox>
 
-          <Box>
-            <FormLabel htmlFor="form-user-lastName">{t('Last name')}</FormLabel>
+          <UIBox>
+            <FormLabel htmlFor="form-user-lastName">
+              <UITypography value={t('Last name')} variant="label" />
+            </FormLabel>
             <Field as={Input} id="form-user-lastName" name="nameLast" placeholder="Doe" />
-          </Box>
+          </UIBox>
 
-          <Box>
-            <FormLabel htmlFor="form-user-role">{t('Role')}</FormLabel>
+          <UIBox>
+            <FormLabel htmlFor="form-user-role">
+              <UITypography value={t('Role')} variant="label" />
+            </FormLabel>
             <Field as={Input} id="form-user-role" name="role" placeholder="Role" />
-          </Box>
+          </UIBox>
 
-          <Box>
-            <FormLabel htmlFor="form-user-email">{t('Email')}</FormLabel>
+          <UIBox>
+            <FormLabel htmlFor="form-user-email">
+              <UITypography value={t('Email')} variant="label" />
+            </FormLabel>
             <Field as={Input} id="form-user-email" name="email" placeholder="jane@doe.com" type="email" />
-          </Box>
+          </UIBox>
 
-          <Button type="submit">{t('Submit')}</Button>
+          <UIButton textValue={t('Submit')} type="submit" />
         </LayoutStack>
       </Formik>
     </LayoutSection>

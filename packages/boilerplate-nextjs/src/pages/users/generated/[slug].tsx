@@ -1,4 +1,5 @@
-import type { GetStaticPropsContext } from 'next'
+import type { GetStaticPropsContext, NextPage } from 'next'
+import type { ComponentProps, ComponentType } from 'react'
 
 import { PageGeneratedClient } from '@gnowth/app-users'
 
@@ -14,4 +15,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   return { props }
 }
 
-export default PageGeneratedClient
+const Page: { Layout?: ComponentType | null } & NextPage<ComponentProps<typeof PageGeneratedClient>> =
+  PageGeneratedClient
+Page.Layout = null
+
+export default Page

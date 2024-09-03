@@ -88,11 +88,11 @@ export const text: VariantType<PropsUIButton> = (props) => {
 
 export const navigation: VariantType<PropsUIButton> = (props) => ({
   ...text(props),
-  borderBottom: { '&.active': `2px solid ${props.theme.getPaletteColor(props) ?? ''}` },
+  border: '2px solid transparent',
   borderRadius: '0',
   minWidth: undefined,
-  paddingLeft: 'sm',
-  paddingRight: 'sm',
+  paddingLeft: 'md',
+  paddingRight: 'md',
 })
 
 export const outlined: VariantType<PropsUIButton> = (props) => ({

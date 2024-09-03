@@ -15,7 +15,7 @@ export const ViewFrameDefault: FunctionComponent<Props> = (props) => (
       <ViewAppHeader />
     </AppLayout>
 
-    <AppLayout layout="appMain" layoutProps={{ flexGrow: 1 }} slot="main">
+    <AppLayout layout="appMain" layoutProps={{ flexGrow: '1' }} slot="main">
       {props.children}
     </AppLayout>
 

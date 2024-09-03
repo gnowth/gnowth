@@ -5,8 +5,8 @@ import { AppLayout } from '@gnowth/lib-react'
 import { SectionFooter } from './section-footer'
 import { SectionHeader } from './section-header'
 
-export const LayoutDefault: FunctionComponent<PropsWithChildren> = (props) => (
-  <AppLayout layout="app">
+export const FrameDefault: FunctionComponent<PropsWithChildren> = (props) => (
+  <AppLayout layout="app" layoutProps={{ gap: 'none' }}>
     <AppLayout layout="appHeader" slot="header">
       <SectionHeader />
     </AppLayout>

@@ -7,6 +7,7 @@ import {
   systemBox,
   systemColor,
   systemCompose,
+  systemFlexbox,
   systemImage,
   systemLayout,
   systemPointer,
@@ -17,11 +18,12 @@ import * as R from 'remeda'
 
 import type { PropsBase } from '../types'
 
-type PropsUIBox = PropsBase<{ children: ReactNode; 'data-testid'?: string } & SystemType<typeof uiBox>>
+type PropsUIBox = PropsBase<{ children?: ReactNode; 'data-testid'?: string } & SystemType<typeof uiBox>>
 
 const uiBox = systemCompose(
   systemBox(),
   systemColor(),
+  systemFlexbox(),
   systemImage(),
   systemLayout(),
   systemPointer(),
