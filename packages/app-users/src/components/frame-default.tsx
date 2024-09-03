@@ -6,7 +6,7 @@ import { SectionFooter } from './section-footer'
 import { SectionHeader } from './section-header'
 
 export const FrameDefault: FunctionComponent<PropsWithChildren> = (props) => (
-  <AppLayout layout="app" layoutProps={{ gap: 'none' }}>
+  <AppLayout layout="app">
     <AppLayout layout="appHeader" slot="header">
       <SectionHeader />
     </AppLayout>

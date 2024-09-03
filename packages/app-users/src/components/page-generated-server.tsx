@@ -1,6 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { LayoutStack } from '@gnowth/lib-react'
+import { LayoutPage, LayoutStack } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
 import { sections } from '../sections'
@@ -23,12 +23,14 @@ export const PageGeneratedServer: PageServerComponent<Props> = (props) => {
     ] ?? []
 
   return (
-    <LayoutStack gap="none" minHeight="100vh">
-      {contents.map((section, index) => {
-        const Component = sections[section]
-        return <Component key={index} />
-      })}
-    </LayoutStack>
+    <LayoutPage>
+      <LayoutStack gap="none" minHeight="100vh">
+        {contents.map((section, index) => {
+          const Component = sections[section]
+          return <Component key={index} />
+        })}
+      </LayoutStack>
+    </LayoutPage>
   )
 }
 

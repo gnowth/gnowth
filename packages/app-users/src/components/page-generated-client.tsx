@@ -1,6 +1,8 @@
 import type { GetStaticPropsContext } from 'next'
 import type { FunctionComponent } from 'react'
 
+import { LayoutPage } from '@gnowth/lib-react'
+
 import source from '../../contents/source.json'
 import { sections } from '../sections'
 
@@ -14,12 +16,12 @@ interface PageServerComponent<Props> extends FunctionComponent<Props> {
 
 export const PageGeneratedClient: PageServerComponent<Props> = (props) => {
   return (
-    <>
+    <LayoutPage>
       {props.contents?.map((section, index) => {
         const Component = sections[section]
         return <Component key={index} />
       })}
-    </>
+    </LayoutPage>
   )
 }
 

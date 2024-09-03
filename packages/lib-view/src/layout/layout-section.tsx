@@ -49,9 +49,7 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
     paddingLeft: 'none',
     paddingRight: 'none',
   }),
-  nav: (props) => ({
-    borderBottom: `1px solid ${props.theme.getPaletteColor({ palette: 'gray', paletteWeight: '400' })}`,
-    borderTop: `1px solid ${props.theme.getPaletteColor({ palette: 'gray', paletteWeight: '400' })}`,
+  navigation: (props) => ({
     layout: 'flex',
     layoutProps: {
       gap: 'none',

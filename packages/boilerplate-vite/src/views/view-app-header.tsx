@@ -13,11 +13,8 @@ export const ViewAppHeader: FunctionComponent<Props> = () => {
     <LayoutSection
       boxVariant="float"
       data-testid="spa--layout-header"
-      paddingBottom="none"
-      paddingTop="none"
-      palette="text"
-      paletteWeight="a100"
-      variant="pageRow"
+      layoutProps={{ gap: 'xs' }}
+      variant="navigation"
     >
       <UIIcon size="sm" value="home" />
 
@@ -25,11 +22,11 @@ export const ViewAppHeader: FunctionComponent<Props> = () => {
 
       <LayoutFlex gap="none">
         <AppLink application={TokenApplication.recipes}>
-          <UIButton textValue="Recipes" variant="navigation" />
+          <UIButton palette="primaryText" textValue="Recipes" variant="navigation" />
         </AppLink>
 
         <AppLink application={TokenApplication.tasks}>
-          <UIButton textValue="Tasks" variant="navigation" />
+          <UIButton palette="primaryText" textValue="Tasks" variant="navigation" />
         </AppLink>
       </LayoutFlex>
     </LayoutSection>

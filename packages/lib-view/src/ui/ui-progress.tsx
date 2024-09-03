@@ -1,12 +1,14 @@
 import type { PropsLayout } from '@gnowth/lib-application'
 import type { PropsDataReadonly } from '@gnowth/lib-data'
 import type {
+  System,
   SystemType,
   Theme,
   TokenColorWeight,
   TokenSize,
   systemColorFromPalette,
 } from '@gnowth/lib-theme'
+import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
@@ -99,6 +101,7 @@ export interface PropsUIProgress
   valueMax?: number
   variant?: PropsUIProgress | string
   variantNamespace?: string
+  variants?: UtilNamespaced<Partial<PropsUIProgress>>
 }
 
 const spinnerRotateLinear = keyframes`
@@ -172,7 +175,15 @@ const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
   }
 `
 
-const uiProgress = systemCompose(systemDisplay(), systemSpace())
+const systemSize: System<{ size?: TokenSize }> = (props, theme) => {
+  if (!props.size) {
+    return {}
+  }
+  const size = theme.getScaleItem({ scale: 'iconsize', scaleToken: props.size })
+  return { height: size, width: size }
+}
+
+const uiProgress = systemCompose(systemDisplay(), systemSpace(), systemSize)
 const makeStyles = themeStylesMake({
   uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({
@@ -217,6 +228,15 @@ const makeStyles = themeStylesMake({
     ...(props.value === null && { animation: `${spinnerRotateLinear} 2s linear infinite` }),
   }),
 })
+const variants: UtilNamespaced<Partial<PropsUIProgress>> = {
+  page: {
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 'xl',
+    size: 'xxl',
+  },
+}
 const propsDefault: Partial<PropsUIProgress> = {
   bufferPalette: 'primary',
   display: 'inline-block',
@@ -229,6 +249,7 @@ const propsDefault: Partial<PropsUIProgress> = {
   // valueInitial: 0,
   valueMax: 100,
   variantNamespace: 'uiProgress',
+  variants,
 }
 
 // TODO can keyframes be extracted in to an animation library or into the theme

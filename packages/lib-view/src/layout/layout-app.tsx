@@ -11,7 +11,7 @@ import {
 } from '@gnowth/lib-theme'
 
 import { UtilSlot } from '../util/util-slot'
-import { LayoutFlex } from './layout-flex'
+import { LayoutStack } from './layout-stack'
 
 export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
   children: ReactNode
@@ -28,19 +28,13 @@ export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
 
   return (
     <UtilSlot.Provider slots={props.children}>
-      <LayoutFlex
-        alignItems="stretch"
-        className={cx('layout-app', styles.layoutApp)}
-        flexDirection="column"
-        gap={props.gap}
-        minHeight="100vh"
-      >
+      <LayoutStack className={cx('layout-app', styles.layoutApp)} gap={props.gap ?? 'none'} minHeight="100vh">
         <UtilSlot.Content name="header" />
 
         <UtilSlot.Content name="main" />
 
         <UtilSlot.Content name="footer" />
-      </LayoutFlex>
+      </LayoutStack>
     </UtilSlot.Provider>
   )
 }
