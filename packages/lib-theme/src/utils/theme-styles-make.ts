@@ -17,7 +17,7 @@ type MappedType<Type, ToType> = {
 export const themeStylesMake = <Props>(configs: ConfigsMakeStyles<Props>) => {
   return function styles(props: Props, theme: Theme): MappedType<ConfigsMakeStyles<Props>, string> {
     return R.mapValues(configs, (makeStyles) =>
-      R.isString(makeStyles) ? css(makeStyles) : css(makeStyles(props, theme)),
+      R.isFunction(makeStyles) ? css(makeStyles(props, theme)) : css(makeStyles),
     )
   }
 }

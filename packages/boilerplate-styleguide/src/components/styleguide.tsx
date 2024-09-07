@@ -7,6 +7,7 @@ import {
   UIButton,
   UICard,
   UIIcon,
+  UISkeleton,
   UITypography,
 } from '@gnowth/lib-react'
 
@@ -92,6 +93,18 @@ export const Styleguide: FunctionComponent = () => (
         <LayoutFlex>
           <UITypography value="h1. Heading" variant="h1" />
         </LayoutFlex>
+      </UICard>
+    </LayoutStack>
+
+    <LayoutStack>
+      <UITypography value="Skelelon" variant="h1" />
+
+      <UICard>
+        <LayoutStack gap="xs">
+          <UISkeleton height="md" variant="circular" />
+          <UISkeleton height="xs" />
+          <UISkeleton height="xs" variant="rounded" />
+        </LayoutStack>
       </UICard>
     </LayoutStack>
   </LayoutStack>

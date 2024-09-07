@@ -1,7 +1,15 @@
 import type { FunctionComponent } from 'react'
 
-import { Avatar, Skeleton } from '@chakra-ui/react'
-import { LayoutFlex, LayoutGrid, LayoutSection, LayoutStack, UIButton, UITypography } from '@gnowth/lib-react'
+import { Avatar } from '@chakra-ui/react'
+import {
+  LayoutFlex,
+  LayoutGrid,
+  LayoutSection,
+  LayoutStack,
+  UIButton,
+  UISkeleton,
+  UITypography,
+} from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { Fragment, useMemo } from 'react'
@@ -114,6 +122,6 @@ const SectionUsersComponent: FunctionComponent = () => {
   )
 }
 
-export const SectionUsers = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(
+export const SectionUsers = withAugmented({ LoadingComponent: () => <UISkeleton height="xxxl" /> })(
   SectionUsersComponent,
 )
