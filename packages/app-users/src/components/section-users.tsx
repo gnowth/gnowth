@@ -1,8 +1,10 @@
-import { Avatar, Skeleton, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import { LayoutFlex, LayoutSection, UIButton, UITypography } from '@gnowth/lib-react'
+import type { FunctionComponent } from 'react'
+
+import { Avatar, Skeleton } from '@chakra-ui/react'
+import { LayoutFlex, LayoutGrid, LayoutSection, LayoutStack, UIButton, UITypography } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
-import { FunctionComponent, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 
@@ -27,74 +29,66 @@ const SectionUsersComponent: FunctionComponent = () => {
 
   return (
     <LayoutSection variant="container">
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>
-              <UITypography value={t('Name')} variant="label" />
-            </Th>
+      <LayoutStack gap="xxs">
+        <LayoutGrid gridColumnCount={5} variant="table">
+          <LayoutFlex>
+            <UITypography value={t('Name')} variant="label" />
+          </LayoutFlex>
 
-            <Th>
-              <UITypography value={t('Role')} variant="label" />
-            </Th>
+          <LayoutFlex>
+            <UITypography value={t('Role')} variant="label" />
+          </LayoutFlex>
 
-            <Th>
-              <UITypography value={t('Email')} variant="label" />
-            </Th>
+          <LayoutFlex>
+            <UITypography value={t('Email')} variant="label" />
+          </LayoutFlex>
 
-            <Th>
-              <UITypography value={t('Status')} variant="label" />
-            </Th>
+          <LayoutFlex>
+            <UITypography value={t('Status')} variant="label" />
+          </LayoutFlex>
 
-            <Th textAlign="end">
-              <Link href={dependencies.appModel.routes.user()} prefetch={false}>
-                <UIButton iconValue="add" palette="textPrimary" size="sm" variant="icon" />
-              </Link>
-            </Th>
-          </Tr>
-        </Thead>
+          <LayoutFlex variant="horizontalRight">
+            <Link href={dependencies.appModel.routes.user()} prefetch={false}>
+              <UIButton iconValue="add" palette="gray" size="sm" variant="icon" />
+            </Link>
+          </LayoutFlex>
 
-        <Tbody>
           {data?.data.map((user) => (
-            <Tr key={dependencies.userModel.getKey(user)}>
-              <Td py="2">
-                <LayoutFlex gap="xs">
-                  <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
+            <Fragment key={dependencies.userModel.getKey(user)}>
+              <LayoutFlex gap="xs">
+                <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
-                  <UITypography value={dependencies.userModel.getNameFull(user)} variant="body2" />
-                </LayoutFlex>
-              </Td>
+                <UITypography value={dependencies.userModel.getNameFull(user)} variant="body2" />
+              </LayoutFlex>
 
-              <Td>
+              <LayoutFlex>
                 <UITypography value={user.role} variant="body2" />
-              </Td>
+              </LayoutFlex>
 
-              <Td>
+              <LayoutFlex>
                 <UITypography value={user.email} variant="body2" />
-              </Td>
+              </LayoutFlex>
 
-              <Td>
+              <LayoutFlex>
                 <UITypography value={user.status} variant="body2" />
-              </Td>
+              </LayoutFlex>
 
-              <Td py="2">
-                <LayoutFlex gap="xs" variant="horizontalRight">
-                  <Link
-                    href={dependencies.appModel.routes.user(dependencies.userModel.getId(user))}
-                    prefetch={false}
-                  >
-                    <UIButton iconValue="edit" palette="gray" size="sm" variant="icon" />
-                  </Link>
+              <LayoutFlex gap="xs" variant="horizontalRight">
+                <Link
+                  href={dependencies.appModel.routes.user(dependencies.userModel.getId(user))}
+                  prefetch={false}
+                >
+                  <UIButton iconValue="edit" palette="gray" size="sm" variant="icon" />
+                </Link>
 
-                  <UIButton iconValue="trash" palette="gray" size="sm" variant="icon" />
-                </LayoutFlex>
-              </Td>
-            </Tr>
+                <UIButton iconValue="trash" palette="gray" size="sm" variant="icon" />
+              </LayoutFlex>
+            </Fragment>
           ))}
-        </Tbody>
+        </LayoutGrid>
 
         {!!data && (
-          <TableCaption>
+          <LayoutFlex variant="horizontalCenter">
             <UITypography
               value={t('Showing {{pageCount}} of {{totalCount}}', {
                 pageCount: data.data.length,
@@ -102,9 +96,9 @@ const SectionUsersComponent: FunctionComponent = () => {
               })}
               variant="caption"
             />
-          </TableCaption>
+          </LayoutFlex>
         )}
-      </Table>
+      </LayoutStack>
 
       {/* DEBT add visibility so that there is no Content Layout Shift */}
       {!!data?.meta && !!filters.page && !!filters.pageSize && (

@@ -27,6 +27,10 @@ type SystemCompose = <
   Type14,
   Type15,
   Type16,
+  Type17,
+  Type18,
+  Type19,
+  Type20,
 >(
   system01: System<Type01>,
   system02: System<Type02>,
@@ -44,6 +48,10 @@ type SystemCompose = <
   system14?: System<Type14>,
   system15?: System<Type15>,
   system16?: System<Type16>,
+  system17?: System<Type17>,
+  system18?: System<Type18>,
+  system19?: System<Type19>,
+  system20?: System<Type20>,
 ) => System<
   Type01 &
     Type02 &
@@ -60,7 +68,11 @@ type SystemCompose = <
     Type13 &
     Type14 &
     Type15 &
-    Type16
+    Type16 &
+    Type17 &
+    Type18 &
+    Type19 &
+    Type20
 >
 
 // TODO fix utilAssignDeep assumes that if a props is an object all will be. does not take

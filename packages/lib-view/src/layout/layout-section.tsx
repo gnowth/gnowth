@@ -56,6 +56,8 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
       marginLeft: 'auto',
       marginRight: 'auto',
       maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      paddingLeft: 'sm',
+      paddingRight: 'sm',
     },
     paddingBottom: 'none',
     paddingLeft: 'none',

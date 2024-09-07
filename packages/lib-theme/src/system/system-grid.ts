@@ -14,6 +14,7 @@ const systemFlexDirection = systemMake<{ flexDirection: string }>({ key: 'flexDi
 const systemFlexGrow = systemMake<{ flexGrow: string }>({ key: 'flexGrow' })
 const systemFlexShrink = systemMake<{ flexShrink: string }>({ key: 'flexShrink' })
 const systemFlexWrap = systemMake<{ flexWrap: string }>({ key: 'flexWrap' })
+const systemGridTemplateColumns = systemMake<{ gridTemplateColumns: string }>({ key: 'gridTemplateColumns' })
 const systemJustifyContent = systemMake<{ justifyContent: string }>({ key: 'justifyContent' })
 const systemJustifyItems = systemMake<{ justifyItems: string }>({ key: 'justifyItems' })
 const systemJustifySelf = systemMake<{ justifySelf: string }>({ key: 'justifySelf' })
@@ -31,6 +32,7 @@ export const systemGrid = () =>
     systemFlexShrink(),
     systemFlexWrap(),
     systemGap(),
+    systemGridTemplateColumns(),
     systemColumnGap(),
     systemRowGap(),
     systemJustifyContent(),
