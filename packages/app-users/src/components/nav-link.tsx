@@ -13,7 +13,9 @@ export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
   return (
     <Link {...props} data-semantic="NavLink">
       <UIButton
-        borderBottom={isActive ? `2px solid ${theme.getPaletteColor({ palette: 'primary' })}` : undefined}
+        borderBottom={
+          isActive ? { '&&': `2px solid ${theme.getPaletteColor({ palette: 'primary' })}` } : undefined
+        }
         palette="textPrimary"
         textValue={props.children}
         variant="navigation"

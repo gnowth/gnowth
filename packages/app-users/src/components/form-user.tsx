@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { FormLabel, Input, Skeleton } from '@chakra-ui/react'
-import { LayoutSection, LayoutStack, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
+import { Input, Skeleton } from '@chakra-ui/react'
+import { LayoutSection, LayoutStack, UIBox, UIButton, UILabel } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -36,30 +36,22 @@ const FormUserComponent: FunctionComponent = () => {
       >
         <LayoutStack as={Form}>
           <UIBox>
-            <FormLabel htmlFor="form-user-nameFirst">
-              <UITypography value={t('First name')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-nameFirst" value={t('First name')} />
             <Field as={Input} id="form-user-nameFirst" name="nameFirst" placeholder="Jane" />
           </UIBox>
 
           <UIBox>
-            <FormLabel htmlFor="form-user-lastName">
-              <UITypography value={t('Last name')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-lastName" value={t('Last name')} />
             <Field as={Input} id="form-user-lastName" name="nameLast" placeholder="Doe" />
           </UIBox>
 
           <UIBox>
-            <FormLabel htmlFor="form-user-role">
-              <UITypography value={t('Role')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-role" value={t('Role')} />
             <Field as={Input} id="form-user-role" name="role" placeholder="Role" />
           </UIBox>
 
           <UIBox>
-            <FormLabel htmlFor="form-user-email">
-              <UITypography value={t('Email')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-email" value={t('Email')} />
             <Field as={Input} id="form-user-email" name="email" placeholder="jane@doe.com" type="email" />
           </UIBox>
 

@@ -88,11 +88,12 @@ export const text: VariantType<PropsUIButton> = (props) => {
 
 export const navigation: VariantType<PropsUIButton> = (props) => ({
   ...text(props),
-  border: '2px solid transparent',
+  borderBottom: '2px solid transparent',
   borderRadius: '0',
+  borderTop: '2px solid transparent',
   minWidth: undefined,
-  paddingLeft: 'md',
-  paddingRight: 'md',
+  paddingLeft: 'xs',
+  paddingRight: 'xs',
 })
 
 export const outlined: VariantType<PropsUIButton> = (props) => ({

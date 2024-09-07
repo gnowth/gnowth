@@ -27,6 +27,10 @@ type SystemCompose = <
   Type14,
   Type15,
   Type16,
+  Type17,
+  Type18,
+  Type19,
+  Type20,
 >(
   system01: System<Type01>,
   system02: System<Type02>,
@@ -44,6 +48,10 @@ type SystemCompose = <
   system14?: System<Type14>,
   system15?: System<Type15>,
   system16?: System<Type16>,
+  system17?: System<Type17>,
+  system18?: System<Type18>,
+  system19?: System<Type19>,
+  system20?: System<Type20>,
 ) => System<
   Type01 &
     Type02 &
@@ -60,7 +68,11 @@ type SystemCompose = <
     Type13 &
     Type14 &
     Type15 &
-    Type16
+    Type16 &
+    Type17 &
+    Type18 &
+    Type19 &
+    Type20
 >
 
 // TODO fix utilAssignDeep assumes that if a props is an object all will be. does not take
@@ -75,7 +87,7 @@ export const systemCompose: SystemCompose =
 interface ConfigsInterpolation<Value extends number | string> {
   breakpoint?: TokenBreakpoint
   breakpointScale?: ScaleName | ScaleType
-  key: string | string[]
+  key: string
   scale?: ScaleName | ScaleType
   theme: Theme
   value?: SystemInterpolate<Value>
@@ -84,9 +96,7 @@ interface ConfigsInterpolation<Value extends number | string> {
 const isBreakpoint = (key: string): key is TokenBreakpoint =>
   ['lg', 'md', 'none', 'sm', 'xl', 'xs', 'xxl', 'xxs'].includes(key)
 
-export function systemInterpolate<Value extends number | string>(
-  configs: ConfigsInterpolation<Value>,
-): CSSObject {
+function systemInterpolate<Value extends number | string>(configs: ConfigsInterpolation<Value>): CSSObject {
   if (configs.value === undefined) return {}
 
   if (!guardObject(configs.value)) {
@@ -143,3 +153,28 @@ export function systemInterpolate<Value extends number | string>(
     return breakpoint ? { ...cssObject, [`@media(min-width: ${breakpoint})`]: newValue } : cssObject
   }, {})
 }
+
+type BuildParameters<T> = {
+  breakpointScale?: ScaleName | ScaleType
+  key: keyof T
+  scale?: ScaleName | ScaleType
+}
+
+type BuildParametersOverride = {
+  breakpointScale?: ScaleName | ScaleType
+  scale?: ScaleName | ScaleType
+}
+
+export const systemMake =
+  <TType extends { [k: string]: number | string }>(parameters: BuildParameters<TType>) =>
+  (
+    parametersOverride?: BuildParametersOverride,
+  ): System<{ [Property in keyof TType]?: SystemInterpolate<TType[Property]> }> =>
+  (props, theme) =>
+    systemInterpolate<TType[keyof TType]>({
+      breakpointScale: parametersOverride?.breakpointScale ?? parameters.breakpointScale,
+      key: parameters.key as string,
+      scale: parametersOverride?.scale ?? parameters.scale,
+      theme,
+      value: props[parameters.key],
+    })

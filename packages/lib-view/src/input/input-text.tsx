@@ -8,9 +8,9 @@ import {
   systemBox,
   systemColorFromPalette,
   systemCompose,
+  systemLayout,
   systemSpace,
   systemTypography,
-  systemWidth,
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
@@ -36,6 +36,7 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
   className?: string
   hidden?: boolean
   id?: string
+  placeholder?: string
   slot?: string
   type?: string
   typographyVariant?: string
@@ -47,9 +48,9 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
 const inputText = systemCompose(
   systemBox(),
   systemColorFromPalette(),
+  systemLayout(),
   systemSpace(),
   systemTypography(),
-  systemWidth(),
 )
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])
@@ -74,7 +75,7 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
   const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
-  return createElement(propsVariant.as || 'input', {
+  return createElement((propsVariant.as ?? 'input') as 'input', {
     className: cx(
       'input-text',
       R.isString(propsVariant.variant) && `input-text--${propsVariant.variant}`,
@@ -85,6 +86,8 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
     id: propsVariant.id,
     name: value.name,
     onChange: value.onChange,
+    placeholder: propsVariant.placeholder,
+    type: propsVariant.type,
     value: value.value,
   })
 }

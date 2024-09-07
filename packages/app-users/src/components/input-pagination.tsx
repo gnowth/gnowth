@@ -1,10 +1,8 @@
-import type { ChakraProps } from '@chakra-ui/react'
 import type { FilterPageSize } from '@gnowth/logic-users'
 import type { FunctionComponent } from 'react'
 
-import { ArrowBackIcon, ArrowForwardIcon, ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
-import { Button, Select } from '@chakra-ui/react'
-import { LayoutFlex, UITypography } from '@gnowth/lib-react'
+import { Select } from '@chakra-ui/react'
+import { LayoutFlex, UIButton, UITypography } from '@gnowth/lib-react'
 import { FilterModel } from '@gnowth/logic-users'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -17,7 +15,6 @@ interface Value {
 interface Props {
   onChange: (value: Value) => void
   pageCount: number
-  rootProps?: ChakraProps
   value: Value
 }
 
@@ -62,17 +59,21 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
       </LayoutFlex>
 
       <LayoutFlex gap="xs">
-        <Button onClick={() => props.onChange({ ...props.value, page: 1 })}>
-          <ArrowBackIcon h={6} w={6} />
-        </Button>
+        <UIButton
+          iconValue="keyboardDoubleArrowLeft"
+          onClick={() => props.onChange({ ...props.value, page: 1 })}
+          palette="gray"
+          variant="icon"
+        />
 
-        <Button
+        <UIButton
+          iconValue="keyboardArrowLeft"
           onClick={() =>
             props.value.page > 1 && props.onChange({ ...props.value, page: props.value.page - 1 })
           }
-        >
-          <ChevronLeftIcon h={6} w={6} />
-        </Button>
+          palette="gray"
+          variant="icon"
+        />
 
         <Select
           maxWidth="20"
@@ -90,18 +91,22 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
           ))}
         </Select>
 
-        <Button
+        <UIButton
+          iconValue="keyboardArrowRight"
           onClick={() =>
             props.value.page < props.pageCount &&
             props.onChange({ ...props.value, page: props.value.page + 1 })
           }
-        >
-          <ChevronRightIcon h={6} w={6} />
-        </Button>
+          palette="gray"
+          variant="icon"
+        />
 
-        <Button onClick={() => props.onChange({ ...props.value, page: props.pageCount })}>
-          <ArrowForwardIcon h={6} w={6} />
-        </Button>
+        <UIButton
+          iconValue="keyboardDoubleArrowRight"
+          onClick={() => props.onChange({ ...props.value, page: props.pageCount })}
+          palette="gray"
+          variant="icon"
+        />
       </LayoutFlex>
     </LayoutFlex>
   )

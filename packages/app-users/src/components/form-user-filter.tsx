@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { FormLabel, Input } from '@chakra-ui/react'
-import { LayoutFlex, LayoutSection, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
+import { Input } from '@chakra-ui/react'
+import { LayoutFlex, LayoutSection, UIBox, UIButton, UILabel } from '@gnowth/lib-react'
 import { Field, Form, Formik } from 'formik'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
@@ -24,16 +24,12 @@ const FormUserFilterComponent: FunctionComponent = () => {
       >
         <LayoutFlex alignItems="flex-end" as={Form} gap="sm">
           <UIBox>
-            <FormLabel htmlFor="form-user-filter-email">
-              <UITypography value={t('Email')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-filter-email" value={t('Email')} />
             <Field as={Input} id="form-user-filter-email" name="email" placeholder={t('email')} />
           </UIBox>
 
           <UIBox>
-            <FormLabel htmlFor="form-user-filter-status">
-              <UITypography value={t('Status')} variant="label" />
-            </FormLabel>
+            <UILabel id="form-user-filter-status" value={t('Status')} />
             <Field as={Input} id="form-user-filter-status" name="status" placeholder={t('status')} />
           </UIBox>
 

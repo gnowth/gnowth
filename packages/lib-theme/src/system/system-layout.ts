@@ -1,53 +1,17 @@
-import type { ScaleName, ScaleType } from '../theme/scales'
-import type { TokenBase, TokenLength } from '../tokens/tokens'
-import type { System } from './system.types'
+import type { CSSLength } from './system.types'
 
-import { systemCompose, systemInterpolate } from './system'
+import { systemCompose, systemMake } from './system'
 
-type SystemDisplay = { display?: string }
-type SystemHeight = { height?: string }
-type SystemMaxHeight = { maxHeight?: string }
-type SystemMaxWidth = { maxWidth?: string }
-type SystemMinHeight = { minHeight?: string }
-type SystemMinWidth = { minWidth?: string }
-type SystemOverflow = { overflow?: string }
-type SystemOverflowX = { overflowX?: string }
-type SystemOverflowY = { overflowY?: string }
-type SystemWidth<Value> = { width?: Value }
-
-export const systemDisplay: () => System<SystemDisplay> = () => (props, theme) =>
-  systemInterpolate({ key: 'display', theme, value: props.display })
-
-export const systemHeight: () => System<SystemHeight> = () => (props, theme) =>
-  systemInterpolate({ key: 'height', theme, value: props.height })
-
-export const systemMaxHeight: () => System<SystemMaxHeight> = () => (props, theme) =>
-  systemInterpolate({ key: 'maxHeight', theme, value: props.maxHeight })
-
-export const systemMaxWidth: () => System<SystemMaxWidth> = () => (props, theme) =>
-  systemInterpolate({ key: 'maxWidth', theme, value: props.maxWidth })
-
-export const systemMinHeight: () => System<SystemMinHeight> = () => (props, theme) =>
-  systemInterpolate({ key: 'minHeight', theme, value: props.minHeight })
-
-export const systemMinWidth: () => System<SystemMinWidth> = () => (props, theme) =>
-  systemInterpolate({ key: 'minWidth', theme, value: props.minWidth })
-
-export const systemOverflow: () => System<SystemOverflow> = () => (props, theme) =>
-  systemInterpolate({ key: 'overflow', theme, value: props.overflow })
-
-export const systemOverflowX: () => System<SystemOverflowX> = () => (props, theme) =>
-  systemInterpolate({ key: 'overflowX', theme, value: props.overflowX })
-
-export const systemOverflowY: () => System<SystemOverflowY> = () => (props, theme) =>
-  systemInterpolate({ key: 'overflowY', theme, value: props.overflowY })
-
-export const systemWidth: <Token extends TokenBase = TokenLength>(
-  scale?: ScaleName | ScaleType,
-) => System<SystemWidth<Token | string>> =
-  (scale = 'length') =>
-  (props, theme) =>
-    systemInterpolate({ key: 'width', scale, theme, value: props.width })
+export const systemDisplay = systemMake<{ display: string }>({ key: 'display' })
+const systemHeight = systemMake<{ height: string }>({ key: 'height' })
+const systemMaxHeight = systemMake<{ maxHeight: string }>({ key: 'maxHeight' })
+const systemMaxWidth = systemMake<{ maxWidth: string }>({ key: 'maxWidth' })
+const systemMinHeight = systemMake<{ minHeight: string }>({ key: 'minHeight' })
+const systemMinWidth = systemMake<{ minWidth: string }>({ key: 'minWidth' })
+const systemOverflow = systemMake<{ overflow: string }>({ key: 'overflow' })
+const systemOverflowX = systemMake<{ overflowX: string }>({ key: 'overflowX' })
+const systemOverflowY = systemMake<{ overflowY: string }>({ key: 'overflowY' })
+const systemWidth = systemMake<{ width: CSSLength }>({ key: 'width', scale: 'length' })
 
 export const systemLayout = () =>
   systemCompose(

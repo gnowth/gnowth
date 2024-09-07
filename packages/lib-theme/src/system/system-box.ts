@@ -1,43 +1,14 @@
-import type { System, SystemInterpolate } from './system.types'
+import { systemCompose, systemMake } from './system'
 
-import { systemCompose, systemInterpolate } from './system'
-
-type SystemBorder = { border?: SystemInterpolate<string> }
-type SystemBorderBottom = { borderBottom?: SystemInterpolate<string> }
-type SystemBorderColor = { borderColor?: SystemInterpolate<string> }
-type SystemBorderLeft = { borderLeft?: SystemInterpolate<string> }
-type SystemBorderRadius = { borderRadius?: SystemInterpolate<string> }
-type SystemBorderRight = { borderRight?: SystemInterpolate<string> }
-type SystemBorderTop = { borderTop?: SystemInterpolate<string> }
-type SystemBoxShadow = { boxShadow?: SystemInterpolate<string> }
-type SystemOutline = { outline?: SystemInterpolate<string> }
-
-export const systemBorder: () => System<SystemBorder> = () => (props, theme) =>
-  systemInterpolate({ key: 'border', theme, value: props.border })
-
-export const systemBorderBottom: () => System<SystemBorderBottom> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderBottom', theme, value: props.borderBottom })
-
-export const systemBorderColor: () => System<SystemBorderColor> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderColor', theme, value: props.borderColor })
-
-export const systemBorderLeft: () => System<SystemBorderLeft> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderLeft', theme, value: props.borderLeft })
-
-export const systemBorderRadius: () => System<SystemBorderRadius> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderRadius', theme, value: props.borderRadius })
-
-export const systemBorderRight: () => System<SystemBorderRight> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderRight', theme, value: props.borderRight })
-
-export const systemBorderTop: () => System<SystemBorderTop> = () => (props, theme) =>
-  systemInterpolate({ key: 'borderTop', theme, value: props.borderTop })
-
-export const systemBoxShadow: () => System<SystemBoxShadow> = () => (props, theme) =>
-  systemInterpolate({ key: 'boxShadow', theme, value: props.boxShadow })
-
-export const systemOutline: () => System<SystemOutline> = () => (props, theme) =>
-  systemInterpolate({ key: 'outline', theme, value: props.outline })
+const systemBorder = systemMake<{ border: string }>({ key: 'border' })
+const systemBorderBottom = systemMake<{ borderBottom: string }>({ key: 'borderBottom' })
+const systemBorderColor = systemMake<{ borderColor: string }>({ key: 'borderColor' })
+const systemBorderLeft = systemMake<{ borderLeft: string }>({ key: 'borderLeft' })
+const systemBorderRadius = systemMake<{ borderRadius: string }>({ key: 'borderRadius' })
+const systemBorderRight = systemMake<{ borderRight: string }>({ key: 'borderRight' })
+const systemBorderTop = systemMake<{ borderTop: string }>({ key: 'borderTop' })
+const systemBoxShadow = systemMake<{ boxShadow: string }>({ key: 'boxShadow' })
+const systemOutline = systemMake<{ outline: string }>({ key: 'outline' })
 
 export const systemBox = () =>
   systemCompose(
