@@ -1,26 +1,25 @@
-import type { ScaleName, ScaleType } from '../theme/scales'
 import type { CSSSpace } from './system.types'
 
-import { systemBuild, systemCompose } from './system'
+import { systemCompose, systemMake } from './system'
 
-export const systemColumnGap = systemBuild<{ columnGap?: CSSSpace }>({ key: 'columnGap', scale: 'space' })
-export const systemGap = systemBuild<{ gap?: CSSSpace }>({ key: 'gap', scale: 'space' })
-export const systemRowGap = systemBuild<{ rowGap?: CSSSpace }>({ key: 'rowGap', scale: 'space' })
-export const systemAlignContent = systemBuild<{ alignContent?: string }>({ key: 'alignContent' })
-export const systemAlignItems = systemBuild<{ alignItems?: string }>({ key: 'alignItems' })
-export const systemAlignSelf = systemBuild<{ alignSelf?: string }>({ key: 'alignSelf' })
-export const systemFlex = systemBuild<{ flex?: string }>({ key: 'flex' })
-export const systemFlexBasis = systemBuild<{ flexBasis?: string }>({ key: 'flexBasis' })
-export const systemFlexDirection = systemBuild<{ flexDirection?: string }>({ key: 'flexDirection' })
-export const systemFlexGrow = systemBuild<{ flexGrow?: string }>({ key: 'flexGrow' })
-export const systemFlexShrink = systemBuild<{ flexShrink?: string }>({ key: 'flexShrink' })
-export const systemFlexWrap = systemBuild<{ flexWrap?: string }>({ key: 'flexWrap' })
-export const systemJustifyContent = systemBuild<{ justifyContent?: string }>({ key: 'justifyContent' })
-export const systemJustifyItems = systemBuild<{ justifyItems?: string }>({ key: 'justifyItems' })
-export const systemJustifySelf = systemBuild<{ justifySelf?: string }>({ key: 'justifySelf' })
-export const systemOrder = systemBuild<{ order?: string }>({ key: 'order' })
+const systemColumnGap = systemMake<{ columnGap: CSSSpace }>({ key: 'columnGap', scale: 'space' })
+export const systemGap = systemMake<{ gap: CSSSpace }>({ key: 'gap', scale: 'space' })
+const systemRowGap = systemMake<{ rowGap: CSSSpace }>({ key: 'rowGap', scale: 'space' })
+const systemAlignContent = systemMake<{ alignContent: string }>({ key: 'alignContent' })
+const systemAlignItems = systemMake<{ alignItems: string }>({ key: 'alignItems' })
+const systemAlignSelf = systemMake<{ alignSelf: string }>({ key: 'alignSelf' })
+const systemFlex = systemMake<{ flex: string }>({ key: 'flex' })
+const systemFlexBasis = systemMake<{ flexBasis: string }>({ key: 'flexBasis' })
+const systemFlexDirection = systemMake<{ flexDirection: string }>({ key: 'flexDirection' })
+const systemFlexGrow = systemMake<{ flexGrow: string }>({ key: 'flexGrow' })
+const systemFlexShrink = systemMake<{ flexShrink: string }>({ key: 'flexShrink' })
+const systemFlexWrap = systemMake<{ flexWrap: string }>({ key: 'flexWrap' })
+const systemJustifyContent = systemMake<{ justifyContent: string }>({ key: 'justifyContent' })
+const systemJustifyItems = systemMake<{ justifyItems: string }>({ key: 'justifyItems' })
+const systemJustifySelf = systemMake<{ justifySelf: string }>({ key: 'justifySelf' })
+const systemOrder = systemMake<{ order: string }>({ key: 'order' })
 
-export const systemGrid = (scale?: ScaleName | ScaleType) =>
+export const systemGrid = () =>
   systemCompose(
     systemAlignContent(),
     systemAlignItems(),
@@ -31,9 +30,9 @@ export const systemGrid = (scale?: ScaleName | ScaleType) =>
     systemFlexGrow(),
     systemFlexShrink(),
     systemFlexWrap(),
-    systemGap({ scale }),
-    systemColumnGap({ scale }),
-    systemRowGap({ scale }),
+    systemGap(),
+    systemColumnGap(),
+    systemRowGap(),
     systemJustifyContent(),
     systemJustifyItems(),
     systemJustifySelf(),

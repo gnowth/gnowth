@@ -8,9 +8,9 @@ import {
   systemBox,
   systemColorFromPalette,
   systemCompose,
+  systemLayout,
   systemSpace,
   systemTypography,
-  systemWidth,
   themeDefinitionsMake,
   themeStylesMake,
 } from '@gnowth/lib-theme'
@@ -47,9 +47,9 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
 const inputText = systemCompose(
   systemBox(),
   systemColorFromPalette(),
+  systemLayout(),
   systemSpace(),
   systemTypography(),
-  systemWidth(),
 )
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])

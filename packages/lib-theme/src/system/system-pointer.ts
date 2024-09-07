@@ -1,6 +1,6 @@
-import { systemBuild, systemCompose } from './system'
+import { systemCompose, systemMake } from './system'
 
-export const systemCursor = systemBuild<{ cursor?: string }>({ key: 'cursor' })
-export const systemPointerEvents = systemBuild<{ pointerEvents?: string }>({ key: 'pointerEvents' })
+const systemCursor = systemMake<{ cursor: string }>({ key: 'cursor' })
+const systemPointerEvents = systemMake<{ pointerEvents: string }>({ key: 'pointerEvents' })
 
 export const systemPointer = () => systemCompose(systemCursor(), systemPointerEvents())

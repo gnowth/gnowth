@@ -1,13 +1,13 @@
 import type { TokenZIndex } from '../tokens/tokens'
 
-import { systemBuild, systemCompose } from './system'
+import { systemCompose, systemMake } from './system'
 
-export const systemBottom = systemBuild<{ bottom?: string }>({ key: 'bottom' })
-export const systemLeft = systemBuild<{ left?: string }>({ key: 'left' })
-export const systemPosition = systemBuild<{ position?: string }>({ key: 'position' })
-export const systemRight = systemBuild<{ right?: string }>({ key: 'right' })
-export const systemTop = systemBuild<{ top?: string }>({ key: 'top' })
-export const systemZIndex = systemBuild<{ zIndex?: TokenZIndex | string }>({ key: 'zIndex', scale: 'zindex' })
+const systemBottom = systemMake<{ bottom: string }>({ key: 'bottom' })
+const systemLeft = systemMake<{ left: string }>({ key: 'left' })
+const systemPosition = systemMake<{ position: string }>({ key: 'position' })
+const systemRight = systemMake<{ right: string }>({ key: 'right' })
+const systemTop = systemMake<{ top: string }>({ key: 'top' })
+const systemZIndex = systemMake<{ zIndex: TokenZIndex | string }>({ key: 'zIndex', scale: 'zindex' })
 
 export const systemPlace = () =>
   systemCompose(systemBottom(), systemLeft(), systemPosition(), systemRight(), systemTop(), systemZIndex())

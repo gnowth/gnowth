@@ -1,17 +1,17 @@
 import type { CSSLength } from './system.types'
 
-import { systemBuild, systemCompose } from './system'
+import { systemCompose, systemMake } from './system'
 
-export const systemDisplay = systemBuild<{ display?: string }>({ key: 'display' })
-export const systemHeight = systemBuild<{ height?: string }>({ key: 'height' })
-export const systemMaxHeight = systemBuild<{ maxHeight?: string }>({ key: 'maxHeight' })
-export const systemMaxWidth = systemBuild<{ maxWidth?: string }>({ key: 'maxWidth' })
-export const systemMinHeight = systemBuild<{ minHeight?: string }>({ key: 'minHeight' })
-export const systemMinWidth = systemBuild<{ minWidth?: string }>({ key: 'minWidth' })
-export const systemOverflow = systemBuild<{ overflow?: string }>({ key: 'overflow' })
-export const systemOverflowX = systemBuild<{ overflowX?: string }>({ key: 'overflowX' })
-export const systemOverflowY = systemBuild<{ overflowY?: string }>({ key: 'overflowY' })
-export const systemWidth = systemBuild<{ width?: CSSLength }>({ key: 'width', scale: 'length' })
+export const systemDisplay = systemMake<{ display: string }>({ key: 'display' })
+const systemHeight = systemMake<{ height: string }>({ key: 'height' })
+const systemMaxHeight = systemMake<{ maxHeight: string }>({ key: 'maxHeight' })
+const systemMaxWidth = systemMake<{ maxWidth: string }>({ key: 'maxWidth' })
+const systemMinHeight = systemMake<{ minHeight: string }>({ key: 'minHeight' })
+const systemMinWidth = systemMake<{ minWidth: string }>({ key: 'minWidth' })
+const systemOverflow = systemMake<{ overflow: string }>({ key: 'overflow' })
+const systemOverflowX = systemMake<{ overflowX: string }>({ key: 'overflowX' })
+const systemOverflowY = systemMake<{ overflowY: string }>({ key: 'overflowY' })
+const systemWidth = systemMake<{ width: CSSLength }>({ key: 'width', scale: 'length' })
 
 export const systemLayout = () =>
   systemCompose(

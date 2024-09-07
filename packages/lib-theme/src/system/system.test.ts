@@ -1,37 +1,37 @@
 import type { CSSObject } from '@emotion/serialize'
 
 import { Theme } from '../theme/theme'
-import { systemBuild, systemCompose } from './system'
+import { systemCompose, systemMake } from './system'
 
 const theme = new Theme()
 
 describe('systemBuild', () => {
   it('returns empty object is no value is provided', () => {
-    const cssObject = systemBuild({ key: 'margin' })()({}, theme)
+    const cssObject = systemMake({ key: 'margin' })()({}, theme)
     expect(cssObject).toEqual({})
   })
 
   it('returns right cssObject when value is a string', () => {
     const margin = '5px'
-    const cssObject = systemBuild({ key: 'margin' })()({ margin }, theme)
+    const cssObject = systemMake({ key: 'margin' })()({ margin }, theme)
     expect(cssObject.margin).toBe(margin)
   })
 
   it('returns right cssObject when value is an object with selector', () => {
     const margin = '5px'
-    const cssObject = systemBuild({ key: 'margin' })()({ margin: { '&:active': margin } }, theme)
+    const cssObject = systemMake({ key: 'margin' })()({ margin: { '&:active': margin } }, theme)
     expect(cssObject['&:active']).toEqual({ margin })
   })
 
   it('returns right cssObject when value is an object with child', () => {
     const margin = '5px'
-    const cssObject = systemBuild({ key: 'margin' })()({ margin: { '& *': margin } }, theme)
+    const cssObject = systemMake({ key: 'margin' })()({ margin: { '& *': margin } }, theme)
     expect(cssObject['& *']).toEqual({ margin })
   })
 
   it('returns right cssObject when value is an object with breakpoint', () => {
     const margin = '5px'
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
     })()({ margin: { md: margin } }, theme)
@@ -40,7 +40,7 @@ describe('systemBuild', () => {
 
   it('returns right cssObject when value is an object with selector and nested breakpoint', () => {
     const margin = '5px'
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
     })()({ margin: { '&:active': { md: margin } } }, theme)
@@ -49,7 +49,7 @@ describe('systemBuild', () => {
 
   it('returns right cssObject when value is a string and scale is responsive', () => {
     const margin = '5px'
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
@@ -58,7 +58,7 @@ describe('systemBuild', () => {
   })
 
   it('returns right cssObject when value is a token and scale is responsive', () => {
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
@@ -67,7 +67,7 @@ describe('systemBuild', () => {
   })
 
   it('returns right cssObject when value is and object with token and scale is responsive', () => {
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
@@ -76,7 +76,7 @@ describe('systemBuild', () => {
   })
 
   it('returns right cssObject when value has breakpoint, token and scale is responsive', () => {
-    const cssObject = systemBuild({
+    const cssObject = systemMake({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },

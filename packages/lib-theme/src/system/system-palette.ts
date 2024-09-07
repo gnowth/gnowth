@@ -1,7 +1,7 @@
 import type { TokenColorWeight } from '../tokens/tokens'
 import type { System } from './system.types'
 
-import { systemBuild } from './system'
+import { systemMake } from './system'
 
 type SystemPalette = {
   palette?: string
@@ -9,8 +9,7 @@ type SystemPalette = {
   paletteWeight?: TokenColorWeight
 }
 
-export const systemColor = systemBuild<{ color?: string }>({ key: 'color' })
-
+export const systemColor = systemMake<{ color: string }>({ key: 'color' })
 export const systemColorFromPalette: () => System<SystemPalette> = () => (props, theme) => {
   const color = theme.getPaletteColor(props)
   return color ? { color } : {}

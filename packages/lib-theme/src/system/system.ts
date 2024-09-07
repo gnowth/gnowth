@@ -153,11 +153,11 @@ type BuildParametersOverride = {
   scale?: ScaleName | ScaleType
 }
 
-export const systemBuild =
+export const systemMake =
   <TType extends { [k: string]: number | string }>(parameters: BuildParameters<TType>) =>
   (
     parametersOverride?: BuildParametersOverride,
-  ): System<{ [Property in keyof TType]: SystemInterpolate<TType[Property]> }> =>
+  ): System<{ [Property in keyof TType]?: SystemInterpolate<TType[Property]> }> =>
   (props, theme) =>
     systemInterpolate<TType[keyof TType]>({
       breakpointScale: parametersOverride?.breakpointScale ?? parameters.breakpointScale,
