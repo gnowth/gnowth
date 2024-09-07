@@ -1,31 +1,13 @@
-import type { System, SystemInterpolate } from './system.types'
+import { systemBuild, systemCompose } from './system'
 
-import { systemCompose, systemInterpolate } from './system'
-
-type SystemBackground = { background?: SystemInterpolate<string> }
-type SystemBackgroundColor = { backgroundColor?: SystemInterpolate<string> }
-type SystemBackgroundImage = { backgroundImage?: SystemInterpolate<string> }
-type SystemBackgroundPosition = { backgroundPosition?: SystemInterpolate<string> }
-type SystemBackgroundRepeat = { backgroundRepeat?: SystemInterpolate<string> }
-type SystemBackgroundSize = { backgroundSize?: SystemInterpolate<string> }
-
-export const systemBackground: () => System<SystemBackground> = () => (props, theme) =>
-  systemInterpolate({ key: 'background', theme, value: props.background })
-
-export const systemBackgroundColor: () => System<SystemBackgroundColor> = () => (props, theme) =>
-  systemInterpolate({ key: 'backgroundColor', theme, value: props.backgroundColor })
-
-export const systemBackgroundImage: () => System<SystemBackgroundImage> = () => (props, theme) =>
-  systemInterpolate({ key: 'backgroundImage', theme, value: props.backgroundImage })
-
-export const systemBackgroundPosition: () => System<SystemBackgroundPosition> = () => (props, theme) =>
-  systemInterpolate({ key: 'backgroundPosition', theme, value: props.backgroundPosition })
-
-export const systemBackgroundRepeat: () => System<SystemBackgroundRepeat> = () => (props, theme) =>
-  systemInterpolate({ key: 'backgroundRepeat', theme, value: props.backgroundRepeat })
-
-export const systemBackgroundSize: () => System<SystemBackgroundSize> = () => (props, theme) =>
-  systemInterpolate({ key: 'backgroundSize', theme, value: props.backgroundSize })
+export const systemBackground = systemBuild<{ background?: string }>({ key: 'background' })
+export const systemBackgroundColor = systemBuild<{ backgroundColor?: string }>({ key: 'backgroundColor' })
+export const systemBackgroundImage = systemBuild<{ backgroundImage?: string }>({ key: 'backgroundImage' })
+export const systemBackgroundPosition = systemBuild<{ backgroundPosition?: string }>({
+  key: 'backgroundPosition',
+})
+export const systemBackgroundRepeat = systemBuild<{ backgroundRepeat?: string }>({ key: 'backgroundRepeat' })
+export const systemBackgroundSize = systemBuild<{ backgroundSize?: string }>({ key: 'backgroundSize' })
 
 export const systemImage = () =>
   systemCompose(

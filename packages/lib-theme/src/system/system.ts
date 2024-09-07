@@ -75,7 +75,7 @@ export const systemCompose: SystemCompose =
 interface ConfigsInterpolation<Value extends number | string> {
   breakpoint?: TokenBreakpoint
   breakpointScale?: ScaleName | ScaleType
-  key: string | string[]
+  key: string
   scale?: ScaleName | ScaleType
   theme: Theme
   value?: SystemInterpolate<Value>
@@ -143,3 +143,27 @@ export function systemInterpolate<Value extends number | string>(
     return breakpoint ? { ...cssObject, [`@media(min-width: ${breakpoint})`]: newValue } : cssObject
   }, {})
 }
+
+type BuildParameters<T> = {
+  key: keyof T
+  scale?: ScaleName | ScaleType
+}
+
+type BuildParametersOverride = {
+  scale?: ScaleName | ScaleType
+}
+
+type c = { [k: string]: number | string }
+
+export const systemBuild =
+  <TType extends c>(parameters: BuildParameters<TType>) =>
+  (
+    parametersOverride?: BuildParametersOverride,
+  ): System<{ [Property in keyof TType]: SystemInterpolate<TType[Property]> }> =>
+  (props, theme) =>
+    systemInterpolate<TType[keyof TType]>({
+      key: parameters.key as string,
+      scale: parametersOverride?.scale ?? parameters.scale,
+      theme,
+      value: props[parameters.key],
+    })

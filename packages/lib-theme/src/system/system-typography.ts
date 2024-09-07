@@ -2,15 +2,13 @@ import type { CSSObject } from '@emotion/serialize'
 
 import * as R from 'remeda'
 
-import type { ScaleName, ScaleType } from '../theme/scales'
-import type { TokenBase, TokenFontSize } from '../tokens/tokens'
+import type { TokenFontSize } from '../tokens/tokens'
 import type { System } from './system.types'
 
 import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'
-import { systemCompose, systemInterpolate } from './system'
+import { systemBuild, systemCompose } from './system'
 
 type SystemFontFamily = { fontFamily?: number | string }
-type SystemFontSize<Value> = { fontSize?: Value }
 type SystemFontStyle = { fontStyle?: string }
 type SystemFontWeight = { fontWeight?: number | string }
 type SystemLetterSpacing = { letterSpacing?: string }
@@ -35,12 +33,10 @@ export const systemFontFamily: () => System<SystemFontFamily> = () => (props, th
   return fontFamily ? { fontFamily } : {}
 }
 
-export const systemFontSize: <Token extends TokenBase = TokenFontSize>(
-  scale?: ScaleName | ScaleType,
-) => System<SystemFontSize<Token>> =
-  (scale = 'fontsize') =>
-  (props, theme) =>
-    systemInterpolate({ key: 'fontSize', scale, theme, value: props.fontSize })
+export const systemFontSize = systemBuild<{ fontSize?: TokenFontSize | string }>({
+  key: 'fontSize',
+  scale: 'fontsize',
+})
 
 export const systemFontStyle: () => System<SystemFontStyle> = () => (props) => ({
   fontStyle: props.fontStyle,
