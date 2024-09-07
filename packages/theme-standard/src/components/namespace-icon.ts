@@ -8,6 +8,10 @@ export {
   MdEdit as edit,
   MdHome as home,
   MdIndeterminateCheckBox as checkboxIntermediate,
+  MdKeyboardArrowLeft as keyboardArrowLeft,
+  MdKeyboardArrowRight as keyboardArrowRight,
+  MdKeyboardDoubleArrowLeft as keyboardDoubleArrowLeft,
+  MdKeyboardDoubleArrowRight as keyboardDoubleArrowRight,
   MdRadioButtonChecked as radioChecked,
   MdRadioButtonUnchecked as radio,
 } from 'react-icons/md'
