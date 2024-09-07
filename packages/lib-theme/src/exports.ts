@@ -1,7 +1,7 @@
 export * from './system/system'
 
 export * from './system/system-box'
-export * from './system/system-flexbox'
+export * from './system/system-grid'
 export * from './system/system-image'
 export * from './system/system-layout'
 export * from './system/system-palette'

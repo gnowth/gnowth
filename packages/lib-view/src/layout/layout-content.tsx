@@ -7,7 +7,7 @@ import {
   systemBackgroundColorFromPalette,
   systemCompose,
   systemDisplay,
-  systemFlexbox,
+  systemGrid,
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
@@ -32,7 +32,7 @@ export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
 const layoutContent = systemCompose(
   systemBackgroundColorFromPalette(),
   systemDisplay(),
-  systemFlexbox(),
+  systemGrid(),
   systemSpace(),
 )
 const makeStyles = themeStylesMake({ layoutContent })

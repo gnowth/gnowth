@@ -7,7 +7,7 @@ import {
   systemBox,
   systemColor,
   systemCompose,
-  systemFlexbox,
+  systemGrid,
   systemImage,
   systemLayout,
   systemPointer,
@@ -23,7 +23,7 @@ type PropsUIBox = PropsBase<{ children?: ReactNode; 'data-testid'?: string } & S
 const uiBox = systemCompose(
   systemBox(),
   systemColor(),
-  systemFlexbox(),
+  systemGrid(),
   systemImage(),
   systemLayout(),
   systemPointer(),
