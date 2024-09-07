@@ -1,10 +1,8 @@
 import type { ScaleName, ScaleType } from '../theme/scales'
-import type { TokenPropertyValue, TokenSpace } from '../tokens/tokens'
-import type { SystemUnits } from './system.types'
+import type { CSSSpace } from './system.types'
 
 import { systemBuild, systemCompose } from './system'
 
-type CSSSpace = SystemUnits | TokenPropertyValue | TokenSpace
 export const systemMargin = systemBuild<{ margin?: CSSSpace }>({ key: 'margin', scale: 'space' })
 export const systemMarginBottom = systemBuild<{ marginBottom?: CSSSpace }>({
   key: 'marginBottom',

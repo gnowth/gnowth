@@ -1,4 +1,4 @@
-import type { TokenSpace } from '../tokens/tokens'
+import type { CSSLength } from './system.types'
 
 import { systemBuild, systemCompose } from './system'
 
@@ -11,7 +11,7 @@ export const systemMinWidth = systemBuild<{ minWidth?: string }>({ key: 'minWidt
 export const systemOverflow = systemBuild<{ overflow?: string }>({ key: 'overflow' })
 export const systemOverflowX = systemBuild<{ overflowX?: string }>({ key: 'overflowX' })
 export const systemOverflowY = systemBuild<{ overflowY?: string }>({ key: 'overflowY' })
-export const systemWidth = systemBuild<{ width?: TokenSpace | string }>({ key: 'width', scale: 'length' })
+export const systemWidth = systemBuild<{ width?: CSSLength }>({ key: 'width', scale: 'length' })
 
 export const systemLayout = () =>
   systemCompose(

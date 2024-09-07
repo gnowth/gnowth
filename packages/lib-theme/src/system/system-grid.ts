@@ -1,13 +1,11 @@
 import type { ScaleName, ScaleType } from '../theme/scales'
-import type { TokenPropertyValue, TokenSpace } from '../tokens/tokens'
-import type { SystemUnits } from './system.types'
+import type { CSSSpace } from './system.types'
 
 import { systemBuild, systemCompose } from './system'
 
-type CSSGap = SystemUnits | TokenPropertyValue | TokenSpace
-export const systemColumnGap = systemBuild<{ columnGap?: CSSGap }>({ key: 'columnGap', scale: 'space' })
-export const systemGap = systemBuild<{ gap?: CSSGap }>({ key: 'gap', scale: 'space' })
-export const systemRowGap = systemBuild<{ rowGap?: CSSGap }>({ key: 'rowGap', scale: 'space' })
+export const systemColumnGap = systemBuild<{ columnGap?: CSSSpace }>({ key: 'columnGap', scale: 'space' })
+export const systemGap = systemBuild<{ gap?: CSSSpace }>({ key: 'gap', scale: 'space' })
+export const systemRowGap = systemBuild<{ rowGap?: CSSSpace }>({ key: 'rowGap', scale: 'space' })
 export const systemAlignContent = systemBuild<{ alignContent?: string }>({ key: 'alignContent' })
 export const systemAlignItems = systemBuild<{ alignItems?: string }>({ key: 'alignItems' })
 export const systemAlignSelf = systemBuild<{ alignSelf?: string }>({ key: 'alignSelf' })

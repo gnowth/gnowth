@@ -1,40 +1,43 @@
 import type { CSSObject } from '@emotion/serialize'
 
 import { Theme } from '../theme/theme'
-import { systemCompose, systemInterpolate } from './system'
+import { systemBuild, systemCompose, systemInterpolate } from './system'
 
 const theme = new Theme()
 
 describe('systemInterpolate', () => {
   it('returns empty object is no value is provided', () => {
-    const cssObject = systemInterpolate({ key: 'margin', theme })
+    const cssObject = systemBuild({ key: 'margin' })()({}, theme)
     expect(cssObject).toEqual({})
   })
 
   it('returns right cssObject when value is a string', () => {
-    const value = '5px'
-    const cssObject = systemInterpolate({ key: 'margin', theme, value })
-    expect(cssObject.margin).toBe(value)
+    const margin = '5px'
+    const cssObject = systemBuild({ key: 'margin' })()({ margin }, theme)
+    expect(cssObject.margin).toBe(margin)
   })
 
   it('returns right cssObject when value is an object with selector', () => {
-    const cssObject = systemInterpolate({ key: 'margin', theme, value: { '&:active': '5px' } })
-    expect(cssObject['&:active']).toEqual({ margin: '5px' })
+    const margin = '5px'
+    const cssObject = systemBuild({ key: 'margin' })()({ margin: { '&:active': margin } }, theme)
+    expect(cssObject['&:active']).toEqual({ margin })
   })
 
   it('returns right cssObject when value is an object with child', () => {
-    const cssObject = systemInterpolate({ key: 'margin', theme, value: { '& *': '5px' } })
-    expect(cssObject['& *']).toEqual({ margin: '5px' })
+    const margin = '5px'
+    const cssObject = systemBuild({ key: 'margin' })()({ margin: { '& *': margin } }, theme)
+    expect(cssObject['& *']).toEqual({ margin })
   })
 
   it('returns right cssObject when value is an object with breakpoint', () => {
+    const margin = '5px'
     const cssObject = systemInterpolate({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       theme,
       value: { md: '5px' },
     })
-    expect(cssObject).toEqual({ '@media(min-width: 45em)': { margin: '5px' } })
+    expect(cssObject).toEqual({ '@media(min-width: 45em)': { margin } })
   })
 
   it('returns right cssObject when value is an object with selector and nested breakpoint', () => {
@@ -104,9 +107,7 @@ describe('systemCompose', () => {
       () => ({ margin: '5px' }),
       () => ({ marginLeft: '8px' }),
     )
-
     const cssObject = predicate({}, theme)
-
     expect(cssObject.margin).toBe('5px')
     expect(cssObject.marginLeft).toBe('8px')
   })
@@ -119,9 +120,7 @@ describe('systemCompose', () => {
       () => ({ '& *': { marginLeft: '8px' } }),
       () => ({ marginRight: '10px' }),
     )
-
     const cssObject = predicate({}, theme)
-
     expect(((cssObject['@media(min-width: 45em)'] as CSSObject)['& *'] as CSSObject).margin).toBe('5px')
     expect(((cssObject['@media(min-width: 45em)'] as CSSObject)['& *'] as CSSObject).marginLeft).toBe('8px')
     expect((cssObject['& *'] as CSSObject).margin).toBe('5px')
