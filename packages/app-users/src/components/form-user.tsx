@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Input, Skeleton } from '@chakra-ui/react'
-import { LayoutSection, LayoutStack, UIBox, UIButton, UILabel } from '@gnowth/lib-react'
+import { Input } from '@chakra-ui/react'
+import { LayoutSection, LayoutStack, UIBox, UIButton, UILabel, UISkeleton } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
@@ -62,4 +62,6 @@ const FormUserComponent: FunctionComponent = () => {
   )
 }
 
-export const FormUser = withAugmented({ LoadingComponent: () => <Skeleton height="10" /> })(FormUserComponent)
+export const FormUser = withAugmented({ LoadingComponent: () => <UISkeleton height="xxxl" /> })(
+  FormUserComponent,
+)

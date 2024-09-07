@@ -33,9 +33,7 @@ const propsDefault: Partial<PropsUIDivider> = {
 
 export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {
   const theme = useAppTheme()
-
   if (props.hidden) return null
-
   const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 

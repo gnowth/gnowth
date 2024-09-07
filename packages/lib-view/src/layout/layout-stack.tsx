@@ -39,7 +39,6 @@ const variants: UtilNamespaced<Partial<PropsLayoutStack>> = {
     flexDirection: 'column',
   },
 }
-
 const propsDefault: Partial<PropsLayoutStack> = {
   display: 'flex',
   gap: 'md',

@@ -3,7 +3,7 @@ import type { CSSLength } from './system.types'
 import { systemCompose, systemMake } from './system'
 
 export const systemDisplay = systemMake<{ display: string }>({ key: 'display' })
-const systemHeight = systemMake<{ height: string }>({ key: 'height' })
+const systemHeight = systemMake<{ height: CSSLength | string }>({ key: 'height', scale: 'length' })
 const systemMaxHeight = systemMake<{ maxHeight: string }>({ key: 'maxHeight' })
 const systemMaxWidth = systemMake<{ maxWidth: string }>({ key: 'maxWidth' })
 const systemMinHeight = systemMake<{ minHeight: string }>({ key: 'minHeight' })

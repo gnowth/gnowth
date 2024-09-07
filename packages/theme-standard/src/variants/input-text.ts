@@ -2,7 +2,7 @@ import type { VariantType } from '@gnowth/lib-theme'
 import type { PropsInputText } from '@gnowth/lib-view'
 
 export const input: VariantType<PropsInputText> = {
-  height: '2.5rem',
+  height: 'md',
   paddingLeft: 'sm',
   paddingRight: 'sm',
 }
