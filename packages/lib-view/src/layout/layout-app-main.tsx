@@ -2,7 +2,7 @@ import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemCompose, systemFlexbox, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
+import { cx, systemCompose, systemGrid, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
 
 export interface PropsLayoutAppMain extends SystemType<typeof layoutAppMain> {
   as?: string
@@ -15,7 +15,7 @@ export interface PropsLayoutAppMain extends SystemType<typeof layoutAppMain> {
   variant?: PropsLayoutAppMain | string
 }
 
-const layoutAppMain = systemCompose(systemFlexbox(), systemSpace())
+const layoutAppMain = systemCompose(systemGrid(), systemSpace())
 const makeStyles = themeStylesMake({ layoutAppMain })
 
 export const LayoutAppMain: FunctionComponent<PropsLayoutAppMain> = (props) => {

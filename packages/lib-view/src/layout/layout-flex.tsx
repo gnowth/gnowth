@@ -4,14 +4,7 @@ import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import {
-  cx,
-  systemCompose,
-  systemFlexbox,
-  systemLayout,
-  systemSpace,
-  themeStylesMake,
-} from '@gnowth/lib-theme'
+import { cx, systemCompose, systemGrid, systemLayout, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
 
@@ -32,7 +25,7 @@ export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFl
   variants?: UtilNamespaced<Partial<PropsLayoutFlex>>
 }
 
-const layoutFlex = systemCompose(systemFlexbox(), systemLayout(), systemSpace())
+const layoutFlex = systemCompose(systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeStylesMake({ layoutFlex })
 
 const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {

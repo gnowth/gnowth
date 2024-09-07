@@ -81,7 +81,7 @@ export const systemRowGap: <Token extends TokenBase = TokenSpace>(
   (props, theme) =>
     systemInterpolate({ key: 'rowGap', scale, theme, value: props.rowGap })
 
-export const systemFlexbox = (scale?: ScaleName | ScaleType) =>
+export const systemGrid = (scale?: ScaleName | ScaleType) =>
   systemCompose(
     systemAlignContent(),
     systemAlignItems(),
