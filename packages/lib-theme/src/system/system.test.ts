@@ -1,11 +1,11 @@
 import type { CSSObject } from '@emotion/serialize'
 
 import { Theme } from '../theme/theme'
-import { systemBuild, systemCompose, systemInterpolate } from './system'
+import { systemBuild, systemCompose } from './system'
 
 const theme = new Theme()
 
-describe('systemInterpolate', () => {
+describe('systemBuild', () => {
   it('returns empty object is no value is provided', () => {
     const cssObject = systemBuild({ key: 'margin' })()({}, theme)
     expect(cssObject).toEqual({})
@@ -31,70 +31,56 @@ describe('systemInterpolate', () => {
 
   it('returns right cssObject when value is an object with breakpoint', () => {
     const margin = '5px'
-    const cssObject = systemInterpolate({
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
-      theme,
-      value: { md: '5px' },
-    })
+    })()({ margin: { md: margin } }, theme)
     expect(cssObject).toEqual({ '@media(min-width: 45em)': { margin } })
   })
 
   it('returns right cssObject when value is an object with selector and nested breakpoint', () => {
-    const cssObject = systemInterpolate({
+    const margin = '5px'
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
-      theme,
-      value: { '&:active': { md: '5px' } },
-    })
-    expect(cssObject).toEqual({ '&:active': { '@media(min-width: 45em)': { margin: '5px' } } })
+    })()({ margin: { '&:active': { md: margin } } }, theme)
+    expect(cssObject).toEqual({ '&:active': { '@media(min-width: 45em)': { margin } } })
   })
 
   it('returns right cssObject when value is a string and scale is responsive', () => {
-    const value = '5px'
-    const cssObject = systemInterpolate({
+    const margin = '5px'
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
-      theme,
-      value,
-    })
-    expect(cssObject.margin).toBe(value)
+    })()({ margin }, theme)
+    expect(cssObject.margin).toBe(margin)
   })
 
   it('returns right cssObject when value is a token and scale is responsive', () => {
-    const value = 'sm'
-    const cssObject = systemInterpolate({
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
-      theme,
-      value,
-    })
+    })()({ margin: 'sm' }, theme)
     expect(cssObject).toEqual({ '@media(min-width: 45em)': { margin: '6px' }, margin: '5px' })
   })
 
   it('returns right cssObject when value is and object with token and scale is responsive', () => {
-    const value = { '& *': 'sm' }
-    const cssObject = systemInterpolate({
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
-      theme,
-      value,
-    })
+    })()({ margin: { '& *': 'sm' } }, theme)
     expect(cssObject).toEqual({ '& *': { '@media(min-width: 45em)': { margin: '6px' }, margin: '5px' } })
   })
 
   it('returns right cssObject when value has breakpoint, token and scale is responsive', () => {
-    const value = { md: 'sm' }
-    const cssObject = systemInterpolate({
+    const cssObject = systemBuild({
       breakpointScale: { md: '45em', none: '' },
       key: 'margin',
       scale: { md: { sm: '6px' }, none: { sm: '5px' }, responsive: true },
-      theme,
-      value,
-    })
+    })()({ margin: { md: 'sm' } }, theme)
     expect(cssObject).toEqual({
       '@media(min-width: 45em)': { margin: '6px' },
     })
