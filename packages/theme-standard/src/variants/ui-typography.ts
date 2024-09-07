@@ -94,7 +94,7 @@ export const h6: VariantType<PropsUITypography> = {
 
 export const input: VariantType<PropsUITypography> = {
   fontFamily: TokenFont.body,
-  fontSize: 'x75',
+  fontSize: 'x100',
   fontWeight: '400',
   letterSpacing: '0.25px',
 }

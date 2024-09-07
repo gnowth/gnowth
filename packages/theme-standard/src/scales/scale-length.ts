@@ -6,6 +6,13 @@ export const length = ((configs: { scaleToken?: number | string }) => {
   if (!configs.scaleToken) {
     return undefined
   }
-
-  return R.isString(configs.scaleToken) ? configs.scaleToken : `${configs.scaleToken * 100}%`
+  const ratio: Record<string, number> = {
+    full: 1,
+    half: 0.5,
+    quarter: 0.25,
+    tenth: 0.1,
+    third: 1 / 3,
+  }
+  const value = ratio[configs.scaleToken] ?? configs.scaleToken
+  return R.isString(value) ? value : `${value * 100}%`
 }) satisfies ScaleType

@@ -40,7 +40,7 @@ export type TokenFontSize =
   | 'x1200'
   | 'x1300'
 
-export type TokenLength = 'full' | 'half' | 'quarter' | 'tenth'
+export type TokenLength = 'full' | 'half' | 'quarter' | 'tenth' | 'third'
 
 export type TokenMedia = 'print' | 'screen'
 
