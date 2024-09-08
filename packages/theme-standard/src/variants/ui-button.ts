@@ -1,7 +1,6 @@
 import type { Theme, VariantType } from '@gnowth/lib-theme'
 import type { PropsUIButton } from '@gnowth/lib-view'
 
-import { guardUndefined } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { TokenSelector } from '../tokens/wip-token-selector'
@@ -37,7 +36,7 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
         paletteWeight: '400',
       }),
     },
-    guardUndefined,
+    R.isEmpty,
   ) as Record<string, string>
 }
 
@@ -56,7 +55,7 @@ function interpolateColor(theme: Theme, color = 'white', forTextStyle = false) {
         paletteWeight: '50',
       }),
     },
-    guardUndefined,
+    R.isEmpty,
   ) as Record<string, string>
 }
 

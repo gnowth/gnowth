@@ -1,6 +1,6 @@
 import type { UtilNamespaced } from '@gnowth/lib-utils'
 
-import { guardFunction, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
@@ -63,7 +63,7 @@ export class ScaleManager {
       return undefined
     }
 
-    if (guardFunction<ScaleDynamic<string>>(scale)) {
+    if (R.isFunction(scale)) {
       return scale(configs)
     }
 

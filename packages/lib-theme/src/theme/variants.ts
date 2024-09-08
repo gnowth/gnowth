@@ -1,6 +1,6 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 
-import { guardFunction, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { objectDefaults, transformToArray } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import type { Theme } from './theme'
@@ -60,7 +60,7 @@ export class VariantManager {
     const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
     const variant = variants[configs.variant]
 
-    if (guardFunction<VariantDynamic<Props>>(variant)) {
+    if (R.isFunction(variant)) {
       return variant(configs)
     }
 
