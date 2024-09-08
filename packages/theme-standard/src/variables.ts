@@ -1,4 +1,4 @@
-import { TokenVariable } from '@gnowth/lib-theme'
+import { ThemeVariable } from '@gnowth/lib-theme'
 
 import { breakpoint } from './scales/scale-breakpoint'
 import { space } from './scales/scale-space'
@@ -13,8 +13,8 @@ export const gridGap = space.md
 export const mobileBreakpoint = breakpoint.sm
 
 export const variables = {
-  [TokenVariable.breakpointToken]: 'breakpoint',
-  [TokenVariable.fontBody]: 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif',
-  [TokenVariable.fontHeader]: 'Raleway, Trebuchet MS, Avenir, Segoe UI, sans‑serif',
-  [TokenVariable.widthContent]: '1152px',
+  [ThemeVariable.breakpointToken]: 'breakpoint',
+  [ThemeVariable.fontBody]: 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif',
+  [ThemeVariable.fontHeader]: 'Raleway, Trebuchet MS, Avenir, Segoe UI, sans‑serif',
+  [ThemeVariable.widthContent]: '1152px',
 }

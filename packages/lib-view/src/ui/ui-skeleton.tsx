@@ -1,4 +1,4 @@
-import type { SystemType, VariantType } from '@gnowth/lib-theme'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -11,7 +11,6 @@ import {
   systemSpace,
   themeStylesMake,
 } from '@gnowth/lib-theme'
-import { UtilNamespaced } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 const pulse = keyframes`
@@ -28,7 +27,7 @@ export interface PropsUISkeleton extends SystemType<typeof uiSkeleton> {
   slot?: string
   variant?: PropsUISkeleton | string
   variantNamespace?: string
-  variants?: UtilNamespaced<VariantType<PropsUISkeleton>>
+  variants?: ThemeVariants<PropsUISkeleton>
 }
 const uiSkeleton = systemCompose(systemBox(), systemLayout(), systemSpace())
 const makeStyles = themeStylesMake({
@@ -39,7 +38,7 @@ const makeStyles = themeStylesMake({
   `,
   uiSkeleton,
 })
-const variants: UtilNamespaced<VariantType<PropsUISkeleton>> = {
+const variants: ThemeVariants<PropsUISkeleton> = {
   circular: (props) => ({
     borderRadius: '50%',
     width: props.height,

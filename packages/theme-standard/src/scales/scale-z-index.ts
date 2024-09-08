@@ -1,6 +1,6 @@
 import type { ScaleType, TokenZIndex } from '@gnowth/lib-theme'
 
-export const zindex = {
+export const zIndex = {
   deepdive: '-99999',
   default: '1',
   dialog: '6000',

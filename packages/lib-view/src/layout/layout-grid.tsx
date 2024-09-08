@@ -1,6 +1,5 @@
 import type { PropsLayout } from '@gnowth/lib-application'
-import type { SystemType, VariantType } from '@gnowth/lib-theme'
-import type { UtilNamespaced } from '@gnowth/lib-utils'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -31,13 +30,13 @@ interface PropsLayoutGrid extends PropsLayout, SystemType<typeof layoutGrid> {
   slot?: string
   variant?: PropsLayoutGrid | string
   variantNamespace?: string
-  variants?: UtilNamespaced<VariantType<PropsLayoutGrid>>
+  variants?: ThemeVariants<PropsLayoutGrid>
 }
 
 const layoutGrid = systemCompose(systemBox(), systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeStylesMake({ layoutGrid })
 
-const variants: UtilNamespaced<VariantType<PropsLayoutGrid>> = {
+const variants: ThemeVariants<PropsLayoutGrid> = {
   table: (props) => ({
     borderTop: {
       [`& > *:not(:nth-child(-n+${props.gridColumnCount}))`]: `1px solid ${props.theme.getPaletteColor({ palette: 'gray', paletteWeight: '300' })}`,

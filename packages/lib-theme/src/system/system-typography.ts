@@ -1,30 +1,12 @@
-import * as R from 'remeda'
+import type { TokenFontFamily, TokenFontSize } from '../tokens/tokens'
 
-import type { TokenFontSize } from '../tokens/tokens'
-import type { System } from './system.types'
-
-import { TokenFont, TokenFontToVariable } from '../tokens/wip-token-font'
 import { systemCompose, systemMake } from './system'
 
-type SystemFontFamily = { fontFamily?: number | string }
-
-const systemFontFamily: () => System<SystemFontFamily> = () => (props, theme) => {
-  if (R.isString(props.fontFamily)) {
-    return { fontFamily: props.fontFamily }
-  }
-  if (props.fontFamily === undefined) {
-    return {}
-  }
-  const tokenVariable = TokenFontToVariable[props.fontFamily as TokenFont]
-  const fontFamily = theme.getVariable<string | string[]>(tokenVariable)
-
-  return fontFamily ? { fontFamily } : {}
-}
-
-const systemFontSize = systemMake<{ fontSize: TokenFontSize | string }>({
-  key: 'fontSize',
-  scale: 'fontsize',
+const systemFontFamily = systemMake<{ fontFamily: TokenFontFamily }>({
+  key: 'fontFamily',
+  scale: 'fontFamily',
 })
+const systemFontSize = systemMake<{ fontSize: TokenFontSize }>({ key: 'fontSize', scale: 'fontSize' })
 const systemFontStyle = systemMake<{ fontStyle: string }>({ key: 'fontStyle' })
 const systemFontWeight = systemMake<{ fontWeight: string }>({ key: 'fontWeight' })
 const systemLetterSpacing = systemMake<{ letterSpacing: string }>({ key: 'letterSpacing' })

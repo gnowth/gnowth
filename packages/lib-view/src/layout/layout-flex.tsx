@@ -1,6 +1,5 @@
 import type { PropsLayout } from '@gnowth/lib-application'
-import type { SystemType } from '@gnowth/lib-theme'
-import type { UtilNamespaced } from '@gnowth/lib-utils'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -22,13 +21,13 @@ export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFl
   slot?: string
   variant?: PropsLayoutFlex | string
   variantNamespace?: string
-  variants?: UtilNamespaced<Partial<PropsLayoutFlex>>
+  variants?: ThemeVariants<PropsLayoutFlex>
 }
 
 const layoutFlex = systemCompose(systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeStylesMake({ layoutFlex })
 
-const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {
+const variants: ThemeVariants<PropsLayoutFlex> = {
   horizontalBetween: {
     alignItems: 'center',
     flexDirection: 'row',

@@ -1,9 +1,11 @@
-export * from './wip-token-font'
 export * from './wip-token-variable'
 
-export type TokenBase = number | string // TODO: should this be string only?
-
+export type TokenBase = string
 export type TokenBreakpoint = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs'
+export type TokenFontFamily = 'body' | 'header'
+export type TokenMedia = 'print' | 'screen'
+export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
+export type TokenSize = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
 
 export type TokenColorWeight =
   | '50'
@@ -56,8 +58,6 @@ export type TokenLength =
   | 'xxs'
   | 'xxxl'
 
-export type TokenMedia = 'print' | 'screen'
-
 export type TokenPalette =
   | 'background'
   | 'danger'
@@ -67,12 +67,6 @@ export type TokenPalette =
   | 'secondary'
   | 'tertiary'
   | 'transparent'
-
-export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
-
-export type TokenSize = 'lg' | 'md' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
-
-export type TokenSpace = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
 
 export type TokenZIndex =
   | 'deepdive'
@@ -91,18 +85,18 @@ export type TokenZIndex =
 
 export type Tokens = {
   breakpoint?: Record<TokenBreakpoint, string | undefined>
+  buttonSize?: Record<TokenSize, string | undefined>
   color?: Record<TokenPalette, string | undefined>
   fontSize?: Record<TokenFontSize, string | undefined>
-  fontSizeDesktop?: Record<TokenFontSize, string | undefined>
   iconSize?: Record<TokenSize, string | undefined>
   palette: Record<
-    string,
+    TokenPalette,
     {
       colors: Record<TokenColorWeight, { hex: string; name: string }>
       name: string
     }
   >
-  space?: Record<TokenSpace, string | undefined>
+  space?: Record<TokenSize, string | undefined>
   zIndex?: Record<TokenZIndex, string | undefined>
 }
 // import type { Tokens, TokenSpace } from './tokens.types'

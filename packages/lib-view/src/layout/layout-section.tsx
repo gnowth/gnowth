@@ -1,10 +1,9 @@
-import type { SystemType, VariantType } from '@gnowth/lib-theme'
-import type { UtilNamespaced } from '@gnowth/lib-utils'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  TokenVariable,
+  ThemeVariable,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
@@ -30,19 +29,19 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   slot?: string
   variant?: PropsLayoutSection | string
   variantNamespace?: string
-  variants?: UtilNamespaced<VariantType<PropsLayoutSection>>
+  variants?: ThemeVariants<PropsLayoutSection>
 }
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeStylesMake({ layoutSection })
 const definitions = themeDefinitionsMake(['', 'box'])
-const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
+const variants: ThemeVariants<PropsLayoutSection> = {
   container: (props) => ({
     layout: 'stack',
     layoutProps: {
       marginLeft: 'auto',
       marginRight: 'auto',
-      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      maxWidth: props.theme.getVariable<string>(ThemeVariable.widthContent),
       paddingLeft: 'md',
       paddingRight: 'md',
     },
@@ -55,7 +54,7 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
       gap: 'none',
       marginLeft: 'auto',
       marginRight: 'auto',
-      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      maxWidth: props.theme.getVariable<string>(ThemeVariable.widthContent),
       paddingLeft: 'sm',
       paddingRight: 'sm',
     },

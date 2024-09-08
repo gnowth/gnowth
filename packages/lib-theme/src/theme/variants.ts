@@ -12,14 +12,17 @@ type Variant<Props extends ObjectLiteral> = Partial<Props>
 type VariantDynamic<Props extends ObjectLiteral> = (props: { theme: Theme } & Props) => Variant<Props>
 type VariantName = string
 type VariantNamespace = string
-type Variants<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<VariantType<Props>, VariantName>
-type VariantsNamespaced = UtilNamespaced<Variants, VariantNamespace>
+export type ThemeVariants<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<
+  VariantType<Props>,
+  VariantName
+>
+type VariantsNamespaced = UtilNamespaced<ThemeVariants, VariantNamespace>
 
 export type VariantType<Props extends ObjectLiteral = ObjectLiteral> = Variant<Props> | VariantDynamic<Props>
 export type WithThemeVariant<Props extends ObjectLiteral> = {
   variant?: Variant<Props> | VariantName
   variantNamespace?: VariantNamespace | VariantNamespace[]
-  variants?: Variants<Props>
+  variants?: ThemeVariants<Props>
 } & Props
 
 export class VariantManager {
@@ -31,7 +34,7 @@ export class VariantManager {
 
   #getVariantsByNamespace<Props extends ObjectLiteral>(
     namespace: VariantNamespace[],
-  ): Variants<Props> | undefined {
+  ): ThemeVariants<Props> | undefined {
     const maybeNamespace = namespace.find((nspace) => this.#variantsNamespaced[nspace])
 
     return maybeNamespace ? this.#variantsNamespaced[maybeNamespace] : undefined

@@ -63,7 +63,7 @@ function interpolateColor(theme: Theme, color = 'white', forTextStyle = false) {
 // TODO use theme token for border size, border radius, boxShadow
 export const text: VariantType<PropsUIButton> = (props) => {
   const colorInterpolated = interpolateColor(props.theme, undefined, true)
-  const height = props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
+  const height = props.theme.getScaleItem({ scale: 'buttonSize', scaleToken: props.size })
   const isExtraLarge = !!props.size && ['xxl', 'xxxl'].includes(props.size)
   return {
     backgroundColor: colorInterpolated,
@@ -122,7 +122,7 @@ export const raised: VariantType<PropsUIButton> = (props) => ({
 })
 
 export const icon: VariantType<PropsUIButton> = (props) => {
-  const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
+  const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonSize', scaleToken: props.size })
   return {
     backgroundColor: interpolateColor(props.theme, undefined, true),
     border: '0',
@@ -143,7 +143,7 @@ export const icon: VariantType<PropsUIButton> = (props) => {
 }
 
 export const fab: VariantType<PropsUIButton> = (props) => {
-  const height = props.height ?? props.theme.getScaleItem({ scale: 'fabsize', scaleToken: props.size })
+  const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonSize', scaleToken: props.size })
   return {
     ...icon(props),
     backgroundColor: interpolateColorFlat(props.theme, props.palette),

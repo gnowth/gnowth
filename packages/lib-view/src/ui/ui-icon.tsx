@@ -54,7 +54,7 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
         styles.uiIcon,
       )}
       id={propsVariant.id}
-      size={theme.getScaleItem({ scale: 'iconsize', scaleToken: propsVariant.size })}
+      size={theme.getScaleItem({ scale: 'iconSize', scaleToken: propsVariant.size })}
     />
   )
 }
