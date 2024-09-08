@@ -75,7 +75,6 @@
     "skipLibCheck": true /*                            Skip type checking of declaration files. */
   },
   "exclude": [
-    "**/__generated__/",
     "**/.next/",
     "**/.parcel-cache/",
     "**/.turbo/",

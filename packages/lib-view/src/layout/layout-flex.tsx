@@ -35,6 +35,12 @@ const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {
     justifyContent: 'space-between',
   },
 
+  horizontalBottom: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+
   horizontalCenter: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -57,6 +63,12 @@ const variants: UtilNamespaced<Partial<PropsLayoutFlex>> = {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-end',
+  },
+
+  horizontalTop: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
 
   verticalCenter: {

@@ -24,5 +24,5 @@ export const DataWarning: FunctionComponent<PropsWarning> = (props) => {
   // if (!Warning || !stateErrors.value) return null;
 
   // return <Warning errors={stateErrors.value.map((error) => error.message)} />;
-  return <div />
+  return null
 }
