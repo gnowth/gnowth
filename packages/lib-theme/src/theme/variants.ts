@@ -1,6 +1,7 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 
-import { guardFunction, guardObject, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { guardFunction, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { Theme } from './theme'
 
@@ -52,7 +53,7 @@ export class VariantManager {
     }
 
     // TODO check logic around nested variant. we want to move away from variant as an object
-    if (guardObject(configs.variant)) {
+    if (R.isObjectType(configs.variant)) {
       return configs.variant
     }
 

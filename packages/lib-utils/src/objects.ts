@@ -2,7 +2,7 @@ import * as R from 'remeda'
 
 import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
 
-import { guardNumberLike, guardObject, guardUndefined } from './guards'
+import { guardNumberLike, guardUndefined } from './guards'
 
 type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
 
@@ -30,7 +30,7 @@ export const objectMapValues: ObjectMapValues = (item, predicate) =>
   ) as { [key in keyof typeof item]: ReturnType<typeof predicate> }
 
 export const objectDefaults: ObjectDefaults = (...items) =>
-  Object.assign({}, ...items.filter(guardObject).toReversed().map(R.omitBy(guardUndefined)))
+  Object.assign({}, ...items.filter(R.isObjectType).toReversed().map(R.omitBy(guardUndefined)))
 
 export const objectGet: ObjectGet = (item, name) =>
   Array.isArray(name)
@@ -54,7 +54,7 @@ export const objectSet: ObjectSet = (item, name, value) => {
     ) as typeof item
   }
 
-  if (guardObject(item)) {
+  if (R.isObjectType(item)) {
     return {
       ...item,
       [path0]:

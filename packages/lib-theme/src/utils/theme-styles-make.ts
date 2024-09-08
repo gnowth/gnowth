@@ -6,7 +6,7 @@ import * as R from 'remeda'
 import type { Theme } from '../theme/theme'
 
 type ConfigsMakeStyles<Props> = {
-  [key: string]: ((props: Props, theme: Theme) => CSSObject) | string
+  [key: string]: ((props: Props, theme: Theme) => CSSObject) | CSSObject | string
 }
 
 type MappedType<Type, ToType> = {

@@ -1,3 +1,5 @@
+import * as R from 'remeda'
+
 export type GuardFilter<Guard extends Item, Item> = (
   item: Item,
   index: number,
@@ -8,9 +10,7 @@ type Guard<Type> = (item: unknown) => item is Type
 type FunctionType = (...args: any[]) => any
 
 export const guardNumberLike: Guard<number> = (value): value is number => !isNaN(value as number)
-export const guardObject = <ObjectType extends object = object>(value: unknown): value is ObjectType =>
-  !!value && typeof value === 'object'
 export const guardUndefined: Guard<undefined> = (value): value is undefined => value === undefined
 
 export const guardFunction = <Type extends FunctionType = FunctionType>(value: unknown): value is Type =>
-  typeof value === 'function'
+  R.isFunction(value)
