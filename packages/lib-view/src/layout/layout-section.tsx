@@ -4,7 +4,7 @@ import type { FunctionComponent, ReactNode } from 'react'
 
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  TokenVariable,
+  ThemeVariable,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
@@ -42,7 +42,7 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
     layoutProps: {
       marginLeft: 'auto',
       marginRight: 'auto',
-      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      maxWidth: props.theme.getVariable<string>(ThemeVariable.widthContent),
       paddingLeft: 'md',
       paddingRight: 'md',
     },
@@ -55,7 +55,7 @@ const variants: UtilNamespaced<VariantType<PropsLayoutSection>> = {
       gap: 'none',
       marginLeft: 'auto',
       marginRight: 'auto',
-      maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+      maxWidth: props.theme.getVariable<string>(ThemeVariable.widthContent),
       paddingLeft: 'sm',
       paddingRight: 'sm',
     },

@@ -7,7 +7,7 @@ import type { Theme } from '../theme/theme'
 import type { TokenBreakpoint } from '../tokens/tokens'
 import type { System, SystemInterpolate } from './system.types'
 
-import { TokenVariable } from '../tokens/wip-token-variable'
+import { ThemeVariable } from '../tokens/wip-token-variable'
 import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
@@ -124,7 +124,7 @@ function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<V
       const keys = transformToArray(configs.key)
       const newValue = keys.reduce((prev, current) => ({ ...prev, [current]: scaleItem }), {})
       const breakpoint = configs.theme.getScaleItem({
-        scale: configs.breakpointScale ?? configs.theme.getVariable<string>(TokenVariable.breakpointToken),
+        scale: configs.breakpointScale ?? configs.theme.getVariable<string>(ThemeVariable.breakpointToken),
         scaleToken: key,
       })
       if (breakpoint === '') {
@@ -144,7 +144,7 @@ function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<V
       return { ...cssObject, [key]: newValue }
     }
     const breakpoint = configs.theme.getScaleItem({
-      scale: configs.breakpointScale ?? configs.theme.getVariable<string>(TokenVariable.breakpointToken),
+      scale: configs.breakpointScale ?? configs.theme.getVariable<string>(ThemeVariable.breakpointToken),
       scaleToken: key,
     })
     if (breakpoint === '') {

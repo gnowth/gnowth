@@ -1,7 +1,7 @@
 import type { VariantType } from '@gnowth/lib-theme'
 import type { PropsLayoutSection } from '@gnowth/lib-view'
 
-import { TokenVariable } from '@gnowth/lib-theme'
+import { ThemeVariable } from '@gnowth/lib-theme'
 
 export const page: VariantType<PropsLayoutSection> = (props) => ({
   layout: 'flex',
@@ -10,6 +10,6 @@ export const page: VariantType<PropsLayoutSection> = (props) => ({
     flexDirection: 'column',
     marginLeft: 'auto',
     marginRight: 'auto',
-    maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
+    maxWidth: props.theme.getVariable<string>(ThemeVariable.widthContent),
   },
 })

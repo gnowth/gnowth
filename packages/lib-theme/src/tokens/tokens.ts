@@ -1,8 +1,8 @@
-export * from './wip-token-font'
 export * from './wip-token-variable'
 
 export type TokenBase = string
 export type TokenBreakpoint = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs'
+export type TokenFontFamily = 'body' | 'header'
 export type TokenMedia = 'print' | 'screen'
 export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
 export type TokenSize = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
