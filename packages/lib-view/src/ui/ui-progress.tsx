@@ -4,11 +4,11 @@ import type {
   System,
   SystemType,
   Theme,
+  ThemeVariants,
   TokenColorWeight,
   TokenSize,
   systemColorFromPalette,
 } from '@gnowth/lib-theme'
-import type { UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAnimationDelayReady } from '@gnowth/lib-animation'
@@ -101,7 +101,7 @@ export interface PropsUIProgress
   valueMax?: number
   variant?: PropsUIProgress | string
   variantNamespace?: string
-  variants?: UtilNamespaced<Partial<PropsUIProgress>>
+  variants?: ThemeVariants<PropsUIProgress>
 }
 
 const spinnerRotateLinear = keyframes`
@@ -228,7 +228,7 @@ const makeStyles = themeStylesMake({
     ...(props.value === null && { animation: `${spinnerRotateLinear} 2s linear infinite` }),
   }),
 })
-const variants: UtilNamespaced<Partial<PropsUIProgress>> = {
+const variants: ThemeVariants<PropsUIProgress> = {
   page: {
     display: 'block',
     marginLeft: 'auto',

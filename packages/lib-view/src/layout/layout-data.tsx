@@ -1,4 +1,4 @@
-import type { UtilNamespaced } from '@gnowth/lib-utils'
+import type { ThemeVariants } from '@gnowth/lib-theme'
 import type { ComponentProps, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -12,11 +12,11 @@ export interface PropsLayoutData {
   gap?: ComponentProps<typeof LayoutFlex>['gap']
   variant?: PropsLayoutData | string
   variantNamespace?: string
-  variants?: UtilNamespaced<Partial<PropsLayoutData>>
+  variants?: ThemeVariants<PropsLayoutData>
   wrapperVariant?: string
 }
 
-const variants = {
+const variants: ThemeVariants<PropsLayoutData> = {
   block: { wrapperVariant: 'verticalStretch' },
   inlineLabel: { wrapperVariant: 'horizontalLeft' },
   inlineLabelRight: { wrapperVariant: 'horizontalReverseLeft' },
