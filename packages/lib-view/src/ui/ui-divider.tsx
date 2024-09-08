@@ -1,4 +1,4 @@
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -21,14 +21,26 @@ export interface PropsUIDivider extends SystemType<typeof uiDivider> {
   slot?: string
   variant?: PropsUIDivider | string
   variantNamespace?: string
+  variants?: ThemeVariants<PropsUIDivider>
 }
 
 const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
 const makeStyles = themeStylesMake({ uiDivider })
+const variants: ThemeVariants<PropsUIDivider> = {
+  horizontal: (props) => ({
+    backgroundImage: `linear-gradient(${
+      props.theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''
+    }, ${props.theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'repeat-x',
+    backgroundSize: '1px 1px',
+  }),
+}
 const propsDefault: Partial<PropsUIDivider> = {
   textAlign: 'center',
   variant: 'horizontal',
   variantNamespace: 'uiDivider',
+  variants,
 }
 
 export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {

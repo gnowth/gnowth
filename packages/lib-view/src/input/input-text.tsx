@@ -1,5 +1,5 @@
 import type { PropsData } from '@gnowth/lib-data'
-import type { SystemType } from '@gnowth/lib-theme'
+import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
@@ -43,6 +43,7 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
   typographyVariantNamespace?: string
   variant?: PropsInputText | string
   variantNamespace?: string
+  variants?: ThemeVariants<PropsInputText>
 }
 
 const inputText = systemCompose(
@@ -54,6 +55,14 @@ const inputText = systemCompose(
 )
 const makeStyles = themeStylesMake({ inputText })
 const definitions = themeDefinitionsMake(['', 'box', 'typography'])
+const variants: ThemeVariants<PropsInputText> = {
+  text: {
+    height: 'md',
+    paddingLeft: 'sm',
+    paddingRight: 'sm',
+    width: 'full',
+  },
+}
 const propsDefault: Partial<PropsInputText> = {
   as: 'input',
   boxVariant: 'input',
@@ -61,9 +70,9 @@ const propsDefault: Partial<PropsInputText> = {
   type: 'text',
   typographyVariant: 'input',
   typographyVariantNamespace: 'uiTypography',
-  variant: 'input',
+  variant: 'text',
   variantNamespace: 'inputText',
-  width: 'full',
+  variants,
 }
 
 export const InputText: FunctionComponent<PropsInputText> = (props) => {

@@ -15,7 +15,7 @@ export const ViewAppFooter: FunctionComponent<Props> = () => {
       layoutProps={{ gap: 'xs' }}
       palette="text"
       paletteWeight="a100"
-      variant="page"
+      variant="container"
     >
       <UITypography value="© Copyright GNOWTH 2021" variant="overline" />
 

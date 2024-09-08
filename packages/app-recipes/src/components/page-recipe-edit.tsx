@@ -33,7 +33,7 @@ export function PageRecipeEdit(props: Props): ReactElement {
 
   return (
     <LayoutPage>
-      <LayoutSection variant="page">
+      <LayoutSection variant="container">
         <UIPaper palette="text" paletteWeight="a100">
           <UITypography marginBottom="lg" value={locale.title} variant="h3" />
 

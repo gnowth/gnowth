@@ -24,7 +24,7 @@ export function PageRecipe(props: Props): ReactElement {
 
   return (
     <LayoutPage>
-      <LayoutSection variant="page">
+      <LayoutSection variant="container">
         <DataSource layout="recipe" mode="uncontrolled" value={recipe}>
           <ViewRecipeDescriptions slot="descriptions" />
 

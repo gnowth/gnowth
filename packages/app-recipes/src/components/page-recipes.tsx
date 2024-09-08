@@ -22,7 +22,7 @@ export function PageRecipes(props: Props): ReactElement {
 
   return (
     <LayoutPage>
-      <LayoutSection palette="text" paletteWeight="a100" variant="page">
+      <LayoutSection palette="text" paletteWeight="a100" variant="container">
         <LayoutContent alignSelf="center" marginTop="xl">
           <UITypography value="Most popular recipes" variant="h3" />
         </LayoutContent>

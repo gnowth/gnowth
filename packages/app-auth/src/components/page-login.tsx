@@ -26,7 +26,12 @@ export function PageLogin(): ReactElement {
 
   return (
     <LayoutPage>
-      <LayoutSection layoutProps={{ maxWidth: '400px' }} paddingBottom="lg" paddingTop="lg" variant="page">
+      <LayoutSection
+        layoutProps={{ maxWidth: '400px' }}
+        paddingBottom="lg"
+        paddingTop="lg"
+        variant="container"
+      >
         <UIPaper palette="text" paletteWeight="a100">
           <UITypography marginBottom="lg" textAlign="center" value="Log in" variant="h3" />
 

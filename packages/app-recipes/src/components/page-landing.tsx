@@ -5,7 +5,7 @@ import { LayoutContent, LayoutPage, LayoutSection, UITypography } from '@gnowth/
 export const PageLanding: FunctionComponent = () => {
   return (
     <LayoutPage>
-      <LayoutSection paddingBottom="xl" paddingTop="xl" variant="page">
+      <LayoutSection paddingBottom="xl" paddingTop="xl" variant="container">
         <LayoutContent alignSelf="center">
           <UITypography value="Welcome" variant="h1" />
         </LayoutContent>
@@ -18,7 +18,7 @@ export const PageLanding: FunctionComponent = () => {
         paddingBottom="xxxl"
         paddingTop="xxxl"
         palette="primary"
-        variant="page"
+        variant="container"
       >
         <UITypography palette="primary" paletteForContrast value="Some text jdiof odfijdof odifj f" />
 
@@ -35,7 +35,7 @@ export const PageLanding: FunctionComponent = () => {
         paddingTop="xxxl"
         palette="text"
         paletteWeight="a100"
-        variant="page"
+        variant="container"
       >
         <UITypography value="Some text jdiof odfijdof odifj f" />
 
@@ -47,7 +47,7 @@ export const PageLanding: FunctionComponent = () => {
         paddingBottom="xxxl"
         paddingTop="xxxl"
         palette="secondary"
-        variant="page"
+        variant="container"
       >
         <UITypography palette="secondary" paletteForContrast value="Some text jdiof odfijdof odifj f" />
 
@@ -64,7 +64,7 @@ export const PageLanding: FunctionComponent = () => {
         paddingTop="xxxl"
         palette="text"
         paletteWeight="a100"
-        variant="page"
+        variant="container"
       >
         <UITypography value="Some text jdiof odfijdof odifj f" />
 
