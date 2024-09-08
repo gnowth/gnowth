@@ -19,7 +19,7 @@ type PaletteName = string
 type Palettes = UtilNamespaced<PaletteType, PaletteName>
 type Configs = { palettes?: PaletteType[] }
 
-export type ColorHex = `#${number}`
+export type ColorHex = `#${string}`
 export type PaletteType = Palette | PaletteReference
 export type ConfigsPalette = {
   palette?: PaletteName
@@ -34,10 +34,7 @@ export class PaletteManager {
     this.#palettes = R.indexBy(configs?.palettes ?? [], (palette) => palette.name)
   }
 
-  #get(palette?: PaletteName): Palette | undefined {
-    if (!palette) {
-      return undefined
-    }
+  #get(palette: PaletteName): Palette | undefined {
     const maybePalette = this.#palettes[palette]
     if (!maybePalette) {
       return undefined
@@ -60,8 +57,10 @@ export class PaletteManager {
     return {
       palettes: R.pipe(
         configsToMerge,
-        (configs: Configs[]) => configs.flatMap((config) => config.palettes ?? []),
-        (palettes: PaletteType[]) => R.uniqueBy(palettes, (palette) => palette.name),
+        R.flatMap((configs) => configs.palettes ?? []),
+        R.reverse(),
+        R.uniqueBy((palette) => palette.name),
+        R.reverse(),
       ),
     }
   }
