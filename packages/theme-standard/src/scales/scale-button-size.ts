@@ -1,6 +1,6 @@
 import type { ScaleType, TokenSize } from '@gnowth/lib-theme'
 
-export const buttonsize = {
+export const buttonSize = {
   lg: '3rem', // 48px
   md: '2.5rem', // 40px
   none: '0rem',

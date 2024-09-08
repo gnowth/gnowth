@@ -1,6 +1,6 @@
 import type { ScaleType, TokenSize } from '@gnowth/lib-theme'
 
-export const iconsize = {
+export const iconSize = {
   lg: '2.5rem', // 40px
   md: '2rem', // 32px
   none: '0rem',

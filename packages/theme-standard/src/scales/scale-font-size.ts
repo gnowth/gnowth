@@ -1,6 +1,6 @@
 import type { ScaleType, TokenFontSize } from '@gnowth/lib-theme'
 
-export const fontsize = {
+export const fontSize = {
   md: {
     x10: '.625rem', // 10px
     x25: '.6875rem', // 11px

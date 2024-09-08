@@ -85,7 +85,7 @@ export type TokenZIndex =
 
 export type Tokens = {
   breakpoint?: Record<TokenBreakpoint, string | undefined>
-  buttonsize?: Record<TokenSize, string | undefined>
+  buttonSize?: Record<TokenSize, string | undefined>
   color?: Record<TokenPalette, string | undefined>
   fontSize?: Record<TokenFontSize, string | undefined>
   iconSize?: Record<TokenSize, string | undefined>

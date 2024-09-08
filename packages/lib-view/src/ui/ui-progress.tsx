@@ -179,7 +179,7 @@ const systemSize: System<{ size?: TokenSize }> = (props, theme) => {
   if (!props.size) {
     return {}
   }
-  const size = theme.getScaleItem({ scale: 'iconsize', scaleToken: props.size })
+  const size = theme.getScaleItem({ scale: 'iconSize', scaleToken: props.size })
   return { height: size, width: size }
 }
 

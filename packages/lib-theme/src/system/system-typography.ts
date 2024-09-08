@@ -6,7 +6,7 @@ const systemFontFamily = systemMake<{ fontFamily: TokenFontFamily }>({
   key: 'fontFamily',
   scale: 'fontFamily',
 })
-const systemFontSize = systemMake<{ fontSize: TokenFontSize }>({ key: 'fontSize', scale: 'fontsize' })
+const systemFontSize = systemMake<{ fontSize: TokenFontSize }>({ key: 'fontSize', scale: 'fontSize' })
 const systemFontStyle = systemMake<{ fontStyle: string }>({ key: 'fontStyle' })
 const systemFontWeight = systemMake<{ fontWeight: string }>({ key: 'fontWeight' })
 const systemLetterSpacing = systemMake<{ letterSpacing: string }>({ key: 'letterSpacing' })
