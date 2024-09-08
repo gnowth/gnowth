@@ -57,6 +57,7 @@ export class VariantManager {
       return configs.variant
     }
 
+    // TODO: variants default in lib view must be overwritten by theme
     const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
     const variant = variants[configs.variant]
 

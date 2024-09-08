@@ -5,6 +5,7 @@ const Constant = {
 }
 // DEBT(workaround): unable to read mdx. hence mocking it. could not get it to work with jest 27. https://github.com/storybookjs/storybook/issues/7223
 module.exports = {
+  globals: { 'ts-jest': { isolatedModules: true } },
   moduleNameMapper: {
     '\\.(aac|oga|m4a|mp3|mp4|wav|webm)$': path.join(__dirname, Constant.mockFile),
     '\\.(css|less)$': path.join(__dirname, '../mock/mock-style.js'),

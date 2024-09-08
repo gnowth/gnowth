@@ -6,7 +6,7 @@ import * as R from 'remeda'
 import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
 // TODO: review responsiveScale. currently not supported by system
-type Responsive<Type> = { [Key in TokenBreakpoint]?: Type } & { responsive: true }
+type Responsive<Type> = { [Key in TokenBreakpoint]?: Type } & { responsive: boolean }
 type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
@@ -42,13 +42,13 @@ export class ScaleManager {
   }
 
   configsMerge(...configs: Configs[]): Configs {
-    return Object.assign({}, ...configs)
+    return { scales: Object.assign({}, ...configs.map((config) => config.scales)) }
   }
 
   getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {
     const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
-    const scale = (R.isString(configs.scale) ? scales[configs.scale] : configs.scale) ?? {}
-    return this.#guardScaleResponsive(scale)
+    const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
+    return scale && this.#guardScaleResponsive(scale)
       ? (['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const).filter(
           (breakpoint) => !!scale[breakpoint],
         )
@@ -58,24 +58,16 @@ export class ScaleManager {
   getScaleItem(configs: ConfigsScale): ScaleItem | undefined {
     const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
     const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
-
     if (!scale || !configs.scaleToken) {
       return undefined
     }
-
     if (R.isFunction(scale)) {
       return scale(configs)
     }
-
     // TODO: add default token in ScaleDynamic { token: Token, [token: Token]: ScaleItem }
-    if (!configs.scaleToken) {
-      return undefined
-    }
-
     if (this.#guardScaleResponsive(scale)) {
       return scale[configs.scaleBreakpoint ?? 'none']?.[configs.scaleToken]
     }
-
     return scale[configs.scaleToken]
   }
 }
