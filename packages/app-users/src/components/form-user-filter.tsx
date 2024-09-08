@@ -1,8 +1,7 @@
 import type { FunctionComponent } from 'react'
 
-import { Input } from '@chakra-ui/react'
-import { LayoutFlex, LayoutSection, UIBox, UIButton, UILabel } from '@gnowth/lib-react'
-import { Field, Form, Formik } from 'formik'
+import { DataConnect, DataSource, DataTrigger, LayoutSection } from '@gnowth/lib-react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
@@ -14,28 +13,36 @@ import { withAugmented } from './with-augmented'
 const FormUserFilterComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const initialFilters = useMemo(() => filters, [])
 
   return (
     <LayoutSection variant="container">
-      <Formik
-        enableReinitialize
-        initialValues={filters}
-        onSubmit={(values) => setFilters({ ...values, page: 1 })}
+      <DataSource
+        layout="flex"
+        layoutVariant="horizontalBottom"
+        mode="uncontrolled"
+        onSubmit={(value) => setFilters({ ...value, page: 1 })}
+        value={initialFilters}
       >
-        <LayoutFlex alignItems="flex-end" as={Form} gap="sm">
-          <UIBox>
-            <UILabel id="form-user-filter-email" value={t('Email')} />
-            <Field as={Input} id="form-user-filter-email" name="email" placeholder={t('email')} />
-          </UIBox>
+        <DataConnect
+          component="text"
+          id="form-user-filter-email"
+          labelValue={t('Email')}
+          name="email"
+          placeholder={t('email')}
+        />
 
-          <UIBox>
-            <UILabel id="form-user-filter-status" value={t('Status')} />
-            <Field as={Input} id="form-user-filter-status" name="status" placeholder={t('status')} />
-          </UIBox>
+        <DataConnect
+          component="text"
+          id="form-user-filter-status"
+          labelValue={t('Status')}
+          name="status"
+          placeholder={t('status')}
+        />
 
-          <UIButton textValue={t('Submit')} type="submit" />
-        </LayoutFlex>
-      </Formik>
+        <DataTrigger componentValue={t('Submit')} submit />
+      </DataSource>
     </LayoutSection>
   )
 }

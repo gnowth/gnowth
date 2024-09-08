@@ -16,6 +16,8 @@ import {
   // useAppApplication,
 } from '@gnowth/lib-react'
 
+import { AuthPageToken } from '../modules/application-auth'
+
 // import type AppModelApplicationAuth from '../models/app-model-application-auth';
 
 // TODO: Add DataWarning for non field errors, and DataTrigger for login button
@@ -75,7 +77,7 @@ export function PageLogin(): ReactElement {
             <LayoutFlex variant="horizontalCenter">
               <UITypography display="inline-block" value="Don't have an account?" />
 
-              <AppLink>
+              <AppLink page={AuthPageToken.signup}>
                 <UITypography value="Sign up" variant="link" />
               </AppLink>
             </LayoutFlex>

@@ -2,4 +2,4 @@ import type { FunctionComponent } from 'react'
 
 import { LayoutPage } from '@gnowth/lib-react'
 
-export const PageSignup: FunctionComponent = () => <LayoutPage>Login</LayoutPage>
+export const PageSignup: FunctionComponent = () => <LayoutPage>Sign up</LayoutPage>

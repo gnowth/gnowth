@@ -14,5 +14,8 @@ export interface PropsUseDataConnect {
 export function useDataConnect<Value>(props: PropsUseDataConnect): PropsData<Value> {
   const context = useContext(DataContext)
 
-  return context.connect<Value>(props.name) || {}
+  return {
+    ...props,
+    ...context.connect<Value>(props.name),
+  }
 }

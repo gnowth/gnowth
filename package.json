@@ -23,7 +23,6 @@
       "@gnowth/eslint-config"
     ],
     "ignorePatterns": [
-      "**/__generated__/**/*",
       "**/.next/**/*",
       "**/.parcel-cache/",
       "**/.turbo/**/*",
@@ -43,7 +42,7 @@
     "preset": "@gnowth/jest-config"
   },
   "lint-staged": {
-    "**/!(__generated__)/*.{css,json,md,scss,yaml,yml}": "prettier --write",
+    "**/*.{css,json,md,scss,yaml,yml}": "prettier --write",
     "*.{cjs,js,jsx,mdx,mjs,ts,tsx}": "eslint --fix"
   },
   "renovate": {

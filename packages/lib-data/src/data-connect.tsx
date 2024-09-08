@@ -14,6 +14,7 @@ import { DataWarning } from './data-warning'
 import { useDataConnect } from './use-data-connect'
 
 interface PropsComponent extends PropsData, Slottable {
+  placeholder?: string
   variant?: string
 }
 
@@ -29,6 +30,7 @@ interface Props extends PropsUseDataConnect {
   layoutProps?: Record<string, unknown>
   layoutVariant?: string
   many?: boolean
+  placeholder?: string
   readonly?: boolean
   slot?: string
   suspense?: ComponentType<PropsSuspense> | null | string
@@ -91,7 +93,7 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
             layoutVariant={propsWithDefault.layoutVariant}
           >
             {propsWithDefault.labelValue && LabelComponent && (
-              <LabelComponent slot="label" value={propsWithDefault.labelValue} />
+              <LabelComponent id={connection.id} slot="label" value={propsWithDefault.labelValue} />
             )}
 
             <Component
@@ -105,6 +107,7 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
               onChange={connection.onChange}
               onReset={connection.onReset}
               onSubmit={connection.onSubmit}
+              placeholder={propsWithDefault.placeholder}
               slot="input"
               value={connection.value}
               variant={propsWithDefault.componentVariant}

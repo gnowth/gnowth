@@ -20,7 +20,7 @@ export class UserFilterModel extends Model<UserFilter> {
   #userStatuses: UserStatus[] = ['active', 'deactivated']
 
   #filterByEmail(email?: string): PredicateArrayFilter<User> {
-    return !email ? this.#filterNone() : (user) => user.email === email
+    return !email ? this.#filterNone() : (user) => user.email.toLowerCase().includes(email.toLowerCase())
   }
 
   #filterByNameFirst(nameFirst?: string): PredicateArrayFilter<User> {
@@ -96,7 +96,7 @@ export class UserFilterModel extends Model<UserFilter> {
 
   filter(filter: UserFilter): PredicateArrayFilter<User> {
     const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
-      email: this.#filterByNameFirst(filter.email),
+      email: this.#filterByEmail(filter.email),
       nameFirst: this.#filterByNameFirst(filter.nameFirst),
       nameLast: this.#filterByNameFirst(filter.nameLast),
       status: this.#filterByStatus(filter.status),

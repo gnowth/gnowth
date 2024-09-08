@@ -1,10 +1,9 @@
 import type { FunctionComponent } from 'react'
 
-import { Input } from '@chakra-ui/react'
-import { LayoutSection, LayoutStack, UIBox, UIButton, UILabel, UISkeleton } from '@gnowth/lib-react'
+import { DataConnect, DataSource, DataTrigger, LayoutSection, UISkeleton } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
-import { Field, Form, Formik } from 'formik'
 import { useSearchParams } from 'next/navigation'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
@@ -27,37 +26,46 @@ const FormUserComponent: FunctionComponent = () => {
     dependencies.userService.mutateOptions({ onSuccess: handleOnUserMutation }),
   )
   const userQuery = useSuspenseQuery(dependencies.userService.queryOptions({ id }))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const initialValue = useMemo(() => userQuery.data?.data ?? dependencies.userModel.fromData({}), [])
 
   return (
     <LayoutSection variant="container">
-      <Formik
-        initialValues={userQuery.data?.data ?? dependencies.userModel.fromData({})}
-        onSubmit={(user) => userMutation.mutate(user)}
-      >
-        <LayoutStack as={Form}>
-          <UIBox>
-            <UILabel id="form-user-nameFirst" value={t('First name')} />
-            <Field as={Input} id="form-user-nameFirst" name="nameFirst" placeholder="Jane" />
-          </UIBox>
+      <DataSource mode="uncontrolled" onSubmit={(user) => userMutation.mutate(user)} value={initialValue}>
+        <DataConnect
+          component="text"
+          id="form-user-nameFirst"
+          labelValue={t('First name')}
+          name="nameFirst"
+          placeholder={t('Jane')}
+        />
 
-          <UIBox>
-            <UILabel id="form-user-lastName" value={t('Last name')} />
-            <Field as={Input} id="form-user-lastName" name="nameLast" placeholder="Doe" />
-          </UIBox>
+        <DataConnect
+          component="text"
+          id="form-user-nameLast"
+          labelValue={t('Last name')}
+          name="nameLast"
+          placeholder={t('Doe')}
+        />
 
-          <UIBox>
-            <UILabel id="form-user-role" value={t('Role')} />
-            <Field as={Input} id="form-user-role" name="role" placeholder="Role" />
-          </UIBox>
+        <DataConnect
+          component="text"
+          id="form-user-role"
+          labelValue={t('Role')}
+          name="role"
+          placeholder={t('Role')}
+        />
 
-          <UIBox>
-            <UILabel id="form-user-email" value={t('Email')} />
-            <Field as={Input} id="form-user-email" name="email" placeholder="jane@doe.com" type="email" />
-          </UIBox>
+        <DataConnect
+          component="text"
+          id="form-user-email"
+          labelValue={t('Email')}
+          name="emaili"
+          placeholder={t('jane@doe.com')}
+        />
 
-          <UIButton textValue={t('Submit')} type="submit" />
-        </LayoutStack>
-      </Formik>
+        <DataTrigger componentValue={t('Submit')} submit />
+      </DataSource>
     </LayoutSection>
   )
 }
