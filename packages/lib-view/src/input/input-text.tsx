@@ -11,8 +11,8 @@ import {
   systemLayout,
   systemSpace,
   systemTypography,
-  themeDefinitionsMake,
-  themeStylesMake,
+  themeMakeDefinitions,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
@@ -53,8 +53,8 @@ const inputText = systemCompose(
   systemSpace(),
   systemTypography(),
 )
-const makeStyles = themeStylesMake({ inputText })
-const definitions = themeDefinitionsMake(['', 'box', 'typography'])
+const makeStyles = themeMakeStyles({ inputText })
+const definitions = themeMakeDefinitions(['', 'box', 'typography'])
 const variants: ThemeVariants<PropsInputText> = {
   text: {
     height: 'md',

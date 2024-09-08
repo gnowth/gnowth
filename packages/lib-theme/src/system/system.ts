@@ -1,6 +1,7 @@
 import type { CSSObject } from '@emotion/serialize'
 
-import { guardObject, transformToArray } from '@gnowth/lib-utils'
+import { transformToArray } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { ScaleName, ScaleType } from '../theme/scales'
 import type { Theme } from '../theme/theme'
@@ -99,7 +100,7 @@ const isBreakpoint = (key: string): key is TokenBreakpoint =>
 function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<Value>): CSSObject {
   if (configs.value === undefined) return {}
 
-  if (!guardObject(configs.value)) {
+  if (!R.isObjectType(configs.value)) {
     const breakpoints = configs.theme.getScaleBreakpoint(configs)
     const scaleToken = configs.value
 

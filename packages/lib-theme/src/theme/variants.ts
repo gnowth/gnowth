@@ -1,6 +1,7 @@
 import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 
-import { guardFunction, guardObject, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { Theme } from './theme'
 
@@ -52,14 +53,15 @@ export class VariantManager {
     }
 
     // TODO check logic around nested variant. we want to move away from variant as an object
-    if (guardObject(configs.variant)) {
+    if (R.isObjectType(configs.variant)) {
       return configs.variant
     }
 
+    // TODO: variants default in lib view must be overwritten by theme
     const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
     const variant = variants[configs.variant]
 
-    if (guardFunction<VariantDynamic<Props>>(variant)) {
+    if (R.isFunction(variant)) {
       return variant(configs)
     }
 

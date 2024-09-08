@@ -7,7 +7,7 @@ import {
   systemBackgroundColorFromPalette,
   systemCompose,
   systemGap,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 
 import { UtilSlot } from '../util/util-slot'
@@ -19,7 +19,7 @@ export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
 }
 
 const layoutApp = systemCompose(systemBackgroundColorFromPalette(), systemGap())
-const makeStyles = themeStylesMake({ layoutApp })
+const makeStyles = themeMakeStyles({ layoutApp })
 
 export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
   const theme = useAppTheme()

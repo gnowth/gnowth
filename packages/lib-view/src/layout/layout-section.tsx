@@ -9,8 +9,8 @@ import {
   systemBox,
   systemCompose,
   systemSpace,
-  themeDefinitionsMake,
-  themeStylesMake,
+  themeMakeDefinitions,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -33,8 +33,8 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
 }
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
-const makeStyles = themeStylesMake({ layoutSection })
-const definitions = themeDefinitionsMake(['', 'box'])
+const makeStyles = themeMakeStyles({ layoutSection })
+const definitions = themeMakeDefinitions(['', 'box'])
 const variants: ThemeVariants<PropsLayoutSection> = {
   container: (props) => ({
     layout: 'stack',

@@ -12,7 +12,7 @@ import {
   systemLayout,
   systemPointer,
   systemSpace,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -29,7 +29,7 @@ const uiBox = systemCompose(
   systemPointer(),
   systemSpace(),
 )
-const makeStyles = themeStylesMake({ uiBox })
+const makeStyles = themeMakeStyles({ uiBox })
 const propsDefault: Partial<PropsUIBox> = {
   variantNamespace: 'uiBox',
 }

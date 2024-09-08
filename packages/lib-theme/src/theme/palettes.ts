@@ -20,7 +20,6 @@ type Palettes = UtilNamespaced<PaletteType, PaletteName>
 type Configs = { palettes?: PaletteType[] }
 
 export type ColorHex = `#${number}`
-// export type ColorHex = string
 export type PaletteType = Palette | PaletteReference
 export type ConfigsPalette = {
   palette?: PaletteName
@@ -39,17 +38,13 @@ export class PaletteManager {
     if (!palette) {
       return undefined
     }
-
     const maybePalette = this.#palettes[palette]
-
     if (!maybePalette) {
       return undefined
     }
-
     if (this.#guardPaletteReference(maybePalette)) {
       return this.#get(maybePalette.reference)
     }
-
     return maybePalette
   }
 
@@ -76,18 +71,14 @@ export class PaletteManager {
     if (!configs.palette) {
       return undefined
     }
-
     const palette = this.#get(configs.palette)
     const paletteColor = this.#getPaletteColor(palette, configs.paletteWeight)
-
     if (!paletteColor) {
       return undefined
     }
-
     if (!configs.paletteForContrast) {
       return paletteColor.hex
     }
-
     const paletteText = this.#get(paletteColor.darkContrast ? 'textPrimary' : 'textInverse')
     const paletteColorText = this.#getPaletteColor(paletteText, '500')
     return paletteColorText?.hex

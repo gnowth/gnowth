@@ -8,7 +8,7 @@ import {
   systemImage,
   systemSpace,
   systemTextAlign,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -25,7 +25,7 @@ export interface PropsUIDivider extends SystemType<typeof uiDivider> {
 }
 
 const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
-const makeStyles = themeStylesMake({ uiDivider })
+const makeStyles = themeMakeStyles({ uiDivider })
 const variants: ThemeVariants<PropsUIDivider> = {
   horizontal: (props) => ({
     backgroundImage: `linear-gradient(${

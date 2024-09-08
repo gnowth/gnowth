@@ -1,5 +1,3 @@
-import type { CSSObject } from '@emotion/serialize'
-
 import { Theme } from '../theme/theme'
 import { systemCompose, systemMake } from './system'
 
@@ -99,18 +97,21 @@ describe('systemCompose', () => {
   })
 
   it('returns right predicate when arguments functions returns nested output', () => {
+    const margin = { margin: '5px' }
+    const marginLeft = { marginLeft: '8px' }
+    const marginRight = { marginRight: '10px' }
     const predicate = systemCompose(
-      () => ({ '@media(min-width: 45em)': { '& *': { margin: '5px' } } }),
-      () => ({ '@media(min-width: 45em)': { '& *': { marginLeft: '8px' } } }),
-      () => ({ '& *': { margin: '5px' } }),
-      () => ({ '& *': { marginLeft: '8px' } }),
-      () => ({ marginRight: '10px' }),
+      () => ({ '@media(min-width: 45em)': { '& *': margin } }),
+      () => ({ '@media(min-width: 45em)': { '& *': marginLeft } }),
+      () => ({ '& *': margin }),
+      () => ({ '& *': marginLeft }),
+      () => marginRight,
     )
     const cssObject = predicate({}, theme)
-    expect(((cssObject['@media(min-width: 45em)'] as CSSObject)['& *'] as CSSObject).margin).toBe('5px')
-    expect(((cssObject['@media(min-width: 45em)'] as CSSObject)['& *'] as CSSObject).marginLeft).toBe('8px')
-    expect((cssObject['& *'] as CSSObject).margin).toBe('5px')
-    expect((cssObject['& *'] as CSSObject).marginLeft).toBe('8px')
-    expect(cssObject.marginRight).toBe('10px')
+    expect(cssObject['@media(min-width: 45em)']).toEqual({ '& *': expect.objectContaining(margin) })
+    expect(cssObject['@media(min-width: 45em)']).toEqual({ '& *': expect.objectContaining(marginLeft) })
+    expect(cssObject['& *']).toEqual(expect.objectContaining(margin))
+    expect(cssObject['& *']).toEqual(expect.objectContaining(marginLeft))
+    expect(cssObject).toEqual(expect.objectContaining(marginRight))
   })
 })

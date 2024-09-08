@@ -3,7 +3,7 @@ import type { SystemType, TokenSize } from '@gnowth/lib-theme'
 import type { FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemColorFromPalette, systemCompose, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
+import { cx, systemColorFromPalette, systemCompose, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
 interface ComponentProps {
@@ -24,7 +24,7 @@ export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonl
 }
 
 const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
-const makeStyles = themeStylesMake({ uiIcon })
+const makeStyles = themeMakeStyles({ uiIcon })
 const propsDefault: Partial<PropsUIIcon> = {
   palette: 'textPrimary',
   size: 'xs',

@@ -11,7 +11,7 @@ import {
   systemLayout,
   systemPointer,
   systemSpace,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -71,7 +71,7 @@ const uiButton = systemCompose(
   systemPointer(),
   systemSpace(),
 )
-const makeStyles = themeStylesMake({ uiButton })
+const makeStyles = themeMakeStyles({ uiButton })
 // TODO: add default palette?
 const propsDefault: PropsUIButton = {
   layout: 'flex',
