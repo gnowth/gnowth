@@ -2,7 +2,7 @@ import type { CSSObject } from '@emotion/serialize'
 import type { ObjectLiteral } from '@gnowth/lib-utils'
 
 import type { Theme } from '../theme/theme'
-import type { TokenLength, TokenPropertyValue, TokenSpace } from '../tokens/tokens'
+import type { TokenLength, TokenPropertyValue, TokenSize } from '../tokens/tokens'
 
 export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]
 export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject
@@ -27,5 +27,5 @@ type SystemUnitsRelative =
   | `${number}vw`
 export type SystemUnits = SystemUnitsAbsolute | SystemUnitsRelative
 
-export type CSSSpace = SystemUnits | TokenPropertyValue | TokenSpace
+export type CSSSpace = SystemUnits | TokenPropertyValue | TokenSize
 export type CSSLength = SystemUnits | TokenLength | TokenPropertyValue | string

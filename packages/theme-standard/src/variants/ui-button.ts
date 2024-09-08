@@ -143,7 +143,7 @@ export const icon: VariantType<PropsUIButton> = (props) => {
 }
 
 export const fab: VariantType<PropsUIButton> = (props) => {
-  const height = props.height ?? props.theme.getScaleItem({ scale: 'fabsize', scaleToken: props.size })
+  const height = props.height ?? props.theme.getScaleItem({ scale: 'buttonsize', scaleToken: props.size })
   return {
     ...icon(props),
     backgroundColor: interpolateColorFlat(props.theme, props.palette),

@@ -13,12 +13,3 @@ export const page: VariantType<PropsLayoutSection> = (props) => ({
     maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
   },
 })
-
-export const pageRow: VariantType<PropsLayoutSection> = (props) => ({
-  layout: 'flex',
-  layoutProps: {
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    maxWidth: props.theme.getVariable<string>(TokenVariable.widthContent),
-  },
-})
