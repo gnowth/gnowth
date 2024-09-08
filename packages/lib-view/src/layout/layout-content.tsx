@@ -9,7 +9,7 @@ import {
   systemDisplay,
   systemGrid,
   systemSpace,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
@@ -35,7 +35,7 @@ const layoutContent = systemCompose(
   systemGrid(),
   systemSpace(),
 )
-const makeStyles = themeStylesMake({ layoutContent })
+const makeStyles = themeMakeStyles({ layoutContent })
 const propsDefault: Partial<PropsLayoutContent> = {
   variantNamespace: 'layoutContent',
 }

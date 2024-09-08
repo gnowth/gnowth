@@ -9,8 +9,8 @@ import {
   systemCompose,
   systemSpace,
   systemTypography,
-  themeDefinitionsMake,
-  themeStylesMake,
+  themeMakeDefinitions,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -25,8 +25,8 @@ export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReado
 }
 
 const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
-const makeStyles = themeStylesMake({ uiLabel })
-const definitions = themeDefinitionsMake(['', 'typography'])
+const makeStyles = themeMakeStyles({ uiLabel })
+const definitions = themeMakeDefinitions(['', 'typography'])
 const propsDefault: Partial<PropsUILabel> = {
   typographyVariant: 'label',
   typographyVariantNamespace: 'uiTypography',

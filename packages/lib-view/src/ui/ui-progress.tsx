@@ -19,14 +19,14 @@ import {
   systemCompose,
   systemDisplay,
   systemSpace,
-  themeStylesCreate,
-  themeStylesMake,
+  themeCreateStyles,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
 import { UtilSlot } from '../util/util-slot'
 
-const stylesLayout = themeStylesCreate({
+const stylesLayout = themeCreateStyles({
   layoutContainer: `
     box-sizing: border-box;
     padding: 10%;
@@ -184,7 +184,7 @@ const systemSize: System<{ size?: TokenSize }> = (props, theme) => {
 }
 
 const uiProgress = systemCompose(systemDisplay(), systemSpace(), systemSize)
-const makeStyles = themeStylesMake({
+const makeStyles = themeMakeStyles({
   uiProgress,
   uiProgressCircle: (props: PropsUIProgress, theme: Theme) => ({
     animationName: spinnerStrokeRotate(props),

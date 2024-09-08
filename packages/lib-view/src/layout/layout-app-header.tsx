@@ -2,7 +2,7 @@ import type { SystemType } from '@gnowth/lib-theme'
 import type { FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemCompose, systemPlace, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
+import { cx, systemCompose, systemPlace, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
 
 export interface PropsLayoutAppHeader extends SystemType<typeof layoutAppHeader> {
   as?: string
@@ -16,7 +16,7 @@ export interface PropsLayoutAppHeader extends SystemType<typeof layoutAppHeader>
 }
 
 const layoutAppHeader = systemCompose(systemPlace(), systemSpace())
-const makeStyles = themeStylesMake({ layoutAppHeader })
+const makeStyles = themeMakeStyles({ layoutAppHeader })
 const propsDefault: Partial<PropsLayoutAppHeader> = {
   zIndex: 'frame',
 }

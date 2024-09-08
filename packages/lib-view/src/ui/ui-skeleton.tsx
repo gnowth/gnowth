@@ -9,7 +9,7 @@ import {
   systemCompose,
   systemLayout,
   systemSpace,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -30,7 +30,7 @@ export interface PropsUISkeleton extends SystemType<typeof uiSkeleton> {
   variants?: ThemeVariants<PropsUISkeleton>
 }
 const uiSkeleton = systemCompose(systemBox(), systemLayout(), systemSpace())
-const makeStyles = themeStylesMake({
+const makeStyles = themeMakeStyles({
   animationClass: `
     animation: ${pulse} 2s ease-in-out 0.5s infinite;
     aspect-ratio: 1/1;

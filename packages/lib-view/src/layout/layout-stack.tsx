@@ -3,7 +3,7 @@ import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemCompose, systemGrid, systemLayout, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
+import { cx, systemCompose, systemGrid, systemLayout, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
 
@@ -25,7 +25,7 @@ export interface PropsLayoutStack extends PropsLayout, SystemType<typeof layoutS
 }
 
 const layoutStack = systemCompose(systemGrid(), systemLayout(), systemSpace())
-const makeStyles = themeStylesMake({ layoutStack })
+const makeStyles = themeMakeStyles({ layoutStack })
 
 const variants: ThemeVariants<PropsLayoutStack> = {
   horizontal: {

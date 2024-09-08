@@ -8,8 +8,8 @@ import {
   systemBox,
   systemCompose,
   systemSpace,
-  themeDefinitionsMake,
-  themeStylesMake,
+  themeMakeDefinitions,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
 
@@ -26,8 +26,8 @@ export interface PropsUIPaper extends SystemType<typeof uiPaper> {
 }
 
 const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
-const makeStyles = themeStylesMake({ uiPaper })
-const definitions = themeDefinitionsMake(['', 'box'])
+const makeStyles = themeMakeStyles({ uiPaper })
+const definitions = themeMakeDefinitions(['', 'box'])
 const propsDefault: Partial<PropsUIPaper> = {
   boxVariant: 'float',
   boxVariantNamespace: 'systemBox',

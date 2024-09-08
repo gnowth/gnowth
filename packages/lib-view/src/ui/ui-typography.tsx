@@ -10,7 +10,7 @@ import {
   systemDisplay,
   systemSpace,
   systemTypography,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
@@ -37,7 +37,7 @@ const uiTypography = systemCompose(
   systemSpace(),
   systemTypography(),
 )
-const makeStyles = themeStylesMake({ uiTypography })
+const makeStyles = themeMakeStyles({ uiTypography })
 const propsDefault: Partial<PropsUITypography> = {
   palette: 'textPrimary',
   variant: 'body1',

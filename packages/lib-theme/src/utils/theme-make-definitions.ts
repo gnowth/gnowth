@@ -3,7 +3,7 @@ import type { ObjectLiteral } from '@gnowth/lib-utils'
 import type { WithThemeVariant } from '../theme/variants'
 
 // TODO review this and whole definition type
-export const themeDefinitionsMake = (prefixes: string[]) => {
+export const themeMakeDefinitions = (prefixes: string[]) => {
   return <Props extends ObjectLiteral>(props: WithThemeVariant<Props>): WithThemeVariant<Props>[] =>
     prefixes.map(
       (prefix) =>

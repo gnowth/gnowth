@@ -10,7 +10,7 @@ import {
   systemGrid,
   systemLayout,
   systemSpace,
-  themeStylesMake,
+  themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { createElement } from 'react'
 import * as R from 'remeda'
@@ -34,7 +34,7 @@ interface PropsLayoutGrid extends PropsLayout, SystemType<typeof layoutGrid> {
 }
 
 const layoutGrid = systemCompose(systemBox(), systemGrid(), systemLayout(), systemSpace())
-const makeStyles = themeStylesMake({ layoutGrid })
+const makeStyles = themeMakeStyles({ layoutGrid })
 
 const variants: ThemeVariants<PropsLayoutGrid> = {
   table: (props) => ({

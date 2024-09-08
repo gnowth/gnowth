@@ -3,7 +3,7 @@ import type { SystemType, TokenSize } from '@gnowth/lib-theme'
 import type { ComponentType, FunctionComponent } from 'react'
 
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemSpace, themeStylesMake } from '@gnowth/lib-theme'
+import { cx, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
 import { UtilNamespaced } from '@gnowth/lib-utils'
 import { useCallback, useRef } from 'react'
 import * as R from 'remeda'
@@ -36,7 +36,7 @@ export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, Prop
 }
 
 const inputBoolean = systemSpace()
-const makeStyles = themeStylesMake({
+const makeStyles = themeMakeStyles({
   inputBoolean,
   inputBooleanClass: `
     display: inline-block;
