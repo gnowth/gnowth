@@ -25,9 +25,21 @@ const FormUserFilterComponent: FunctionComponent = () => {
         onSubmit={(value) => setFilters({ ...value, page: 1 })}
         value={initialFilters}
       >
-        <DataConnect component="text" labelValue={t('Email')} name="email" placeholder={t('email')} />
+        <DataConnect
+          component="text"
+          id="form-user-filter-email"
+          labelValue={t('Email')}
+          name="email"
+          placeholder={t('email')}
+        />
 
-        <DataConnect component="text" labelValue={t('Status')} name="status" placeholder={t('status')} />
+        <DataConnect
+          component="text"
+          id="form-user-filter-status"
+          labelValue={t('Status')}
+          name="status"
+          placeholder={t('status')}
+        />
 
         <DataTrigger componentValue={t('Submit')} submit />
       </DataSource>

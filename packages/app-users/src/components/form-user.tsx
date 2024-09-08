@@ -32,13 +32,37 @@ const FormUserComponent: FunctionComponent = () => {
   return (
     <LayoutSection variant="container">
       <DataSource mode="uncontrolled" onSubmit={(user) => userMutation.mutate(user)} value={initialValue}>
-        <DataConnect component="text" labelValue={t('First name')} name="nameFirst" placeholder={t('Jane')} />
+        <DataConnect
+          component="text"
+          id="form-user-nameFirst"
+          labelValue={t('First name')}
+          name="nameFirst"
+          placeholder={t('Jane')}
+        />
 
-        <DataConnect component="text" labelValue={t('Last name')} name="nameLast" placeholder={t('Doe')} />
+        <DataConnect
+          component="text"
+          id="form-user-nameLast"
+          labelValue={t('Last name')}
+          name="nameLast"
+          placeholder={t('Doe')}
+        />
 
-        <DataConnect component="text" labelValue={t('Role')} name="role" placeholder={t('Role')} />
+        <DataConnect
+          component="text"
+          id="form-user-role"
+          labelValue={t('Role')}
+          name="role"
+          placeholder={t('Role')}
+        />
 
-        <DataConnect component="text" labelValue={t('Email')} name="emaili" placeholder={t('jane@doe.com')} />
+        <DataConnect
+          component="text"
+          id="form-user-email"
+          labelValue={t('Email')}
+          name="emaili"
+          placeholder={t('jane@doe.com')}
+        />
 
         <DataTrigger componentValue={t('Submit')} submit />
       </DataSource>

@@ -93,7 +93,7 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
             layoutVariant={propsWithDefault.layoutVariant}
           >
             {propsWithDefault.labelValue && LabelComponent && (
-              <LabelComponent slot="label" value={propsWithDefault.labelValue} />
+              <LabelComponent id={connection.id} slot="label" value={propsWithDefault.labelValue} />
             )}
 
             <Component
