@@ -17,6 +17,7 @@ export interface PropsLayoutStack extends PropsLayout, SystemType<typeof layoutS
   as?: ComponentType<ComponentProps> | null | string
   children: ReactNode
   className?: string
+  'data-testid'?: string
   hidden?: boolean
   id?: string
   slot?: string
@@ -65,7 +66,7 @@ export const LayoutStack: FunctionComponent<PropsLayoutStack> = (props) => {
         propsVariant.className,
         styles.layoutStack,
       ),
-      'data-testid': 'view-layout-stack',
+      'data-testid': propsVariant['data-testid'] ?? 'view-layout-stack',
       id: propsVariant.id,
     },
     propsVariant.children,

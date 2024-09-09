@@ -17,6 +17,7 @@ export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFl
   as?: ComponentType<ComponentProps> | null | string
   children: ReactNode
   className?: string
+  'data-testid'?: string
   hidden?: boolean
   id?: string
   slot?: string
@@ -108,7 +109,7 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
         propsVariant.className,
         styles.layoutFlex,
       ),
-      'data-testid': 'view-layout-flex',
+      'data-testid': propsVariant['data-testid'] ?? 'view-layout-flex',
       id: propsVariant.id,
     },
     propsVariant.children,
