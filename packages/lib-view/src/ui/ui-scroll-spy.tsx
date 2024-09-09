@@ -6,5 +6,7 @@ export interface PropsUIScrollSpy {
 }
 
 export const UIScrollSpy: FunctionComponent<PropsUIScrollSpy> = (props) => (
-  <div className="ui-scroll-spy">{props.children}</div>
+  <div className="ui-scroll-spy" data-testid="view-ui-scroll-spy">
+    {props.children}
+  </div>
 )

@@ -6,5 +6,7 @@ export interface PropsUIBackToTop {
 }
 
 export const UIBackToTop: FunctionComponent<PropsUIBackToTop> = (props) => (
-  <div className="ui-back-to-top">{props.children}</div>
+  <div className="ui-back-to-top" data-testid="view-ui-back-to-top">
+    {props.children}
+  </div>
 )

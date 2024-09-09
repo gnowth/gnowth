@@ -105,6 +105,7 @@ export const UIButton: FunctionComponent<PropsUIButton> = (props) => {
         propsVariant.classNamespace,
         styles.uiButton,
       )}
+      data-testid="view-ui-button"
       disabled={propsVariant.disabled}
       id={propsVariant.id}
       onClick={propsVariant.onClick}

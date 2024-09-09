@@ -6,5 +6,5 @@ export interface PropsInputMention {
 }
 
 export const InputMention: FunctionComponent<PropsInputMention> = (props) => (
-  <input className="input-mention" name={props.name} />
+  <input className="input-mention" data-testid="view-input-mention" name={props.name} />
 )

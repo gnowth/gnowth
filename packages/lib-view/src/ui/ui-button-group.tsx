@@ -6,5 +6,7 @@ export interface PropsUIButtonGroup {
 }
 
 export const UIButtonGroup: FunctionComponent<PropsUIButtonGroup> = (props) => (
-  <div className="ui-button-group">{props.children}</div>
+  <div className="ui-button-group" data-testid="view-ui-button-group">
+    {props.children}
+  </div>
 )

@@ -6,5 +6,5 @@ export interface PropsInputSlider {
 }
 
 export const InputSlider: FunctionComponent<PropsInputSlider> = (props) => (
-  <input className="input-slider" name={props.name} />
+  <input className="input-slider" data-testid="view-input-slider" name={props.name} />
 )

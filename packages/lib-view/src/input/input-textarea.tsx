@@ -6,5 +6,5 @@ export interface PropsInputTextarea {
 }
 
 export const InputTextarea: FunctionComponent<PropsInputTextarea> = (props) => (
-  <input className="input-textarea" name={props.name} />
+  <input className="input-textarea" data-testid="view-input-textarea" name={props.name} />
 )

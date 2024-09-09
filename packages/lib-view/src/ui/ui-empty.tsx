@@ -7,5 +7,7 @@ export interface PropsUIEmpty {
 }
 
 export const UIEmpty: FunctionComponent<PropsUIEmpty> = (props) => (
-  <div className="ui-empty">{props.children}</div>
+  <div className="ui-empty" data-testid="view-ui-empty">
+    {props.children}
+  </div>
 )

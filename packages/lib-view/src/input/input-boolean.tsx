@@ -112,6 +112,7 @@ export const InputBoolean: FunctionComponent<PropsInputBoolean> = (props) => {
         styles.inputBooleanClass,
         styles.inputBoolean,
       )}
+      data-testid="view-input-boolean"
       id={propsVariant.id}
     >
       <ComponentIcon

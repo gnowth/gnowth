@@ -7,5 +7,7 @@ export interface PropsUIAccordion {
 }
 
 export const UIAccordion: FunctionComponent<PropsUIAccordion> = (props) => (
-  <div className="ui-accordion">{props.children}</div>
+  <div className="ui-accordion" data-testid="view-ui-accordioni">
+    {props.children}
+  </div>
 )

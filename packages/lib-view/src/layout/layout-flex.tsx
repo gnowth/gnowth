@@ -10,6 +10,7 @@ import * as R from 'remeda'
 interface ComponentProps {
   children?: ReactNode
   className?: string
+  'data-testid'?: string
   id?: string
 }
 export interface PropsLayoutFlex extends PropsLayout, SystemType<typeof layoutFlex> {
@@ -107,6 +108,7 @@ export const LayoutFlex: FunctionComponent<PropsLayoutFlex> = (props) => {
         propsVariant.className,
         styles.layoutFlex,
       ),
+      'data-testid': 'view-layout-flex',
       id: propsVariant.id,
     },
     propsVariant.children,

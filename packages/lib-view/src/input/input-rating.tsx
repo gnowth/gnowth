@@ -6,5 +6,5 @@ export interface PropsInputRating {
 }
 
 export const InputRating: FunctionComponent<PropsInputRating> = (props) => (
-  <input className="input-rating" name={props.name} />
+  <input className="input-rating" data-testid="view-input-rating" name={props.name} />
 )

@@ -6,5 +6,7 @@ export interface PropsLayoutPage {
 }
 
 export const LayoutPage: FunctionComponent<PropsLayoutPage> = (props) => (
-  <div className="layout-page">{props.children}</div>
+  <div className="layout-page" data-testid="view-layout-page">
+    {props.children}
+  </div>
 )

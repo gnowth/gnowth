@@ -32,7 +32,7 @@ export const LayoutAppHeader: FunctionComponent<PropsLayoutAppHeader> = (props) 
   return (
     <header
       className={cx('layout-app-header', propsVariant.className, styles.layoutAppHeader)}
-      data-testid={props['data-testid']}
+      data-testid={props['data-testid'] ?? 'view-layout-app-header'}
       id={propsVariant.id}
     >
       {props.children}

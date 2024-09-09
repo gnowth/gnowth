@@ -6,5 +6,5 @@ export interface PropsInputOrdering {
 }
 
 export const InputOrdering: FunctionComponent<PropsInputOrdering> = (props) => (
-  <input className="input-ordering" name={props.name} />
+  <input className="input-ordering" data-testid="view-input-ordering" name={props.name} />
 )

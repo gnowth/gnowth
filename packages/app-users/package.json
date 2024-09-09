@@ -36,6 +36,7 @@
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
+    "@gnowth/lib-dev": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@testing-library/react": "16.0.1"

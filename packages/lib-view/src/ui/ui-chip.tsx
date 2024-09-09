@@ -6,5 +6,7 @@ export interface PropsUIChip {
 }
 
 export const UIChip: FunctionComponent<PropsUIChip> = (props) => (
-  <div className="ui-chip">{props.children}</div>
+  <div className="ui-chip" data-testid="view-ui-chip">
+    {props.children}
+  </div>
 )

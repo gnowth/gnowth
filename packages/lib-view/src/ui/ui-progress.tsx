@@ -274,6 +274,7 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
         propsVariant.className,
         styles.uiProgress,
       )}
+      data-testid="view-ui-progress"
       id={propsVariant.id}
     >
       <AppLayout

@@ -48,6 +48,7 @@ export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
         propsVariant.className,
         styles.uiLabel,
       )}
+      data-testid="view-ui-label"
       htmlFor={props.id}
     >
       {props.value}

@@ -107,6 +107,117 @@ describe('Theme - media', () => {
   })
 })
 
+describe('Theme - palette', () => {
+  const parameters = {
+    palettes: [
+      {
+        base: '#fff' as const,
+        colors: [
+          { darkContrast: true, hex: '#eee', name: '300' } as const,
+          { darkContrast: false, hex: '#ccc', name: '500' } as const,
+        ],
+        name: 'primary',
+      },
+      {
+        base: '#000' as const,
+        colors: [{ darkContrast: false, hex: '#111', name: '500' } as const],
+        name: 'textPrimary',
+      },
+      {
+        base: '#999' as const,
+        colors: [{ darkContrast: false, hex: '#aaa', name: '500' } as const],
+        name: 'textInverse',
+      },
+      { name: 'reference', reference: 'textInverse' },
+    ],
+  }
+  const parameters2 = {
+    palettes: [
+      {
+        base: '#fff' as const,
+        colors: [{ darkContrast: true, hex: '#555', name: '500' } as const],
+        name: 'primary',
+      },
+    ],
+  }
+  const parameter3 = {}
+
+  it('returns a named color for given weight', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({ palette: 'primary', paletteWeight: '300' })
+    expect(color).toBe('#eee')
+  })
+
+  it('returns a named color for default weight', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({ palette: 'primary' })
+    expect(color).toBe('#ccc')
+  })
+
+  it('returns undefined if no palette is set', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({})
+    expect(color).toBeUndefined()
+  })
+
+  it('returns undefined if palette is not found', () => {
+    expect.assertions(1)
+    const theme = new Theme()
+    const color = theme.getPaletteColor({ palette: 'primary1' })
+    expect(color).toBeUndefined()
+  })
+
+  it('returns undefined if weight is not found', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({ palette: 'primary', paletteWeight: '50' })
+    expect(color).toBeUndefined()
+  })
+
+  it('returns textPrimary of weight 500 if paletteForContrast is true and palette darkContrast is true', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({
+      palette: 'primary',
+      paletteForContrast: true,
+      paletteWeight: '300',
+    })
+    expect(color).toBe('#111')
+  })
+
+  it('returns textInverse of weight 500 if paletteForContrast is true and palette darkContrast is false', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({
+      palette: 'primary',
+      paletteForContrast: true,
+      paletteWeight: '500',
+    })
+    expect(color).toBe('#aaa')
+  })
+
+  it('returns color via reference', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters)
+    const color = theme.getPaletteColor({ palette: 'reference' })
+    expect(color).toBe('#aaa')
+  })
+
+  it('merges palette configs', () => {
+    expect.assertions(3)
+    const theme = new Theme(parameters)
+    const newTheme = theme.extends(parameters2).extends(parameter3)
+    const color1 = newTheme.getPaletteColor({ palette: 'reference' })
+    const color2 = newTheme.getPaletteColor({ palette: 'primary' })
+    expect(color1).toBe('#aaa')
+    expect(color2).toBe('#555')
+    expect(theme).not.toBe(newTheme)
+  })
+})
+
 describe('Theme - scale', () => {
   const parameters = { scales: { name1: { md: 'medium' }, name2: { lg: 'large' } } }
   const parameters2 = { scales: { name1: { sm: 'small' } } }

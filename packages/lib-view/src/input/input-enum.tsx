@@ -6,5 +6,5 @@ export interface PropsInputEnum {
 }
 
 export const InputEnum: FunctionComponent<PropsInputEnum> = (props) => (
-  <input className="input-enum" name={props.name} />
+  <input className="input-enum" data-testid="view-input-enum" name={props.name} />
 )

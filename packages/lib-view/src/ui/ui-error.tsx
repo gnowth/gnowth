@@ -12,7 +12,7 @@ export function UIError(props: PropsUIError): ReactElement | null {
   if (!props.value) return null
 
   return (
-    <LayoutContent>
+    <LayoutContent data-testid="view-ui-error">
       {Array.isArray(props.value) &&
         props.value.map((error) => <UITypography key={error.message} value={error.message} />)}
 

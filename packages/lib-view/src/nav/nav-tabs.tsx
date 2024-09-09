@@ -6,5 +6,7 @@ export interface PropsNavTabs {
 }
 
 export const NavTabs: FunctionComponent<PropsNavTabs> = (props) => (
-  <div className="nav-tab">{props.children}</div>
+  <div className="nav-tab" data-testid="view-nav-tabs">
+    {props.children}
+  </div>
 )

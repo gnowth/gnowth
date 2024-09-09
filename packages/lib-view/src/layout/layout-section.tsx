@@ -92,7 +92,7 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
         propsVariant.className,
         styles.layoutSection,
       )}
-      data-testid={propsVariant['data-testid']}
+      data-testid={propsVariant['data-testid'] ?? 'view-layout-section'}
       id={propsVariant.id}
     >
       <AppLayout

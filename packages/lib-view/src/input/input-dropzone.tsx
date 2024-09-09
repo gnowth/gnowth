@@ -6,5 +6,5 @@ export interface PropsInputDropzone {
 }
 
 export const InputDropzone: FunctionComponent<PropsInputDropzone> = (props) => (
-  <input className="input-dropzone" name={props.name} />
+  <input className="input-dropzone" data-testid="view-input-dropzone" name={props.name} />
 )

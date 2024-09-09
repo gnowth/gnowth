@@ -6,5 +6,7 @@ export interface PropsUICard {
 }
 
 export const UICard: FunctionComponent<PropsUICard> = (props) => (
-  <div className="ui-card">{props.children}</div>
+  <div className="ui-card" data-testid="view-ui-card">
+    {props.children}
+  </div>
 )

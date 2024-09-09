@@ -50,7 +50,7 @@ export const UIBox: FunctionComponent<PropsUIBox> = (props) => {
         propsVariant.className,
         styles.uiBox,
       )}
-      data-testid={propsVariant['data-testid']}
+      data-testid={propsVariant['data-testid'] ?? 'view-ui-box'}
       id={propsVariant.id}
     >
       {propsVariant.children}

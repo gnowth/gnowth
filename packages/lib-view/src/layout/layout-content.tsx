@@ -16,12 +16,14 @@ import * as R from 'remeda'
 
 interface ComponentProps {
   className?: string
+  'data-testid'?: string
   id?: string
 }
 export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
   as?: ComponentType<ComponentProps> | string
   children: ReactNode
   className?: string
+  'data-testid'?: string
   hidden?: boolean
   id?: string
   slot?: string
@@ -57,6 +59,7 @@ export const LayoutContent: FunctionComponent<PropsLayoutContent> = (props) => {
         propsVariant.className,
         styles.layoutContent,
       ),
+      'data-testid': propsVariant['data-testid'] ?? 'view-layout-content',
       id: propsVariant.id,
     },
     propsVariant.children,

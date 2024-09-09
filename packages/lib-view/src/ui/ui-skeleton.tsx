@@ -68,6 +68,7 @@ export const UISkeleton: FunctionComponent<PropsUISkeleton> = (props) => {
         styles.uiSkeleton,
         styles.animationClass,
       )}
+      data-testid="view-ui-skeleton"
     />
   )
 }

@@ -7,5 +7,5 @@ export interface PropsInputCascader {
 
 // Note: see ant design
 export const InputCascader: FunctionComponent<PropsInputCascader> = (props) => (
-  <input className="input-cascader" name={props.name} />
+  <input className="input-cascader" data-testid="view-input-cascader" name={props.name} />
 )

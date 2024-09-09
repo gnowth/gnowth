@@ -1,6 +1,6 @@
 {
   "author": "Thierry Wong",
-  "description": "Lib repository",
+  "description": "Lib platform",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",

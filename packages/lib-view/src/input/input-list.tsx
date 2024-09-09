@@ -6,5 +6,5 @@ export interface PropsInputList {
 }
 
 export const InputList: FunctionComponent<PropsInputList> = (props) => (
-  <input className="input-list" name={props.name} />
+  <input className="input-list" data-testid="view-input-list" name={props.name} />
 )
