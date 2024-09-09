@@ -130,6 +130,7 @@
     "git:fetch": "git fetch --prune",
     "git:rebase": "git pull --rebase origin main",
     "git:view": "git log --all --graph --decorate --pretty=oneline --abbrev-commit",
+    "local:check-clear:test": "jest --clearCache",
     "local:check-debug:lint": "eslint --debug --ignore-path .gitignore --fix --ext cjs,js,jsx,mdx,mjs,ts,tsx .",
     "local:check-debug:typecheck": "tsc --listFilesOnly",
     "local:check-watch:test": "jest --coverage --watchAll",
