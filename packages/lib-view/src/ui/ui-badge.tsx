@@ -6,5 +6,7 @@ export interface PropsUIBadge {
 }
 
 export const UIBadge: FunctionComponent<PropsUIBadge> = (props) => (
-  <div className="ui-badge">{props.children}</div>
+  <div className="ui-badge" data-testid="view-ui-badge">
+    {props.children}
+  </div>
 )

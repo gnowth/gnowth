@@ -7,5 +7,5 @@ export interface PropsInputTransfer {
 
 // Note: see materialui transfer list
 export const InputTransfer: FunctionComponent<PropsInputTransfer> = (props) => (
-  <input className="input-transfer" name={props.name} />
+  <input className="input-transfer" data-testid="view-input-transfer" name={props.name} />
 )

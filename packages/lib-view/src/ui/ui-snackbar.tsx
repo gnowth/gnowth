@@ -6,5 +6,7 @@ export interface PropsUISnackbar {
 }
 
 export const UISnackbar: FunctionComponent<PropsUISnackbar> = (props) => (
-  <div className="ui-snackbar">{props.children}</div>
+  <div className="ui-snackbar" data-testid="view-ui-snackbar">
+    {props.children}
+  </div>
 )

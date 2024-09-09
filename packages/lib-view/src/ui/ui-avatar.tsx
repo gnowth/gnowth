@@ -6,5 +6,7 @@ export interface PropsUIAvatar {
 }
 
 export const UIAvatar: FunctionComponent<PropsUIAvatar> = (props) => (
-  <div className="ui-avatar">{props.children}</div>
+  <div className="ui-avatar" data-testid="view-ui-avatar">
+    {props.children}
+  </div>
 )

@@ -18,6 +18,7 @@ import * as R from 'remeda'
 interface ComponentProps {
   children?: ReactNode
   className?: string
+  'data-testid'?: string
   id?: string
 }
 interface PropsLayoutGrid extends PropsLayout, SystemType<typeof layoutGrid> {
@@ -77,6 +78,7 @@ export const LayoutGrid: FunctionComponent<PropsLayoutGrid> = (props) => {
         propsVariant.className,
         styles.layoutGrid,
       ),
+      'data-testid': 'view-layout-grid',
       id: propsVariant.id,
     },
     propsVariant.children,

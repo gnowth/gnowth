@@ -6,5 +6,5 @@ export interface PropsInputDate {
 }
 
 export const InputDate: FunctionComponent<PropsInputDate> = (props) => (
-  <input className="input-date" name={props.name} />
+  <input className="input-date" data-testid="view-input-date" name={props.name} />
 )

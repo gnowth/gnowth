@@ -57,6 +57,7 @@ export const UIDivider: FunctionComponent<PropsUIDivider> = (props) => {
         propsVariant.className,
         styles.uiDivider,
       )}
+      data-testid="view-ui-divider"
       id={propsVariant.id}
     >
       {props.children}

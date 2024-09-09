@@ -6,5 +6,7 @@ export interface PropsUITooltip {
 }
 
 export const UITooltip: FunctionComponent<PropsUITooltip> = (props) => (
-  <div className="ui-tooltip">{props.children}</div>
+  <div className="ui-tooltip" data-testid="view-ui-tooltip">
+    {props.children}
+  </div>
 )

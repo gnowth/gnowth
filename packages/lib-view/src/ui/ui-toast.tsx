@@ -6,5 +6,7 @@ export interface PropsUIToast {
 }
 
 export const UIToast: FunctionComponent<PropsUIToast> = (props) => (
-  <div className="ui-toast">{props.children}</div>
+  <div className="ui-toast" data-testid="view-ui-toast">
+    {props.children}
+  </div>
 )

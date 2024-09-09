@@ -6,5 +6,7 @@ export interface PropsNavTimeline {
 }
 
 export const NavTimeline: FunctionComponent<PropsNavTimeline> = (props) => (
-  <div className="nav-timeline">{props.children}</div>
+  <div className="nav-timeline" data-testid="view-nav-timeline">
+    {props.children}
+  </div>
 )

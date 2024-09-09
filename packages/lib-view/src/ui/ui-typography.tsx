@@ -17,6 +17,7 @@ import * as R from 'remeda'
 
 interface ComponentProps {
   className?: string
+  'data-testid'?: string
   id?: string
 }
 // TODO: mediaPrint should disable elipsis
@@ -63,6 +64,7 @@ export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
         propsVariant.className,
         styles.uiTypography,
       ),
+      'data-testid': 'view-ui-typography',
       // should be ==> className: styles.uiTypography
       id: propsVariant.id,
     },

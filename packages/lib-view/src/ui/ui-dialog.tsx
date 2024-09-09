@@ -6,5 +6,7 @@ export interface PropsUIDialog {
 }
 
 export const UIDialog: FunctionComponent<PropsUIDialog> = (props) => (
-  <div className="ui-dialog">{props.children}</div>
+  <div className="ui-dialog" data-testid="view-ui-dialog">
+    {props.children}
+  </div>
 )

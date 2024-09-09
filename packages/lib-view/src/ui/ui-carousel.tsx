@@ -6,5 +6,7 @@ export interface PropsUICarousel {
 }
 
 export const UICarousel: FunctionComponent<PropsUICarousel> = (props) => (
-  <div className="ui-carousel">{props.children}</div>
+  <div className="ui-carousel" data-testid="view-ui-carousel">
+    {props.children}
+  </div>
 )

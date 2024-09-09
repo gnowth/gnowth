@@ -6,5 +6,5 @@ export interface PropsInputTree {
 }
 
 export const InputTree: FunctionComponent<PropsInputTree> = (props) => (
-  <input className="input-tree" name={props.name} />
+  <input className="input-tree" data-testid="view-input-tree" name={props.name} />
 )

@@ -6,5 +6,7 @@ export interface PropsUIAlert {
 }
 
 export const UIAlert: FunctionComponent<PropsUIAlert> = (props) => (
-  <div className="ui-alert">{props.children}</div>
+  <div className="ui-alert" data-testid="view-ui-alert">
+    {props.children}
+  </div>
 )

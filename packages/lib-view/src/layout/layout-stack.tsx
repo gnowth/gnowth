@@ -10,6 +10,7 @@ import * as R from 'remeda'
 interface ComponentProps {
   children?: ReactNode
   className?: string
+  'data-testid'?: string
   id?: string
 }
 export interface PropsLayoutStack extends PropsLayout, SystemType<typeof layoutStack> {
@@ -64,6 +65,7 @@ export const LayoutStack: FunctionComponent<PropsLayoutStack> = (props) => {
         propsVariant.className,
         styles.layoutStack,
       ),
+      'data-testid': 'view-layout-stack',
       id: propsVariant.id,
     },
     propsVariant.children,

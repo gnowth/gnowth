@@ -28,7 +28,12 @@ export const LayoutApp: FunctionComponent<PropsLayoutApp> = (props) => {
 
   return (
     <UtilSlot.Provider slots={props.children}>
-      <LayoutStack className={cx('layout-app', styles.layoutApp)} gap={props.gap ?? 'none'} minHeight="100vh">
+      <LayoutStack
+        className={cx('layout-app', styles.layoutApp)}
+        data-testid="view-layout-app"
+        gap={props.gap ?? 'none'}
+        minHeight="100vh"
+      >
         <UtilSlot.Content name="header" />
 
         <UtilSlot.Content name="main" />

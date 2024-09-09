@@ -6,5 +6,7 @@ export interface PropsUIPopup {
 }
 
 export const UIPopup: FunctionComponent<PropsUIPopup> = (props) => (
-  <div className="ui-popup">{props.children}</div>
+  <div className="ui-popup" data-testid="view-ui-popup">
+    {props.children}
+  </div>
 )

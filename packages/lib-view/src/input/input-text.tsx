@@ -91,6 +91,7 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
       propsVariant.className,
       styles.inputText,
     ),
+    'data-testid': 'view-input-text',
     disabled: propsVariant.disabled,
     id: propsVariant.id,
     name: value.name,

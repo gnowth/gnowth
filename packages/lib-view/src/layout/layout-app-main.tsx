@@ -28,7 +28,7 @@ export const LayoutAppMain: FunctionComponent<PropsLayoutAppMain> = (props) => {
   return (
     <main
       className={cx('layout-app-main', props.className, styles.layoutAppMain)}
-      data-testid={props['data-testid']}
+      data-testid={props['data-testid'] ?? 'view-layout-app-main'}
       id={props.id}
     >
       {props.children}

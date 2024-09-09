@@ -6,5 +6,5 @@ export interface PropsInputNumber {
 }
 
 export const InputNumber: FunctionComponent<PropsInputNumber> = (props) => (
-  <input className="input-number" name={props.name} />
+  <input className="input-number" data-testid="view-input-number" name={props.name} />
 )

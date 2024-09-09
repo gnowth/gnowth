@@ -34,7 +34,12 @@ export const LayoutData: FunctionComponent<PropsLayoutData> = (props) => {
 
   return (
     <UtilSlot.Provider slots={props.children}>
-      <LayoutFlex className="layout-data" gap={propsVariant.gap} variant="verticalStretch">
+      <LayoutFlex
+        className="layout-data"
+        data-testid="view-layout-data"
+        gap={propsVariant.gap}
+        variant="verticalStretch"
+      >
         <LayoutFlex
           className="layout-data--content-wrapper"
           gap={propsVariant.gap}

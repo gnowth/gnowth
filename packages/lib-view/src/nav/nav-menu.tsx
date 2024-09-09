@@ -6,5 +6,7 @@ export interface PropsNavMenu {
 }
 
 export const NavMenu: FunctionComponent<PropsNavMenu> = (props) => (
-  <div className="nav-menu">{props.children}</div>
+  <div className="nav-menu" data-testid="view-nav-menu">
+    {props.children}
+  </div>
 )

@@ -51,6 +51,7 @@ export const UIPaper: FunctionComponent<PropsUIPaper> = (props) => {
         propsVariant.className,
         styles.uiPaper,
       )}
+      data-testid="view-ui-paper"
       id={propsVariant.id}
     >
       {props.children}

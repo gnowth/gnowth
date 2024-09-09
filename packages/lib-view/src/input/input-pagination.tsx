@@ -6,5 +6,5 @@ export interface PropsInputPagination {
 }
 
 export const InputPagination: FunctionComponent<PropsInputPagination> = (props) => (
-  <input className="input-pagination" name={props.name} />
+  <input className="input-pagination" data-testid="view-input-pagination" name={props.name} />
 )

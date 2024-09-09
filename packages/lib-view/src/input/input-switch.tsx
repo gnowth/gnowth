@@ -6,5 +6,5 @@ export interface PropsInputSwitch {
 }
 
 export const InputSwitch: FunctionComponent<PropsInputSwitch> = (props) => (
-  <input className="input-switch" name={props.name} />
+  <input className="input-switch" data-testid="view-input-switch" name={props.name} />
 )

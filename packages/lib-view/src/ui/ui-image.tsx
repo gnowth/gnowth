@@ -6,5 +6,7 @@ export interface PropsUIImage {
 }
 
 export const UIImage: FunctionComponent<PropsUIImage> = (props) => (
-  <div className="ui-image">{props.children}</div>
+  <div className="ui-image" data-testid="view-ui-image">
+    {props.children}
+  </div>
 )
