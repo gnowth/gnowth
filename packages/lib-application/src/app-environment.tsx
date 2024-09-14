@@ -35,7 +35,7 @@ export function AppEnvironment(props: Props): ReactElement {
   return (
     <HashRouter>
       <ContextEnvironment.Provider value={propsWithDefault}>
-        <AppProvider frame={props.frame} suspense={props.suspense} theme={props.theme}>
+        <AppProvider frame={props.frame} i18n={props.i18n} suspense={props.suspense} theme={props.theme}>
           <AppBoundary>
             <AppSuspense>
               <SwitchComponent>{props.children}</SwitchComponent>

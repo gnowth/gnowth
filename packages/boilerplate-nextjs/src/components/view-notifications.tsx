@@ -1,5 +1,4 @@
-import { UITypography } from '@gnowth/lib-react'
-import { useTranslation } from 'react-i18next'
+import { UITypography, useTranslation } from '@gnowth/lib-react'
 
 export function ViewNotifications() {
   const { t } = useTranslation('other')

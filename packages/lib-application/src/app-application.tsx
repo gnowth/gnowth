@@ -1,4 +1,5 @@
 import type { Theme } from '@gnowth/lib-theme'
+import type { i18n } from 'i18next'
 import type { ComponentType, ReactElement, ReactNode } from 'react'
 
 import { Fragment } from 'react'
@@ -16,6 +17,7 @@ interface Props {
   application?: AppModelApplication | string
   children: ReactNode
   frame?: ComponentType<PropsFrame> | null | string
+  i18n?: i18n
   path?: string
   switch?: boolean
   theme?: Theme | string
@@ -27,7 +29,7 @@ export function AppApplication(props: Props): ReactElement {
   const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 
   return (
-    <AppProvider application={application} frame={props.frame} theme={props.theme}>
+    <AppProvider application={application} frame={props.frame} i18n={props.i18n} theme={props.theme}>
       <AppBoundary>
         <AppSuspense>
           <SwitchComponent>{props.children}</SwitchComponent>

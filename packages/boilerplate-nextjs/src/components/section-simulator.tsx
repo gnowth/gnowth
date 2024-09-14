@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { LayoutSection, LayoutStack, UIButton, UITypography } from '@gnowth/lib-react'
-import { useTranslation } from 'react-i18next'
+import { LayoutSection, LayoutStack, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
 import { v4 as uuid } from 'uuid'
 
 import { dependencies } from '../dependencies'

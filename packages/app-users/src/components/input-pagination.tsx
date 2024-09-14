@@ -2,10 +2,9 @@ import type { FilterPageSize } from '@gnowth/logic-users'
 import type { FunctionComponent } from 'react'
 
 import { Select } from '@chakra-ui/react'
-import { LayoutFlex, UIButton, UITypography } from '@gnowth/lib-react'
+import { LayoutFlex, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
 import { FilterModel } from '@gnowth/logic-users'
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 
 interface Value {
   page: number

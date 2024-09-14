@@ -6,7 +6,6 @@ import { QueryCache, QueryClient } from '@tanstack/react-query'
 import { createInstance } from 'i18next'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 import i18nBackend from 'i18next-http-backend'
-import { initReactI18next } from 'react-i18next'
 
 import { dependencies } from './dependencies'
 import { makeServer } from './services/make-server'
@@ -18,7 +17,6 @@ const setupI18n: AppSetup<ConfigurationI18n> = () => {
   i18n
     .use(i18nBackend) // load translation using http. docs: https://github.com/i18next/i18next-http-backend
     .use(i18nLanguageDetector) // detect user language. docs: https://github.com/i18next/i18next-browser-languageDetector
-    .use(initReactI18next)
     .init({
       debug: false,
       fallbackLng: 'en',

@@ -13,7 +13,7 @@ env:
 jobs:
   deploy_to_dev:
     container:
-      image: mcr.microsoft.com/playwright:v1.47.0-jammy
+      image: mcr.microsoft.com/playwright:v1.47.1-jammy
       options: --user 1001
     environment:
       name: dev
