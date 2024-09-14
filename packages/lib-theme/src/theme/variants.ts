@@ -76,7 +76,7 @@ export class VariantManager {
       R.concat(configs.variantComposition ?? []),
       R.map((prefix) => (prefix ? `${prefix}Variant` : 'variant')),
       R.map((prefix) => ({
-        theme: configs.theme,
+        ...configs,
         variant: configs[prefix as 'variant'],
         variantNamespace: configs[`${prefix}Namespace` as 'variantNamespace'],
         variants: configs[`${prefix}s` as 'variants'],
