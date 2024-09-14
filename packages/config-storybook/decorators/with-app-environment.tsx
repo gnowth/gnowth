@@ -8,6 +8,10 @@ export const withAppEnvironment = makeDecorator({
   parameterName: 'libReact',
   skipIfNoParametersOrOptions: true,
   wrapper(getStory, context, { parameters }) {
-    return <AppEnvironment theme={parameters.theme}>{getStory(context) as ReactNode}</AppEnvironment>
+    return (
+      <AppEnvironment i18n={parameters.i18n} theme={parameters.theme}>
+        {getStory(context) as ReactNode}
+      </AppEnvironment>
+    )
   },
 })

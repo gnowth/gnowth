@@ -1,7 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { LayoutSection, LayoutStack, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
-import { useTranslation } from 'react-i18next'
+import { LayoutSection, LayoutStack, UIBox, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
 
 import { dependencies } from '../dependencies'
 import { NavLink } from './nav-link'

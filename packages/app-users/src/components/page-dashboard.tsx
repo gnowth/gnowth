@@ -1,7 +1,6 @@
 import type { FunctionComponent } from 'react'
 
-import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
-import { useTranslation } from 'react-i18next'
+import { LayoutPage, LayoutSection, UITypography, useTranslation } from '@gnowth/lib-react'
 
 import { dependencies } from '../dependencies'
 

@@ -1,8 +1,8 @@
 import type { PlatformParameters } from '../core/platform'
 
 import { PlatformConstant } from '../core/platform.constants'
-import { EventObservable } from './events.observables'
 import { EventService } from './events.services'
+import { EventStream } from './events.streams'
 
 export class EventModule {
   static async construct(parameters: PlatformParameters): Promise<EventModule> {
@@ -10,8 +10,8 @@ export class EventModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         providers: {
-          [PlatformConstant.eventObservable]: EventObservable,
           [PlatformConstant.eventService]: EventService,
+          [PlatformConstant.eventStream]: EventStream,
         },
       },
     })

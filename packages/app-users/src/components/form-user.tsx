@@ -1,10 +1,16 @@
 import type { FunctionComponent } from 'react'
 
-import { DataConnect, DataSource, DataTrigger, LayoutSection, UISkeleton } from '@gnowth/lib-react'
+import {
+  DataConnect,
+  DataSource,
+  DataTrigger,
+  LayoutSection,
+  UISkeleton,
+  useTranslation,
+} from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'

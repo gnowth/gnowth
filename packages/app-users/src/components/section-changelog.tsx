@@ -2,8 +2,7 @@ import type { FunctionComponent } from 'react'
 
 // TODO: find a way to import md properly
 // import MdChangelog from '../../CHANGELOG.md'
-import { LayoutSection, UITypography } from '@gnowth/lib-react'
-import { useTranslation } from 'react-i18next'
+import { LayoutSection, UITypography, useTranslation } from '@gnowth/lib-react'
 
 import { dependencies } from '../dependencies'
 import { withAugmented } from './with-augmented'

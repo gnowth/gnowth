@@ -1,32 +1,10 @@
 import type { AppSetup } from '@gnowth/lib-application'
-import type { i18n } from 'i18next'
 
 import { appSetupCompose } from '@gnowth/lib-application'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
-import { createInstance } from 'i18next'
-import i18nLanguageDetector from 'i18next-browser-languagedetector'
-import i18nBackend from 'i18next-http-backend'
-import { initReactI18next } from 'react-i18next'
 
 import { dependencies } from './dependencies'
 import { makeServer } from './services/make-server'
-
-type ConfigurationI18n = { i18n: i18n }
-const setupI18n: AppSetup<ConfigurationI18n> = () => {
-  const i18n = createInstance()
-
-  i18n
-    .use(i18nBackend) // load translation using http. docs: https://github.com/i18next/i18next-http-backend
-    .use(i18nLanguageDetector) // detect user language. docs: https://github.com/i18next/i18next-browser-languageDetector
-    .use(initReactI18next)
-    .init({
-      debug: false,
-      fallbackLng: 'en',
-    }) // for all options docs: https://www.i18next.com/overview/configuration-options
-    .catch(dependencies.errorStream.pushErrorUnknown)
-
-  return { i18n }
-}
 
 type ConfigurationMockServer = { mockServer: ReturnType<typeof makeServer> }
 const setupMockServer: AppSetup<ConfigurationMockServer> = () => {
@@ -55,4 +33,4 @@ const setupReactQuery: AppSetup<ConfigurationReactQuery> = () => ({
   }),
 })
 
-export const setup = appSetupCompose(setupI18n, setupMockServer, setupReactQuery)
+export const setup = appSetupCompose(setupMockServer, setupReactQuery)

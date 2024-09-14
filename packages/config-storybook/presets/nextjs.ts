@@ -5,7 +5,6 @@ export const addons: StorybookConfig['addons'] = [
   '@storybook/addon-essentials',
   '@storybook/addon-interactions',
   '@storybook/addon-links',
-  'storybook-react-i18next',
 ]
 
 export const framework: StorybookConfig['framework'] = '@storybook/nextjs'

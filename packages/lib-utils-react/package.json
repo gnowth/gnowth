@@ -24,8 +24,11 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@gnowth/lib-platform": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "react": "18.3.1",
+    "react-use": "17.5.1",
+    "react-use-polyfill": "0.1.0",
     "rxjs": "7.8.1"
   },
   "devDependencies": {

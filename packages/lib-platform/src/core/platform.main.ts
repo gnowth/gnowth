@@ -26,6 +26,7 @@ type PlatformModuleDependencies = {
 }
 
 // TODO: @ErrorTrace({ context: 'Platform', source: 'lib-platform })
+// TODO: only mount required dependencies even if it is already loaded
 export class Platform {
   #clients: Map<string, Map<string, object>> = new Map()
   #components: Map<string, object> = new Map()
@@ -40,7 +41,7 @@ export class Platform {
 
   static async construct(parameters?: Parameters): Promise<Platform> {
     const constructors = this.constructorMerge({ modules }, parameters?.constructors)
-    const platform = new this(parameters)
+    const platform = new this({ ...parameters, constructors })
     await platform.moduleMount({ constructors, name: PlatformConstant.scriptModule, type: 'module' })
     await platform.moduleMountDependencies({ constructorsDefault: constructors })
     return platform
@@ -114,22 +115,23 @@ export class Platform {
   }
 
   #dependencyGetConstructor(definition: PlatformDefinition): PlatformConstructor | undefined {
+    const constructors = Platform.constructorMerge(this.#parameters.constructors, definition.constructors)
     if (definition.type === 'client') {
-      const clients = definition.constructors?.clients?.[definition.name] ?? {}
+      const clients = constructors.clients?.[definition.name] ?? {}
       return definition.variant ? clients[definition.name] : R.values(clients).at(0)
     }
     if (definition.type === 'component') {
       // TODO
-      return definition.constructors?.components?.[definition.name]
+      return constructors.components?.[definition.name]
     }
     if (definition.type === 'controller') {
-      return definition.constructors?.controllers?.[definition.name]
+      return constructors.controllers?.[definition.name]
     }
     if (definition.type === 'module') {
-      return definition.constructors?.modules?.[definition.name]
+      return constructors.modules?.[definition.name]
     }
     if (definition.type === 'provider') {
-      return definition.constructors?.providers?.[definition.name]
+      return constructors.providers?.[definition.name]
     }
   }
 
