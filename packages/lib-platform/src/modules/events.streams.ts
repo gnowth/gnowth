@@ -1,14 +1,9 @@
 import { Observable, Subject } from 'rxjs'
 
-import type { Platform } from '../core/platform'
-import type { EventModule } from './events.modules'
+import type { PlatformParameters } from '../core/platform'
 import type { PlatformEvent } from './events.types'
 
-type Parameters = {
-  module: EventModule
-  platform: Platform
-}
-export class EventObservable {
+export class EventStream {
   eventIn: Subject<PlatformEvent>
   eventOut: Observable<PlatformEvent>
 
@@ -18,7 +13,7 @@ export class EventObservable {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: Parameters): Promise<EventObservable> {
+  static async construct(parameters: PlatformParameters): Promise<EventStream> {
     return new this()
   }
 

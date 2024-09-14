@@ -21,10 +21,10 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
+    "@gnowth/lib-platform": "0.0.0",
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",
-    "i18next": "23.15.1",
     "react-error-boundary": "4.0.13",
     "react-i18next": "15.0.1",
     "react-router-dom": "6.26.2",

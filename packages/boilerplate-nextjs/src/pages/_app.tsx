@@ -55,7 +55,7 @@ const App: FunctionComponent<Props> = (props) => {
   return (
     <RecoilRoot>
       <QueryClientProvider client={configurations.queryClient}>
-        <AppEnvironment i18n={configurations.i18n} theme={theme}>
+        <AppEnvironment theme={theme}>
           <ChakraProvider>
             <Head>
               <AppHead />

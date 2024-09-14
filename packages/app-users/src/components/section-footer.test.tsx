@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
 
-import { SectionFooter } from '../components/section-footer'
 import { testMakeRenderComponent } from '../modules/tests'
+import { SectionFooter } from './section-footer'
 
 describe('section-footer', () => {
   const renderComponent = testMakeRenderComponent({ Component: SectionFooter })
@@ -9,6 +9,6 @@ describe('section-footer', () => {
   it('renders properly', async () => {
     await renderComponent()
     const copyright = screen.getByText('Copyright © 2022 Gnowth')
-    expect(copyright).toBeInTheDocument()
+    expect(copyright).toBeVisible()
   })
 })

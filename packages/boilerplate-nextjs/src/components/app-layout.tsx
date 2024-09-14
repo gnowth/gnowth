@@ -21,7 +21,7 @@ export const AppLayout: FunctionComponent<Props> = (props) => {
       <body>
         <RecoilRoot>
           <QueryClientProvider client={configurations.queryClient}>
-            <AppEnvironment i18n={configurations.i18n} theme={theme}>
+            <AppEnvironment theme={theme}>
               <ChakraProvider>
                 <SystemNotifications />
 

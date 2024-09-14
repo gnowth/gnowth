@@ -1,30 +1,31 @@
-import type { EventObservable } from './events.observables'
+import type { PlatformParameters } from '../core/platform'
+import type { EventStream } from './events.streams'
 import type { PlatformEvent } from './events.types'
 
-import { PlatformConstant, type PlatformParameters } from '../core/platform'
+import { PlatformConstant } from '../core/platform'
 
-type Parameters = { eventObservable: EventObservable } & PlatformParameters
+type Parameters = { eventStream: EventStream } & PlatformParameters
 export class EventService {
-  #eventObservable: EventObservable
+  #eventStream: EventStream
 
   constructor(parameters: Parameters) {
-    this.#eventObservable = parameters.eventObservable
+    this.#eventStream = parameters.eventStream
   }
 
   static async construct(parameters: PlatformParameters): Promise<EventService> {
-    const eventObservable = await parameters.platform.providerGet<EventObservable>({
-      name: PlatformConstant.eventObservable,
+    const eventStream = await parameters.platform.providerGet<EventStream>({
+      name: PlatformConstant.eventStream,
       type: 'provider',
     })
-    return new this({ ...parameters, eventObservable: eventObservable })
+    return new this({ ...parameters, eventStream })
   }
 
   dispatch(event: PlatformEvent): void {
-    this.#eventObservable.next(event)
+    this.#eventStream.next(event)
   }
 
   subscribe(callback: (event: PlatformEvent) => void): () => void {
-    const subscription = this.#eventObservable.eventOut.subscribe(callback)
+    const subscription = this.#eventStream.eventOut.subscribe(callback)
     return () => subscription.unsubscribe()
   }
 }

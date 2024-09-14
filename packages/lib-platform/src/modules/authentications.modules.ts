@@ -3,8 +3,8 @@ import type { PlatformParameters } from '../core/platform'
 import { PlatformConstant } from '../core/platform.constants'
 import { AuthenticationClient } from './authentications.clients'
 import { AuthenticationController } from './authentications.controllers'
-import { AuthenticationObservable } from './authentications.observables'
 import { AuthenticationService } from './authentications.services'
+import { AuthenticationStream } from './authentications.streams'
 
 export class AuthenticationModule {
   static async construct(parameters: PlatformParameters): Promise<AuthenticationModule> {
@@ -18,8 +18,8 @@ export class AuthenticationModule {
         },
         controllers: { [PlatformConstant.authenticationController]: AuthenticationController },
         providers: {
-          [PlatformConstant.authenticationObservable]: AuthenticationObservable,
           [PlatformConstant.authenticationService]: AuthenticationService,
+          [PlatformConstant.authenticationStream]: AuthenticationStream,
         },
       },
     })
