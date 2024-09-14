@@ -9,7 +9,6 @@ import {
   systemBox,
   systemCompose,
   systemSpace,
-  themeMakeDefinitions,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
@@ -28,13 +27,13 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   layoutVariant?: string
   slot?: string
   variant?: PropsLayoutSection | string
+  variantComposition?: string[]
   variantNamespace?: string
   variants?: ThemeVariants<PropsLayoutSection>
 }
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutSection })
-const definitions = themeMakeDefinitions(['', 'box'])
 const variants: ThemeVariants<PropsLayoutSection> = {
   container: (props) => ({
     layout: 'stack',
@@ -71,6 +70,7 @@ const propsDefault: Partial<PropsLayoutSection> = {
   paddingLeft: 'md',
   paddingRight: 'md',
   paddingTop: 'sm',
+  variantComposition: ['box'],
   variantNamespace: 'layoutSection',
   variants,
 }
@@ -81,7 +81,7 @@ export const LayoutSection: FunctionComponent<PropsLayoutSection> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault, ['layoutProps'])
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
   return (

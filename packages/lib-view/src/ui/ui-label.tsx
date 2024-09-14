@@ -9,7 +9,6 @@ import {
   systemCompose,
   systemSpace,
   systemTypography,
-  themeMakeDefinitions,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import * as R from 'remeda'
@@ -21,15 +20,16 @@ export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReado
   typographyVariant?: string
   typographyVariantNamespace?: string
   variant?: PropsUILabel | string
+  variantComposition?: string[]
   variantNamespace?: string
 }
 
 const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
 const makeStyles = themeMakeStyles({ uiLabel })
-const definitions = themeMakeDefinitions(['', 'typography'])
 const propsDefault: Partial<PropsUILabel> = {
   typographyVariant: 'label',
   typographyVariantNamespace: 'uiTypography',
+  variantComposition: ['typography'],
 }
 
 export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
@@ -37,7 +37,7 @@ export const UILabel: FunctionComponent<PropsUILabel> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
   return (
