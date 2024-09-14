@@ -25,8 +25,8 @@
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",
     "react-error-boundary": "4.0.13",
-    "react-router-dom": "6.26.1",
-    "remeda": "2.12.0"
+    "react-router-dom": "6.26.2",
+    "remeda": "2.12.1"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
