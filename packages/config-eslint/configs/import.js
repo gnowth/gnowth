@@ -14,4 +14,5 @@ module.exports = {
       },
     },
   ],
+  rules: { 'import/namespace': ['error', { allowComputed: true }] },
 }
