@@ -357,10 +357,14 @@ describe('Theme - variable', () => {
 describe('Theme - variant', () => {
   const variantObject1 = { value: 'val1' }
   const variantObject2 = { value: 'val2' }
+  const variantObject3 = { value: 'val1', value1: 'val3' }
   const variant1: FunctionComponent = jest.fn().mockReturnValue(variantObject1)
   const variant2: FunctionComponent = jest.fn().mockReturnValue(variantObject2)
+  const variant3: FunctionComponent = jest.fn().mockReturnValue(variantObject3)
   const parameters = { variantsNamespaced: { namespace1: { name1: variant1 }, type: { name2: variant2 } } }
   const parameters2 = { variantsNamespaced: { namespace1: { name2: variant2 }, type: { name1: variant1 } } }
+  const parameters3 = { variantsNamespaced: { namespace1: { name2: variant2 }, type: { name1: variant3 } } }
+  const parameters4 = { variantsNamespaced: { type: { name1: { testProps: variantObject3 } } } }
 
   it('returns a named variant from a namespace', () => {
     expect.assertions(1)
@@ -416,6 +420,28 @@ describe('Theme - variant', () => {
     const props = { variant: 'name1', variantNamespace: ['dontexist', 'namespace1'] }
     const variant = theme.getPropsVariant(props)
     expect(variant).toEqual({ ...props, ...variantObject1 })
+  })
+
+  it('returns a named variant with composition', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters3)
+    const props = {
+      boxVariant: 'name1',
+      boxVariantNamespace: 'type',
+      variant: 'name2',
+      variantComposition: ['box'],
+      variantNamespace: 'namespace1',
+    }
+    const variant = theme.getPropsVariant(props)
+    expect(variant).toEqual({ ...props, ...variantObject3, ...variantObject2 })
+  })
+
+  it('returns a named variant with nested props', () => {
+    expect.assertions(1)
+    const theme = new Theme(parameters4)
+    const props = { testProps: variantObject2, variant: 'name1', variantNamespace: 'type' }
+    const variant = theme.getPropsVariant(props)
+    expect(variant).toEqual({ ...props, testProps: { ...variantObject3, ...variantObject2 } })
   })
 
   it('merges variant configs', () => {

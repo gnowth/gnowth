@@ -11,7 +11,6 @@ import {
   systemLayout,
   systemSpace,
   systemTypography,
-  themeMakeDefinitions,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { createElement } from 'react'
@@ -42,6 +41,7 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
   typographyVariant?: string
   typographyVariantNamespace?: string
   variant?: PropsInputText | string
+  variantComposition?: string[]
   variantNamespace?: string
   variants?: ThemeVariants<PropsInputText>
 }
@@ -54,7 +54,6 @@ const inputText = systemCompose(
   systemTypography(),
 )
 const makeStyles = themeMakeStyles({ inputText })
-const definitions = themeMakeDefinitions(['', 'box', 'typography'])
 const variants: ThemeVariants<PropsInputText> = {
   text: {
     height: 'md',
@@ -71,6 +70,7 @@ const propsDefault: Partial<PropsInputText> = {
   typographyVariant: 'input',
   typographyVariantNamespace: 'uiTypography',
   variant: 'text',
+  variantComposition: ['box', 'typography'],
   variantNamespace: 'inputText',
   variants,
 }
@@ -81,7 +81,7 @@ export const InputText: FunctionComponent<PropsInputText> = (props) => {
 
   if (props.hidden) return null
 
-  const propsVariant = theme.getPropsVariantByDefinitions(definitions, props, propsDefault)
+  const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
   return createElement((propsVariant.as ?? 'input') as 'input', {

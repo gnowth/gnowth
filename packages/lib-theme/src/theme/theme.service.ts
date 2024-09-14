@@ -2,6 +2,7 @@ import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import type { ComponentType } from 'react'
 
 import { objectDefaults } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import type { TokenBreakpoint } from '../tokens/tokens'
 import type { ConfigsComponent } from './components'
@@ -15,7 +16,6 @@ import { ComponentManager } from './components'
 import { MediaManager } from './media'
 import { PaletteManager } from './palettes'
 import { ScaleManager } from './scales'
-import { objectDefaultsDeepByKeys } from './theme.utils'
 import { VariableManager } from './variables'
 import { VariantManager } from './variants'
 
@@ -34,7 +34,7 @@ type Configs = {
 
 export class Theme {
   #componentManager: ComponentManager
-  #configs?: Configs
+  #configs: Configs
   #mediaManager: MediaManager
   #paletteManager: PaletteManager
   #scaleManager: ScaleManager
@@ -43,7 +43,7 @@ export class Theme {
   global?: string
 
   constructor(configs?: Configs) {
-    this.#configs = configs
+    this.#configs = configs ?? {}
     this.#componentManager = new ComponentManager(configs)
     this.#mediaManager = new MediaManager(configs)
     this.#paletteManager = new PaletteManager(configs)
@@ -51,6 +51,21 @@ export class Theme {
     this.#variableManager = new VariableManager(configs)
     this.#variantManager = new VariantManager(configs)
     this.global = configs?.global
+  }
+
+  static variantMerge<TProps extends object>(items: Partial<TProps>[]): TProps {
+    return R.mapValues(objectDefaults({} as TProps, ...items), (value, key) =>
+      typeof key === 'string' && key.endsWith('Props')
+        ? objectDefaults(
+            {},
+            ...(R.pipe(
+              items,
+              R.map(R.prop(key as unknown as keyof TProps)),
+              R.filter(R.isObjectType),
+            ) as object[]),
+          )
+        : value,
+    ) as TProps
   }
 
   #configsMerge(...configs: Configs[]): Configs {
@@ -65,8 +80,7 @@ export class Theme {
   }
 
   extends(configs: Configs): Theme {
-    const configsToMerge = this.#configs ? [this.#configs, configs] : [configs]
-    return new Theme(this.#configsMerge(...configsToMerge))
+    return new Theme(this.#configsMerge(this.#configs, configs))
   }
 
   getComponent<Props extends ObjectLiteral>(
@@ -87,26 +101,10 @@ export class Theme {
     props: WithThemeVariant<Props>,
     propsDefault?: Partial<WithThemeVariant<Props>>,
   ): WithThemeVariant<Props> {
-    const propsWithDefault = objectDefaults(props, propsDefault)
-    const variant = this.#variantManager.get({ theme: this, ...propsWithDefault })
-
-    return objectDefaults(props, variant, propsDefault)
-  }
-
-  // TODO: check if the right approach
-  getPropsVariantByDefinitions<Props extends ObjectLiteral>(
-    definitions: (props: Props) => WithThemeVariant<Props>[],
-    props: WithThemeVariant<Props>,
-    propsDefault?: Partial<WithThemeVariant<Props>>,
-    mergeKeys: Array<keyof Props> = [],
-  ): WithThemeVariant<Props> {
-    const propsWithDefault = objectDefaults(props, propsDefault)
-    const variants = definitions(propsWithDefault).map((definition) => {
-      const configs = objectDefaults(definition, propsWithDefault)
-      return this.#variantManager.get({ theme: this, ...configs }) ?? undefined
-    })
-
-    return objectDefaultsDeepByKeys(mergeKeys, props, ...variants, propsDefault)
+    const merge = props.variantMerge ?? propsDefault?.variantMerge ?? Theme.variantMerge
+    const propsWithDefault = merge([props, propsDefault ?? {}])
+    const variants = this.#variantManager.getVariants({ theme: this, ...propsWithDefault })
+    return merge([props, ...variants, propsDefault ?? {}])
   }
 
   getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {
