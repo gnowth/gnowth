@@ -9,7 +9,7 @@ type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial
 type ObjectMapValues = <Value, Item extends ObjectLiteral>(
   item: Item,
   predicate: (value: Item[keyof Item], key: keyof Item, item: Item) => Value,
-) => { [key in keyof Item]: Value }
+) => { [_Key in keyof Item]: Value }
 
 type ObjectToEntries = <Item extends ObjectLiteral>(item: Item) => UtilEntriesFromObject<Item>[]
 
@@ -27,7 +27,7 @@ export const objectMapValues: ObjectMapValues = (item, predicate) =>
   objectToEntries(item).reduce(
     (output, [key, value]) => ({ ...output, [key]: predicate(value, key, item) }),
     {},
-  ) as { [key in keyof typeof item]: ReturnType<typeof predicate> }
+  ) as { [_Key in keyof typeof item]: ReturnType<typeof predicate> }
 
 export const objectDefaults: ObjectDefaults = (...items) =>
   Object.assign(

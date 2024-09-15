@@ -11,8 +11,7 @@ type ScriptParameters = {
 }
 
 export class ScriptService {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: PlatformParameters): Promise<ScriptService> {
+  static async construct(_parameters: PlatformParameters): Promise<ScriptService> {
     return new this()
   }
 

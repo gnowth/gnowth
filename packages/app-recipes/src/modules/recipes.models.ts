@@ -19,7 +19,7 @@ enum Permissions {
 }
 
 type Perms = {
-  [key in Permissions]?: () => boolean
+  [_Key in Permissions]?: () => boolean
 }
 
 export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Configs> {

@@ -21,7 +21,6 @@ export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
     return serializer.toValueArray(response)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   meta<Meta extends ObjectLiteral>(_configs?: QueryConfigs<Meta>): Promise<Meta> {
     return Promise.resolve({} as unknown as Meta)
   }

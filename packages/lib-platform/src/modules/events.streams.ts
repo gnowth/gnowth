@@ -12,8 +12,7 @@ export class EventStream {
     this.eventOut = this.eventIn
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: PlatformParameters): Promise<EventStream> {
+  static async construct(_parameters: PlatformParameters): Promise<EventStream> {
     return new this()
   }
 

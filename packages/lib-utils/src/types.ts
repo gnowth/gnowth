@@ -16,4 +16,4 @@ export type UtilRequired<Item extends ObjectLiteral, Key = void> = Key extends v
     : never
 
 export type UtilNamespaced<Value = unknown, Key extends ObjectKey = string> = Record<Key, Value | undefined>
-export type UMappedType<TType, ToTType> = { [Key in keyof TType]: ToTType }
+export type UMappedType<TType, ToTType> = { [_Key in keyof TType]: ToTType }
