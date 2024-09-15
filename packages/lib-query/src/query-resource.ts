@@ -53,7 +53,6 @@ export class QueryResource<Value = unknown> {
 
   readResponse(): Response<Value> {
     if (this.isPending || !this.response) {
-      // eslint-disable-next-line @typescript-eslint/no-throw-literal
       throw this.promise
     }
 
