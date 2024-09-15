@@ -1,7 +1,7 @@
 import type { FunctionComponent } from 'react'
 
 import { DataConnect, DataSource, DataTrigger, LayoutSection, useTranslation } from '@gnowth/lib-react'
-import { useMemo } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
@@ -12,8 +12,7 @@ import { withAugmented } from './with-augmented'
 const FormUserFilterComponent: FunctionComponent = () => {
   const { t } = useTranslation(dependencies.appModel.namespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const initialFilters = useMemo(() => filters, [])
+  const [initialFilters] = useState(filters)
 
   return (
     <LayoutSection variant="container">

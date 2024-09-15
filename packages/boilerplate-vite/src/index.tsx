@@ -1,48 +1,12 @@
-import { ApplicationAuth } from '@gnowth/app-auth'
-import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
-import { AppApplicationLazy, AppEnvironment, AppRedirect, TokenErrorType } from '@gnowth/lib-react'
-import { lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { TokenApplication } from './app-model-environment'
-import { settings } from './settings'
-import { setup } from './setup'
-import { theme } from './theme'
-import { ViewFrameDefault } from './views/view-frame-default'
-import { ViewFrameTasks } from './views/view-frame-tasks'
-
-// TODO: add recipe application
-// const ApplicationRecipes = lazy(() =>
-//   import('@gnowth/app-recipes').then((module) => ({ default: module.ApplicationRecipes })),
-// )
-const ApplicationTasks = lazy(() =>
-  import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),
-)
+import { App } from './components/app'
+import { settings } from './modules/settings'
+import { setup } from './modules/setup'
 
 const configurations = setup(settings)
 
-// Note should theme include layouts or should it be separate
-// Datasource if offline mode, these can be added to appEnvironment
-// mocking flag can be added here as well or per data source or should it be a separate server could still use process.ENV
-// Note: because of the limitation of how react router work, path need to be added explicitly for Switch to work. Solution could probably be available in react-router v6
-// TODO: handle page redirect and auth
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-createRoot(document.getElementById('main')!).render(
-  <AppEnvironment
-    boundaries={{
-      [TokenErrorType.api401]: PageNotAuthorised,
-      [TokenErrorType.api403]: PageNotPermitted,
-      [TokenErrorType.api404]: PageNotFound,
-    }}
-    environment={configurations.appModelEnvironment}
-    frame="default"
-    frames={{ default: ViewFrameDefault, tasks: ViewFrameTasks }}
-    theme={theme}
-  >
-    <ApplicationAuth application={TokenApplication.auth} />
-    <ApplicationPages application={TokenApplication.pages} />
-    {/* <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} /> */}
-    <AppApplicationLazy application={TokenApplication.tasks} component={ApplicationTasks} />
-    <AppRedirect application={TokenApplication.pages} exact from="/" />
-  </AppEnvironment>,
-)
+const element = document.getElementById('main')
+if (element) {
+  createRoot(element).render(<App environment={configurations.appModelEnvironment} />)
+}
