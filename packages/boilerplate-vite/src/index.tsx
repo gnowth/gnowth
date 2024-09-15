@@ -28,23 +28,21 @@ const configurations = setup(settings)
 // TODO: handle page redirect and auth
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById('main')!).render(
-  <>
-    <AppEnvironment
-      boundaries={{
-        [TokenErrorType.api401]: PageNotAuthorised,
-        [TokenErrorType.api403]: PageNotPermitted,
-        [TokenErrorType.api404]: PageNotFound,
-      }}
-      environment={configurations.appModelEnvironment}
-      frame="default"
-      frames={{ default: ViewFrameDefault, tasks: ViewFrameTasks }}
-      theme={theme}
-    >
-      <ApplicationAuth application={TokenApplication.auth} />
-      <ApplicationPages application={TokenApplication.pages} />
-      {/* <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} /> */}
-      <AppApplicationLazy application={TokenApplication.tasks} component={ApplicationTasks} />
-      <AppRedirect application={TokenApplication.pages} exact from="/" />
-    </AppEnvironment>
-  </>,
+  <AppEnvironment
+    boundaries={{
+      [TokenErrorType.api401]: PageNotAuthorised,
+      [TokenErrorType.api403]: PageNotPermitted,
+      [TokenErrorType.api404]: PageNotFound,
+    }}
+    environment={configurations.appModelEnvironment}
+    frame="default"
+    frames={{ default: ViewFrameDefault, tasks: ViewFrameTasks }}
+    theme={theme}
+  >
+    <ApplicationAuth application={TokenApplication.auth} />
+    <ApplicationPages application={TokenApplication.pages} />
+    {/* <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} /> */}
+    <AppApplicationLazy application={TokenApplication.tasks} component={ApplicationTasks} />
+    <AppRedirect application={TokenApplication.pages} exact from="/" />
+  </AppEnvironment>,
 )

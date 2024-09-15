@@ -7,9 +7,7 @@ interface Configs {
   trackingSkip?: boolean
 }
 
-interface Predicate<Value> {
-  (): Promise<Value>
-}
+type Predicate<Value> = () => Promise<Value>
 
 interface Query<Value> {
   promise: Promise<Value>

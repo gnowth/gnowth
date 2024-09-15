@@ -31,6 +31,6 @@ export function makeConfigs<Configs extends object>(
       ? configurationEnvironment(environment)
       : configurationEnvironment
 
-    return Object.assign({}, configsDefault, configsEnvironment)
+    return { ...configsDefault, ...configsEnvironment }
   }
 }

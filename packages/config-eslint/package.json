@@ -36,7 +36,7 @@
     "eslint-plugin-perfectionist": "2.11.0",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-promise": "7.1.0",
-    "eslint-plugin-sonarjs": "1.0.4",
+    "eslint-plugin-sonarjs": "2.0.2",
     "eslint-plugin-react": "7.36.1",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-testing-library": "6.3.0"
