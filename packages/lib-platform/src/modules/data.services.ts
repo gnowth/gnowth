@@ -23,7 +23,7 @@ class EventEmitterService {
     const listener = (event: TEvent) => {
       try {
         callback(event)
-      } catch (error) {}
+      } catch (_error) {}
     }
     this.#eventEmitter.on(name, listener)
     return () => this.#eventEmitter.off(name, listener)
@@ -37,8 +37,7 @@ export class DataService {
   #setters: Map<string, DataSetter> = new Map()
   #subscribers: Map<string, DataSubscriber> = new Map()
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: PlatformParameters): Promise<DataService> {
+  static async construct(_parameters: PlatformParameters): Promise<DataService> {
     return new this()
   }
 

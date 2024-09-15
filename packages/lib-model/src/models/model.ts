@@ -73,12 +73,10 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   }
 
   // TODO
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   valueToRoute(_value?: Value | null): string {
     return ''
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   valueToString(_value: Value | null): string {
     return ''
   }

@@ -25,6 +25,7 @@ module.exports = {
     'sonarjs/no-unstable-nested-components': 'off',
     'sonarjs/no-unused-expressions': 'off',
     'sonarjs/no-unused-private-class-members': 'off',
+    'sonarjs/prefer-enum-initializers': 'off',
     'sonarjs/prefer-nullish-coalescing': 'off',
     'sonarjs/public-static-readonly': 'off',
     'sonarjs/redundant-type-aliases': 'off',

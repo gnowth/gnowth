@@ -101,8 +101,8 @@ export class UserModel extends Model<User> {
     return `${user.nameLast}, ${user.nameFirst}`
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  validate(user: User): ErrorData[] {
+  // TODO:
+  validate(_user: User): ErrorData[] {
     return []
   }
 }

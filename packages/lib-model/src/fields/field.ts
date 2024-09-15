@@ -25,7 +25,6 @@ export class Field<Value = unknown> {
   }
 
   // TODO: what to return as default if many is on. need proper documentation as there is potential misunderstanding
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getDefault(_partial?: Partial<Value>): Value | Value[] | null {
     if (this.many) return []
 

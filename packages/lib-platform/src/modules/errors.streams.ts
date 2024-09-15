@@ -36,8 +36,7 @@ export class ErrorStream1 {
     this.errorOut = this.errorIn
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static async construct(parameters: PlatformParameters): Promise<ErrorStream1> {
+  static async construct(_parameters: PlatformParameters): Promise<ErrorStream1> {
     return new this()
   }
 
