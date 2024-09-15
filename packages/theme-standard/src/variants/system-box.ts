@@ -4,6 +4,8 @@ type SystemBox = SystemType<ReturnType<typeof systemBox>>
 
 export const button: VariantType<SystemBox> = {}
 
+export const circular: VariantType<SystemBox> = { borderRadius: '50%' }
+
 export const float: VariantType<SystemBox> = {
   boxShadow: '0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)',
 }
