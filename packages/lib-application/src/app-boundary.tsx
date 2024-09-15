@@ -1,10 +1,8 @@
-import type { ComponentType, ErrorInfo, FunctionComponent, ReactNode } from 'react'
-
 import { ErrorCustom } from '@gnowth/lib-utils'
+import { ComponentType, ErrorInfo, FunctionComponent, ReactNode } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
-import type { PropsBoundary } from './types'
-
+import { PropsBoundary } from './types'
 import { useAppBoundary } from './use-app-boundary'
 
 interface Props {

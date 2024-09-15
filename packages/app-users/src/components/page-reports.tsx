@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage, LayoutSection, UITypography, useTranslation } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { dependencies } from '../dependencies'
 

@@ -1,10 +1,15 @@
-import type { PropsLayout } from '@gnowth/lib-application'
-import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-
-import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemCompose, systemGrid, systemLayout, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
-import { createElement } from 'react'
+import { PropsLayout, useAppTheme } from '@gnowth/lib-application'
+import {
+  SystemType,
+  ThemeVariants,
+  cx,
+  systemCompose,
+  systemGrid,
+  systemLayout,
+  systemSpace,
+  themeMakeStyles,
+} from '@gnowth/lib-theme'
+import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
 import * as R from 'remeda'
 
 interface ComponentProps {

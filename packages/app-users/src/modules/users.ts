@@ -1,8 +1,14 @@
-import type { MockConfigs, MockResponseAny, MockServer } from '@gnowth/lib-react'
-import type { UserData } from '@gnowth/logic-users'
-
 import { faker } from '@faker-js/faker/locale/en'
-import { MockFactory, MockModel, RestMockSerializer, mockServer } from '@gnowth/lib-react'
+import {
+  MockConfigs,
+  MockFactory,
+  MockModel,
+  MockResponseAny,
+  MockServer,
+  RestMockSerializer,
+  mockServer,
+} from '@gnowth/lib-react'
+import { UserData } from '@gnowth/logic-users'
 
 import { configs } from '../configs'
 import { dependencies } from '../dependencies'

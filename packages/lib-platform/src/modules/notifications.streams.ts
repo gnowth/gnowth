@@ -1,10 +1,7 @@
 import { Subject } from 'rxjs'
 
-import type { ErrorData } from './errors'
-import type { Notification } from './notifications.models'
-
-import { ErrorModel } from './errors'
-import { NotificationModel } from './notifications.models'
+import { ErrorData, ErrorModel } from './errors'
+import { Notification, NotificationModel } from './notifications.models'
 
 interface Toast {
   description?: string

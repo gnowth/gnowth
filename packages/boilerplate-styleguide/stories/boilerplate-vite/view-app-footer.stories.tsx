@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-
 import { ViewAppFooter } from '@gnowth/vite-boilerplate'
+import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
 const meta: Meta<typeof ViewAppFooter> = {

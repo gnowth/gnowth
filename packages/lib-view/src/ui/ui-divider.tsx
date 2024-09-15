@@ -1,8 +1,7 @@
-import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
+  ThemeVariants,
   cx,
   systemCompose,
   systemImage,
@@ -10,6 +9,7 @@ import {
   systemTextAlign,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 export interface PropsUIDivider extends SystemType<typeof uiDivider> {

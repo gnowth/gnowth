@@ -1,6 +1,5 @@
-import type { FunctionComponent, PropsWithChildren } from 'react'
-
 import { AppLayout } from '@gnowth/lib-react'
+import { FunctionComponent, PropsWithChildren } from 'react'
 
 import { SectionFooter } from './section-footer'
 import { SectionHeader } from './section-header'

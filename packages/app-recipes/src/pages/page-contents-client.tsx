@@ -1,7 +1,5 @@
-import type { PageClientComponent } from '@gnowth/lib-react'
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
-
-import { MDXRemote } from 'next-mdx-remote'
+import { PageClientComponent } from '@gnowth/lib-react'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 import { RecipeService } from '../modules/recipes.services'
 

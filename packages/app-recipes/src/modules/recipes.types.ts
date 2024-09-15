@@ -1,6 +1,6 @@
-import type { Media } from '@gnowth/lib-react'
+import { Media } from '@gnowth/lib-react'
 
-import type { Ingredient } from './ingredients'
+import { Ingredient } from './ingredients'
 
 interface Step {
   name: string

@@ -1,4 +1,4 @@
-import type { AppSetup } from '@gnowth/lib-react'
+import { AppSetup } from '@gnowth/lib-react'
 import { appSetupCompose, ErrorModel, ErrorStream } from '@gnowth/lib-react'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
 

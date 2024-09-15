@@ -1,20 +1,24 @@
-import type { PredicateArrayFilter, PredicateIdentity, PredicateSort } from '@gnowth/lib-utils'
-
 import { Model } from '@gnowth/lib-model'
-import { operatorArrayFilterAnd, operatorSortMultiple, predicateSortFn } from '@gnowth/lib-utils'
+import {
+  PredicateArrayFilter,
+  PredicateIdentity,
+  PredicateSort,
+  operatorArrayFilterAnd,
+  operatorSortMultiple,
+  predicateSortFn,
+} from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { SortDirection, SortKeyType } from './filters'
-import type {
+import { SortDirection, SortKeyType } from './filters'
+import { TokenQueryPageSize } from './queries'
+import {
   UserFilter,
   UserFilterData,
   UserFilterKey,
   UserFilterParams,
   UserSortKey,
 } from './user-filters.types'
-import type { User, UserStatus } from './users'
-
-import { TokenQueryPageSize } from './queries'
+import { User, UserStatus } from './users'
 
 export class UserFilterModel extends Model<UserFilter> {
   #userStatuses: UserStatus[] = ['active', 'deactivated']

@@ -1,6 +1,6 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { Event } from './events.types'
+import { Event } from './events.types'
 
 // TODO: Get type from error module
 type ErrorData = {
@@ -36,7 +36,7 @@ export class EventService {
   }
 }
 
-// import type { APIEvent, Event } from './events.types'
+// import { APIEvent, Event } from './events.types'
 
 // interface OptionsEvent {
 //   namespace: string

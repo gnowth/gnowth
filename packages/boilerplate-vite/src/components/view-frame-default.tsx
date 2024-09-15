@@ -1,6 +1,5 @@
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { AppLayout } from '@gnowth/lib-react'
+import { FunctionComponent, ReactNode } from 'react'
 
 import { ViewAppFooter } from './view-app-footer'
 import { ViewAppHeader } from './view-app-header'

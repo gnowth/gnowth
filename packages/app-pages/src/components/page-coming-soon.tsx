@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 export const PageComingSoon: FunctionComponent = () => {
   return (

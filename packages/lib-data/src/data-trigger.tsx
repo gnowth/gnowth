@@ -1,14 +1,11 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, ReactElement } from 'react'
-
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
+import { Theme } from '@gnowth/lib-theme'
 import { ErrorCustom, UtilRequired, objectDefaults } from '@gnowth/lib-utils'
 import { useRefValue } from '@gnowth/lib-utils-react'
-import { createElement, useCallback, useContext, useState } from 'react'
-
-import type { DataName } from './types'
+import { ComponentType, ReactElement, createElement, useCallback, useContext, useState } from 'react'
 
 import { DataContext } from './data-context'
+import { DataName } from './types'
 
 interface PropsComponent {
   disabled?: boolean

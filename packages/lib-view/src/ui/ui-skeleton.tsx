@@ -1,8 +1,7 @@
-import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
-import type { FunctionComponent } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
+  ThemeVariants,
   cx,
   keyframes,
   systemBox,
@@ -11,6 +10,7 @@ import {
   systemSpace,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { FunctionComponent } from 'react'
 import * as R from 'remeda'
 
 const pulse = keyframes`

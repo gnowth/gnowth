@@ -1,4 +1,4 @@
-import type { ScaleType, TokenBreakpoint } from '@gnowth/lib-theme'
+import { ScaleType, TokenBreakpoint } from '@gnowth/lib-theme'
 
 // TODO: check if em or rem is best for breakpoint
 export const breakpoint = {

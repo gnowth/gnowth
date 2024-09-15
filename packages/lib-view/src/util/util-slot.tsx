@@ -1,6 +1,12 @@
-import type { FunctionComponent, ReactElement, ReactNode } from 'react'
-
-import { Children, createContext, isValidElement, useContext } from 'react'
+import {
+  Children,
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  createContext,
+  isValidElement,
+  useContext,
+} from 'react'
 import * as R from 'remeda'
 
 interface PropsContent {

@@ -1,8 +1,7 @@
-import type { Model } from '@gnowth/lib-model'
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { Model } from '@gnowth/lib-model'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { AppModelApplication } from './app-model-application'
-
+import { AppModelApplication } from './app-model-application'
 import { useAppApplication } from './use-app-application'
 
 interface Props<Value extends ObjectLiteral> {

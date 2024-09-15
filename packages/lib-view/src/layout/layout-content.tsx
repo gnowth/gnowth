@@ -1,8 +1,6 @@
-import type { SystemType } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemCompose,
@@ -11,7 +9,7 @@ import {
   systemSpace,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
-import { createElement } from 'react'
+import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
 import * as R from 'remeda'
 
 interface ComponentProps {

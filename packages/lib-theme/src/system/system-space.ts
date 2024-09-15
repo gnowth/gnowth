@@ -1,6 +1,5 @@
-import type { CSSSpace } from './system.types'
-
 import { systemCompose, systemMake } from './system'
+import { CSSSpace } from './system.types'
 
 const systemMargin = systemMake<{ margin: CSSSpace }>({ key: 'margin', scale: 'space' })
 const systemMarginBottom = systemMake<{ marginBottom: CSSSpace }>({ key: 'marginBottom', scale: 'space' })

@@ -1,4 +1,4 @@
-import type { PatternRecord } from '../types'
+import { PatternRecord } from '../types'
 
 export const patternStrings: PatternRecord = {
   include: {

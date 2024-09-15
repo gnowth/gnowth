@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react'
-
 import { SectionHeader } from '@gnowth/app-users'
+import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
 type Story = StoryObj<typeof SectionHeader>

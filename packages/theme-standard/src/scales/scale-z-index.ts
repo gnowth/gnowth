@@ -1,4 +1,4 @@
-import type { ScaleType, TokenZIndex } from '@gnowth/lib-theme'
+import { ScaleType, TokenZIndex } from '@gnowth/lib-theme'
 
 export const zIndex = {
   deepdive: '-99999',

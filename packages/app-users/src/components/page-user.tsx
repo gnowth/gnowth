@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { FormUser } from './form-user'
 

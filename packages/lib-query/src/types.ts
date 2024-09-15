@@ -1,6 +1,6 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { QuerySerializer } from './query-serializer'
+import { QuerySerializer } from './query-serializer'
 
 export type QueryParams = Record<string, string>
 

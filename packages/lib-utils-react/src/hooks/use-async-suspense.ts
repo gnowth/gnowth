@@ -1,6 +1,4 @@
-import type { DependencyList } from 'react'
-
-import { useMemo } from 'react'
+import { DependencyList, useMemo } from 'react'
 import { useLatest } from 'react-use'
 import { use } from 'react-use-polyfill'
 

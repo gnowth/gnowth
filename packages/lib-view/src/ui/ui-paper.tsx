@@ -1,8 +1,6 @@
-import type { SystemType } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
@@ -10,6 +8,7 @@ import {
   systemSpace,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 export interface PropsUIPaper extends SystemType<typeof uiPaper> {

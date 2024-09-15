@@ -1,9 +1,7 @@
-import type { DataName } from '@gnowth/lib-react'
-import type { FunctionComponent } from 'react'
+import { DataConnect, DataName, DataSource, DataTrigger, DataWarning } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
-import { DataConnect, DataSource, DataTrigger, DataWarning } from '@gnowth/lib-react'
-
-import type { Task } from '../modules/task'
+import { Task } from '../modules/task'
 
 interface Props {
   onChange?: (value: Task, name?: DataName) => Promise<void> | void

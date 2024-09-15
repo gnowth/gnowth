@@ -1,7 +1,6 @@
-import type { CSSObject } from '@emotion/serialize'
-import type { UMappedType } from '@gnowth/lib-utils'
-
 import { css } from '@emotion/css'
+import { CSSObject } from '@emotion/serialize'
+import { UMappedType } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 export const themeCreateStyles = <Styles extends Record<string, CSSObject | string>>(

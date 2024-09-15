@@ -1,7 +1,6 @@
-import type { ThemeVariants } from '@gnowth/lib-theme'
-import type { ComponentProps, FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
+import { ThemeVariants } from '@gnowth/lib-theme'
+import { ComponentProps, FunctionComponent, ReactNode } from 'react'
 
 import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'

@@ -1,7 +1,7 @@
-// import type { AnyResponse, MockConfigs, ServerEx } from '@gnowth/lib-mocks'
+// import { AnyResponse, MockConfigs, ServerEx } from '@gnowth/lib-mocks'
 // import { RestMockSerializer, Factory, Model, createServer, faker } from '@gnowth/lib-mock'
 
-// import type { UserData } from './users.types'
+// import { UserData } from './users.types'
 // import { configs } from '../configs'
 // import { dependencies } from '../dependencies'
 

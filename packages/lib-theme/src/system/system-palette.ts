@@ -1,7 +1,6 @@
-import type { TokenColorWeight } from '../tokens/tokens'
-import type { System } from './system.types'
-
+import { TokenColorWeight } from '../tokens/tokens'
 import { systemMake } from './system'
+import { System } from './system.types'
 
 type SystemPalette = {
   palette?: string

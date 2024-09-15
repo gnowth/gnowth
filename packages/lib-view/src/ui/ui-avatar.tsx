@@ -1,5 +1,3 @@
-import type { ComponentProps, ComponentType, FunctionComponent } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
   SystemType,
@@ -16,12 +14,12 @@ import {
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { imageExists } from '@gnowth/lib-utils'
+import { ComponentProps, ComponentType, FunctionComponent } from 'react'
 import { useAsync } from 'react-use'
 import * as R from 'remeda'
 
-import type { PropsBase } from '../types'
-
 import { LayoutFlex } from '../exports'
+import { PropsBase } from '../types'
 import { UIIcon } from './ui-icon'
 import { UIImage } from './ui-image'
 import { UITypography } from './ui-typography'

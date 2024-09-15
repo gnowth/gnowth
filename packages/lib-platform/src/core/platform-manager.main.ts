@@ -1,10 +1,9 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { Platform } from './platform.main'
-import type { PlatformConstructors, PlatformDefinition } from './platform.types'
-
 import { scriptImport } from '../modules/scripts.utils'
+import { Platform } from './platform.main'
+import { PlatformConstructors, PlatformDefinition } from './platform.types'
 
 type GlobalThis = {
   platform?: Platform

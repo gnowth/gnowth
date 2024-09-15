@@ -1,5 +1,4 @@
-import type { UtilNamespaced } from '@gnowth/lib-utils'
-
+import { UtilNamespaced } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 export const namespacedMerge = <Value>(

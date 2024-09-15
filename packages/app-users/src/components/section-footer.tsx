@@ -1,7 +1,6 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutSection, UIBox, UITypography, useTranslation } from '@gnowth/lib-react'
 import Link from 'next/link'
+import { FunctionComponent } from 'react'
 
 import packageJson from '../../package.json'
 import { dependencies } from '../dependencies'

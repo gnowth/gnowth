@@ -1,17 +1,15 @@
-import type { QueryResource } from '@gnowth/lib-query'
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, ReactElement } from 'react'
-
+import { QueryResource } from '@gnowth/lib-query'
+import { Theme } from '@gnowth/lib-theme'
 import { objectDefaults } from '@gnowth/lib-utils'
+import { ComponentType, ReactElement } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
-
-import type { PropsFrame, PropsSuspense } from './types'
 
 import { AppBoundary } from './app-boundary'
 import { AppFrame } from './app-frame'
 import { AppProvider } from './app-provider'
 import { AppSuspense } from './app-suspense'
 import { AppWhoAmI } from './app-who-am-i'
+import { PropsFrame, PropsSuspense } from './types'
 import { useAppApplication } from './use-app-application'
 
 interface PropsComponent {

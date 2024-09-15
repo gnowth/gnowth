@@ -1,9 +1,7 @@
-import type { UtilNamespaced } from '@gnowth/lib-utils'
-
-import { objectDefaults } from '@gnowth/lib-utils'
+import { UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { TokenBase, TokenBreakpoint } from '../tokens/tokens'
+import { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
 // TODO: review responsiveScale. currently not supported by system
 type Responsive<Type> = { [_Key in TokenBreakpoint]?: Type } & { responsive: boolean }

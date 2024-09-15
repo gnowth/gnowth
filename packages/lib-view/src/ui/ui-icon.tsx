@@ -1,9 +1,15 @@
-import type { PropsDataReadonly } from '@gnowth/lib-data'
-import type { SystemType, TokenSize } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemColorFromPalette, systemCompose, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { PropsDataReadonly } from '@gnowth/lib-data'
+import {
+  SystemType,
+  TokenSize,
+  cx,
+  systemColorFromPalette,
+  systemCompose,
+  systemSpace,
+  themeMakeStyles,
+} from '@gnowth/lib-theme'
+import { ComponentType, FunctionComponent } from 'react'
 import * as R from 'remeda'
 
 interface ComponentProps {

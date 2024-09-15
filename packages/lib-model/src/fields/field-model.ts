@@ -1,10 +1,8 @@
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { Model } from '../models/model'
-import type { DataName } from '../types'
-import type { FieldConfigs } from './field'
-
-import { Field } from './field'
+import { Model } from '../models/model'
+import { DataName } from '../types'
+import { Field, FieldConfigs } from './field'
 
 type Nested = 'flat' | 'id' | 'nested'
 

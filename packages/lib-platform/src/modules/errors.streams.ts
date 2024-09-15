@@ -1,9 +1,8 @@
 import { Observable, Subject } from 'rxjs'
 
-import type { PlatformParameters } from '../core/platform'
-import type { ErrorData } from './errors.types'
-
+import { PlatformParameters } from '../core/platform'
 import { ErrorModel } from './errors.models'
+import { ErrorData } from './errors.types'
 
 export class ErrorStream {
   #errorModel!: ErrorModel

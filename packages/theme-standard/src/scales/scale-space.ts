@@ -1,4 +1,4 @@
-import type { ScaleType, TokenSize } from '@gnowth/lib-theme'
+import { ScaleType, TokenSize } from '@gnowth/lib-theme'
 
 export const space = {
   lg: '2rem', // 32px

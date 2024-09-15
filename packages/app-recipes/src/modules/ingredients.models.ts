@@ -1,6 +1,6 @@
 import { Model, QueryApiRest } from '@gnowth/lib-react'
 
-import type { Ingredient } from '../modules/ingredients'
+import { Ingredient } from '../modules/ingredients'
 
 export class ModelIngredient<Value extends Ingredient = Ingredient> extends Model<Value> {
   api: QueryApiRest<Value> = new QueryApiRest({

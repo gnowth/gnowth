@@ -1,4 +1,4 @@
-import type { PredicateArrayFilter, PredicateObjectFilter, PredicateSort } from './predicates'
+import { PredicateArrayFilter, PredicateObjectFilter, PredicateSort } from './predicates'
 
 type OperatorArrayFilter = <Value>(predicate: PredicateArrayFilter<Value>) => PredicateArrayFilter<Value>
 

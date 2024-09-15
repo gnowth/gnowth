@@ -1,6 +1,5 @@
-import type { Model } from '@gnowth/lib-model'
-import type { QueryResource } from '@gnowth/lib-query'
-
+import { Model } from '@gnowth/lib-model'
+import { QueryResource } from '@gnowth/lib-query'
 import * as R from 'remeda'
 
 interface ConfigsApplication {

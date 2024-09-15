@@ -1,5 +1,5 @@
-import type { Field } from '@gnowth/lib-model'
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { Field } from '@gnowth/lib-model'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
 export type DataError = Error
 

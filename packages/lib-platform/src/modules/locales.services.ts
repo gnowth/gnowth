@@ -2,10 +2,8 @@ import { createInstance } from 'i18next'
 import i18nLanguageDetector from 'i18next-browser-languagedetector'
 import i18nBackend from 'i18next-http-backend'
 
-import type { PlatformParameters } from '../core/platform'
-import type { ErrorStream1 } from './errors.streams'
-
-import { PlatformConstant } from '../core/platform'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { ErrorStream1 } from './errors.streams'
 
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'

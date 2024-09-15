@@ -1,4 +1,4 @@
-import type { DataName } from '../types'
+import { DataName } from '../types'
 
 // TODO: check if there should be a nullable config
 export interface FieldConfigs<Value = unknown> {

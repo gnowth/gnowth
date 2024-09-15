@@ -1,7 +1,6 @@
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { AppLayout, LayoutApp } from '@gnowth/lib-react'
 import { useIsFetching } from '@tanstack/react-query'
+import { FunctionComponent, ReactNode } from 'react'
 
 type Props = {
   children: ReactNode

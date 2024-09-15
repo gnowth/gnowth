@@ -1,8 +1,6 @@
-import type { SystemType } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemCompose, systemPlace, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { SystemType, cx, systemCompose, systemPlace, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 
 export interface PropsLayoutAppHeader extends SystemType<typeof layoutAppHeader> {
   as?: string

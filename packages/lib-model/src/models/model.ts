@@ -1,11 +1,9 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
-
+import { ObjectLiteral } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { Field } from '../fields/field'
-import type { DataName } from '../types'
-
+import { Field } from '../fields/field'
 import { FieldModel } from '../fields/field-model'
+import { DataName } from '../types'
 
 type SchemaFromValue<Value> = {
   [Key in keyof Value]: Value[Key] extends Array<infer Item>

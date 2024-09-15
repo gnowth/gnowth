@@ -1,6 +1,5 @@
-import type { CSSLength } from './system.types'
-
 import { systemCompose, systemMake } from './system'
+import { CSSLength } from './system.types'
 
 export const systemDisplay = systemMake<{ display: string }>({ key: 'display' })
 const systemHeight = systemMake<{ height: CSSLength | string }>({ key: 'height', scale: 'length' })

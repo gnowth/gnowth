@@ -1,7 +1,6 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutSection, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
 import { useQueryErrorResetBoundary } from '@tanstack/react-query'
+import { FunctionComponent } from 'react'
 
 type Props = {
   error: Error

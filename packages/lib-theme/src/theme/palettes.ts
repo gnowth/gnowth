@@ -1,8 +1,7 @@
-import type { UtilNamespaced } from '@gnowth/lib-utils'
-
+import { UtilNamespaced } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { TokenColorWeight } from '../tokens/tokens'
+import { TokenColorWeight } from '../tokens/tokens'
 
 type PaletteColor = {
   darkContrast: boolean

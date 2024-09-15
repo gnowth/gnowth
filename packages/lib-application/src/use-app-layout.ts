@@ -1,11 +1,8 @@
-import type { ComponentType } from 'react'
-
-import { useContext } from 'react'
-
-import type { PropsLayout } from './types'
+import { ComponentType, useContext } from 'react'
 
 import { ContextEnvironment } from './context-environment'
 import { TokenComponentNamespace } from './token-component-namespace'
+import { PropsLayout } from './types'
 import { useAppTheme } from './use-app-theme'
 
 type ComponentLayout = ComponentType<PropsLayout>

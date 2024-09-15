@@ -1,5 +1,5 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, ReactElement } from 'react'
+import { Theme } from '@gnowth/lib-theme'
+import { ComponentType, ReactElement } from 'react'
 
 import { useAppTheme } from './use-app-theme'
 

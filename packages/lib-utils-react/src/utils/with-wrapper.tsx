@@ -1,5 +1,4 @@
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-
+import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 interface WrapperProps {

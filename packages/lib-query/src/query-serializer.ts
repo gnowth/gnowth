@@ -1,8 +1,7 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
-
+import { ObjectLiteral } from '@gnowth/lib-utils'
 import { pluralize } from 'inflected'
 
-import type { QueryApi } from './query-api'
+import { QueryApi } from './query-api'
 
 interface Configs<Value extends ObjectLiteral> {
   api: QueryApi<Value>

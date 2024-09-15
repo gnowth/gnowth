@@ -1,11 +1,7 @@
-import type { PropsSuspense } from '@gnowth/lib-application'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import { AppSuspense, PropsSuspense } from '@gnowth/lib-application'
+import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
-import { AppSuspense } from '@gnowth/lib-application'
-
-import type { PropsUseDataConnect } from './use-data-connect'
-
-import { useDataConnect } from './use-data-connect'
+import { PropsUseDataConnect, useDataConnect } from './use-data-connect'
 
 interface Props extends PropsUseDataConnect {
   awaiting?: boolean

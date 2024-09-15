@@ -1,6 +1,6 @@
-import type { User } from '@gnowth/logic-users'
+import { User } from '@gnowth/logic-users'
 
-import type { Task } from './task'
+import { Task } from './task'
 
 export type Board = {
   createdBy: User

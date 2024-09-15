@@ -1,5 +1,4 @@
-import type { TokenFontFamily, TokenFontSize } from '../tokens/tokens'
-
+import { TokenFontFamily, TokenFontSize } from '../tokens/tokens'
 import { systemCompose, systemMake } from './system'
 
 const systemFontFamily = systemMake<{ fontFamily: TokenFontFamily }>({

@@ -1,8 +1,5 @@
-import type { AppModelApplication } from '@gnowth/lib-react'
-import type { FunctionComponent } from 'react'
-
-import { AppApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
-import { lazy } from 'react'
+import { AppApplication, AppModelApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
+import { FunctionComponent, lazy } from 'react'
 
 // Note: AppModelApplicationTasks should probably be imported at root only? and pass down
 import { AppModelApplicationTasks } from '../modules/application-tasks'

@@ -1,5 +1,4 @@
-import type { DataName, TokenMode } from '@gnowth/lib-data'
-
+import { DataName, TokenMode } from '@gnowth/lib-data'
 import { useCallback, useState } from 'react'
 
 interface ChangeEvent<Value> {

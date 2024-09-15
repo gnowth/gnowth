@@ -1,4 +1,4 @@
-import type { ComponentType, ReactElement } from 'react'
+import { ComponentType, ReactElement } from 'react'
 
 import { AppModelApplication } from './app-model-application'
 

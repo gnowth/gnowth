@@ -1,9 +1,8 @@
-import type { PropsData } from '@gnowth/lib-data'
-import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
+import { PropsData } from '@gnowth/lib-data'
 import {
+  SystemType,
+  ThemeVariants,
   cx,
   systemBox,
   systemColorFromPalette,
@@ -13,12 +12,10 @@ import {
   systemTypography,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
-import { createElement } from 'react'
+import { ComponentType, FunctionComponent, createElement } from 'react'
 import * as R from 'remeda'
 
-import type { ChangeEventHandler } from './use-value'
-
-import { useValue } from './use-value'
+import { ChangeEventHandler, useValue } from './use-value'
 
 interface ComponentProps {
   className?: string

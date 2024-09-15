@@ -1,6 +1,7 @@
-import type { Server } from 'miragejs'
 import type { AnyFactories, AnyModels, AnyResponse } from 'miragejs/-types'
 import type { ServerConfig } from 'miragejs/server'
+
+import { Server } from 'miragejs'
 
 // DEBT: move to mock-server file
 // DEBT(hack): dirty ts fix

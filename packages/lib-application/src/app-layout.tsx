@@ -1,9 +1,7 @@
-import type { ComponentType, ReactElement, ReactNode } from 'react'
-
 import { objectDefaults } from '@gnowth/lib-utils'
+import { ComponentType, ReactElement, ReactNode } from 'react'
 
-import type { PropsLayout } from './types'
-
+import { PropsLayout } from './types'
 import { useAppLayout } from './use-app-layout'
 
 // TODO: check whether we need layoutProps, can it be layoutVariant with object or vice versa

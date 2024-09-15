@@ -1,4 +1,4 @@
-import type { AppSetup } from '@gnowth/lib-application'
+import { AppSetup } from '@gnowth/lib-application'
 
 import { GroupFilterModel } from './modules/group-filters'
 import { GroupModel, GroupService } from './modules/groups'

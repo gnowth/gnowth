@@ -1,5 +1,5 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
+import { Theme } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 
 import { AppProvider } from './app-provider'
 

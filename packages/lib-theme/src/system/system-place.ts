@@ -1,5 +1,4 @@
-import type { TokenZIndex } from '../tokens/tokens'
-
+import { TokenZIndex } from '../tokens/tokens'
 import { systemCompose, systemMake } from './system'
 
 const systemBottom = systemMake<{ bottom: string }>({ key: 'bottom' })

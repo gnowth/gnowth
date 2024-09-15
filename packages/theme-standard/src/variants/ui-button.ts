@@ -1,6 +1,5 @@
-import type { Theme, VariantType } from '@gnowth/lib-theme'
-import type { PropsUIButton } from '@gnowth/lib-view'
-
+import { Theme, VariantType } from '@gnowth/lib-theme'
+import { PropsUIButton } from '@gnowth/lib-view'
 import * as R from 'remeda'
 
 import { TokenSelector } from '../tokens/wip-token-selector'

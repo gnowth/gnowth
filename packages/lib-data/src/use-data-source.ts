@@ -2,9 +2,8 @@ import { ErrorCustom, objectDefaults, objectGet } from '@gnowth/lib-utils'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
 import { useCallback, useContext } from 'react'
 
-import type { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
-
 import { DataContext } from './data-context'
+import { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
 import { useValue } from './use-value'
 
 interface Configs {

@@ -1,5 +1,5 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
+import { ObjectLiteral } from '@gnowth/lib-utils'
+import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 type Params<Slug = string | string[] | undefined> = { slug: Slug }
 

@@ -1,19 +1,18 @@
-import type { QueryResource } from '@gnowth/lib-react'
-import type { ReactElement } from 'react'
-
 import {
   DataConnect,
   DataSource,
   DataTrigger,
   LayoutPage,
   LayoutSection,
+  QueryResource,
   UIPaper,
   UITypography,
   useAppApplication,
 } from '@gnowth/lib-react'
+import { ReactElement } from 'react'
 
-import type { AppModelApplicationRecipes } from '../modules/application-recipes'
-import type { Recipe } from '../modules/recipes'
+import { AppModelApplicationRecipes } from '../modules/application-recipes'
+import { Recipe } from '../modules/recipes'
 
 interface Props {
   resources: {

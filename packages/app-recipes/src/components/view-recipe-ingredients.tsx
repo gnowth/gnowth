@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import {
   AppLayout,
   DataConnect,
@@ -10,8 +8,9 @@ import {
   UITypography,
   useDataConnect,
 } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
-import type { Ingredient } from '../modules/ingredients'
+import { Ingredient } from '../modules/ingredients'
 
 interface Props {
   slot: string

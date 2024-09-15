@@ -1,8 +1,8 @@
-import type { CSSObject } from '@emotion/serialize'
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { CSSObject } from '@emotion/serialize'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { Theme } from '../theme/theme'
-import type { TokenLength, TokenPropertyValue, TokenSize } from '../tokens/tokens'
+import { Theme } from '../theme/theme'
+import { TokenLength, TokenPropertyValue, TokenSize } from '../tokens/tokens'
 
 export type SystemType<Type extends System<ObjectLiteral>> = Parameters<Type>[0]
 export type System<SystemType> = (system: SystemType, theme: Theme) => CSSObject

@@ -1,7 +1,5 @@
-import type { Collection, Request } from 'miragejs'
-
 import { pluralize } from 'inflected'
-import { RestSerializer } from 'miragejs'
+import { Collection, Request, RestSerializer } from 'miragejs'
 
 function paginate<Type>(data: Type[], request: Request) {
   const page = Number(request.queryParams?.page ?? '0')

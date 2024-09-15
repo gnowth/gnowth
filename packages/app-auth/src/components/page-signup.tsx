@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 // TODO(feature): allow sign up
 // TODO(enhancement): add ui for sign up

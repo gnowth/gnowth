@@ -1,8 +1,6 @@
-import type { AxiosError } from 'axios'
+import { AxiosError, isAxiosError } from 'axios'
 
-import { isAxiosError } from 'axios'
-
-import type { ErrorData } from './errors.types'
+import { ErrorData } from './errors.types'
 
 export class ErrorModel {
   fromError = (error: Error): ErrorData => {

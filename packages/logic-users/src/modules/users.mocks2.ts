@@ -1,11 +1,11 @@
-// import type { MockConfigs, ServerEx } from '@gnowth/app-core'
-// import type { AnyResponse } from 'miragejs/-types'
+// import { MockConfigs, ServerEx } from '@gnowth/app-core'
+// import { AnyResponse } from 'miragejs/-types'
 // import { faker } from '@faker-js/faker/locale/en'
 // import { SerializerRest } from '@gnowth/app-core'
 // import { operatorArrayFilterAnd } from '@gnowth/lib-react'
 // import { Factory, Model, createServer } from 'miragejs'
 
-// import type { UserSerialized } from '../models/model-user'
+// import { UserSerialized } from '../models/model-user'
 // import { configs } from '../configs'
 // import { UserFilterModel } from '../models/model-user-filter'
 

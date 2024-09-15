@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 
 // TODO: find a way to import md properly
 // import MdChangelog from '../../CHANGELOG.md'

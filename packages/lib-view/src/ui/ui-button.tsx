@@ -1,11 +1,12 @@
-import type { SystemType, TokenColorWeight, TokenSize, systemColorFromPalette } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent, MouseEvent } from 'react'
-
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
+  TokenColorWeight,
+  TokenSize,
   cx,
   systemBox,
   systemColor,
+  systemColorFromPalette,
   systemCompose,
   systemImage,
   systemLayout,
@@ -13,16 +14,13 @@ import {
   systemSpace,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import * as R from 'remeda'
 
-import type { PropsBase } from '../types'
-import type { PropsUIIcon } from './ui-icon'
-import type { PropsUIProgress } from './ui-progress'
-import type { PropsUITypography } from './ui-typography'
-
-import { UIIcon } from './ui-icon'
-import { UIProgress } from './ui-progress'
-import { UITypography } from './ui-typography'
+import { PropsBase } from '../types'
+import { PropsUIIcon, UIIcon } from './ui-icon'
+import { PropsUIProgress, UIProgress } from './ui-progress'
+import { PropsUITypography, UITypography } from './ui-typography'
 
 // TODO media print should hide by default
 // TODO: what does breakpoint and media do?

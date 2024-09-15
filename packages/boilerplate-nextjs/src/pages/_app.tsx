@@ -1,13 +1,12 @@
-import type { NextPage } from 'next'
-import type { AppProps } from 'next/app'
-import type { Attributes, ComponentType, FunctionComponent, PropsWithChildren } from 'react'
-
 import { ChakraProvider } from '@chakra-ui/react'
 import { FrameDefault, withAugmented } from '@gnowth/app-users'
 import { AppEnvironment, LayoutStack } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { NextPage } from 'next'
+import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
+import { Attributes, ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 import { RecoilRoot } from 'recoil'
 
 import { AppError } from '../components/app-error'

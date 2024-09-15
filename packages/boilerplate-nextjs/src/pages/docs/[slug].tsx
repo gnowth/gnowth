@@ -1,9 +1,7 @@
-import type { GetStaticPropsContext } from 'next'
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
-
 import fs from 'fs'
 import matter from 'gray-matter'
-import { MDXRemote } from 'next-mdx-remote'
+import { GetStaticPropsContext } from 'next'
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 
 interface Props {

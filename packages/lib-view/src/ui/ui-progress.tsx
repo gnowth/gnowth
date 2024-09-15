@@ -1,27 +1,23 @@
-import type { PropsLayout } from '@gnowth/lib-application'
-import type { PropsDataReadonly } from '@gnowth/lib-data'
-import type {
+import { useAnimationDelayReady } from '@gnowth/lib-animation'
+import { AppLayout, PropsLayout, useAppTheme } from '@gnowth/lib-application'
+import { PropsDataReadonly } from '@gnowth/lib-data'
+import {
   System,
   SystemType,
   Theme,
   ThemeVariants,
   TokenColorWeight,
   TokenSize,
-  systemColorFromPalette,
-} from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-
-import { useAnimationDelayReady } from '@gnowth/lib-animation'
-import { AppLayout, useAppTheme } from '@gnowth/lib-application'
-import {
   cx,
   keyframes,
+  systemColorFromPalette,
   systemCompose,
   systemDisplay,
   systemSpace,
   themeCreateStyles,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 import { UtilSlot } from '../util/util-slot'

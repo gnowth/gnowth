@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import type { QueryResource } from './query-resource'
+import { QueryResource } from './query-resource'
 
 export function useDeferredResource<Value>(resource: QueryResource<Value>): QueryResource<Value> {
   const [resourceDeferred, setResourceDeferred] = useState(resource)

@@ -1,7 +1,5 @@
-import type { AppModelApplication } from '@gnowth/lib-react'
-import type { FunctionComponent } from 'react'
-
-import { AppApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
+import { AppApplication, AppModelApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { PageDashboard } from '../components/page-dashboard'
 import { PageIngredient } from '../components/page-ingredient'

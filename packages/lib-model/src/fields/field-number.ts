@@ -1,8 +1,6 @@
 import { objectDefaults } from '@gnowth/lib-utils'
 
-import type { FieldConfigs } from './field'
-
-import { Field } from './field'
+import { Field, FieldConfigs } from './field'
 
 export class FieldNumber extends Field<number> {
   constructor(configs: FieldConfigs<number> = {}) {

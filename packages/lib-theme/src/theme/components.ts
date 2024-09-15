@@ -1,7 +1,5 @@
-import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
-import type { ComponentType } from 'react'
-
-import { objectDefaults } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { ComponentType } from 'react'
 import * as R from 'remeda'
 
 import { namespacedMerge } from '../utils/namespace-merge'

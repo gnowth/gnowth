@@ -1,8 +1,7 @@
-import type { Platform, PlatformConstructors, PlatformParameters } from '@gnowth/lib-platform'
-
-import type { MockClient } from './mocks.types'
+import { Platform, PlatformConstructors, PlatformParameters } from '@gnowth/lib-platform'
 
 import { MockConstant } from './mocks.constants'
+import { MockClient } from './mocks.types'
 
 interface MockParameterAny<Type> {
   seed?: string

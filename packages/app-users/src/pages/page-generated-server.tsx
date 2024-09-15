@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage, LayoutStack } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import source from '../../contents/source.json'
 import { sections } from '../sections'

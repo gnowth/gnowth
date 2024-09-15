@@ -1,7 +1,7 @@
-import type { User } from '@gnowth/logic-users'
+import { User } from '@gnowth/logic-users'
 
-import type { Comment } from './comments'
-import type { Status } from './statuses'
+import { Comment } from './comments'
+import { Status } from './statuses'
 
 export type Task = {
   assignedTo: User[]

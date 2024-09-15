@@ -1,7 +1,7 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { ErrorData } from './errors'
-import type { LogLevel } from './loggers.utils'
+import { ErrorData } from './errors'
+import { LogLevel } from './loggers.utils'
 
 export { LogLevel }
 

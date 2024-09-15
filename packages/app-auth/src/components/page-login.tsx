@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import {
   AppLink,
   DataConnect,
@@ -14,6 +12,7 @@ import {
   UIPaper,
   UITypography,
 } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { AuthPageToken } from '../modules/application-auth'
 
