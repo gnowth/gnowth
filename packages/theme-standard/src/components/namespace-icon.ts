@@ -1,6 +1,7 @@
 // https://react-icons.github.io/react-icons
 
 export {
+  MdAccountCircle as accountCircle,
   MdAdd as add,
   MdCheckBox as checkboxChecked,
   MdCheckBoxOutlineBlank as checkbox,

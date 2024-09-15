@@ -117,7 +117,7 @@ export const link: VariantType<PropsUITypography> = {
 export const overline: VariantType<PropsUITypography> = {
   as: 'p',
   fontFamily: 'body',
-  fontSize: 'x25',
+  fontSize: 'x50',
   fontWeight: '400',
   letterSpacing: '1.5px',
   textTransform: 'uppercase',

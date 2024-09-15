@@ -1,11 +1,11 @@
 import type { FunctionComponent } from 'react'
 
-import { Avatar } from '@chakra-ui/react'
 import {
   LayoutFlex,
   LayoutGrid,
   LayoutSection,
   LayoutStack,
+  UIAvatar,
   UIButton,
   UISkeleton,
   UITypography,
@@ -64,7 +64,7 @@ const SectionUsersComponent: FunctionComponent = () => {
           {data?.data.map((user) => (
             <Fragment key={dependencies.userModel.getKey(user)}>
               <LayoutFlex gap="xs">
-                <Avatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
+                <UIAvatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
                 <UITypography value={dependencies.userModel.getNameFull(user)} variant="body2" />
               </LayoutFlex>

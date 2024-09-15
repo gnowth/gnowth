@@ -30,6 +30,7 @@ const propsDefault: Partial<PropsUILabel> = {
   typographyVariant: 'label',
   typographyVariantNamespace: 'uiTypography',
   variantComposition: ['typography'],
+  variantNamespace: 'uiLabel',
 }
 
 export const UILabel: FunctionComponent<PropsUILabel> = (props) => {

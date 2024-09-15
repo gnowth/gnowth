@@ -1,5 +1,6 @@
 export * from './errors'
 export * from './guards'
+export * from './images'
 export * from './objects'
 export * from './operators'
 export * from './predicates'

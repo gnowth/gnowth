@@ -1,12 +1,11 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import type { FunctionComponent } from 'react'
 
 export interface PropsUIImage {
+  alt?: string
   as?: string
-  children: ReactNode
+  src: string
 }
 
 export const UIImage: FunctionComponent<PropsUIImage> = (props) => (
-  <div className="ui-image" data-testid="view-ui-image">
-    {props.children}
-  </div>
+  <img alt={props.alt} className="ui-image" data-testid="view-ui-image" src={props.src} />
 )

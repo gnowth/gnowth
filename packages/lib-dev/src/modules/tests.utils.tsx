@@ -1,7 +1,7 @@
 import type { RenderOptions } from '@testing-library/react'
 import type { ComponentType } from 'react'
 
-import { act, render } from '@testing-library/react'
+import { act, render, waitFor } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import * as R from 'remeda'
 
@@ -55,11 +55,13 @@ export const testSetupRenderComponent =
     await testRunLoaders(loaders, parameters)
 
     const Component = parametersDefault.Component
-    const result = render(<Component {...props} />, {
-      wrapper: parametersSetup?.wrapper,
-      ...parametersDefault.renderOptions,
-      ...parametersOverride?.renderOptions,
-    })
+    const result = await waitFor(() =>
+      render(<Component {...props} />, {
+        wrapper: parametersSetup?.wrapper,
+        ...parametersDefault.renderOptions,
+        ...parametersOverride?.renderOptions,
+      }),
+    )
 
     const rerender = async (parametersRerender?: ParametersOverride<TProps, TParameters>) => {
       await act(() => testRunLoaders(loaders, parametersMerger([parameters, parametersRerender?.parameters])))
