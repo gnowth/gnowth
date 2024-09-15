@@ -1,4 +1,4 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
 export interface Event {
   payload?: ObjectLiteral

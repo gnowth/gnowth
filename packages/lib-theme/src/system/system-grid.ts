@@ -1,6 +1,5 @@
-import type { CSSSpace } from './system.types'
-
 import { systemCompose, systemMake } from './system'
+import { CSSSpace } from './system.types'
 
 const systemColumnGap = systemMake<{ columnGap: CSSSpace }>({ key: 'columnGap', scale: 'space' })
 export const systemGap = systemMake<{ gap: CSSSpace }>({ key: 'gap', scale: 'space' })

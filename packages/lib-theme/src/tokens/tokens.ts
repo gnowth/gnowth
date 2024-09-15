@@ -99,7 +99,7 @@ export type Tokens = {
   space?: Record<TokenSize, string | undefined>
   zIndex?: Record<TokenZIndex, string | undefined>
 }
-// import type { Tokens, TokenSpace } from './tokens.types'
+// import { Tokens, TokenSpace } from './tokens.types'
 
 // type Configs = {
 //   tokens: Tokens

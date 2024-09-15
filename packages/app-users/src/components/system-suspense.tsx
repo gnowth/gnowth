@@ -1,6 +1,4 @@
-import type { ComponentType, FunctionComponent, ReactNode } from 'react'
-
-import { Suspense } from 'react'
+import { ComponentType, FunctionComponent, ReactNode, Suspense } from 'react'
 
 type Props = {
   FallbackComponent?: ComponentType | null

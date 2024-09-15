@@ -1,5 +1,4 @@
-import type { PlatformParameters } from '../core/platform'
-
+import { PlatformParameters } from '../core/platform'
 import { scriptImport, scriptInject } from './scripts.utils'
 
 type ScriptParameters = {

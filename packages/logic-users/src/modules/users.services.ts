@@ -1,18 +1,18 @@
-import type { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
+import { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
 
-import type {
+import {
   QueryDetail,
   QueryKeyDetail,
   QueryKeyList,
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
+  QueryService,
+  TokenQueryEntity,
 } from './queries'
-import type { UserFilterData, UserFilterParams } from './user-filters'
-import type { User, UserData } from './users.types'
-
-import { QueryService, TokenQueryEntity } from './queries'
+import { UserFilterData, UserFilterParams } from './user-filters'
 import { UserModel } from './users.models'
+import { User, UserData } from './users.types'
 
 type QueryKeys = {
   detail: QueryKeyDetail

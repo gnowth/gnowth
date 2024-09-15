@@ -1,7 +1,7 @@
 import { Observable, Subject } from 'rxjs'
 
-import type { PlatformParameters } from '../core/platform'
-import type { PlatformEvent } from './events.types'
+import { PlatformParameters } from '../core/platform'
+import { PlatformEvent } from './events.types'
 
 export class EventStream {
   eventIn: Subject<PlatformEvent>

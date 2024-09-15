@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import {
   LayoutFlex,
   LayoutGrid,
@@ -10,6 +8,7 @@ import {
   UISkeleton,
   UITypography,
 } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 const sizes = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl'] as const
 export const Styleguide: FunctionComponent = () => (

@@ -1,4 +1,4 @@
-import type { PlatformEvent } from './events'
+import { PlatformEvent } from './events'
 
 // TODO: use ErrorCustom within App and only convert when sending to server
 export type ErrorData = {

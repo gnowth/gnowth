@@ -1,6 +1,4 @@
-import type { AppSetup } from '@gnowth/lib-react'
-
-import { appSetupCompose, mockServerDummy } from '@gnowth/lib-react'
+import { AppSetup, appSetupCompose, mockServerDummy } from '@gnowth/lib-react'
 
 import { AppModelEnvironmentMono } from './app-model-environment'
 

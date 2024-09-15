@@ -1,5 +1,5 @@
-import type { Slottable } from '@gnowth/lib-utils-react'
-import type { ReactNode } from 'react'
+import { Slottable } from '@gnowth/lib-utils-react'
+import { ReactNode } from 'react'
 
 // TODO verify if we need to standardise this props with other components
 // TODO: check if props need to be optional

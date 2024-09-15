@@ -1,4 +1,4 @@
-import type { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 export interface PropsNavMenu {
   as?: string

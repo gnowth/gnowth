@@ -1,23 +1,14 @@
-import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
-import type { ComponentType } from 'react'
-
-import { objectDefaults } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { ComponentType } from 'react'
 import * as R from 'remeda'
 
-import type { TokenBreakpoint } from '../tokens/tokens'
-import type { ConfigsComponent } from './components'
-import type { Media, MediaName } from './media'
-import type { ColorHex, ConfigsPalette, PaletteType } from './palettes'
-import type { ConfigsScale, ScaleItem, ScaleType } from './scales'
-import type { Variable } from './variables'
-import type { VariantType, WithThemeVariant } from './variants'
-
-import { ComponentManager } from './components'
-import { MediaManager } from './media'
-import { PaletteManager } from './palettes'
-import { ScaleManager } from './scales'
-import { VariableManager } from './variables'
-import { VariantManager } from './variants'
+import { TokenBreakpoint } from '../tokens/tokens'
+import { ComponentManager, ConfigsComponent } from './components'
+import { Media, MediaManager, MediaName } from './media'
+import { ColorHex, ConfigsPalette, PaletteManager, PaletteType } from './palettes'
+import { ConfigsScale, ScaleItem, ScaleManager, ScaleType } from './scales'
+import { Variable, VariableManager } from './variables'
+import { VariantManager, VariantType, WithThemeVariant } from './variants'
 
 type Configs = {
   componentsNamespaced?: UtilNamespaced<UtilNamespaced<ComponentType>>

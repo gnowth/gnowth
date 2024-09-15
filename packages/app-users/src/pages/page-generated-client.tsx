@@ -1,7 +1,6 @@
-import type { GetStaticPropsContext } from 'next'
-import type { FunctionComponent } from 'react'
-
 import { LayoutPage } from '@gnowth/lib-react'
+import { GetStaticPropsContext } from 'next'
+import { FunctionComponent } from 'react'
 
 import source from '../../contents/source.json'
 import { sections } from '../sections'

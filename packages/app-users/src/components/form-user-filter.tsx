@@ -1,7 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { DataConnect, DataSource, DataTrigger, LayoutSection, useTranslation } from '@gnowth/lib-react'
-import { useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'

@@ -1,8 +1,7 @@
 import { Fields, Model, QueryApiRest } from '@gnowth/lib-react'
 
-import type { Recipe } from './recipes.types'
-
 import { ModelIngredient } from './ingredients'
+import { Recipe } from './recipes.types'
 
 interface Configs {
   dependencies: {

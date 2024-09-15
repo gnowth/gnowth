@@ -1,4 +1,4 @@
-import type { User } from '@gnowth/logic-users'
+import { User } from '@gnowth/logic-users'
 
 export type Comment = {
   content: string

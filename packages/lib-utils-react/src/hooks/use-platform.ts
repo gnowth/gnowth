@@ -1,7 +1,5 @@
-import type { PlatformDefinitionProvider } from '@gnowth/lib-platform'
-import type { DependencyList } from 'react'
-
-import { Platform, PlatformManager } from '@gnowth/lib-platform'
+import { Platform, PlatformDefinitionProvider, PlatformManager } from '@gnowth/lib-platform'
+import { DependencyList } from 'react'
 import { useAsync } from 'react-use'
 
 import { useAsyncSuspense } from './use-async-suspense'

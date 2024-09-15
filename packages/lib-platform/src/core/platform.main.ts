@@ -1,8 +1,10 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { ScriptService } from '../modules/scripts'
-import type {
+import { ScriptService } from '../modules/scripts'
+import { PlatformConstant } from './platform.constants'
+import { modules } from './platform.modules'
+import {
   PlatformConstructor,
   PlatformConstructors,
   PlatformDefinition,
@@ -11,9 +13,6 @@ import type {
   PlatformDefinitionModule,
   PlatformDefinitionProvider,
 } from './platform.types'
-
-import { PlatformConstant } from './platform.constants'
-import { modules } from './platform.modules'
 
 type Parameters = {
   constructors?: PlatformConstructors

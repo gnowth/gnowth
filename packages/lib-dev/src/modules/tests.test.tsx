@@ -1,7 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { screen } from '@testing-library/react'
-import { useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 
 import { testSetupRenderComponent } from './tests.utils'
 

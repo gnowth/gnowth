@@ -1,12 +1,9 @@
-import type { ComponentType } from 'react'
-
-import { useContext } from 'react'
-
-import type { PropsBoundary } from './types'
+import { ComponentType, useContext } from 'react'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
 import { TokenComponentNamespace } from './token-component-namespace'
+import { PropsBoundary } from './types'
 import { useAppTheme } from './use-app-theme'
 
 type Boundary = ComponentType<PropsBoundary> | null

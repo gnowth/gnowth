@@ -1,7 +1,7 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { ErrorData } from './errors'
-import type { PlatformEvent } from './events'
+import { ErrorData } from './errors'
+import { PlatformEvent } from './events'
 
 export type LogLevel = 'bug' | 'debug' | 'error' | 'info' | 'none' | 'warn'
 

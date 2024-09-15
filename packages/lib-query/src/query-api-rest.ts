@@ -1,9 +1,8 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
-
-import type { QueryConfigs, QueryParams } from './types'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
 import { QueryApi } from './query-api'
 import { QueryResource } from './query-resource'
+import { QueryConfigs, QueryParams } from './types'
 
 async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promise<Response> {
   const response = await fetch(endpoint, params)

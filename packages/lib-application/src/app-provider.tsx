@@ -1,15 +1,10 @@
-import type { LocaleService } from '@gnowth/lib-platform'
-import type { ReactElement, ReactNode } from 'react'
-
-import { PlatformConstant } from '@gnowth/lib-platform'
+import { LocaleService, PlatformConstant } from '@gnowth/lib-platform'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { usePlatformProvider } from '@gnowth/lib-utils-react'
-import { useContext, useMemo } from 'react'
+import { ReactElement, ReactNode, useContext, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
-import type { PropsApplication } from './context-application'
-
-import { ContextApplication } from './context-application'
+import { ContextApplication, PropsApplication } from './context-application'
 
 interface Props extends Partial<PropsApplication> {
   children: ReactNode

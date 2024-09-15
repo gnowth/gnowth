@@ -1,5 +1,5 @@
 // Note: should UICollapse be different?
-import type { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode } from 'react'
 
 export interface PropsUIAccordion {
   as?: string

@@ -1,6 +1,5 @@
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { render, screen } from '@testing-library/react'
+import { FunctionComponent, ReactNode } from 'react'
 
 import { UtilSlot } from './util-slot'
 

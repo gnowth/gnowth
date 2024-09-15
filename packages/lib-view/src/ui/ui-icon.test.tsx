@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { screen } from '@testing-library/react'
+import { FunctionComponent } from 'react'
 
 import { testMakeRenderComponent } from '../modules/tests'
 import { UIIcon } from './ui-icon'

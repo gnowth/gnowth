@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import { ApplicationAuth } from '@gnowth/app-auth'
 import { ApplicationPages, PageNotAuthorised, PageNotFound, PageNotPermitted } from '@gnowth/app-pages'
 import {
@@ -9,7 +7,7 @@ import {
   AppRedirect,
   TokenErrorType,
 } from '@gnowth/lib-react'
-import { lazy } from 'react'
+import { FunctionComponent, lazy } from 'react'
 
 import { TokenApplication } from '../modules/app-model-environment'
 import { theme } from '../modules/theme'

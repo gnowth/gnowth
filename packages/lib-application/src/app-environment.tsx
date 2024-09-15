@@ -1,18 +1,14 @@
-import type { QueryResource } from '@gnowth/lib-query'
-import type { ReactElement, ReactNode } from 'react'
-
+import { QueryResource } from '@gnowth/lib-query'
 import { objectDefaults } from '@gnowth/lib-utils'
-import { Fragment, useState } from 'react'
+import { Fragment, ReactElement, ReactNode, useState } from 'react'
 import { HashRouter } from 'react-router-dom'
-
-import type { PropsApplication } from './context-application'
-import type { PropsEnvironment } from './context-environment'
 
 import { AppBoundary } from './app-boundary'
 import { AppProvider } from './app-provider'
 import { AppSuspense } from './app-suspense'
 import { AppSwitch } from './app-switch'
-import { ContextEnvironment, propsDefaultEnvironment } from './context-environment'
+import { PropsApplication } from './context-application'
+import { ContextEnvironment, PropsEnvironment, propsDefaultEnvironment } from './context-environment'
 
 interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApplication, 'application'> {
   children: ReactNode

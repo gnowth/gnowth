@@ -1,6 +1,4 @@
-import type { ReactElement, ReactNode } from 'react'
-
-import { Children, cloneElement, isValidElement } from 'react'
+import { Children, ReactElement, ReactNode, cloneElement, isValidElement } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'

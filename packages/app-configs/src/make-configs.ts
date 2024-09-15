@@ -1,4 +1,4 @@
-import type { Environment } from './types'
+import { Environment } from './types'
 
 type CreateConfigs<Configs> = (env?: Environment) => Configs
 type Configurations<Configs> = ((env: Environment) => Configs) | Configs

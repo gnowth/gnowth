@@ -1,4 +1,4 @@
-import type { ScaleType, TokenFontSize } from '@gnowth/lib-theme'
+import { ScaleType, TokenFontSize } from '@gnowth/lib-theme'
 
 export const fontSize = {
   md: {

@@ -1,5 +1,5 @@
-import type { HigherComponent } from '@gnowth/lib-react'
-import type { ComponentProps, ComponentType } from 'react'
+import { HigherComponent } from '@gnowth/lib-react'
+import { ComponentProps, ComponentType } from 'react'
 
 import { SystemBoundary } from './system-boundary'
 import { SystemSuspense } from './system-suspense'

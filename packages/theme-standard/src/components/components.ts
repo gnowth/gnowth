@@ -1,7 +1,6 @@
-import type { ComponentType } from 'react'
-
 import { TokenComponentNamespace } from '@gnowth/lib-application'
 import { layouts } from '@gnowth/lib-view'
+import { ComponentType } from 'react'
 
 import * as boundary from './namespace-boundary'
 import * as icon from './namespace-icon'

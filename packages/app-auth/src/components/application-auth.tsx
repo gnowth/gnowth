@@ -1,7 +1,5 @@
-import type { AppModelApplication } from '@gnowth/lib-react'
-import type { FunctionComponent } from 'react'
-
-import { AppApplication, AppPage, AppPageNotFound } from '@gnowth/lib-react'
+import { AppApplication, AppModelApplication, AppPage, AppPageNotFound } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { AuthPageToken } from '../modules/application-auth.tokens'
 import { PageLogin } from './page-login'

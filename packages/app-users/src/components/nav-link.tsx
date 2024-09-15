@@ -1,8 +1,7 @@
-import type { FunctionComponent } from 'react'
-
 import { UIButton, useAppTheme } from '@gnowth/lib-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { FunctionComponent } from 'react'
 
 type Props = { children: string; hrefActive?: string } & Parameters<typeof Link>[0]
 

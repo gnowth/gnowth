@@ -1,12 +1,9 @@
-import type { QueryResource } from '@gnowth/lib-query'
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType } from 'react'
-
-import { createContext } from 'react'
-
-import type { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './types'
+import { QueryResource } from '@gnowth/lib-query'
+import { Theme } from '@gnowth/lib-theme'
+import { ComponentType, createContext } from 'react'
 
 import { AppModelEnvironment } from './app-model-environment'
+import { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './types'
 
 export interface PropsEnvironment {
   boundaries: Record<string, ComponentType<PropsBoundary> | undefined>

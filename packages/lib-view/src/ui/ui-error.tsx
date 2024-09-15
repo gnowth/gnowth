@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 import { LayoutContent } from '../layout/layout-content'
 import { UITypography } from './ui-typography'

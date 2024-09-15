@@ -1,11 +1,8 @@
-import type { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
-
-import { objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced, objectDefaults, transformToArray } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
-import type { Theme } from './theme'
-
 import { namespacedMerge } from '../utils/namespace-merge'
+import { Theme } from './theme'
 
 type Configs = { variantsNamespaced?: VariantsNamespaced }
 type ConfigsVariant<Props extends ObjectLiteral> = { theme: Theme } & WithThemeVariant<Props>

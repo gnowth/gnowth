@@ -1,4 +1,4 @@
-import type { Platform } from './platform'
+import { Platform } from './platform'
 
 export interface PlatformConstructor {
   construct(parameters: PlatformParameters): Promise<object>

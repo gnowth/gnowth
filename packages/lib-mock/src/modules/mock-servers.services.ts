@@ -1,4 +1,4 @@
-import type { Server } from 'miragejs'
+import { Server } from 'miragejs'
 
 export class MockServerService {
   #server!: Server

@@ -1,7 +1,6 @@
-import type { ReactNode } from 'react'
-
 import { makeDecorator } from '@storybook/preview-api'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { ReactNode } from 'react'
 
 export const withReactQuery = makeDecorator({
   name: 'withReactQuery',

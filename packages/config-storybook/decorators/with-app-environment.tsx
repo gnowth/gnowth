@@ -1,7 +1,6 @@
-import type { ReactNode } from 'react'
-
 import { AppEnvironment } from '@gnowth/lib-react'
 import { makeDecorator } from '@storybook/preview-api'
+import { ReactNode } from 'react'
 
 export const withAppEnvironment = makeDecorator({
   name: 'withAppEnvironment',

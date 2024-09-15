@@ -1,4 +1,4 @@
-import type { ScaleType, TokenFontFamily } from '@gnowth/lib-theme'
+import { ScaleType, TokenFontFamily } from '@gnowth/lib-theme'
 
 export const fontFamily = {
   body: 'Roboto, -apple-system, BlinkMacSystemFont, Tahoma, sans‑serif',

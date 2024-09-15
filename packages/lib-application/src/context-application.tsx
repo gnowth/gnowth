@@ -1,12 +1,9 @@
-import type { Theme } from '@gnowth/lib-theme'
-import type { i18n } from 'i18next'
-import type { ComponentType } from 'react'
-
-import { createContext } from 'react'
-
-import type { PropsBoundary, PropsFrame, PropsSuspense } from './types'
+import { Theme } from '@gnowth/lib-theme'
+import { i18n } from 'i18next'
+import { ComponentType, createContext } from 'react'
 
 import { AppModelApplication } from './app-model-application'
+import { PropsBoundary, PropsFrame, PropsSuspense } from './types'
 
 export interface PropsApplication {
   application: AppModelApplication

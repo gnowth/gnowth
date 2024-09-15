@@ -1,9 +1,8 @@
-import type { SystemType, ThemeVariants } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
   ThemeVariable,
+  ThemeVariants,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
@@ -11,6 +10,7 @@ import {
   systemSpace,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 export interface PropsLayoutSection extends SystemType<typeof layoutSection> {

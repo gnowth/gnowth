@@ -1,12 +1,11 @@
-import type { MockService } from '@gnowth/lib-mock'
-import type { ErrorData } from '@gnowth/lib-react'
-import type { UtilOptional } from '@gnowth/lib-utils'
-
+import { MockService } from '@gnowth/lib-mock'
 import { Model } from '@gnowth/lib-model'
+import { ErrorData } from '@gnowth/lib-react'
+import { UtilOptional } from '@gnowth/lib-utils'
 import { v4 as uuid } from 'uuid'
 
-import type { EventService } from './events'
-import type { User, UserData } from './users.types'
+import { EventService } from './events'
+import { User, UserData } from './users.types'
 
 type Parameters = {
   eventService?: EventService

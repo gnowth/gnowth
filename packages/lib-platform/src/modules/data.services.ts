@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3'
 import * as R from 'remeda'
 
-import type { PlatformParameters } from '../core/platform'
+import { PlatformParameters } from '../core/platform'
 
 const DataConstant = {
   eventName: 'platformDataService/data',

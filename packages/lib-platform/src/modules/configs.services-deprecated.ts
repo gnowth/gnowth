@@ -1,6 +1,4 @@
-import type { AxiosInstance } from 'axios'
-
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 
 type Environment = 'dev' | 'local' | 'prod' | 'sit' | 'sys' | 'test' | 'uat'
 type Parameters = { configs: Configs }

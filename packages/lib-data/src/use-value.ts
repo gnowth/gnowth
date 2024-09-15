@@ -2,7 +2,7 @@ import { ErrorCustom, objectDefaults, objectSet } from '@gnowth/lib-utils'
 import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
 import { useCallback, useState } from 'react'
 
-import type { DataName, DataValue, TokenMode } from './types'
+import { DataName, DataValue, TokenMode } from './types'
 
 interface Configs {
   errorCustomMode?: Error

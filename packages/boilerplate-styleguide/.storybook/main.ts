@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/nextjs'
+import { StorybookConfig } from '@storybook/nextjs'
 
 export const addons: StorybookConfig['addons'] = ['@gnowth/storybook-preset']
 

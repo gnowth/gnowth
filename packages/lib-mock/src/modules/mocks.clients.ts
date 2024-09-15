@@ -1,10 +1,14 @@
-import type { Faker } from '@faker-js/faker'
-import type { LocaleService, Platform, PlatformConstructors, PlatformParameters } from '@gnowth/lib-platform'
-
+import { Faker } from '@faker-js/faker'
 import * as fakerModule from '@faker-js/faker'
-import { PlatformConstant } from '@gnowth/lib-platform'
+import {
+  LocaleService,
+  Platform,
+  PlatformConstant,
+  PlatformConstructors,
+  PlatformParameters,
+} from '@gnowth/lib-platform'
 
-import type { MockClient, MockClientParameterAny, MockClientParameterEmail } from './mocks.types'
+import { MockClient, MockClientParameterAny, MockClientParameterEmail } from './mocks.types'
 
 type Parameters = { fakerClient: Faker } & PlatformParameters
 export class FakerClient implements MockClient {

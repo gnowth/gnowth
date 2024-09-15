@@ -1,16 +1,16 @@
-import type { GroupFilterParams } from './group-filters'
-import type { Group, GroupData } from './groups.types'
-import type {
+import { GroupFilterParams } from './group-filters'
+import { GroupModel } from './groups.models'
+import { Group, GroupData } from './groups.types'
+import {
   QueryDetail,
   QueryKeyDetail,
   QueryKeyList,
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
+  QueryService,
+  TokenQueryEntity,
 } from './queries'
-
-import { GroupModel } from './groups.models'
-import { QueryService, TokenQueryEntity } from './queries'
 
 type QueryKeys = {
   detail: QueryKeyDetail

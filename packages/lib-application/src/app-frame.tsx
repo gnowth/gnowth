@@ -1,6 +1,4 @@
-import type { ReactElement, ReactNode } from 'react'
-
-import { Fragment, useContext } from 'react'
+import { Fragment, ReactElement, ReactNode, useContext } from 'react'
 import * as R from 'remeda'
 
 import { ContextApplication } from './context-application'

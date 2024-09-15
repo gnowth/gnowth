@@ -1,17 +1,12 @@
-import type { PropsData } from '@gnowth/lib-data'
-import type { SystemType, TokenSize } from '@gnowth/lib-theme'
-import type { ComponentType, FunctionComponent } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
-import { cx, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { PropsData } from '@gnowth/lib-data'
+import { SystemType, TokenSize, cx, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
 import { UtilNamespaced } from '@gnowth/lib-utils'
-import { useCallback, useRef } from 'react'
+import { ComponentType, FunctionComponent, useCallback, useRef } from 'react'
 import * as R from 'remeda'
 
-import type { ChangeEventHandler } from './use-value'
-
 import { PropsUIIcon, UIIcon } from '../ui/ui-icon'
-import { useValue } from './use-value'
+import { ChangeEventHandler, useValue } from './use-value'
 
 export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, PropsData<boolean | null> {
   as?: string

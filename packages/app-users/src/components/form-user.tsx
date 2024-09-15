@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import {
   DataConnect,
   DataSource,
@@ -10,7 +8,7 @@ import {
 } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'

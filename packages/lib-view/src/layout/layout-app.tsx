@@ -1,14 +1,13 @@
-import type { SystemType } from '@gnowth/lib-theme'
-import type { FunctionComponent, ReactNode } from 'react'
-
 import { useAppTheme } from '@gnowth/lib-application'
 import {
+  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemCompose,
   systemGap,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { FunctionComponent, ReactNode } from 'react'
 
 import { UtilSlot } from '../util/util-slot'
 import { LayoutStack } from './layout-stack'

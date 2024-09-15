@@ -1,5 +1,4 @@
-import type { ObjectLiteral } from '@gnowth/lib-utils'
-
+import { ObjectLiteral } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 export type AppSetup<Configuration, Configs = ObjectLiteral> = (configs: Configs) => Configuration

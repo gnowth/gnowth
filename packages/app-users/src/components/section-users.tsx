@@ -1,5 +1,3 @@
-import type { FunctionComponent } from 'react'
-
 import {
   LayoutFlex,
   LayoutGrid,
@@ -13,7 +11,7 @@ import {
 } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
-import { Fragment, useMemo } from 'react'
+import { Fragment, FunctionComponent, useMemo } from 'react'
 import { atom, useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'

@@ -1,8 +1,7 @@
 import * as R from 'remeda'
 
-import type { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
-
 import { guardNumberLike } from './guards'
+import { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
 
 type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
 

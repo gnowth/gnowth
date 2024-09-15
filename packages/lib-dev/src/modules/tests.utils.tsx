@@ -1,8 +1,6 @@
-import type { RenderOptions } from '@testing-library/react'
-import type { ComponentType } from 'react'
-
-import { act, render, waitFor } from '@testing-library/react'
+import { RenderOptions, act, render, waitFor } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
+import { ComponentType } from 'react'
 import * as R from 'remeda'
 
 type Loader<TParameters extends object> = (parameters: TParameters) => Promise<void>

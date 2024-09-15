@@ -1,6 +1,4 @@
-import type { PageServerComponent } from '@gnowth/lib-react'
-
-import { ErrorCustom } from '@gnowth/lib-react'
+import { ErrorCustom, PageServerComponent } from '@gnowth/lib-react'
 import { MDXRemote } from 'next-mdx-remote'
 
 import { RecipeService } from '../modules/recipes.services'

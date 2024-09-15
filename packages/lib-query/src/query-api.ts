@@ -1,10 +1,9 @@
-import type { Model } from '@gnowth/lib-model'
-import type { ObjectLiteral } from '@gnowth/lib-utils'
+import { Model } from '@gnowth/lib-model'
+import { ObjectLiteral } from '@gnowth/lib-utils'
 
-import type { QueryResource } from './query-resource'
-import type { QueryConfigs } from './types'
-
+import { QueryResource } from './query-resource'
 import { QuerySerializer } from './query-serializer'
+import { QueryConfigs } from './types'
 
 interface QueryConfigsApi<Value extends ObjectLiteral> {
   endpoint: string

@@ -1,8 +1,6 @@
-import type { PlatformParameters } from '../core/platform'
-import type { EventStream } from './events.streams'
-import type { PlatformEvent } from './events.types'
-
-import { PlatformConstant } from '../core/platform'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { EventStream } from './events.streams'
+import { PlatformEvent } from './events.types'
 
 type Parameters = { eventStream: EventStream } & PlatformParameters
 export class EventService {

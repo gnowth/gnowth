@@ -1,5 +1,5 @@
-import type { VariantType } from '@gnowth/lib-theme'
-import type { PropsUITypography } from '@gnowth/lib-view'
+import { VariantType } from '@gnowth/lib-theme'
+import { PropsUITypography } from '@gnowth/lib-view'
 
 export const body1: VariantType<PropsUITypography> = {
   as: 'p',

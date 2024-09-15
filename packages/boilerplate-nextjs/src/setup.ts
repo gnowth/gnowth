@@ -1,6 +1,4 @@
-import type { AppSetup } from '@gnowth/lib-application'
-
-import { appSetupCompose } from '@gnowth/lib-application'
+import { AppSetup, appSetupCompose } from '@gnowth/lib-application'
 import { QueryCache, QueryClient } from '@tanstack/react-query'
 
 import { dependencies } from './dependencies'

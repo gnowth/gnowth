@@ -1,5 +1,3 @@
-import type { ReactElement } from 'react'
-
 import {
   AppLink,
   DataConnect,
@@ -13,17 +11,14 @@ import {
   UIDivider,
   UIPaper,
   UITypography,
-  // useAppApplication,
 } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { AuthPageToken } from '../modules/application-auth'
 
-// import type AppModelApplicationAuth from '../models/app-model-application-auth';
-
-// TODO: Add DataWarning for non field errors, and DataTrigger for login button
-export function PageLogin(): ReactElement {
-  // const application = useAppApplication<AppModelApplicationAuth>();
-
+// TODO(enhancement): Add DataWarning for non field errors
+// TODO(feature): login when login button is triggered
+export const PageLogin: FunctionComponent = () => {
   return (
     <LayoutPage>
       <LayoutSection

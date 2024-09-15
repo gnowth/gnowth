@@ -1,6 +1,5 @@
-import type { FunctionComponent } from 'react'
-
 import { LayoutSection, UIProgress } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 export const AppLoading: FunctionComponent = () => {
   return (

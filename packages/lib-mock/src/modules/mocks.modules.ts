@@ -1,4 +1,4 @@
-import type { PlatformParameters } from '@gnowth/lib-platform'
+import { PlatformParameters } from '@gnowth/lib-platform'
 
 import { FakerClient } from './mocks.clients'
 import { MockConstant } from './mocks.constants'

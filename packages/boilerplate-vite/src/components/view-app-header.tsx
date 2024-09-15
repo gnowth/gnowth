@@ -1,7 +1,6 @@
-import type { FunctionComponent } from 'react'
-
 import { AuthPageToken } from '@gnowth/app-auth'
 import { AppLink, LayoutFlex, LayoutSection, UIButton, UIIcon, UITypography } from '@gnowth/lib-react'
+import { FunctionComponent } from 'react'
 
 import { TokenApplication } from '../modules/app-model-environment'
 

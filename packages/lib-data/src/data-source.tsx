@@ -1,14 +1,10 @@
-import type { PropsLayout } from '@gnowth/lib-application'
-import type { Theme } from '@gnowth/lib-theme'
-import type { ComponentType, ReactElement, ReactNode } from 'react'
-
-import { AppLayout, AppTheme } from '@gnowth/lib-application'
-
-import type { DataValue } from './types'
-import type { PropsUseDataSource } from './use-data-source'
+import { AppLayout, AppTheme, PropsLayout } from '@gnowth/lib-application'
+import { Theme } from '@gnowth/lib-theme'
+import { ComponentType, ReactElement, ReactNode } from 'react'
 
 import { DataContext } from './data-context'
-import { useDataSource } from './use-data-source'
+import { DataValue } from './types'
+import { PropsUseDataSource, useDataSource } from './use-data-source'
 
 // TODO: get source from 'context', 'resource', 'datasource hook',
 // TODO: note that using AppLayout directly from @gnowth/lib-application won't provide access to layout loader in @gnowth/lib-react, which is not what we want

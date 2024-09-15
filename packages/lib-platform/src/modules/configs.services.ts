@@ -1,4 +1,4 @@
-import type { ConfigEnvironment } from './configs.types'
+import { ConfigEnvironment } from './configs.types'
 
 export class ConfigService {
   #environmentFromHostname(hostname: string): ConfigEnvironment {

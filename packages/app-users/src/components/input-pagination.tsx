@@ -1,10 +1,7 @@
-import type { FilterPageSize } from '@gnowth/logic-users'
-import type { FunctionComponent } from 'react'
-
 import { Select } from '@chakra-ui/react'
 import { LayoutFlex, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
-import { FilterModel } from '@gnowth/logic-users'
-import { useMemo } from 'react'
+import { FilterModel, FilterPageSize } from '@gnowth/logic-users'
+import { FunctionComponent, useMemo } from 'react'
 
 interface Value {
   page: number

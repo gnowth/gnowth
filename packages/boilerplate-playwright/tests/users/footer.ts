@@ -1,4 +1,4 @@
-import type { Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 
 export class TestModelFooter {
   readonly page: Page

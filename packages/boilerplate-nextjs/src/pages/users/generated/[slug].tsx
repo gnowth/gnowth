@@ -1,7 +1,6 @@
-import type { GetStaticPropsContext, NextPage } from 'next'
-import type { ComponentProps, ComponentType } from 'react'
-
 import { PageGeneratedClient } from '@gnowth/app-users'
+import { GetStaticPropsContext, NextPage } from 'next'
+import { ComponentProps, ComponentType } from 'react'
 
 export async function getStaticPaths() {
   const paths = await PageGeneratedClient.staticPaths()
