@@ -1,6 +1,5 @@
 export * from '@gnowth/lib-animation'
 export * from '@gnowth/lib-application'
-export * from '@gnowth/lib-async'
 export * from '@gnowth/lib-data'
 export * from '@gnowth/lib-mock'
 export * from '@gnowth/lib-model'
