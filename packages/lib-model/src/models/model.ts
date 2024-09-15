@@ -21,9 +21,9 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   // api?: QueryApi<Value>
 
   protected dependencies: Parameters['dependencies']
-  modelName = ''
-
   protected parameters: Parameters
+
+  modelName = ''
 
   schema = {}
 

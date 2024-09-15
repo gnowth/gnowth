@@ -20,15 +20,6 @@ type Parameters = {
 export class PlatformManager {
   static #global: GlobalThis = globalThis
 
-  static async get(parameters?: Parameters): Promise<Platform> {
-    await this.#mount(parameters)
-    return this.#global.platform as Platform
-  }
-
-  static unmount(): void {
-    delete this.#global.platform
-  }
-
   static async #load(parameters?: Parameters): Promise<typeof Platform> {
     const url = parameters?.url
     if (!R.isString(url)) {
@@ -53,5 +44,14 @@ export class PlatformManager {
     const Constructor = parameters?.Constructor ?? (await this.#load(parameters))
     const platform = await Constructor.construct(parameters)
     this.#global.platform = platform
+  }
+
+  static async get(parameters?: Parameters): Promise<Platform> {
+    await this.#mount(parameters)
+    return this.#global.platform as Platform
+  }
+
+  static unmount(): void {
+    delete this.#global.platform
   }
 }
