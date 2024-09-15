@@ -10,7 +10,7 @@ import {
 } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
-import { useMemo } from 'react'
+import { useState } from 'react'
 import { useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
@@ -32,8 +32,7 @@ const FormUserComponent: FunctionComponent = () => {
     dependencies.userService.mutateOptions({ onSuccess: handleOnUserMutation }),
   )
   const userQuery = useSuspenseQuery(dependencies.userService.queryOptions({ id }))
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const initialValue = useMemo(() => userQuery.data?.data ?? dependencies.userModel.fromData({}), [])
+  const [initialValue] = useState(() => userQuery.data?.data ?? dependencies.userModel.fromData({}))
 
   return (
     <LayoutSection variant="container">

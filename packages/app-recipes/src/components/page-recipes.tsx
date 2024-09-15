@@ -8,23 +8,24 @@ import type { Recipe } from '../modules/recipes'
 
 interface Props {
   resources: {
-    ingredients?: QueryResource<Ingredient>
-    recipes?: QueryResource<Recipe>
+    ingredients?: QueryResource<Ingredient[]>
+    recipes?: QueryResource<Recipe[]>
   }
 }
 
-// TODO: remove log
 export function PageRecipes(props: Props): ReactElement {
   const ingredients = props.resources.ingredients?.read()
   const recipes = props.resources.recipes?.read()
-  // eslint-disable-next-line no-console
-  console.log('recipes', recipes, ingredients)
 
   return (
     <LayoutPage>
       <LayoutSection palette="text" paletteWeight="a100" variant="container">
         <LayoutContent alignSelf="center" marginTop="xl">
           <UITypography value="Most popular recipes" variant="h3" />
+
+          <UITypography value={`ingredients count: ${recipes?.length}`} />
+
+          <UITypography value={`ingredients count: ${ingredients?.length}`} />
         </LayoutContent>
       </LayoutSection>
     </LayoutPage>
