@@ -13,7 +13,6 @@ module.exports = {
     'sonarjs/no-dead-store': 'off',
     // Note: only keep this one
     'sonarjs/no-duplicate-string': 'off',
-    'sonarjs/no-hardcoded-credentials': 'off',
     'sonarjs/no-ignored-exceptions': 'off',
     'sonarjs/no-misused-promises': 'off',
     'sonarjs/no-nested-conditional': 'off',
