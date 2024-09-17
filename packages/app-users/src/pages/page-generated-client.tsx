@@ -1,19 +1,11 @@
-import { LayoutPage } from '@gnowth/lib-react'
-import { GetStaticPropsContext } from 'next'
-import { FunctionComponent } from 'react'
+import { LayoutPage, PageClientComponent } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
 import { sections } from '../sections'
 
-type Paths = { params: { slug: string } }[]
 type Props = { contents: (keyof typeof sections)[] }
 
-interface PageServerComponent<Props> extends FunctionComponent<Props> {
-  staticPaths: () => Paths
-  staticProps: (context: GetStaticPropsContext) => Props
-}
-
-export const PageGeneratedClient: PageServerComponent<Props> = (props) => {
+export const PageGeneratedClient: PageClientComponent<Props> = (props) => {
   return (
     <LayoutPage>
       {props.contents?.map((section, index) => {
@@ -24,19 +16,17 @@ export const PageGeneratedClient: PageServerComponent<Props> = (props) => {
   )
 }
 
-PageGeneratedClient.staticPaths = (): Paths => {
+PageGeneratedClient.staticPaths = async () => {
   const pagesKey = Object.keys(source)
-
-  return pagesKey.map((key) => ({ params: { slug: key } }))
+  const paths = pagesKey.map((key) => ({ params: { slug: key } }))
+  return { fallback: false, paths }
 }
 
 // DEBT: add type guard instead of casting
-PageGeneratedClient.staticProps = (context: GetStaticPropsContext): Props => {
-  if (!context.params?.slug) return { contents: [] }
-
+PageGeneratedClient.staticProps = async (context) => {
+  if (!context.params?.slug) return { props: { contents: [] } }
   const contents = (source as Record<keyof typeof source, (keyof typeof sections)[]>)[
     context.params.slug as keyof typeof source
   ]
-
-  return { contents }
+  return { props: { contents } }
 }

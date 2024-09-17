@@ -41,10 +41,10 @@ export const testSetupRenderComponent =
       parametersDefault.propsMerge ??
       (R.mergeAll as unknown as (overrides: (Partial<TProps> | undefined)[]) => TProps)
     const props = propsMerge([parametersDefault.props, parametersOverride?.props])
-    const parametersMerger =
+    const parametersMerge =
       parametersSetup?.parametersMerge ??
       (R.mergeAll as unknown as (overrides: (TParameters | undefined)[]) => TParameters)
-    const parameters = parametersMerger([
+    const parameters = parametersMerge([
       parametersSetup?.parameters,
       parametersDefault.parameters,
       parametersOverride?.parameters,
@@ -62,7 +62,8 @@ export const testSetupRenderComponent =
     )
 
     const rerender = async (parametersRerender?: ParametersOverride<TProps, TParameters>) => {
-      await act(() => testRunLoaders(loaders, parametersMerger([parameters, parametersRerender?.parameters])))
+      // eslint-disable-next-line sonarjs/no-nested-functions
+      await act(() => testRunLoaders(loaders, parametersMerge([parameters, parametersRerender?.parameters])))
       return result.rerender(<Component {...propsMerge([props, parametersRerender?.props])} />)
     }
 

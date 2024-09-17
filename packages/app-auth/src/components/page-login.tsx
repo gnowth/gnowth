@@ -35,7 +35,7 @@ export const PageLogin: FunctionComponent = () => {
             layoutProps={{ gap: 'sm' }}
             layoutVariant="verticalStretch"
             mode="uncontrolled"
-            value={{ password: 'pass', username: 'user' }}
+            value={{}}
           >
             <DataConnect component="text" labelValue="Username" name="username" />
 
