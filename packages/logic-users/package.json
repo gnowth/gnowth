@@ -27,7 +27,7 @@
     "@gnowth/lib-model": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "axios": "1.7.7",
-    "remeda": "2.13.0"
+    "remeda": "2.14.0"
   },
   "devDependencies": {
     "@gnowth/app-configs": "0.0.0",

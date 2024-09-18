@@ -30,7 +30,7 @@
     "i18next-browser-languagedetector": "8.0.0",
     "i18next-http-backend": "2.6.1",
     "eventemitter3": "5.0.1",
-    "remeda": "2.13.0",
+    "remeda": "2.14.0",
     "rxjs": "7.8.1"
   },
   "devDependencies": {
