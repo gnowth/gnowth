@@ -1,5 +1,4 @@
-import { PlatformParameters } from '../core/platform'
-import { PlatformConstant } from '../core/platform.constants'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { AuthenticationClient } from './authentications.clients'
 import { AuthenticationController } from './authentications.controllers'
 import { AuthenticationService } from './authentications.services'

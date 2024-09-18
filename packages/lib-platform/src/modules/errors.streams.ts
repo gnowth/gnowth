@@ -23,16 +23,16 @@ export class ErrorStream {
 
 export class ErrorStream1 {
   #errorModel = new ErrorModel()
-  errorIn: Subject<ErrorData>
-  errorOut: Observable<ErrorData>
+  readonly errorIn$: Subject<ErrorData>
+  readonly errorOut$: Observable<ErrorData>
 
   nextUnknown = (error: unknown) => {
-    return this.errorIn.next(this.#errorModel.fromErrorUnknown(error))
+    return this.errorIn$.next(this.#errorModel.fromErrorUnknown(error))
   }
 
   constructor() {
-    this.errorIn = new Subject()
-    this.errorOut = this.errorIn
+    this.errorIn$ = new Subject()
+    this.errorOut$ = this.errorIn$
   }
 
   static async construct(_parameters: PlatformParameters): Promise<ErrorStream1> {
@@ -40,6 +40,6 @@ export class ErrorStream1 {
   }
 
   next(error: ErrorData) {
-    return this.errorIn.next(error)
+    return this.errorIn$.next(error)
   }
 }

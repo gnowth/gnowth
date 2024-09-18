@@ -1,5 +1,4 @@
-import { PlatformParameters } from '../core/platform'
-import { PlatformConstant } from '../core/platform.constants'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { LocaleService } from './locales.services'
 
 export class LocaleModule {
