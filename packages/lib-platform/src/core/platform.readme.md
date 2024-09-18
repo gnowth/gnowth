@@ -31,3 +31,19 @@ TODO: check on hooks for node
 
 - www.youtube.com/watch?v=KJP1E-Y-xyo
 - www.youtube.com/watch?v=nyFHR0dDZo0
+
+# Definitions
+
+- Client
+  - client is an interface to different other client
+- Controller
+  - connect streams
+  - connect sub system?
+- Model
+  - transform data
+  - should model be synchronous rather than async like everything else?
+- Module
+  - load all sub system
+  - load and mount dependencies
+- Service
+  - CRUD data using different clients

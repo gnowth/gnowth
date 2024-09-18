@@ -26,6 +26,7 @@ type PlatformModuleDependencies = {
 
 // TODO: @ErrorTrace({ context: 'Platform', source: 'lib-platform })
 // TODO: only mount required dependencies even if it is already loaded
+// TODO: load, mount, get. mount/get should be able to mount/get targeted variant. load should store all variant in constructors
 export class Platform {
   #clients: Map<string, Map<string, object>> = new Map()
   #components: Map<string, object> = new Map()

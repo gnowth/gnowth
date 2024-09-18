@@ -1,5 +1,4 @@
-import { PlatformParameters } from '../core/platform'
-import { PlatformConstant } from '../core/platform.constants'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { DataService } from './data.services'
 
 export class DataModule {

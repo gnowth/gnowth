@@ -1,5 +1,4 @@
-import { PlatformParameters } from '../core/platform'
-import { PlatformConstant } from '../core/platform.constants'
+import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { ErrorStream1 } from './errors.streams'
 
 export class ErrorModule {

@@ -14,6 +14,10 @@ export const PlatformConstant = {
   eventStream: 'PlatformEventStream',
   localeModule: 'PlatformLocaleModule',
   localeService: 'PlatformLocaleService',
+  queryClient: 'PlatformQueryClient',
+  queryClientVariant: { queryClientV5: 'queryClientV5' },
+  queryController: 'PlatformQueryController',
+  queryModule: 'PlatformQueryModule',
   scriptModule: 'PlatformScriptModule',
   scriptService: 'PlatformScriptService',
 } as const
