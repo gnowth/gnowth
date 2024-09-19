@@ -12,6 +12,7 @@ interface Props {
   onError?: (error: Error, errorInfo: ErrorInfo) => void
 }
 
+// DEBT(feature): display boundary based on type of error
 export const AppBoundary: FunctionComponent<Props> = (props) => {
   const BoundaryMaybe = useAppBoundary(props.boundary)
 

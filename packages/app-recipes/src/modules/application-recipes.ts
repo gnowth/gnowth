@@ -1,2 +1,2 @@
-export * from './application-recipes.components'
+export * from '../components/application-recipes'
 export * from './application-recipes.models'

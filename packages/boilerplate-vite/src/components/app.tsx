@@ -15,9 +15,9 @@ import { ViewFrameDefault } from './view-frame-default'
 import { ViewFrameTasks } from './view-frame-tasks'
 
 // TODO: add recipe application
-// const ApplicationRecipes = lazy(() =>
-//   import('@gnowth/app-recipes').then((module) => ({ default: module.ApplicationRecipes })),
-// )
+const ApplicationRecipes = lazy(() =>
+  import('@gnowth/app-recipes').then((module) => ({ default: module.ApplicationRecipes })),
+)
 const ApplicationTasks = lazy(() =>
   import('@gnowth/app-tasks').then((module) => ({ default: module.ApplicationTasks })),
 )
@@ -42,7 +42,7 @@ export const App: FunctionComponent<Props> = (props) => (
   >
     <ApplicationAuth application={TokenApplication.auth} />
     <ApplicationPages application={TokenApplication.pages} />
-    {/* <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} /> */}
+    <AppApplicationLazy application={TokenApplication.recipes} component={ApplicationRecipes} />
     <AppApplicationLazy application={TokenApplication.tasks} component={ApplicationTasks} />
     <AppRedirect application={TokenApplication.pages} exact from="/" />
   </AppEnvironment>
