@@ -5,8 +5,7 @@ import { RecipeService } from '../modules/recipes.services'
 
 type Props = { source: MDXRemoteSerializeResult }
 type Params = { slug: string }
-
-export const PageContentsClient: PageClientComponent<Props> = (props) => {
+export const PageContentsClient: PageClientComponent<Props, Params> = (props) => {
   return (
     <MDXRemote
       compiledSource={props.source.compiledSource}

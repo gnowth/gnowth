@@ -4,9 +4,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import { RecipeService } from '../modules/recipes.services'
 
 type Params = { slug: string }
-type Props = { params?: Params }
-
-export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
+export const PageRecipesServer: PageServerComponent<Params> = async (props) => {
   if (!props.params) {
     throw new ErrorCustom({
       code: 'app-recipes--page-recipes-server--01',
@@ -25,7 +23,7 @@ export const PageRecipesServer: PageServerComponent<Props> = async (props) => {
   )
 }
 
-PageRecipesServer.generateStaticParams = async (): Promise<Params[]> => {
+PageRecipesServer.generateStaticParams = async () => {
   const recipeService = new RecipeService()
   return recipeService.recipeGetParams()
 }

@@ -1,27 +1,25 @@
 import { ObjectLiteral } from '@gnowth/lib-utils'
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
-type Params<Slug = string | string[] | undefined> = { slug: Slug }
-
 // TODO: figure out why we can't extend FunctionComponent here
 // https://nextjs.org/docs/app/building-your-application/configuring/typescript#async-server-component-typescript-error
-export interface PageServerComponent<Props> {
-  (props: Props): Promise<ReactNode>
-  generateStaticParams?: () => Promise<Params[]>
+export interface PageServerComponent<TParams> {
+  (props: { params?: TParams }): Promise<ReactNode>
+  generateStaticParams?: () => Promise<TParams[]>
 }
 
-interface StaticPath<Slug = string | string[] | undefined> {
+interface StaticPath<TParams> {
   fallback: boolean
-  paths: { params: Params<Slug> }[]
+  paths: { params: TParams }[]
 }
-interface StaticPropsContext<Slug = string | string[] | undefined> {
-  params?: Params<Slug>
+interface StaticPropsContext<TParams> {
+  params?: TParams
 }
 
-export interface PageClientComponent<Props, Slug = string | string[] | undefined>
-  extends FunctionComponent<Props> {
-  staticPaths?: () => Promise<StaticPath<Slug>>
-  staticProps?: (context: StaticPropsContext<Slug>) => Promise<{ props: Props }>
+export interface PageClientComponent<TProps = object, TParams = unknown> extends FunctionComponent<TProps> {
+  Layout?: ComponentType
+  staticPaths?: () => Promise<StaticPath<TParams>>
+  staticProps?: (context: StaticPropsContext<TParams>) => Promise<{ props: TProps }>
 }
 
 export interface Slottable {

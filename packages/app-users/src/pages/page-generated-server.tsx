@@ -1,17 +1,11 @@
-import { LayoutPage, LayoutStack } from '@gnowth/lib-react'
-import { FunctionComponent } from 'react'
+import { PageServerComponent } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
+import { PageGenerated } from '../components/page-generated'
 import { sections } from '../sections'
 
 type Params = { slug: string }
-type Props = { params?: Params }
-
-interface PageServerComponent<Props> extends FunctionComponent<Props> {
-  generateStaticParams?: () => Promise<Params[]>
-}
-
-export const PageGeneratedServer: PageServerComponent<Props> = (props) => {
+export const PageGeneratedServer: PageServerComponent<Params> = async (props) => {
   if (!props.params?.slug) {
     throw new Error('No page found')
   }
@@ -21,20 +15,10 @@ export const PageGeneratedServer: PageServerComponent<Props> = (props) => {
       props.params.slug as keyof typeof source
     ] ?? []
 
-  return (
-    <LayoutPage>
-      <LayoutStack gap="none" minHeight="100vh">
-        {contents.map((section, index) => {
-          const Component = sections[section]
-          return <Component key={index} />
-        })}
-      </LayoutStack>
-    </LayoutPage>
-  )
+  return <PageGenerated contents={contents} />
 }
 
-PageGeneratedServer.generateStaticParams = async (): Promise<Params[]> => {
+PageGeneratedServer.generateStaticParams = async () => {
   const pagesKey = Object.keys(source)
-
   return pagesKey.map((slug) => ({ slug }))
 }
