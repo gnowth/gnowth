@@ -1,1 +1,1 @@
-export { PageChangelog as default } from '@gnowth/app-users'
+export { PageChangelogClient as default } from '@gnowth/app-users'

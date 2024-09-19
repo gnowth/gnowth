@@ -1,19 +1,13 @@
-import { LayoutPage, PageClientComponent } from '@gnowth/lib-react'
+import { PageClientComponent } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
+import { PageGenerated } from '../components/page-generated'
 import { sections } from '../sections'
 
+type Params = { slug: string }
 type Props = { contents: (keyof typeof sections)[] }
-
-export const PageGeneratedClient: PageClientComponent<Props> = (props) => {
-  return (
-    <LayoutPage>
-      {props.contents?.map((section, index) => {
-        const Component = sections[section]
-        return <Component key={index} />
-      })}
-    </LayoutPage>
-  )
+export const PageGeneratedClient: PageClientComponent<Props, Params> = (props) => {
+  return <PageGenerated contents={props.contents} />
 }
 
 PageGeneratedClient.staticPaths = async () => {

@@ -1,12 +1,12 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { FrameDefault, withAugmented } from '@gnowth/app-users'
-import { AppEnvironment, LayoutStack } from '@gnowth/lib-react'
+import { withAugmented } from '@gnowth/app-users'
+import { AppEnvironment } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import { Attributes, ComponentType, FunctionComponent, PropsWithChildren } from 'react'
+import { Attributes, ComponentType, Fragment, FunctionComponent, PropsWithChildren } from 'react'
 import { RecoilRoot } from 'recoil'
 
 import { AppError } from '../components/app-error'
@@ -31,25 +31,8 @@ const Wrapper = withAugmented<PropsWithChildren<Attributes>>({
   LoadingComponent: AppLoading,
 })(WrapperComponent)
 
-const getLayout = (props: Props) => {
-  if (props.Component.Layout) {
-    return props.Component.Layout
-  }
-
-  if (props.Component.Layout === undefined) {
-    return FrameDefault
-  }
-
-  const Layout: FunctionComponent<PropsWithChildren<Attributes>> = (layoutProps) => (
-    <LayoutStack flexGrow="1" gap="none">
-      {layoutProps.children}
-    </LayoutStack>
-  )
-  return Layout
-}
-
 const App: FunctionComponent<Props> = (props) => {
-  const Layout = getLayout(props)
+  const Layout = props.Component.Layout ?? Fragment
 
   return (
     <RecoilRoot>

@@ -1,1 +1,1 @@
-export { PageUsers as default } from '@gnowth/app-users'
+export { PageUsersClient as default } from '@gnowth/app-users'
