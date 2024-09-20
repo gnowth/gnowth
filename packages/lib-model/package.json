@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@gnowth/lib-utils": "0.0.0",
-    "remeda": "2.13.0"
+    "remeda": "2.14.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
