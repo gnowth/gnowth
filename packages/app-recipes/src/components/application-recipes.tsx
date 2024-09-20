@@ -1,12 +1,12 @@
 import { AppApplication, AppModelApplication, AppPage, AppPageNotFound, AppRedirect } from '@gnowth/lib-react'
 import { FunctionComponent } from 'react'
 
-import { PageDashboard } from '../components/page-dashboard'
-import { PageIngredient } from '../components/page-ingredient'
-import { PageLanding } from '../components/page-landing'
-import { PageRecipeEdit } from '../components/page-recipe-edit'
-import { PageRecipes } from '../components/page-recipes'
-import { TokenPage } from './application-recipes'
+import { TokenPage } from '../modules/application-recipes'
+import { PageDashboard } from './page-dashboard'
+import { PageIngredient } from './page-ingredient'
+import { PageLanding } from './page-landing'
+import { PageRecipeEdit } from './page-recipe-edit'
+import { PageRecipes } from './page-recipes'
 
 interface Props {
   application?: AppModelApplication | string

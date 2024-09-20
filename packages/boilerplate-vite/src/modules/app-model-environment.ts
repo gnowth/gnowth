@@ -1,9 +1,9 @@
 import { AppModelApplicationAuth } from '@gnowth/app-auth'
 import { AppModelApplicationPages } from '@gnowth/app-pages'
-// import { AppModelApplicationRecipes } from '@gnowth/app-recipes'
+import { AppModelApplicationRecipes } from '@gnowth/app-recipes'
 import { AppModelApplicationTasks } from '@gnowth/app-tasks'
 import { AppModelEnvironment } from '@gnowth/lib-react'
-// import { UserModel } from '@gnowth/logic-users'
+import { UserModel } from '@gnowth/logic-users'
 
 export enum TokenApplication {
   auth = 'auth',
@@ -15,7 +15,7 @@ export enum TokenApplication {
 const routes = {
   [TokenApplication.auth]: () => `/${TokenApplication.auth}/`,
   [TokenApplication.pages]: () => `/${TokenApplication.pages}/`,
-  // [TokenApplication.recipes]: () => `/${TokenApplication.recipes}/`,
+  [TokenApplication.recipes]: () => `/${TokenApplication.recipes}/`,
   [TokenApplication.tasks]: () => `/${TokenApplication.tasks}/`,
 }
 
@@ -32,10 +32,10 @@ export class AppModelEnvironmentMono extends AppModelEnvironment {
         route: routes[TokenApplication.pages](),
       }),
 
-      // [TokenApplication.recipes]: new AppModelApplicationRecipes({
-      //   route: routes[TokenApplication.recipes](),
-      //   user: new UserModel({}),
-      // }),
+      [TokenApplication.recipes]: new AppModelApplicationRecipes({
+        route: routes[TokenApplication.recipes](),
+        user: new UserModel({}),
+      }),
 
       [TokenApplication.tasks]: new AppModelApplicationTasks({
         route: routes[TokenApplication.tasks](),
