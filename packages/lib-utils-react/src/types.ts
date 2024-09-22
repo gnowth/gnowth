@@ -3,7 +3,7 @@ import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 // TODO: figure out why we can't extend FunctionComponent here
 // https://nextjs.org/docs/app/building-your-application/configuring/typescript#async-server-component-typescript-error
-export interface PageServerComponent<TParams> {
+export interface PageServerComponent<TParams = object> {
   (props: { params?: TParams }): Promise<ReactNode>
   generateStaticParams?: () => Promise<TParams[]>
 }

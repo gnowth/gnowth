@@ -1,7 +1,3 @@
-export * from './modules/application-recipes'
-export * from './modules/ingredients.models'
-export * from './modules/recipes.models'
-
 export * from './pages/page-contents-client'
 export * from './pages/page-contents-server'
 export * from './pages/page-ingredients-client'
