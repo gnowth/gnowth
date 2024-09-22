@@ -5,23 +5,6 @@ import { ErrorModel } from './errors.models'
 import { ErrorData } from './errors.types'
 
 export class ErrorStream {
-  #errorModel!: ErrorModel
-  pushErrorUnknown = (error: unknown) => {
-    return this.stream.next(this.#errorModel.fromErrorUnknown(error))
-  }
-
-  stream = new Subject<ErrorData>()
-
-  constructor() {
-    this.onInit()
-  }
-
-  onInit() {
-    this.#errorModel = new ErrorModel()
-  }
-}
-
-export class ErrorStream1 {
   #errorModel = new ErrorModel()
   readonly errorIn$: Subject<ErrorData>
   readonly errorOut$: Observable<ErrorData>
@@ -35,7 +18,7 @@ export class ErrorStream1 {
     this.errorOut$ = this.errorIn$
   }
 
-  static async construct(_parameters: PlatformParameters): Promise<ErrorStream1> {
+  static async construct(_parameters: PlatformParameters): Promise<ErrorStream> {
     return new this()
   }
 

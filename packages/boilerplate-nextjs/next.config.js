@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 const bundleAnalyzer = require('@next/bundle-analyzer')
 const mdx = require('@next/mdx')
+/* eslint-enable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 
 const withBundleAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
 const withMDX = mdx({ extension: /\.mdx?$/ })

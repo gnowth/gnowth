@@ -1,10 +1,10 @@
 import { PlatformConstant, PlatformParameters } from '../core/platform'
-import { ErrorStream1 } from './errors.streams'
+import { ErrorStream } from './errors.streams'
 import { QueryInterfaceClientV1 } from './queries.types'
 
 export class QueryController {
   static async construct(parameters: PlatformParameters): Promise<QueryController> {
-    const errorStream = await parameters.platform.providerGet<ErrorStream1>({
+    const errorStream = await parameters.platform.providerGet<ErrorStream>({
       name: PlatformConstant.errorStream,
       type: 'provider',
     })

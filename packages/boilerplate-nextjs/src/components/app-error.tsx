@@ -1,4 +1,4 @@
-import { LayoutSection, UIButton, UITypography, useTranslation } from '@gnowth/lib-react'
+import { LayoutSection, UIButton, UITypography } from '@gnowth/lib-react'
 import { FunctionComponent } from 'react'
 
 type Props = {
@@ -7,13 +7,11 @@ type Props = {
 }
 
 export const AppError: FunctionComponent<Props> = (props) => {
-  const { t } = useTranslation('other')
-
   return (
     <LayoutSection layout="flex" variant="container">
-      <UITypography as="span" value={t('There was an error!')} />
+      <UITypography as="span" value="There was an error!" />
 
-      <UIButton onClick={() => props.reset()} textValue={t('Try again')} />
+      <UIButton onClick={() => props.reset()} textValue="Try again" />
     </LayoutSection>
   )
 }
