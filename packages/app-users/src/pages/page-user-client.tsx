@@ -1,9 +1,9 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 
-import { FrameDefault } from '../components/frame-default'
+import { ApplicationUsersFrame } from '../components/application-users.frame'
 import { PageUser } from '../components/page-user'
 
 export const PageUserClient: PageClientComponent = () => {
   return <PageUser />
 }
-PageUserClient.Layout = FrameDefault
+PageUserClient.Layout = ApplicationUsersFrame

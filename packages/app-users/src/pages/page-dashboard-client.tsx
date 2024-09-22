@@ -1,9 +1,9 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 
-import { FrameDefault } from '../components/frame-default'
+import { ApplicationUsersFrame } from '../components/application-users.frame'
 import { PageDashboard } from '../components/page-dashboard'
 
 export const PageDashboardClient: PageClientComponent = () => {
   return <PageDashboard />
 }
-PageDashboardClient.Layout = FrameDefault
+PageDashboardClient.Layout = ApplicationUsersFrame

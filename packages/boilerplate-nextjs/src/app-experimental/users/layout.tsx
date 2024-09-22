@@ -1,1 +1,1 @@
-export { FrameDefault as default } from '@gnowth/app-users'
+export { ApplicationUsersFrame as default } from '@gnowth/app-users'

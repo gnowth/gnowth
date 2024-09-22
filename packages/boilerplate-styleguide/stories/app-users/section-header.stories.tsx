@@ -1,10 +1,11 @@
-import { SectionHeader } from '@gnowth/app-users'
+import { ApplicationUsersProvider, SectionHeader } from '@gnowth/app-users'
 import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
 type Story = StoryObj<typeof SectionHeader>
 const meta: Meta<typeof SectionHeader> = {
   component: SectionHeader,
+  parameters: { libReact: { Provider: ApplicationUsersProvider } },
   title: 'AppUsers/SectionHeader',
 }
 

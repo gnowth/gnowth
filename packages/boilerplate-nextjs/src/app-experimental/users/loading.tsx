@@ -1,1 +1,1 @@
-export { AppLoading as default } from '../../components/app-loading'
+export { ApplicationUsersLoading as default } from '@gnowth/app-users'

@@ -118,7 +118,7 @@ export class Platform {
     const constructors = Platform.constructorMerge(this.#parameters.constructors, definition.constructors)
     if (definition.type === 'client') {
       const clients = constructors.clients?.[definition.name] ?? {}
-      return definition.variant ? clients[definition.name] : R.values(clients).at(0)
+      return definition.variant ? clients[definition.variant] : R.values(clients).at(0)
     }
     if (definition.type === 'component') {
       // TODO
@@ -140,6 +140,7 @@ export class Platform {
       return
     }
     // TODO: need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call
+    // DEBT: use subscribe to know when it finished loading
     const Constructor =
       this.#dependencyGetConstructor(definition) ?? (await this.#packageLoadConstructor(definition))
     const dependency = await Constructor.construct({ platform: this })

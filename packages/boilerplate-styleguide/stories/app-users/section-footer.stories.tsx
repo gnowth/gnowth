@@ -1,13 +1,13 @@
-import { SectionFooter } from '@gnowth/app-users'
+import { ApplicationUsersProvider, SectionFooter } from '@gnowth/app-users'
 import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
+type Story = StoryObj<typeof SectionFooter>
 const meta: Meta<typeof SectionFooter> = {
   component: SectionFooter,
+  parameters: { libReact: { Provider: ApplicationUsersProvider } },
   title: 'AppUsers/SectionFooter',
 }
-
-type Story = StoryObj<typeof SectionFooter>
 
 export const Desktop: Story = {
   play: async ({ canvasElement }) => {

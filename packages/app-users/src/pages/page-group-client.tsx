@@ -1,9 +1,9 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 
-import { FrameDefault } from '../components/frame-default'
+import { ApplicationUsersFrame } from '../components/application-users.frame'
 import { PageGroup } from '../components/page-group'
 
 export const PageGroupClient: PageClientComponent = () => {
   return <PageGroup />
 }
-PageGroupClient.Layout = FrameDefault
+PageGroupClient.Layout = ApplicationUsersFrame

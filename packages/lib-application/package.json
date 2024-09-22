@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@gnowth/lib-platform": "0.0.0",
+    "@gnowth/lib-platform-react": "0.0.0",
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",
