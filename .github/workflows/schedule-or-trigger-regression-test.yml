@@ -31,7 +31,7 @@ jobs:
 
   e2e_regression:
     container:
-      image: mcr.microsoft.com/playwright:v1.47.1-jammy
+      image: mcr.microsoft.com/playwright:v1.47.2-jammy
       options: --user 1001
     needs: [build_deploy]
     runs-on: ubuntu-latest
