@@ -1,7 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { withAugmented } from '@gnowth/app-users'
 import { AppEnvironment } from '@gnowth/lib-react'
-import { QueryClientProvider } from '@tanstack/react-query'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
@@ -16,7 +15,7 @@ import { SystemNotifications } from '../components/system-notifications'
 import { setup } from '../setup'
 import { theme } from '../theme'
 
-const configurations = setup({})
+setup({})
 
 interface Props extends AppProps {
   Component: {
@@ -36,23 +35,21 @@ const App: FunctionComponent<Props> = (props) => {
 
   return (
     <RecoilRoot>
-      <QueryClientProvider client={configurations.queryClient}>
-        <AppEnvironment theme={theme}>
-          <ChakraProvider>
-            <Head>
-              <AppHead />
-            </Head>
+      <AppEnvironment theme={theme}>
+        <ChakraProvider>
+          <Head>
+            <AppHead />
+          </Head>
 
-            <SystemNotifications />
+          <SystemNotifications />
 
-            <Wrapper>
-              <Layout>
-                <props.Component {...props.pageProps} />
-              </Layout>
-            </Wrapper>
-          </ChakraProvider>
-        </AppEnvironment>
-      </QueryClientProvider>
+          <Wrapper>
+            <Layout>
+              <props.Component {...props.pageProps} />
+            </Layout>
+          </Wrapper>
+        </ChakraProvider>
+      </AppEnvironment>
     </RecoilRoot>
   )
 }

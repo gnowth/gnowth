@@ -1,7 +1,7 @@
 import { LocaleService, PlatformConstant } from '@gnowth/lib-platform'
+import { usePlatformProvider } from '@gnowth/lib-platform-react'
 import { objectDefaults } from '@gnowth/lib-utils'
-import { usePlatformProvider } from '@gnowth/lib-utils-react'
-import { ReactElement, ReactNode, useContext, useMemo } from 'react'
+import { FunctionComponent, ReactNode, useContext, useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
 import { ContextApplication, PropsApplication } from './context-application'
@@ -10,7 +10,7 @@ interface Props extends Partial<PropsApplication> {
   children: ReactNode
 }
 
-export function AppProvider(props: Props): ReactElement {
+export const AppProvider: FunctionComponent<Props> = (props) => {
   const context = useContext(ContextApplication)
   const propsWithDefault = objectDefaults(props as PropsApplication, context)
   const { value: localeService } = usePlatformProvider<LocaleService>({

@@ -1,9 +1,9 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 
-import { FrameDefault } from '../components/frame-default'
+import { ApplicationUsersFrame } from '../components/application-users.frame'
 import { PageChangelog } from '../components/page-changelog'
 
 export const PageChangelogClient: PageClientComponent = () => {
   return <PageChangelog />
 }
-PageChangelogClient.Layout = FrameDefault
+PageChangelogClient.Layout = ApplicationUsersFrame

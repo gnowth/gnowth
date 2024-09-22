@@ -1,1 +1,1 @@
-export { AppError as default } from '../../components/app-error'
+export { ApplicationUsersError as default } from '@gnowth/app-users'

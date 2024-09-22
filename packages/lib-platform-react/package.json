@@ -1,10 +1,10 @@
 {
   "author": "Thierry Wong",
-  "description": "react framework",
+  "description": "Lib platform react",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/lib-react",
+  "name": "@gnowth/lib-platform-react",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -12,38 +12,38 @@
   "version": "0.0.0",
   "eslintConfig": {
     "extends": [
-      "@gnowth/eslint-config/typescript"
+      "@gnowth/eslint-config/typescript-react"
     ]
   },
+  "jest": {
+    "preset": "@gnowth/jest-config"
+  },
   "repository": {
-    "directory": "packages/lib-react",
+    "directory": "packages/lib-platform-react",
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-animation": "0.0.0",
-    "@gnowth/lib-application": "0.0.0",
-    "@gnowth/lib-data": "0.0.0",
-    "@gnowth/lib-mock": "0.0.0",
-    "@gnowth/lib-model": "0.0.0",
-    "@gnowth/lib-query": "0.0.0",
-    "@gnowth/lib-platform-react": "0.0.0",
     "@gnowth/lib-platform": "0.0.0",
-    "@gnowth/lib-theme": "0.0.0",
-    "@gnowth/lib-utils-react": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
-    "@gnowth/lib-view": "0.0.0"
+    "@gnowth/lib-utils-react": "0.0.0",
+    "react": "18.3.1",
+    "react-use": "17.5.1",
+    "react-use-polyfill": "0.1.0",
+    "remeda": "2.14.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
+    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
+    "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts .",
+    "test": "jest",
     "typecheck": "tsc"
   }
 }
