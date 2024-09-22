@@ -1,3 +1,4 @@
+'use client'
 import { PageClientComponent } from '@gnowth/lib-react'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 

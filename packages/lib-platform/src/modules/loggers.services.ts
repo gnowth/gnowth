@@ -1,4 +1,5 @@
-import { APILogger, Log, LogLevel } from './loggers.types'
+import { APILogger, Log } from './loggers.types'
+import { LogLevel } from './loggers.utils'
 import { StorageService } from './storages'
 
 interface OptionsLogger {

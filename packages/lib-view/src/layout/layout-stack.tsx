@@ -40,8 +40,30 @@ const variants: ThemeVariants<PropsLayoutStack> = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
+  horizontalEnd: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  horizontalStart: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
   vertical: {
     alignItems: 'stretch',
+    flexDirection: 'column',
+  },
+  verticalCenter: {
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  verticalEnd: {
+    alignItems: 'flex-end',
+    flexDirection: 'column',
+  },
+  verticalStart: {
+    alignItems: 'flex-start',
     flexDirection: 'column',
   },
 }

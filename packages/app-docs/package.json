@@ -1,10 +1,10 @@
 {
   "author": "Thierry Wong",
-  "description": "Recipes app",
+  "description": "Docs app",
   "license": "AGPL-3.0-only",
   "main": "src/exports.ts",
   "module": "src/exports.ts",
-  "name": "@gnowth/app-recipes",
+  "name": "@gnowth/app-docs",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "sideEffects": false,
@@ -20,12 +20,15 @@
     "./server": "./src/exports.server.ts"
   },
   "repository": {
-    "directory": "packages/app-recipes",
+    "directory": "packages/app-docs",
     "type": "git",
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-react": "0.0.0"
+    "@gnowth/lib-react": "0.0.0",
+    "gray-matter": "4.0.3",
+    "next": "14.2.13",
+    "next-mdx-remote": "5.0.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",

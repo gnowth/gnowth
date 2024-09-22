@@ -3,8 +3,6 @@ import { ObjectLiteral } from '@gnowth/lib-utils'
 import { ErrorData } from './errors'
 import { LogLevel } from './loggers.utils'
 
-export { LogLevel }
-
 export type Log = {
   errors: ErrorData[]
   message: string
