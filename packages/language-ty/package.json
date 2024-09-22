@@ -42,7 +42,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "nodemon": "3.1.6",
+    "nodemon": "3.1.7",
     "ts-node": "10.9.2"
   },
   "scripts": {
