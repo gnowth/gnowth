@@ -1,7 +1,7 @@
 import { Faker } from '@faker-js/faker'
 import * as fakerModule from '@faker-js/faker'
 import {
-  LocaleService,
+  I18nService,
   Platform,
   PlatformConstant,
   PlatformConstructors,
@@ -23,12 +23,12 @@ export class FakerClient implements MockClient {
   }
 
   static async construct(parameters: PlatformParameters) {
-    const localeService = await parameters.platform.providerGet<LocaleService>({
+    const i18nService = await parameters.platform.providerGet<I18nService>({
       constructors: parameters.constructors,
-      name: PlatformConstant.localeService,
+      name: PlatformConstant.i18nService,
       type: 'provider',
     })
-    const locales = localeService.localesSnake
+    const locales = i18nService.localesSnake
     const FakerConstructor = fakerModule.Faker
     const fakerClient = new FakerConstructor({ locale: locales.map((locale) => fakerModule[locale]) })
     return new this({ fakerClient, ...parameters })

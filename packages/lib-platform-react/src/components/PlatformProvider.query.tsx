@@ -1,5 +1,4 @@
-import { PlatformConstant, PlatformDefinitionClient } from '@gnowth/lib-platform'
-import { QueryInterfaceClientV1 } from '@gnowth/lib-platform/src/modules/queries.types'
+import { PlatformConstant, PlatformDefinitionClient, QueryInterfaceClientV1 } from '@gnowth/lib-platform'
 import { ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 
 import { usePlatformClient } from '../hooks/use-platform'
@@ -14,11 +13,7 @@ type Props = PropsWithChildren<{
 export const PlatformProviderQuery: FunctionComponent<Props> = (props) => {
   const { QueryClientProvider } = props
   const definition = QueryClientProvider
-    ? (props.queryClientDefinition ?? {
-        // module: PlatformConstant.queryModule,
-        name: PlatformConstant.queryClient,
-        type: 'client',
-      })
+    ? (props.queryClientDefinition ?? { name: PlatformConstant.queryClient, type: 'client' })
     : undefined
   // DEBT(refactor): use usePlatformClientSuspense
   const { error, loading, value } = usePlatformClient<QueryInterfaceClientV1>(definition)

@@ -1,5 +1,6 @@
-import { DataConnect, DataSource, DataTrigger, LayoutSection, useTranslation } from '@gnowth/lib-react'
+import { DataConnect, DataSource, DataTrigger, LayoutSection } from '@gnowth/lib-react'
 import { FunctionComponent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'

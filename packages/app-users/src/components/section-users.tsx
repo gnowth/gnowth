@@ -7,11 +7,11 @@ import {
   UIButton,
   UISkeleton,
   UITypography,
-  useTranslation,
 } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
 import { Fragment, FunctionComponent, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'

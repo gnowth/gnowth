@@ -3,21 +3,21 @@ import i18nLanguageDetector from 'i18next-browser-languagedetector'
 import i18nBackend from 'i18next-http-backend'
 
 import { PlatformConstant, PlatformParameters } from '../core/platform'
-import { ErrorStream1 } from './errors.streams'
+import { ErrorStream } from './errors.streams'
 
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'
 
-type Parameters = { errorStream: ErrorStream1 } & PlatformParameters
-export class LocaleService {
-  #errorStream: ErrorStream1
+type Parameters = { errorStream: ErrorStream } & PlatformParameters
+export class I18nService {
+  #errorStream: ErrorStream
 
   constructor(parameters: Parameters) {
     this.#errorStream = parameters.errorStream
   }
 
-  static async construct(parameters: PlatformParameters): Promise<LocaleService> {
-    const errorStream = await parameters.platform.providerGet<ErrorStream1>({
+  static async construct(parameters: PlatformParameters): Promise<I18nService> {
+    const errorStream = await parameters.platform.providerGet<ErrorStream>({
       name: PlatformConstant.errorStream,
       type: 'provider',
     })

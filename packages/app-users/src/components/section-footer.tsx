@@ -1,6 +1,7 @@
-import { LayoutSection, UIBox, UITypography, useTranslation } from '@gnowth/lib-react'
+import { LayoutSection, UIBox, UITypography } from '@gnowth/lib-react'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import packageJson from '../../package.json'
 import { dependencies } from '../dependencies'
