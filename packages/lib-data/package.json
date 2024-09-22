@@ -29,7 +29,8 @@
   "dependencies": {
     "@gnowth/lib-application": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
-    "@gnowth/lib-utils-react": "0.0.0"
+    "@gnowth/lib-utils-react": "0.0.0",
+    "react-use": "17.5.1"
   },
   "devDependencies": {
     "@gnowth/babel-preset": "0.0.0",

@@ -1,6 +1,5 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
-
-import { usePrevious } from './use-previous'
+import { usePrevious } from 'react-use'
 
 interface Configs {
   errorCustom?: Error
