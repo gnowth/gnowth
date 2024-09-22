@@ -15,9 +15,6 @@
       "@gnowth/eslint-config/typescript-react"
     ]
   },
-  "jest": {
-    "preset": "@gnowth/jest-config"
-  },
   "repository": {
     "directory": "packages/lib-platform-react",
     "type": "git",
@@ -34,7 +31,6 @@
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
-    "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0"
   },
@@ -43,7 +39,6 @@
     "clean:temp": "rm -rf .turbo",
     "lint:script": "eslint --ext ts,tsx .",
     "lint": "npm run lint:script",
-    "test": "jest",
     "typecheck": "tsc"
   }
 }
