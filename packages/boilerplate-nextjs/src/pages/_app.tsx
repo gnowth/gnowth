@@ -1,19 +1,17 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import {
+  ApplicationRootError,
+  ApplicationRootHead,
+  ApplicationRootLoading,
+  ApplicationRootWrapper,
+} from '@gnowth/app-pages'
 import { withAugmented } from '@gnowth/app-users'
-import { AppEnvironment } from '@gnowth/lib-react'
 import { NextPage } from 'next'
 import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { Attributes, ComponentType, Fragment, FunctionComponent, PropsWithChildren } from 'react'
-import { RecoilRoot } from 'recoil'
 
-import { AppError } from '../components/app-error'
-import { AppHead } from '../components/app-head'
-import { AppLoading } from '../components/app-loading'
-import { SystemNotifications } from '../components/system-notifications'
-import { setup } from '../setup'
-import { theme } from '../theme'
+import { setup } from '../modules/setup'
 
 setup({})
 
@@ -26,31 +24,25 @@ interface Props extends AppProps {
 const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children
 // TODO: use SystemAugmented
 const Wrapper = withAugmented<PropsWithChildren<Attributes>>({
-  ErrorComponent: AppError,
-  LoadingComponent: AppLoading,
+  ErrorComponent: ApplicationRootError,
+  LoadingComponent: ApplicationRootLoading,
 })(WrapperComponent)
 
 const App: FunctionComponent<Props> = (props) => {
   const Layout = props.Component.Layout ?? Fragment
 
   return (
-    <RecoilRoot>
-      <AppEnvironment theme={theme}>
-        <ChakraProvider>
-          <Head>
-            <AppHead />
-          </Head>
+    <ApplicationRootWrapper>
+      <Head>
+        <ApplicationRootHead />
+      </Head>
 
-          <SystemNotifications />
-
-          <Wrapper>
-            <Layout>
-              <props.Component {...props.pageProps} />
-            </Layout>
-          </Wrapper>
-        </ChakraProvider>
-      </AppEnvironment>
-    </RecoilRoot>
+      <Wrapper>
+        <Layout>
+          <props.Component {...props.pageProps} />
+        </Layout>
+      </Wrapper>
+    </ApplicationRootWrapper>
   )
 }
 

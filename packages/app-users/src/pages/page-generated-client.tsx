@@ -1,6 +1,7 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 
 import source from '../../contents/source.json'
+import { ApplicationUsersProvider } from '../components/application-users.provider'
 import { PageGenerated } from '../components/page-generated'
 import { sections } from '../sections'
 
@@ -24,3 +25,5 @@ PageGeneratedClient.staticProps = async (context) => {
   ]
   return { props: { contents } }
 }
+
+PageGeneratedClient.Layout = ApplicationUsersProvider

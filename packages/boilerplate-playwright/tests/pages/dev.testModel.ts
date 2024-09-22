@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 
-export class TestModelLanding {
+export class DevTestModel {
   readonly page: Page
 
   constructor(page: Page) {
@@ -8,7 +8,7 @@ export class TestModelLanding {
   }
 
   async goto() {
-    await this.page.goto('/')
+    await this.page.goto('/pages/dev')
   }
 
   get simulateErrorButton(): Locator {

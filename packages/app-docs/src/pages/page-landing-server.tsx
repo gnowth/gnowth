@@ -1,7 +1,7 @@
 import { PageServerComponent } from '@gnowth/lib-react'
 
 import { PageLanding } from '../components/page-landing'
-import { ContentService } from '../modules/contents.services'
+import { ContentService } from '../modules/contents'
 
 export const PageLandingServer: PageServerComponent = async () => {
   const contentService = new ContentService()

@@ -1,7 +1,7 @@
 import { ErrorCustom, PageServerComponent } from '@gnowth/lib-react'
 
 import { PageDoc } from '../components/page-docs'
-import { ContentService } from '../modules/contents.services'
+import { ContentService } from '../modules/contents'
 
 type Params = { slug: string }
 export const PageDocsServer: PageServerComponent<Params> = async (props) => {

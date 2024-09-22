@@ -1,6 +1,6 @@
 import { AppSetup } from '@gnowth/lib-application'
 
-import { makeServer } from './services/make-server'
+import { makeServer } from './make-server'
 
 type ConfigurationMockServer = { mockServer: ReturnType<typeof makeServer> }
 export const setup: AppSetup<ConfigurationMockServer> = () => {

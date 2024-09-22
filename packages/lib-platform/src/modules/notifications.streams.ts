@@ -23,14 +23,12 @@ export class NotificationStream {
 
   stream = new Subject<Toast>()
 
-  // TODO: remove
   constructor() {
-    this.onInit()
-  }
-
-  // TODO: align with repository
-  onInit() {
     this.#errorModel = new ErrorModel()
     this.#notificationModel = new NotificationModel()
+  }
+
+  static async construct() {
+    return new this()
   }
 }

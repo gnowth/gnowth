@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { TestModelUser } from './user'
+import { UserTestModel } from './user'
 
 test.describe('/users/user: new user page', () => {
   test('to contain main elements', async ({ page }) => {
-    const testModel = new TestModelUser(page)
+    const testModel = new UserTestModel(page)
     await testModel.goto()
     await expect(page).toHaveURL(/.*users\/user/)
     await expect(testModel.emailInput).toBeVisible()

@@ -2,8 +2,9 @@
 import { PageClientComponent } from '@gnowth/lib-react'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 
+import { ApplicationDocsLayout } from '../components/application-docs.layout'
 import { PageDoc } from '../components/page-docs'
-import { ContentService } from '../modules/contents.services'
+import { ContentService } from '../modules/contents'
 
 type Props = { source: MDXRemoteSerializeResult }
 type Params = { slug: string }
@@ -33,3 +34,5 @@ PageDocsClient.staticProps = async (context) => {
   const source = await contentService.getSource(context.params as Params)
   return { props: { source } }
 }
+
+PageDocsClient.Layout = ApplicationDocsLayout

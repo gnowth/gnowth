@@ -1,1 +1,1 @@
-export { AppHead as default } from '../components/app-head'
+export { ApplicationRootHead as default } from '@gnowth/app-pages'

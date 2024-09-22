@@ -1,1 +1,1 @@
-export { AppLoading as default } from '../components/app-loading'
+export { ApplicationRootLoading as default } from '@gnowth/app-pages'

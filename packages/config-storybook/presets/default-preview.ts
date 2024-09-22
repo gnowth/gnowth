@@ -1,9 +1,8 @@
 import { Preview } from '@storybook/react'
 
-import { withAppEnvironment } from '../decorators/with-app-environment'
 import { withApplicationProvider } from '../decorators/with-application-provider'
 
-export const decorators: Preview['decorators'] = [withAppEnvironment, withApplicationProvider]
+export const decorators: Preview['decorators'] = [withApplicationProvider]
 
 export const parameters: Preview['parameters'] = {
   actions: { argTypesRegex: '^on[A-Z].*' },

@@ -1,7 +1,6 @@
 import { StorybookConfig } from '@storybook/nextjs'
 
 export const addons: StorybookConfig['addons'] = [
-  '@chakra-ui/storybook-addon',
   '@storybook/addon-essentials',
   '@storybook/addon-interactions',
   '@storybook/addon-links',
