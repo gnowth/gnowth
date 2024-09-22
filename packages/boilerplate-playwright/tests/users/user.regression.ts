@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 
-import { TestModelUser } from './user'
+import { UserTestModel } from './user'
 
 test.describe('/users/user: new user page', () => {
   test('input data', async ({ page }) => {
@@ -11,7 +11,7 @@ test.describe('/users/user: new user page', () => {
       role: 'Role',
     }
 
-    const testModel = new TestModelUser(page)
+    const testModel = new UserTestModel(page)
     await testModel.goto()
     await expect(testModel.emailLabel).toBeVisible()
     await expect(testModel.footerComponent).toBeVisible()

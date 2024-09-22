@@ -1,1 +1,1 @@
-export { AppPage as default } from '../components/app-page'
+export { PageLandingClient as default } from '@gnowth/app-pages'

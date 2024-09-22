@@ -2,8 +2,11 @@ import { ViewAppHeader } from '@gnowth/vite-boilerplate'
 import { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 
+import { Provider } from '../../src/components/provider'
+
 const meta: Meta<typeof ViewAppHeader> = {
   component: ViewAppHeader,
+  parameters: { libReact: { Provider } },
   title: 'BoilerplateVite/ViewAppHeader',
 }
 

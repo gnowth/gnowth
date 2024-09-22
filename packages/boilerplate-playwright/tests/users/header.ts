@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 
-export class TestModelHeader {
+export class HeaderTestModel {
   readonly page: Page
 
   constructor(page: Page) {

@@ -17,6 +17,8 @@ export const PlatformConstant = {
   i18nController: 'PlatformI18nController',
   i18nModule: 'PlatformI18nModule',
   i18nService: 'PlatformI18nService',
+  notificationModule: 'PlatformNotificationModule',
+  notificationStream: 'PlatformNotificationStream',
   queryClient: 'PlatformQueryClient',
   queryClientVariant: { queryClientV5: 'queryClientV5' },
   queryController: 'PlatformQueryController',

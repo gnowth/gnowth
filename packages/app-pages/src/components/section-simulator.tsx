@@ -1,10 +1,32 @@
 import { faker } from '@faker-js/faker/locale/en'
-import { LayoutSection, LayoutStack, UIButton, UITypography } from '@gnowth/lib-react'
+import {
+  ErrorModel,
+  LayoutSection,
+  LayoutStack,
+  NotificationStream,
+  PlatformConstant,
+  UIButton,
+  UITypography,
+  usePlatformProvider,
+} from '@gnowth/lib-react'
 import { v4 as uuid } from 'uuid'
 
-import { dependencies } from '../dependencies'
+const errorModel = new ErrorModel()
 
 export function SectionSimulator() {
+  const notificationStreamState = usePlatformProvider<NotificationStream>({
+    name: PlatformConstant.notificationStream,
+    type: 'provider',
+  })
+
+  if (notificationStreamState.loading) {
+    return null
+  }
+
+  if (notificationStreamState.error) {
+    throw notificationStreamState.error
+  }
+
   return (
     <LayoutSection variant="container">
       <LayoutStack gap="xl">
@@ -13,7 +35,7 @@ export function SectionSimulator() {
 
           <UIButton
             onClick={() =>
-              dependencies.notificationStream.pushNotification({
+              notificationStreamState.value?.pushNotification({
                 id: uuid(),
                 message: faker.lorem.sentence(),
                 title: faker.lorem.words(3),
@@ -28,9 +50,7 @@ export function SectionSimulator() {
 
           <UIButton
             onClick={() =>
-              dependencies.notificationStream.pushError(
-                dependencies.errorModel.fromError(new Error('Unknown error')),
-              )
+              notificationStreamState.value?.pushError(errorModel.fromError(new Error('Unknown error')))
             }
             textValue="Fire error"
           />

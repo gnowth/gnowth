@@ -20,12 +20,18 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-react": "0.0.0"
+    "@chakra-ui/react": "2.8.2",
+    "@gnowth/lib-react": "0.0.0",
+    "@gnowth/theme-standard": "0.0.0",
+    "react-i18next": "15.0.2",
+    "uuid": "10.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "9.0.1",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
-    "@gnowth/typescript-config": "0.0.0"
+    "@gnowth/typescript-config": "0.0.0",
+    "@types/uuid": "10.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"

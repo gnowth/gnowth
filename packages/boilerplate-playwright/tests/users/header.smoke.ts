@@ -1,10 +1,10 @@
 import { expect, test } from '@playwright/test'
 
-import { TestModelHeader } from './header'
+import { HeaderTestModel } from './header'
 
 test.describe('/users: header in users dashboard page', () => {
   test('to contain main elements', async ({ page }) => {
-    const testModel = new TestModelHeader(page)
+    const testModel = new HeaderTestModel(page)
     await testModel.goto()
     await expect(testModel.authLogin).toBeVisible()
     await expect(testModel.authSignup).toBeVisible()

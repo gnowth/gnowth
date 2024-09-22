@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@gnowth/lib-react": "0.0.0",
+    "@gnowth/theme-standard": "0.0.0",
     "gray-matter": "4.0.3",
     "next": "14.2.13",
     "next-mdx-remote": "5.0.0"

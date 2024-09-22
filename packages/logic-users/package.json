@@ -27,7 +27,8 @@
     "@gnowth/lib-model": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "axios": "1.7.7",
-    "remeda": "2.14.0"
+    "remeda": "2.14.0",
+    "uuid": "10.0.0"
   },
   "devDependencies": {
     "@gnowth/app-configs": "0.0.0",
@@ -37,7 +38,8 @@
     "@gnowth/lib-mock": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tanstack/react-query": "5.56.2"
+    "@tanstack/react-query": "5.56.2",
+    "@types/uuid": "10.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

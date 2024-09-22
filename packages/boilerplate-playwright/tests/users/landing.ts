@@ -1,17 +1,17 @@
 import { Locator, Page } from '@playwright/test'
 
-import { TestModelFooter } from './footer'
-import { TestModelHeader } from './header'
+import { FooterTestModel } from './footer'
+import { HeaderTestModel } from './header'
 
-export class TestModelLanding {
-  #footer: TestModelFooter
-  #header: TestModelHeader
+export class LandingTestModel {
+  #footer: FooterTestModel
+  #header: HeaderTestModel
   readonly page: Page
 
   constructor(page: Page) {
     this.page = page
-    this.#footer = new TestModelFooter(page)
-    this.#header = new TestModelHeader(page)
+    this.#footer = new FooterTestModel(page)
+    this.#header = new HeaderTestModel(page)
   }
 
   async goto() {

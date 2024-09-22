@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 
-export class TestModelFooter {
+export class FooterTestModel {
   readonly page: Page
 
   constructor(page: Page) {

@@ -1,1 +1,4 @@
-export { AppLayout as default } from '../components/app-layout'
+import { setup } from '../modules/setup'
+
+setup({})
+export { ApplicationRootLayout as default } from '@gnowth/app-pages'
