@@ -20,9 +20,9 @@ type ObjectSet = <Item extends ObjectLiteral | unknown[]>(
   value: unknown,
 ) => Item
 
-export const objectToEntries: ObjectToEntries = Object.entries
+const objectToEntries: ObjectToEntries = Object.entries
 
-export const objectMapValues: ObjectMapValues = (item, predicate) =>
+const objectMapValues: ObjectMapValues = (item, predicate) =>
   objectToEntries(item).reduce(
     (output, [key, value]) => ({ ...output, [key]: predicate(value, key, item) }),
     {},
@@ -36,6 +36,16 @@ export const objectDefaults: ObjectDefaults = (...items) =>
       .toReversed()
       .map(R.omitBy((value) => value === undefined)),
   )
+
+export const objectDefaultsDeep: ObjectDefaults = (item, ...items) =>
+  objectMapValues(objectDefaults(item, ...items), (value, key) =>
+    R.isObjectType(value)
+      ? objectDefaultsDeep(
+          {},
+          ...[item, ...items].map((item) => item?.[key] as unknown).filter(R.isObjectType),
+        )
+      : value,
+  ) as typeof item
 
 export const objectGet: ObjectGet = (item, name) =>
   Array.isArray(name)
