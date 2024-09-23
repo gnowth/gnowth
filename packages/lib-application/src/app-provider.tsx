@@ -9,7 +9,10 @@ interface Props extends Partial<PropsApplication> {
 
 export const AppProvider: FunctionComponent<Props> = (props) => {
   const context = useContext(ContextApplication)
-  const propsWithDefault = R.merge(context, props as PropsApplication)
+  const propsWithDefault = R.merge(
+    context,
+    R.omitBy(props, (value) => value === undefined) as PropsApplication,
+  )
 
   return <ContextApplication.Provider value={propsWithDefault}>{props.children}</ContextApplication.Provider>
 }
