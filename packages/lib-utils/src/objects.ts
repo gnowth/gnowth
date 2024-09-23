@@ -1,16 +1,9 @@
 import * as R from 'remeda'
 
 import { guardNumberLike } from './guards'
-import { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
+import { ObjectKey, ObjectLiteral } from './types'
 
-type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
-
-type ObjectMapValues = <Value, Item extends ObjectLiteral>(
-  item: Item,
-  predicate: (value: Item[keyof Item], key: keyof Item, item: Item) => Value,
-) => { [_Key in keyof Item]: Value }
-
-type ObjectToEntries = <Item extends ObjectLiteral>(item: Item) => UtilEntriesFromObject<Item>[]
+type ObjectDefaults = <Item extends ObjectLiteral>(...items: Partial<Item>[]) => Item
 
 type ObjectGet = <Item extends ObjectLiteral>(item: Item, path: string | string[]) => unknown
 
@@ -20,32 +13,32 @@ type ObjectSet = <Item extends ObjectLiteral | unknown[]>(
   value: unknown,
 ) => Item
 
-const objectToEntries: ObjectToEntries = Object.entries
-
-const objectMapValues: ObjectMapValues = (item, predicate) =>
-  objectToEntries(item).reduce(
-    (output, [key, value]) => ({ ...output, [key]: predicate(value, key, item) }),
-    {},
-  ) as { [_Key in keyof typeof item]: ReturnType<typeof predicate> }
-
 export const objectDefaults: ObjectDefaults = (...items) =>
   Object.assign(
     {},
     ...items
       .filter(R.isObjectType)
-      .toReversed()
-      .map(R.omitBy((value) => value === undefined)),
+      .map(R.omitBy((value) => value === undefined))
+      .toReversed(),
   )
 
-export const objectDefaultsDeep: ObjectDefaults = (item, ...items) =>
-  objectMapValues(objectDefaults(item, ...items), (value, key) =>
-    R.isObjectType(value)
-      ? objectDefaultsDeep(
-          {},
-          ...[item, ...items].map((item) => item?.[key] as unknown).filter(R.isObjectType),
-        )
-      : value,
-  ) as typeof item
+// DEBT(fix): function assumes that if a field is an object, it only allows object
+export const objectDefaultsDeep: ObjectDefaults = <Item>(...items: Partial<Item>[]) =>
+  R.pipe(
+    objectDefaults(...items),
+    R.mapValues((value, key) =>
+      R.isObjectType(value)
+        ? objectDefaultsDeep(
+            ...R.pipe(
+              items,
+              R.filter(R.isObjectType),
+              R.map((item) => item?.[key as unknown as keyof typeof item] as object),
+              R.filter(R.isObjectType),
+            ),
+          )
+        : value,
+    ),
+  ) as Item
 
 export const objectGet: ObjectGet = (item, name) =>
   Array.isArray(name)
