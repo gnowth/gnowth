@@ -1,6 +1,7 @@
 import { ErrorCustom, objectDefaults, objectSet } from '@gnowth/lib-utils'
-import { useEnsureConstant, useRefValue } from '@gnowth/lib-utils-react'
+import { useEnsureConstant } from '@gnowth/lib-utils-react'
 import { useCallback, useState } from 'react'
+import { useLatest } from 'react-use'
 
 import { DataName, DataValue, TokenMode } from './types'
 
@@ -52,7 +53,7 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
     skip: mode === 'controlled',
   })
 
-  const valueRef = useRefValue(props.value)
+  const valueRef = useLatest(props.value)
   const [value, setValue] = useState(props.value)
 
   const handleChangeControlled = useCallback<NonNullable<typeof onChange>>(
