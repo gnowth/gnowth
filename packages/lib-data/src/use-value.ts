@@ -1,7 +1,8 @@
-import { ErrorCustom, objectDefaults, objectSet } from '@gnowth/lib-utils'
+import { ErrorCustom, objectSet } from '@gnowth/lib-utils'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
 import { useCallback, useState } from 'react'
 import { useLatest } from 'react-use'
+import * as R from 'remeda'
 
 import { DataName, DataValue, TokenMode } from './types'
 
@@ -45,7 +46,7 @@ const configsDefault = {
 
 export function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
   const { mode = 'controlled', onChange } = props
-  const configsWithDefault = objectDefaults(configs, configsDefault)
+  const configsWithDefault = R.merge(configsDefault, configs)
 
   useEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
   useEnsureConstant(props.value, {

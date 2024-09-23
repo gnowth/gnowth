@@ -1,5 +1,5 @@
-import { objectDefaults } from '@gnowth/lib-utils'
 import { ComponentType, ReactElement, ReactNode } from 'react'
+import * as R from 'remeda'
 
 import { PropsLayout } from './types'
 import { useAppLayout } from './use-app-layout'
@@ -22,14 +22,17 @@ export function AppLayout(props: Props): ReactElement {
 
   if (!LayoutComponent) return <>{props.children}</>
 
-  const propsCombined = objectDefaults(
-    {
-      className: props.className,
-      classNamespace: props.classNamespace,
-      id: props.id,
-      variant: props.layoutVariant,
-    },
+  const propsCombined = R.merge(
     props.layoutProps,
+    R.omitBy(
+      {
+        className: props.className,
+        classNamespace: props.classNamespace,
+        id: props.id,
+        variant: props.layoutVariant,
+      },
+      (value) => value === undefined,
+    ),
   )
 
   return (

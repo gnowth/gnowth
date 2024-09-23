@@ -1,4 +1,4 @@
-import { ObjectLiteral, UtilNamespaced, objectDefaults, transformToArray } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced, transformToArray } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { namespacedMerge } from '../utils/namespace-merge'
@@ -57,7 +57,7 @@ export class VariantManager {
     }
 
     // TODO: variants default in lib view must be overwritten by theme
-    const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
+    const variants = R.merge(this.#getVariantsByNamespace(variantNamespace), configs.variants ?? {})
     const variant = variants[configs.variant]
 
     if (R.isFunction(variant)) {
@@ -71,6 +71,7 @@ export class VariantManager {
     return R.pipe(
       [''],
       R.concat(configs.variantComposition ?? []),
+      R.reverse(),
       R.map((prefix) => (prefix ? `${prefix}Variant` : 'variant')),
       R.map((prefix) => ({
         ...configs,

@@ -1,6 +1,7 @@
-import { ErrorCustom, objectDefaults, objectGet } from '@gnowth/lib-utils'
+import { ErrorCustom, objectGet } from '@gnowth/lib-utils'
 import { useEnsureConstant } from '@gnowth/lib-utils-react'
 import { useCallback, useContext } from 'react'
+import * as R from 'remeda'
 
 import { DataContext } from './data-context'
 import { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
@@ -55,11 +56,11 @@ export function useDataSource<Value extends DataValue>(
   configs: Configs = {},
 ): PropsData<Value> & WithConnect {
   const { mode = 'controlled' } = props
-  const configsWithDefault = objectDefaults(configs, configsDefault)
+  const configsWithDefault = R.merge(configsDefault, configs)
   useEnsureConstant(props.context, { errorCustom: configsWithDefault.errorCustomContext })
 
   const context = useContext(DataContext) as PropsData<Value>
-  const propsWithContext = objectDefaults(props, context)
+  const propsWithContext = R.merge(context, props)
   const onChangeFromProps = propsWithContext.onChange
   const nameFromProps = propsWithContext.name
 

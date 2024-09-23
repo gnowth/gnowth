@@ -1,7 +1,7 @@
 import { QueryResource } from '@gnowth/lib-query'
-import { objectDefaults } from '@gnowth/lib-utils'
 import { Fragment, ReactElement, ReactNode, useState } from 'react'
 import { HashRouter } from 'react-router-dom'
+import * as R from 'remeda'
 
 import { AppBoundary } from './app-boundary'
 import { AppProvider } from './app-provider'
@@ -20,12 +20,7 @@ interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApp
 // TODO add store? history?
 export function AppEnvironment(props: Props): ReactElement {
   const [whoami, whoamiSet] = useState<QueryResource | null>(null)
-  const propsWithDefault = objectDefaults(
-    { whoami, whoamiSet } as PropsEnvironment,
-    props,
-    propsDefaultEnvironment,
-  )
-
+  const propsWithDefault = R.mergeAll([propsDefaultEnvironment, props, { whoami, whoamiSet }])
   const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 
   return (

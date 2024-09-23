@@ -85,11 +85,10 @@ export const text: VariantType<PropsUIButton> = (props) => {
 }
 
 export const navigation: VariantType<PropsUIButton> = (props) => ({
-  ...text(props),
+  ...R.omit(text(props), ['minWidth']),
   borderBottom: '2px solid transparent',
   borderRadius: '0',
   borderTop: '2px solid transparent',
-  minWidth: undefined,
   paddingLeft: 'xs',
   paddingRight: 'xs',
 })

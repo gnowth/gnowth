@@ -2,10 +2,6 @@ export type ObjectKey = number | string | symbol
 // TODO: update proper type
 export type ObjectLiteral = object
 
-export type UtilEntriesFromObject<ObjectType extends object> = {
-  [E in keyof ObjectType]: [E, ObjectType[E]]
-}[keyof ObjectType]
-
 export type UtilOptional<Type, Key extends keyof Type> = Omit<Type, Key> & Partial<Pick<Type, Key>>
 
 // TODO: implement properly. it does not support union type

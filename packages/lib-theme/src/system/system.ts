@@ -7,7 +7,6 @@ import { Theme } from '../theme/theme'
 import { TokenBreakpoint } from '../tokens/tokens'
 import { ThemeVariable } from '../tokens/wip-token-variable'
 import { System, SystemInterpolate } from './system.types'
-import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
   Type01,
@@ -78,10 +77,11 @@ type SystemCompose = <
 export const systemCompose: SystemCompose =
   (...predicates) =>
   (props, theme) =>
-    predicates.reduce(
-      (styles, predicate) => objectDefaultsDeep(predicate?.(props, theme) ?? {}, styles),
-      {} as CSSObject,
-    )
+    // @ts-expect-error deep instantiation
+    predicates.reduce((styles, predicate) => {
+      // @ts-expect-error deep instantiation
+      return R.mergeDeep(styles, predicate?.(props, theme) ?? {})
+    }, {} as CSSObject)
 
 interface ConfigsInterpolation<Value extends string> {
   breakpoint?: TokenBreakpoint

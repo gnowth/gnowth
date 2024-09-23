@@ -1,16 +1,7 @@
 import * as R from 'remeda'
 
 import { guardNumberLike } from './guards'
-import { ObjectKey, ObjectLiteral, UtilEntriesFromObject } from './types'
-
-type ObjectDefaults = <Item extends ObjectLiteral>(item: Item, ...items: Partial<Item | undefined>[]) => Item
-
-type ObjectMapValues = <Value, Item extends ObjectLiteral>(
-  item: Item,
-  predicate: (value: Item[keyof Item], key: keyof Item, item: Item) => Value,
-) => { [_Key in keyof Item]: Value }
-
-type ObjectToEntries = <Item extends ObjectLiteral>(item: Item) => UtilEntriesFromObject<Item>[]
+import { ObjectKey, ObjectLiteral } from './types'
 
 type ObjectGet = <Item extends ObjectLiteral>(item: Item, path: string | string[]) => unknown
 
@@ -19,23 +10,6 @@ type ObjectSet = <Item extends ObjectLiteral | unknown[]>(
   name: ObjectKey | ObjectKey[],
   value: unknown,
 ) => Item
-
-export const objectToEntries: ObjectToEntries = Object.entries
-
-export const objectMapValues: ObjectMapValues = (item, predicate) =>
-  objectToEntries(item).reduce(
-    (output, [key, value]) => ({ ...output, [key]: predicate(value, key, item) }),
-    {},
-  ) as { [_Key in keyof typeof item]: ReturnType<typeof predicate> }
-
-export const objectDefaults: ObjectDefaults = (...items) =>
-  Object.assign(
-    {},
-    ...items
-      .filter(R.isObjectType)
-      .toReversed()
-      .map(R.omitBy((value) => value === undefined)),
-  )
 
 export const objectGet: ObjectGet = (item, name) =>
   Array.isArray(name)

@@ -1,10 +1,10 @@
-import { objectDefaults } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { Field, FieldConfigs } from './field'
 
 export class FieldText extends Field<string> {
   constructor(configs: FieldConfigs<string> = {}) {
-    const configsWithDefault = objectDefaults(configs, { default: '', type: 'text' })
+    const configsWithDefault = R.merge({ default: '', type: 'text' }, configs)
 
     super(configsWithDefault)
   }

@@ -1,4 +1,4 @@
-import { objectDefaults } from '@gnowth/lib-utils'
+import * as R from 'remeda'
 
 import { Model } from '../models/model'
 import { DataName } from '../types'
@@ -16,7 +16,7 @@ export class FieldModel<Value> extends Field {
   nested: Nested
 
   constructor(configs: ConfigsModel<Value>) {
-    const configsWithDefault = objectDefaults(configs, { type: 'model' })
+    const configsWithDefault = R.merge({ type: 'model' }, configs)
 
     super(configsWithDefault)
 

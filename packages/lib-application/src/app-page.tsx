@@ -1,8 +1,8 @@
 import { QueryResource } from '@gnowth/lib-query'
 import { Theme } from '@gnowth/lib-theme'
-import { objectDefaults } from '@gnowth/lib-utils'
 import { ComponentType, ReactElement } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
+import * as R from 'remeda'
 
 import { AppBoundary } from './app-boundary'
 import { AppFrame } from './app-frame'
@@ -37,7 +37,7 @@ const propsDefault = {
 export function AppPage(props: Props): ReactElement {
   const application = useAppApplication()
   const location = useLocation()
-  const propsWithDefault = objectDefaults(props, propsDefault)
+  const propsWithDefault = R.merge(propsDefault, props)
   const path = propsWithDefault.path ?? application.getRoute(propsWithDefault.page) ?? ''
 
   const match = matchPath({ end: propsWithDefault.exact ?? false, path }, location.pathname)

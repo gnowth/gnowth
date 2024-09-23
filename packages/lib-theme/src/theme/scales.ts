@@ -1,4 +1,4 @@
-import { UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { UtilNamespaced } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { TokenBase, TokenBreakpoint } from '../tokens/tokens'
@@ -44,7 +44,7 @@ export class ScaleManager {
   }
 
   getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {
-    const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
+    const scales = R.merge(this.#scales, configs.scales ?? {})
     const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
     return scale && this.#guardScaleResponsive(scale)
       ? (['none', 'xxs', 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'] as const).filter(
@@ -54,7 +54,7 @@ export class ScaleManager {
   }
 
   getScaleItem(configs: ConfigsScale): ScaleItem | undefined {
-    const scales = objectDefaults<Scales>(configs.scales ?? {}, this.#scales)
+    const scales = R.merge(this.#scales, configs.scales ?? {})
     const scale = R.isString(configs.scale) ? scales[configs.scale] : configs.scale
     if (!scale || !configs.scaleToken) {
       return undefined

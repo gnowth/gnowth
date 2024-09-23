@@ -1,8 +1,9 @@
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { Theme } from '@gnowth/lib-theme'
-import { ErrorCustom, UtilRequired, objectDefaults } from '@gnowth/lib-utils'
+import { ErrorCustom, UtilRequired } from '@gnowth/lib-utils'
 import { ComponentType, ReactElement, createElement, useCallback, useContext, useState } from 'react'
 import { useLatest } from 'react-use'
+import * as R from 'remeda'
 
 import { DataContext } from './data-context'
 import { DataName } from './types'
@@ -54,7 +55,7 @@ export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
 
   if (props.hidden) return null
 
-  const propsWithDefault = objectDefaults(props as UtilRequired<Props<Value>, 'event'>, propsDefault)
+  const propsWithDefault = R.merge(propsDefault, props as UtilRequired<Props<Value>, 'event'>)
 
   const Component = theme.getComponent({ component: propsWithDefault.component })
 

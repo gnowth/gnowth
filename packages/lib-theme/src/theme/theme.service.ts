@@ -1,4 +1,4 @@
-import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import { ComponentType } from 'react'
 import * as R from 'remeda'
 
@@ -45,15 +45,14 @@ export class Theme {
   }
 
   static variantMerge<TProps extends object>(items: Partial<TProps>[]): TProps {
-    return R.mapValues(objectDefaults({} as TProps, ...items), (value, key) =>
+    return R.mapValues(R.mergeAll(items) as TProps, (value, key) =>
       typeof key === 'string' && key.endsWith('Props')
-        ? objectDefaults(
-            {},
-            ...(R.pipe(
+        ? R.mergeAll(
+            R.pipe(
               items,
               R.map(R.prop(key as unknown as keyof TProps)),
               R.filter(R.isObjectType),
-            ) as object[]),
+            ) as object[],
           )
         : value,
     ) as TProps
@@ -93,9 +92,9 @@ export class Theme {
     propsDefault?: Partial<WithThemeVariant<Props>>,
   ): WithThemeVariant<Props> {
     const merge = props.variantMerge ?? propsDefault?.variantMerge ?? Theme.variantMerge
-    const propsWithDefault = merge([props, propsDefault ?? {}])
+    const propsWithDefault = merge([propsDefault ?? {}, props])
     const variants = this.#variantManager.getVariants({ theme: this, ...propsWithDefault })
-    return merge([props, ...variants, propsDefault ?? {}])
+    return merge([propsDefault ?? {}, ...variants, props])
   }
 
   getScaleBreakpoint(configs: ConfigsScale): TokenBreakpoint[] {

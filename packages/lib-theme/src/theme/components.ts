@@ -1,4 +1,4 @@
-import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import { ComponentType } from 'react'
 import * as R from 'remeda'
 
@@ -44,9 +44,9 @@ export class ComponentManager {
       return configs.component
     }
 
-    const components = objectDefaults(
-      configs.components ?? {},
+    const components = R.merge(
       this.#getComponentsByNamespace(configs.componentNamespace),
+      configs.components ?? {},
     )
 
     return components[configs.component]

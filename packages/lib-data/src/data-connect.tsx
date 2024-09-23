@@ -10,9 +10,10 @@ import {
 } from '@gnowth/lib-application'
 import { Model } from '@gnowth/lib-model'
 import { Theme } from '@gnowth/lib-theme'
-import { ErrorCustom, objectDefaults } from '@gnowth/lib-utils'
+import { ErrorCustom } from '@gnowth/lib-utils'
 import { Slottable } from '@gnowth/lib-utils-react'
 import { ComponentType, FunctionComponent } from 'react'
+import * as R from 'remeda'
 
 import { DataWarning } from './data-warning'
 import { PropsData, PropsDataReadonly } from './types'
@@ -62,7 +63,7 @@ export const DataConnect: FunctionComponent<Props> = (props) => {
 
   if (props.hidden) return null
 
-  const propsWithDefault = objectDefaults(props, propsDefault)
+  const propsWithDefault = R.merge(propsDefault, props)
 
   const LabelComponent = theme.getComponent({ component: propsWithDefault.label })
 

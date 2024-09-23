@@ -1,5 +1,5 @@
-import { objectDefaults } from '@gnowth/lib-utils'
 import { FunctionComponent, ReactNode, useContext } from 'react'
+import * as R from 'remeda'
 
 import { ContextApplication, PropsApplication } from './context-application'
 
@@ -9,7 +9,7 @@ interface Props extends Partial<PropsApplication> {
 
 export const AppProvider: FunctionComponent<Props> = (props) => {
   const context = useContext(ContextApplication)
-  const propsWithDefault = objectDefaults(props as PropsApplication, context)
+  const propsWithDefault = R.merge(context, props as PropsApplication)
 
   return <ContextApplication.Provider value={propsWithDefault}>{props.children}</ContextApplication.Provider>
 }
