@@ -12,7 +12,7 @@ env:
 jobs:
   clean_preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - run: npm run cd:project:web:teardown

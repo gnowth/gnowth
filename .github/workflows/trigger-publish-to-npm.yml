@@ -19,7 +19,7 @@ jobs:
   # Phase 1: Branch check
   check_branch:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - name: Cancelling - Branch must either be a main/release branch
         if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
@@ -40,7 +40,7 @@ jobs:
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06

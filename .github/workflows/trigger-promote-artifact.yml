@@ -82,7 +82,7 @@ jobs:
       url: https://${{ env.SITE_DOMAIN }}
     needs: check_branch
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - name: Download release artifact
         uses: dsaltares/fetch-gh-release-asset@0.06
@@ -125,7 +125,7 @@ jobs:
     if: ${{ always() && github.event.inputs.skip_e2e == 'no' }}
     needs: [check_branch, provision_deploy_migrate]
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     strategy:
       fail-fast: false
       matrix:

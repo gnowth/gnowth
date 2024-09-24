@@ -13,19 +13,19 @@ env:
 jobs:
   quality:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - run: echo Quality check
 
   security:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - run: echo Security check
 
   workspace_lint:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
@@ -33,7 +33,7 @@ jobs:
 
   workspace_test:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
@@ -41,7 +41,7 @@ jobs:
 
   workspace_typecheck:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
@@ -52,7 +52,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.47.2-jammy
       options: --user 1001
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
@@ -76,7 +76,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.47.2-jammy
       options: --user 1001
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
@@ -85,7 +85,7 @@ jobs:
 
   styleguide_build_and_publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:

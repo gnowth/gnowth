@@ -1,6 +1,0 @@
-export * from './pages/page-contents-client'
-export * from './pages/page-contents-server'
-export * from './pages/page-ingredients-client'
-export * from './pages/page-ingredients-server'
-export * from './pages/page-recipes-client'
-export * from './pages/page-recipes-server'

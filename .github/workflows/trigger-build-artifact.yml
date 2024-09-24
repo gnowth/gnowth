@@ -19,7 +19,7 @@ jobs:
   # Phase 1: Branch check
   check_branch:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - name: Cancelling - Branch must be a release branch
         if: ${{ !startsWith( github.ref, 'refs/heads/release-' ) }}
@@ -36,7 +36,7 @@ jobs:
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
