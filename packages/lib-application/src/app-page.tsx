@@ -1,7 +1,7 @@
 import { QueryResource } from '@gnowth/lib-query'
 import { Theme } from '@gnowth/lib-theme'
 import { objectDefaults } from '@gnowth/lib-utils'
-import { ComponentType, ReactElement } from 'react'
+import { ComponentType, FunctionComponent } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
 
 import { AppBoundary } from './app-boundary'
@@ -16,7 +16,7 @@ interface PropsComponent {
   resources: Record<string, QueryResource | undefined>
 }
 
-interface Props {
+type Props = {
   authenticated?: boolean
   component: ComponentType<PropsComponent>
   exact?: boolean
@@ -34,7 +34,7 @@ const propsDefault = {
 
 // TODO: add transition in pages http://reactcommunity.org/react-transition-group/with-react-router/
 // TODO: since AppFrame is a child of route, it will rerender on route change. is there a way to keep it mounted if next route is the same component?
-export function AppPage(props: Props): ReactElement {
+export const AppPage: FunctionComponent<Props> = (props) => {
   const application = useAppApplication()
   const location = useLocation()
   const propsWithDefault = objectDefaults(props, propsDefault)
