@@ -1,5 +1,5 @@
 import { CSSObject } from '@emotion/serialize'
-import { transformToArray } from '@gnowth/lib-utils'
+import { objectDefaultsDeep, transformToArray } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { ScaleName, ScaleType } from '../theme/scales'
@@ -7,7 +7,6 @@ import { Theme } from '../theme/theme'
 import { TokenBreakpoint } from '../tokens/tokens'
 import { ThemeVariable } from '../tokens/wip-token-variable'
 import { System, SystemInterpolate } from './system.types'
-import { objectDefaultsDeep } from './system.utils'
 
 type SystemCompose = <
   Type01,

@@ -1,6 +1,5 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
-
-import { usePrevious } from './use-previous'
+import { useFirstMountState, usePrevious } from 'react-use'
 
 interface Configs {
   errorCustom?: Error
@@ -19,8 +18,9 @@ const errorCustom = new ErrorCustom({
 
 export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {
   const valuePrevious = usePrevious(value)
+  const isFirstMount = useFirstMountState()
 
-  if (value !== valuePrevious && !configs?.skip) {
+  if (value !== valuePrevious && !configs?.skip && !isFirstMount) {
     throw configs?.errorCustom || errorCustom
   }
 }

@@ -29,7 +29,7 @@ export function AppLayout(props: Props): ReactElement {
       id: props.id,
       variant: props.layoutVariant,
     },
-    props.layoutProps,
+    props.layoutProps ?? {},
   )
 
   return (

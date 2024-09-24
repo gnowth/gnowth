@@ -57,7 +57,10 @@ export class VariantManager {
     }
 
     // TODO: variants default in lib view must be overwritten by theme
-    const variants = objectDefaults(configs.variants ?? {}, this.#getVariantsByNamespace(variantNamespace))
+    const variants = objectDefaults(
+      configs.variants ?? {},
+      this.#getVariantsByNamespace(variantNamespace) ?? {},
+    )
     const variant = variants[configs.variant]
 
     if (R.isFunction(variant)) {
