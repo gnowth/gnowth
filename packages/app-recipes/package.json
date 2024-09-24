@@ -15,10 +15,6 @@
       "@gnowth/eslint-config/typescript-react"
     ]
   },
-  "exports": {
-    ".": "./src/exports.ts",
-    "./server": "./src/exports.server.ts"
-  },
   "repository": {
     "directory": "packages/app-recipes",
     "type": "git",

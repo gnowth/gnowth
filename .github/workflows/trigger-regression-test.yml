@@ -20,7 +20,7 @@ jobs:
   # Phase 1: Branch check
   check_branch:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - name: Cancelling - Branch must either be a main/release branch
         if: ${{ github.ref != 'refs/heads/main' && !startsWith( github.ref, 'refs/heads/release-' ) }}
@@ -39,7 +39,7 @@ jobs:
     container: mcr.microsoft.com/playwright:v1.47.2-jammy
     needs: [check_branch]
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     strategy:
       fail-fast: false
       matrix:

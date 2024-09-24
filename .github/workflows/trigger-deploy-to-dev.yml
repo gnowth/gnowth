@@ -19,7 +19,7 @@ jobs:
       name: dev
       url: https://${{ env.SITE_DOMAIN }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/workspace-setup
