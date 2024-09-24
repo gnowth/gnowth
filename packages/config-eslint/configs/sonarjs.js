@@ -15,7 +15,6 @@ module.exports = {
     'sonarjs/no-duplicate-string': 'off',
     'sonarjs/no-ignored-exceptions': 'off',
     'sonarjs/no-misused-promises': 'off',
-    'sonarjs/no-nested-conditional': 'off',
     'sonarjs/no-redundant-type-constituents': 'off',
     'sonarjs/no-unstable-nested-components': 'off',
     'sonarjs/no-unused-expressions': 'off',
