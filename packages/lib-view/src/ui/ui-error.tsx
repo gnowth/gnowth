@@ -1,14 +1,14 @@
-import { ReactElement } from 'react'
+import { FunctionComponent } from 'react'
 
 import { LayoutContent } from '../layout/layout-content'
 import { UITypography } from './ui-typography'
 
-export interface PropsUIError {
+type Props = {
   as?: string
   value?: Error | Error[] | null
 }
 
-export function UIError(props: PropsUIError): ReactElement | null {
+export const UIError: FunctionComponent<Props> = (props) => {
   if (!props.value) return null
 
   return (

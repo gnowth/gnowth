@@ -1,14 +1,11 @@
-import { Fragment, ReactElement, ReactNode, useContext } from 'react'
+import { Fragment, FunctionComponent, ReactNode, useContext } from 'react'
 import * as R from 'remeda'
 
 import { ContextApplication } from './context-application'
 import { ContextEnvironment } from './context-environment'
 
-interface Props {
-  children: ReactNode
-}
-
-export function AppFrame(props: Props): ReactElement {
+type Props = { children: ReactNode }
+export const AppFrame: FunctionComponent<Props> = (props) => {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
 

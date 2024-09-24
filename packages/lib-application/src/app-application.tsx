@@ -1,5 +1,5 @@
 import { Theme } from '@gnowth/lib-theme'
-import { ComponentType, Fragment, ReactElement, ReactNode } from 'react'
+import { ComponentType, Fragment, FunctionComponent, ReactNode } from 'react'
 
 import { AppBoundary } from './app-boundary'
 import { AppModelApplication } from './app-model-application'
@@ -9,7 +9,7 @@ import { AppSwitch } from './app-switch'
 import { PropsFrame } from './types'
 import { useAppApplication } from './use-app-application'
 
-interface Props {
+type Props = {
   application?: AppModelApplication | string
   children: ReactNode
   frame?: ComponentType<PropsFrame> | null | string
@@ -19,7 +19,7 @@ interface Props {
 }
 
 // TODO: check if path is provided, should it somehow override AppPage root?
-export function AppApplication(props: Props): ReactElement {
+export const AppApplication: FunctionComponent<Props> = (props) => {
   const application = useAppApplication(props.application)
   const SwitchComponent = (props.switch ?? true) ? AppSwitch : Fragment
 

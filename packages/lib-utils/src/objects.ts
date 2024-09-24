@@ -51,14 +51,13 @@ export const objectGet: ObjectGet = (item, name) =>
 export const objectSet: ObjectSet = (item, name, value) => {
   const path = Array.isArray(name) ? name : [name]
   const path0 = path.at(0) as string
+  const defaultObject = guardNumberLike(path0) ? [] : {}
 
   if (Array.isArray(item)) {
     return item.toSpliced(
       path0 as unknown as number,
       1,
-      path.length <= 1
-        ? value
-        : objectSet(objectGet(item, path0) ?? (guardNumberLike(path0) ? [] : {}), path.slice(1), value),
+      path.length <= 1 ? value : objectSet(objectGet(item, path0) ?? defaultObject, path.slice(1), value),
     ) as typeof item
   }
 
@@ -66,9 +65,7 @@ export const objectSet: ObjectSet = (item, name, value) => {
     return {
       ...item,
       [path0]:
-        path.length <= 1
-          ? value
-          : objectSet(objectGet(item, path0) ?? (guardNumberLike(path0) ? [] : {}), path.slice(1), value),
+        path.length <= 1 ? value : objectSet(objectGet(item, path0) ?? defaultObject, path.slice(1), value),
     } as typeof item
   }
 

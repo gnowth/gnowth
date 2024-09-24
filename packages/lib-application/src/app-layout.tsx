@@ -1,11 +1,11 @@
 import { objectDefaults } from '@gnowth/lib-utils'
-import { ComponentType, ReactElement, ReactNode } from 'react'
+import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { PropsLayout } from './types'
 import { useAppLayout } from './use-app-layout'
 
 // TODO: check whether we need layoutProps, can it be layoutVariant with object or vice versa
-interface Props {
+type Props = {
   children: ReactNode
   className?: string
   classNamespace?: string
@@ -17,7 +17,7 @@ interface Props {
 }
 
 // TODO: changing layout, can be a place that require transition
-export function AppLayout(props: Props): ReactElement {
+export const AppLayout: FunctionComponent<Props> = (props) => {
   const LayoutComponent = useAppLayout(props.layout)
 
   if (!LayoutComponent) return <>{props.children}</>

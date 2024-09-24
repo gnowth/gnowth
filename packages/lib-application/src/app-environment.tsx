@@ -1,6 +1,6 @@
 import { QueryResource } from '@gnowth/lib-query'
 import { objectDefaults } from '@gnowth/lib-utils'
-import { Fragment, ReactElement, ReactNode, useState } from 'react'
+import { Fragment, FunctionComponent, ReactNode, useState } from 'react'
 import { HashRouter } from 'react-router-dom'
 
 import { AppBoundary } from './app-boundary'
@@ -18,7 +18,7 @@ interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApp
 // TODO add warning/error model?
 // TODO add settings in environment
 // TODO add store? history?
-export function AppEnvironment(props: Props): ReactElement {
+export const AppEnvironment: FunctionComponent<Props> = (props) => {
   const [whoami, whoamiSet] = useState<QueryResource | null>(null)
   const propsWithDefault = objectDefaults(
     { whoami, whoamiSet } as PropsEnvironment,
