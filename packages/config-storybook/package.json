@@ -35,12 +35,12 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@storybook/addon-essentials": "8.3.2",
-    "@storybook/addon-interactions": "8.3.2",
-    "@storybook/addon-links": "8.3.2",
-    "@storybook/nextjs": "8.3.2",
-    "@storybook/preview-api": "8.3.2",
-    "storybook": "8.3.2",
+    "@storybook/addon-essentials": "8.3.4",
+    "@storybook/addon-interactions": "8.3.4",
+    "@storybook/addon-links": "8.3.4",
+    "@storybook/nextjs": "8.3.4",
+    "@storybook/preview-api": "8.3.4",
+    "storybook": "8.3.4",
     "react": "18.3.1"
   },
   "devDependencies": {
