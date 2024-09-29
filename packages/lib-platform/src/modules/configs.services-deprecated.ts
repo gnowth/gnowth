@@ -13,13 +13,11 @@ export class ConfigService {
   #axios: AxiosInstance
 
   #configs: Configs
-  #parameters: Parameters
   routes = {
     configs: (id: string) => `/${id}`,
   }
 
   constructor(parameters: Parameters) {
-    this.#parameters = parameters
     this.#configs = parameters.configs
     this.#axios = axios.create({
       baseURL: `${this.#configs.apiOrigin}${this.#configs.apiContextDefault}/configs`,

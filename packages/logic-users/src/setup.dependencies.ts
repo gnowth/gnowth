@@ -1,9 +1,9 @@
 import { AppSetup } from '@gnowth/lib-application'
 
-import { GroupFilterModel } from './modules/group-filters'
-import { GroupModel, GroupService } from './modules/groups'
-import { UserFilterModel } from './modules/user-filters'
-import { UserModel, UserService } from './modules/users'
+import { GroupFilterModel } from './modules-deprecated/group-filters'
+import { GroupModel, GroupService } from './modules-deprecated/groups'
+import { UserFilterModel } from './modules-deprecated/user-filters'
+import { UserModel, UserService } from './modules-deprecated/users'
 
 type Configs = {
   apiContext: string

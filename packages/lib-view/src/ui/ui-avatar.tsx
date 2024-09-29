@@ -18,7 +18,7 @@ import { ComponentProps, ComponentType, FunctionComponent } from 'react'
 import { useAsync } from 'react-use'
 import * as R from 'remeda'
 
-import { LayoutFlex } from '../exports'
+import { LayoutFlex } from '../layout/layout-flex'
 import { PropsBase } from '../types'
 import { UIIcon } from './ui-icon'
 import { UIImage } from './ui-image'

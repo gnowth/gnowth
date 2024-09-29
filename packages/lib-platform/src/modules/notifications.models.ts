@@ -11,7 +11,7 @@ interface NotificationData {
 }
 
 export class NotificationModel {
-  deserialize = (notification: NotificationData): Notification => {
+  fromData = (notification: NotificationData): Notification => {
     return {
       id: notification.id,
       message: notification.message,
@@ -19,16 +19,16 @@ export class NotificationModel {
     }
   }
 
-  toId = (notification: Notification) => {
+  getId = (notification: Notification): string => {
     return notification.id
   }
 
-  toString = (notification: Notification) => {
-    return notification.message
+  getTitle = (notification: Notification): string => {
+    return notification.title
   }
 
-  toTitle = (notification: Notification) => {
-    return notification.title
+  toString = (notification: Notification): string => {
+    return notification.message
   }
 
   toToast = (notification: Notification) => {
@@ -36,7 +36,11 @@ export class NotificationModel {
       description: this.toString(notification),
       isClosable: true,
       status: 'info' as const,
-      title: this.toTitle(notification),
+      title: this.getTitle(notification),
     }
+  }
+
+  static async construct(): Promise<NotificationModel> {
+    return new this()
   }
 }

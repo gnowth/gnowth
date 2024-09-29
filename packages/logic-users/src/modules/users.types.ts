@@ -1,22 +1,6 @@
-export type UserStatus = 'active' | 'deactivated'
+import { z } from 'zod'
 
-export type User = {
-  avatar?: string
-  email: string
-  id: string
-  key: string
-  nameFirst: string
-  nameLast: string
-  role?: string
-  status: UserStatus
-}
+import { userSchema, userSchemaData } from './users.schemas'
 
-export type UserData = {
-  avatar?: string
-  email?: string
-  id?: string
-  nameFirst?: string
-  nameLast?: string
-  role?: string
-  status?: UserStatus
-}
+export type User = z.infer<typeof userSchema>
+export type UserData = z.infer<typeof userSchemaData>

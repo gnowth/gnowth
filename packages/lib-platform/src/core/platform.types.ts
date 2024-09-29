@@ -8,7 +8,6 @@ export type PlatformConstructors = {
   components?: Record<string, PlatformConstructor>
   controllers?: Record<string, PlatformConstructor>
   modules?: Record<string, PlatformConstructor>
-  // streams, services, resources, schema etc..
   providers?: Record<string, PlatformConstructor>
 }
 export type PlatformParameters = {

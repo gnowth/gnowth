@@ -1,5 +1,7 @@
 import { AxiosError, isAxiosError } from 'axios'
+import { ZodError } from 'zod'
 
+import { PlatformParameters } from '../core/platform'
 import { ErrorData } from './errors.types'
 
 export class ErrorModel {
@@ -13,7 +15,7 @@ export class ErrorModel {
   // DEBT: to implement properly
   fromErrorAxios = (error: AxiosError): ErrorData => {
     return {
-      code: 'logic-core--model-error--from-error-axios-01',
+      code: 'lib-platform--errors--model-error-01',
       message: error.message,
     }
   }
@@ -26,16 +28,27 @@ export class ErrorModel {
     return this.fromError(new Error('unknown error'))
   }
 
-  // DEBT: need a better name for checking if network error can be handled by component
-  isErrorQuery = (error: unknown) => {
-    return !isAxiosError(error) || (error.response?.status ?? 0) >= 500
+  fromErrorZod = (error: ZodError): ErrorData[] => {
+    return error.issues.map((issue) => ({
+      code: 'lib-platform--errors--model-error-02',
+      message: `${issue.message} for ${issue.path.join('.')}`,
+    }))
   }
 
-  toId = (error: ErrorData) => {
+  getId = (error: ErrorData): string => {
     return error.code
   }
 
-  toString = (error: ErrorData) => {
+  // DEBT: need a better name for checking if network error can be handled by component
+  isErrorQuery = (error: unknown): boolean => {
+    return !isAxiosError(error) || (error.response?.status ?? 0) >= 500
+  }
+
+  isErrorZod = (error: unknown): boolean => {
+    return error instanceof ZodError
+  }
+
+  toString = (error: ErrorData): string => {
     return error.message
   }
 
@@ -46,5 +59,9 @@ export class ErrorModel {
       status: 'error' as const,
       title: error.code,
     }
+  }
+
+  static async construct(_parameters: PlatformParameters): Promise<ErrorModel> {
+    return new this()
   }
 }
