@@ -14,7 +14,7 @@ import {
 } from '@gnowth/lib-platform'
 
 import { LogicUserConstant } from '../module.constants'
-import { UserFilterParams } from '../modules-deprecated/user-filters'
+import { UserFilterParams } from '../modules/user-filters'
 import { UserModel } from './users.models'
 import { User } from './users.types'
 
