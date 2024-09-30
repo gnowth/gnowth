@@ -14,7 +14,7 @@ import {
 } from '@gnowth/lib-platform'
 
 import { LogicUserConstant } from '../module.constants'
-import { GroupFilterParams } from '../modules-deprecated/group-filters'
+import { GroupFilterParams } from './group-filters'
 import { GroupModel } from './groups.models'
 import { Group } from './groups.types'
 
