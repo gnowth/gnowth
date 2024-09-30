@@ -1,4 +1,4 @@
-import { ErrorData, ErrorModel, PlatformConstant, PlatformParameters } from '@gnowth/lib-platform'
+import { ErrorData, ErrorModel, PlatformConstant, PlatformParameters } from '@gnowth/lib-react'
 import { v4 as uuid } from 'uuid'
 
 import { userSchema, userSchemaData } from './users.schemas'

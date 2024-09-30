@@ -1,6 +1,6 @@
-import { PlatformConstant, PlatformParameters } from '@gnowth/lib-platform'
+import { PlatformConstant, PlatformParameters } from '@gnowth/lib-react'
 
-import { LogicUserConstant } from '../module.constants'
+import { ModuleUserConstant } from './module-users'
 import { UserModel } from './users.models'
 import { UserService } from './users.services'
 
@@ -11,8 +11,8 @@ export class UserModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         providers: {
-          [LogicUserConstant.userModel]: UserModel,
-          [LogicUserConstant.userService]: UserService,
+          [ModuleUserConstant.userModel]: UserModel,
+          [ModuleUserConstant.userService]: UserService,
         },
       },
     })
