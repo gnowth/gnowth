@@ -11,12 +11,12 @@ import {
   QueryParametersDetail,
   QueryParametersList,
   QueryService,
-} from '@gnowth/lib-platform'
+} from '@gnowth/lib-react'
 
-import { LogicUserConstant } from '../module.constants'
 import { GroupFilterParams } from './group-filters'
 import { GroupModel } from './groups.models'
 import { Group } from './groups.types'
+import { ModuleUserConstant } from './module-users'
 
 type Parameters = { groupModel: GroupModel; queryService: QueryService }
 export class GroupService {
@@ -85,7 +85,7 @@ export class GroupService {
       type: 'provider',
     })
     const groupModel = await parameters.platform.providerGet<GroupModel>({
-      name: LogicUserConstant.groupModel,
+      name: ModuleUserConstant.groupModel,
       type: 'provider',
     })
     return new this({ groupModel, queryService })

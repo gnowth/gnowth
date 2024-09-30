@@ -1,4 +1,4 @@
-import { PlatformParameters } from '@gnowth/lib-platform'
+import { PlatformParameters } from '@gnowth/lib-react'
 
 import { userFilterSchema, userFilterSchemaData, userFilterSchemaParams } from './user-filters.schemas'
 import { UserFilter, UserFilterData, UserFilterParams } from './user-filters.types'

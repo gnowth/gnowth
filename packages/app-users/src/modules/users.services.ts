@@ -11,9 +11,9 @@ import {
   QueryParametersDetail,
   QueryParametersList,
   QueryService,
-} from '@gnowth/lib-platform'
+} from '@gnowth/lib-react'
 
-import { LogicUserConstant } from '../module.constants'
+import { ModuleUserConstant } from './module-users'
 import { UserFilterParams } from './user-filters'
 import { UserModel } from './users.models'
 import { User } from './users.types'
@@ -85,7 +85,7 @@ export class UserService {
       type: 'provider',
     })
     const userModel = await parameters.platform.providerGet<UserModel>({
-      name: LogicUserConstant.userModel,
+      name: ModuleUserConstant.userModel,
       type: 'provider',
     })
     return new this({ queryService, userModel })

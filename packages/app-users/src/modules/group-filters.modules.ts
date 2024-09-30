@@ -1,13 +1,13 @@
-import { PlatformParameters } from '@gnowth/lib-platform'
+import { PlatformParameters } from '@gnowth/lib-react'
 
-import { LogicUserConstant } from '../module.constants'
 import { GroupFilterModel } from './group-filters.models'
+import { ModuleUserConstant } from './module-users'
 
 export class GroupFilterModule {
   static async construct(parameters: PlatformParameters): Promise<GroupFilterModule> {
     await parameters.platform.moduleMountDependencies({
       constructors: parameters.constructors,
-      constructorsDefault: { providers: { [LogicUserConstant.groupFilterModel]: GroupFilterModel } },
+      constructorsDefault: { providers: { [ModuleUserConstant.groupFilterModel]: GroupFilterModel } },
     })
     return new this()
   }

@@ -1,4 +1,4 @@
-import { PlatformParameters } from '@gnowth/lib-platform'
+import { PlatformParameters } from '@gnowth/lib-react'
 
 import { groupFilterSchema, groupFilterSchemaData, groupFilterSchemaParams } from './group-filters.schemas'
 import { GroupFilter, GroupFilterData, GroupFilterParams } from './group-filters.types'
