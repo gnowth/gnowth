@@ -12,10 +12,8 @@ export class NotificationService {
 
   #axios: AxiosInstance
   #configService: ConfigService
-  #parameters: Parameters
 
   constructor(parameters: Parameters) {
-    this.#parameters = parameters
     this.#configService = parameters.configService
 
     const configs = this.#configService.getConfigs()

@@ -1,90 +1,38 @@
-import { MockService } from '@gnowth/lib-mock'
-import { Model } from '@gnowth/lib-model'
-import { ErrorData } from '@gnowth/lib-react'
-import { UtilOptional } from '@gnowth/lib-utils'
+import { ErrorData, ErrorModel, PlatformConstant, PlatformParameters } from '@gnowth/lib-platform'
 import { v4 as uuid } from 'uuid'
 
-import { EventService } from './events'
+import { userSchema, userSchemaData } from './users.schemas'
 import { User, UserData } from './users.types'
 
-type Parameters = {
-  eventService?: EventService
-  mockService?: MockService
-}
+type Parameters = { errorModel: ErrorModel }
+export class UserModel {
+  #errorModel: ErrorModel
 
-export class UserModel extends Model<User> {
-  fromData(user: UserData): User {
-    // TODO: report error if required field not available
-    return {
-      avatar: user.avatar,
-      email: user.email ?? '',
-      id: user.id ?? uuid(),
-      key: user.id ?? uuid(),
-      nameFirst: user.nameFirst ?? '',
-      nameLast: user.nameLast ?? '',
-      role: user.role ?? 'N/A',
-      status: user.status ?? 'deactivated',
-    }
+  fromData = (userData: UserData): User => {
+    return userSchema.parse({ ...userData, key: userData.id ?? uuid() })
   }
 
-  generate(user: UtilOptional<User, 'status'>, parameters?: Parameters): User {
-    const userGenerated = { ...user, status: user.status ?? 'deactivated' }
-
-    parameters?.eventService?.logIfError({
-      code: 'logic-users--model-users--generate--01',
-      errors: this.validate(userGenerated),
-      message: 'Unable to create valid User',
-      method: 'generate',
-      payload: userGenerated,
-    })
-
-    return userGenerated
+  constructor(parameters: Parameters) {
+    this.#errorModel = parameters.errorModel
   }
 
-  generateFake(user?: Partial<User>, parameters?: Parameters): User {
-    parameters?.eventService?.logIfError({
-      code: 'logic-users--model-user--generate-fake--01',
-      errors: parameters?.mockService
-        ? []
-        : [
-            {
-              code: 'logic-users--model-user--generate-fake--02',
-              message: 'Service faker is not available',
-            },
-          ],
-      message: 'Unable to create valid User',
-      method: 'generateFake',
+  static async construct(parameters: PlatformParameters): Promise<UserModel> {
+    const errorModel = await parameters.platform.providerGet<ErrorModel>({
+      name: PlatformConstant.errorModel,
+      type: 'provider',
     })
-
-    const id = parameters?.mockService?.stringUuid({ value: user?.id }) ?? ''
-    const nameFirst = parameters?.mockService?.personFirstName({ seed: id, value: user?.nameFirst }) ?? ''
-    const nameLast = parameters?.mockService?.personLastName({ seed: id, value: user?.nameLast }) ?? ''
-
-    return this.generate({
-      ...user,
-      email:
-        parameters?.mockService?.internetEmail({
-          firstName: nameFirst,
-          lastName: nameLast,
-          seed: id,
-          value: user?.email,
-        }) ?? '',
-      id,
-      key: id,
-      nameFirst,
-      nameLast,
-    })
+    return new this({ errorModel })
   }
 
-  getId(user: User) {
+  getId(user: User): string {
     return user.id
   }
 
-  getKey(user: User) {
+  getKey(user: User): string {
     return user.key
   }
 
-  getNameFull(user: User) {
+  getNameFull(user: User): string {
     return `${user.nameFirst} ${user.nameLast}`
   }
 
@@ -93,15 +41,15 @@ export class UserModel extends Model<User> {
   }
 
   toData(user: User): UserData {
-    return user
+    return userSchemaData.parse(user)
   }
 
-  toString(user: User) {
+  toString(user: User): string {
     return `${user.nameLast}, ${user.nameFirst}`
   }
 
-  // TODO:
-  validate(_user: User): ErrorData[] {
-    return []
+  validate(user: User): ErrorData[] {
+    const result = userSchema.safeParse(user)
+    return result.error ? this.#errorModel.fromErrorZod(result.error) : []
   }
 }

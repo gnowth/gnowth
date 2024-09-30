@@ -1,5 +1,6 @@
 import { Subject } from 'rxjs'
 
+import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { Notification, NotificationModel } from './notifications.models'
 
@@ -9,10 +10,11 @@ interface Toast {
   status: 'error' | 'info'
   title: string
 }
-
+type Parameters = { errorModel: ErrorModel; notificationModel: NotificationModel }
 export class NotificationStream {
-  #errorModel!: ErrorModel
-  #notificationModel!: NotificationModel
+  #errorModel: ErrorModel
+  #notificationModel: NotificationModel
+
   pushError = (error: ErrorData) => {
     return this.stream.next(this.#errorModel.toToast(error))
   }
@@ -23,12 +25,20 @@ export class NotificationStream {
 
   stream = new Subject<Toast>()
 
-  constructor() {
-    this.#errorModel = new ErrorModel()
-    this.#notificationModel = new NotificationModel()
+  constructor(parameters: Parameters) {
+    this.#errorModel = parameters.errorModel
+    this.#notificationModel = parameters.notificationModel
   }
 
-  static async construct() {
-    return new this()
+  static async construct(parameters: PlatformParameters) {
+    const errorModel = await parameters.platform.providerGet<ErrorModel>({
+      name: PlatformConstant.errorModel,
+      type: 'provider',
+    })
+    const notificationModel = await parameters.platform.providerGet<NotificationModel>({
+      name: PlatformConstant.notificationModel,
+      type: 'provider',
+    })
+    return new this({ errorModel, notificationModel })
   }
 }

@@ -1,113 +1,108 @@
-import { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query'
-
 import {
+  PlatformConstant,
+  PlatformParameters,
   QueryDetail,
+  QueryFnOptionsDetail,
+  QueryFnOptionsList,
   QueryKeyDetail,
   QueryKeyList,
   QueryList,
   QueryParametersDetail,
   QueryParametersList,
   QueryService,
-  TokenQueryEntity,
-} from './queries'
-import { UserFilterData, UserFilterParams } from './user-filters'
+} from '@gnowth/lib-platform'
+
+import { LogicUserConstant } from '../module.constants'
+import { UserFilterParams } from '../modules-deprecated/user-filters'
 import { UserModel } from './users.models'
-import { User, UserData } from './users.types'
+import { User } from './users.types'
 
-type QueryKeys = {
-  detail: QueryKeyDetail
-  list: QueryKeyList<UserFilterParams>
-}
-
-type Parameters = {
-  apiContext: string
-  apiOrigin: string
-}
-
+type Parameters = { queryService: QueryService; userModel: UserModel }
 export class UserService {
-  #parameters: Parameters
-  #queryService!: QueryService
+  #constant = {
+    apiContext: 'users',
+    apiOrigin: 'https://api.gnowth.com',
+    scope: 'users',
+  }
+  #queryService: QueryService
   #scope = 'users'
-  #userModel!: UserModel
 
-  detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
+  #userModel: UserModel
+
+  private detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
+    const id = this.#queryService.getId(parameters)
     return this.#queryService.detail({
-      route: this.routes.users(parameters.queryKey.at(0)?.id),
       signal: parameters.signal,
-      transform: (data: UserData) => this.#userModel.fromData(data),
+      transformData: this.#userModel.fromData,
+      url: this.routes.users(id),
     })
   }
 
-  list = (parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> => {
+  private list = (parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> => {
+    const params = this.#queryService.getParams(parameters)
     return this.#queryService.list({
-      params: parameters.queryKey.at(0)?.params,
-      route: this.routes.users(),
+      params,
       signal: parameters.signal,
-      transform: (data: UserData) => this.#userModel.fromData(data),
+      transformData: this.#userModel.fromData,
+      url: this.routes.users(),
     })
   }
 
   // TODO: check how to cancel
-  save = (user: User): Promise<QueryDetail<User>> => {
+  private save = (user: User): Promise<QueryDetail<User>> => {
     return this.#queryService.save(this.#userModel.toData(user), {
       method: this.#userModel.getId(user) ? 'post' : 'put',
-      route: this.routes.users(user.id),
-      transform: (data: UserData) => this.#userModel.fromData(data),
+      transformData: this.#userModel.fromData,
+      url: this.routes.users(user.id),
     })
   }
 
+  detailOptions: QueryFnOptionsDetail<User> = (options) => {
+    return {
+      queryFn: this.detail,
+      queryKey: this.queryKeys.detail(options.id),
+      ...options,
+    }
+  }
+
+  listOptions: QueryFnOptionsList<User, UserFilterParams> = (options) => {
+    return {
+      queryFn: this.list,
+      queryKey: this.queryKeys.list(options?.params),
+      ...options,
+    }
+  }
+
   constructor(parameters: Parameters) {
-    this.#parameters = parameters
-    this.onInit()
+    this.#queryService = parameters.queryService
+    this.#userModel = parameters.userModel
   }
 
-  listOptions(
-    options: Partial<{ filtersData: UserFilterData } & UseQueryOptions<QueryList<User>>>,
-  ): UseQueryOptions<QueryList<User>> {
+  static async construct(parameters: PlatformParameters): Promise<UserService> {
+    const queryService = await parameters.platform.providerGet<QueryService>({
+      name: PlatformConstant.queryService,
+      type: 'provider',
+    })
+    const userModel = await parameters.platform.providerGet<UserModel>({
+      name: LogicUserConstant.userModel,
+      type: 'provider',
+    })
+    return new this({ queryService, userModel })
+  }
+
+  get queryKeys() {
     return {
-      queryFn: (parameters) => this.list(parameters as QueryParametersList<UserFilterParams>),
-      queryKey: this.queryKeys.list(options.filtersData),
-      ...options,
-    }
-  }
-
-  mutateOptions(
-    options: Partial<UseMutationOptions<QueryDetail<User>, Error, User>>,
-  ): UseMutationOptions<QueryDetail<User>, Error, User> {
-    return {
-      mutationFn: (user: User) => this.save(user),
-      ...options,
-    }
-  }
-
-  onInit() {
-    this.#queryService = new QueryService()
-    this.#userModel = new UserModel({})
-  }
-
-  queryOptions(
-    options: Partial<{ id?: string } & UseQueryOptions<QueryDetail<User>>>,
-  ): UseQueryOptions<QueryDetail<User>> {
-    return {
-      enabled: !!options.id,
-      queryFn: (parameters) => this.detail(parameters as QueryParametersDetail),
-      queryKey: this.queryKeys.detail(options.id!),
-      ...options,
-    }
-  }
-
-  get queryKeys(): QueryKeys {
-    return {
-      detail: (id) => [{ entity: TokenQueryEntity.detail, id, scope: this.#scope }],
-      list: (params) => [{ entity: TokenQueryEntity.list, params, scope: this.#scope }],
+      detail: (id: string): QueryKeyDetail => [{ entity: 'detail', id, scope: this.#constant.scope }],
+      list: <TParams>(params?: TParams): QueryKeyList<TParams> => [
+        { entity: 'list', params, scope: this.#constant.scope },
+      ],
     }
   }
 
   get routes() {
-    const urlBase = `${this.#parameters.apiOrigin}${this.#parameters.apiContext}`
-
+    const urlBase = `${this.#constant.apiOrigin}${this.#constant.apiContext}`
     return {
-      users: (id = '') => `${urlBase}/v1/${this.#scope}/${id}`,
+      users: (id = '') => `${urlBase}/v1/${this.#constant.scope}/${id}`,
     }
   }
 }

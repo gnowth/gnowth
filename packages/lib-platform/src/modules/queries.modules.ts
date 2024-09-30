@@ -1,6 +1,7 @@
 import { PlatformConstant, PlatformParameters } from '../core/platform'
 import { QueryClientReactQueryV5 } from './queries.clients'
 import { QueryController } from './queries.controllers'
+import { QueryService } from './queries.services'
 
 export class QueryModule {
   static async construct(parameters: PlatformParameters): Promise<QueryModule> {
@@ -14,6 +15,7 @@ export class QueryModule {
           },
         },
         controllers: { [PlatformConstant.queryController]: QueryController },
+        providers: { [PlatformConstant.queryService]: QueryService },
       },
     })
     return new this()
