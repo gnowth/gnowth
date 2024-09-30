@@ -34,3 +34,9 @@ export type QueryFnOptionsList<TItem, TParams = ObjectLiteral> = (options?: {
   queryFn: (parameters: QueryParametersList<TParams>) => Promise<QueryList<TItem>>
   queryKey: QueryKeyList<TParams>
 }
+
+export type QueryFnOptionsSave<TItem> = (options?: {
+  mutationFn?: (item: TItem) => Promise<QueryDetail<TItem>>
+}) => {
+  mutationFn: (item: TItem) => Promise<QueryDetail<TItem>>
+}

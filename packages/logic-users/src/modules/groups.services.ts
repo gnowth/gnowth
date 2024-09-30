@@ -14,44 +14,44 @@ import {
 } from '@gnowth/lib-platform'
 
 import { LogicUserConstant } from '../module.constants'
-import { UserFilterParams } from '../modules-deprecated/user-filters'
-import { UserModel } from './users.models'
-import { User } from './users.types'
+import { GroupFilterParams } from '../modules-deprecated/group-filters'
+import { GroupModel } from './groups.models'
+import { Group } from './groups.types'
 
-type Parameters = { queryService: QueryService; userModel: UserModel }
-export class UserService {
-  #constant = { apiContext: 'users', apiOrigin: 'https://api.gnowth.com', scope: 'users' }
+type Parameters = { groupModel: GroupModel; queryService: QueryService }
+export class GroupService {
+  #constant = { apiContext: 'users', apiOrigin: 'https://api.gnowth.com', scope: 'groups' }
+  #groupModel: GroupModel
   #queryService: QueryService
-  #userModel: UserModel
 
-  private detail = (parameters: QueryParametersDetail): Promise<QueryDetail<User>> => {
+  private detail = (parameters: QueryParametersDetail): Promise<QueryDetail<Group>> => {
     const id = this.#queryService.getId(parameters)
     return this.#queryService.detail({
       signal: parameters.signal,
-      transformData: this.#userModel.fromData,
-      url: this.routes.users(id),
+      transformData: this.#groupModel.fromData,
+      url: this.routes.groups(id),
     })
   }
 
-  private list = (parameters: QueryParametersList<UserFilterParams>): Promise<QueryList<User>> => {
+  private list = (parameters: QueryParametersList<GroupFilterParams>): Promise<QueryList<Group>> => {
     const params = this.#queryService.getParams(parameters)
     return this.#queryService.list({
       params,
       signal: parameters.signal,
-      transformData: this.#userModel.fromData,
-      url: this.routes.users(),
+      transformData: this.#groupModel.fromData,
+      url: this.routes.groups(),
     })
   }
 
-  private save = (user: User): Promise<QueryDetail<User>> => {
-    return this.#queryService.save(this.#userModel.toData(user), {
-      method: this.#userModel.getId(user) ? 'post' : 'put',
-      transformData: this.#userModel.fromData,
-      url: this.routes.users(user.id),
+  private save = (group: Group): Promise<QueryDetail<Group>> => {
+    return this.#queryService.save(this.#groupModel.toData(group), {
+      method: this.#groupModel.getId(group) ? 'post' : 'put',
+      transformData: this.#groupModel.fromData,
+      url: this.routes.groups(group.id),
     })
   }
 
-  detailOptions: QueryFnOptionsDetail<User> = (options) => {
+  detailOptions: QueryFnOptionsDetail<Group> = (options) => {
     return {
       queryFn: this.detail,
       queryKey: this.queryKeys.detail(options.id),
@@ -59,7 +59,7 @@ export class UserService {
     }
   }
 
-  listOptions: QueryFnOptionsList<User, UserFilterParams> = (options) => {
+  listOptions: QueryFnOptionsList<Group, GroupFilterParams> = (options) => {
     return {
       queryFn: this.list,
       queryKey: this.queryKeys.list(options?.params),
@@ -67,7 +67,7 @@ export class UserService {
     }
   }
 
-  saveOptions: QueryFnOptionsSave<User> = (options) => {
+  saveOptions: QueryFnOptionsSave<Group> = (options) => {
     return {
       mutationFn: this.save,
       ...options,
@@ -76,19 +76,19 @@ export class UserService {
 
   constructor(parameters: Parameters) {
     this.#queryService = parameters.queryService
-    this.#userModel = parameters.userModel
+    this.#groupModel = parameters.groupModel
   }
 
-  static async construct(parameters: PlatformParameters): Promise<UserService> {
+  static async construct(parameters: PlatformParameters): Promise<GroupService> {
     const queryService = await parameters.platform.providerGet<QueryService>({
       name: PlatformConstant.queryService,
       type: 'provider',
     })
-    const userModel = await parameters.platform.providerGet<UserModel>({
-      name: LogicUserConstant.userModel,
+    const groupModel = await parameters.platform.providerGet<GroupModel>({
+      name: LogicUserConstant.groupModel,
       type: 'provider',
     })
-    return new this({ queryService, userModel })
+    return new this({ groupModel, queryService })
   }
 
   get queryKeys() {
@@ -103,7 +103,7 @@ export class UserService {
   get routes() {
     const urlBase = `${this.#constant.apiOrigin}${this.#constant.apiContext}`
     return {
-      users: (id: string = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
+      groups: (id: string = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
     }
   }
 }
