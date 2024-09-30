@@ -12,6 +12,10 @@ export class UserModel {
     return userSchema.parse({ ...userData, key: userData.id ?? uuid() })
   }
 
+  toData = (user: User): UserData => {
+    return userSchemaData.parse(user)
+  }
+
   constructor(parameters: Parameters) {
     this.#errorModel = parameters.errorModel
   }
@@ -38,10 +42,6 @@ export class UserModel {
 
   isValid(user: User): boolean {
     return this.validate(user).length === 0
-  }
-
-  toData(user: User): UserData {
-    return userSchemaData.parse(user)
   }
 
   toString(user: User): string {
