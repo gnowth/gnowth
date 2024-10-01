@@ -39,7 +39,7 @@
     "@storybook/node-logger": "8.3.4",
     "@storybook/react": "8.3.4",
     "@storybook/test-runner": "0.19.1",
-    "chromatic": "11.10.4"
+    "chromatic": "11.11.0"
   },
   "scripts": {
     "build-ci": "storybook build --quiet --disable-telemetry",
