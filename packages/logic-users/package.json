@@ -40,7 +40,7 @@
     "@gnowth/lib-mock": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@tanstack/react-query": "5.56.2",
+    "@tanstack/react-query": "5.59.0",
     "@types/uuid": "10.0.0"
   },
   "scripts": {
