@@ -13,6 +13,7 @@ import {
   QueryService,
 } from '@gnowth/lib-react'
 
+import { configs } from '../configs'
 import { ModuleUserConstant } from './module-users'
 import { UserFilterParams } from './user-filters'
 import { UserModel } from './users.models'
@@ -20,7 +21,7 @@ import { User } from './users.types'
 
 type Parameters = { queryService: QueryService; userModel: UserModel }
 export class UserService {
-  #constant = { apiContext: 'users', apiOrigin: 'https://api.gnowth.com', scope: 'users' }
+  #constant = { apiContext: configs.apiContext, apiOrigin: configs.apiOrigin, scope: 'users' }
   #queryService: QueryService
   #userModel: UserModel
 

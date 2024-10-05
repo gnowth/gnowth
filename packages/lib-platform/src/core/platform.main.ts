@@ -224,12 +224,22 @@ export class Platform {
     return this.#dependencyGet(definition) as TClient
   }
 
+  clientGetMaybe<TClient extends object>(definition: PlatformDefinitionClient): TClient | undefined {
+    return this.#dependencyGet(definition) as TClient
+  }
+
   async controllerGet<TController extends object>(
     definition: PlatformDefinitionController,
   ): Promise<TController> {
     this.#dependencyPreload(definition).catch(R.doNothing())
     await this.#dependencyMountModule(definition)
     await this.#dependencyMount(definition)
+    return this.#dependencyGet(definition) as TController
+  }
+
+  controllerGetMaybe<TController extends object>(
+    definition: PlatformDefinitionController,
+  ): TController | undefined {
     return this.#dependencyGet(definition) as TController
   }
 
@@ -251,6 +261,10 @@ export class Platform {
     this.#dependencyPreload(definition).catch(R.doNothing())
     await this.#dependencyMountModule(definition)
     await this.#dependencyMount(definition)
+    return this.#dependencyGet(definition) as TProvider
+  }
+
+  providerGetMaybe<TProvider extends object>(definition: PlatformDefinitionProvider): TProvider | undefined {
     return this.#dependencyGet(definition) as TProvider
   }
 }

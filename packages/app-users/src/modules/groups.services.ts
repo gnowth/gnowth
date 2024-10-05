@@ -13,6 +13,7 @@ import {
   QueryService,
 } from '@gnowth/lib-react'
 
+import { configs } from '../configs'
 import { GroupFilterParams } from './group-filters'
 import { GroupModel } from './groups.models'
 import { Group } from './groups.types'
@@ -20,7 +21,7 @@ import { ModuleUserConstant } from './module-users'
 
 type Parameters = { groupModel: GroupModel; queryService: QueryService }
 export class GroupService {
-  #constant = { apiContext: 'users', apiOrigin: 'https://api.gnowth.com', scope: 'groups' }
+  #constant = { apiContext: configs.apiContext, apiOrigin: configs.apiOrigin, scope: 'groups' }
   #groupModel: GroupModel
   #queryService: QueryService
 

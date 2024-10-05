@@ -50,6 +50,10 @@ export class PlatformManager {
     return this.#global.platform as Platform
   }
 
+  static getMaybe(): Platform | undefined {
+    return this.#global.platform
+  }
+
   static unmount(): void {
     delete this.#global.platform
   }
