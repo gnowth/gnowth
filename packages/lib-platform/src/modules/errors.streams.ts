@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs'
 
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorModel } from './errors.models'
 import { ErrorData } from './errors.types'
 
@@ -22,8 +22,7 @@ export class ErrorStream {
 
   static async construct(parameters: PlatformParameters): Promise<ErrorStream> {
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     return new this({ errorModel })
   }

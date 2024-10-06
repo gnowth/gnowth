@@ -2,7 +2,7 @@ import { ErrorCustom } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { ScriptService } from '../modules/scripts'
-import { PlatformConstant } from './platform.constants'
+import { PlatformDependency } from './platform.constants'
 import { modules } from './platform.modules'
 import {
   PlatformConstructor,
@@ -42,7 +42,7 @@ export class Platform {
   static async construct(parameters?: Parameters): Promise<Platform> {
     const constructors = this.constructorMerge({ modules }, parameters?.constructors)
     const platform = new this({ ...parameters, constructors })
-    await platform.moduleMount({ constructors, name: PlatformConstant.scriptModule, type: 'module' })
+    await platform.moduleMount({ constructors, name: PlatformDependency.scriptModule })
     await platform.moduleMountDependencies({ constructorsDefault: constructors })
     return platform
   }
@@ -149,7 +149,8 @@ export class Platform {
 
   async #dependencyMountModule(definition: PlatformDefinition): Promise<void> {
     if (definition.type !== 'module' && definition.module) {
-      await this.moduleMount(definition.module)
+      const constructors = Platform.constructorMerge(definition.constructors, definition.module.constructors)
+      await this.moduleMount({ ...definition.module, constructors })
     }
   }
 
@@ -198,8 +199,7 @@ export class Platform {
       })
     }
     const scriptService = await this.providerGet<ScriptService>({
-      name: PlatformConstant.scriptService,
-      type: 'provider',
+      name: PlatformDependency.scriptService,
     })
     const importedPackage = await scriptService.import({ url })
     const Constructor = importedPackage[definition.exportName ?? definition.name]
@@ -217,33 +217,55 @@ export class Platform {
     return Constructor
   }
 
-  async clientGet<TClient extends object>(definition: PlatformDefinitionClient): Promise<TClient> {
+  async clientGet<TClient extends object>(
+    definitionClient: Omit<PlatformDefinitionClient, 'type'>,
+  ): Promise<TClient> {
+    const definition = { ...definitionClient, type: 'client' as const }
     this.#dependencyPreload(definition).catch(R.doNothing())
     await this.#dependencyMountModule(definition)
     await this.#dependencyMount(definition)
     return this.#dependencyGet(definition) as TClient
   }
 
-  clientGetMaybe<TClient extends object>(definition: PlatformDefinitionClient): TClient | undefined {
+  clientGetMaybe<TClient extends object>(
+    definitionClient: Omit<PlatformDefinitionClient, 'type'>,
+  ): TClient | undefined {
+    const definition = { ...definitionClient, type: 'client' as const }
     return this.#dependencyGet(definition) as TClient
   }
 
   async controllerGet<TController extends object>(
-    definition: PlatformDefinitionController,
+    definitionController: Omit<PlatformDefinitionController, 'type'>,
   ): Promise<TController> {
+    const definition = { ...definitionController, type: 'controller' as const }
     this.#dependencyPreload(definition).catch(R.doNothing())
+    console.log('==============1')
     await this.#dependencyMountModule(definition)
+    console.log('==============2')
     await this.#dependencyMount(definition)
+    console.log('==============3')
     return this.#dependencyGet(definition) as TController
   }
 
   controllerGetMaybe<TController extends object>(
-    definition: PlatformDefinitionController,
+    definitionController: Omit<PlatformDefinitionController, 'type'>,
   ): TController | undefined {
+    const definition = { ...definitionController, type: 'controller' as const }
+    console.log('==========lisit', this.#controllers, this.#modules)
     return this.#dependencyGet(definition) as TController
   }
 
-  async moduleMount(definition: PlatformDefinitionModule): Promise<void> {
+  async dependenciesMount(definitions: PlatformDefinition[]): Promise<void> {
+    await Promise.allSettled(definitions.map((definition) => this.#dependencyMount(definition)))
+  }
+
+  moduleIsMounted(definitionModule: Omit<PlatformDefinitionModule, 'type'>): boolean {
+    const definition = { ...definitionModule, type: 'module' as const }
+    return !!this.#dependencyGet(definition)
+  }
+
+  async moduleMount(definitionModule: Omit<PlatformDefinitionModule, 'type'>): Promise<void> {
+    const definition = { ...definitionModule, type: 'module' as const }
     this.#dependencyPreload(definition).catch(R.doNothing())
     await this.#dependencyMount(definition)
   }
@@ -254,17 +276,23 @@ export class Platform {
       dependencies.constructors,
     )
     const definitions = this.#definitionFromConstructors(constructors)
-    await Promise.allSettled(definitions.map((definition) => this.#dependencyMount(definition)))
+    await this.dependenciesMount(definitions)
   }
 
-  async providerGet<TProvider extends object>(definition: PlatformDefinitionProvider): Promise<TProvider> {
+  async providerGet<TProvider extends object>(
+    definitionProvider: Omit<PlatformDefinitionProvider, 'type'>,
+  ): Promise<TProvider> {
+    const definition = { ...definitionProvider, type: 'provider' as const }
     this.#dependencyPreload(definition).catch(R.doNothing())
     await this.#dependencyMountModule(definition)
     await this.#dependencyMount(definition)
     return this.#dependencyGet(definition) as TProvider
   }
 
-  providerGetMaybe<TProvider extends object>(definition: PlatformDefinitionProvider): TProvider | undefined {
+  providerGetMaybe<TProvider extends object>(
+    definitionProvider: Omit<PlatformDefinitionProvider, 'type'>,
+  ): TProvider | undefined {
+    const definition = { ...definitionProvider, type: 'provider' as const }
     return this.#dependencyGet(definition) as TProvider
   }
 }

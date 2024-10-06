@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs'
 
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { Notification, NotificationModel } from './notifications.models'
 
@@ -32,12 +32,10 @@ export class NotificationStream {
 
   static async construct(parameters: PlatformParameters) {
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     const notificationModel = await parameters.platform.providerGet<NotificationModel>({
-      name: PlatformConstant.notificationModel,
-      type: 'provider',
+      name: PlatformDependency.notificationModel,
     })
     return new this({ errorModel, notificationModel })
   }

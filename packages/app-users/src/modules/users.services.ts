@@ -1,5 +1,5 @@
 import {
-  PlatformConstant,
+  PlatformDependency,
   PlatformParameters,
   QueryDetail,
   QueryFnOptionsDetail,
@@ -14,7 +14,7 @@ import {
 } from '@gnowth/lib-react'
 
 import { configs } from '../configs'
-import { ModuleUserConstant } from './module-users'
+import { AppUserDependency } from './app-users'
 import { UserFilterParams } from './user-filters'
 import { UserModel } from './users.models'
 import { User } from './users.types'
@@ -82,12 +82,10 @@ export class UserService {
 
   static async construct(parameters: PlatformParameters): Promise<UserService> {
     const queryService = await parameters.platform.providerGet<QueryService>({
-      name: PlatformConstant.queryService,
-      type: 'provider',
+      name: PlatformDependency.queryService,
     })
     const userModel = await parameters.platform.providerGet<UserModel>({
-      name: ModuleUserConstant.userModel,
-      type: 'provider',
+      name: AppUserDependency.userModel,
     })
     return new this({ queryService, userModel })
   }

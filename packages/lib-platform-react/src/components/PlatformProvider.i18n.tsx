@@ -1,4 +1,4 @@
-import { I18nInterfaceClientV1, PlatformConstant, PlatformDefinitionClient } from '@gnowth/lib-platform'
+import { I18nInterfaceClientV1, PlatformDefinitionClient, PlatformDependency } from '@gnowth/lib-platform'
 import { ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 
 import { usePlatformClient } from '../hooks/use-platform'
@@ -13,7 +13,7 @@ type Props = PropsWithChildren<{
 export const PlatformProviderI18n: FunctionComponent<Props> = (props) => {
   const { I18nClientProvider } = props
   const definition = I18nClientProvider
-    ? (props.i18nClientDefinition ?? { name: PlatformConstant.i18nClient, type: 'client' })
+    ? (props.i18nClientDefinition ?? { name: PlatformDependency.i18nClient })
     : undefined
   // DEBT(refactor): use usePlatformClientSuspense
   const { error, loading, value } = usePlatformClient<I18nInterfaceClientV1>(definition)

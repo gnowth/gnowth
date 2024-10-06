@@ -3,7 +3,13 @@ import * as R from 'remeda'
 
 import { scriptImport } from '../modules/scripts.utils'
 import { Platform } from './platform.main'
-import { PlatformConstructors, PlatformDefinition } from './platform.types'
+import {
+  PlatformConstructors,
+  PlatformDefinition,
+  PlatformDefinitionClient,
+  PlatformDefinitionController,
+  PlatformDefinitionProvider,
+} from './platform.types'
 
 type GlobalThis = {
   platform?: Platform
@@ -52,6 +58,37 @@ export class PlatformManager {
 
   static getMaybe(): Platform | undefined {
     return this.#global.platform
+  }
+
+  static async staticGet(): Promise<Platform> {
+    await this.#mount({ Constructor: Platform })
+    return this.#global.platform as Platform
+  }
+
+  static async staticGetClient<TClient extends object>(
+    definition: Omit<PlatformDefinitionClient, 'type'>,
+  ): Promise<TClient> {
+    const platform = await this.staticGet()
+    return platform.clientGet<TClient>(definition)
+  }
+
+  static async staticGetController<TController extends object>(
+    definition: Omit<PlatformDefinitionController, 'type'>,
+  ): Promise<TController> {
+    const platform = await this.staticGet()
+    return platform.controllerGet<TController>(definition)
+  }
+
+  static async staticGetProvider<TProvider extends object>(
+    definition: Omit<PlatformDefinitionProvider, 'type'>,
+  ): Promise<TProvider> {
+    const platform = await this.staticGet()
+    return platform.providerGet<TProvider>(definition)
+  }
+
+  static async staticMountDependencies(definitions: PlatformDefinition[]): Promise<void> {
+    const platform = await this.staticGet()
+    return platform.dependenciesMount(definitions)
   }
 
   static unmount(): void {

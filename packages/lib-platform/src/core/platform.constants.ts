@@ -1,4 +1,4 @@
-export const PlatformConstant = {
+export const PlatformDependency = {
   authenticationClient: 'Platform_AuthenticationClient',
   authenticationClientVariant: { client: 'client' },
   authenticationController: 'Platform_AuthenticationController',

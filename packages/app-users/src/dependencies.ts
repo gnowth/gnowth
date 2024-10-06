@@ -1,11 +1,5 @@
-import { UserFilterModel, UserModel, UserService } from '@gnowth/logic-users'
-
-import { configs } from './configs'
-import { AppModel } from './modules/app'
+import { UserFilterModel } from '@gnowth/logic-users'
 
 export const dependencies = {
-  appModel: new AppModel(),
   userFilterModel: new UserFilterModel({}),
-  userModel: new UserModel({}),
-  userService: new UserService(configs),
 }

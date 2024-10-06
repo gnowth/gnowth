@@ -4,7 +4,7 @@ import i18nBackend from 'i18next-http-backend'
 import * as R from 'remeda'
 import { Observable, Subject } from 'rxjs'
 
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { I18nInterfaceClientV1 } from './i18n.types'
 
@@ -22,8 +22,7 @@ export class I18nClientV23 implements I18nInterfaceClientV1 {
   static async construct(parameters: PlatformParameters): Promise<I18nClientV23> {
     const errorOut$ = new Subject<ErrorData>()
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     const client = createInstance()
     client

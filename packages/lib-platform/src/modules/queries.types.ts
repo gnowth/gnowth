@@ -37,6 +37,8 @@ export type QueryFnOptionsList<TItem, TParams = ObjectLiteral> = (options?: {
 
 export type QueryFnOptionsSave<TItem> = (options?: {
   mutationFn?: (item: TItem) => Promise<QueryDetail<TItem>>
+  onSuccess?: (detail: QueryDetail<TItem>) => Promise<void>
 }) => {
   mutationFn: (item: TItem) => Promise<QueryDetail<TItem>>
+  onSuccess?: (detail: QueryDetail<TItem>) => Promise<void>
 }

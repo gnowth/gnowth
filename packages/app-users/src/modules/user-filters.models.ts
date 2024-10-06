@@ -1,6 +1,6 @@
 import {
   FilterModel,
-  PlatformConstant,
+  PlatformDependency,
   PlatformParameters,
   PredicateArrayFilter,
   PredicateIdentity,
@@ -39,8 +39,7 @@ export class UserFilterModel {
 
   static async construct(parameters: PlatformParameters): Promise<UserFilterModel> {
     const filterModel = await parameters.platform.providerGet<FilterModel>({
-      name: PlatformConstant.filterModel,
-      type: 'provider',
+      name: PlatformDependency.filterModel,
     })
     return new this({ filterModel })
   }

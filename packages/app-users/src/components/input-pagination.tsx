@@ -4,6 +4,8 @@ import { FilterModel, FilterPageSize } from '@gnowth/logic-users'
 import { FunctionComponent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { AppUserConstant } from '../modules/app-users'
+
 interface Value {
   page: number
   pageSize: FilterPageSize
@@ -16,7 +18,7 @@ interface Props {
 }
 
 export const InputPagination: FunctionComponent<Props> = (props) => {
-  const { t } = useTranslation('app-users')
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
 
   return (

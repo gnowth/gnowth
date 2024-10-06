@@ -2,7 +2,7 @@ import { QueryCache, QueryClient } from '@tanstack/react-query'
 import * as R from 'remeda'
 import { Observable, Subject } from 'rxjs'
 
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { QueryInterfaceClientV1 } from './queries.types'
 
@@ -20,8 +20,7 @@ export class QueryClientReactQueryV5 implements QueryInterfaceClientV1 {
   static async construct(parameters: PlatformParameters): Promise<QueryClientReactQueryV5> {
     const errorOut$ = new Subject<ErrorData>()
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     const client = new QueryClient({
       defaultOptions: { queries: { refetchOnWindowFocus: false } },

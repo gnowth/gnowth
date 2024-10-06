@@ -1,16 +1,25 @@
-import { LayoutSection, LayoutStack, UIBox, UIButton, UITypography } from '@gnowth/lib-react'
+import {
+  LayoutSection,
+  LayoutStack,
+  UIBox,
+  UIButton,
+  UITypography,
+  usePlatformControllerSuspense,
+} from '@gnowth/lib-react'
 import { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { dependencies } from '../dependencies'
+import { AppUserConstant, AppUserController, AppUserDependency } from '../modules/app-users'
 import { NavLink } from './nav-link'
 import { ViewProgressGlobal } from './view-progress-global'
 import { withAugmented } from './with-augmented'
 
 // DEBT: remove prefetch in link where possible
 const SectionHeaderComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.appModel.namespace)
-
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
+  const appUserController = usePlatformControllerSuspense<AppUserController>({
+    name: AppUserDependency.appUserController,
+  })
   return (
     <div data-semantic="Header" data-testid="app-users--section-header">
       <LayoutSection layout="flex" palette="primary" variant="container">
@@ -26,29 +35,29 @@ const SectionHeaderComponent: FunctionComponent = () => {
       </LayoutSection>
 
       <LayoutSection boxVariant="float" palette="primary" paletteWeight="50" variant="navigation">
-        <NavLink href={dependencies.appModel.routes.dashboard()} prefetch={false}>
+        <NavLink href={appUserController.routes.dashboard()} prefetch={false}>
           {t('Dashboard')}
         </NavLink>
 
-        <NavLink href={dependencies.appModel.routes.groups()} prefetch={false}>
+        <NavLink href={appUserController.routes.groups()} prefetch={false}>
           {t('Teams')}
         </NavLink>
 
         <NavLink
-          href={dependencies.appModel.routes.users()}
-          hrefActive={dependencies.appModel.routes.user()}
+          href={appUserController.routes.users()}
+          hrefActive={appUserController.routes.user()}
           prefetch={false}
         >
           {t('Members')}
         </NavLink>
 
-        <NavLink href={dependencies.appModel.routes.reports()} prefetch={false}>
+        <NavLink href={appUserController.routes.reports()} prefetch={false}>
           {t('Reports')}
         </NavLink>
 
         <NavLink
-          href={dependencies.appModel.routes.generated()}
-          hrefActive={dependencies.appModel.routes.generated('')}
+          href={appUserController.routes.generated()}
+          hrefActive={appUserController.routes.generated('')}
           prefetch={false}
         >
           {t('Generated page')}

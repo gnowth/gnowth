@@ -7,6 +7,8 @@ import {
   UIButton,
   UISkeleton,
   UITypography,
+  usePlatformControllerSuspense,
+  usePlatformProviderSuspense,
 } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -15,6 +17,9 @@ import { useTranslation } from 'react-i18next'
 import { atom, useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
+import { AppUserConstant, AppUserController, AppUserDependency } from '../modules/app-users'
+import { UserFilterModel } from '../modules/user-filters'
+import { UserModel, UserService } from '../modules/users'
 import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
 
@@ -28,10 +33,23 @@ export const stateUserFilter = atom({
 // DEBT: Update users buttons to use icons? and only visible on hover
 // DEBT: Make add new user button more visible
 const SectionUsersComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.appModel.namespace)
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
+  console.log('rendering========')
+  const appUserController = usePlatformControllerSuspense<AppUserController>({
+    name: AppUserDependency.appUserController,
+  })
+  const userModel = usePlatformProviderSuspense<UserModel>({
+    name: AppUserDependency.userModel,
+  })
+  const userService = usePlatformProviderSuspense<UserService>({
+    name: AppUserDependency.userService,
+  })
+  const userFilterModel = usePlatformProviderSuspense<UserFilterModel>({
+    name: AppUserDependency.userFilterModel,
+  })
   const [filters, setFilters] = useRecoilState(stateUserFilter)
-  const filtersData = useMemo(() => dependencies.userFilterModel.toData(filters), [filters])
-  const { data } = useSuspenseQuery(dependencies.userService.listOptions({ filtersData }))
+  const params = useMemo(() => userFilterModel.toParams(filters), [filters, userFilterModel])
+  const { data } = useSuspenseQuery(userService.listOptions({ params }))
 
   return (
     <LayoutSection variant="container">
@@ -54,17 +72,17 @@ const SectionUsersComponent: FunctionComponent = () => {
           </LayoutFlex>
 
           <LayoutFlex variant="horizontalRight">
-            <Link href={dependencies.appModel.routes.user()} prefetch={false}>
+            <Link href={appUserController.routes.user()} prefetch={false}>
               <UIButton iconValue="add" palette="gray" size="sm" variant="icon" />
             </Link>
           </LayoutFlex>
 
           {data?.data.map((user) => (
-            <Fragment key={dependencies.userModel.getKey(user)}>
+            <Fragment key={userModel.getKey(user)}>
               <LayoutFlex gap="xs">
-                <UIAvatar name={dependencies.userModel.getNameFull(user)} size="sm" src={user.avatar} />
+                <UIAvatar name={userModel.getNameFull(user)} size="sm" src={user.avatar} />
 
-                <UITypography value={dependencies.userModel.getNameFull(user)} variant="body2" />
+                <UITypography value={userModel.getNameFull(user)} variant="body2" />
               </LayoutFlex>
 
               <LayoutFlex>
@@ -80,10 +98,7 @@ const SectionUsersComponent: FunctionComponent = () => {
               </LayoutFlex>
 
               <LayoutFlex gap="xs" variant="horizontalRight">
-                <Link
-                  href={dependencies.appModel.routes.user(dependencies.userModel.getId(user))}
-                  prefetch={false}
-                >
+                <Link href={appUserController.routes.user(userModel.getId(user))} prefetch={false}>
                   <UIButton iconValue="edit" palette="gray" size="sm" variant="icon" />
                 </Link>
 

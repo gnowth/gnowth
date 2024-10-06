@@ -1,5 +1,5 @@
 import {
-  PlatformConstant,
+  PlatformDependency,
   PlatformParameters,
   QueryDetail,
   QueryFnOptionsDetail,
@@ -14,10 +14,10 @@ import {
 } from '@gnowth/lib-react'
 
 import { configs } from '../configs'
+import { AppUserDependency } from './app-users'
 import { GroupFilterParams } from './group-filters'
 import { GroupModel } from './groups.models'
 import { Group } from './groups.types'
-import { ModuleUserConstant } from './module-users'
 
 type Parameters = { groupModel: GroupModel; queryService: QueryService }
 export class GroupService {
@@ -82,12 +82,10 @@ export class GroupService {
 
   static async construct(parameters: PlatformParameters): Promise<GroupService> {
     const queryService = await parameters.platform.providerGet<QueryService>({
-      name: PlatformConstant.queryService,
-      type: 'provider',
+      name: PlatformDependency.queryService,
     })
     const groupModel = await parameters.platform.providerGet<GroupModel>({
-      name: ModuleUserConstant.groupModel,
-      type: 'provider',
+      name: AppUserDependency.groupModel,
     })
     return new this({ groupModel, queryService })
   }

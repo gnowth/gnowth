@@ -1,6 +1,6 @@
-import { Platform, PlatformConstant } from '../core/platform'
+import { Platform, PlatformDependency } from '../core/platform'
 import { PlatformManager } from '../core/platform-manager'
-import { DataService } from './data.services'
+import { DataService } from './data'
 
 describe('dataService', () => {
   afterEach(() => {
@@ -10,10 +10,7 @@ describe('dataService', () => {
   it('gets and sets', async () => {
     expect.assertions(2)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
     expect(dataService.get('name')).toBeUndefined()
 
     dataService.set('name', 'content')
@@ -23,10 +20,7 @@ describe('dataService', () => {
   it('subscribes', async () => {
     expect.assertions(6)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
 
     const setter1 = jest.fn()
     const setter2 = jest.fn()
@@ -47,10 +41,7 @@ describe('dataService', () => {
   it('subscribes but it does not trigger when same data is set', async () => {
     expect.assertions(3)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
 
     const setter1 = jest.fn()
     dataService.subscribe('name', setter1)
@@ -66,10 +57,7 @@ describe('dataService', () => {
   it('makes getter', async () => {
     expect.assertions(4)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
     const getter = dataService.makeGet('name')
     expect(getter()).toBeUndefined()
     expect(dataService.makeGet('name')).toBe(getter)
@@ -82,10 +70,7 @@ describe('dataService', () => {
   it('makes setter', async () => {
     expect.assertions(3)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
     const setter = dataService.makeSet('name')
     expect(dataService.get('name')).toBeUndefined()
     expect(dataService.makeSet('name')).toBe(setter)
@@ -97,10 +82,7 @@ describe('dataService', () => {
   it('makes subscriber', async () => {
     expect.assertions(7)
     const platform = await PlatformManager.get({ Constructor: Platform })
-    const dataService = await platform.providerGet<DataService>({
-      name: PlatformConstant.dataService,
-      type: 'provider',
-    })
+    const dataService = await platform.providerGet<DataService>({ name: PlatformDependency.dataService })
     const subscriber = dataService.makeSubscribe('name')
     expect(dataService.makeSubscribe('name')).toBe(subscriber)
 
