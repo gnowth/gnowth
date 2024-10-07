@@ -48,10 +48,6 @@ export function useValue<Value extends DataValue>(props: Props<Value>, configs: 
   const configsWithDefault = objectDefaults(configs, configsDefault)
 
   useEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
-  useEnsureConstant(props.value, {
-    errorCustom: configsWithDefault.errorCustomValue,
-    skip: mode === 'controlled',
-  })
 
   const valueRef = useLatest(props.value)
   const [value, setValue] = useState(props.value)

@@ -1,5 +1,4 @@
-import { PlatformParameters } from '../core/platform'
-import { PlatformConstant } from '../core/platform.constants'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { EventService } from './events.services'
 import { EventStream } from './events.streams'
 
@@ -9,8 +8,8 @@ export class EventModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         providers: {
-          [PlatformConstant.eventService]: EventService,
-          [PlatformConstant.eventStream]: EventStream,
+          [PlatformDependency.eventService]: EventService,
+          [PlatformDependency.eventStream]: EventStream,
         },
       },
     })

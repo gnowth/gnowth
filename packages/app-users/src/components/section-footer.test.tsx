@@ -1,14 +1,15 @@
-import { screen } from '@testing-library/react'
+import { waitFor } from '@testing-library/react'
 
 import { testMakeRenderComponent } from '../modules/tests'
 import { SectionFooter } from './section-footer'
+import { SectionFooterTestModel } from './section-footer.testModels'
 
 describe('section-footer', () => {
   const renderComponent = testMakeRenderComponent({ Component: SectionFooter })
 
   it('renders properly', async () => {
+    expect.assertions(1)
     await renderComponent()
-    const copyright = screen.getByText('Copyright © 2022 Gnowth')
-    expect(copyright).toBeVisible()
+    await waitFor(() => expect(SectionFooterTestModel.copyright).toBeVisible())
   })
 })

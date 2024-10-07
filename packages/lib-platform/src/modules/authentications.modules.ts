@@ -1,4 +1,4 @@
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { AuthenticationClient } from './authentications.clients'
 import { AuthenticationController } from './authentications.controllers'
 import { AuthenticationService } from './authentications.services'
@@ -10,14 +10,14 @@ export class AuthenticationModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         clients: {
-          [PlatformConstant.authenticationClient]: {
-            [PlatformConstant.authenticationClientVariant.client]: AuthenticationClient,
+          [PlatformDependency.authenticationClient]: {
+            [PlatformDependency.authenticationClientVariant.client]: AuthenticationClient,
           },
         },
-        controllers: { [PlatformConstant.authenticationController]: AuthenticationController },
+        controllers: { [PlatformDependency.authenticationController]: AuthenticationController },
         providers: {
-          [PlatformConstant.authenticationService]: AuthenticationService,
-          [PlatformConstant.authenticationStream]: AuthenticationStream,
+          [PlatformDependency.authenticationService]: AuthenticationService,
+          [PlatformDependency.authenticationStream]: AuthenticationStream,
         },
       },
     })

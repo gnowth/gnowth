@@ -1,5 +1,0 @@
-export * from './modules-deprecated/filters'
-export * from './modules-deprecated/group-filters'
-export * from './modules-deprecated/groups'
-export * from './modules-deprecated/user-filters'
-export * from './modules-deprecated/users'

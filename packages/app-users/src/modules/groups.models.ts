@@ -1,4 +1,4 @@
-import { ErrorData, ErrorModel, PlatformConstant, PlatformParameters } from '@gnowth/lib-react'
+import { ErrorData, ErrorModel, PlatformDependency, PlatformParameters } from '@gnowth/lib-react'
 import { v4 as uuid } from 'uuid'
 
 import { groupSchema, groupSchemaData } from './groups.schemas'
@@ -22,8 +22,7 @@ export class GroupModel {
 
   static async construct(parameters: PlatformParameters): Promise<GroupModel> {
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     return new this({ errorModel })
   }

@@ -3,8 +3,8 @@ import * as fakerModule from '@faker-js/faker'
 import {
   I18nService,
   Platform,
-  PlatformConstant,
   PlatformConstructors,
+  PlatformDependency,
   PlatformParameters,
 } from '@gnowth/lib-platform'
 
@@ -25,8 +25,7 @@ export class FakerClient implements MockClient {
   static async construct(parameters: PlatformParameters) {
     const i18nService = await parameters.platform.providerGet<I18nService>({
       constructors: parameters.constructors,
-      name: PlatformConstant.i18nService,
-      type: 'provider',
+      name: PlatformDependency.i18nService,
     })
     const locales = i18nService.localesSnake
     const FakerConstructor = fakerModule.Faker

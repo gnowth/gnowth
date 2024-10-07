@@ -1,4 +1,4 @@
-export const PlatformConstant = {
+export const PlatformDependency = {
   authenticationClient: 'Platform_AuthenticationClient',
   authenticationClientVariant: { client: 'client' },
   authenticationController: 'Platform_AuthenticationController',
@@ -13,6 +13,8 @@ export const PlatformConstant = {
   eventModule: 'Platform_EventModule',
   eventService: 'Platform_EventService',
   eventStream: 'Platform_EventStream',
+  filterModel: 'Platform_FilterModel',
+  filterModule: 'Platform_FilterModule',
   i18nClient: 'Platform_I18nClient',
   i18nClientVariant: { i18nClientV23: 'i18nClientV23' },
   i18nController: 'Platform_I18nController',

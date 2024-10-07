@@ -2,11 +2,10 @@ import { LayoutPage, LayoutSection, UITypography } from '@gnowth/lib-react'
 import { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { dependencies } from '../dependencies'
+import { AppUserConstant } from '../modules/app-users'
 
 export const PageReports: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.appModel.namespace)
-
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
   return (
     <LayoutPage>
       <LayoutSection variant="container">

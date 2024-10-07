@@ -29,7 +29,6 @@ export class MockService {
     const mockClient = await parameters.platform.clientGet<MockClient>({
       constructors: parameters.constructors,
       name: MockConstant.mockClient,
-      type: 'client',
     })
     return new this({ mockClient, ...parameters })
   }

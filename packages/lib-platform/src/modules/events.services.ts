@@ -1,4 +1,4 @@
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { EventStream } from './events.streams'
 import { PlatformEvent } from './events.types'
 
@@ -12,8 +12,7 @@ export class EventService {
 
   static async construct(parameters: PlatformParameters): Promise<EventService> {
     const eventStream = await parameters.platform.providerGet<EventStream>({
-      name: PlatformConstant.eventStream,
-      type: 'provider',
+      name: PlatformDependency.eventStream,
     })
     return new this({ ...parameters, eventStream })
   }

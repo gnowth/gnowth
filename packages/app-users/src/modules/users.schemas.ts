@@ -5,7 +5,7 @@ const statusSchema = z.enum(['active', 'deactivated'])
 export const userSchema = z.object({
   avatar: z.string().optional(),
   email: z.string().default(''),
-  id: z.string(),
+  id: z.string().optional(),
   key: z.string(),
   nameFirst: z.string().default(''),
   nameLast: z.string().default(''),

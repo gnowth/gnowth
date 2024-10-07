@@ -1,11 +1,10 @@
-import { AppModelApplication, Model, QueryResource } from '@gnowth/lib-react'
+import { AppModelApplication, QueryResource } from '@gnowth/lib-react'
 
 import { Ingredient, ModelIngredient } from './ingredients'
 import { ModelRecipe, Recipe } from './recipes'
 
 interface Configs {
   route?: string
-  user: Model
 }
 
 interface ParamsRoute {
@@ -37,7 +36,7 @@ export enum TokenPage {
 export class AppModelApplicationRecipes extends AppModelApplication<Configs> {
   models = {
     ingredient: new ModelIngredient({}),
-    recipe: new ModelRecipe({ dependencies: { userModel: this.configs.user } }),
+    recipe: new ModelRecipe({}),
   }
 
   permissions = {

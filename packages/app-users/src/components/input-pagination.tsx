@@ -1,8 +1,17 @@
 import { Select } from '@chakra-ui/react'
-import { LayoutFlex, UIButton, UITypography } from '@gnowth/lib-react'
-import { FilterModel, FilterPageSize } from '@gnowth/logic-users'
+import {
+  FilterModel,
+  FilterPageSize,
+  LayoutFlex,
+  PlatformDependency,
+  UIButton,
+  UITypography,
+  usePlatformProviderSuspense,
+} from '@gnowth/lib-react'
 import { FunctionComponent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { AppUserConstant } from '../modules/app-users'
 
 interface Value {
   page: number
@@ -16,8 +25,9 @@ interface Props {
 }
 
 export const InputPagination: FunctionComponent<Props> = (props) => {
-  const { t } = useTranslation('app-users')
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
   const pages = useMemo(() => Array.from({ length: props.pageCount }, (_, i) => i + 1), [props.pageCount])
+  const filterModel = usePlatformProviderSuspense<FilterModel>({ name: PlatformDependency.filterModel })
 
   return (
     <LayoutFlex
@@ -36,7 +46,7 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
             if (!target.value) return
             return props.onChange({
               ...props.value,
-              page: FilterModel.actionRecalculatePage(
+              page: filterModel.actionRecalculatePage(
                 props.value.page,
                 props.value.pageSize,
                 Number(target.value) as FilterPageSize,
@@ -47,7 +57,7 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
           placeholder={t('Select option')}
           value={props.value.pageSize}
         >
-          {FilterModel.optionsPageSize.map((size) => (
+          {filterModel.optionsPageSize.map((size) => (
             <option key={size} value={size}>
               {size}
             </option>

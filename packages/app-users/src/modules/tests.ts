@@ -1,3 +1,5 @@
 import { testSetupRenderComponent } from '@gnowth/lib-dev'
 
-export const testMakeRenderComponent = testSetupRenderComponent()
+import { ApplicationUsersProvider } from '../components/application-users.provider'
+
+export const testMakeRenderComponent = testSetupRenderComponent({ wrapper: ApplicationUsersProvider })

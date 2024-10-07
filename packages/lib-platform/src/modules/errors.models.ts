@@ -20,12 +20,11 @@ export class ErrorModel {
     }
   }
 
-  fromErrorUnknown = (error: unknown): ErrorData => {
-    if (isAxiosError(error)) return this.fromErrorAxios(error)
-
-    if (error instanceof Error) return this.fromError(error)
-
-    return this.fromError(new Error('unknown error'))
+  fromErrorUnknown = (error: unknown): ErrorData[] => {
+    if (isAxiosError(error)) return [this.fromErrorAxios(error)]
+    if (this.isErrorZod(error)) return this.fromErrorZod(error)
+    if (error instanceof Error) return [this.fromError(error)]
+    return [this.fromError(new Error('unknown error'))]
   }
 
   fromErrorZod = (error: ZodError): ErrorData[] => {
@@ -44,7 +43,7 @@ export class ErrorModel {
     return !isAxiosError(error) || (error.response?.status ?? 0) >= 500
   }
 
-  isErrorZod = (error: unknown): boolean => {
+  isErrorZod = (error: unknown): error is ZodError => {
     return error instanceof ZodError
   }
 

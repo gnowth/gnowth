@@ -4,7 +4,7 @@ import {
   LayoutSection,
   LayoutStack,
   NotificationStream,
-  PlatformConstant,
+  PlatformDependency,
   UIButton,
   UITypography,
   usePlatformProvider,
@@ -15,8 +15,7 @@ const errorModel = new ErrorModel()
 
 export function SectionSimulator() {
   const notificationStreamState = usePlatformProvider<NotificationStream>({
-    name: PlatformConstant.notificationStream,
-    type: 'provider',
+    name: PlatformDependency.notificationStream,
   })
 
   if (notificationStreamState.loading) {

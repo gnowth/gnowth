@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 
 import { stateUserFilter } from '../components/section-users'
-import { dependencies } from '../dependencies'
+import { AppUserConstant } from '../modules/app-users'
 import { withAugmented } from './with-augmented'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {
-  const { t } = useTranslation(dependencies.appModel.namespace)
+  const { t } = useTranslation(AppUserConstant.i18nNamespace)
   const [filters, setFilters] = useRecoilState(stateUserFilter)
   const [initialFilters] = useState(filters)
 

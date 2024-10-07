@@ -1,4 +1,4 @@
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { NotificationModel } from './notifications.models'
 import { NotificationStream } from './notifications.streams'
 
@@ -8,8 +8,8 @@ export class NotificationModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         providers: {
-          [PlatformConstant.notificationModel]: NotificationModel,
-          [PlatformConstant.notificationStream]: NotificationStream,
+          [PlatformDependency.notificationModel]: NotificationModel,
+          [PlatformDependency.notificationStream]: NotificationStream,
         },
       },
     })

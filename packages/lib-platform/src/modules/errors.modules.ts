@@ -1,4 +1,4 @@
-import { PlatformConstant, PlatformParameters } from '../core/platform'
+import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorModel } from './errors.models'
 import { ErrorStream } from './errors.streams'
 
@@ -8,8 +8,8 @@ export class ErrorModule {
       constructors: parameters.constructors,
       constructorsDefault: {
         providers: {
-          [PlatformConstant.errorModel]: ErrorModel,
-          [PlatformConstant.errorStream]: ErrorStream,
+          [PlatformDependency.errorModel]: ErrorModel,
+          [PlatformDependency.errorStream]: ErrorStream,
         },
       },
     })

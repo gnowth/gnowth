@@ -1,5 +1,5 @@
 import {
-  PlatformConstant,
+  PlatformDependency,
   PlatformParameters,
   QueryDetail,
   QueryFnOptionsDetail,
@@ -13,14 +13,15 @@ import {
   QueryService,
 } from '@gnowth/lib-react'
 
-import { ModuleUserConstant } from './module-users'
+import { configs } from '../configs'
+import { AppUserDependency } from './app-users'
 import { UserFilterParams } from './user-filters'
 import { UserModel } from './users.models'
 import { User } from './users.types'
 
 type Parameters = { queryService: QueryService; userModel: UserModel }
 export class UserService {
-  #constant = { apiContext: 'users', apiOrigin: 'https://api.gnowth.com', scope: 'users' }
+  #constant = { apiContext: configs.apiContext, apiOrigin: configs.apiOrigin, scope: 'users' }
   #queryService: QueryService
   #userModel: UserModel
 
@@ -53,7 +54,7 @@ export class UserService {
 
   detailOptions: QueryFnOptionsDetail<User> = (options) => {
     return {
-      queryFn: this.detail,
+      queryFn: options.id ? this.detail : () => Promise.resolve({ data: this.#userModel.fromData({}) }),
       queryKey: this.queryKeys.detail(options.id),
       ...options,
     }
@@ -81,19 +82,19 @@ export class UserService {
 
   static async construct(parameters: PlatformParameters): Promise<UserService> {
     const queryService = await parameters.platform.providerGet<QueryService>({
-      name: PlatformConstant.queryService,
-      type: 'provider',
+      name: PlatformDependency.queryService,
     })
     const userModel = await parameters.platform.providerGet<UserModel>({
-      name: ModuleUserConstant.userModel,
-      type: 'provider',
+      name: AppUserDependency.userModel,
     })
     return new this({ queryService, userModel })
   }
 
   get queryKeys() {
     return {
-      detail: (id: string): QueryKeyDetail => [{ entity: 'detail', id, scope: this.#constant.scope }],
+      detail: (id?: string): QueryKeyDetail => [
+        { entity: 'detail', id: id ?? 'new', scope: this.#constant.scope },
+      ],
       list: <TParams>(params?: TParams): QueryKeyList<TParams> => [
         { entity: 'list', params, scope: this.#constant.scope },
       ],

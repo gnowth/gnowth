@@ -1,4 +1,4 @@
-import { ErrorData, ErrorModel, PlatformConstant, PlatformParameters } from '@gnowth/lib-react'
+import { ErrorData, ErrorModel, PlatformDependency, PlatformParameters } from '@gnowth/lib-react'
 import { v4 as uuid } from 'uuid'
 
 import { userSchema, userSchemaData } from './users.schemas'
@@ -22,13 +22,12 @@ export class UserModel {
 
   static async construct(parameters: PlatformParameters): Promise<UserModel> {
     const errorModel = await parameters.platform.providerGet<ErrorModel>({
-      name: PlatformConstant.errorModel,
-      type: 'provider',
+      name: PlatformDependency.errorModel,
     })
     return new this({ errorModel })
   }
 
-  getId(user: User): string {
+  getId(user: User): string | undefined {
     return user.id
   }
 
