@@ -8,10 +8,10 @@ import {
   RestMockSerializer,
   mockServer,
 } from '@gnowth/lib-react'
-import { UserData } from '@gnowth/logic-users'
 
 import { configs } from '../configs'
 import { dependencies } from '../dependencies'
+import { UserData } from './users'
 
 export function userMock(configsMock: MockConfigs) {
   return mockServer({

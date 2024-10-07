@@ -20,6 +20,13 @@ import { User } from './users'
 type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
 type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
 
+enum FilterPageSize {
+  i10 = 10,
+  i20 = 20,
+  i50 = 50,
+  i100 = 100,
+}
+
 type Parameters = { filterModel: FilterModel }
 export class UserFilterModel {
   #filterModel: FilterModel
@@ -27,6 +34,14 @@ export class UserFilterModel {
 
   fromData = (userFilterData: UserFilterData): UserFilter => {
     return userFilterSchema.parse(userFilterData)
+  }
+
+  fromDataPaginated = (data: UserFilterData): UserFilter => {
+    return this.fromData({
+      ...data,
+      page: data?.page ?? 1,
+      pageSize: data?.pageSize ?? FilterPageSize.i20,
+    })
   }
 
   toData = (userFilter: UserFilter): UserFilterData => {
@@ -119,6 +134,16 @@ export class UserFilterModel {
 
   filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
     return (users) => users.filter(this.filter(filters)).toSorted(this.sort(filters))
+  }
+
+  // TODO:
+  generate(filters?: Partial<UserFilter>): UserFilter {
+    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
+  }
+
+  // TODO:
+  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
+    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
   }
 
   sort(filter: UserFilter): PredicateSort<User> {

@@ -30,6 +30,7 @@ type PlatformModuleDependencies = {
 export class Platform {
   #clients: Map<string, Map<string, object>> = new Map()
   #components: Map<string, object> = new Map()
+  #constructors: PlatformConstructors
   #controllers: Map<string, object> = new Map()
   #modules: Map<string, object> = new Map()
   #parameters: Parameters
@@ -37,6 +38,7 @@ export class Platform {
 
   constructor(parameters?: Parameters) {
     this.#parameters = parameters ?? {}
+    this.#constructors = parameters?.constructors ?? {}
   }
 
   static async construct(parameters?: Parameters): Promise<Platform> {
@@ -115,23 +117,23 @@ export class Platform {
   }
 
   #dependencyGetConstructor(definition: PlatformDefinition): PlatformConstructor | undefined {
-    const constructors = Platform.constructorMerge(this.#parameters.constructors, definition.constructors)
+    this.#constructors = Platform.constructorMerge(definition.constructors, this.#constructors)
     if (definition.type === 'client') {
-      const clients = constructors.clients?.[definition.name] ?? {}
+      const clients = this.#constructors.clients?.[definition.name] ?? {}
       return definition.variant ? clients[definition.variant] : R.values(clients).at(0)
     }
     if (definition.type === 'component') {
       // TODO
-      return constructors.components?.[definition.name]
+      return this.#constructors.components?.[definition.name]
     }
     if (definition.type === 'controller') {
-      return constructors.controllers?.[definition.name]
+      return this.#constructors.controllers?.[definition.name]
     }
     if (definition.type === 'module') {
-      return constructors.modules?.[definition.name]
+      return this.#constructors.modules?.[definition.name]
     }
     if (definition.type === 'provider') {
-      return constructors.providers?.[definition.name]
+      return this.#constructors.providers?.[definition.name]
     }
   }
 
@@ -239,11 +241,8 @@ export class Platform {
   ): Promise<TController> {
     const definition = { ...definitionController, type: 'controller' as const }
     this.#dependencyPreload(definition).catch(R.doNothing())
-    console.log('==============1')
     await this.#dependencyMountModule(definition)
-    console.log('==============2')
     await this.#dependencyMount(definition)
-    console.log('==============3')
     return this.#dependencyGet(definition) as TController
   }
 
@@ -251,7 +250,6 @@ export class Platform {
     definitionController: Omit<PlatformDefinitionController, 'type'>,
   ): TController | undefined {
     const definition = { ...definitionController, type: 'controller' as const }
-    console.log('==========lisit', this.#controllers, this.#modules)
     return this.#dependencyGet(definition) as TController
   }
 

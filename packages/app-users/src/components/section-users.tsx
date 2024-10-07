@@ -34,7 +34,6 @@ export const stateUserFilter = atom({
 // DEBT: Make add new user button more visible
 const SectionUsersComponent: FunctionComponent = () => {
   const { t } = useTranslation(AppUserConstant.i18nNamespace)
-  console.log('rendering========')
   const appUserController = usePlatformControllerSuspense<AppUserController>({
     name: AppUserDependency.appUserController,
   })

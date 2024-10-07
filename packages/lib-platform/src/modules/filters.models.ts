@@ -8,6 +8,8 @@ export enum FilterPageSize {
 }
 
 export class FilterModel {
+  optionsPageSize = Object.values(FilterPageSize).filter((size) => this.isFilterPageSize(size))
+
   static async construct(_parameters: PlatformParameters): Promise<FilterModel> {
     return new this()
   }

@@ -14,27 +14,27 @@ export const ApplicationUsersProvider: FunctionComponent<PropsWithChildren> = (p
   return (
     <RecoilRoot>
       <AppProvider theme={theme}>
-        <PlatformProvider I18nClientProvider={I18nextProvider} QueryClientProvider={QueryClientProvider}>
-          <PlatformDependencies
-            definitions={[
-              {
-                constructors: { modules: { [AppUserDependency.appUserModule]: AppUserModule } },
-                name: AppUserDependency.appUserModule,
-                type: 'module',
-              },
-              {
-                constructors: { modules: { [AppUserDependency.userModule]: UserModule } },
-                name: AppUserDependency.userModule,
-                type: 'module',
-              },
-              {
-                constructors: { modules: { [AppUserDependency.userFilterModule]: UserFilterModule } },
-                name: AppUserDependency.userFilterModule,
-                type: 'module',
-              },
-            ]}
-          />
+        <PlatformDependencies
+          definitions={[
+            {
+              constructors: { modules: { [AppUserDependency.appUserModule]: AppUserModule } },
+              name: AppUserDependency.appUserModule,
+              type: 'module',
+            },
+            {
+              constructors: { modules: { [AppUserDependency.userModule]: UserModule } },
+              name: AppUserDependency.userModule,
+              type: 'module',
+            },
+            {
+              constructors: { modules: { [AppUserDependency.userFilterModule]: UserFilterModule } },
+              name: AppUserDependency.userFilterModule,
+              type: 'module',
+            },
+          ]}
+        />
 
+        <PlatformProvider I18nClientProvider={I18nextProvider} QueryClientProvider={QueryClientProvider}>
           <ChakraProvider>{props.children}</ChakraProvider>
         </PlatformProvider>
       </AppProvider>
