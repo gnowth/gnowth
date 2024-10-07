@@ -10,8 +10,9 @@ export class ErrorStream {
   readonly errorIn$: Subject<ErrorData>
   readonly errorOut$: Observable<ErrorData>
 
-  nextUnknown = (error: unknown) => {
-    return this.errorIn$.next(this.#errorModel.fromErrorUnknown(error))
+  nextUnknown = (error: unknown): void => {
+    const errors = this.#errorModel.fromErrorUnknown(error)
+    errors.forEach((err) => this.errorIn$.next(err))
   }
 
   constructor(parameters: Parameters) {

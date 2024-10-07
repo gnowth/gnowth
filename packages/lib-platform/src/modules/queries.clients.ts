@@ -25,7 +25,12 @@ export class QueryClientReactQueryV5 implements QueryInterfaceClientV1 {
     const client = new QueryClient({
       defaultOptions: { queries: { refetchOnWindowFocus: false } },
       queryCache: new QueryCache({
-        onError: (error) => R.pipe(error, errorModel.fromErrorUnknown, errorOut$.next),
+        onError: (error) =>
+          R.pipe(
+            error,
+            errorModel.fromErrorUnknown,
+            R.forEach((err) => errorOut$.next(err)),
+          ),
       }),
     })
     return new this({ ...parameters, client, errorOut$ })

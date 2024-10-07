@@ -1,4 +1,4 @@
-import { User } from '@gnowth/logic-users'
+import { User } from '@gnowth/app-users'
 
 import { Comment } from './comments'
 import { Status } from './statuses'

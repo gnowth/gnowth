@@ -27,7 +27,7 @@ export class UserModel {
     return new this({ errorModel })
   }
 
-  getId(user: User): string {
+  getId(user: User): string | undefined {
     return user.id
   }
 

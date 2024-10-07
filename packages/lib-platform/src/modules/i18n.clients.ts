@@ -29,7 +29,13 @@ export class I18nClientV23 implements I18nInterfaceClientV1 {
       .use(i18nBackend) // load translation using http. docs: https://github.com/i18next/i18next-http-backend
       .use(i18nLanguageDetector) // detect user language. docs: https://github.com/i18next/i18next-browser-languageDetector
       .init({ debug: false, fallbackLng: 'en' }) // for all options docs: https://www.i18next.com/overview/configuration-options
-      .catch((error) => R.pipe(error, errorModel.fromErrorUnknown, errorOut$.next))
+      .catch((error) =>
+        R.pipe(
+          error,
+          errorModel.fromErrorUnknown,
+          R.forEach((err) => errorOut$.next(err)),
+        ),
+      )
 
     return new this({ ...parameters, client, errorOut$ })
   }

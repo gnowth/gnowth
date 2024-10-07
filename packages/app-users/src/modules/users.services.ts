@@ -54,7 +54,7 @@ export class UserService {
 
   detailOptions: QueryFnOptionsDetail<User> = (options) => {
     return {
-      queryFn: this.detail,
+      queryFn: options.id ? this.detail : () => Promise.resolve({ data: this.#userModel.fromData({}) }),
       queryKey: this.queryKeys.detail(options.id),
       ...options,
     }
@@ -92,7 +92,9 @@ export class UserService {
 
   get queryKeys() {
     return {
-      detail: (id: string): QueryKeyDetail => [{ entity: 'detail', id, scope: this.#constant.scope }],
+      detail: (id?: string): QueryKeyDetail => [
+        { entity: 'detail', id: id ?? 'new', scope: this.#constant.scope },
+      ],
       list: <TParams>(params?: TParams): QueryKeyList<TParams> => [
         { entity: 'list', params, scope: this.#constant.scope },
       ],

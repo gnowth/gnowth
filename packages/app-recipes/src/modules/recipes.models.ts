@@ -3,12 +3,6 @@ import { Fields, Model, QueryApiRest } from '@gnowth/lib-react'
 import { ModelIngredient } from './ingredients'
 import { Recipe } from './recipes.types'
 
-interface Configs {
-  dependencies: {
-    userModel: Model
-  }
-}
-
 // TODO set as token
 enum Permissions {
   create,
@@ -21,7 +15,7 @@ type Perms = {
   [_Key in Permissions]?: () => boolean
 }
 
-export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Configs> {
+export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value> {
   api: QueryApiRest<Value> = new QueryApiRest({
     endpoint: '/api/v1/recipes/recipes/',
     model: this,
@@ -30,9 +24,7 @@ export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value, Con
   modelName = 'recipe'
 
   schema = {
-    createdBy: new Fields.FieldModel({
-      model: this.dependencies.userModel,
-    }),
+    createdBy: new Fields.FieldText(),
     description: new Fields.FieldText(),
     designation: new Fields.FieldText(),
     ingredients: new Fields.FieldModel({
