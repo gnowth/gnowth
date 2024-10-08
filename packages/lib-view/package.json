@@ -29,7 +29,7 @@
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "react-use": "17.5.1",
-    "remeda": "2.14.0"
+    "remeda": "2.15.0"
   },
   "devDependencies": {
     "@gnowth/babel-preset": "0.0.0",
