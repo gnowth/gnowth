@@ -7,7 +7,7 @@
   "sideEffects": false,
   "version": "0.0.0",
   "engines": {
-    "vscode": "1.94.0"
+    "vscode": "1.94.1"
   },
   "eslintConfig": {
     "extends": [
