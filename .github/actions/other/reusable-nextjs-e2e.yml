@@ -13,7 +13,7 @@ env:
 
 jobs:
   e2e:
-    container: mcr.microsoft.com/playwright:v1.47.2-jammy
+    container: mcr.microsoft.com/playwright:v1.48.0-jammy
     runs-on: ubuntu-latest
     timeout-minutes: 8
     strategy:
