@@ -37,7 +37,7 @@
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/react-dom": "18.3.0",
+    "@types/react-dom": "18.3.1",
     "vite": "5.4.8"
   },
   "scripts": {
