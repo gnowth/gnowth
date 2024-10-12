@@ -1,7 +1,8 @@
-import tseslint from 'typescript-eslint'
+// import tseslint from 'typescript-eslint'
 
 export const typescriptEslintConfigs = [
-  tseslint.config(...tseslint.configs.recommended, ...tseslint.configs.stylistic, {
+  // tseslint.config(...tseslint.configs.recommended, ...tseslint.configs.stylistic,
+  {
     languageOptions: {
       parserOptions: {
         projectService: true,
@@ -23,5 +24,6 @@ export const typescriptEslintConfigs = [
         },
       ],
     },
-  }),
+  },
+  // ),
 ]
