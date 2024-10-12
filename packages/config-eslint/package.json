@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "7.25.8",
-    "@eslint/js": "8.57.1",
+    "@eslint/js": "9.12.0",
     "@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
     "@typescript-eslint/eslint-plugin": "8.8.1",
     "@typescript-eslint/parser": "8.8.1",
@@ -46,7 +46,7 @@
     "@gnowth/prettier-config": "0.0.0"
   },
   "peerDependencies": {
-    "eslint": "^8.0.0"
+    "eslint": "^8.0.0 || ^9.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
