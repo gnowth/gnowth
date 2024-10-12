@@ -1,4 +1,6 @@
-module.exports = {
+import importPlugin from 'eslint-plugin-import'
+
+const importNoDefaultExport = {
   overrides: [
     {
       // https://github.com/isaacs/minimatch
@@ -6,13 +8,18 @@ module.exports = {
         '**/src/app-experimental/**/*',
         '**/src/app/**/*',
         '**/src/pages/**/*',
-        '**/*.config.*',
         '**/*.stories.*',
         '**/mock/mock-*.js',
+        '**/playwright.config.*',
       ],
       rules: { 'import/no-default-export': 'off' },
     },
   ],
-  plugins: ['import'],
   rules: { 'import/no-default-export': 'error' },
 }
+
+const importOrder = {
+  rules: { 'import/order': ['error', { groups: ['builtin', 'external', ['parent', 'sibling'], 'index'] }] },
+}
+
+export const importConfigs = [importPlugin.flatConfigs.recommended, importNoDefaultExport, importOrder]

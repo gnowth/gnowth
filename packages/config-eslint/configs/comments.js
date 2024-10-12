@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ['plugin:eslint-comments/recommended'],
+  extends: ['plugin:@eslint-community/eslint-comments/recommended'],
 }
