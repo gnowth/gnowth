@@ -36,6 +36,7 @@ export type PropsDataReadonly<Value = unknown> = {
 }
 
 // add resources in PropsData?
+// TODO: fix onChange value may not match value if name is an array
 export type PropsData<Value = unknown> = {
   disabled?: boolean
   name?: DataName

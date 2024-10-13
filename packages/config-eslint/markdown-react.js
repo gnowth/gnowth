@@ -9,7 +9,6 @@ module.exports = {
   extends: [
     './configs/comments',
     './configs/import',
-    // './configs/import--order',
     './configs/jsx-a11y',
     './configs/mdx',
     './configs/perfectionist',

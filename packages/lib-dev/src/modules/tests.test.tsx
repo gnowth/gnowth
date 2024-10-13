@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals'
 import { screen } from '@testing-library/react'
 import { FunctionComponent, useState } from 'react'
 
@@ -29,36 +30,48 @@ describe('testMakeRenderComponent', () => {
 
   it('render propperly', async () => {
     expect.assertions(2)
+
     await renderComponent()
+
     expect(screen.getByTestId(testId)).toBeVisible()
     expect(screen.getByText('val')).toBeVisible()
   })
 
   it('rerender propperly', async () => {
     expect.assertions(2)
+
     const { rerender } = await renderComponent({ props: { value: 'val1' } })
+
     expect(screen.getByText('val1')).toBeVisible()
+
     await rerender({ props: { value: 'val2' } })
+
     expect(screen.getByText('val2')).toBeVisible()
   })
 
   it('run loaders properly', async () => {
     expect.assertions(3)
+
     const { rerender, user } = await renderComponent({ props: { value: 'val1' } })
+
     expect(screen.getByText('state')).toBeVisible()
 
     await user.click(screen.getByRole('button'))
-    expect(await screen.findByText('setup parameters')).toBeVisible()
+
+    await expect(screen.findByText('setup parameters')).resolves.toBeVisible()
 
     await rerender({ parameters: { state: 'rerender state' } })
     await user.click(screen.getByRole('button'))
-    expect(await screen.findByText('rerender state')).toBeVisible()
+
+    await expect(screen.findByText('rerender state')).resolves.toBeVisible()
   })
 
   it('supports empty parameters', async () => {
     expect.assertions(1)
+
     const renderComponent1 = testSetupRenderComponent()({ Component })
     await renderComponent1()
+
     expect(screen.getByTestId(testId)).toBeVisible()
   })
 })

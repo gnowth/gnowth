@@ -138,7 +138,7 @@ export class Platform {
   }
 
   async #dependencyMount(definition: PlatformDefinition): Promise<void> {
-    if (!!this.#dependencyGet(definition)) {
+    if (this.#dependencyGet(definition)) {
       return
     }
     // TODO: need to make sure there is no duplicate call and initialization and it does not get overwritten by another async call

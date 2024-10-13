@@ -7,10 +7,7 @@ module.exports = {
 
   extends: [
     './configs/comments',
-    './configs/eslint--sort-keys',
     './configs/eslint',
-    // './configs/import--order',
-    './configs/import--no-default-export',
     './configs/import',
     './configs/perfectionist',
     './configs/prettier',

@@ -1,23 +1,20 @@
-import { expect } from '@jest/globals'
-import { INestApplication } from '@nestjs/common'
+import { describe, expect, it } from '@jest/globals'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
 import { AppModule } from './app'
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication
+describe('appController (e2e)', () => {
+  it('/ (GET)', async () => {
+    expect.assertions(2)
 
-  beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile()
 
-    app = moduleFixture.createNestApplication()
+    const app = moduleFixture.createNestApplication()
     await app.init()
-  })
 
-  it('/ (GET)', async () => {
     const response = await request(app.getHttpServer()).get('/')
 
     expect(response.status).toBe(200)

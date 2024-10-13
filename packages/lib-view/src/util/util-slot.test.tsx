@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 import { FunctionComponent, ReactNode } from 'react'
 
@@ -31,6 +32,8 @@ const DummyComponent: FunctionComponent<Props> = (props) => (
 
 describe('<UtilSlot />', () => {
   it('renders propery', () => {
+    expect.assertions(6)
+
     render(
       <DummyComponent>
         <p>Footer</p>

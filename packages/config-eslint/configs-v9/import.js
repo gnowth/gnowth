@@ -5,12 +5,13 @@ const importNoDefaultExport = {
     {
       // https://github.com/isaacs/minimatch
       files: [
+        '**/config-eslint/**/*',
         '**/src/app-experimental/**/*',
         '**/src/app/**/*',
         '**/src/pages/**/*',
+        '**/*.config.*',
         '**/*.stories.*',
         '**/mock/mock-*.js',
-        '**/playwright.config.*',
       ],
       rules: { 'import/no-default-export': 'off' },
     },
