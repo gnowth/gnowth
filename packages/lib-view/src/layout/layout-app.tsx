@@ -12,10 +12,10 @@ import { FunctionComponent, ReactNode } from 'react'
 import { UtilSlot } from '../util/util-slot'
 import { LayoutStack } from './layout-stack'
 
-export interface PropsLayoutApp extends SystemType<typeof layoutApp> {
+export type PropsLayoutApp = {
   children: ReactNode
   variant?: PropsLayoutApp | string
-}
+} & SystemType<typeof layoutApp>
 
 const layoutApp = systemCompose(systemBackgroundColorFromPalette(), systemGap())
 const makeStyles = themeMakeStyles({ layoutApp })

@@ -1,10 +1,10 @@
-interface Meta {
+type Meta = {
   count: number
   next?: string
   previous?: string
 }
 
-interface Response<Value> {
+type Response<Value> = {
   data: Value
   meta?: Meta
 }

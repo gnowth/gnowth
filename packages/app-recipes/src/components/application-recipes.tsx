@@ -8,7 +8,7 @@ import { PageLanding } from './page-landing'
 import { PageRecipeEdit } from './page-recipe-edit'
 import { PageRecipes } from './page-recipes'
 
-interface Props {
+type Props = {
   application?: AppModelApplication | string
   path?: string
 }

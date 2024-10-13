@@ -16,7 +16,7 @@ type Perms = {
 }
 
 export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value> {
-  api: QueryApiRest<Value> = new QueryApiRest({
+  api = new QueryApiRest<Value>({
     endpoint: '/api/v1/recipes/recipes/',
     model: this,
   })

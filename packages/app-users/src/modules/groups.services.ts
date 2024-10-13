@@ -102,7 +102,7 @@ export class GroupService {
   get routes() {
     const urlBase = `${this.#constant.apiOrigin}${this.#constant.apiContext}`
     return {
-      groups: (id: string = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
+      groups: (id = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
     }
   }
 }

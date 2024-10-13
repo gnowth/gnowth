@@ -4,7 +4,7 @@ import { QuerySerializer } from './query-serializer'
 
 export type QueryParams = Record<string, string>
 
-export interface QueryConfigs<Value extends ObjectLiteral> {
+export type QueryConfigs<Value extends ObjectLiteral> = {
   action?: string
   id?: string
   method?: string

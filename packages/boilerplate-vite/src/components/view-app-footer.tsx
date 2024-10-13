@@ -2,7 +2,7 @@ import { PagesPageToken } from '@gnowth/app-pages'
 import { AppLink, LayoutFlex, LayoutSection, UITypography } from '@gnowth/lib-react'
 import { FunctionComponent } from 'react'
 
-interface Props {
+type Props = {
   slot?: string
 }
 

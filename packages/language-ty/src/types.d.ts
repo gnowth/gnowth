@@ -1,13 +1,13 @@
-interface Capture {
+type Capture = {
   name: string
 }
 
-interface PatternInclude {
+type PatternInclude = {
   comment?: string
   include: string
 }
 
-interface Pattern {
+type Pattern = {
   begin?: string
   beginCaptures?: Record<string, Capture>
   captures?: Record<string, Capture>
@@ -20,7 +20,7 @@ interface Pattern {
   repository?: Record<string, Pattern>
 }
 
-export interface Syntax {
+export type Syntax = {
   $schema: string
   comment?: string
   name: string
@@ -30,7 +30,7 @@ export interface Syntax {
   version?: string
 }
 
-export interface PatternRecord {
+export type PatternRecord = {
   include: PatternInclude
   repository: Record<string, Pattern>
 }

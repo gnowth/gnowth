@@ -5,7 +5,7 @@ export type Configs = {
   apiOrigin: `http${string}`
 }
 
-interface Window {
+type Window = {
   location: {
     hostname: string
   }

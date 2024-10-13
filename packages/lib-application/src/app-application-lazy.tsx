@@ -2,7 +2,7 @@ import { ComponentType, FunctionComponent } from 'react'
 
 import { AppModelApplication } from './app-model-application'
 
-interface PropsComponent {
+type PropsComponent = {
   application?: AppModelApplication | string
   path?: string
 }

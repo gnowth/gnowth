@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputMention {
+export type PropsInputMention = {
   as?: string
   name?: string
 }

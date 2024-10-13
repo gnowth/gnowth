@@ -12,7 +12,7 @@ import { AppWhoAmI } from './app-who-am-i'
 import { PropsFrame, PropsSuspense } from './types'
 import { useAppApplication } from './use-app-application'
 
-interface PropsComponent {
+type PropsComponent = {
   resources: Record<string, QueryResource | undefined>
 }
 

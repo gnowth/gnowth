@@ -3,9 +3,9 @@ import { FunctionComponent, ReactNode, useContext } from 'react'
 
 import { ContextApplication, PropsApplication } from './context-application'
 
-interface Props extends Partial<PropsApplication> {
+type Props = {
   children: ReactNode
-}
+} & Partial<PropsApplication>
 
 export const AppProvider: FunctionComponent<Props> = (props) => {
   const context = useContext(ContextApplication)

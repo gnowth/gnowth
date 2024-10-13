@@ -18,12 +18,13 @@ import { DataWarning } from './data-warning'
 import { PropsData, PropsDataReadonly } from './types'
 import { PropsUseDataConnect, useDataConnect } from './use-data-connect'
 
-interface PropsComponent extends PropsData, Slottable {
+type PropsComponent = {
   placeholder?: string
   variant?: string
-}
+} & PropsData &
+  Slottable
 
-interface Props extends PropsUseDataConnect {
+type Props = {
   awaiting?: boolean
   component?: ComponentType<PropsComponent> | string
   componentVariant?: string
@@ -43,7 +44,7 @@ interface Props extends PropsUseDataConnect {
   theme?: Theme | string
   warning?: ComponentType<PropsBoundary> | null | string
   warningModel?: Model
-}
+} & PropsUseDataConnect
 
 const propsDefault = {
   label: 'label',

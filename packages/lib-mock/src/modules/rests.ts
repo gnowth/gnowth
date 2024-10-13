@@ -21,7 +21,7 @@ function paginate<Type>(data: Type[], request: Request) {
 }
 
 // DEBT(hack): dirty ts fix
-interface Serializer {
+type Serializer = {
   normalize(data: Record<string, string>): unknown
   serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
   type: string

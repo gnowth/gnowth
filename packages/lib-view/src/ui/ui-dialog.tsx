@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIDialog {
+export type PropsUIDialog = {
   as?: string
   children: ReactNode
 }

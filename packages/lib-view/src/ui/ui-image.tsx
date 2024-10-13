@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsUIImage {
+export type PropsUIImage = {
   alt?: string
   as?: string
   src: string

@@ -5,7 +5,7 @@ import { ComponentType, createContext } from 'react'
 import { AppModelEnvironment } from './app-model-environment'
 import { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './types'
 
-export interface PropsEnvironment {
+export type PropsEnvironment = {
   boundaries: Record<string, ComponentType<PropsBoundary> | undefined>
   environment: AppModelEnvironment
   frames: Record<string, ComponentType<PropsFrame> | undefined>

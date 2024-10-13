@@ -1,7 +1,7 @@
 import { DataName, TokenMode } from '@gnowth/lib-data'
 import { useCallback, useState } from 'react'
 
-interface ChangeEvent<Value> {
+type ChangeEvent<Value> = {
   target: {
     checked?: boolean
     value: Value
@@ -10,14 +10,14 @@ interface ChangeEvent<Value> {
 
 export type ChangeEventHandler<Value> = (event: ChangeEvent<Value>) => Promise<void> | void
 
-interface Return<Value> {
+type Return<Value> = {
   name?: string
   onChange?: ChangeEventHandler<Value>
   onSubmit?: ChangeEventHandler<Value>
   value?: Value
 }
 
-interface PropsUseValue<Value> {
+type PropsUseValue<Value> = {
   mode?: TokenMode
   name?: DataName
   onChange?(value: Value, name?: DataName): Promise<void> | void

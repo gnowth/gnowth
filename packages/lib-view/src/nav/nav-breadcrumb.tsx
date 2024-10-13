@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsNavBreadcrumb {
+export type PropsNavBreadcrumb = {
   as?: string
   children: ReactNode
 }

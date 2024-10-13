@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIPlaceholder {
+export type PropsUIPlaceholder = {
   as?: string
   children?: ReactNode
   hidden?: boolean

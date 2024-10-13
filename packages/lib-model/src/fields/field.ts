@@ -1,7 +1,7 @@
 import { DataName } from '../types'
 
 // TODO: check if there should be a nullable config
-export interface FieldConfigs<Value = unknown> {
+export type FieldConfigs<Value = unknown> = {
   blank?: boolean
   default?: Value | null
   many?: boolean

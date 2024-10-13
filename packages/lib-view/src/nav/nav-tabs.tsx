@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsNavTabs {
+export type PropsNavTabs = {
   as?: string
   children: ReactNode
 }

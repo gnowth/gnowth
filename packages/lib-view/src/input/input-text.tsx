@@ -17,7 +17,7 @@ import * as R from 'remeda'
 
 import { ChangeEventHandler, useValue } from './use-value'
 
-interface ComponentProps {
+type ComponentProps = {
   className?: string
   disabled?: boolean
   id?: string
@@ -25,7 +25,7 @@ interface ComponentProps {
   onChange?: ChangeEventHandler<string>
   value?: string
 }
-export interface PropsInputText extends SystemType<typeof inputText>, PropsData<string> {
+export type PropsInputText = {
   as?: ComponentType<ComponentProps> | string
   boxVariant?: string
   boxVariantNamespace?: string
@@ -41,7 +41,8 @@ export interface PropsInputText extends SystemType<typeof inputText>, PropsData<
   variantComposition?: string[]
   variantNamespace?: string
   variants?: ThemeVariants<PropsInputText>
-}
+} & PropsData<string> &
+  SystemType<typeof inputText>
 
 const inputText = systemCompose(
   systemBox(),

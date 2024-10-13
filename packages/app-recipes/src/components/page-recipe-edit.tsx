@@ -14,7 +14,7 @@ import { ReactElement } from 'react'
 import { AppModelApplicationRecipes } from '../modules/application-recipes'
 import { Recipe } from '../modules/recipes'
 
-interface Props {
+type Props = {
   resources: {
     recipe?: QueryResource<Recipe>
   }

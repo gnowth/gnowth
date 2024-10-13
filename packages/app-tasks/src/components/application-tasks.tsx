@@ -11,7 +11,7 @@ const PageDashboard = lazy(() =>
 const PageLanding = lazy(() => import('./page-landing').then((module) => ({ default: module.PageLanding })))
 const PageReport = lazy(() => import('./page-report').then((module) => ({ default: module.PageReport })))
 
-interface Props {
+type Props = {
   application?: AppModelApplication | string
   path?: string
 }

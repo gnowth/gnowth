@@ -10,14 +10,14 @@ export type Log = {
   payload?: ObjectLiteral
 }
 
-export interface OptionsLoggerFn {
+export type OptionsLoggerFn = {
   log: Log
   logLevel: LogLevel
   name: string
   namespace: string
 }
 
-export interface APILogger {
+export type APILogger = {
   bug: (options: OptionsLoggerFn) => Promise<void>
   debug: (options: OptionsLoggerFn) => Promise<void>
   error: (options: OptionsLoggerFn) => Promise<void>

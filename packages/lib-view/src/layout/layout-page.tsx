@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsLayoutPage {
+export type PropsLayoutPage = {
   as?: string
   children: ReactNode
 }

@@ -13,13 +13,13 @@ import {
 import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
 import * as R from 'remeda'
 
-interface ComponentProps {
+type ComponentProps = {
   className?: string
   'data-testid'?: string
   id?: string
 }
 // TODO: mediaPrint should disable elipsis
-export interface PropsUITypography extends SystemType<typeof uiTypography>, PropsDataReadonly<ReactNode> {
+export type PropsUITypography = {
   as?: ComponentType<ComponentProps> | null | string
   children?: ReactNode
   className?: string
@@ -28,7 +28,8 @@ export interface PropsUITypography extends SystemType<typeof uiTypography>, Prop
   slot?: string
   variant?: PropsUITypography | string
   variantNamespace?: string
-}
+} & PropsDataReadonly<ReactNode> &
+  SystemType<typeof uiTypography>
 
 const uiTypography = systemCompose(
   systemColorFromPalette(),

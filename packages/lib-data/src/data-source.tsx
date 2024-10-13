@@ -9,13 +9,13 @@ import { PropsUseDataSource, useDataSource } from './use-data-source'
 // TODO: get source from 'context', 'resource', 'datasource hook',
 // TODO: note that using AppLayout directly from @gnowth/lib-application won't provide access to layout loader in @gnowth/lib-react, which is not what we want
 // TODO: it should allow the layout to be a component
-interface Props<Value extends DataValue> extends PropsUseDataSource<Value> {
+type Props<Value extends DataValue> = {
   children: ReactNode
   layout?: ComponentType<PropsLayout> | string
   layoutProps?: Record<string, unknown>
   layoutVariant?: string
   theme?: Theme | string
-}
+} & PropsUseDataSource<Value>
 
 // TODO: find out where to put the default warning/label/trigger component?
 export function DataSource<Value extends DataValue>(props: Props<Value>): ReactElement<Props<Value>> {

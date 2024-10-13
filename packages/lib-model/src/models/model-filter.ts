@@ -1,7 +1,7 @@
 import * as Fields from '../fields'
 import { UuidModel } from './model-uuid'
 
-interface DefaultFilter {
+type DefaultFilter = {
   page: number
   pageSize: number
   uuid: string

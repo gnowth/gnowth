@@ -3,7 +3,7 @@ import { Locator, Page } from '@playwright/test'
 import { FooterTestModel } from './footer'
 import { HeaderTestModel } from './header'
 
-interface OptionsInputData {
+type OptionsInputData = {
   email: string
   nameFirst: string
   nameLast: string

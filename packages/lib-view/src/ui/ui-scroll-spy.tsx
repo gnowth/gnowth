@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIScrollSpy {
+export type PropsUIScrollSpy = {
   as?: string
   children: ReactNode
 }

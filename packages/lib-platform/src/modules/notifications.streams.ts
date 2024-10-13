@@ -4,7 +4,7 @@ import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { Notification, NotificationModel } from './notifications.models'
 
-interface Toast {
+type Toast = {
   description?: string
   isClosable: boolean
   status: 'error' | 'info'

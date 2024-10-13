@@ -1,10 +1,10 @@
-export interface Notification {
+export type Notification = {
   id: string
   message: string
   title: string
 }
 
-interface NotificationData {
+type NotificationData = {
   id: string
   message: string
   title: string

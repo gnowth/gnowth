@@ -5,11 +5,11 @@ import { AppModelApplication } from './app-model-application'
 import { useAppApplication } from './use-app-application'
 import { useAppEnvironment } from './use-app-environment'
 
-interface Props {
+type Props = {
   children: ReactNode
 }
 
-interface PropsChild {
+type PropsChild = {
   application?: AppModelApplication | string
   exact?: boolean
   from?: string

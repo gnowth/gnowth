@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputPagination {
+export type PropsInputPagination = {
   as?: string
   name?: string
 }

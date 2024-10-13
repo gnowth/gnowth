@@ -6,12 +6,12 @@ import { FieldModel } from '../fields/field-model'
 import { DataName } from '../types'
 
 type SchemaFromValue<Value> = {
-  [Key in keyof Value]: Value[Key] extends Array<infer Item>
+  [Key in keyof Value]: Value[Key] extends (infer Item)[]
     ? Field<NonNullable<Item>>
     : Field<NonNullable<Value[Key]>>
 }
 
-interface ParametersModel {
+type ParametersModel = {
   dependencies?: ObjectLiteral
 }
 

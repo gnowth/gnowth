@@ -13,13 +13,13 @@ import {
 import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
 import * as R from 'remeda'
 
-interface ComponentProps {
+type ComponentProps = {
   children?: ReactNode
   className?: string
   'data-testid'?: string
   id?: string
 }
-interface PropsLayoutGrid extends PropsLayout, SystemType<typeof layoutGrid> {
+type PropsLayoutGrid = {
   as?: ComponentType<ComponentProps> | null | string
   children: ReactNode
   className?: string
@@ -30,7 +30,8 @@ interface PropsLayoutGrid extends PropsLayout, SystemType<typeof layoutGrid> {
   variant?: PropsLayoutGrid | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsLayoutGrid>
-}
+} & PropsLayout &
+  SystemType<typeof layoutGrid>
 
 const layoutGrid = systemCompose(systemBox(), systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutGrid })

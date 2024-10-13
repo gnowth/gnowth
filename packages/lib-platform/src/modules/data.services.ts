@@ -31,11 +31,11 @@ class EventEmitterService {
 }
 
 export class DataService {
-  #data: Map<string, unknown> = new Map()
+  #data = new Map<string, unknown>()
   #eventEmitterService = new EventEmitterService()
-  #getters: Map<string, DataGetter> = new Map()
-  #setters: Map<string, DataSetter> = new Map()
-  #subscribers: Map<string, DataSubscriber> = new Map()
+  #getters = new Map<string, DataGetter>()
+  #setters = new Map<string, DataSetter>()
+  #subscribers = new Map<string, DataSubscriber>()
 
   static async construct(_parameters: PlatformParameters): Promise<DataService> {
     return new this()

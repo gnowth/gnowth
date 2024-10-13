@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIAlert {
+export type PropsUIAlert = {
   as?: string
   children: ReactNode
 }

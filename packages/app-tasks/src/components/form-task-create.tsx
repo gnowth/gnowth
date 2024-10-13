@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react'
 
 import { Task } from '../modules/task'
 
-interface Props {
+type Props = {
   onChange?: (value: Task, name?: DataName) => Promise<void> | void
   value?: Task
 }

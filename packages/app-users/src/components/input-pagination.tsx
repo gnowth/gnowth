@@ -13,12 +13,12 @@ import { useTranslation } from 'react-i18next'
 
 import { AppUserConstant } from '../modules/app-users'
 
-interface Value {
+type Value = {
   page: number
   pageSize: FilterPageSize
 }
 
-interface Props {
+type Props = {
   onChange: (value: Value) => void
   pageCount: number
   value: Value

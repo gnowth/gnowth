@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom'
 import { AppModelApplication } from './app-model-application'
 import { useAppLink } from './use-app-link'
 
-interface Props<Value extends ObjectLiteral> {
+type Props<Value extends ObjectLiteral> = {
   application?: AppModelApplication | string
   exact?: boolean
   from?: string

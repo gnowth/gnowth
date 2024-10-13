@@ -1,7 +1,7 @@
 import * as Fields from '../fields'
 import { Model } from './model'
 
-interface DefaultUuid {
+type DefaultUuid = {
   uuid: string
 }
 

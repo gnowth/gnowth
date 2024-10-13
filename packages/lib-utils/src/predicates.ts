@@ -1,6 +1,6 @@
 import * as R from 'remeda'
 
-interface ParametersSort<Value> {
+type ParametersSort<Value> = {
   compare?: (value1: Value, value2: Value) => number
   direction?: 'ascending' | 'descending'
   isNullish?: (value: Value) => boolean

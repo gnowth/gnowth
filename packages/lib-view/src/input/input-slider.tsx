@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputSlider {
+export type PropsInputSlider = {
   as?: string
   name?: string
 }

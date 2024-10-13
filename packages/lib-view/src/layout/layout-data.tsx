@@ -6,7 +6,7 @@ import { UtilSlot } from '../util/util-slot'
 import { LayoutContent } from './layout-content'
 import { LayoutFlex } from './layout-flex'
 
-export interface PropsLayoutData {
+export type PropsLayoutData = {
   children: ReactNode
   gap?: ComponentProps<typeof LayoutFlex>['gap']
   variant?: PropsLayoutData | string

@@ -16,10 +16,10 @@ export type Log = {
   sourceNamespace?: string
 }
 
-export interface EventLog extends PlatformEvent {
+export type EventLog = {
   payload: {
     log: Log
   }
   target: 'serviceLog'
   type: 'log'
-}
+} & PlatformEvent

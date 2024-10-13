@@ -3,23 +3,23 @@ import { AppModelApplication, QueryResource } from '@gnowth/lib-react'
 import { Ingredient, ModelIngredient } from './ingredients'
 import { ModelRecipe, Recipe } from './recipes'
 
-interface Configs {
+type Configs = {
   route?: string
 }
 
-interface ParamsRoute {
+type ParamsRoute = {
   pageId?: string
 }
 
-interface ResourceRecipe {
+type ResourceRecipe = {
   recipe: QueryResource<Recipe>
 }
 
-interface ResourceIngredient {
+type ResourceIngredient = {
   ingredient: QueryResource<Ingredient>
 }
 
-interface ResourceRecipes {
+type ResourceRecipes = {
   ingredients: QueryResource<Ingredient[]>
   recipes: QueryResource<Recipe[]>
 }

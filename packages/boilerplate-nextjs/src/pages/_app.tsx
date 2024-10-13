@@ -15,11 +15,11 @@ import { setup } from '../modules/setup'
 
 setup({})
 
-interface Props extends AppProps {
+type Props = {
   Component: {
     Layout?: ComponentType<PropsWithChildren<Attributes>>
   } & NextPage
-}
+} & AppProps
 
 const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children
 // TODO: use SystemAugmented

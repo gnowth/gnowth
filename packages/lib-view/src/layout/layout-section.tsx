@@ -13,7 +13,7 @@ import {
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
+export type PropsLayoutSection = {
   boxVariant?: string
   boxVariantNamespace?: string
   children: ReactNode
@@ -30,7 +30,7 @@ export interface PropsLayoutSection extends SystemType<typeof layoutSection> {
   variantComposition?: string[]
   variantNamespace?: string
   variants?: ThemeVariants<PropsLayoutSection>
-}
+} & SystemType<typeof layoutSection>
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutSection })

@@ -82,7 +82,7 @@ export const systemCompose: SystemCompose =
       {} as CSSObject,
     )
 
-interface ConfigsInterpolation<Value extends string> {
+type ConfigsInterpolation<Value extends string> = {
   breakpoint?: TokenBreakpoint
   breakpointScale?: ScaleName | ScaleType
   key: string
@@ -164,7 +164,7 @@ type BuildParametersOverride = {
 }
 
 export const systemMake =
-  <TType extends { [k: string]: string }>(parameters: BuildParameters<TType>) =>
+  <TType extends Record<string, string>>(parameters: BuildParameters<TType>) =>
   (
     parametersOverride?: BuildParametersOverride,
   ): System<{ [Property in keyof TType]?: SystemInterpolate<TType[Property]> }> =>

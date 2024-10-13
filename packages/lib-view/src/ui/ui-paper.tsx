@@ -11,7 +11,7 @@ import {
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export interface PropsUIPaper extends SystemType<typeof uiPaper> {
+export type PropsUIPaper = {
   boxVariant?: string
   boxVariantNamespace?: string
   children: ReactNode
@@ -22,7 +22,7 @@ export interface PropsUIPaper extends SystemType<typeof uiPaper> {
   variant?: PropsUIPaper | string
   variantComposition?: string[]
   variantNamespace?: string
-}
+} & SystemType<typeof uiPaper>
 
 const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeMakeStyles({ uiPaper })

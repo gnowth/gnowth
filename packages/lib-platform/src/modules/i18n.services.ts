@@ -35,6 +35,7 @@ export class I18nService {
     return i18n
   }
 
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
   get locale(): Locale {
     return 'en-US'
   }

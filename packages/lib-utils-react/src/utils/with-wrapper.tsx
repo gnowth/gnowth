@@ -1,7 +1,7 @@
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-interface WrapperProps {
+type WrapperProps = {
   children: ReactNode
 }
 type Parameters<TProps, TWrapperProps extends WrapperProps> = {

@@ -28,13 +28,13 @@ type PlatformModuleDependencies = {
 // TODO: only mount required dependencies even if it is already loaded
 // TODO: load, mount, get. mount/get should be able to mount/get targeted variant. load should store all variant in constructors
 export class Platform {
-  #clients: Map<string, Map<string, object>> = new Map()
-  #components: Map<string, object> = new Map()
+  #clients = new Map<string, Map<string, object>>()
+  #components = new Map<string, object>()
   #constructors: PlatformConstructors
-  #controllers: Map<string, object> = new Map()
-  #modules: Map<string, object> = new Map()
+  #controllers = new Map<string, object>()
+  #modules = new Map<string, object>()
   #parameters: Parameters
-  #providers: Map<string, object> = new Map()
+  #providers = new Map<string, object>()
 
   constructor(parameters?: Parameters) {
     this.#parameters = parameters ?? {}

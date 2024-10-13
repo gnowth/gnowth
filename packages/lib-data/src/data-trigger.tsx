@@ -7,7 +7,7 @@ import { useLatest } from 'react-use'
 import { DataContext } from './data-context'
 import { DataName } from './types'
 
-interface PropsComponent {
+type PropsComponent = {
   disabled?: boolean
   palette?: string
   progressHidden?: boolean
@@ -15,7 +15,7 @@ interface PropsComponent {
   variant?: string
 }
 
-interface Props<Value> {
+type Props<Value> = {
   action?: (value: Value, name?: DataName) => Promise<Value> | Value
   component?: ComponentType<PropsComponent> | string
   componentPalette?: string

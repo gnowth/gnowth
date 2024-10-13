@@ -6,10 +6,10 @@ import { Field, FieldConfigs } from './field'
 
 type Nested = 'flat' | 'id' | 'nested'
 
-interface ConfigsModel<Value> extends FieldConfigs<Value> {
+type ConfigsModel<Value> = {
   model: Model<Value>
   nested?: Nested
-}
+} & FieldConfigs<Value>
 
 export class FieldModel<Value> extends Field {
   model: Model<Value>
