@@ -12,7 +12,7 @@ import {
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export interface PropsUIDivider extends SystemType<typeof uiDivider> {
+export type PropsUIDivider = {
   as?: string
   children: ReactNode
   className?: string
@@ -22,7 +22,7 @@ export interface PropsUIDivider extends SystemType<typeof uiDivider> {
   variant?: PropsUIDivider | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsUIDivider>
-}
+} & SystemType<typeof uiDivider>
 
 const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
 const makeStyles = themeMakeStyles({ uiDivider })

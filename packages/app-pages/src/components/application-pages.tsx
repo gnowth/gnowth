@@ -12,7 +12,7 @@ import { PageNotPermitted } from './page-not-permitted'
 import { PagePrivacy } from './page-privacy'
 import { PageTermsAndConditions } from './page-terms-and-conditions'
 
-interface Props {
+type Props = {
   application?: AppModelApplication | string
   path?: string
 }

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIButtonGroup {
+export type PropsUIButtonGroup = {
   as?: string
   children: ReactNode
 }

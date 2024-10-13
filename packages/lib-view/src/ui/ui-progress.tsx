@@ -75,10 +75,7 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   </UtilSlot.Provider>
 )
 
-export interface PropsUIProgress
-  extends PropsDataReadonly<null | number>,
-    SystemType<ReturnType<typeof systemColorFromPalette>>,
-    SystemType<typeof uiProgress> {
+export type PropsUIProgress = {
   as?: string
   bufferPalette?: string
   bufferPaletteForContrast?: boolean
@@ -98,7 +95,9 @@ export interface PropsUIProgress
   variant?: PropsUIProgress | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsUIProgress>
-}
+} & PropsDataReadonly<null | number> &
+  SystemType<ReturnType<typeof systemColorFromPalette>> &
+  SystemType<typeof uiProgress>
 
 const spinnerRotateLinear = keyframes`
   0% { transform: rotate(0); }

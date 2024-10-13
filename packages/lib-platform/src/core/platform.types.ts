@@ -1,6 +1,6 @@
 import { Platform } from './platform'
 
-export interface PlatformConstructor {
+export type PlatformConstructor = {
   construct(parameters: PlatformParameters): Promise<object>
 }
 export type PlatformConstructors = {

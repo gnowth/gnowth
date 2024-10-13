@@ -6,17 +6,17 @@ import { DataContext } from './data-context'
 import { DataName, DataValue, PropsData, TokenMode, WithConnect } from './types'
 import { useValue } from './use-value'
 
-interface Configs {
+type Configs = {
   errorCustomContext?: Error
   errorCustomMode?: Error
   errorCustomValue?: Error
 }
 
-export interface PropsUseDataSource<Value> extends PropsData<Value> {
+export type PropsUseDataSource<Value> = {
   context?: boolean
   mode?: TokenMode
   source?: string | unknown
-}
+} & PropsData<Value>
 
 const configsDefault = {
   errorCustomContext: new ErrorCustom({

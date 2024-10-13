@@ -4,7 +4,7 @@ import { ComponentType, createContext } from 'react'
 import { AppModelApplication } from './app-model-application'
 import { PropsBoundary, PropsFrame, PropsSuspense } from './types'
 
-export interface PropsApplication {
+export type PropsApplication = {
   application: AppModelApplication
   boundary?: ComponentType<PropsBoundary> | null | string
   frame?: ComponentType<PropsFrame> | null | string

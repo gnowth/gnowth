@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIChip {
+export type PropsUIChip = {
   as?: string
   children: ReactNode
 }

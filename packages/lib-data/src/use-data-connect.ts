@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { DataContext } from './data-context'
 import { DataName, PropsData } from './types'
 
-export interface PropsUseDataConnect {
+export type PropsUseDataConnect = {
   awaiting?: boolean
   name?: DataName
 }

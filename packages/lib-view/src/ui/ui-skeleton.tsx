@@ -19,7 +19,7 @@ const pulse = keyframes`
   100% { opacity: 1; }
 `
 
-export interface PropsUISkeleton extends SystemType<typeof uiSkeleton> {
+export type PropsUISkeleton = {
   as?: string
   className?: string
   hidden?: boolean
@@ -28,7 +28,7 @@ export interface PropsUISkeleton extends SystemType<typeof uiSkeleton> {
   variant?: PropsUISkeleton | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsUISkeleton>
-}
+} & SystemType<typeof uiSkeleton>
 const uiSkeleton = systemCompose(systemBox(), systemLayout(), systemSpace())
 const makeStyles = themeMakeStyles({
   animationClass: `

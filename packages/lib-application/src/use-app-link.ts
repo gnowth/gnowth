@@ -4,7 +4,7 @@ import { ObjectLiteral } from '@gnowth/lib-utils'
 import { AppModelApplication } from './app-model-application'
 import { useAppApplication } from './use-app-application'
 
-interface Props<Value extends ObjectLiteral> {
+type Props<Value extends ObjectLiteral> = {
   application?: AppModelApplication | string
   model?: Model<Value> | string
   page?: string

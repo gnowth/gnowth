@@ -10,10 +10,11 @@ import { AppSwitch } from './app-switch'
 import { PropsApplication } from './context-application'
 import { ContextEnvironment, PropsEnvironment, propsDefaultEnvironment } from './context-environment'
 
-interface Props extends Partial<Omit<PropsEnvironment, 'whoami'>>, Omit<PropsApplication, 'application'> {
+type Props = {
   children: ReactNode
   switch?: boolean
-}
+} & Omit<PropsApplication, 'application'> &
+  Partial<Omit<PropsEnvironment, 'whoami'>>
 
 // TODO add warning/error model?
 // TODO add settings in environment

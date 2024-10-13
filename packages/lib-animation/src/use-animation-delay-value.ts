@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // TODO: check if we need to add a skip option where value is sent from the start or is it consumer responsibility to switch between values
-interface Configs<Value> {
+type Configs<Value> = {
   animationDelay?: number
   value?: Value
   valueInitial?: Value

@@ -3,7 +3,7 @@ import { ComponentType, ReactElement } from 'react'
 
 import { useAppTheme } from './use-app-theme'
 
-interface WithTheme {
+type WithTheme = {
   theme: Theme
 }
 

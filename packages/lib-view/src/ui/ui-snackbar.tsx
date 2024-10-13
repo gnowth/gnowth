@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUISnackbar {
+export type PropsUISnackbar = {
   as?: string
   children: ReactNode
 }

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsNavDrawer {
+export type PropsNavDrawer = {
   as?: string
   children: ReactNode
 }

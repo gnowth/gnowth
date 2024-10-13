@@ -5,7 +5,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { PropsBoundary } from './types'
 import { useAppBoundary } from './use-app-boundary'
 
-interface Props {
+type Props = {
   boundary?: ComponentType<PropsBoundary> | null | string
   boundaryClassName?: string
   children: ReactNode

@@ -5,7 +5,7 @@ export type DataError = Error
 
 export type DataOptionMap = Record<string, Promise<unknown[]>>
 
-export type DataName = Array<string> | string
+export type DataName = string | string[]
 
 export type DataValue = ObjectLiteral
 
@@ -27,7 +27,7 @@ export type DataValue = ObjectLiteral
 // }
 
 // TODO: errors to be both promise and actual errors?
-export interface PropsDataReadonly<Value = unknown> {
+export type PropsDataReadonly<Value = unknown> = {
   awaiting?: boolean
   errors?: DataError[] | Promise<DataError[]>
   field?: Field
@@ -36,7 +36,7 @@ export interface PropsDataReadonly<Value = unknown> {
 }
 
 // add resources in PropsData?
-export interface PropsData<Value = unknown> extends PropsDataReadonly<Value> {
+export type PropsData<Value = unknown> = {
   disabled?: boolean
   name?: DataName
   onCancel?(value: Value, name?: DataName): Promise<void> | void
@@ -44,9 +44,9 @@ export interface PropsData<Value = unknown> extends PropsDataReadonly<Value> {
   onReset?(value: Value, name?: DataName): Promise<void> | void
   onSubmit?(value: Value, name?: DataName): Promise<void> | void
   options?: Promise<Value[]> | Value[]
-}
+} & PropsDataReadonly<Value>
 
-export interface WithConnect {
+export type WithConnect = {
   connect<Value>(name?: DataName): PropsData<Value>
 }
 

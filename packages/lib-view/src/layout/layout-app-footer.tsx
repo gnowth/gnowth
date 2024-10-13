@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsLayoutAppFooter {
+export type PropsLayoutAppFooter = {
   as?: string
   children: ReactNode
   'data-testid'?: string

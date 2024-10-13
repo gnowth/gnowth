@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsNavMenu {
+export type PropsNavMenu = {
   as?: string
   children: ReactNode
 }

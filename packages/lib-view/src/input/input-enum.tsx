@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputEnum {
+export type PropsInputEnum = {
   as?: string
   name?: string
 }

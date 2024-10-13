@@ -5,21 +5,21 @@ import { useLatest } from 'react-use'
 
 import { DataName, DataValue, TokenMode } from './types'
 
-interface Configs {
+type Configs = {
   errorCustomMode?: Error
   errorCustomValue?: Error
 }
 
 // TODO: make value required
-interface Return<Value> {
+type Return<Value> = {
   onChange?(value: Value, name?: DataName): Promise<void> | void
   onSubmit?(value: Value, name?: DataName): Promise<void> | void
   value: Value
 }
 
-interface Props<Value> extends Return<Value> {
+type Props<Value> = {
   mode?: TokenMode
-}
+} & Return<Value>
 
 const configsDefault = {
   errorCustomMode: new ErrorCustom({

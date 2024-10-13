@@ -12,7 +12,7 @@ import {
 import { ComponentType, FunctionComponent } from 'react'
 import * as R from 'remeda'
 
-interface ComponentProps {
+type ComponentProps = {
   className?: string
   color?: string
   'data-testid'?: string
@@ -20,7 +20,7 @@ interface ComponentProps {
   size?: string
 }
 // TODO: fix icon size. svg height/width supports number only
-export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonly<string> {
+export type PropsUIIcon = {
   className?: string
   components?: Record<string, ComponentType<ComponentProps>>
   hidden?: boolean
@@ -29,7 +29,8 @@ export interface PropsUIIcon extends SystemType<typeof uiIcon>, PropsDataReadonl
   slot?: string
   variant?: PropsUIIcon | string
   variantNamespace?: string
-}
+} & PropsDataReadonly<string> &
+  SystemType<typeof uiIcon>
 
 const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
 const makeStyles = themeMakeStyles({ uiIcon })

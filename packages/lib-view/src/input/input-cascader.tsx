@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputCascader {
+export type PropsInputCascader = {
   as?: string
   name?: string
 }

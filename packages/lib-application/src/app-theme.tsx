@@ -3,7 +3,7 @@ import { FunctionComponent, ReactNode } from 'react'
 
 import { AppProvider } from './app-provider'
 
-interface Props {
+type Props = {
   children: ReactNode
   theme?: Theme | string
 }

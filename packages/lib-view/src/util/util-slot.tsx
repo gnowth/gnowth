@@ -9,32 +9,32 @@ import {
 } from 'react'
 import * as R from 'remeda'
 
-interface PropsContent {
+type PropsContent = {
   name: string
   slot?: string
 }
 
-interface PropsProvider {
+type PropsProvider = {
   children: ReactNode
   slots: ReactNode
 }
 
-interface Props {
+type Props = {
   children?: ReactNode
   slot: string
 }
 
-interface PropsTest {
+type PropsTest = {
   children: ReactNode
   slot?: string
   test: string
 }
 
-interface Component extends FunctionComponent<Props> {
+type Component = {
   Content: FunctionComponent<PropsContent>
   Provider: FunctionComponent<PropsProvider>
   Test: FunctionComponent<PropsTest>
-}
+} & FunctionComponent<Props>
 
 const SlotContext = createContext<Record<string, ReactElement>>({})
 

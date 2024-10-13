@@ -4,7 +4,7 @@ import { ReactElement } from 'react'
 import { Ingredient } from '../modules/ingredients'
 import { Recipe } from '../modules/recipes'
 
-interface Props {
+type Props = {
   resources: {
     ingredients?: QueryResource<Ingredient[]>
     recipes?: QueryResource<Recipe[]>

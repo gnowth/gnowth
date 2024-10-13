@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputDropzone {
+export type PropsInputDropzone = {
   as?: string
   name?: string
 }

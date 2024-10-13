@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIBadge {
+export type PropsUIBadge = {
   as?: string
   children: ReactNode
 }

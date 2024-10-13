@@ -5,7 +5,7 @@ import { AuthPageToken } from '../modules/application-auth.tokens'
 import { PageLogin } from './page-login'
 import { PageSignup } from './page-signup'
 
-interface Props {
+type Props = {
   application?: AppModelApplication | string
   path?: string
 }

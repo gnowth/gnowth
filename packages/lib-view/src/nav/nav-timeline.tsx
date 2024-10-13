@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsNavTimeline {
+export type PropsNavTimeline = {
   as?: string
   children: ReactNode
 }

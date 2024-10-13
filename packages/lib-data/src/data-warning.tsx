@@ -6,7 +6,7 @@ import { ComponentType, FunctionComponent } from 'react'
 import { DataName } from './types'
 // import useDataConnect from './use-data-connect';
 
-interface PropsWarning {
+type PropsWarning = {
   name?: DataName
   slot?: string
   warning?: ComponentType<PropsBoundary> | null | string

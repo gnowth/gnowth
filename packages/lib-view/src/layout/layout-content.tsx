@@ -12,12 +12,12 @@ import {
 import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
 import * as R from 'remeda'
 
-interface ComponentProps {
+type ComponentProps = {
   className?: string
   'data-testid'?: string
   id?: string
 }
-export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
+export type PropsLayoutContent = {
   as?: ComponentType<ComponentProps> | string
   children: ReactNode
   className?: string
@@ -27,7 +27,7 @@ export interface PropsLayoutContent extends SystemType<typeof layoutContent> {
   slot?: string
   variant?: PropsLayoutContent | string
   variantNamespace?: string
-}
+} & SystemType<typeof layoutContent>
 
 const layoutContent = systemCompose(
   systemBackgroundColorFromPalette(),

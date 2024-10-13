@@ -2,11 +2,11 @@ import { Model } from '@gnowth/lib-model'
 import { QueryResource } from '@gnowth/lib-query'
 import * as R from 'remeda'
 
-interface ConfigsApplication {
+type ConfigsApplication = {
   route?: string
 }
 
-interface ParamsRoute {
+type ParamsRoute = {
   pageId?: string
 }
 

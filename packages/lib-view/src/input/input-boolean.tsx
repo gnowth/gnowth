@@ -8,7 +8,7 @@ import * as R from 'remeda'
 import { PropsUIIcon, UIIcon } from '../ui/ui-icon'
 import { ChangeEventHandler, useValue } from './use-value'
 
-export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, PropsData<boolean | null> {
+export type PropsInputBoolean = {
   as?: string
   className?: string
   classNamespace?: string
@@ -28,7 +28,8 @@ export interface PropsInputBoolean extends SystemType<typeof inputBoolean>, Prop
   variant?: PropsInputBoolean | string
   variantNamespace?: string
   variants?: UtilNamespaced<PropsInputBoolean>
-}
+} & PropsData<boolean | null> &
+  SystemType<typeof inputBoolean>
 
 const inputBoolean = systemSpace()
 const makeStyles = themeMakeStyles({

@@ -3,7 +3,7 @@ import { pluralize } from 'inflected'
 
 import { QueryApi } from './query-api'
 
-interface Configs<Value extends ObjectLiteral> {
+type Configs<Value extends ObjectLiteral> = {
   api: QueryApi<Value>
 }
 
@@ -76,7 +76,7 @@ export class QuerySerializer<Value extends ObjectLiteral> {
   toValueArray(data?: Record<string, unknown>): Value[] {
     if (!data) return []
 
-    const dataItems = (data[pluralize(this.api.model.modelName)] || []) as Array<unknown>
+    const dataItems = (data[pluralize(this.api.model.modelName)] || []) as unknown[]
 
     return dataItems.map((item) => this.toValue({ ...data, [this.api.model.modelName]: item }))
   }

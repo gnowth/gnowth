@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-interface Props {
+type Props = {
   slot: string
 }
 

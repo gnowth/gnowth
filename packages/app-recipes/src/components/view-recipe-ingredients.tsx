@@ -12,7 +12,7 @@ import { FunctionComponent } from 'react'
 
 import { Ingredient } from '../modules/ingredients'
 
-interface Props {
+type Props = {
   slot: string
 }
 

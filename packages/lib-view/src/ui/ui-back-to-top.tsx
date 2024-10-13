@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUIBackToTop {
+export type PropsUIBackToTop = {
   as?: string
   children: ReactNode
 }

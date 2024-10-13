@@ -2,7 +2,7 @@ import { APILogger, Log } from './loggers.types'
 import { LogLevel } from './loggers.utils'
 import { StorageService } from './storages'
 
-interface OptionsLogger {
+type OptionsLogger = {
   apis?: APILogger[]
   name: string
   namespace: string

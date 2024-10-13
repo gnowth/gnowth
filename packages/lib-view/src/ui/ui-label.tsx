@@ -12,7 +12,7 @@ import {
 import { FunctionComponent } from 'react'
 import * as R from 'remeda'
 
-export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReadonly<string> {
+export type PropsUILabel = {
   className?: string
   hidden?: boolean
   slot?: string
@@ -21,7 +21,8 @@ export interface PropsUILabel extends SystemType<typeof uiLabel>, PropsDataReado
   variant?: PropsUILabel | string
   variantComposition?: string[]
   variantNamespace?: string
-}
+} & PropsDataReadonly<string> &
+  SystemType<typeof uiLabel>
 
 const uiLabel = systemCompose(systemColorFromPalette(), systemSpace(), systemTypography())
 const makeStyles = themeMakeStyles({ uiLabel })

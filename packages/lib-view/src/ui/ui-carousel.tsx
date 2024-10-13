@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUICarousel {
+export type PropsUICarousel = {
   as?: string
   children: ReactNode
 }

@@ -1,13 +1,13 @@
-export interface MockClientParameterAny {
+export type MockClientParameterAny = {
   seed?: number
 }
 
-export interface MockClientParameterEmail extends MockClientParameterAny {
+export type MockClientParameterEmail = {
   firstName?: string
   lastName?: string
-}
+} & MockClientParameterAny
 
-export interface MockClient {
+export type MockClient = {
   internetEmail(parameters?: MockClientParameterEmail): string
   personFirstName(parameters?: MockClientParameterAny): string
   personLastName(parameters?: MockClientParameterAny): string

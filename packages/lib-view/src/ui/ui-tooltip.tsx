@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactNode } from 'react'
 
-export interface PropsUITooltip {
+export type PropsUITooltip = {
   as?: string
   children: ReactNode
 }

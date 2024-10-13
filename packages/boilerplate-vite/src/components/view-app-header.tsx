@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 
 import { TokenApplication } from '../modules/app-model-environment'
 
-interface Props {
+type Props = {
   slot?: string
 }
 

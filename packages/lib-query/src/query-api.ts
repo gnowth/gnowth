@@ -5,7 +5,7 @@ import { QueryResource } from './query-resource'
 import { QuerySerializer } from './query-serializer'
 import { QueryConfigs } from './types'
 
-interface QueryConfigsApi<Value extends ObjectLiteral> {
+type QueryConfigsApi<Value extends ObjectLiteral> = {
   endpoint: string
   model: Model<Value>
   serializer?: QuerySerializer<Value>

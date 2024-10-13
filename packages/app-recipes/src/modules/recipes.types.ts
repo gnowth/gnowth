@@ -2,11 +2,11 @@ import { Media } from '@gnowth/lib-react'
 
 import { Ingredient } from './ingredients'
 
-interface Step {
+type Step = {
   name: string
 }
 
-interface Tag {
+type Tag = {
   label: string
 }
 

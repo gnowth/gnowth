@@ -1,6 +1,6 @@
 const SERVER_LOCAL_PORT = 3000
 
-interface Window {
+type Window = {
   location: {
     hostname: string
   }

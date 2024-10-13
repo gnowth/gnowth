@@ -1,6 +1,6 @@
 import { useAnimationDelayValue } from './use-animation-delay-value'
 
-interface PropsAnimationDelayKey<Key> {
+type PropsAnimationDelayKey<Key> = {
   animationDelay?: number
   animationDelayKey: Key
 }

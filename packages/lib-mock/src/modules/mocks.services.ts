@@ -3,15 +3,15 @@ import { Platform, PlatformConstructors, PlatformParameters } from '@gnowth/lib-
 import { MockConstant } from './mocks.constants'
 import { MockClient } from './mocks.types'
 
-interface MockParameterAny<Type> {
+type MockParameterAny<Type> = {
   seed?: string
   value?: Type
 }
 
-interface MockParameterEmail<Type> extends MockParameterAny<Type> {
+type MockParameterEmail<Type> = {
   firstName?: string
   lastName?: string
-}
+} & MockParameterAny<Type>
 
 type Parameters = { mockClient: MockClient } & PlatformParameters
 export class MockService {

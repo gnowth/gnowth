@@ -1,7 +1,7 @@
 import { ErrorCustom } from '@gnowth/lib-utils'
 import { useFirstMountState, usePrevious } from 'react-use'
 
-interface Configs {
+type Configs = {
   errorCustom?: Error
   skip?: boolean
 }

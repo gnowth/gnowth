@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputOrdering {
+export type PropsInputOrdering = {
   as?: string
   name?: string
 }

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-export interface PropsInputTextarea {
+export type PropsInputTextarea = {
   as?: string
   name?: string
 }

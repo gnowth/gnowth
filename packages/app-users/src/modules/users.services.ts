@@ -104,7 +104,7 @@ export class UserService {
   get routes() {
     const urlBase = `${this.#constant.apiOrigin}${this.#constant.apiContext}`
     return {
-      users: (id: string = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
+      users: (id = ''): string => `${urlBase}/v1/${this.#constant.scope}/${id}`,
     }
   }
 }

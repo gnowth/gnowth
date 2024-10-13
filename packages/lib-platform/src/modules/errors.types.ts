@@ -9,8 +9,8 @@ export type ErrorData = {
   sourceNamespace?: string
 }
 
-export interface EventError extends PlatformEvent {
+export type EventError = {
   payload: { errors: ErrorData[] }
   target: 'serviceError'
   type: 'error'
-}
+} & PlatformEvent
