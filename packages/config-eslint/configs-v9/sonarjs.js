@@ -1,7 +1,7 @@
 import sonarjs from 'eslint-plugin-sonarjs'
 
 export const sonarjsConfigs = [
-  sonarjs.configs.recommended,
+  sonarjs.configs['recommended-legacy'],
   { plugins: { sonarjs } },
   {
     rules: {
