@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals'
 import { waitFor } from '@testing-library/react'
 
 import { testMakeRenderComponent } from '../modules/tests'
@@ -9,6 +10,7 @@ describe('section-footer', () => {
 
   it('renders properly', async () => {
     expect.assertions(1)
+
     await renderComponent()
     await waitFor(() => expect(SectionFooterTestModel.copyright).toBeVisible())
   })

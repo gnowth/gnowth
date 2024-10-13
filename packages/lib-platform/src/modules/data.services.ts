@@ -23,7 +23,9 @@ class EventEmitterService {
     const listener = (event: TEvent) => {
       try {
         callback(event)
-      } catch (_error) {}
+      } catch (_error) {
+        // TODO: publish to stream
+      }
     }
     this.#eventEmitter.on(name, listener)
     return () => this.#eventEmitter.off(name, listener)

@@ -57,7 +57,7 @@
     "types": [
       "node",
       "jest",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom/jest-globals"
     ] /* Type declaration files to be included in compilation. */,
 
     /* Source Map Options */

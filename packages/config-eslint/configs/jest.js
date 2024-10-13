@@ -1,4 +1,5 @@
 module.exports = {
-  extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+  extends: ['plugin:jest/all'],
   plugins: ['jest'],
+  rules: { 'jest/max-expects': ['error', { max: 10 }] },
 }
