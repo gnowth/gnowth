@@ -8,8 +8,6 @@ module.exports = {
   extends: [
     './configs/comments',
     './configs/eslint--sort-keys',
-    './configs/import--no-default-export',
-    // './configs/import--order',
     './configs/import',
     './configs/perfectionist',
     './configs/prettier',
