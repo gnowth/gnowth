@@ -7,7 +7,7 @@ module.exports = {
 
   extends: [
     './configs/comments',
-    './configs/eslint--sort-keys',
+    './configs/eslint',
     './configs/import',
     './configs/jsx-a11y',
     // Note: sonarjs must be before next config. otherwise it throws error
