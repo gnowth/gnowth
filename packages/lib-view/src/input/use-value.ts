@@ -8,19 +8,20 @@ type ChangeEvent<Value> = {
   }
 }
 
-export type ChangeEventHandler<Value> = (event: ChangeEvent<Value>) => Promise<void> | void
+export type ChangeEventHandler<Value> = (event: ChangeEvent<Value>) => void
+type SubmitEventHandler<Value> = (event: ChangeEvent<Value>) => Promise<void> | void
 
 type Return<Value> = {
   name?: string
   onChange?: ChangeEventHandler<Value>
-  onSubmit?: ChangeEventHandler<Value>
+  onSubmit?: SubmitEventHandler<Value>
   value?: Value
 }
 
 type PropsUseValue<Value> = {
   mode?: TokenMode
   name?: DataName
-  onChange?(value: Value, name?: DataName): Promise<void> | void
+  onChange?(value: Value, name?: DataName): void
   onSubmit?(value: Value, name?: DataName): Promise<void> | void
   value?: Value
 }

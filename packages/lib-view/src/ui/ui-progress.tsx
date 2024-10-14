@@ -103,72 +103,76 @@ const spinnerRotateLinear = keyframes`
   0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 `
-const spinnerStrokeRotate = (props: PropsUIProgress) => keyframes`
-  0% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotate(0);
-  }
-  12.5% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotate(0);
-  }
-  12.5001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotateX(180deg) rotate(72.5deg);
-  }
-  25% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotateX(180deg) rotate(72.5deg);
-  }
-  25.0001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotate(270deg);
-  }
-  37.5% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotate(270deg);
-  }
-  37.5001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotateX(180deg) rotate(161.5deg);
-  }
-  50% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotateX(180deg) rotate(161.5deg);
-  }
-  50.0001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotate(180deg);
-  }
-  62.5% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotate(180deg);
-  }
-  62.5001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotateX(180deg) rotate(251.5deg);
-  }
-  75% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotateX(180deg) rotate(251.5deg);
-  }
-  75.0001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotate(90deg);
-  }
-  87.5% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotate(90deg);
-  }
-  87.5001% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 4}px;
-    transform: rotateX(180deg) rotate(341.5deg);
-  }
-  100% {
-    stroke-dashoffset: ${(5 - (props.thickness ?? 1)) * Math.PI * 19}px;
-    transform: rotateX(180deg) rotate(341.5deg);
-  }
-`
+const spinnerStrokeRotate = (props: PropsUIProgress) => {
+  const baseOffset = (5 - (props.thickness ?? 1)) * Math.PI
+
+  return keyframes`
+    0% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotate(0);
+    }
+    12.5% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotate(0);
+    }
+    12.5001% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotateX(180deg) rotate(72.5deg);
+    }
+    25% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotateX(180deg) rotate(72.5deg);
+    }
+    25.0001% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotate(270deg);
+    }
+    37.5% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotate(270deg);
+    }
+    37.5001% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotateX(180deg) rotate(161.5deg);
+    }
+    50% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotateX(180deg) rotate(161.5deg);
+    }
+    50.0001% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotate(180deg);
+    }
+    62.5% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotate(180deg);
+    }
+    62.5001% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotateX(180deg) rotate(251.5deg);
+    }
+    75% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotateX(180deg) rotate(251.5deg);
+    }
+    75.0001% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotate(90deg);
+    }
+    87.5% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotate(90deg);
+    }
+    87.5001% {
+      stroke-dashoffset: ${baseOffset * 4}px;
+      transform: rotateX(180deg) rotate(341.5deg);
+    }
+    100% {
+      stroke-dashoffset: ${baseOffset * 19}px;
+      transform: rotateX(180deg) rotate(341.5deg);
+    }
+  `
+}
 
 const systemSize: System<{ size?: TokenSize }> = (props, theme) => {
   if (!props.size) {

@@ -9,7 +9,7 @@ export const AppFrame: FunctionComponent<Props> = (props) => {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
 
-  if (!contextApplication.frame) return <>{props.children}</>
+  if (!contextApplication.frame) return props.children
 
   const FrameComponent = R.isString(contextApplication.frame)
     ? contextEnvironment.frames[contextApplication.frame] || Fragment

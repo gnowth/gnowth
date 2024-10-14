@@ -75,7 +75,7 @@ const propsDefault: Partial<PropsInputBoolean> = {
 }
 
 function iconValue(props: PropsInputBoolean, value?: boolean | null) {
-  if (value === null) return props.iconValueNull || props.iconValueFalse
+  if (value === null) return props.iconValueNull ?? props.iconValueFalse
 
   return value ? props.iconValueTrue : props.iconValueFalse
 }

@@ -17,7 +17,7 @@ export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApp
 
   models: Record<string, Model | undefined> = {}
 
-  resources: Record<string, (paramsRoute: ParamsRoute) => undefined | unknown> = {}
+  resources: Record<string, (paramsRoute: ParamsRoute) => unknown> = {}
 
   route: string
 
@@ -25,7 +25,7 @@ export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApp
 
   constructor(configs: Configs) {
     this.configs = configs
-    this.route = configs.route || '/'
+    this.route = configs.route ?? '/'
   }
 
   getModel(model?: Model | string): Model | undefined {

@@ -23,6 +23,7 @@ class EventEmitterService {
     const listener = (event: TEvent) => {
       try {
         callback(event)
+        // eslint-disable-next-line sonarjs/no-ignored-exceptions
       } catch (_error) {
         // TODO: publish to stream
       }

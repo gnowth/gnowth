@@ -60,10 +60,10 @@ const SlotProvider: FunctionComponent<PropsProvider> = (props) => (
 const SlotTest: FunctionComponent<PropsTest> = (props) => {
   const context = useContext(SlotContext)
 
-  return context[props.test] ? <>{props.children}</> : null
+  return context[props.test] ? props.children : null
 }
 
-export const UtilSlot: Component = (props) => <>{props.children}</>
+export const UtilSlot: Component = (props) => props.children
 
 UtilSlot.Content = SlotContent
 UtilSlot.Provider = SlotProvider

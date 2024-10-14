@@ -15,7 +15,7 @@ type Configs = {
 export type PropsUseDataSource<Value> = {
   context?: boolean
   mode?: TokenMode
-  source?: string | unknown
+  source?: unknown
 } & PropsData<Value>
 
 const configsDefault = {

@@ -101,7 +101,7 @@ function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<V
     const breakpoints = configs.theme.getScaleBreakpoint(configs)
     const scaleToken = configs.value
 
-    if (configs.breakpoint || !breakpoints.length) {
+    if (configs.breakpoint ?? !breakpoints.length) {
       const scaleItem =
         configs.theme.getScaleItem({
           scale: configs.scale,

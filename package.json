@@ -126,7 +126,7 @@
     "local:check-debug:lint": "eslint --debug --output-file eslint-debug.log .",
     "local:check-debug:typecheck": "tsc --listFilesOnly",
     "local:check-inspect:lint": "eslint --inspect-config",
-    "local:check-timing:lint": "TIMING=1 eslint .",
+    "local:check-timing:lint": "TIMING=1 time eslint .",
     "local:check-watch:test": "jest --watchAll",
     "local:check-watch-coverage:test": "jest --coverage --watchAll",
     "local:clean": "npm run local:clean:temp && npm run local:clean:modules",

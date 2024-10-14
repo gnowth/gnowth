@@ -14,16 +14,17 @@ type Props = {
 // DEBT: to simplify fallbackRender
 export const SystemBoundary: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
-    return <>{props.children}</>
+    return props.children
   }
 
   return (
     <ErrorBoundary
+      // eslint-disable-next-line sonarjs/no-unstable-nested-components
       fallbackRender={({ error, resetErrorBoundary }) =>
         props.FallbackComponent ? (
           <props.FallbackComponent error={error} reset={resetErrorBoundary} />
         ) : (
-          <>{props.children}</>
+          props.children
         )
       }
     >

@@ -52,7 +52,7 @@ export const UITypography: FunctionComponent<PropsUITypography> = (props) => {
   const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
-  if (propsVariant.as === null) return <>{propsVariant.value}</>
+  if (propsVariant.as === null) return propsVariant.value
 
   return createElement(
     propsVariant.as ?? 'span',

@@ -21,7 +21,7 @@ export class Field<Value = unknown> {
     this.default = configs.default ?? null
     this.many = configs.many
     this.options = configs.options ?? null
-    this.type = configs.type || 'any'
+    this.type = configs.type ?? 'any'
   }
 
   // TODO: what to return as default if many is on. need proper documentation as there is potential misunderstanding

@@ -20,7 +20,7 @@ type Props = {
 export const AppLayout: FunctionComponent<Props> = (props) => {
   const LayoutComponent = useAppLayout(props.layout)
 
-  if (!LayoutComponent) return <>{props.children}</>
+  if (!LayoutComponent) return props.children
 
   const propsCombined = objectDefaults(
     {

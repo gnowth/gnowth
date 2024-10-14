@@ -35,6 +35,7 @@ export class QueryResource<Value = unknown> {
 
   constructor(promise: Promise<Response<Value>>) {
     this.promiseUnhandled = promise
+    // eslint-disable-next-line sonarjs/no-async-constructor
     this.promise = promise.then(this.handleQueryResponse).catch(this.handleError)
   }
 
