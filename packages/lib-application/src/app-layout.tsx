@@ -32,8 +32,5 @@ export const AppLayout: FunctionComponent<Props> = (props) => {
     props.layoutProps ?? {},
   )
 
-  return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <LayoutComponent {...propsCombined}>{props.children}</LayoutComponent>
-  )
+  return <LayoutComponent {...propsCombined}>{props.children}</LayoutComponent>
 }

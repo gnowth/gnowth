@@ -12,11 +12,6 @@
   "browserslist": [
     "extends @gnowth/browserslist-config"
   ],
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript-react"
-    ]
-  },
   "repository": {
     "directory": "packages/boilerplate-vite",
     "type": "git",
@@ -47,7 +42,7 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo build dist .cache",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts,.tsx .",
+    "lint:script": "eslint .",
     "start-dev": "vite serve src",
     "typecheck": "tsc"
   }

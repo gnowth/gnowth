@@ -10,11 +10,6 @@
   "sideEffects": false,
   "source": true,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript-react"
-    ]
-  },
   "repository": {
     "directory": "packages/lib-animation",
     "type": "git",
@@ -32,7 +27,7 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts,.tsx .",
+    "lint:script": "eslint .",
     "typecheck": "tsc"
   }
 }

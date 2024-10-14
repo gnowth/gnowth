@@ -1,9 +1,13 @@
 import sonarjs from 'eslint-plugin-sonarjs'
 
 export const sonarjsConfigs = [
-  sonarjs.configs['recommended-legacy'],
-  { plugins: { sonarjs } },
   {
+    name: 'sonarjs',
+    ...sonarjs.configs['recommended-legacy'],
+    plugins: { sonarjs },
+  },
+  {
+    name: 'sonarjs/temp-disabled',
     rules: {
       'sonarjs/cognitive-complexity': 'off',
       'sonarjs/different-types-comparison': 'off',

@@ -10,11 +10,6 @@
   "sideEffects": false,
   "source": true,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript-react"
-    ]
-  },
   "jest": {
     "preset": "@gnowth/jest-config"
   },
@@ -40,7 +35,7 @@
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext ts,tsx .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script",
     "typecheck": "tsc"
   }

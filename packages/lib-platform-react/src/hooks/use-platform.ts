@@ -40,7 +40,6 @@ export const usePlatformClientSuspense = <TClient extends object>(
 ): TClient => {
   const platform = PlatformManager.getMaybe()
   const client = platform?.clientGetMaybe<TClient>(definition)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const promise = useMemo(() => PlatformManager.staticGetClient<TClient>(definition), [])
   return client ?? use(promise)
 }
@@ -64,7 +63,7 @@ export const usePlatformControllerSuspense = <TController extends object>(
 ): TController => {
   const platform = PlatformManager.getMaybe()
   const controller = platform?.controllerGetMaybe<TController>(definition)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const promise = useMemo(() => PlatformManager.staticGetController<TController>(definition), [])
   return controller ?? use(promise)
 }
@@ -98,7 +97,7 @@ export const usePlatformProviderSuspense = <TProvider extends object>(
 ): TProvider => {
   const platform = PlatformManager.getMaybe()
   const provider = platform?.providerGetMaybe<TProvider>(definition)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   const promise = useMemo(() => PlatformManager.staticGetProvider<TProvider>(definition), [])
   return provider ?? use(promise)
 }

@@ -7,11 +7,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript"
-    ]
-  },
   "jest": {
     "preset": "@gnowth/jest-config/node"
   },
@@ -43,7 +38,7 @@
     "build": "nest build && cp package.json ../../artifact/build-nestjs/package.json",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext ts .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script",
     "start-debug": "nest start --debug --watch",
     "start-dev": "nest start --watch",

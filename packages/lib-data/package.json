@@ -13,11 +13,6 @@
   "browserslist": [
     "extends @gnowth/browserslist-config"
   ],
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript-react"
-    ]
-  },
   "jest": {
     "preset": "@gnowth/jest-config"
   },
@@ -50,7 +45,7 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts,.tsx .",
+    "lint:script": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch",
     "typecheck": "tsc"

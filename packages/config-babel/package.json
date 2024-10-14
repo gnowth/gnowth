@@ -9,11 +9,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/javascript"
-    ]
-  },
   "repository": {
     "directory": "packages/config-babel",
     "type": "git",
@@ -35,7 +30,7 @@
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext js .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script"
   }
 }

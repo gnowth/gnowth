@@ -9,11 +9,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/javascript"
-    ]
-  },
   "repository": {
     "directory": "packages/config-browserslist",
     "type": "git",
@@ -27,6 +22,6 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .js ."
+    "lint:script": "eslint ."
   }
 }

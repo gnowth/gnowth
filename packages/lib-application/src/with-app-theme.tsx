@@ -11,7 +11,6 @@ export function withAppTheme<Props>(Component: ComponentType<Props & WithTheme>)
   return function ComponentWithTheme(props: Props): ReactElement {
     const theme = useAppTheme()
 
-    // eslint-disable-next-line react/jsx-props-no-spreading
     return <Component theme={theme} {...props} />
   }
 }

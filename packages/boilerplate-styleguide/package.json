@@ -7,11 +7,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config"
-    ]
-  },
   "jest": {
     "preset": "@gnowth/jest-config"
   },
@@ -48,7 +43,7 @@
     "build": "storybook build --quiet --disable-telemetry -o ../../artifact/build-web/styleguide",
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf *.log .turbo",
-    "lint:script": "eslint --ext mdx,ts,tsx .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script",
     "publish": "chromatic --zip --storybook-build-dir='../../artifact/build-web/styleguide' --project-token=$STYLEGUIDE_CHROMATIC_TOKEN",
     "start-ci": "storybook dev -p 6006 --ci",
