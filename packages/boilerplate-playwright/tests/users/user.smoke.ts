@@ -6,7 +6,7 @@ test.describe('/users/user: new user page', () => {
   test('to contain main elements', async ({ page }) => {
     const testModel = new UserTestModel(page)
     await testModel.goto()
-    await expect(page).toHaveURL(/.*users\/user/)
+    await expect(page).toHaveURL(/users\/user/)
     await expect(testModel.emailInput).toBeVisible()
     await expect(testModel.emailLabel).toBeVisible()
     await expect(testModel.footerComponent).toBeVisible()

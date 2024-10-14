@@ -48,7 +48,7 @@ export const UIIcon: FunctionComponent<PropsUIIcon> = (props) => {
   const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
   const Component = theme.getComponent<ComponentProps>({
-    component: propsVariant.value || undefined,
+    component: propsVariant.value ?? undefined,
     componentNamespace: 'icon',
     components: propsVariant.components,
   })

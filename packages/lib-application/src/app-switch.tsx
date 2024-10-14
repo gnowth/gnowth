@@ -28,7 +28,7 @@ export function AppSwitch(props: Props): ReactElement | null {
     if (match == null && isValidElement<PropsChild>(child)) {
       element = child
       const applicationCurrent = environment.getApplication(child.props.application || application)
-      const path = child.props.path || child.props.from || applicationCurrent.getRoute(child.props.page)
+      const path = child.props.path ?? child.props.from ?? applicationCurrent.getRoute(child.props.page)
       const end = child.props.exact ?? false
       match = path ? matchPath({ ...child.props, end, path }, location.pathname) : null
     }

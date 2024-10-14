@@ -16,7 +16,7 @@ export const AppSuspense: FunctionComponent<Props> = (props) => {
 
   // TODO: must have a fallback if undefined and log error
   if (!SuspenseMaybe) {
-    return <>{props.children}</>
+    return props.children
   }
 
   const suspense = <SuspenseMaybe className={props.suspenseClassName} />

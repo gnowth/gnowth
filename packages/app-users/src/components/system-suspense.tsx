@@ -7,7 +7,7 @@ type Props = {
 
 export const SystemSuspense: FunctionComponent<Props> = (props) => {
   if (!props.FallbackComponent) {
-    return <>{props.children}</>
+    return props.children
   }
 
   return <Suspense fallback={<props.FallbackComponent />}>{props.children}</Suspense>

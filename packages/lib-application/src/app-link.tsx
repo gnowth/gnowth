@@ -1,6 +1,6 @@
 import { Model } from '@gnowth/lib-model'
 import { ObjectLiteral } from '@gnowth/lib-utils'
-import { ComponentType, ReactElement, ReactNode } from 'react'
+import { ComponentType, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'
@@ -16,12 +16,12 @@ type Props<Value extends ObjectLiteral> = {
   value?: Value
 }
 
-export function AppLink<Value extends ObjectLiteral>(props: Readonly<Props<Value>>): ReactElement {
+export function AppLink<Value extends ObjectLiteral>(props: Readonly<Props<Value>>): ReactNode {
   const link = useAppLink(props)
 
   if (link) {
     return <Link to={link}>{props.children}</Link>
   }
 
-  return <>{props.children}</>
+  return props.children
 }
