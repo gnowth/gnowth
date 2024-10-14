@@ -11,7 +11,7 @@ type Props = {
   }
 }
 
-export function PageRecipes(props: Props): ReactElement {
+export function PageRecipes(props: Readonly<Props>): ReactElement {
   const ingredients = props.resources.ingredients?.read()
   const recipes = props.resources.recipes?.read()
 

@@ -17,7 +17,7 @@ type Props<Value extends ObjectLiteral> = {
 }
 
 // TODO: find a way not to have to add from when using AppRedirect. infer from application context. need to also work with switch
-export function AppRedirect<Value extends ObjectLiteral>(props: Props<Value>): ReactElement {
+export function AppRedirect<Value extends ObjectLiteral>(props: Readonly<Props<Value>>): ReactElement {
   const link = useAppLink(props) ?? ''
 
   return <Navigate replace={true} to={link} />

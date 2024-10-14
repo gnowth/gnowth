@@ -20,9 +20,9 @@ type Props = {
 // TODO add settings in environment
 // TODO add store? history?
 export const AppEnvironment: FunctionComponent<Props> = (props) => {
-  const [whoami, whoamiSet] = useState<QueryResource | null>(null)
+  const [whoami, setWhoami] = useState<QueryResource | null>(null)
   const propsWithDefault = objectDefaults(
-    { whoami, whoamiSet } as PropsEnvironment,
+    { whoami, whoamiSet: setWhoami } as PropsEnvironment,
     props,
     propsDefaultEnvironment,
   )

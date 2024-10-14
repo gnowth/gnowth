@@ -26,6 +26,7 @@ export class QueryResource<Value = unknown> {
 
   isPending = true
 
+  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   promise: Promise<Response<Value> | void>
 
   promiseUnhandled: Promise<Response<Value>>

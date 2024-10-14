@@ -22,4 +22,17 @@ export const importConfigs = [
     name: 'import/namespace',
     rules: { 'import/namespace': ['error', { allowComputed: true }] },
   },
+  importPlugin.flatConfigs.typescript,
+  {
+    files: ['**/*.tsx', '**/*.ts'],
+    settings: {
+      'import/parsers': { '@typescript-eslint/parser': ['.ts', '.tsx'] },
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['packages/*/tsconfig.json', 'tsconfig.json'],
+        },
+      },
+    },
+  },
 ]

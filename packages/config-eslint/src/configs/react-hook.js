@@ -6,4 +6,8 @@ export const reactHookConfigs = [
     ...hooksPlugin.configs.recommended,
     plugins: { 'react-hooks': hooksPlugin },
   },
+  {
+    name: 'react-hooks/exhaustive-deps',
+    rules: { 'react-hooks/exhaustive-deps': 'error' },
+  },
 ]

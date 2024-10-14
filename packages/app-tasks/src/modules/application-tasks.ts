@@ -1,11 +1,11 @@
 import { AppModelApplication } from '@gnowth/lib-react'
 
 export class AppModelApplicationTasks extends AppModelApplication {
-  static permissions = {
+  static readonly permissions = {
     dashboard_view: true,
   }
 
-  static routes = {
+  static readonly routes = {
     board(boardId?: string): string {
       return boardId ? `/tasks/boards/${boardId}/` : '/tasks/boards/'
     },

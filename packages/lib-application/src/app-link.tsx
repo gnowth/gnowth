@@ -16,7 +16,7 @@ type Props<Value extends ObjectLiteral> = {
   value?: Value
 }
 
-export function AppLink<Value extends ObjectLiteral>(props: Props<Value>): ReactElement {
+export function AppLink<Value extends ObjectLiteral>(props: Readonly<Props<Value>>): ReactElement {
   const link = useAppLink(props)
 
   if (link) {

@@ -1,4 +1,4 @@
-import { mdxConfigs } from '../configs-v9/mdx.js'
+import { mdxConfigs } from '../configs/mdx.js'
 import { typescript } from './typescript.js'
 
 export const markdown = [...typescript, ...mdxConfigs]

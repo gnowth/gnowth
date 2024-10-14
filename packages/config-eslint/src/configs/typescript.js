@@ -1,30 +1,31 @@
+// eslint-disable-next-line import/no-unresolved
 import tseslint from 'typescript-eslint'
 
 export const typescriptEslintConfigs = tseslint.config(
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,
   {
-    files: ['**/*.?(c|m)ts', '**/*.tsx'],
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        // tsconfigRootDir: import.meta.dirname,
-      },
-    },
+    files: ['**/*.?(c|m)ts?(x)'],
+    languageOptions: { parserOptions: { projectService: true } },
     name: '@typescript-eslint/language-options',
   },
   {
-    files: ['**/*.?(c|m)ts', '**/*.tsx'],
+    files: ['**/*.?(c|m)ts?(x)'],
     name: '@typescript-eslint/consistent-type-definitions',
     rules: { '@typescript-eslint/consistent-type-definitions': ['error', 'type'] },
   },
   {
-    files: ['**/*.?(c|m)ts', '**/*.tsx'],
+    files: ['**/*.?(c|m)ts?(x)'],
     name: '@typescript-eslint/no-unused-expressions',
     rules: { '@typescript-eslint/no-unused-expressions': ['error', { allowTaggedTemplates: true }] },
   },
   {
-    files: ['**/*.?(c|m)ts', '**/*.tsx'],
+    files: ['**/*.?(c|m)ts?(x)'],
+    name: '@typescript-eslint/no-extraneous-class',
+    rules: { '@typescript-eslint/no-extraneous-class': 'off' },
+  },
+  {
+    files: ['**/*.?(c|m)ts?(x)'],
     name: '@typescript-eslint/no-unused-vars',
     rules: {
       '@typescript-eslint/no-unused-vars': [
