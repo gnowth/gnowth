@@ -16,6 +16,7 @@ export const sonarjsConfigs = [
       'sonarjs/jsx-no-constructed-context-values': 'off',
       'sonarjs/jsx-no-useless-fragment': 'off',
       'sonarjs/no-array-index-key': 'off',
+      'sonarjs/no-async-constructor': 'off',
       'sonarjs/no-commented-code': 'off',
       'sonarjs/no-dead-store': 'off',
       // Note: only keep this one
