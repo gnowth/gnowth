@@ -2,18 +2,14 @@
   "author": "Thierry Wong",
   "description": "Eslint configs",
   "license": "AGPL-3.0-only",
-  "main": "hybrid-react.js",
-  "module": "hybrid-react.js",
+  "main": "exports.js",
+  "module": "exports.js",
   "name": "@gnowth/eslint-config",
   "prettier": "@gnowth/prettier-config",
   "private": false,
   "sideEffects": false,
+  "type": "module",
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "./javascript"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -24,10 +20,9 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "7.25.8",
-    "@eslint/js": "8.57.1",
+    "@eslint/compat": "1.2.0",
+    "@eslint/js": "9.12.0",
     "@eslint-community/eslint-plugin-eslint-comments": "4.4.0",
-    "@typescript-eslint/eslint-plugin": "8.8.1",
-    "@typescript-eslint/parser": "8.8.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jest": "28.8.3",
@@ -46,12 +41,12 @@
     "@gnowth/prettier-config": "0.0.0"
   },
   "peerDependencies": {
-    "eslint": "^8.0.0"
+    "eslint": "^9.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext js .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script"
   }
 }

@@ -9,11 +9,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/javascript"
-    ]
-  },
   "dependencies": {
     "@jest/globals": "29.7.0",
     "@testing-library/jest-dom": "6.5.0",
@@ -30,7 +25,7 @@
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext js .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script"
   }
 }

@@ -13,11 +13,6 @@
   "browserslist": [
     "extends @gnowth/browserslist-config"
   ],
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript"
-    ]
-  },
   "repository": {
     "directory": "packages/lib-query",
     "type": "git",
@@ -39,7 +34,7 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
     "lint": "npm run lint:script",
-    "lint:script": "eslint --ext .ts .",
+    "lint:script": "eslint .",
     "typecheck": "tsc"
   }
 }

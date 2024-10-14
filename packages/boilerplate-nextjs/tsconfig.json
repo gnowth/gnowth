@@ -5,11 +5,7 @@
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "node",
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "strictNullChecks": true
   },
   "include": [".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "next-env.d.ts"]

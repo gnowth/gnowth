@@ -12,4 +12,7 @@ export const refs: StorybookConfig['refs'] = {
   },
 }
 
-export const stories: StorybookConfig['stories'] = ['../stories/**/*.stories.@(ts|tsx)', '../stories/**/*.mdx']
+export const stories: StorybookConfig['stories'] = [
+  '../stories/**/*.stories.@(ts|tsx)',
+  '../stories/**/*.mdx',
+]

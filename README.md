@@ -53,6 +53,7 @@ Next:
 - routing
 
 TODO:
+
 - move away from commonjs module and use verbatimModuleSyntax for typescript
 - use create react app for boilerplate-cra
 - find rename environment to application and application to context?

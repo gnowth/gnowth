@@ -11,7 +11,7 @@
     "*.tsx": "${capture}.*",
     "*.ts": "${capture}.*",
     "*.md": "${capture}.*",
-    "package.json": ".*, *.json, *.config.js, next-*, Dockerfile"
+    "package.json": ".*, *.json, *.config.mjs, *.config.js, next-*, Dockerfile"
   },
   "files.autoSave": "onFocusChange",
   "workbench.editor.showTabs": "single",

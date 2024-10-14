@@ -9,11 +9,6 @@
   "engines": {
     "vscode": "1.94.2"
   },
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/typescript"
-    ]
-  },
   "categories": [
     "Programming Languages"
   ],
@@ -48,7 +43,7 @@
   "scripts": {
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .turbo",
-    "lint:script": "eslint --ext ts .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script",
     "start": "nodemon --watch 'src/**' --ext ts --exec 'ts-node src/index.ts'",
     "typecheck": "tsc"

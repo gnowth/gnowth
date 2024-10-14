@@ -1,3 +1,3 @@
-import * as mdx from 'eslint-plugin-mdx'
+import { flat, flatCodeBlocks } from 'eslint-plugin-mdx'
 
-export const mdxConfigs = [{ files: ['*.mdx'], ...mdx.recommended }]
+export const mdxConfigs = [flat, flatCodeBlocks]

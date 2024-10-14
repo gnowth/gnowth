@@ -1,26 +1,25 @@
 import importPlugin from 'eslint-plugin-import'
 
-const importNoDefaultExport = {
-  overrides: [
-    {
-      // https://github.com/isaacs/minimatch
-      files: [
-        '**/config-eslint/**/*',
-        '**/src/app-experimental/**/*',
-        '**/src/app/**/*',
-        '**/src/pages/**/*',
-        '**/*.config.*',
-        '**/*.stories.*',
-        '**/mock/mock-*.js',
-      ],
-      rules: { 'import/no-default-export': 'off' },
-    },
-  ],
-  rules: { 'import/no-default-export': 'error' },
-}
-
-const importOrder = {
-  rules: { 'import/order': ['error', { groups: ['builtin', 'external', ['parent', 'sibling'], 'index'] }] },
-}
-
-export const importConfigs = [importPlugin.flatConfigs.recommended, importNoDefaultExport, importOrder]
+export const importConfigs = [
+  importPlugin.flatConfigs.recommended,
+  // TODO: check for typescript config
+  {
+    // https://github.com/isaacs/minimatch
+    // https://globster.xyz
+    files: [
+      '**/config-eslint/**/*',
+      '**/src/app-experimental/**/*',
+      '**/src/app/**/*',
+      '**/src/pages/**/*',
+      '**/*.config.*',
+      '**/*.stories.*',
+      '**/mock/mock-*.js',
+    ],
+    name: 'import/no-default-export',
+    rules: { 'import/no-default-export': 'off' },
+  },
+  {
+    name: 'import/namespace',
+    rules: { 'import/namespace': ['error', { allowComputed: true }] },
+  },
+]

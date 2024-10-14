@@ -62,7 +62,6 @@ export const testSetupRenderComponent =
     )
 
     const rerender = async (parametersRerender?: ParametersOverride<TProps, TParameters>) => {
-      // eslint-disable-next-line sonarjs/no-nested-functions
       await act(() => testRunLoaders(loaders, parametersMerge([parameters, parametersRerender?.parameters])))
       return result.rerender(<Component {...propsMerge([props, parametersRerender?.props])} />)
     }

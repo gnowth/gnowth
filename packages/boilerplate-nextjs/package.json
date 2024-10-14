@@ -7,11 +7,6 @@
   "private": true,
   "sideEffects": false,
   "version": "0.0.0",
-  "eslintConfig": {
-    "extends": [
-      "@gnowth/eslint-config/next"
-    ]
-  },
   "repository": {
     "directory": "packages/boilerplate-nextjs",
     "type": "git",
@@ -46,7 +41,7 @@
     "clean:modules": "rm -rf node_modules",
     "clean:temp": "rm -rf .next .turbo",
     "internationalisation:extract": "i18next 'src/**/*.tsx' -c ./i18next-parser.config.js",
-    "lint:script": "eslint --ext ts,tsx .",
+    "lint:script": "eslint .",
     "lint": "npm run lint:script",
     "start-dev": "next dev",
     "start": "next start",
