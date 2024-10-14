@@ -35,7 +35,7 @@ const propsDefault = {
 }
 
 // TODO: standardise handling async error
-export function DataTrigger<Value>(props: Props<Value>): ReactElement | null {
+export function DataTrigger<Value>(props: Readonly<Props<Value>>): ReactElement | null {
   const context = useContext(DataContext)
   const refValue = useLatest(context.value as Value)
   const theme = useAppTheme(props.theme)

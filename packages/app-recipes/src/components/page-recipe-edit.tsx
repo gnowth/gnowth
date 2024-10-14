@@ -26,7 +26,7 @@ const locale = {
 
 // datasource query should be linked to allow caching
 // TODO load recipe and place it in context?
-export function PageRecipeEdit(props: Props): ReactElement {
+export function PageRecipeEdit(props: Readonly<Props>): ReactElement {
   const application = useAppApplication<AppModelApplicationRecipes>()
   const recipe = props.resources.recipe?.read()
 

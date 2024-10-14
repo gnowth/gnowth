@@ -6,7 +6,7 @@ type Parameters = { configService: ConfigService }
 
 // DEBT(investigation): to investigate around using sockets
 export class NotificationService {
-  static routes = {
+  static readonly routes = {
     notifications: (id = '') => `/${id}`,
   }
 

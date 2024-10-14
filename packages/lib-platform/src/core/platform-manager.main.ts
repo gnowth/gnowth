@@ -23,7 +23,7 @@ type Parameters = {
 }
 
 export class PlatformManager {
-  static #global: GlobalThis = globalThis
+  static readonly #global: GlobalThis = globalThis
 
   static async #load(parameters?: Parameters): Promise<typeof Platform> {
     const url = parameters?.url

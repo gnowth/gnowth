@@ -9,7 +9,7 @@ export const PageGenerated: FunctionComponent<Props> = (props) => {
     <LayoutPage>
       {props.contents?.map((section, index) => {
         const Component = sections[section]
-        return <Component key={index} />
+        return <Component key={`${section}-${index}`} />
       })}
     </LayoutPage>
   )
