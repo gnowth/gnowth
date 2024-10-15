@@ -16,11 +16,9 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@gnowth/lib-animation": "0.0.0",
     "@gnowth/lib-application": "0.0.0",
     "@gnowth/lib-data": "0.0.0",
     "@gnowth/lib-model": "0.0.0",
-    "@gnowth/lib-query": "0.0.0",
     "@gnowth/lib-platform-react": "0.0.0",
     "@gnowth/lib-platform": "0.0.0",
     "@gnowth/lib-theme": "0.0.0",
