@@ -1,3 +1,6 @@
+export * from './hooks/use-animation-delay-props'
+export * from './hooks/use-animation-delay-ready'
+export * from './hooks/use-animation-delay-value'
 export * from './hooks/use-ensure-constant'
 export * from './hooks/use-stream'
 export * from './types'

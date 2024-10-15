@@ -1,5 +1,4 @@
 'use client'
-export * from '@gnowth/lib-animation'
 export * from '@gnowth/lib-application'
 export * from '@gnowth/lib-data'
 export * from '@gnowth/lib-model'

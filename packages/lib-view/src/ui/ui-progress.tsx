@@ -1,4 +1,3 @@
-import { useAnimationDelayReady } from '@gnowth/lib-animation'
 import { AppLayout, PropsLayout, useAppTheme } from '@gnowth/lib-application'
 import { PropsDataReadonly } from '@gnowth/lib-data'
 import {
@@ -17,6 +16,7 @@ import {
   themeCreateStyles,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
+import { useAnimationDelayReady } from '@gnowth/lib-utils-react'
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
