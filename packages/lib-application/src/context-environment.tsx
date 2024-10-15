@@ -1,8 +1,8 @@
-import { QueryResource } from '@gnowth/lib-query'
 import { Theme } from '@gnowth/lib-theme'
 import { ComponentType, createContext } from 'react'
 
 import { AppModelEnvironment } from './app-model-environment'
+import { QueryResource } from './queries/query-resource'
 import { PropsBoundary, PropsFrame, PropsLayout, PropsSuspense } from './types'
 
 export type PropsEnvironment = {

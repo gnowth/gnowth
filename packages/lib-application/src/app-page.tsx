@@ -1,4 +1,3 @@
-import { QueryResource } from '@gnowth/lib-query'
 import { Theme } from '@gnowth/lib-theme'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { ComponentType, FunctionComponent } from 'react'
@@ -9,6 +8,7 @@ import { AppFrame } from './app-frame'
 import { AppProvider } from './app-provider'
 import { AppSuspense } from './app-suspense'
 import { AppWhoAmI } from './app-who-am-i'
+import { QueryResource } from './queries/query-resource'
 import { PropsFrame, PropsSuspense } from './types'
 import { useAppApplication } from './use-app-application'
 

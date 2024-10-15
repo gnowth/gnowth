@@ -1,4 +1,3 @@
-import { QueryResource } from '@gnowth/lib-query'
 import { objectDefaults } from '@gnowth/lib-utils'
 import { Fragment, FunctionComponent, ReactNode, useState } from 'react'
 import { HashRouter } from 'react-router-dom'
@@ -9,6 +8,7 @@ import { AppSuspense } from './app-suspense'
 import { AppSwitch } from './app-switch'
 import { PropsApplication } from './context-application'
 import { ContextEnvironment, PropsEnvironment, propsDefaultEnvironment } from './context-environment'
+import { QueryResource } from './queries/query-resource'
 
 type Props = {
   children: ReactNode

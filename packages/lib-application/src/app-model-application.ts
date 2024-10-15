@@ -1,6 +1,7 @@
 import { Model } from '@gnowth/lib-model'
-import { QueryResource } from '@gnowth/lib-query'
 import * as R from 'remeda'
+
+import { QueryResource } from './queries/query-resource'
 
 type ConfigsApplication = {
   route?: string
