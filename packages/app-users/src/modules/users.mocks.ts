@@ -7,7 +7,7 @@ import {
   MockServer,
   RestMockSerializer,
   mockServer,
-} from '@gnowth/lib-react'
+} from '@gnowth/lib-dev'
 
 import { configs } from '../configs'
 import { dependencies } from '../dependencies'
