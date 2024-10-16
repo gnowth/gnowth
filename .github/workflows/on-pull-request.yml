@@ -46,7 +46,7 @@ jobs:
 
   nextjs_build_preview_and_e2e:
     container:
-      image: mcr.microsoft.com/playwright:v1.48.0-jammy
+      image: mcr.microsoft.com/playwright:v1.48.1-jammy
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 8
@@ -71,7 +71,7 @@ jobs:
 
   styleguide_build_and_e2e:
     container:
-      image: mcr.microsoft.com/playwright:v1.48.0-jammy
+      image: mcr.microsoft.com/playwright:v1.48.1-jammy
       options: --user 1001
     runs-on: ubuntu-latest
     timeout-minutes: 8

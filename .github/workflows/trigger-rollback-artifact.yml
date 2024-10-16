@@ -126,7 +126,7 @@ jobs:
 
   # Phase 3: End to end regression test
   e2e_regression:
-    container: mcr.microsoft.com/playwright:v1.48.0-jammy
+    container: mcr.microsoft.com/playwright:v1.48.1-jammy
     if: ${{ always() && github.event.inputs.skip_e2e == 'no' }}
     needs: [check_branch, provision_deploy_migrate]
     runs-on: ubuntu-latest
