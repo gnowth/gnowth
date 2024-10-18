@@ -35,7 +35,7 @@
     "eslint-plugin-sonarjs": "2.0.3",
     "eslint-plugin-react": "7.37.1",
     "eslint-plugin-react-hooks": "5.0.0",
-    "eslint-plugin-testing-library": "6.3.0",
+    "eslint-plugin-testing-library": "6.4.0",
     "typescript-eslint": "8.9.0"
   },
   "devDependencies": {
