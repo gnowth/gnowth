@@ -22,7 +22,7 @@
     "react": "18.3.1",
     "react-use": "17.5.1",
     "react-use-polyfill": "0.1.0",
-    "remeda": "2.15.0"
+    "remeda": "2.15.2"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
