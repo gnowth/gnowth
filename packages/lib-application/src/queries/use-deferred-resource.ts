@@ -6,7 +6,6 @@ export function useDeferredResource<Value>(resource: QueryResource<Value>): Quer
   const [resourceDeferred, setResourceDeferred] = useState(resource)
 
   useEffect(() => {
-    // TODO only set resource if resource is resolved
     setResourceDeferred(resource)
   }, [resource])
 

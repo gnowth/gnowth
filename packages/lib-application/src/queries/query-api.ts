@@ -11,7 +11,6 @@ type QueryConfigsApi<Value extends ObjectLiteral> = {
   serializer?: QuerySerializer<Value>
 }
 
-// TODO: queryApi should use field instead of model
 export abstract class QueryApi<Value extends ObjectLiteral> {
   endpoint: string
 

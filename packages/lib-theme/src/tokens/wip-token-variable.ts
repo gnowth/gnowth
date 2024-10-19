@@ -1,6 +1,15 @@
 export enum ThemeVariable {
+  appColorBackground = 'appColorBackground',
+  appColorForeground = 'appColorForeground',
+  appMaxWidth = 'appMaxWidth',
+  appPadding = 'appPadding',
   breakpointToken = 'breakpointToken',
   fontBody = 'fontBody',
   fontHeader = 'fontHeader',
+  footerColorBackground = 'footerColorBackground',
+  footerColorBackground1 = 'footerColorBackground1',
+  headerColorBackground = 'headerColorBackground',
+  headerColorBackground1 = 'headerColorBackground1',
+  navColorBakground = 'navColorBakground',
   widthContent = 'widthContent',
 }

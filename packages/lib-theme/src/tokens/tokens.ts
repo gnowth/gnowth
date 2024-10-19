@@ -99,38 +99,3 @@ export type Tokens = {
   space?: Record<TokenSize, string | undefined>
   zIndex?: Record<TokenZIndex, string | undefined>
 }
-// import { Tokens, TokenSpace } from './tokens.types'
-
-// type Configs = {
-//   tokens: Tokens
-// }
-
-// export class ModelToken {
-//   tokenSpace: TokenSpace[] = ['xxs, xs, sm, md, lg, xl, xxl, xxxl']
-
-//   constructor(configs: Configs) {
-//     this.configs = configs
-//     this.tokens = configs.tokens
-//   }
-
-//   isTokenSpace(value: unknown): value is TokenSpace {
-//     return this.tokenSpace.includes(value)
-//   }
-// }
-
-// type Palette = {
-//   name: string
-//   weight?: string
-// }
-
-// export type Theme = {
-//   appColorForeground: Palette
-//   appColorBackground: Palette
-//   headerColorBackground: Palette
-//   headerColorBackground1: Palette
-//   footerColorBackground: Palette
-//   footerColorBackground1: Palette
-//   navColorBakground: Palette
-//   appMaxWidth: string
-//   appPadding: string
-// }

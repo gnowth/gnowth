@@ -16,12 +16,6 @@ export function mockServerDummy(_configs: Configs): Server {
   return createServer({
     factories: {
       recipe: Factory.extend({
-        // afterCreate(recipe: ModelInstance, server: Server) {
-        //   recipe.update({
-        //     ingredients: server.createList('ingredient', 5),
-        //   })
-        // },
-
         description() {
           return faker.lorem.paragraph()
         },
@@ -55,7 +49,6 @@ export function mockServerDummy(_configs: Configs): Server {
 
     seeds(server) {
       server.createList('recipe', 10)
-      // const t = server.create('recipe');
     },
 
     serializers: {

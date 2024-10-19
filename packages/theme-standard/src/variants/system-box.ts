@@ -26,18 +26,3 @@ export const input: VariantType<SystemBox> = (props) => ({
 export const separator: VariantType<SystemBox> = (props) => ({
   borderTop: `1px solid ${props.theme.getPaletteColor({ palette: 'text', paletteWeight: '200' }) ?? ''}`,
 })
-
-// export function input(props: Props): CSSProperties {
-//   return {
-//     backgroundColor: 'hsl(0, 0%, 98%)',
-//     border: `1px solid ${props.theme.getColor({ name: 'secondary' })}`,
-//     borderRadius: '4px',
-
-//     ':focus': {
-//       backgroundColor: 'white',
-//       borderColor: '#2684ff',
-//       outline: 'none',
-//       boxShadow: '0 0 0 1px #2684ff',
-//     },
-//   };
-// }
