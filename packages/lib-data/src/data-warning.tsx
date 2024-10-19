@@ -1,10 +1,7 @@
 import { PropsBoundary } from '@gnowth/lib-application'
 import { ComponentType, FunctionComponent } from 'react'
-// import { useAppBoundary } from '@gnowth/lib-application';
-// import { useAsyncPromise } from '@gnowth/lib-async';
 
 import { DataName } from './types'
-// import useDataConnect from './use-data-connect';
 
 type PropsWarning = {
   name?: DataName
@@ -17,12 +14,5 @@ type PropsWarning = {
 // TODO: standardise errors so that error does not need to be mapped to message
 export const DataWarning: FunctionComponent<PropsWarning> = (props) => {
   if (!props) return <div />
-  // const connection = useDataConnect(props);
-  // const Warning = useAppBoundary(props.warning);
-  // const stateErrors = useAsyncPromise<DataError[]>(connection.errors);
-
-  // if (!Warning || !stateErrors.value) return null;
-
-  // return <Warning errors={stateErrors.value.map((error) => error.message)} />;
   return null
 }

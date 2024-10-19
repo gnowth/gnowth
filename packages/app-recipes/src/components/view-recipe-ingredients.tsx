@@ -74,10 +74,6 @@ export const ViewRecipeIngredients3: FunctionComponent = () => {
   )
 }
 
-// interface Mo {
-//   [key: string]: () => unknown;
-// }
-
 // if it was there was an action? transfer/uplink
 export const ViewRecipeIngredients4: FunctionComponent = () => {
   return (

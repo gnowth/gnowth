@@ -7,8 +7,6 @@ import { QueryConfigs, QueryParams } from './types'
 async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promise<Response> {
   const response = await fetch(endpoint, params)
 
-  // TODO: throw error depending on response status
-
   return (await response.json()) as Response
 }
 
@@ -25,7 +23,6 @@ export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
   }
 
   resourceList(configs?: QueryConfigs<Value>): QueryResource<Value[]> {
-    // TODO: add meta
     return new QueryResource(this.list(configs).then((data) => ({ data })))
   }
 

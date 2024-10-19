@@ -1,5 +1,5 @@
-export * from './mock-server-sample'
 export * from './modules/mock-servers'
+export * from './modules/mock-servers.sample'
 export * from './modules/mocks'
 export * from './modules/rests'
 export * from './modules/tests'

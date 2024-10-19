@@ -34,29 +34,3 @@ export const PageRecipe: FunctionComponent<Props> = (props) => {
     </LayoutPage>
   )
 }
-
-// TODO: implement source for datasource?
-// function PageRecipe(props: Props): ReactElement {
-//   console.log('props', props)
-//   const dataSource = useDataSource({});
-
-//   return (
-//     <DataSource
-//       layout="recipe"
-//       // source={dataSource || 'canItBeFromTextReferringToModelQueryOrState?'}
-//       value={{ ingredients: [] }}
-//     >
-//       <ViewRecipeDescription slot="descriptions" />
-
-//       {/* <ViewRecipeIngredients slot="ingredients" /> */}
-
-//       <ViewRecipeNutritionalValues slot="nutritionalValues" />
-
-//       <DataSuspense>
-//         <ViewRecipeUtensils slot="utensils" />
-//       </DataSuspense>
-
-//       <ViewRecipeInstructions slot="instructions" />
-//     </DataSource>
-//   );
-// };

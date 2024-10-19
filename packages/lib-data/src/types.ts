@@ -9,23 +9,6 @@ export type DataName = string | string[]
 
 export type DataValue = ObjectLiteral
 
-// TODO: Remove
-// export interface PropsData<Value = DataValue, OptionMap = DataOptionMap> {
-//   defaultValue?: Value;
-//   disabled?: boolean;
-//   errors?: Promise<DataError[]>;
-//   // field?: Field;
-//   index?: number | null;
-//   name?: string;
-//   onChange?: (event: DataEvent<Value>) => void;
-//   onSubmit?: (event: DataEvent<Value>) => void;
-//   optionMap?: OptionMap;
-//   shadow?: boolean;
-//   uncontrolled?: string;
-//   value?: Value;
-//   valueInitial?: Value;
-// }
-
 // TODO: errors to be both promise and actual errors?
 export type PropsDataReadonly<Value = unknown> = {
   awaiting?: boolean
