@@ -36,7 +36,7 @@ jobs:
 
   # Phase 2: End to end regression test
   e2e_regression:
-    container: mcr.microsoft.com/playwright:v1.48.1-jammy
+    container: mcr.microsoft.com/playwright:v1.48.2-jammy
     needs: [check_branch]
     runs-on: ubuntu-latest
     timeout-minutes: 8
