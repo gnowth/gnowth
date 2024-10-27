@@ -1,4 +1,3 @@
-import { ChakraProvider } from '@chakra-ui/react'
 import { AppProvider, PlatformDependencies, PlatformProvider } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
 import { FunctionComponent, PropsWithChildren } from 'react'
@@ -35,7 +34,7 @@ export const ApplicationUsersProvider: FunctionComponent<PropsWithChildren> = (p
         />
 
         <PlatformProvider I18nClientProvider={I18nextProvider} QueryClientProvider={QueryClientProvider}>
-          <ChakraProvider>{props.children}</ChakraProvider>
+          {props.children}
         </PlatformProvider>
       </AppProvider>
     </RecoilRoot>

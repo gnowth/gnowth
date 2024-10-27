@@ -19,7 +19,6 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@chakra-ui/react": "2.10.3",
     "@gnowth/app-configs": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/theme-standard": "0.0.0",
