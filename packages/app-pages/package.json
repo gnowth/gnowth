@@ -19,6 +19,7 @@
     "@gnowth/lib-react": "0.0.0",
     "@gnowth/theme-standard": "0.0.0",
     "react-i18next": "15.1.0",
+    "react-toastify": "10.0.6",
     "uuid": "10.0.0"
   },
   "devDependencies": {

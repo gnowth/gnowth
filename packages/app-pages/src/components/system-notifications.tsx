@@ -1,14 +1,15 @@
-import { useToast } from '@chakra-ui/react'
 import { NotificationStream, PlatformDependency, usePlatformProvider, useStream } from '@gnowth/lib-react'
+import { ToastContainer, toast } from 'react-toastify'
 
 export function SystemNotifications() {
-  const toast = useToast({ position: 'bottom-right' })
   const notificationStreamState = usePlatformProvider<NotificationStream>({
     name: PlatformDependency.notificationStream,
   })
 
   // DEBT(investigation): watch notification channels and push to toast or in setup?
-  useStream(notificationStreamState.value?.stream, toast)
+  useStream(notificationStreamState.value?.stream, (incomingToast) =>
+    toast(incomingToast.message, incomingToast),
+  )
 
-  return null
+  return <ToastContainer limit={5} position="bottom-right" stacked />
 }
