@@ -251,6 +251,11 @@ const propsDefault: Partial<PropsUIProgress> = {
   variants,
 }
 
+const stylesHorizontal = themeCreateStyles({
+  progress: 'width: 100%;',
+  wrapper: 'margin: -5px 0;',
+})
+
 // TODO can keyframes be extracted in to an animation library or into the theme
 // TODO: delay cause animation synchronisation issue
 // TODO should props, propsDefault, context, state be generalize in a type?
@@ -264,6 +269,25 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
 
   const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
+
+  console.log('props.v', propsVariant)
+
+  if (propsVariant.variant === 'horizontal') {
+    return (
+      <div
+        className={cx(
+          'ui-progress',
+          R.isString(propsVariant.variant) && `ui-progress--${propsVariant.variant}`,
+          propsVariant.className,
+          stylesHorizontal.wrapper,
+        )}
+        data-testid="view-ui-progress"
+        id={propsVariant.id}
+      >
+        <progress className={stylesHorizontal.progress} value={propsVariant.value as number} />
+      </div>
+    )
+  }
 
   return (
     <div
