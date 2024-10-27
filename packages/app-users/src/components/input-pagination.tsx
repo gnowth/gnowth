@@ -1,7 +1,7 @@
-import { Select } from '@chakra-ui/react'
 import {
   FilterModel,
   FilterPageSize,
+  InputSelect,
   LayoutFlex,
   PlatformDependency,
   UIButton,
@@ -40,8 +40,8 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
       <LayoutFlex gap="xs">
         <UITypography value={t('Page size')} whiteSpace="nowrap" />
 
-        <Select
-          maxWidth="20"
+        <InputSelect
+          menuPlacement="top"
           onChange={({ target }) => {
             if (!target.value) return
             return props.onChange({
@@ -49,20 +49,15 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
               page: filterModel.actionRecalculatePage(
                 props.value.page,
                 props.value.pageSize,
-                Number(target.value) as FilterPageSize,
+                Number(target.value.value) as FilterPageSize,
               ),
-              pageSize: Number(target.value) as FilterPageSize,
+              pageSize: Number(target.value.value) as FilterPageSize,
             })
           }}
+          options={filterModel.optionsPageSize.map((size) => ({ label: size.toString(), value: size }))}
           placeholder={t('Select option')}
-          value={props.value.pageSize}
-        >
-          {filterModel.optionsPageSize.map((size) => (
-            <option key={size} value={size}>
-              {size}
-            </option>
-          ))}
-        </Select>
+          value={{ label: props.value.pageSize.toString(), value: props.value.pageSize }}
+        />
       </LayoutFlex>
 
       <LayoutFlex gap="xs">
@@ -82,21 +77,16 @@ export const InputPagination: FunctionComponent<Props> = (props) => {
           variant="icon"
         />
 
-        <Select
-          maxWidth="20"
+        <InputSelect
+          menuPlacement="top"
           onChange={({ target }) => {
             if (!target.value) return
-            return props.onChange({ ...props.value, page: Number(target.value) })
+            return props.onChange({ ...props.value, page: Number(target.value.value) })
           }}
+          options={pages.map((value) => ({ label: value.toString(), value }))}
           placeholder={t('Select option')}
-          value={props.value.page}
-        >
-          {pages.map((value) => (
-            <option key={value} value={value}>
-              {value}
-            </option>
-          ))}
-        </Select>
+          value={{ label: props.value.page.toString(), value: props.value.page }}
+        />
 
         <UIButton
           iconValue="keyboardArrowRight"
