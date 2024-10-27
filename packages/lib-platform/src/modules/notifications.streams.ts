@@ -5,10 +5,9 @@ import { ErrorData, ErrorModel } from './errors'
 import { Notification, NotificationModel } from './notifications.models'
 
 type Toast = {
-  description?: string
-  isClosable: boolean
-  status: 'error' | 'info'
-  title: string
+  closeButton?: boolean
+  message: string
+  type?: 'error' | 'info' | 'success' | 'warning'
 }
 type Parameters = { errorModel: ErrorModel; notificationModel: NotificationModel }
 export class NotificationStream {

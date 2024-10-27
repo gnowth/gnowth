@@ -10,6 +10,7 @@ import { AppProps } from 'next/app'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { Attributes, ComponentType, Fragment, FunctionComponent, PropsWithChildren } from 'react'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { setup } from '../modules/setup'
 

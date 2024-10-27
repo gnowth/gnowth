@@ -33,10 +33,7 @@ export class NotificationModel {
 
   toToast = (notification: Notification) => {
     return {
-      description: this.toString(notification),
-      isClosable: true,
-      status: 'info' as const,
-      title: this.getTitle(notification),
+      message: this.toString(notification),
     }
   }
 

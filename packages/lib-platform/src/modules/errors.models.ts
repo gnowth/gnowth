@@ -53,10 +53,8 @@ export class ErrorModel {
 
   toToast = (error: ErrorData) => {
     return {
-      description: this.toString(error),
-      isClosable: true,
-      status: 'error' as const,
-      title: error.code,
+      message: this.toString(error),
+      type: 'error' as const,
     }
   }
 
