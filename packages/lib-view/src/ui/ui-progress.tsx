@@ -270,8 +270,6 @@ export const UIProgress: FunctionComponent<PropsUIProgress> = (props) => {
   const propsVariant = theme.getPropsVariant(props, propsDefault)
   const styles = makeStyles(propsVariant, theme)
 
-  console.log('props.v', propsVariant)
-
   if (propsVariant.variant === 'horizontal') {
     return (
       <div
