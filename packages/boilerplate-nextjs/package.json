@@ -18,8 +18,8 @@
     "@gnowth/app-recipes": "0.0.0",
     "@gnowth/app-users": "0.0.0",
     "@gnowth/lib-react": "0.0.0",
-    "@next/mdx": "14.2.17",
-    "next": "14.2.17",
+    "@next/mdx": "14.2.18",
+    "next": "14.2.18",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
@@ -28,9 +28,9 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@mdx-js/loader": "3.1.0",
-    "@next/bundle-analyzer": "14.2.17",
+    "@next/bundle-analyzer": "14.2.18",
     "@types/react": "18.3.12",
-    "eslint-config-next": "14.2.17",
+    "eslint-config-next": "14.2.18",
     "i18next-parser": "9.0.2"
   },
   "scripts": {
