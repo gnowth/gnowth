@@ -7,7 +7,7 @@
   "sideEffects": false,
   "version": "0.0.0",
   "engines": {
-    "vscode": "1.95.1"
+    "vscode": "1.95.3"
   },
   "categories": [
     "Programming Languages"
