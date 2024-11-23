@@ -24,7 +24,7 @@
     "@testing-library/user-event": "14.5.2",
     "inflected": "2.1.0",
     "miragejs": "0.1.48",
-    "remeda": "2.17.0"
+    "remeda": "2.17.3"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
