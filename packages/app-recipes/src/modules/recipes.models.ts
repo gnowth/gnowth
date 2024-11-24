@@ -11,9 +11,7 @@ enum Permissions {
   write,
 }
 
-type Perms = {
-  [_Key in Permissions]?: () => boolean
-}
+type Perms = Partial<Record<Permissions, () => boolean>>
 
 export class ModelRecipe<Value extends Recipe = Recipe> extends Model<Value> {
   api = new QueryApiRest<Value>({

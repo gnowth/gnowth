@@ -4,7 +4,7 @@ import * as R from 'remeda'
 import { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
 // TODO: review responsiveScale. currently not supported by system
-type Responsive<Type> = { [_Key in TokenBreakpoint]?: Type } & { responsive: boolean }
+type Responsive<Type> = { responsive: boolean } & Partial<Record<TokenBreakpoint, Type>>
 type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
 type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
 type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
