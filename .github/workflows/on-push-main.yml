@@ -6,6 +6,11 @@ on:
       - 'main'
       - 'release-**'
 
+# This is what will cancel the workflow
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   ARTIFACT_PATH_TEST_MEDIA_PLAYWRIGHT: artifact/test-media-playwright
   STYLEGUIDE_CHROMATIC_TOKEN: ${{ secrets.STYLEGUIDE_CHROMATIC_TOKEN }}
