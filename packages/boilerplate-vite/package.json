@@ -34,7 +34,7 @@
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
     "@types/react-dom": "18.3.1",
-    "vite": "6.0.0"
+    "vite": "6.0.1"
   },
   "scripts": {
     "build-dev": "vite build src --outDir ../../../artifact/build-web/spa --base ./",
