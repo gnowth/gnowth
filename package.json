@@ -5,7 +5,7 @@
   "homepage": "https://github.com/gnowth/gnowth#readme",
   "license": "AGPL-3.0-only",
   "name": "gnowth",
-  "packageManager": "npm@10.8.2",
+  "packageManager": "npm@10.9.0",
   "prettier": "@gnowth/prettier-config",
   "private": true,
   "repository": "https://github.com/gnowth/gnowth.git",
