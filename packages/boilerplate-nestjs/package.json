@@ -16,9 +16,9 @@
     "url": "https://github.com/gnowth/gnowth.git"
   },
   "dependencies": {
-    "@nestjs/common": "10.4.12",
-    "@nestjs/core": "10.4.12",
-    "@nestjs/platform-express": "10.4.12",
+    "@nestjs/common": "10.4.13",
+    "@nestjs/core": "10.4.13",
+    "@nestjs/platform-express": "10.4.13",
     "reflect-metadata": "0.2.2"
   },
   "devDependencies": {
@@ -28,7 +28,7 @@
     "@gnowth/typescript-config": "0.0.0",
     "@nestjs/cli": "10.4.8",
     "@nestjs/schematics": "10.2.3",
-    "@nestjs/testing": "10.4.12",
+    "@nestjs/testing": "10.4.13",
     "@types/express": "5.0.0",
     "@types/supertest": "6.0.2",
     "supertest": "7.0.0"
