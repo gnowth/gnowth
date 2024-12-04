@@ -32,7 +32,7 @@ jobs:
   # Phase 2: Build artifact
   build_artifact:
     container:
-      image: node:22.11.0-bullseye-slim
+      image: node:22.12.0-bullseye-slim
       options: --user 1001
     needs: check_branch
     runs-on: ubuntu-latest
