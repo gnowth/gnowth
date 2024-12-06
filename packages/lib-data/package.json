@@ -36,7 +36,7 @@
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@testing-library/react": "16.0.1"
+    "@testing-library/react": "16.1.0"
   },
   "peerDependencies": {
     "react": "^18.0.0"
