@@ -33,7 +33,7 @@
     "@gnowth/lib-dev": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "@types/react-dom": "18.3.3",
+    "@types/react-dom": "18.3.5",
     "vite": "6.0.3"
   },
   "scripts": {
