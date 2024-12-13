@@ -24,7 +24,7 @@
     "@gnowth/typescript-config": "0.0.0"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "^19.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",

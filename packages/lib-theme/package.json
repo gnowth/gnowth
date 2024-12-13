@@ -30,7 +30,7 @@
     "@gnowth/jest-config": "0.0.0",
     "@gnowth/prettier-config": "0.0.0",
     "@gnowth/typescript-config": "0.0.0",
-    "react": "18.3.1"
+    "react": "19.0.0"
   },
   "scripts": {
     "clean:modules": "rm -rf node_modules",
