@@ -8,11 +8,6 @@ export const reactConfigs = [
   },
   {
     files: ['**/*.@(j|t)sx'],
-    name: 'react/jsx-sort-props',
-    rules: { 'react/jsx-sort-props': 'error' },
-  },
-  {
-    files: ['**/*.@(j|t)sx'],
     name: 'react/jsx-uses-react',
     rules: { 'react/jsx-uses-react': 'off' },
   },
