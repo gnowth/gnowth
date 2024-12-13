@@ -2,14 +2,6 @@ import { Media } from '@gnowth/lib-react'
 
 import { Ingredient } from './ingredients'
 
-type Step = {
-  name: string
-}
-
-type Tag = {
-  label: string
-}
-
 export type Recipe = {
   ingredients: Ingredient[]
   media: Media[]
@@ -18,4 +10,12 @@ export type Recipe = {
   name: string
   steps: Step[]
   tags: Tag[]
+}
+
+type Step = {
+  name: string
+}
+
+type Tag = {
+  label: string
 }

@@ -7,7 +7,7 @@ type Window = {
 }
 
 // DEBT(hack): if we are doing server side rendering, setting the host this way won't be right
-function getWindow(): Window | undefined {
+function getWindow(): undefined | Window {
   if (typeof window === 'undefined') return undefined
   return window
 }

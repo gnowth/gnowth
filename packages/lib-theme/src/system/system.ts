@@ -94,6 +94,17 @@ type ConfigsInterpolation<Value extends string> = {
 const isBreakpoint = (key: string): key is TokenBreakpoint =>
   ['lg', 'md', 'none', 'sm', 'xl', 'xs', 'xxl', 'xxs'].includes(key)
 
+type BuildParameters<T> = {
+  breakpointScale?: ScaleName | ScaleType
+  key: keyof T
+  scale?: ScaleName | ScaleType
+}
+
+type BuildParametersOverride = {
+  breakpointScale?: ScaleName | ScaleType
+  scale?: ScaleName | ScaleType
+}
+
 function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<Value>): CSSObject {
   if (configs.value === undefined) return {}
 
@@ -150,17 +161,6 @@ function systemInterpolate<Value extends string>(configs: ConfigsInterpolation<V
     }
     return breakpoint ? { ...cssObject, [`@media(min-width: ${breakpoint})`]: newValue } : cssObject
   }, {})
-}
-
-type BuildParameters<T> = {
-  breakpointScale?: ScaleName | ScaleType
-  key: keyof T
-  scale?: ScaleName | ScaleType
-}
-
-type BuildParametersOverride = {
-  breakpointScale?: ScaleName | ScaleType
-  scale?: ScaleName | ScaleType
 }
 
 export const systemMake =

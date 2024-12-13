@@ -2,8 +2,6 @@ import { ObjectLiteral } from '@gnowth/lib-utils'
 
 import { QuerySerializer } from './query-serializer'
 
-export type QueryParams = Record<string, string>
-
 export type QueryConfigs<Value extends ObjectLiteral> = {
   action?: string
   id?: string
@@ -11,3 +9,5 @@ export type QueryConfigs<Value extends ObjectLiteral> = {
   params?: QueryParams
   serializer?: QuerySerializer<Value>
 }
+
+export type QueryParams = Record<string, string>

@@ -12,10 +12,6 @@ import { QueryResource } from './queries/query-resource'
 import { PropsFrame, PropsSuspense } from './types'
 import { useAppApplication } from './use-app-application'
 
-type PropsComponent = {
-  resources: Record<string, QueryResource | undefined>
-}
-
 type Props = {
   authenticated?: boolean
   component: ComponentType<PropsComponent>
@@ -25,7 +21,11 @@ type Props = {
   path?: string
   suspense?: ComponentType<PropsSuspense> | null | string
   suspenseClassName?: string
-  theme?: Theme | string
+  theme?: string | Theme
+}
+
+type PropsComponent = {
+  resources: Record<string, QueryResource | undefined>
 }
 
 const propsDefault = {

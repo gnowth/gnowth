@@ -1,6 +1,13 @@
 import { pluralize } from 'inflected'
 import { Collection, Request, RestSerializer } from 'miragejs'
 
+// DEBT(hack): dirty ts fix
+type Serializer = {
+  normalize(data: Record<string, string>): unknown
+  serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
+  type: string
+}
+
 function paginate<Type>(data: Type[], request: Request) {
   const page = Number(request.queryParams?.page ?? '0')
   const pageSize = Number(request.queryParams?.pageSize ?? '0')
@@ -18,13 +25,6 @@ function paginate<Type>(data: Type[], request: Request) {
       pages: Math.ceil(totalRecords / pageSize),
     },
   }
-}
-
-// DEBT(hack): dirty ts fix
-type Serializer = {
-  normalize(data: Record<string, string>): unknown
-  serialize(collection: Collection<unknown>, request: Request): Record<string, unknown[]>
-  type: string
 }
 
 // DEBT(hack): dirty ts fix

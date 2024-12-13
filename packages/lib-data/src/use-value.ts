@@ -10,16 +10,16 @@ type Configs = {
   errorCustomValue?: Error
 }
 
+type Props<Value> = Return<Value> & {
+  mode?: TokenMode
+}
+
 // TODO: make value required
 type Return<Value> = {
   onChange?(value: Value, name?: DataName): Promise<void> | void
   onSubmit?(value: Value, name?: DataName): Promise<void> | void
   value: Value
 }
-
-type Props<Value> = {
-  mode?: TokenMode
-} & Return<Value>
 
 const configsDefault = {
   errorCustomMode: new ErrorCustom({

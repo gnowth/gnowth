@@ -1,18 +1,18 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariants,
   cx,
   systemCompose,
   systemImage,
   systemSpace,
   systemTextAlign,
+  SystemType,
   themeMakeStyles,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export type PropsUIDivider = {
+export type PropsUIDivider = SystemType<typeof uiDivider> & {
   as?: string
   children: ReactNode
   className?: string
@@ -22,7 +22,7 @@ export type PropsUIDivider = {
   variant?: PropsUIDivider | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsUIDivider>
-} & SystemType<typeof uiDivider>
+}
 
 const uiDivider = systemCompose(systemImage(), systemSpace(), systemTextAlign())
 const makeStyles = themeMakeStyles({ uiDivider })

@@ -12,8 +12,8 @@ export type PropsEnvironment = {
   layouts: Record<string, ComponentType<PropsLayout> | undefined>
   suspenses: Record<string, ComponentType<PropsSuspense> | undefined>
   themes: Record<string, Theme | undefined>
-  whoami: QueryResource | null
-  whoamiSet: (resource: QueryResource | null) => void
+  whoami: null | QueryResource
+  whoamiSet: (resource: null | QueryResource) => void
 }
 
 export const propsDefaultEnvironment: PropsEnvironment = {

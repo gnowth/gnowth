@@ -3,17 +3,17 @@ import { DataName } from '../types'
 // TODO: check if there should be a nullable config
 export type FieldConfigs<Value = unknown> = {
   blank?: boolean
-  default?: Value | null
+  default?: null | Value
   many?: boolean
-  options?: Value[] | null
+  options?: null | Value[]
   type?: string
 }
 
 export class Field<Value = unknown> {
   blank: boolean
-  default: Value | null
+  default: null | Value
   many?: boolean
-  options: Value[] | null
+  options: null | Value[]
   type: string
 
   constructor(configs: FieldConfigs<Value> = {}) {
@@ -25,7 +25,7 @@ export class Field<Value = unknown> {
   }
 
   // TODO: what to return as default if many is on. need proper documentation as there is potential misunderstanding
-  getDefault(_partial?: Partial<Value>): Value | Value[] | null {
+  getDefault(_partial?: Partial<Value>): null | Value | Value[] {
     if (this.many) return []
 
     return this.default
@@ -36,7 +36,7 @@ export class Field<Value = unknown> {
   }
 
   // TODO implement promises
-  getOptions(): Promise<Value[]> | Value[] | null {
+  getOptions(): null | Promise<Value[]> | Value[] {
     return this.options
   }
 
@@ -46,12 +46,12 @@ export class Field<Value = unknown> {
   }
 
   // TODO
-  valueIsValid(_value: Value | null): boolean {
+  valueIsValid(_value: null | Value): boolean {
     return !!_value
   }
 
   // TODO
-  valueIsValidAsync(_value: Value | null): Promise<boolean> {
+  valueIsValidAsync(_value: null | Value): Promise<boolean> {
     return Promise.resolve(!!_value)
   }
 

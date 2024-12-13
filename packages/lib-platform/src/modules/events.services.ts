@@ -2,7 +2,7 @@ import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { EventStream } from './events.streams'
 import { PlatformEvent } from './events.types'
 
-type Parameters = { eventStream: EventStream } & PlatformParameters
+type Parameters = PlatformParameters & { eventStream: EventStream }
 export class EventService {
   #eventStream: EventStream
 

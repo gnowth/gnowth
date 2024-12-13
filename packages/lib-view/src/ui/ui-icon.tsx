@@ -1,17 +1,29 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import { PropsDataReadonly } from '@gnowth/lib-data'
 import {
-  SystemType,
-  TokenSize,
   cx,
   systemColorFromPalette,
   systemCompose,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  TokenSize,
 } from '@gnowth/lib-theme'
 import { ComponentType, FunctionComponent } from 'react'
 import * as R from 'remeda'
 
+// TODO: fix icon size. svg height/width supports number only
+export type PropsUIIcon = PropsDataReadonly<string> &
+  SystemType<typeof uiIcon> & {
+    className?: string
+    components?: Record<string, ComponentType<ComponentProps>>
+    hidden?: boolean
+    mediaPrintDisabled?: boolean
+    size?: TokenSize
+    slot?: string
+    variant?: PropsUIIcon | string
+    variantNamespace?: string
+  }
 type ComponentProps = {
   className?: string
   color?: string
@@ -19,18 +31,6 @@ type ComponentProps = {
   id?: string
   size?: string
 }
-// TODO: fix icon size. svg height/width supports number only
-export type PropsUIIcon = {
-  className?: string
-  components?: Record<string, ComponentType<ComponentProps>>
-  hidden?: boolean
-  mediaPrintDisabled?: boolean
-  size?: TokenSize
-  slot?: string
-  variant?: PropsUIIcon | string
-  variantNamespace?: string
-} & PropsDataReadonly<string> &
-  SystemType<typeof uiIcon>
 
 const uiIcon = systemCompose(systemColorFromPalette(), systemSpace())
 const makeStyles = themeMakeStyles({ uiIcon })

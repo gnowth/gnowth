@@ -8,12 +8,12 @@ type MockParameterAny<Type> = {
   value?: Type
 }
 
-type MockParameterEmail<Type> = {
+type MockParameterEmail<Type> = MockParameterAny<Type> & {
   firstName?: string
   lastName?: string
-} & MockParameterAny<Type>
+}
 
-type Parameters = { mockClient: MockClient } & PlatformParameters
+type Parameters = PlatformParameters & { mockClient: MockClient }
 export class MockService {
   #client: MockClient
   #constructors: PlatformConstructors
@@ -31,19 +31,6 @@ export class MockService {
       name: MockConstant.mockClient,
     })
     return new this({ mockClient, ...parameters })
-  }
-
-  #hash(seed?: string): number | undefined {
-    if (seed === undefined) {
-      return undefined
-    }
-
-    return seed
-      .split('')
-      .reduce(
-        (hashCode, currentVal) => currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode,
-        0,
-      )
   }
 
   internetEmail(parameters?: MockParameterEmail<string>): string {
@@ -68,5 +55,18 @@ export class MockService {
     return parameters?.value === undefined
       ? this.#client.stringUuid({ ...parameters, seed: this.#hash(parameters?.seed) })
       : parameters.value
+  }
+
+  #hash(seed?: string): number | undefined {
+    if (seed === undefined) {
+      return undefined
+    }
+
+    return seed
+      .split('')
+      .reduce(
+        (hashCode, currentVal) => currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode,
+        0,
+      )
   }
 }

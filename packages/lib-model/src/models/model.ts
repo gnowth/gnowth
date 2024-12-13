@@ -5,25 +5,25 @@ import { Field } from '../fields/field'
 import { FieldModel } from '../fields/field-model'
 import { DataName } from '../types'
 
+type ParametersModel = {
+  dependencies?: ObjectLiteral
+}
+
 type SchemaFromValue<Value> = {
   [Key in keyof Value]: Value[Key] extends (infer Item)[]
     ? Field<NonNullable<Item>>
     : Field<NonNullable<Value[Key]>>
 }
 
-type ParametersModel = {
-  dependencies?: ObjectLiteral
-}
-
 export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = ParametersModel> {
   // api?: QueryApi<Value>
 
-  protected dependencies: Parameters['dependencies']
-  protected parameters: Parameters
-
   modelName = ''
-
   schema = {}
+
+  protected dependencies: Parameters['dependencies']
+
+  protected parameters: Parameters
 
   constructor(parameters: Parameters) {
     this.parameters = parameters
@@ -57,25 +57,25 @@ export class Model<Value = ObjectLiteral, Parameters extends ParametersModel = P
   }
 
   // TODO
-  valueIsValid(_value: Value | null): boolean {
+  valueIsValid(_value: null | Value): boolean {
     return !!_value
   }
 
   // TODO
-  valueIsValidAsync(_value: Value | null): Promise<boolean> {
+  valueIsValidAsync(_value: null | Value): Promise<boolean> {
     return Promise.resolve(!!_value)
   }
 
-  valueToId(value: Value | null): string {
+  valueToId(value: null | Value): string {
     return this.valueToString(value)
   }
 
   // TODO
-  valueToRoute(_value?: Value | null): string {
+  valueToRoute(_value?: null | Value): string {
     return ''
   }
 
-  valueToString(_value: Value | null): string {
+  valueToString(_value: null | Value): string {
     return ''
   }
 }

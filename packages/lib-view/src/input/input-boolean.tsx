@@ -1,6 +1,6 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import { PropsData } from '@gnowth/lib-data'
-import { SystemType, TokenSize, cx, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { cx, systemSpace, SystemType, themeMakeStyles, TokenSize } from '@gnowth/lib-theme'
 import { UtilNamespaced } from '@gnowth/lib-utils'
 import { ComponentType, FunctionComponent, useCallback, useRef } from 'react'
 import * as R from 'remeda'
@@ -8,28 +8,28 @@ import * as R from 'remeda'
 import { PropsUIIcon, UIIcon } from '../ui/ui-icon'
 import { ChangeEventHandler, useValue } from './use-value'
 
-export type PropsInputBoolean = {
-  as?: string
-  className?: string
-  classNamespace?: string
-  hidden?: boolean
-  icon?: ComponentType<PropsUIIcon> | string
-  iconClassName?: string
-  iconHidden?: boolean
-  iconSize?: TokenSize
-  iconValueFalse?: string
-  iconValueNull?: string
-  iconValueTrue?: string
-  iconVariant?: string
-  id?: string
-  inputClassName?: string
-  inputType?: string
-  slot?: string
-  variant?: PropsInputBoolean | string
-  variantNamespace?: string
-  variants?: UtilNamespaced<PropsInputBoolean>
-} & PropsData<boolean | null> &
-  SystemType<typeof inputBoolean>
+export type PropsInputBoolean = PropsData<boolean | null> &
+  SystemType<typeof inputBoolean> & {
+    as?: string
+    className?: string
+    classNamespace?: string
+    hidden?: boolean
+    icon?: ComponentType<PropsUIIcon> | string
+    iconClassName?: string
+    iconHidden?: boolean
+    iconSize?: TokenSize
+    iconValueFalse?: string
+    iconValueNull?: string
+    iconValueTrue?: string
+    iconVariant?: string
+    id?: string
+    inputClassName?: string
+    inputType?: string
+    slot?: string
+    variant?: PropsInputBoolean | string
+    variantNamespace?: string
+    variants?: UtilNamespaced<PropsInputBoolean>
+  }
 
 const inputBoolean = systemSpace()
 const makeStyles = themeMakeStyles({

@@ -1,8 +1,5 @@
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  TokenColorWeight,
-  TokenSize,
   cx,
   systemBox,
   systemColor,
@@ -12,7 +9,10 @@ import {
   systemLayout,
   systemPointer,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  TokenColorWeight,
+  TokenSize,
 } from '@gnowth/lib-theme'
 import { ComponentType, FunctionComponent, MouseEvent } from 'react'
 import * as R from 'remeda'
@@ -25,40 +25,40 @@ import { PropsUITypography, UITypography } from './ui-typography'
 // TODO media print should hide by default
 // TODO: what does breakpoint and media do?
 export type PropsUIButton = PropsBase<
-  {
-    breakpoint?: string
-    icon?: ComponentType<PropsUIIcon> | string
-    iconClassName?: string
-    iconHidden?: boolean
-    iconSize?: TokenSize
-    iconValue?: string
-    iconVariant?: string
-    layout?: string
-    layoutProps?: Record<string, unknown>
-    layoutVariant?: string
-    media?: string
-    mediaPrintDisabled?: boolean
-    onClick?: (event: MouseEvent) => void
-    palette?: string
-    progress?: ComponentType<PropsUIProgress> | string
-    progressClassName?: string
-    progressHidden?: boolean
-    progressPalette?: string
-    progressPaletteForContrast?: boolean
-    progressPaletteWeight?: TokenColorWeight
-    progressSize?: TokenSize
-    progressVariant?: string
-    // progressVariants?: string[]
-    size?: TokenSize
-    text?: ComponentType<PropsUITypography> | string
-    textClassName?: string
-    textHidden?: boolean
-    textProps?: PropsUITypography
-    textValue?: string
-    textVariant?: string
-    type?: 'button' | 'submit'
-  } & SystemType<ReturnType<typeof systemColorFromPalette>> &
-    SystemType<typeof uiButton>
+  SystemType<ReturnType<typeof systemColorFromPalette>> &
+    SystemType<typeof uiButton> & {
+      breakpoint?: string
+      icon?: ComponentType<PropsUIIcon> | string
+      iconClassName?: string
+      iconHidden?: boolean
+      iconSize?: TokenSize
+      iconValue?: string
+      iconVariant?: string
+      layout?: string
+      layoutProps?: Record<string, unknown>
+      layoutVariant?: string
+      media?: string
+      mediaPrintDisabled?: boolean
+      onClick?: (event: MouseEvent) => void
+      palette?: string
+      progress?: ComponentType<PropsUIProgress> | string
+      progressClassName?: string
+      progressHidden?: boolean
+      progressPalette?: string
+      progressPaletteForContrast?: boolean
+      progressPaletteWeight?: TokenColorWeight
+      progressSize?: TokenSize
+      progressVariant?: string
+      // progressVariants?: string[]
+      size?: TokenSize
+      text?: ComponentType<PropsUITypography> | string
+      textClassName?: string
+      textHidden?: boolean
+      textProps?: PropsUITypography
+      textValue?: string
+      textVariant?: string
+      type?: 'button' | 'submit'
+    }
 >
 
 const uiButton = systemCompose(

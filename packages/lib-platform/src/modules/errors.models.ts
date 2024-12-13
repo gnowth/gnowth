@@ -5,6 +5,10 @@ import { PlatformParameters } from '../core/platform'
 import { ErrorData } from './errors.types'
 
 export class ErrorModel {
+  static async construct(_parameters: PlatformParameters): Promise<ErrorModel> {
+    return new this()
+  }
+
   fromError = (error: Error): ErrorData => {
     return {
       code: error.name,
@@ -56,9 +60,5 @@ export class ErrorModel {
       message: this.toString(error),
       type: 'error' as const,
     }
-  }
-
-  static async construct(_parameters: PlatformParameters): Promise<ErrorModel> {
-    return new this()
   }
 }

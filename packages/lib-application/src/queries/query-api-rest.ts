@@ -4,12 +4,6 @@ import { QueryApi } from './query-api'
 import { QueryResource } from './query-resource'
 import { QueryConfigs, QueryParams } from './types'
 
-async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promise<Response> {
-  const response = await fetch(endpoint, params)
-
-  return (await response.json()) as Response
-}
-
 export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
   async list(configs?: QueryConfigs<Value>): Promise<Value[]> {
     const response = await fetchGet<Record<string, unknown>>(this.getPath(configs))
@@ -40,4 +34,10 @@ export class QueryApiRest<Value extends ObjectLiteral> extends QueryApi<Value> {
 
     return serializer.toValue(response)
   }
+}
+
+async function fetchGet<Response>(endpoint: string, params?: QueryParams): Promise<Response> {
+  const response = await fetch(endpoint, params)
+
+  return (await response.json()) as Response
 }

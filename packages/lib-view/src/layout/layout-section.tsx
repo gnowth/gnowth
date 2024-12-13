@@ -1,19 +1,19 @@
 import { AppLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariable,
-  ThemeVariants,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
   systemCompose,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  ThemeVariable,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export type PropsLayoutSection = {
+export type PropsLayoutSection = SystemType<typeof layoutSection> & {
   boxVariant?: string
   boxVariantNamespace?: string
   children: ReactNode
@@ -30,7 +30,7 @@ export type PropsLayoutSection = {
   variantComposition?: string[]
   variantNamespace?: string
   variants?: ThemeVariants<PropsLayoutSection>
-} & SystemType<typeof layoutSection>
+}
 
 const layoutSection = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutSection })

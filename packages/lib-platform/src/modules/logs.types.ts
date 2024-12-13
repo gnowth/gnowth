@@ -3,7 +3,13 @@ import { ObjectLiteral } from '@gnowth/lib-utils'
 import { ErrorData } from './errors'
 import { PlatformEvent } from './events'
 
-export type LogLevel = 'bug' | 'debug' | 'error' | 'info' | 'none' | 'warn'
+export type EventLog = PlatformEvent & {
+  payload: {
+    log: Log
+  }
+  target: 'serviceLog'
+  type: 'log'
+}
 
 export type Log = {
   code: string
@@ -16,10 +22,4 @@ export type Log = {
   sourceNamespace?: string
 }
 
-export type EventLog = {
-  payload: {
-    log: Log
-  }
-  target: 'serviceLog'
-  type: 'log'
-} & PlatformEvent
+export type LogLevel = 'bug' | 'debug' | 'error' | 'info' | 'none' | 'warn'

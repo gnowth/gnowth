@@ -1,13 +1,24 @@
 import {
   Children,
+  createContext,
   FunctionComponent,
+  isValidElement,
   ReactElement,
   ReactNode,
-  createContext,
-  isValidElement,
   useContext,
 } from 'react'
 import * as R from 'remeda'
+
+type Component = FunctionComponent<Props> & {
+  Content: FunctionComponent<PropsContent>
+  Provider: FunctionComponent<PropsProvider>
+  Test: FunctionComponent<PropsTest>
+}
+
+type Props = {
+  children?: ReactNode
+  slot: string
+}
 
 type PropsContent = {
   name: string
@@ -19,22 +30,11 @@ type PropsProvider = {
   slots: ReactNode
 }
 
-type Props = {
-  children?: ReactNode
-  slot: string
-}
-
 type PropsTest = {
   children: ReactNode
   slot?: string
   test: string
 }
-
-type Component = {
-  Content: FunctionComponent<PropsContent>
-  Provider: FunctionComponent<PropsProvider>
-  Test: FunctionComponent<PropsTest>
-} & FunctionComponent<Props>
 
 const SlotContext = createContext<Record<string, ReactElement>>({})
 

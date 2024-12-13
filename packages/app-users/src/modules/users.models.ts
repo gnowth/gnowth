@@ -8,14 +8,6 @@ type Parameters = { errorModel: ErrorModel }
 export class UserModel {
   #errorModel: ErrorModel
 
-  fromData = (userData: UserData): User => {
-    return userSchema.parse({ ...userData, key: userData.id ?? uuid() })
-  }
-
-  toData = (user: User): UserData => {
-    return userSchemaData.parse(user)
-  }
-
   constructor(parameters: Parameters) {
     this.#errorModel = parameters.errorModel
   }
@@ -25,6 +17,10 @@ export class UserModel {
       name: PlatformDependency.errorModel,
     })
     return new this({ errorModel })
+  }
+
+  fromData = (userData: UserData): User => {
+    return userSchema.parse({ ...userData, key: userData.id ?? uuid() })
   }
 
   getId(user: User): string | undefined {
@@ -41,6 +37,10 @@ export class UserModel {
 
   isValid(user: User): boolean {
     return this.validate(user).length === 0
+  }
+
+  toData = (user: User): UserData => {
+    return userSchemaData.parse(user)
   }
 
   toString(user: User): string {

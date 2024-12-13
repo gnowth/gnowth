@@ -1,4 +1,4 @@
-import { RenderOptions, act, render, waitFor } from '@testing-library/react'
+import { act, render, RenderOptions, waitFor } from '@testing-library/react'
 import { userEvent } from '@testing-library/user-event'
 import { ComponentType } from 'react'
 import * as R from 'remeda'
@@ -13,12 +13,6 @@ const testRunLoaders = async <TParameters extends object>(
   }
 }
 
-type ParametersSetup<TParameters extends object> = {
-  loaders?: Loader<TParameters>[]
-  parameters?: TParameters
-  parametersMerge?: (overrides: (TParameters | undefined)[]) => TParameters
-  wrapper?: ComponentType
-}
 type ParametersDefault<TProps, TParameters> = {
   Component: ComponentType<TProps>
   parameters?: TParameters
@@ -30,6 +24,12 @@ type ParametersOverride<TProps, TParameters> = {
   parameters?: TParameters
   props?: Partial<TProps>
   renderOptions?: RenderOptions
+}
+type ParametersSetup<TParameters extends object> = {
+  loaders?: Loader<TParameters>[]
+  parameters?: TParameters
+  parametersMerge?: (overrides: (TParameters | undefined)[]) => TParameters
+  wrapper?: ComponentType
 }
 export const testSetupRenderComponent =
   <TParameters extends object>(parametersSetup?: ParametersSetup<TParameters>) =>

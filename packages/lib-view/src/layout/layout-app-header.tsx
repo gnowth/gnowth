@@ -1,8 +1,8 @@
 import { useAppTheme } from '@gnowth/lib-application'
-import { SystemType, cx, systemCompose, systemPlace, systemSpace, themeMakeStyles } from '@gnowth/lib-theme'
+import { cx, systemCompose, systemPlace, systemSpace, SystemType, themeMakeStyles } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
 
-export type PropsLayoutAppHeader = {
+export type PropsLayoutAppHeader = SystemType<typeof layoutAppHeader> & {
   as?: string
   children: ReactNode
   className?: string
@@ -11,7 +11,7 @@ export type PropsLayoutAppHeader = {
   id?: string
   slot?: string
   variant?: PropsLayoutAppHeader | string
-} & SystemType<typeof layoutAppHeader>
+}
 
 const layoutAppHeader = systemCompose(systemPlace(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutAppHeader })

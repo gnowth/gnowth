@@ -3,14 +3,6 @@ import { Locator, Page } from '@playwright/test'
 export class DevTestModel {
   readonly page: Page
 
-  constructor(page: Page) {
-    this.page = page
-  }
-
-  async goto() {
-    await this.page.goto('/pages/dev')
-  }
-
   get simulateErrorButton(): Locator {
     return this.page.getByRole('button', { name: 'Fire error' })
   }
@@ -25,5 +17,13 @@ export class DevTestModel {
 
   get simulateNotificationText(): Locator {
     return this.page.getByText('Simulate notification in app')
+  }
+
+  constructor(page: Page) {
+    this.page = page
+  }
+
+  async goto() {
+    await this.page.goto('/pages/dev')
   }
 }

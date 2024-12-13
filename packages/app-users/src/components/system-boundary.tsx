@@ -1,14 +1,14 @@
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 
+type Props = {
+  children: ReactNode
+  FallbackComponent?: ComponentType<PropsFallback> | null
+}
+
 type PropsFallback = {
   error: Error
   reset: () => void
-}
-
-type Props = {
-  FallbackComponent?: ComponentType<PropsFallback> | null
-  children: ReactNode
 }
 
 // DEBT: to simplify fallbackRender

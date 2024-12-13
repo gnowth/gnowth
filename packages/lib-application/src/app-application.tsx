@@ -15,7 +15,7 @@ type Props = {
   frame?: ComponentType<PropsFrame> | null | string
   path?: string
   switch?: boolean
-  theme?: Theme | string
+  theme?: string | Theme
 }
 
 // TODO: check if path is provided, should it somehow override AppPage root?

@@ -1,36 +1,36 @@
 import { PropsLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariants,
   cx,
   systemCompose,
   systemGrid,
   systemLayout,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
-import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
+import { ComponentType, createElement, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
+export type PropsLayoutStack = PropsLayout &
+  SystemType<typeof layoutStack> & {
+    as?: ComponentType<ComponentProps> | null | string
+    children: ReactNode
+    className?: string
+    'data-testid'?: string
+    hidden?: boolean
+    id?: string
+    slot?: string
+    variant?: PropsLayoutStack | string
+    variantNamespace?: string
+    variants?: ThemeVariants<PropsLayoutStack>
+  }
 type ComponentProps = {
   children?: ReactNode
   className?: string
   'data-testid'?: string
   id?: string
 }
-export type PropsLayoutStack = {
-  as?: ComponentType<ComponentProps> | null | string
-  children: ReactNode
-  className?: string
-  'data-testid'?: string
-  hidden?: boolean
-  id?: string
-  slot?: string
-  variant?: PropsLayoutStack | string
-  variantNamespace?: string
-  variants?: ThemeVariants<PropsLayoutStack>
-} & PropsLayout &
-  SystemType<typeof layoutStack>
 
 const layoutStack = systemCompose(systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutStack })

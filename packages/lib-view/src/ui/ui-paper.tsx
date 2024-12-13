@@ -1,17 +1,17 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemBox,
   systemCompose,
   systemSpace,
+  SystemType,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-export type PropsUIPaper = {
+export type PropsUIPaper = SystemType<typeof uiPaper> & {
   boxVariant?: string
   boxVariantNamespace?: string
   children: ReactNode
@@ -22,7 +22,7 @@ export type PropsUIPaper = {
   variant?: PropsUIPaper | string
   variantComposition?: string[]
   variantNamespace?: string
-} & SystemType<typeof uiPaper>
+}
 
 const uiPaper = systemCompose(systemBackgroundColorFromPalette(), systemBox(), systemSpace())
 const makeStyles = themeMakeStyles({ uiPaper })

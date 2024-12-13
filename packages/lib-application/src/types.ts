@@ -3,11 +3,11 @@ import { ReactNode } from 'react'
 
 // TODO verify if we need to standardise this props with other components
 // TODO: check if props need to be optional
-export type PropsBoundary = {
+export type PropsBoundary = Slottable & {
   className?: string
   resetErrorBoundary?: () => void
   value?: Error | Error[] | null
-} & Slottable
+}
 
 export type PropsFrame = {
   children: ReactNode

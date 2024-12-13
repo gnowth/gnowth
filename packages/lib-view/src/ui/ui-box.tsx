@@ -1,6 +1,5 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
   cx,
   systemBox,
   systemColor,
@@ -10,6 +9,7 @@ import {
   systemLayout,
   systemPointer,
   systemSpace,
+  SystemType,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
@@ -17,7 +17,7 @@ import * as R from 'remeda'
 
 import { PropsBase } from '../types'
 
-type PropsUIBox = PropsBase<{ children?: ReactNode; 'data-testid'?: string } & SystemType<typeof uiBox>>
+type PropsUIBox = PropsBase<SystemType<typeof uiBox> & { children?: ReactNode; 'data-testid'?: string }>
 
 const uiBox = systemCompose(
   systemBox(),

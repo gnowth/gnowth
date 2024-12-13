@@ -1,12 +1,6 @@
 import { PlatformParameters } from '@gnowth/lib-react'
 
 export class AppUserController {
-  #routeContext = 'users'
-
-  static async construct(_parameters: PlatformParameters): Promise<AppUserController> {
-    return new this()
-  }
-
   get routes() {
     return {
       changelog: () => `/${this.#routeContext}/changelog/`,
@@ -19,5 +13,11 @@ export class AppUserController {
       user: (id?: string) => (id ? `/${this.#routeContext}/user/?id=${id}` : `/${this.#routeContext}/user/`),
       users: () => `/${this.#routeContext}/users/`,
     }
+  }
+
+  #routeContext = 'users'
+
+  static async construct(_parameters: PlatformParameters): Promise<AppUserController> {
+    return new this()
   }
 }

@@ -9,8 +9,8 @@ const DataConstant = {
 
 type DataGetter<TData = unknown> = () => TData
 type DataSetter<TData = unknown> = (data: TData) => void
-type DataUnsubscriber = () => void
 type DataSubscriber<TData = unknown> = (setter: DataSetter<TData>) => DataUnsubscriber
+type DataUnsubscriber = () => void
 
 class EventEmitterService {
   #eventEmitter: EventEmitter = new EventEmitter()
@@ -42,14 +42,6 @@ export class DataService {
 
   static async construct(_parameters: PlatformParameters): Promise<DataService> {
     return new this()
-  }
-
-  #getterGet<TData>(name: string): DataGetter<TData> | undefined {
-    return this.#getters.get(name) as DataGetter<TData>
-  }
-
-  #subscriberGet<TData>(name: string): DataSubscriber<TData> | undefined {
-    return this.#subscribers.get(name) as DataSubscriber<TData>
   }
 
   get<TData>(name: string): TData {
@@ -86,5 +78,13 @@ export class DataService {
   // TODO: allow support for selectors, like zustand/jotai? can custom equality check
   subscribe<TData>(name: string, setter: DataSetter<TData>): DataUnsubscriber {
     return this.#eventEmitterService.subscribe(`${DataConstant.eventName}/${name}`, setter)
+  }
+
+  #getterGet<TData>(name: string): DataGetter<TData> | undefined {
+    return this.#getters.get(name) as DataGetter<TData>
+  }
+
+  #subscriberGet<TData>(name: string): DataSubscriber<TData> | undefined {
+    return this.#subscribers.get(name) as DataSubscriber<TData>
   }
 }

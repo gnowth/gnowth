@@ -3,53 +3,34 @@ import * as R from 'remeda'
 
 import { TokenColorWeight } from '../tokens/tokens'
 
-type PaletteColor = {
-  darkContrast: boolean
-  hex: ColorHex
-  name: TokenColorWeight
-}
-type Palette = {
-  base: ColorHex
-  colors: PaletteColor[]
-  name: PaletteName
-}
-type PaletteReference = { name: PaletteName; reference: PaletteName }
-type PaletteName = string
-type Palettes = UtilNamespaced<PaletteType, PaletteName>
-type Configs = { palettes?: PaletteType[] }
-
 export type ColorHex = `#${string}`
-export type PaletteType = Palette | PaletteReference
 export type ConfigsPalette = {
   palette?: PaletteName
   paletteForContrast?: boolean
   paletteWeight?: TokenColorWeight
 }
+export type PaletteType = Palette | PaletteReference
+type Configs = { palettes?: PaletteType[] }
+type Palette = {
+  base: ColorHex
+  colors: PaletteColor[]
+  name: PaletteName
+}
+type PaletteColor = {
+  darkContrast: boolean
+  hex: ColorHex
+  name: TokenColorWeight
+}
+
+type PaletteName = string
+type PaletteReference = { name: PaletteName; reference: PaletteName }
+type Palettes = UtilNamespaced<PaletteType, PaletteName>
 
 export class PaletteManager {
   #palettes: Palettes = {}
 
   constructor(configs?: Configs) {
     this.#palettes = R.indexBy(configs?.palettes ?? [], (palette) => palette.name)
-  }
-
-  #get(palette: PaletteName): Palette | undefined {
-    const maybePalette = this.#palettes[palette]
-    if (!maybePalette) {
-      return undefined
-    }
-    if (this.#guardPaletteReference(maybePalette)) {
-      return this.#get(maybePalette.reference)
-    }
-    return maybePalette
-  }
-
-  #getPaletteColor(palette?: Palette, weight: TokenColorWeight = '500'): PaletteColor | undefined {
-    return palette?.colors.find((color) => color.name === weight)
-  }
-
-  #guardPaletteReference(paletteType: PaletteType): paletteType is PaletteReference {
-    return 'reference' in paletteType && !!paletteType.reference
   }
 
   configsMerge(...configsToMerge: Configs[]): Configs {
@@ -80,5 +61,24 @@ export class PaletteManager {
     const paletteText = this.#get(paletteColor.darkContrast ? 'textPrimary' : 'textInverse')
     const paletteColorText = this.#getPaletteColor(paletteText, '500')
     return paletteColorText?.hex
+  }
+
+  #get(palette: PaletteName): Palette | undefined {
+    const maybePalette = this.#palettes[palette]
+    if (!maybePalette) {
+      return undefined
+    }
+    if (this.#guardPaletteReference(maybePalette)) {
+      return this.#get(maybePalette.reference)
+    }
+    return maybePalette
+  }
+
+  #getPaletteColor(palette?: Palette, weight: TokenColorWeight = '500'): PaletteColor | undefined {
+    return palette?.colors.find((color) => color.name === weight)
+  }
+
+  #guardPaletteReference(paletteType: PaletteType): paletteType is PaletteReference {
+    return 'reference' in paletteType && !!paletteType.reference
   }
 }

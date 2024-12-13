@@ -4,17 +4,17 @@ import Select from 'react-select'
 import { UIBox } from '../ui/ui-box'
 import { ChangeEventHandler } from './use-value'
 
-type Option = { label: string; value: unknown }
 export type PropsInputSelect = {
   as?: string
   id?: string
   menuPlacement?: 'auto' | 'bottom' | 'top'
   name?: string
-  onChange?: ChangeEventHandler<Option | null>
+  onChange?: ChangeEventHandler<null | Option>
   options?: Option[]
   placeholder?: string
-  value?: Option | null
+  value?: null | Option
 }
+type Option = { label: string; value: unknown }
 
 export const InputSelect: FunctionComponent<PropsInputSelect> = (props) => {
   return (

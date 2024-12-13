@@ -2,11 +2,6 @@ export * from './wip-token-variable'
 
 export type TokenBase = string
 export type TokenBreakpoint = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs'
-export type TokenFontFamily = 'body' | 'header'
-export type TokenMedia = 'print' | 'screen'
-export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
-export type TokenSize = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
-
 export type TokenColorWeight =
   | '50'
   | '100'
@@ -22,7 +17,7 @@ export type TokenColorWeight =
   | 'a200'
   | 'a400'
   | 'a700'
-
+export type TokenFontFamily = 'body' | 'header'
 export type TokenFontSize =
   | 'x10'
   | 'x25'
@@ -41,7 +36,6 @@ export type TokenFontSize =
   | 'x1100'
   | 'x1200'
   | 'x1300'
-
 export type TokenLength =
   | 'full'
   | 'half'
@@ -58,6 +52,8 @@ export type TokenLength =
   | 'xxs'
   | 'xxxl'
 
+export type TokenMedia = 'print' | 'screen'
+
 export type TokenPalette =
   | 'background'
   | 'danger'
@@ -68,20 +64,7 @@ export type TokenPalette =
   | 'tertiary'
   | 'transparent'
 
-export type TokenZIndex =
-  | 'deepdive'
-  | 'default'
-  | 'dialog'
-  | 'docked'
-  | 'dropdown'
-  | 'frame'
-  | 'modal'
-  | 'overlay'
-  | 'popup'
-  | 'reminder'
-  | 'spinner'
-  | 'sticky'
-  | 'toast'
+export type TokenPropertyValue = 'auto' | 'inherit' | 'initial'
 
 export type Tokens = {
   breakpoint?: Record<TokenBreakpoint, string | undefined>
@@ -99,3 +82,20 @@ export type Tokens = {
   space?: Record<TokenSize, string | undefined>
   zIndex?: Record<TokenZIndex, string | undefined>
 }
+
+export type TokenSize = 'lg' | 'md' | 'none' | 'sm' | 'xl' | 'xs' | 'xxl' | 'xxs' | 'xxxl'
+
+export type TokenZIndex =
+  | 'deepdive'
+  | 'default'
+  | 'dialog'
+  | 'docked'
+  | 'dropdown'
+  | 'frame'
+  | 'modal'
+  | 'overlay'
+  | 'popup'
+  | 'reminder'
+  | 'spinner'
+  | 'sticky'
+  | 'toast'

@@ -12,18 +12,6 @@ type Response<Value> = {
 export class QueryResource<Value = unknown> {
   error?: Error
 
-  handleError = (error: Error): void => {
-    this.error = error
-    this.isPending = false
-  }
-
-  handleQueryResponse = (response: Response<Value>): Response<Value> => {
-    this.response = response
-    this.isPending = false
-
-    return response
-  }
-
   isPending = true
 
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -37,6 +25,18 @@ export class QueryResource<Value = unknown> {
     this.promiseUnhandled = promise
     // eslint-disable-next-line sonarjs/no-async-constructor
     this.promise = promise.then(this.handleQueryResponse).catch(this.handleError)
+  }
+
+  handleError = (error: Error): void => {
+    this.error = error
+    this.isPending = false
+  }
+
+  handleQueryResponse = (response: Response<Value>): Response<Value> => {
+    this.response = response
+    this.isPending = false
+
+    return response
   }
 
   read(): Value {

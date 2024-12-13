@@ -3,14 +3,6 @@ import { Locator, Page } from '@playwright/test'
 export class HeaderTestModel {
   readonly page: Page
 
-  constructor(page: Page) {
-    this.page = page
-  }
-
-  async goto() {
-    await this.page.goto('/users')
-  }
-
   get authLogin() {
     return this.page.getByText('Log in')
   }
@@ -22,6 +14,7 @@ export class HeaderTestModel {
   get component(): Locator {
     return this.page.getByTestId('app-users--section-header')
   }
+
   get navDashboard() {
     return this.page.getByRole('link', { name: 'Dashboard' })
   }
@@ -29,7 +22,6 @@ export class HeaderTestModel {
   get navMembers() {
     return this.page.getByRole('link', { name: 'Members' })
   }
-
   get navReports() {
     return this.page.getByRole('link', { name: 'Reports' })
   }
@@ -40,5 +32,13 @@ export class HeaderTestModel {
 
   get titleText() {
     return this.page.getByText('Teams App')
+  }
+
+  constructor(page: Page) {
+    this.page = page
+  }
+
+  async goto() {
+    await this.page.goto('/users')
   }
 }

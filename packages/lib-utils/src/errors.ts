@@ -1,3 +1,14 @@
+export enum TokenErrorType {
+  api = 'api',
+  api400 = 'api-400',
+  api401 = 'api-401',
+  api403 = 'api-403',
+  api404 = 'api-404',
+  api500 = 'api-500',
+  data = 'data',
+  internal = 'internal',
+}
+
 type ErrorType = {
   code: string // `${source}--${context}--#`
   contextId?: string
@@ -7,13 +18,6 @@ type ErrorType = {
   message: string
   traces: Trace[]
   type: string | string[]
-}
-
-type Trace = {
-  caller: string // functionName / class.methodName / componentName
-  context: string // moduleName/componentName
-  source: string // npm package
-  stack?: string
 }
 
 type Parameters = {
@@ -28,21 +32,17 @@ type Parameters = {
   type?: string | string[]
 }
 
-export enum TokenErrorType {
-  api = 'api',
-  api400 = 'api-400',
-  api401 = 'api-401',
-  api403 = 'api-403',
-  api404 = 'api-404',
-  api500 = 'api-500',
-  data = 'data',
-  internal = 'internal',
+type Trace = {
+  caller: string // functionName / class.methodName / componentName
+  context: string // moduleName/componentName
+  source: string // npm package
+  stack?: string
 }
 
 export class ErrorCustom extends Error {
-  private parameters: Parameters
-
   traces: Trace[]
+
+  private parameters: Parameters
 
   constructor(parameters: Parameters) {
     const cause = parameters.cause instanceof Error ? parameters.cause : undefined

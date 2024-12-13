@@ -13,15 +13,15 @@ import { useTranslation } from 'react-i18next'
 
 import { AppUserConstant } from '../modules/app-users'
 
-type Value = {
-  page: number
-  pageSize: FilterPageSize
-}
-
 type Props = {
   onChange: (value: Value) => void
   pageCount: number
   value: Value
+}
+
+type Value = {
+  page: number
+  pageSize: FilterPageSize
 }
 
 export const InputPagination: FunctionComponent<Props> = (props) => {

@@ -5,7 +5,7 @@ import { AppProvider } from './app-provider'
 
 type Props = {
   children: ReactNode
-  theme?: Theme | string
+  theme?: string | Theme
 }
 
 export const AppTheme: FunctionComponent<Props> = (props) => (

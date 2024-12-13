@@ -7,20 +7,20 @@ import { AppProvider } from './app-provider'
 import { AppSuspense } from './app-suspense'
 import { AppSwitch } from './app-switch'
 import { PropsApplication } from './context-application'
-import { ContextEnvironment, PropsEnvironment, propsDefaultEnvironment } from './context-environment'
+import { ContextEnvironment, propsDefaultEnvironment, PropsEnvironment } from './context-environment'
 import { QueryResource } from './queries/query-resource'
 
-type Props = {
-  children: ReactNode
-  switch?: boolean
-} & Omit<PropsApplication, 'application'> &
-  Partial<Omit<PropsEnvironment, 'whoami'>>
+type Props = Omit<PropsApplication, 'application'> &
+  Partial<Omit<PropsEnvironment, 'whoami'>> & {
+    children: ReactNode
+    switch?: boolean
+  }
 
 // TODO add warning/error model?
 // TODO add settings in environment
 // TODO add store? history?
 export const AppEnvironment: FunctionComponent<Props> = (props) => {
-  const [whoami, setWhoami] = useState<QueryResource | null>(null)
+  const [whoami, setWhoami] = useState<null | QueryResource>(null)
   const propsWithDefault = objectDefaults(
     { whoami, whoamiSet: setWhoami } as PropsEnvironment,
     props,

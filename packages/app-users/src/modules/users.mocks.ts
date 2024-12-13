@@ -5,8 +5,8 @@ import {
   MockModel,
   MockResponseAny,
   MockServer,
-  RestMockSerializer,
   mockServer,
+  RestMockSerializer,
 } from '@gnowth/lib-dev'
 
 import { configs } from '../configs'

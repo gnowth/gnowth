@@ -6,14 +6,9 @@ import { ErrorData } from './errors.types'
 
 type Parameters = { errorModel: ErrorModel }
 export class ErrorStream {
-  #errorModel: ErrorModel
   readonly errorIn$: Subject<ErrorData>
   readonly errorOut$: Observable<ErrorData>
-
-  nextUnknown = (error: unknown): void => {
-    const errors = this.#errorModel.fromErrorUnknown(error)
-    errors.forEach((err) => this.errorIn$.next(err))
-  }
+  #errorModel: ErrorModel
 
   constructor(parameters: Parameters) {
     this.#errorModel = parameters.errorModel
@@ -30,5 +25,10 @@ export class ErrorStream {
 
   next(error: ErrorData) {
     return this.errorIn$.next(error)
+  }
+
+  nextUnknown = (error: unknown): void => {
+    const errors = this.#errorModel.fromErrorUnknown(error)
+    errors.forEach((err) => this.errorIn$.next(err))
   }
 }
