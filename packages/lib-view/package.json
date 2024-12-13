@@ -23,7 +23,7 @@
     "@gnowth/lib-theme": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",
-    "react-select": "5.8.3",
+    "react-select": "5.9.0",
     "react-use": "17.5.1",
     "remeda": "2.17.4"
   },
