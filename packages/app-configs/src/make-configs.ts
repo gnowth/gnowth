@@ -1,21 +1,7 @@
 import { Environment } from './types'
 
-type CreateConfigs<Configs> = (env?: Environment) => Configs
 type Configurations<Configs> = ((env: Environment) => Configs) | Configs
-
-// DEBT: should default environment be backend or frontend focus? can it be both
-// frontend: check url to get environment
-// frontend: allow to run specific environment in preview
-// both: allow to run other environment from command
-function defaultGetEnvironment(environment?: Environment): Environment {
-  return environment ?? (process.env.NODE_ENVIRONMENT as Environment) ?? 'local'
-}
-
-function isCreateConfig<Configs>(
-  configuration: Configurations<Configs>,
-): configuration is (env: Environment) => Configs {
-  return typeof configuration === 'function'
-}
+type CreateConfigs<Configs> = (env?: Environment) => Configs
 
 // DEBT: to make configs in environment optional
 export function makeConfigs<Configs extends object>(
@@ -33,4 +19,18 @@ export function makeConfigs<Configs extends object>(
 
     return { ...configsDefault, ...configsEnvironment }
   }
+}
+
+// DEBT: should default environment be backend or frontend focus? can it be both
+// frontend: check url to get environment
+// frontend: allow to run specific environment in preview
+// both: allow to run other environment from command
+function defaultGetEnvironment(environment?: Environment): Environment {
+  return environment ?? (process.env.NODE_ENVIRONMENT as Environment) ?? 'local'
+}
+
+function isCreateConfig<Configs>(
+  configuration: Configurations<Configs>,
+): configuration is (env: Environment) => Configs {
+  return typeof configuration === 'function'
 }

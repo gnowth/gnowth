@@ -8,8 +8,21 @@ import { ErrorStream } from './errors.streams'
 type Locale = 'en' | 'en-CA' | 'en-US' | 'fr'
 type LocaleSnake = 'en' | 'en_CA' | 'en_US' | 'fr'
 
-type Parameters = { errorStream: ErrorStream } & PlatformParameters
+type Parameters = PlatformParameters & { errorStream: ErrorStream }
 export class I18nService {
+  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
+  get locale(): Locale {
+    return 'en-US'
+  }
+
+  get locales(): Locale[] {
+    return ['en-US', 'en']
+  }
+
+  get localesSnake(): LocaleSnake[] {
+    return ['en_US']
+  }
+
   #errorStream: ErrorStream
 
   constructor(parameters: Parameters) {
@@ -33,18 +46,5 @@ export class I18nService {
       .catch(this.#errorStream.nextUnknown)
 
     return i18n
-  }
-
-  // eslint-disable-next-line @typescript-eslint/class-literal-property-style
-  get locale(): Locale {
-    return 'en-US'
-  }
-
-  get locales(): Locale[] {
-    return ['en-US', 'en']
-  }
-
-  get localesSnake(): LocaleSnake[] {
-    return ['en_US']
   }
 }

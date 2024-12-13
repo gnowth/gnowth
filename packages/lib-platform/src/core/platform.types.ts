@@ -10,17 +10,22 @@ export type PlatformConstructors = {
   modules?: Record<string, PlatformConstructor>
   providers?: Record<string, PlatformConstructor>
 }
-export type PlatformParameters = {
-  constructors?: PlatformConstructors
-  platform: Platform
-}
-
 export type PlatformDefinition =
   | PlatformDefinitionClient
   | PlatformDefinitionComponent
   | PlatformDefinitionController
   | PlatformDefinitionModule
   | PlatformDefinitionProvider
+
+export type PlatformDefinitionClient = PlatformDefinitionBase & { type: 'client'; variant?: string }
+export type PlatformDefinitionComponent = PlatformDefinitionBase & { instance?: string; type: 'component' }
+export type PlatformDefinitionController = PlatformDefinitionBase & { type: 'controller' }
+export type PlatformDefinitionModule = Omit<PlatformDefinitionBase, 'module'> & { type: 'module' }
+export type PlatformDefinitionProvider = PlatformDefinitionBase & { type: 'provider' }
+export type PlatformParameters = {
+  constructors?: PlatformConstructors
+  platform: Platform
+}
 type PlatformDefinitionBase = {
   constructors?: PlatformConstructors
   exportName?: string
@@ -30,8 +35,3 @@ type PlatformDefinitionBase = {
   url?: string
   version?: string
 }
-export type PlatformDefinitionComponent = { instance?: string; type: 'component' } & PlatformDefinitionBase
-export type PlatformDefinitionClient = { type: 'client'; variant?: string } & PlatformDefinitionBase
-export type PlatformDefinitionController = { type: 'controller' } & PlatformDefinitionBase
-export type PlatformDefinitionModule = { type: 'module' } & Omit<PlatformDefinitionBase, 'module'>
-export type PlatformDefinitionProvider = { type: 'provider' } & PlatformDefinitionBase

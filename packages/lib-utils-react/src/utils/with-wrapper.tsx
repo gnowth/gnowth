@@ -1,13 +1,13 @@
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-type WrapperProps = {
-  children: ReactNode
-}
 type Parameters<TProps, TWrapperProps extends WrapperProps> = {
   Component: ComponentType<TProps>
   Wrapper: ComponentType<TWrapperProps>
   wrapperProps?: ((props: TProps) => TWrapperProps) | TWrapperProps
+}
+type WrapperProps = {
+  children: ReactNode
 }
 export function withWrapper<TProps extends JSX.IntrinsicAttributes, TWrapperProps extends WrapperProps>(
   parameters: Parameters<TProps, TWrapperProps>,

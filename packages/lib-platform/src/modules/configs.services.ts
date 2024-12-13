@@ -1,6 +1,12 @@
 import { ConfigEnvironment } from './configs.types'
 
 export class ConfigService {
+  async detail<Configs>(): Promise<Configs> {
+    return {
+      env: 'prd',
+    } as Configs
+  }
+
   #environmentFromHostname(hostname: string): ConfigEnvironment {
     if (hostname === 'localhost') {
       return 'local'
@@ -21,11 +27,5 @@ export class ConfigService {
   #guardConfigEnvironment(environment?: string): environment is ConfigEnvironment {
     const environments = ['dev', 'local', 'preview', 'prod', 'sit', 'sys', 'test', 'uat']
     return !!environment && environments.includes(environment)
-  }
-
-  async detail<Configs>(): Promise<Configs> {
-    return {
-      env: 'prd',
-    } as Configs
   }
 }

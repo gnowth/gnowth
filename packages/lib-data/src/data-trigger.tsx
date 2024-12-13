@@ -1,19 +1,11 @@
 import { AppBoundary, AppTheme, useAppTheme } from '@gnowth/lib-application'
 import { Theme } from '@gnowth/lib-theme'
-import { ErrorCustom, UtilRequired, objectDefaults } from '@gnowth/lib-utils'
-import { ComponentType, ReactElement, createElement, useCallback, useContext, useState } from 'react'
+import { ErrorCustom, objectDefaults, UtilRequired } from '@gnowth/lib-utils'
+import { ComponentType, createElement, ReactElement, useCallback, useContext, useState } from 'react'
 import { useLatest } from 'react-use'
 
 import { DataContext } from './data-context'
 import { DataName } from './types'
-
-type PropsComponent = {
-  disabled?: boolean
-  palette?: string
-  progressHidden?: boolean
-  textValue?: string
-  variant?: string
-}
 
 type Props<Value> = {
   action?: (value: Value, name?: DataName) => Promise<Value> | Value
@@ -26,7 +18,15 @@ type Props<Value> = {
   hidden?: boolean
   onResolve?: () => Promise<void> | void
   submit?: boolean
-  theme?: Theme | string
+  theme?: string | Theme
+}
+
+type PropsComponent = {
+  disabled?: boolean
+  palette?: string
+  progressHidden?: boolean
+  textValue?: string
+  variant?: string
 }
 
 const propsDefault = {
@@ -35,7 +35,7 @@ const propsDefault = {
 }
 
 // TODO: standardise handling async error
-export function DataTrigger<Value>(props: Readonly<Props<Value>>): ReactElement | null {
+export function DataTrigger<Value>(props: Readonly<Props<Value>>): null | ReactElement {
   const context = useContext(DataContext)
   const refValue = useLatest(context.value as Value)
   const theme = useAppTheme(props.theme)

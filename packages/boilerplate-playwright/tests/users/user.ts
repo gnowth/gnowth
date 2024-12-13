@@ -11,35 +11,10 @@ type OptionsInputData = {
 }
 
 export class UserTestModel {
-  #footer: FooterTestModel
-  #header: HeaderTestModel
   readonly page: Page
-
-  constructor(page: Page) {
-    this.page = page
-    this.#footer = new FooterTestModel(page)
-    this.#header = new HeaderTestModel(page)
-  }
-
-  async goto() {
-    await this.page.goto('/users/user')
-  }
-
-  async inputData(options: OptionsInputData) {
-    await this.nameFirstInput.fill(options.nameFirst)
-    await this.nameLastInput.fill(options.nameLast)
-    await this.emailInput.fill(options.email)
-    await this.roleInput.fill(options.role)
-  }
-
-  async submit() {
-    await this.submitButton.click()
-  }
-
   get emailInput(): Locator {
     return this.page.getByLabel('Email')
   }
-
   get emailLabel(): Locator {
     return this.page.getByText('Email')
   }
@@ -78,5 +53,30 @@ export class UserTestModel {
 
   get submitButton(): Locator {
     return this.page.getByRole('button', { name: 'Sign in' })
+  }
+
+  #footer: FooterTestModel
+
+  #header: HeaderTestModel
+
+  constructor(page: Page) {
+    this.page = page
+    this.#footer = new FooterTestModel(page)
+    this.#header = new HeaderTestModel(page)
+  }
+
+  async goto() {
+    await this.page.goto('/users/user')
+  }
+
+  async inputData(options: OptionsInputData) {
+    await this.nameFirstInput.fill(options.nameFirst)
+    await this.nameLastInput.fill(options.nameLast)
+    await this.emailInput.fill(options.email)
+    await this.roleInput.fill(options.role)
+  }
+
+  async submit() {
+    await this.submitButton.click()
   }
 }

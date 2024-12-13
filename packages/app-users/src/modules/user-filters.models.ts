@@ -1,15 +1,15 @@
 import {
   FilterModel,
+  operatorArrayFilterAnd,
+  operatorSortMultiple,
   PlatformDependency,
   PlatformParameters,
   PredicateArrayFilter,
   PredicateIdentity,
   PredicateSort,
+  predicateSortFn,
   SortDirection,
   SortKeyType,
-  operatorArrayFilterAnd,
-  operatorSortMultiple,
-  predicateSortFn,
 } from '@gnowth/lib-react'
 import * as R from 'remeda'
 
@@ -17,20 +17,51 @@ import { userFilterSchema, userFilterSchemaData, userFilterSchemaParams } from '
 import { UserFilter, UserFilterData, UserFilterParams } from './user-filters.types'
 import { User } from './users'
 
-type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
-type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
-
 enum FilterPageSize {
   i10 = 10,
   i20 = 20,
   i50 = 50,
   i100 = 100,
 }
-
 type Parameters = { filterModel: FilterModel }
+
+type UserFilterKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
+
+type UserSortKey = 'email' | 'nameFirst' | 'nameLast' | 'status'
 export class UserFilterModel {
   #filterModel: FilterModel
   #userStatuses: User['status'][] = ['active', 'deactivated']
+
+  constructor(parameters: Parameters) {
+    this.#filterModel = parameters.filterModel
+  }
+
+  static async construct(parameters: PlatformParameters): Promise<UserFilterModel> {
+    const filterModel = await parameters.platform.providerGet<FilterModel>({
+      name: PlatformDependency.filterModel,
+    })
+    return new this({ filterModel })
+  }
+
+  filter(filter: UserFilter): PredicateArrayFilter<User> {
+    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
+      email: this.#filterByEmail(filter.email),
+      nameFirst: this.#filterByNameFirst(filter.nameFirst),
+      nameLast: this.#filterByNameFirst(filter.nameLast),
+      status: this.#filterByStatus(filter.status),
+    }
+
+    // TODO: check when value is not undefined but also filter is not required
+    const filterPredicates = R.keys(filters)
+      .filter((key) => filter[key] !== undefined)
+      .map((key) => filters[key])
+
+    return operatorArrayFilterAnd(...filterPredicates)
+  }
+
+  filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
+    return (users) => users.filter(this.filter(filters)).toSorted(this.sort(filters))
+  }
 
   fromData = (userFilterData: UserFilterData): UserFilter => {
     return userFilterSchema.parse(userFilterData)
@@ -44,19 +75,45 @@ export class UserFilterModel {
     })
   }
 
+  // TODO:
+  generate(filters?: Partial<UserFilter>): UserFilter {
+    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
+  }
+
+  // TODO:
+  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
+    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
+  }
+
+  sort(filter: UserFilter): PredicateSort<User> {
+    const sorts: Record<UserSortKey, (direction?: SortDirection) => PredicateSort<User>> = {
+      email: this.#sortByEmail,
+      nameFirst: this.#sortByNameFirst,
+      nameLast: this.#sortByNameLast,
+      status: this.#sortByStatus,
+    }
+
+    const sortPredicates =
+      filter.sortBy?.map((key) => {
+        const descending = key.startsWith('-')
+        const dictionaryKey = (descending ? key.slice(1) : key) as SortKeyType<UserSortKey>
+
+        return sorts[dictionaryKey](descending ? 'descending' : 'ascending')
+      }) ?? []
+
+    return operatorSortMultiple(...sortPredicates)
+  }
+
   toData = (userFilter: UserFilter): UserFilterData => {
     return userFilterSchemaData.parse(userFilter)
   }
 
-  constructor(parameters: Parameters) {
-    this.#filterModel = parameters.filterModel
+  toParams(userFilter: UserFilter): UserFilterParams {
+    return userFilterSchemaParams.parse(userFilter)
   }
 
-  static async construct(parameters: PlatformParameters): Promise<UserFilterModel> {
-    const filterModel = await parameters.platform.providerGet<FilterModel>({
-      name: PlatformDependency.filterModel,
-    })
-    return new this({ filterModel })
+  toParamsClient(userFilter: UserFilter): UserFilterParams {
+    return userFilterSchemaParams.parse(userFilter)
   }
 
   #filterByEmail(email?: string): PredicateArrayFilter<User> {
@@ -114,62 +171,5 @@ export class UserFilterModel {
       direction,
       isNullish: (item) => !this.#userStatuses.includes(item.status),
     })
-  }
-
-  filter(filter: UserFilter): PredicateArrayFilter<User> {
-    const filters: Record<UserFilterKey, PredicateArrayFilter<User>> = {
-      email: this.#filterByEmail(filter.email),
-      nameFirst: this.#filterByNameFirst(filter.nameFirst),
-      nameLast: this.#filterByNameFirst(filter.nameLast),
-      status: this.#filterByStatus(filter.status),
-    }
-
-    // TODO: check when value is not undefined but also filter is not required
-    const filterPredicates = R.keys(filters)
-      .filter((key) => filter[key] !== undefined)
-      .map((key) => filters[key])
-
-    return operatorArrayFilterAnd(...filterPredicates)
-  }
-
-  filterAndSort(filters: UserFilter): PredicateIdentity<User[]> {
-    return (users) => users.filter(this.filter(filters)).toSorted(this.sort(filters))
-  }
-
-  // TODO:
-  generate(filters?: Partial<UserFilter>): UserFilter {
-    return { ...filters, page: filters?.page ?? 1, sortBy: filters?.sortBy ?? [] }
-  }
-
-  // TODO:
-  generatePaginated(filters?: Partial<UserFilter>): UserFilter {
-    return this.fromDataPaginated({ ...filters, sortBy: filters?.sortBy ?? [] })
-  }
-
-  sort(filter: UserFilter): PredicateSort<User> {
-    const sorts: Record<UserSortKey, (direction?: SortDirection) => PredicateSort<User>> = {
-      email: this.#sortByEmail,
-      nameFirst: this.#sortByNameFirst,
-      nameLast: this.#sortByNameLast,
-      status: this.#sortByStatus,
-    }
-
-    const sortPredicates =
-      filter.sortBy?.map((key) => {
-        const descending = key.startsWith('-')
-        const dictionaryKey = (descending ? key.slice(1) : key) as SortKeyType<UserSortKey>
-
-        return sorts[dictionaryKey](descending ? 'descending' : 'ascending')
-      }) ?? []
-
-    return operatorSortMultiple(...sortPredicates)
-  }
-
-  toParams(userFilter: UserFilter): UserFilterParams {
-    return userFilterSchemaParams.parse(userFilter)
-  }
-
-  toParamsClient(userFilter: UserFilter): UserFilterParams {
-    return userFilterSchemaParams.parse(userFilter)
   }
 }

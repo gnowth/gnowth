@@ -1,10 +1,10 @@
 import { UtilNamespaced } from '@gnowth/lib-utils'
 
-type VariableName = string
-type Variables = UtilNamespaced<Variable, VariableName>
-type Configs = { variables?: Variables }
-
 export type Variable = unknown
+type Configs = { variables?: Variables }
+type VariableName = string
+
+type Variables = UtilNamespaced<Variable, VariableName>
 
 export class VariableManager {
   #variables: Variables

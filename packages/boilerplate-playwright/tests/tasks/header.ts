@@ -3,14 +3,6 @@ import { Locator, Page } from '@playwright/test'
 export class TestModelHeader {
   readonly page: Page
 
-  constructor(page: Page) {
-    this.page = page
-  }
-
-  async goto() {
-    await this.page.goto('/spa/#/tasks')
-  }
-
   get component(): Locator {
     return this.page.getByTestId('spa--layout-header')
   }
@@ -25,5 +17,13 @@ export class TestModelHeader {
 
   get titleText() {
     return this.page.getByText('Header')
+  }
+
+  constructor(page: Page) {
+    this.page = page
+  }
+
+  async goto() {
+    await this.page.goto('/spa/#/tasks')
   }
 }

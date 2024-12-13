@@ -1,8 +1,5 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariants,
-  TokenSize,
   cx,
   systemBox,
   systemColor,
@@ -11,7 +8,10 @@ import {
   systemImage,
   systemLayout,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  ThemeVariants,
+  TokenSize,
 } from '@gnowth/lib-theme'
 import { imageExists } from '@gnowth/lib-utils'
 import { ComponentProps, ComponentType, FunctionComponent } from 'react'
@@ -25,24 +25,24 @@ import { UIImage } from './ui-image'
 import { UITypography } from './ui-typography'
 
 type PropsUIAvatar = PropsBase<
-  {
-    as?: string
-    boxVariant?: string
-    boxVariantNamespace?: string
-    icon?: ComponentType<ComponentProps<typeof UIIcon>> | string
-    iconClassName?: string
-    iconSize?: TokenSize
-    iconValue?: string
-    iconVariant?: string
-    name?: string
-    size?: TokenSize
-    src?: string
-    text?: ComponentType<ComponentProps<typeof UITypography>> | string
-    textClassName?: string
-    textProps?: ComponentProps<typeof UITypography>
-    textVariant?: string
-  } & SystemType<ReturnType<typeof systemColorFromPalette>> &
-    SystemType<typeof uiAvatar>
+  SystemType<ReturnType<typeof systemColorFromPalette>> &
+    SystemType<typeof uiAvatar> & {
+      as?: string
+      boxVariant?: string
+      boxVariantNamespace?: string
+      icon?: ComponentType<ComponentProps<typeof UIIcon>> | string
+      iconClassName?: string
+      iconSize?: TokenSize
+      iconValue?: string
+      iconVariant?: string
+      name?: string
+      size?: TokenSize
+      src?: string
+      text?: ComponentType<ComponentProps<typeof UITypography>> | string
+      textClassName?: string
+      textProps?: ComponentProps<typeof UITypography>
+      textVariant?: string
+    }
 >
 
 const uiAvatar = systemCompose(

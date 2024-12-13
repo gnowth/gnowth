@@ -4,15 +4,15 @@ import { ComponentProps, ComponentType } from 'react'
 import { SystemBoundary } from './system-boundary'
 import { SystemSuspense } from './system-suspense'
 
+type AugmentedComponentType<Props> = ComponentType<Props> & {
+  ErrorComponent?: PropsAugmented['ErrorComponent']
+  LoadingComponent?: PropsAugmented['LoadingComponent']
+}
+
 type PropsAugmented = {
   ErrorComponent?: ComponentProps<typeof SystemBoundary>['FallbackComponent']
   LoadingComponent?: ComponentProps<typeof SystemSuspense>['FallbackComponent']
 }
-
-type AugmentedComponentType<Props> = {
-  ErrorComponent?: PropsAugmented['ErrorComponent']
-  LoadingComponent?: PropsAugmented['LoadingComponent']
-} & ComponentType<Props>
 
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent

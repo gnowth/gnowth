@@ -17,12 +17,12 @@ type Props = PropsWithChildren<
 export const PlatformProvider: FunctionComponent<Props> = (props) => {
   return (
     <PlatformProviderI18n
-      I18nClientProvider={props.I18nClientProvider}
       i18nClientDefinition={props.i18nClientDefinition}
+      I18nClientProvider={props.I18nClientProvider}
     >
       <PlatformProviderQuery
-        QueryClientProvider={props.QueryClientProvider}
         queryClientDefinition={props.queryClientDefinition}
+        QueryClientProvider={props.QueryClientProvider}
       >
         {props.children}
       </PlatformProviderQuery>

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { Factory, Model, RestSerializer, Server, createServer, hasMany } from 'miragejs'
+import { createServer, Factory, hasMany, Model, RestSerializer, Server } from 'miragejs'
 
 type Configs = {
   env?: string

@@ -1,4 +1,4 @@
-import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults, ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import { ComponentType } from 'react'
 import * as R from 'remeda'
 
@@ -24,6 +24,7 @@ type Configs = {
 }
 
 export class Theme {
+  global?: string
   #componentManager: ComponentManager
   #configs: Configs
   #mediaManager: MediaManager
@@ -31,7 +32,6 @@ export class Theme {
   #scaleManager: ScaleManager
   #variableManager: VariableManager
   #variantManager: VariantManager
-  global?: string
 
   constructor(configs?: Configs) {
     this.#configs = configs ?? {}
@@ -57,17 +57,6 @@ export class Theme {
           )
         : value,
     ) as TProps
-  }
-
-  #configsMerge(...configs: Configs[]): Configs {
-    return {
-      ...this.#componentManager.configsMerge(...configs),
-      ...this.#mediaManager.configsMerge(...configs),
-      ...this.#paletteManager.configsMerge(...configs),
-      ...this.#scaleManager.configsMerge(...configs),
-      ...this.#variableManager.configsMerge(...configs),
-      ...this.#variantManager.configsMerge(...configs),
-    }
   }
 
   extends(configs: Configs): Theme {
@@ -108,5 +97,16 @@ export class Theme {
 
   getVariable<Type>(name: string): Type | undefined {
     return this.#variableManager.get<Type>(name)
+  }
+
+  #configsMerge(...configs: Configs[]): Configs {
+    return {
+      ...this.#componentManager.configsMerge(...configs),
+      ...this.#mediaManager.configsMerge(...configs),
+      ...this.#paletteManager.configsMerge(...configs),
+      ...this.#scaleManager.configsMerge(...configs),
+      ...this.#variableManager.configsMerge(...configs),
+      ...this.#variantManager.configsMerge(...configs),
+    }
   }
 }

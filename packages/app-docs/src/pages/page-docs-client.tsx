@@ -6,8 +6,8 @@ import { ApplicationDocsLayout } from '../components/application-docs.layout'
 import { PageDoc } from '../components/page-docs'
 import { ContentService } from '../modules/contents'
 
-type Props = { source: MDXRemoteSerializeResult }
 type Params = { slug: string }
+type Props = { source: MDXRemoteSerializeResult }
 export const PageDocsClient: PageClientComponent<Props, Params> = (props) => {
   return (
     <PageDoc>

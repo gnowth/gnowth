@@ -1,42 +1,38 @@
-import { UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults, UtilNamespaced } from '@gnowth/lib-utils'
 import * as R from 'remeda'
 
 import { TokenBase, TokenBreakpoint } from '../tokens/tokens'
 
-// TODO: review responsiveScale. currently not supported by system
-type Responsive<Type> = { responsive: boolean } & Partial<Record<TokenBreakpoint, Type>>
-type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
-type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
-type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
-type Scales<Token extends TokenBase = TokenBase> = UtilNamespaced<ScaleType<Token>, ScaleName>
-type Configs = { scales?: Scales }
-type ConfigsScaleDynamic<Token> = {
+export type ConfigsScale<Token extends TokenBase = TokenBase> = {
+  scale?: ScaleName | ScaleType<Token>
   scaleBreakpoint?: TokenBreakpoint
+  scales?: Scales<Token>
   scaleToken?: Token
 }
-
 export type ScaleItem = string // TODO: should it allow array?
 export type ScaleName = string
 export type ScaleType<Token extends TokenBase = TokenBase> =
   | ScaleDynamic<Token>
   | ScaleResponsive<Token>
   | ScaleStatic<Token>
-export type ConfigsScale<Token extends TokenBase = TokenBase> = {
-  scale?: ScaleName | ScaleType<Token>
+type Configs = { scales?: Scales }
+type ConfigsScaleDynamic<Token> = {
   scaleBreakpoint?: TokenBreakpoint
   scaleToken?: Token
-  scales?: Scales<Token>
 }
+// TODO: review responsiveScale. currently not supported by system
+type Responsive<Type> = Partial<Record<TokenBreakpoint, Type>> & { responsive: boolean }
+
+type ScaleDynamic<Token extends TokenBase> = (configs: ConfigsScaleDynamic<Token>) => ScaleItem | undefined
+type ScaleResponsive<Token extends TokenBase> = Responsive<ScaleStatic<Token>>
+type Scales<Token extends TokenBase = TokenBase> = UtilNamespaced<ScaleType<Token>, ScaleName>
+type ScaleStatic<Token extends TokenBase> = Record<Token, ScaleItem>
 
 export class ScaleManager {
   #scales: Scales
 
   constructor(configs?: Configs) {
     this.#scales = configs?.scales ?? {}
-  }
-
-  #guardScaleResponsive<Token extends string>(scale: ScaleType<Token>): scale is ScaleResponsive<Token> {
-    return 'responsive' in scale && scale.responsive === true
   }
 
   configsMerge(...configs: Configs[]): Configs {
@@ -67,5 +63,9 @@ export class ScaleManager {
       return scale[configs.scaleBreakpoint ?? 'none']?.[configs.scaleToken]
     }
     return scale[configs.scaleToken]
+  }
+
+  #guardScaleResponsive<Token extends string>(scale: ScaleType<Token>): scale is ScaleResponsive<Token> {
+    return 'responsive' in scale && scale.responsive === true
   }
 }

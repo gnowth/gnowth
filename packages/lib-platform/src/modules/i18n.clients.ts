@@ -8,7 +8,7 @@ import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { I18nInterfaceClientV1 } from './i18n.types'
 
-type Parameters = { client: i18n; errorOut$: Observable<ErrorData> } & PlatformParameters
+type Parameters = PlatformParameters & { client: i18n; errorOut$: Observable<ErrorData> }
 export class I18nClientV23 implements I18nInterfaceClientV1 {
   readonly client: i18n
   readonly errorOut$: Observable<ErrorData>

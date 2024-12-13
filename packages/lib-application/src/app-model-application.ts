@@ -7,11 +7,11 @@ type ConfigsApplication = {
   route?: string
 }
 
+type MakeResource = (paramsRoute: ParamsRoute) => Record<string, QueryResource | undefined>
+
 type ParamsRoute = {
   pageId?: string
 }
-
-type MakeResource = (paramsRoute: ParamsRoute) => Record<string, QueryResource | undefined>
 
 export class AppModelApplication<Configs extends ConfigsApplication = ConfigsApplication> {
   configs: Configs

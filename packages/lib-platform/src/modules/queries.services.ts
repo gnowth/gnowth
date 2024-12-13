@@ -4,7 +4,6 @@ import axios from 'axios'
 import { PlatformParameters } from '../core/platform'
 import { QueryDetail, QueryList, QueryParametersDetail, QueryParametersList } from './queries.types'
 
-type TokenRestMethod = 'get' | 'options' | 'patch' | 'post' | 'put'
 type Parameters<Item, ItemData> = {
   method?: TokenRestMethod
   params?: ObjectLiteral
@@ -12,6 +11,7 @@ type Parameters<Item, ItemData> = {
   transformData?: (item: ItemData) => Item
   url: string
 }
+type TokenRestMethod = 'get' | 'options' | 'patch' | 'post' | 'put'
 
 export class QueryService {
   #client = axios.create({ withCredentials: true })

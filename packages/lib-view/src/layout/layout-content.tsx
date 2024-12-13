@@ -1,23 +1,18 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemCompose,
   systemDisplay,
   systemGrid,
   systemSpace,
+  SystemType,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
-import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
+import { ComponentType, createElement, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
-type ComponentProps = {
-  className?: string
-  'data-testid'?: string
-  id?: string
-}
-export type PropsLayoutContent = {
+export type PropsLayoutContent = SystemType<typeof layoutContent> & {
   as?: ComponentType<ComponentProps> | string
   children: ReactNode
   className?: string
@@ -27,7 +22,12 @@ export type PropsLayoutContent = {
   slot?: string
   variant?: PropsLayoutContent | string
   variantNamespace?: string
-} & SystemType<typeof layoutContent>
+}
+type ComponentProps = {
+  className?: string
+  'data-testid'?: string
+  id?: string
+}
 
 const layoutContent = systemCompose(
   systemBackgroundColorFromPalette(),

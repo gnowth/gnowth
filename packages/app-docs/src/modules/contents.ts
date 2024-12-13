@@ -1,7 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { CompileMDXResult, compileMDX } from 'next-mdx-remote/rsc'
+import { compileMDX, CompileMDXResult } from 'next-mdx-remote/rsc'
 import { serialize } from 'next-mdx-remote/serialize'
 import path from 'path'
 

@@ -1,4 +1,4 @@
-import { SystemType, VariantType, systemBox } from '@gnowth/lib-theme'
+import { systemBox, SystemType, VariantType } from '@gnowth/lib-theme'
 
 type SystemBox = SystemType<ReturnType<typeof systemBox>>
 

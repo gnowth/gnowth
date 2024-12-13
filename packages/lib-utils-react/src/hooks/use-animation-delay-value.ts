@@ -7,7 +7,7 @@ type Configs<Value> = {
   valueInitial?: Value
 }
 
-export function useAnimationDelayValue<Value>(configs: Configs<Value>): Value | undefined {
+export function useAnimationDelayValue<Value>(configs: Configs<Value>): undefined | Value {
   const [value, setValue] = useState(configs.valueInitial)
 
   useEffect(() => {

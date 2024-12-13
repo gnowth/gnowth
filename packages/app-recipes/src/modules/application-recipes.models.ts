@@ -3,6 +3,15 @@ import { AppModelApplication, QueryResource } from '@gnowth/lib-react'
 import { Ingredient, ModelIngredient } from './ingredients'
 import { ModelRecipe, Recipe } from './recipes'
 
+export enum TokenPage {
+  dashboard = 'dashboard',
+  ingredient = 'ingredient',
+  landing = 'landing',
+  recipe = 'recipe',
+  recipes = 'recipes',
+  root = 'root',
+}
+
 type Configs = {
   route?: string
 }
@@ -11,26 +20,17 @@ type ParamsRoute = {
   pageId?: string
 }
 
-type ResourceRecipe = {
-  recipe: QueryResource<Recipe>
-}
-
 type ResourceIngredient = {
   ingredient: QueryResource<Ingredient>
+}
+
+type ResourceRecipe = {
+  recipe: QueryResource<Recipe>
 }
 
 type ResourceRecipes = {
   ingredients: QueryResource<Ingredient[]>
   recipes: QueryResource<Recipe[]>
-}
-
-export enum TokenPage {
-  dashboard = 'dashboard',
-  ingredient = 'ingredient',
-  landing = 'landing',
-  recipe = 'recipe',
-  recipes = 'recipes',
-  root = 'root',
 }
 
 export class AppModelApplicationRecipes extends AppModelApplication<Configs> {

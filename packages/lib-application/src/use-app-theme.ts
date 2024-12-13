@@ -7,7 +7,7 @@ import { ContextEnvironment } from './context-environment'
 
 const defaultTheme = new Theme({})
 
-export function useAppTheme(theme?: Theme | string): Theme {
+export function useAppTheme(theme?: string | Theme): Theme {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
   const themeOrName = theme || contextApplication.theme

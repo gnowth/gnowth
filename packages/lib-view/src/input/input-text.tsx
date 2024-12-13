@@ -1,22 +1,40 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import { PropsData } from '@gnowth/lib-data'
 import {
-  SystemType,
-  ThemeVariants,
   cx,
   systemBox,
   systemColorFromPalette,
   systemCompose,
   systemLayout,
   systemSpace,
+  SystemType,
   systemTypography,
   themeMakeStyles,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
-import { ComponentType, FunctionComponent, createElement } from 'react'
+import { ComponentType, createElement, FunctionComponent } from 'react'
 import * as R from 'remeda'
 
 import { ChangeEventHandler, useValue } from './use-value'
 
+export type PropsInputText = PropsData<string> &
+  SystemType<typeof inputText> & {
+    as?: ComponentType<ComponentProps> | string
+    boxVariant?: string
+    boxVariantNamespace?: string
+    className?: string
+    hidden?: boolean
+    id?: string
+    placeholder?: string
+    slot?: string
+    type?: string
+    typographyVariant?: string
+    typographyVariantNamespace?: string
+    variant?: PropsInputText | string
+    variantComposition?: string[]
+    variantNamespace?: string
+    variants?: ThemeVariants<PropsInputText>
+  }
 type ComponentProps = {
   className?: string
   disabled?: boolean
@@ -25,24 +43,6 @@ type ComponentProps = {
   onChange?: ChangeEventHandler<string>
   value?: string
 }
-export type PropsInputText = {
-  as?: ComponentType<ComponentProps> | string
-  boxVariant?: string
-  boxVariantNamespace?: string
-  className?: string
-  hidden?: boolean
-  id?: string
-  placeholder?: string
-  slot?: string
-  type?: string
-  typographyVariant?: string
-  typographyVariantNamespace?: string
-  variant?: PropsInputText | string
-  variantComposition?: string[]
-  variantNamespace?: string
-  variants?: ThemeVariants<PropsInputText>
-} & PropsData<string> &
-  SystemType<typeof inputText>
 
 const inputText = systemCompose(
   systemBox(),

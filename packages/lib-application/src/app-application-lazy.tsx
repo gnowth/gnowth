@@ -2,14 +2,14 @@ import { ComponentType, FunctionComponent } from 'react'
 
 import { AppModelApplication } from './app-model-application'
 
-type PropsComponent = {
-  application?: AppModelApplication | string
-  path?: string
-}
-
 type Props = {
   application?: AppModelApplication | string
   component: ComponentType<PropsComponent>
+  path?: string
+}
+
+type PropsComponent = {
+  application?: AppModelApplication | string
   path?: string
 }
 

@@ -16,7 +16,7 @@ export class QuerySerializer<Value extends ObjectLiteral> {
 
   fromValue(value: undefined): null
   fromValue(value: Value): Record<string, unknown>
-  fromValue(value?: Value): Record<string, unknown> | null {
+  fromValue(value?: Value): null | Record<string, unknown> {
     if (!value) return null
 
     return { [this.api.model.modelName]: value }
@@ -30,7 +30,7 @@ export class QuerySerializer<Value extends ObjectLiteral> {
 
   toValue(data: undefined): null
   toValue(data: Record<string, unknown>): Value
-  toValue(data?: Record<string, unknown>): Value | null {
+  toValue(data?: Record<string, unknown>): null | Value {
     if (!data) return null
 
     return data[this.api.model.modelName] as Value

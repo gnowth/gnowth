@@ -1,9 +1,14 @@
-import { ObjectLiteral, UtilNamespaced, objectDefaults } from '@gnowth/lib-utils'
+import { objectDefaults, ObjectLiteral, UtilNamespaced } from '@gnowth/lib-utils'
 import { ComponentType } from 'react'
 import * as R from 'remeda'
 
 import { namespacedMerge } from '../utils/namespace-merge'
 
+export type ConfigsComponent<Props extends ObjectLiteral> = {
+  component?: ComponentName | ComponentType<Props>
+  componentNamespace?: ComponentNamespace // default: 'type'
+  components?: Components<Props>
+}
 type ComponentName = string
 type ComponentNamespace = string // TODO: allow array as namespace
 type Components<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<
@@ -11,23 +16,14 @@ type Components<Props extends ObjectLiteral = ObjectLiteral> = UtilNamespaced<
   ComponentName
 >
 type ComponentsNamespaced = UtilNamespaced<Components, ComponentNamespace>
-type Configs = { componentsNamespaced?: ComponentsNamespaced }
 
-export type ConfigsComponent<Props extends ObjectLiteral> = {
-  component?: ComponentName | ComponentType<Props>
-  componentNamespace?: ComponentNamespace // default: 'type'
-  components?: Components<Props>
-}
+type Configs = { componentsNamespaced?: ComponentsNamespaced }
 
 export class ComponentManager {
   #componentsNamespaced: ComponentsNamespaced = {}
 
   constructor(configs?: Configs) {
     this.#componentsNamespaced = configs?.componentsNamespaced ?? {}
-  }
-
-  #getComponentsByNamespace<Props extends ObjectLiteral>(namespace = 'type'): Components<Props> {
-    return (this.#componentsNamespaced[namespace] ?? {}) as Components<Props>
   }
 
   configsMerge(...configs: Configs[]): Configs {
@@ -50,5 +46,9 @@ export class ComponentManager {
     )
 
     return components[configs.component]
+  }
+
+  #getComponentsByNamespace<Props extends ObjectLiteral>(namespace = 'type'): Components<Props> {
+    return (this.#componentsNamespaced[namespace] ?? {}) as Components<Props>
   }
 }

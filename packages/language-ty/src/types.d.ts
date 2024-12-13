@@ -1,10 +1,20 @@
-type Capture = {
-  name: string
+export type PatternRecord = {
+  include: PatternInclude
+  repository: Record<string, Pattern>
 }
 
-type PatternInclude = {
+export type Syntax = {
+  $schema: string
   comment?: string
-  include: string
+  name: string
+  patterns: (Pattern | PatternInclude)[]
+  repository: Record<string, Pattern>
+  scopeName: string
+  version?: string
+}
+
+type Capture = {
+  name: string
 }
 
 type Pattern = {
@@ -20,17 +30,7 @@ type Pattern = {
   repository?: Record<string, Pattern>
 }
 
-export type Syntax = {
-  $schema: string
+type PatternInclude = {
   comment?: string
-  name: string
-  patterns: (Pattern | PatternInclude)[]
-  repository: Record<string, Pattern>
-  scopeName: string
-  version?: string
-}
-
-export type PatternRecord = {
-  include: PatternInclude
-  repository: Record<string, Pattern>
+  include: string
 }

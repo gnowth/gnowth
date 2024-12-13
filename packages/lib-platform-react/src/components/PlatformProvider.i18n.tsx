@@ -7,8 +7,8 @@ type I18nClientProviderProps = PropsWithChildren<{
   i18n: I18nInterfaceClientV1['client']
 }>
 type Props = PropsWithChildren<{
-  I18nClientProvider?: ComponentType<I18nClientProviderProps>
   i18nClientDefinition?: PlatformDefinitionClient
+  I18nClientProvider?: ComponentType<I18nClientProviderProps>
 }>
 export const PlatformProviderI18n: FunctionComponent<Props> = (props) => {
   const { I18nClientProvider } = props

@@ -1,35 +1,35 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import { PropsDataReadonly } from '@gnowth/lib-data'
 import {
-  SystemType,
   cx,
   systemColorFromPalette,
   systemCompose,
   systemDisplay,
   systemSpace,
+  SystemType,
   systemTypography,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
-import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
+import { ComponentType, createElement, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
+// TODO: mediaPrint should disable elipsis
+export type PropsUITypography = PropsDataReadonly<ReactNode> &
+  SystemType<typeof uiTypography> & {
+    as?: ComponentType<ComponentProps> | null | string
+    children?: ReactNode
+    className?: string
+    hidden?: boolean
+    mediaPrintDisabled?: boolean
+    slot?: string
+    variant?: PropsUITypography | string
+    variantNamespace?: string
+  }
 type ComponentProps = {
   className?: string
   'data-testid'?: string
   id?: string
 }
-// TODO: mediaPrint should disable elipsis
-export type PropsUITypography = {
-  as?: ComponentType<ComponentProps> | null | string
-  children?: ReactNode
-  className?: string
-  hidden?: boolean
-  mediaPrintDisabled?: boolean
-  slot?: string
-  variant?: PropsUITypography | string
-  variantNamespace?: string
-} & PropsDataReadonly<ReactNode> &
-  SystemType<typeof uiTypography>
 
 const uiTypography = systemCompose(
   systemColorFromPalette(),

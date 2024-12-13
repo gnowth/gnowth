@@ -8,7 +8,7 @@ import { useAppTheme } from './use-app-theme'
 
 type Suspense = ComponentType<PropsSuspense> | null
 
-export function useAppSuspense(suspense?: Suspense | string): Suspense | undefined {
+export function useAppSuspense(suspense?: string | Suspense): Suspense | undefined {
   const contextApplication = useContext(ContextApplication)
   const contextEnvironment = useContext(ContextEnvironment)
   const theme = useAppTheme()

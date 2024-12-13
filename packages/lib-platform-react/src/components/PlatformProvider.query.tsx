@@ -3,12 +3,12 @@ import { ComponentType, FunctionComponent, PropsWithChildren } from 'react'
 
 import { usePlatformClient } from '../hooks/use-platform'
 
+type Props = PropsWithChildren<{
+  queryClientDefinition?: PlatformDefinitionClient
+  QueryClientProvider?: ComponentType<QueryClientProviderProps>
+}>
 type QueryClientProviderProps = PropsWithChildren<{
   client: QueryInterfaceClientV1['client']
-}>
-type Props = PropsWithChildren<{
-  QueryClientProvider?: ComponentType<QueryClientProviderProps>
-  queryClientDefinition?: PlatformDefinitionClient
 }>
 export const PlatformProviderQuery: FunctionComponent<Props> = (props) => {
   const { QueryClientProvider } = props

@@ -11,6 +11,10 @@ type NotificationData = {
 }
 
 export class NotificationModel {
+  static async construct(): Promise<NotificationModel> {
+    return new this()
+  }
+
   fromData = (notification: NotificationData): Notification => {
     return {
       id: notification.id,
@@ -35,9 +39,5 @@ export class NotificationModel {
     return {
       message: this.toString(notification),
     }
-  }
-
-  static async construct(): Promise<NotificationModel> {
-    return new this()
   }
 }

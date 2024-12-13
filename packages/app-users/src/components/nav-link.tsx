@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FunctionComponent } from 'react'
 
-type Props = { children: string; hrefActive?: string } & Parameters<typeof Link>[0]
+type Props = Parameters<typeof Link>[0] & { children: string; hrefActive?: string }
 
 export const NavLink: FunctionComponent<Props> = ({ hrefActive, ...props }) => {
   const pathname = usePathname() ?? '/users/' // DEBT(hack): temporary hack to get chromatic to pass. To remove when fixing storybook nextjs router

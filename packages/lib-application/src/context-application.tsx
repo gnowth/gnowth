@@ -10,7 +10,7 @@ export type PropsApplication = {
   frame?: ComponentType<PropsFrame> | null | string
   page?: string
   suspense?: ComponentType<PropsSuspense> | string
-  theme?: Theme | string
+  theme?: string | Theme
 }
 
 const propsDefault: PropsApplication = {

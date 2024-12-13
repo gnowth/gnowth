@@ -6,9 +6,9 @@ type OperatorArrayFilters = <Value>(
   ...predicates: PredicateArrayFilter<Value>[]
 ) => PredicateArrayFilter<Value>
 
-type OperatorSorts = <Value>(...predicates: PredicateSort<Value>[]) => PredicateSort<Value>
-
 type OperatorObjectFilter = <Item>(predicate: PredicateObjectFilter<Item>) => PredicateObjectFilter<Item>
+
+type OperatorSorts = <Value>(...predicates: PredicateSort<Value>[]) => PredicateSort<Value>
 
 export const operatorArrayFilterAnd: OperatorArrayFilters =
   (...predicates) =>

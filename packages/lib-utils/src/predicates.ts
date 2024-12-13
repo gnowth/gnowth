@@ -1,12 +1,5 @@
 import * as R from 'remeda'
 
-type ParametersSort<Value> = {
-  compare?: (value1: Value, value2: Value) => number
-  direction?: 'ascending' | 'descending'
-  isNullish?: (value: Value) => boolean
-}
-type PredicateSortFn = <Value>(parameters?: ParametersSort<Value>) => PredicateSort<Value>
-
 export type PredicateArrayFilter<Value> = (value: Value, index: number, values: Value[]) => boolean
 export type PredicateArrayReduce<Value, Output> = (
   output: Output,
@@ -14,9 +7,16 @@ export type PredicateArrayReduce<Value, Output> = (
   index: number,
   values: Value[],
 ) => Output
+
 export type PredicateIdentity<Value> = (value: Value) => Value
-export type PredicateSort<Value> = (value1: Value, value2: Value) => number
 export type PredicateObjectFilter<Item> = (value: Item[keyof Item], key: keyof Item, item: Item) => boolean
+export type PredicateSort<Value> = (value1: Value, value2: Value) => number
+type ParametersSort<Value> = {
+  compare?: (value1: Value, value2: Value) => number
+  direction?: 'ascending' | 'descending'
+  isNullish?: (value: Value) => boolean
+}
+type PredicateSortFn = <Value>(parameters?: ParametersSort<Value>) => PredicateSort<Value>
 
 export const predicateSortFn: PredicateSortFn = (parameters) => (value1, value2) => {
   const isNullish = parameters?.isNullish ?? R.isNullish

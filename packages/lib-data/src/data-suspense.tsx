@@ -3,14 +3,14 @@ import { ComponentType, FunctionComponent, ReactNode } from 'react'
 
 import { PropsUseDataConnect, useDataConnect } from './use-data-connect'
 
-type Props = {
+type Props = PropsUseDataConnect & {
   awaiting?: boolean
   children: ReactNode
   hidden?: boolean
   slot?: string
   suspense?: ComponentType<PropsSuspense> | string
   suspenseClassName?: string
-} & PropsUseDataConnect
+}
 
 export const DataSuspense: FunctionComponent<Props> = (props) => {
   const connection = useDataConnect(props)

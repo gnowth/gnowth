@@ -10,7 +10,7 @@ import {
 
 import { MockClient, MockClientParameterAny, MockClientParameterEmail } from './mocks.types'
 
-type Parameters = { fakerClient: Faker } & PlatformParameters
+type Parameters = PlatformParameters & { fakerClient: Faker }
 export class FakerClient implements MockClient {
   #client: Faker
   #constructors: PlatformConstructors

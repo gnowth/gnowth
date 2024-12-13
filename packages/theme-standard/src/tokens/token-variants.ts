@@ -3,6 +3,17 @@ export enum TokenVariantNamespace {
   inputText = 'inputText',
 }
 
+export enum TokenVariantUIButton {
+  contained = 'contained',
+  fab = 'fab',
+  flat = 'flat',
+  icon = 'icon',
+  navigation = 'navigation',
+  outlined = 'outlined',
+  raised = 'raised',
+  text = 'text',
+}
+
 export enum TokenVariantUITypography {
   body1 = 'body1',
   body2 = 'body2',
@@ -20,15 +31,4 @@ export enum TokenVariantUITypography {
   overline = 'overline',
   subtitle1 = 'subtitle1',
   subtitle2 = 'subtitle2',
-}
-
-export enum TokenVariantUIButton {
-  contained = 'contained',
-  fab = 'fab',
-  flat = 'flat',
-  icon = 'icon',
-  navigation = 'navigation',
-  outlined = 'outlined',
-  raised = 'raised',
-  text = 'text',
 }

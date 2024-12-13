@@ -6,7 +6,7 @@ import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { QueryInterfaceClientV1 } from './queries.types'
 
-type Parameters = { client: QueryClient; errorOut$: Observable<ErrorData> } & PlatformParameters
+type Parameters = PlatformParameters & { client: QueryClient; errorOut$: Observable<ErrorData> }
 export class QueryClientReactQueryV5 implements QueryInterfaceClientV1 {
   readonly client: QueryClient
   readonly errorOut$: Observable<ErrorData>

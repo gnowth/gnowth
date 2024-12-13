@@ -1,8 +1,8 @@
 import { ComponentType, FunctionComponent, ReactNode, Suspense } from 'react'
 
 type Props = {
-  FallbackComponent?: ComponentType | null
   children: ReactNode
+  FallbackComponent?: ComponentType | null
 }
 
 export const SystemSuspense: FunctionComponent<Props> = (props) => {

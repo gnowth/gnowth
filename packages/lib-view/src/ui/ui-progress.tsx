@@ -1,20 +1,20 @@
 import { AppLayout, PropsLayout, useAppTheme } from '@gnowth/lib-application'
 import { PropsDataReadonly } from '@gnowth/lib-data'
 import {
-  System,
-  SystemType,
-  Theme,
-  ThemeVariants,
-  TokenColorWeight,
-  TokenSize,
   cx,
   keyframes,
+  System,
   systemColorFromPalette,
   systemCompose,
   systemDisplay,
   systemSpace,
+  SystemType,
+  Theme,
   themeCreateStyles,
   themeMakeStyles,
+  ThemeVariants,
+  TokenColorWeight,
+  TokenSize,
 } from '@gnowth/lib-theme'
 import { useAnimationDelayReady } from '@gnowth/lib-utils-react'
 import { ComponentType, FunctionComponent, ReactNode } from 'react'
@@ -75,29 +75,29 @@ const LayoutSuperImpose: FunctionComponent<PropsLayout> = (props) => (
   </UtilSlot.Provider>
 )
 
-export type PropsUIProgress = {
-  as?: string
-  bufferPalette?: string
-  bufferPaletteForContrast?: boolean
-  bufferPaletteWeight?: TokenColorWeight
-  children?: ReactNode
-  className?: string
-  classNamespace?: string
-  hidden?: boolean
-  layout?: ComponentType<PropsLayout> | string
-  layoutProps?: Record<string, unknown>
-  layoutVariant?: string
-  size?: TokenSize
-  slot?: string
-  thickness?: number
-  transitionDuration?: string
-  valueMax?: number
-  variant?: PropsUIProgress | string
-  variantNamespace?: string
-  variants?: ThemeVariants<PropsUIProgress>
-} & PropsDataReadonly<null | number> &
+export type PropsUIProgress = PropsDataReadonly<null | number> &
   SystemType<ReturnType<typeof systemColorFromPalette>> &
-  SystemType<typeof uiProgress>
+  SystemType<typeof uiProgress> & {
+    as?: string
+    bufferPalette?: string
+    bufferPaletteForContrast?: boolean
+    bufferPaletteWeight?: TokenColorWeight
+    children?: ReactNode
+    className?: string
+    classNamespace?: string
+    hidden?: boolean
+    layout?: ComponentType<PropsLayout> | string
+    layoutProps?: Record<string, unknown>
+    layoutVariant?: string
+    size?: TokenSize
+    slot?: string
+    thickness?: number
+    transitionDuration?: string
+    valueMax?: number
+    variant?: PropsUIProgress | string
+    variantNamespace?: string
+    variants?: ThemeVariants<PropsUIProgress>
+  }
 
 const spinnerRotateLinear = keyframes`
   0% { transform: rotate(0); }

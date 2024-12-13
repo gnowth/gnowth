@@ -4,12 +4,12 @@ import { Model } from '../models/model'
 import { DataName } from '../types'
 import { Field, FieldConfigs } from './field'
 
-type Nested = 'flat' | 'id' | 'nested'
-
-type ConfigsModel<Value> = {
+type ConfigsModel<Value> = FieldConfigs<Value> & {
   model: Model<Value>
   nested?: Nested
-} & FieldConfigs<Value>
+}
+
+type Nested = 'flat' | 'id' | 'nested'
 
 export class FieldModel<Value> extends Field {
   model: Model<Value>
@@ -32,7 +32,7 @@ export class FieldModel<Value> extends Field {
     return this.model.getField(name)
   }
 
-  valueToString(value: Value | null): string {
+  valueToString(value: null | Value): string {
     return this.model.valueToString(value)
   }
 }

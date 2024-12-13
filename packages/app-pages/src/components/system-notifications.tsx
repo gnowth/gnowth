@@ -1,5 +1,5 @@
 import { NotificationStream, PlatformDependency, usePlatformProvider, useStream } from '@gnowth/lib-react'
-import { ToastContainer, toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 
 export function SystemNotifications() {
   const notificationStreamState = usePlatformProvider<NotificationStream>({

@@ -1,17 +1,17 @@
-type StorageType = 'LOCAL' | 'SESSION'
+type OptionsStorageGetItem<Type> = OptionsStorageRemoveItem & {
+  default?: Type
+}
 
 type OptionsStorageRemoveItem = {
   key: string
   type?: StorageType
 }
 
-type OptionsStorageGetItem<Type> = {
-  default?: Type
-} & OptionsStorageRemoveItem
-
-type OptionsStorageSetItem<Type> = {
+type OptionsStorageSetItem<Type> = OptionsStorageRemoveItem & {
   value: Type
-} & OptionsStorageRemoveItem
+}
+
+type StorageType = 'LOCAL' | 'SESSION'
 
 // TODO: add abiliity to retrieve cookie?
 export class StorageService {

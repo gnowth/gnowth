@@ -4,9 +4,23 @@ import * as R from 'remeda'
 
 import { TokenSelector } from '../tokens/wip-token-selector'
 
-// TODO find a way to abstract it across in a library
-function select(selector = '', child?: string) {
-  return child ? `&& ${child}${selector}` : `&${selector}`
+function interpolateColor(theme: Theme, color = 'white', forTextStyle = false) {
+  return R.omitBy(
+    {
+      '&': forTextStyle ? 'transparent' : color,
+
+      [select(TokenSelector.disabled)]: theme.getPaletteColor({
+        palette: 'gray',
+        paletteWeight: '200',
+      }),
+
+      [select(TokenSelector.hover)]: theme.getPaletteColor({
+        palette: 'gray',
+        paletteWeight: '50',
+      }),
+    },
+    R.isEmpty,
+  ) as Record<string, string>
 }
 
 function interpolateColorFlat(theme: Theme, palette?: string, child?: string, forTextStyle = false) {
@@ -39,23 +53,9 @@ function interpolateColorFlat(theme: Theme, palette?: string, child?: string, fo
   ) as Record<string, string>
 }
 
-function interpolateColor(theme: Theme, color = 'white', forTextStyle = false) {
-  return R.omitBy(
-    {
-      '&': forTextStyle ? 'transparent' : color,
-
-      [select(TokenSelector.disabled)]: theme.getPaletteColor({
-        palette: 'gray',
-        paletteWeight: '200',
-      }),
-
-      [select(TokenSelector.hover)]: theme.getPaletteColor({
-        palette: 'gray',
-        paletteWeight: '50',
-      }),
-    },
-    R.isEmpty,
-  ) as Record<string, string>
+// TODO find a way to abstract it across in a library
+function select(selector = '', child?: string) {
+  return child ? `&& ${child}${selector}` : `&${selector}`
 }
 
 // TODO use theme token for border size, border radius, boxShadow

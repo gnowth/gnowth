@@ -1,10 +1,10 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
   cx,
   systemBackgroundColorFromPalette,
   systemCompose,
   systemGap,
+  SystemType,
   themeMakeStyles,
 } from '@gnowth/lib-theme'
 import { FunctionComponent, ReactNode } from 'react'
@@ -12,10 +12,10 @@ import { FunctionComponent, ReactNode } from 'react'
 import { UtilSlot } from '../util/util-slot'
 import { LayoutStack } from './layout-stack'
 
-export type PropsLayoutApp = {
+export type PropsLayoutApp = SystemType<typeof layoutApp> & {
   children: ReactNode
   variant?: PropsLayoutApp | string
-} & SystemType<typeof layoutApp>
+}
 
 const layoutApp = systemCompose(systemBackgroundColorFromPalette(), systemGap())
 const makeStyles = themeMakeStyles({ layoutApp })

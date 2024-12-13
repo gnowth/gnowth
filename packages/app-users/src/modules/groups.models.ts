@@ -8,14 +8,6 @@ type Parameters = { errorModel: ErrorModel }
 export class GroupModel {
   #errorModel: ErrorModel
 
-  fromData = (groupData: GroupData): Group => {
-    return groupSchema.parse({ ...groupData, key: groupData.id ?? uuid() })
-  }
-
-  toData = (group: Group): GroupData => {
-    return groupSchemaData.parse(group)
-  }
-
   constructor(parameters: Parameters) {
     this.#errorModel = parameters.errorModel
   }
@@ -27,12 +19,20 @@ export class GroupModel {
     return new this({ errorModel })
   }
 
+  fromData = (groupData: GroupData): Group => {
+    return groupSchema.parse({ ...groupData, key: groupData.id ?? uuid() })
+  }
+
   getId(group: Group): string {
     return group.id
   }
 
   isValid(group: Group): boolean {
     return this.validate(group).length === 0
+  }
+
+  toData = (group: Group): GroupData => {
+    return groupSchemaData.parse(group)
   }
 
   toString(group: Group): string {

@@ -4,9 +4,21 @@ import { TestModelFooter } from './footer'
 import { TestModelHeader } from './header'
 
 export class TestModelLanding {
-  #footer: TestModelFooter
-  #header: TestModelHeader
   readonly page: Page
+  get footerComponent(): Locator {
+    return this.#footer.component
+  }
+  get headerComponent(): Locator {
+    return this.#header.component
+  }
+
+  get titleText(): Locator {
+    return this.page.getByText('Landing')
+  }
+
+  #footer: TestModelFooter
+
+  #header: TestModelHeader
 
   constructor(page: Page) {
     this.page = page
@@ -16,17 +28,5 @@ export class TestModelLanding {
 
   async goto() {
     await this.page.goto('/spa/#/tasks')
-  }
-
-  get footerComponent(): Locator {
-    return this.#footer.component
-  }
-
-  get headerComponent(): Locator {
-    return this.#header.component
-  }
-
-  get titleText(): Locator {
-    return this.page.getByText('Landing')
   }
 }

@@ -1,16 +1,16 @@
 import { PropsLayout, useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariants,
   cx,
   systemBox,
   systemCompose,
   systemGrid,
   systemLayout,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
-import { ComponentType, FunctionComponent, ReactNode, createElement } from 'react'
+import { ComponentType, createElement, FunctionComponent, ReactNode } from 'react'
 import * as R from 'remeda'
 
 type ComponentProps = {
@@ -19,19 +19,19 @@ type ComponentProps = {
   'data-testid'?: string
   id?: string
 }
-type PropsLayoutGrid = {
-  as?: ComponentType<ComponentProps> | null | string
-  children: ReactNode
-  className?: string
-  gridColumnCount?: number
-  hidden?: boolean
-  id?: string
-  slot?: string
-  variant?: PropsLayoutGrid | string
-  variantNamespace?: string
-  variants?: ThemeVariants<PropsLayoutGrid>
-} & PropsLayout &
-  SystemType<typeof layoutGrid>
+type PropsLayoutGrid = PropsLayout &
+  SystemType<typeof layoutGrid> & {
+    as?: ComponentType<ComponentProps> | null | string
+    children: ReactNode
+    className?: string
+    gridColumnCount?: number
+    hidden?: boolean
+    id?: string
+    slot?: string
+    variant?: PropsLayoutGrid | string
+    variantNamespace?: string
+    variants?: ThemeVariants<PropsLayoutGrid>
+  }
 
 const layoutGrid = systemCompose(systemBox(), systemGrid(), systemLayout(), systemSpace())
 const makeStyles = themeMakeStyles({ layoutGrid })

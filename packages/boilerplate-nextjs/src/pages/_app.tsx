@@ -16,11 +16,11 @@ import { setup } from '../modules/setup'
 
 setup({})
 
-type Props = {
-  Component: {
+type Props = AppProps & {
+  Component: NextPage & {
     Layout?: ComponentType<PropsWithChildren<Attributes>>
-  } & NextPage
-} & AppProps
+  }
+}
 
 const WrapperComponent: FunctionComponent<PropsWithChildren<Attributes>> = (props) => props.children
 // TODO: use SystemAugmented

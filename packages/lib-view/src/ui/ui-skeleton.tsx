@@ -1,14 +1,14 @@
 import { useAppTheme } from '@gnowth/lib-application'
 import {
-  SystemType,
-  ThemeVariants,
   cx,
   keyframes,
   systemBox,
   systemCompose,
   systemLayout,
   systemSpace,
+  SystemType,
   themeMakeStyles,
+  ThemeVariants,
 } from '@gnowth/lib-theme'
 import { FunctionComponent } from 'react'
 import * as R from 'remeda'
@@ -19,7 +19,7 @@ const pulse = keyframes`
   100% { opacity: 1; }
 `
 
-export type PropsUISkeleton = {
+export type PropsUISkeleton = SystemType<typeof uiSkeleton> & {
   as?: string
   className?: string
   hidden?: boolean
@@ -28,7 +28,7 @@ export type PropsUISkeleton = {
   variant?: PropsUISkeleton | string
   variantNamespace?: string
   variants?: ThemeVariants<PropsUISkeleton>
-} & SystemType<typeof uiSkeleton>
+}
 const uiSkeleton = systemCompose(systemBox(), systemLayout(), systemSpace())
 const makeStyles = themeMakeStyles({
   animationClass: `

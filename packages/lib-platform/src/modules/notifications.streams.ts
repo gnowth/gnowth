@@ -4,25 +4,17 @@ import { PlatformDependency, PlatformParameters } from '../core/platform'
 import { ErrorData, ErrorModel } from './errors'
 import { Notification, NotificationModel } from './notifications.models'
 
+type Parameters = { errorModel: ErrorModel; notificationModel: NotificationModel }
 type Toast = {
   closeButton?: boolean
   message: string
   type?: 'error' | 'info' | 'success' | 'warning'
 }
-type Parameters = { errorModel: ErrorModel; notificationModel: NotificationModel }
 export class NotificationStream {
-  #errorModel: ErrorModel
-  #notificationModel: NotificationModel
-
-  pushError = (error: ErrorData) => {
-    return this.stream.next(this.#errorModel.toToast(error))
-  }
-
-  pushNotification = (notification: Notification) => {
-    return this.stream.next(this.#notificationModel.toToast(notification))
-  }
-
   stream = new Subject<Toast>()
+  #errorModel: ErrorModel
+
+  #notificationModel: NotificationModel
 
   constructor(parameters: Parameters) {
     this.#errorModel = parameters.errorModel
@@ -37,5 +29,13 @@ export class NotificationStream {
       name: PlatformDependency.notificationModel,
     })
     return new this({ errorModel, notificationModel })
+  }
+
+  pushError = (error: ErrorData) => {
+    return this.stream.next(this.#errorModel.toToast(error))
+  }
+
+  pushNotification = (notification: Notification) => {
+    return this.stream.next(this.#notificationModel.toToast(notification))
   }
 }
