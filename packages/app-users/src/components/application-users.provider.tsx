@@ -1,8 +1,8 @@
 import { AppProvider, PlatformDependencies, PlatformProvider } from '@gnowth/lib-react'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { Provider } from 'jotai'
 import { FunctionComponent, PropsWithChildren } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { RecoilRoot } from 'recoil'
 
 import { AppUserDependency, AppUserModule } from '../modules/app-users'
 import { theme } from '../modules/theme'
@@ -11,7 +11,7 @@ import { UserModule } from '../modules/users'
 
 export const ApplicationUsersProvider: FunctionComponent<PropsWithChildren> = (props) => {
   return (
-    <RecoilRoot>
+    <Provider>
       <AppProvider theme={theme}>
         <PlatformDependencies
           definitions={[
@@ -37,6 +37,6 @@ export const ApplicationUsersProvider: FunctionComponent<PropsWithChildren> = (p
           {props.children}
         </PlatformProvider>
       </AppProvider>
-    </RecoilRoot>
+    </Provider>
   )
 }
