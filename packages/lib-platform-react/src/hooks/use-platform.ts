@@ -6,9 +6,8 @@ import {
   PlatformDefinitionProvider,
   PlatformManager,
 } from '@gnowth/lib-platform'
-import { DependencyList, useMemo } from 'react'
+import { DependencyList, use, useMemo } from 'react'
 import { useAsync } from 'react-use'
-import { use } from 'react-use-polyfill'
 import * as R from 'remeda'
 
 export const usePlatform = () => {

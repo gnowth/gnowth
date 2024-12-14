@@ -19,9 +19,8 @@
     "@gnowth/lib-platform": "0.0.0",
     "@gnowth/lib-utils": "0.0.0",
     "@gnowth/lib-utils-react": "0.0.0",
-    "react": "18.3.1",
+    "react": "19.0.0",
     "react-use": "17.5.1",
-    "react-use-polyfill": "0.1.0",
     "remeda": "2.17.4"
   },
   "devDependencies": {

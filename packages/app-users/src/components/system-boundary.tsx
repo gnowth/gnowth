@@ -19,7 +19,6 @@ export const SystemBoundary: FunctionComponent<Props> = (props) => {
 
   return (
     <ErrorBoundary
-      // eslint-disable-next-line sonarjs/no-unstable-nested-components
       fallbackRender={({ error, resetErrorBoundary }) =>
         props.FallbackComponent ? (
           <props.FallbackComponent error={error} reset={resetErrorBoundary} />
