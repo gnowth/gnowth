@@ -22,7 +22,6 @@ const configs = {
   },
   output: 'export',
   reactStrictMode: true,
-  swcMinify: true,
   trailingSlash: true,
   webpack: (config, { nextRuntime }) => {
     if (typeof nextRuntime === 'undefined') {

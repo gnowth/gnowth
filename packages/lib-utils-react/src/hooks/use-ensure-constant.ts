@@ -19,6 +19,7 @@ const errorCustom = new ErrorCustom({
 export function useEnsureConstant<Value>(value: Value, configs?: Configs): void {
   const valuePrevious = usePrevious(value)
   const isFirstMount = useFirstMountState()
+  console.log('=====val', value, valuePrevious, isFirstMount)
 
   if (value !== valuePrevious && !configs?.skip && !isFirstMount) {
     throw configs?.errorCustom || errorCustom

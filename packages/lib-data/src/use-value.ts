@@ -1,14 +1,8 @@
-import { ErrorCustom, objectDefaults, objectSet } from '@gnowth/lib-utils'
-import { useEnsureConstant } from '@gnowth/lib-utils-react'
+import { objectSet } from '@gnowth/lib-utils'
 import { useCallback, useState } from 'react'
 import { useLatest } from 'react-use'
 
 import { DataName, DataValue, TokenMode } from './types'
-
-type Configs = {
-  errorCustomMode?: Error
-  errorCustomValue?: Error
-}
 
 type Props<Value> = Return<Value> & {
   mode?: TokenMode
@@ -21,33 +15,8 @@ type Return<Value> = {
   value: Value
 }
 
-const configsDefault = {
-  errorCustomMode: new ErrorCustom({
-    code: 'lib-data--use-value--01',
-    message: 'prop "mode" is not allowed to be changed. If this behaviour is needed, remount component',
-    trace: {
-      caller: 'useValue',
-      context: 'useValue',
-      source: 'lib-data',
-    },
-  }),
-
-  errorCustomValue: new ErrorCustom({
-    code: 'lib-data--use-value--02',
-    message: 'prop "value" is not allowed to be changed since component is in "uncontrolled" mode',
-    trace: {
-      caller: 'useValue',
-      context: 'useValue',
-      source: 'lib-data',
-    },
-  }),
-}
-
-export function useValue<Value extends DataValue>(props: Props<Value>, configs: Configs = {}): Return<Value> {
+export function useValue<Value extends DataValue>(props: Props<Value>): Return<Value> {
   const { mode = 'controlled', onChange } = props
-  const configsWithDefault = objectDefaults(configs, configsDefault)
-
-  useEnsureConstant(props.mode, { errorCustom: configsWithDefault.errorCustomMode })
 
   const valueRef = useLatest(props.value)
   const [value, setValue] = useState(props.value)
