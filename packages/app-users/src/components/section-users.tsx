@@ -11,10 +11,10 @@ import {
   usePlatformProviderSuspense,
 } from '@gnowth/lib-react'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import { atom, useAtom } from 'jotai'
 import Link from 'next/link'
 import { Fragment, FunctionComponent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { atom, useRecoilState } from 'recoil'
 
 import { dependencies } from '../dependencies'
 import { AppUserConstant, AppUserController, AppUserDependency } from '../modules/app-users'
@@ -23,10 +23,7 @@ import { UserModel, UserService } from '../modules/users'
 import { InputPagination } from './input-pagination'
 import { withAugmented } from './with-augmented'
 
-export const stateUserFilter = atom({
-  default: dependencies.userFilterModel.generatePaginated(),
-  key: 'usersFilter',
-})
+export const atomUserFilter = atom(dependencies.userFilterModel.generatePaginated())
 
 // DEBT: investigate if we should have a function to generate shouldShows?
 // DEBT: Add message when number of results return is 0
@@ -46,7 +43,7 @@ const SectionUsersComponent: FunctionComponent = () => {
   const userFilterModel = usePlatformProviderSuspense<UserFilterModel>({
     name: AppUserDependency.userFilterModel,
   })
-  const [filters, setFilters] = useRecoilState(stateUserFilter)
+  const [filters, setFilters] = useAtom(atomUserFilter)
   const params = useMemo(() => userFilterModel.toParams(filters), [filters, userFilterModel])
   const { data } = useSuspenseQuery(userService.listOptions({ params }))
 

@@ -7,15 +7,15 @@ import {
   usePlatformProviderSuspense,
 } from '@gnowth/lib-react'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useAtomValue } from 'jotai'
 import { useSearchParams } from 'next/navigation'
 import { FunctionComponent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRecoilState } from 'recoil'
 
 import { AppUserConstant, AppUserDependency } from '../modules/app-users'
 import { UserFilterModel } from '../modules/user-filters'
 import { UserService } from '../modules/users'
-import { stateUserFilter } from './section-users'
+import { atomUserFilter } from './section-users'
 import { withAugmented } from './with-augmented'
 
 // DEBT: find a way for not using casting on query params. at least not in the render
@@ -23,7 +23,7 @@ const FormUserComponent: FunctionComponent = () => {
   const { t } = useTranslation(AppUserConstant.i18nNamespace)
   const searchParams = useSearchParams()
   const id = searchParams?.get('id') ?? ''
-  const [filters] = useRecoilState(stateUserFilter)
+  const filters = useAtomValue(atomUserFilter)
   const userService = usePlatformProviderSuspense<UserService>({
     name: AppUserDependency.userService,
   })

@@ -1,16 +1,16 @@
 import { DataConnect, DataSource, DataTrigger, LayoutSection } from '@gnowth/lib-react'
+import { useAtom } from 'jotai'
 import { FunctionComponent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRecoilState } from 'recoil'
 
-import { stateUserFilter } from '../components/section-users'
+import { atomUserFilter } from '../components/section-users'
 import { AppUserConstant } from '../modules/app-users'
 import { withAugmented } from './with-augmented'
 
 // DEBT: Convert status input to dropdown
 const FormUserFilterComponent: FunctionComponent = () => {
   const { t } = useTranslation(AppUserConstant.i18nNamespace)
-  const [filters, setFilters] = useRecoilState(stateUserFilter)
+  const [filters, setFilters] = useAtom(atomUserFilter)
   const [initialFilters] = useState(filters)
 
   return (
