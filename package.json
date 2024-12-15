@@ -43,7 +43,7 @@
     "ci:project:storybook:e2e?": "DEBT: issue where storybook is showing preview instead of component. short term fix is to use storybook in dev mode. https://github.com/chromaui/chromatic-cli/issues/312"
   },
   "devDependencies": {
-    "@commitlint/cli": "19.6.0",
+    "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@gnowth/eslint-config": "0.0.0",
     "@gnowth/jest-config": "0.0.0",
