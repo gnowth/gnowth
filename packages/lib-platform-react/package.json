@@ -21,7 +21,7 @@
     "@gnowth/lib-utils-react": "0.0.0",
     "react": "19.0.0",
     "react-use": "17.6.0",
-    "remeda": "2.17.4"
+    "remeda": "2.18.0"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
