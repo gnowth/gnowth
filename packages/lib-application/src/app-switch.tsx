@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, ReactElement, ReactNode } from 'react'
+import { Children, cloneElement, FunctionComponent, isValidElement, ReactNode } from 'react'
 import { matchPath, useLocation } from 'react-router-dom'
 
 import { AppModelApplication } from './app-model-application'
@@ -17,11 +17,11 @@ type PropsChild = {
   path?: string
 }
 
-export function AppSwitch(props: Props): null | ReactElement {
+export const AppSwitch: FunctionComponent<Props> = (props) => {
   const application = useAppApplication()
   const environment = useAppEnvironment()
   const location = useLocation()
-  let element: ReactElement = <div />
+  let element = <div />
   let match: null | ReturnType<typeof matchPath> = null
 
   Children.forEach(props.children, (child) => {

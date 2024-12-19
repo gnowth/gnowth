@@ -8,12 +8,15 @@ import { UIIcon } from './ui-icon'
 describe('uIIcon', () => {
   type Props = { 'data-testid'?: string }
   const Icon: FunctionComponent<Props> = (props) => <div data-testid={props['data-testid']} />
-  const renderComponent = testMakeRenderComponent({ Component: UIIcon, props: { components: { Icon } } })
+  const renderComponent = testMakeRenderComponent({
+    Component: UIIcon,
+    props: { components: { Icon }, value: 'Icon' },
+  })
 
   it('renders properly', async () => {
     expect.assertions(1)
 
-    await renderComponent({ props: { value: 'Icon' } })
+    await renderComponent()
 
     expect(screen.queryByTestId('view-ui-icon')).toBeVisible()
   })
