@@ -1,5 +1,5 @@
 import { HigherComponent } from '@gnowth/lib-react'
-import { ComponentProps, ComponentType } from 'react'
+import { Attributes, ComponentProps, ComponentType } from 'react'
 
 import { SystemBoundary } from './system-boundary'
 import { SystemSuspense } from './system-suspense'
@@ -17,7 +17,7 @@ type PropsAugmented = {
 // DEBT: allow default error/loading component through context and allow null value to skip default
 // Note: if FallbackComponent is null, it skips default FallbackComponent
 // TODO: remove JSX and use react Attributes
-export function withAugmented<Props extends JSX.IntrinsicAttributes>(
+export function withAugmented<Props extends Attributes>(
   propsAugmented?: PropsAugmented,
 ): HigherComponent<Props> {
   return function withAugmentedHOC(Component: AugmentedComponentType<Props>) {
