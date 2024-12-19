@@ -16,7 +16,8 @@
     "@types/jest": "29.5.14",
     "jest": "29.7.0",
     "jest-environment-jsdom": "29.7.0",
-    "ts-jest": "29.2.5"
+    "ts-jest": "29.2.5",
+    "util": "0.12.5"
   },
   "devDependencies": {
     "@gnowth/eslint-config": "0.0.0",
